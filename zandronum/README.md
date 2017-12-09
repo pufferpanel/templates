@@ -6,4 +6,4 @@ It is extremely basic, and I've only tested it to make sure that it runs. The se
 
 If there are multiple wads in the directory, the server console will prompt you to choose one.
 
-Please see the [original forum post](https://community.pufferpanel.com/topic/577/an-incredibly-buggy-terraria-template) contributed by Technoturnovers for more information.
+Please see the [original forum post](https://community.pufferpanel.com/topic/635/zandronum-template) contributed by Technoturnovers for more information.
