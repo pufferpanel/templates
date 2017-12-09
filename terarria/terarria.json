@@ -1,0 +1,51 @@
+{
+  "pufferd": {
+    "type": "terraria",
+    "display": "Terraria - Vanilla",
+    "install": {
+      "commands": [
+        {
+          "type": "download",
+          "files": "http://terraria.org/server/terraria-server-${version}.zip"
+        },
+        {
+          "commands": [
+            "unzip terraria-server-${version}",
+            "mv -v ${rootdir}/${version}/Linux/ ${rootdir}/Linux/",
+            "chmod +x ${rootdir}/Linux/TerrariaServer",
+            "chmod +x ${rootdir}/Linux/TerrariaServer.bin.x86"
+          ],
+          "type": "command"
+        }
+      ]
+    },
+    "run": {
+      "stop": "exit",
+      "pre": [],
+      "post": [],
+      "arguments": [
+        "-port",
+        "${port}",
+        "-secure",
+        "-steam"
+      ],
+      "program": "Linux/TerrariaServer"
+    },
+    "data": {
+      "port": {
+        "value": "7777",
+        "required": true,
+        "desc": "What port to bind the server to",
+        "display": "Port",
+        "internal": false
+      },
+      "version": {
+        "value": "1353",
+        "required": true,
+        "desc": "Server Version",
+        "display": "Server Version (Set this to the latest server version)",
+        "internal": false
+      }
+    }
+  }
+}

@@ -4,7 +4,7 @@ These are templates which are contributed by the community, which are not includ
 
 To add a template, please make a pull request following the existing location structure of the other templates.
 
-Make sure to include a `templatename.md` file to list any prerequisites, workarounds, or list things that aren't quite working right.
+Make sure to include a `README.md` file in your template's directory to list any prerequisites, workarounds, or list things that aren't quite working right.
 
 Please see [this documentation](https://pufferd.pufferpanel.com/docs/creating-pufferd-templates) for instructions on how to create your own template.
 
