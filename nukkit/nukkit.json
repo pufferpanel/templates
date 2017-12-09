@@ -1,0 +1,66 @@
+{
+  "pufferd": {
+    "type": "java",
+    "display": "Nukkit",
+    "install": {
+      "commands": [
+        {
+          "type": "download",
+          "files": "http://ci.mengcraft.com:8080/job/nukkit/lastSuccessfulBuild/artifact/target/nukkit-1.0-SNAPSHOT.jar"
+        },
+        {
+          "source": "nukkit-*.jar",
+          "target": "server.jar",
+          "type": "move"
+        },
+        {
+          "type": "writefile",
+          "text": "server-ip=${ip}\nserver-port=${port}\n",
+          "target": "server.properties"
+        },
+        {
+          "type": "writefile",
+          "text": " language: \"eng\"\n",
+          "target": "nukkit.yml"
+        }
+      ]
+    },
+    "run": {
+      "stop": "stop",
+      "pre": [],
+      "post": [],
+      "arguments": [
+        "-Xmx${memory}M",
+        "-jar",
+        "server.jar"
+      ],
+      "program": "java"
+    },
+    "environment": {
+      "type": "standard"
+    },
+    "data": {
+      "memory": {
+        "value": "1024",
+        "required": true,
+        "desc": "How much memory in MB to allocate to the Java Heap",
+        "display": "Memory (MB)",
+        "internal": false
+      },
+      "ip": {
+        "value": "0.0.0.0",
+        "required": true,
+        "desc": "What IP to bind the server to",
+        "display": "IP",
+        "internal": false
+      },
+      "port": {
+        "value": "19132",
+        "required": true,
+        "desc": "What port to bind the server to",
+        "display": "Port",
+        "internal": false
+      }
+    }
+  }
+}
