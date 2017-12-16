@@ -460,7 +460,7 @@
         "internal": false
       },
       "playerdecayrate": {
-        "value": "0.02",
+        "value": "0.002",
         "required": true,
         "desc": "Amount of size lost per second",
         "display": "Player Decay Rate",
