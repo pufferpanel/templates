@@ -1,0 +1,75 @@
+{
+  "pufferd": {
+    "type": "Voice",
+    "display": "Teamspeak 3",
+    "install": {
+      "commands": [
+        {
+          "files": "http://dl.4players.de/ts/releases/3.1.1/teamspeak3-server_linux_amd64-3.1.1.tar.bz2",
+          "type": "download"
+        },
+        {
+          "commands": [
+            "tar -xvf teamspeak3-server_linux_amd64-3.1.1.tar.bz2",
+	    "touch teamspeak3-server_linux_amd64/.ts3server_license_accepted"
+          ],
+          "type": "command"
+        }
+      ]
+    },
+    "run": {
+      "stop": "You can not use this button to kill the server. Please use the 'Kill Server' Button instead!",
+      "pre": [],
+      "post": [],
+      "arguments": [
+	"default_voice_port=${vport}",
+	"query_port=${qport}",
+	"filetransfer_port=${ftport}",
+	"voice_ip=${IP}",
+	"licensepath=${license}",
+	"license_accepter=1"
+        ],
+      "program": "./teamspeak3-server_linux_amd64/ts3server_minimal_runscript.sh"
+    },
+    "environment": {
+      "type": "tty"
+    },
+    "data": {
+      "vport": {
+      "value": "9987",
+      "required": false,
+      "desc": "What Port do you want your voice server to run on?",
+      "display": "Post Number",
+      "internal": false
+      },
+      "qport": {
+      "value": "10011",
+      "required": false,
+      "desc": "What Port do you want your query server to run on?",
+      "display": "Post Number",
+      "internal": false
+      },
+      "ftport": {
+      "value": "30033",
+      "required": false,
+      "desc": "What Port do you want your file transfer server to run on?",
+      "display": "Post Number",
+      "internal": false
+      },
+      "IP": {
+      "value": "0.0.0.0",
+      "required": false,
+      "desc": "What IP do you want your voice server to run on?",
+      "display": "IP Address",
+      "internal": false
+      },
+      "license": {
+      "value": "",
+      "required": false,
+      "desc": "The absolute path to your license file.",
+      "display": "License Path",
+      "internal": false
+      }
+    }
+  }
+}
