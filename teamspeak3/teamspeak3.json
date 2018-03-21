@@ -77,7 +77,7 @@
       "internal": false
       },
       "eula": {
-      "value": "1",
+      "value": "0",
       "required": true,
       "desc": "Do you accept the Teamspeak EULA? 1 = Yes, 0 = No.",
       "display": "EULA",
