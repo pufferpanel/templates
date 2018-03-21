@@ -1,17 +1,16 @@
 {
   "pufferd": {
-    "type": "Voice",
+    "type": "voice",
     "display": "Teamspeak 3",
     "install": {
       "commands": [
         {
-          "files": "http://dl.4players.de/ts/releases/3.1.1/teamspeak3-server_linux_amd64-3.1.1.tar.bz2",
+          "files": "http://dl.4players.de/ts/releases/${version}/teamspeak3-server_linux_amd64-${version}.tar.bz2",
           "type": "download"
         },
         {
           "commands": [
-            "tar -xvf teamspeak3-server_linux_amd64-3.1.1.tar.bz2",
-	    "touch teamspeak3-server_linux_amd64/.ts3server_license_accepted"
+            "tar -xvf teamspeak3-server_linux_amd64-{version}.tar.bz2",
           ],
           "type": "command"
         }
@@ -25,9 +24,9 @@
 	"default_voice_port=${vport}",
 	"query_port=${qport}",
 	"filetransfer_port=${ftport}",
-	"voice_ip=${IP}",
+	"voice_ip=${ip}",
 	"licensepath=${license}",
-	"license_accepter=1"
+	"license_accepted=${eula}"
         ],
       "program": "./teamspeak3-server_linux_amd64/ts3server_minimal_runscript.sh"
     },
@@ -39,24 +38,24 @@
       "value": "9987",
       "required": false,
       "desc": "What Port do you want your voice server to run on?",
-      "display": "Post Number",
+      "display": "Port Number",
       "internal": false
       },
       "qport": {
       "value": "10011",
       "required": false,
       "desc": "What Port do you want your query server to run on?",
-      "display": "Post Number",
+      "display": "Port Number",
       "internal": false
       },
       "ftport": {
       "value": "30033",
       "required": false,
       "desc": "What Port do you want your file transfer server to run on?",
-      "display": "Post Number",
+      "display": "Port Number",
       "internal": false
       },
-      "IP": {
+      "ip": {
       "value": "0.0.0.0",
       "required": false,
       "desc": "What IP do you want your voice server to run on?",
@@ -69,7 +68,22 @@
       "desc": "The absolute path to your license file.",
       "display": "License Path",
       "internal": false
+      },
+      "version": {
+      "value": "3.1.1",
+      "required": true,
+      "desc": "What version of Teamspeak do you want to use?",
+      "display": "Version",
+      "internal": false
+      },
+      "eula": {
+      "value": "1",
+      "required": true,
+      "desc": "Do you accept the Teamspeak EULA? 1 = Yes, 0 = No.",
+      "display": "EULA",
+      "internal": false
       }
+	    
     }
   }
 }
