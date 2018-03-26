@@ -13,7 +13,8 @@
             "tar --no-same-owner -xzvf steamcmd_linux.tar.gz -C steamcmd",
             "steamcmd/steamcmd.sh +login ${steam_user} ${steam_password} +force_install_dir ${rootdir} +app_update 233780 +quit",
             "mkdir -p .steam/sdk32",
-            "cp steamcmd/linux32/steamclient.so .steam/sdk32/steamclient.so"
+            "cp steamcmd/linux32/steamclient.so .steam/sdk32/steamclient.so",
+	          "touch ./config.cfg"
           ],
           "type": "command"
         }
@@ -25,12 +26,16 @@
       "post": [],
       "arguments": [
         "-ip=${ip}",
-        "-port=${port}"
+        "-port=${port}",
+        "-config=${config}",
+        "-world=${world}",
+        "-mod=${mods}"
+	"-config=config_server.cfg"
       ],
       "program": "./arma3server"
     },
     "environment": {
-      "type": "tty"
+      "type": "standard"
     },
     "data": {
       "steam_user": {
@@ -42,6 +47,7 @@
       },
       "steam_password": {
         "value": "",
+		"required": true,
         "desc": "Password for Steam login",
         "display": "Steam Password",
         "internal": false
@@ -60,6 +66,27 @@
         "display": "Port",
         "internal": false,
         "type": "integer"
+      },
+      "config": {
+        "value": "config.cfg",
+        "required": false,
+        "desc": "The Config file you want to use",
+        "display": "Config File",
+        "internal": false
+      },
+      "mods": {
+        "value": "",
+        "required": false,
+        "desc": "List mod directories here seperated by a Semicolon",
+        "display": "Mods",
+        "internal": false
+      },
+      "world": {
+        "value": "",
+        "required": false,
+        "desc": "World Parameter",
+        "display": "World",
+        "internal": false
       }
     }
   }
