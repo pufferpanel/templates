@@ -21,5 +21,5 @@ Ragnarok
 Aberration_P 
 
 Note: You must set a whitelist file up in the file system manually. You can do this using SFTP. 
-* Create the file in the directory ShooterGame/Binaries/<platform>PlayersExclusiveJoinList.txt
+* Create the file in the directory ShooterGame/Binaries/Linux_OR_Win64/PlayersExclusiveJoinList.txt
 * Find the Steam64 ID of your friends and paste them, one per line.
