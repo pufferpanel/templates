@@ -20,7 +20,7 @@
       ]
     },
     "run": {
-      "stop": "exit",
+      "stopCode": 9,
       "pre": [],
       "post": [],
       "arguments": [
