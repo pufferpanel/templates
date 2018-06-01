@@ -15,7 +15,7 @@
             "mkdir -p .steam/sdk32",
             "cp steamcmd/linux32/steamclient.so .steam/sdk32/steamclient.so",
 	    "touch ./config.cfg",
-            "touch ./parameters.par"
+            "touch ./parameters.txt"
           ],
           "type": "command"
         }
@@ -29,7 +29,7 @@
         "-ip=${ip}",
         "-port=${port}",
         "-config=${config}",
-	"-par=parameters.par"
+	"-par=parameters.txt"
       ],
       "program": "./arma3server"
     },
