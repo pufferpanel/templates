@@ -14,23 +14,22 @@
             "steamcmd/steamcmd.sh +login ${steam_user} ${steam_password} +force_install_dir ${rootdir} +app_update 233780 +quit",
             "mkdir -p .steam/sdk32",
             "cp steamcmd/linux32/steamclient.so .steam/sdk32/steamclient.so",
-	          "touch ./config.cfg"
+	    "touch ./config.cfg",
+            "touch ./parameters.txt"
           ],
           "type": "command"
         }
       ]
     },
     "run": {
-      "stop": "#shutdown",
+      "stopCode": 9,
       "pre": [],
       "post": [],
       "arguments": [
         "-ip=${ip}",
         "-port=${port}",
         "-config=${config}",
-        "-world=${world}",
-        "-mod=${mods}"
-	"-config=config_server.cfg"
+	"-par=parameters.txt"
       ],
       "program": "./arma3server"
     },
@@ -70,22 +69,8 @@
       "config": {
         "value": "config.cfg",
         "required": false,
-        "desc": "The Config file you want to use",
+        "desc": "The Config file you want to use. NOTE: config.cfg is created on server installation!",
         "display": "Config File",
-        "internal": false
-      },
-      "mods": {
-        "value": "",
-        "required": false,
-        "desc": "List mod directories here seperated by a Semicolon",
-        "display": "Mods",
-        "internal": false
-      },
-      "world": {
-        "value": "",
-        "required": false,
-        "desc": "World Parameter",
-        "display": "World",
         "internal": false
       }
     }
