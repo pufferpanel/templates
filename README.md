@@ -1,7 +1,5 @@
 # pufferd templates
 
-These are templates which are contributed by the community which are not included in the default pufferd distribution.
-
 To add a template to this repository, please make a pull request following the existing location structure of the other templates.
 
 Make sure to include a `README.md` file in your template's directory to document any prerequisites, workarounds, or caveats.
