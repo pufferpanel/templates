@@ -21,7 +21,7 @@
       ]
     },
     "run": {
-      "stop": "quit",
+      "stopCode": 9,
       "pre": [],
       "post": [],
       "arguments": [

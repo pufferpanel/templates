@@ -17,7 +17,7 @@
       ]
     },
     "run": {
-      "stop": "You can not use this button to kill the server. Please use the 'Kill Server' Button instead!",
+      "stopCode": 9,
       "pre": [],
       "post": [],
       "arguments": [
