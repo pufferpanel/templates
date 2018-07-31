@@ -1,0 +1,97 @@
+{
+  "pufferd":
+  {
+    "type": "Unity 5",
+    "display": "Unturned 3",
+    "install":
+    {
+      "commands":
+      [
+        {
+          "files": "https://ci.rocketmod.net/job/Rocket.Unturned/lastSuccessfulBuild/artifact/Rocket.Unturned/bin/Release/Rocket.zip",
+          "type": "download"
+        },
+        {
+          "commands":
+          [
+            "unzip -o Rocket.zip",
+            "rm Rocket.zip",
+            "chmod 755 Scripts/update.sh",
+            "chmod 755 Scripts/start.sh",
+            "Scripts/update.sh <steam_username> <steam_password>"
+          ],
+          "type": "command"
+        },
+        {
+          "type": "writefile",
+          "text": "Name ${name}\nMap ${map}\nPort ${port}\nMaxPlayers ${maxplayers}\nMode ${mode}\nOwner ${steam_id}\nWelcome ${welcome}",
+          "target": "/Servers/SV1/Server/Commands.dat"
+        }
+      ]
+    },
+    "run": {
+      "stop": "shutdown",
+      "pre": [],
+      "post": [],
+      "arguments": [
+        "SV1"
+      ],
+      "program": "Scripts/start.sh"
+    },
+    "environment": {
+      "type": "tty"
+    },
+    "data":
+    {
+      "name": {
+        "value": "WWW.TOTSUKA.XYZ | NEW SERVER HAS BORN!",
+        "required": true,
+        "desc": "Server name.",
+        "display": "Name",
+        "internal": false
+      },
+      "welcome": {
+        "value": "Welcome to the server HAVE FUN",
+        "required": true,
+        "desc": "Welcome",
+        "display": "Server welcome message.",
+        "internal": false
+      },
+      "maxplayers": {
+        "value": "24",
+        "required": true,
+        "desc": "Slots",
+        "display": "Server slots.",
+        "internal": false
+      },
+      "map": {
+        "value": "PEI",
+        "required": true,
+        "desc": "Server map.",
+        "display": "Map",
+        "internal": false
+      },
+      "mode": {
+        "value": "easy",
+        "required": true,
+        "desc": "Server mode.",
+        "display": "Mode",
+        "internal": false
+      },
+      "port": {
+        "value": "27015",
+        "required": true,
+        "desc": "Server port.",
+        "display": "Port",
+        "internal": false
+      },
+      "steam_id": {
+        "value": "76561198091679318",
+        "required": true,
+        "desc": "Server owner STEAMID_64",
+        "display": "STEAMID_64",
+        "internal": false
+      }
+    }
+  }
+}
