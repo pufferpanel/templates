@@ -1,8 +1,8 @@
 {
   "pufferd":
   {
-    "type": "Unity 5",
-    "display": "Unturned 3",
+    "type": "Unity",
+    "display": "Unturned",
     "install":
     {
       "commands":
@@ -16,8 +16,9 @@
           [
             "unzip -o Rocket.zip",
             "rm Rocket.zip",
-            "chmod 755 Scripts/update.sh",
-            "chmod 755 Scripts/start.sh",
+            "cp Scripts/Linux/RocketLauncher.exe RocketLauncher.exe",
+            "chmod 755 Scripts/Linux/update.sh",
+            "chmod 755 Scripts/Linux/start.sh",
             "Scripts/update.sh <steam_username> <steam_password>"
           ],
           "type": "command"
