@@ -37,29 +37,43 @@
       "arguments": [
         "SV1"
       ],
-      "program": "Scripts/start.sh"
+      "program": "Scripts/Linux/start.sh"
     },
     "environment": {
       "type": "tty"
     },
     "data":
     {
+      "1steam_user": {
+        "value": "",
+        "required": true,
+        "desc": "Steam Login for downloading Unturned",
+        "display": "STEAM USER",
+        "internal": false
+      },
+      "2steam_pass": {
+        "value": "",
+        "required": true,
+        "desc": "Steam Pass for downloading Unturned",
+        "display": "STEAM PASSWORD",
+        "internal": false
+      },
       "name": {
-        "value": "WWW.TOTSUKA.XYZ | NEW SERVER HAS BORN!",
+        "value": "",
         "required": true,
         "desc": "Server name.",
         "display": "Name",
         "internal": false
       },
       "welcome": {
-        "value": "Welcome to the server HAVE FUN",
+        "value": "",
         "required": true,
         "desc": "Welcome",
         "display": "Server welcome message.",
         "internal": false
       },
       "maxplayers": {
-        "value": "24",
+        "value": "",
         "required": true,
         "desc": "Slots",
         "display": "Server slots.",
@@ -87,7 +101,7 @@
         "internal": false
       },
       "steam_id": {
-        "value": "76561198091679318",
+        "value": "",
         "required": true,
         "desc": "Server owner STEAMID_64",
         "display": "STEAMID_64",
