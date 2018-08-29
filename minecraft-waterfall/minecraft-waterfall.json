@@ -1,0 +1,66 @@
+{
+    "pufferd": {
+      "type": "java",
+      "display": "Waterfall - Minecraft",
+      "install": {
+        "commands": [
+          {
+            "files": "https://destroystokyo.com/ci/job/Waterfall/lastSuccessfulBuild/artifact/Waterfall-Proxy/bootstrap/target/Waterfall.jar",
+            "type": "download"
+          },
+          {
+            "type": "writefile",
+            "text": "listeners:\n- query_port: 25577\n  host: ${ip}:${port}\n  motd: '${motd}'\n",
+            "target": "config.yml"
+          }
+        ]
+      },
+      "run": {
+        "stop": "end",
+        "pre": [],
+        "post": [],
+        "arguments": [
+            "-Xmx${memory}M",
+         "-Xms${memory}M",
+            "-jar",
+            "Waterfall.jar"
+        ],
+        "program": "java"
+      },
+      "environment": {
+        "type": "standard"
+      },
+      "data": {
+        "memory": {
+            "value": "512",
+            "required": true,
+            "desc": "How much memory in MB to allocate to the Waterfall server. It is generally recommended to allocated 512MB RAM for every 500 players. Please keep in mind that additional plugins may impact the amount needed in your case.",
+            "display": "Memory (MB)",
+            "internal": false,
+            "type": "integer"
+        },
+        "ip": {
+          "value": "0.0.0.0",
+          "required": true,
+          "desc": "What IP to bind the server to",
+          "display": "IP",
+          "internal": false
+        },
+        "port": {
+          "value": "25577",
+          "required": true,
+          "desc": "What port to bind the server to",
+          "display": "Port",
+          "internal": false,
+          "type": "integer"
+        },
+        "motd": {
+          "value": "A Waterfall Server &9hosted on PufferPanel",
+          "required": true,
+          "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
+          "display": "MOTD message of the day",
+          "internal": false
+        }
+      }
+    }
+  }
