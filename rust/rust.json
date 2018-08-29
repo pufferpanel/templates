@@ -31,7 +31,7 @@
 			]
 		},
 		"run": {
-			"stop": "exit",
+			"stopCode": 2,
 			"pre": [{
 					"commands": [
 						"steamcmd/steamcmd.sh +login anonymous +force_install_dir ${rootdir} +app_update 258550 +quit"
