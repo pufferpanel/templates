@@ -3,7 +3,8 @@
 		"type": "srcds",
 		"display": "Rust Public Server",
 		"install": {
-			"commands": [{
+			"commands": [
+				{
 					"files": "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz",
 					"type": "download"
 				},
@@ -19,25 +20,27 @@
 					"type": "command"
 				},
 				{
-					"source":"runds.sh",
-					"target":"runds.sh.bak",
+					"source": "runds.sh",
+					"target": "runds.sh.bak",
 					"type": "move"
 				},
 				{
-					"type":"writefile",
-					"text":"export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:`dirname $0`/RustDedicated_Data/Plugins/x86_64 \r\n./RustDedicated \"$@\"",
+					"type": "writefile",
+					"text": "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:`dirname $0`/RustDedicated_Data/Plugins/x86_64 \r\n./RustDedicated \"$@\"",
 					"target": "runds.sh"
 				}
 			]
 		},
 		"run": {
 			"stopCode": 2,
-			"pre": [{
+			"pre": [
+				{
 					"commands": [
 						"steamcmd/steamcmd.sh +login anonymous +force_install_dir ${rootdir} +app_update 258550 +quit"
 					],
 					"type": "command"
-				}],
+				}
+			],
 			"post": [],
 			"arguments": [
 				"runds.sh",

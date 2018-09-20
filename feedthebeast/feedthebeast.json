@@ -10,7 +10,7 @@
 				},
 				{
 					"commands": [
-					"unzip -u FTB*.zip"
+						"unzip -u FTB*.zip"
 					],
 					"type": "command"
 				},
@@ -51,7 +51,7 @@
 			"pre": [],
 			"post": [],
 			"arguments": [],
-			"program":"./ServerStart.sh",
+			"program": "./ServerStart.sh",
 			"autostart": false
 		},
 		"environment": {

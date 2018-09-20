@@ -27,7 +27,7 @@
       "pre": [],
       "post": [],
       "arguments": [
-      	"--no-wizard"
+        "--no-wizard"
       ],
       "program": "./start.sh"
     },

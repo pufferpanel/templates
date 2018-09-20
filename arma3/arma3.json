@@ -14,7 +14,7 @@
             "steamcmd/steamcmd.sh +login ${steam_user} ${steam_password} +force_install_dir ${rootdir} +app_update 233780 +quit",
             "mkdir -p .steam/sdk32",
             "cp steamcmd/linux32/steamclient.so .steam/sdk32/steamclient.so",
-	    "touch ./config.cfg",
+            "touch ./config.cfg",
             "touch ./parameters.txt"
           ],
           "type": "command"
@@ -29,7 +29,7 @@
         "-ip=${ip}",
         "-port=${port}",
         "-config=${config}",
-	"-par=parameters.txt"
+        "-par=parameters.txt"
       ],
       "program": "./arma3server"
     },
@@ -46,7 +46,7 @@
       },
       "steam_password": {
         "value": "",
-		"required": true,
+        "required": true,
         "desc": "Password for Steam login",
         "display": "Steam Password",
         "internal": false

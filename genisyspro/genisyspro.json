@@ -41,7 +41,7 @@
       "pre": [],
       "post": [],
       "arguments": [
-      	"--no-wizard"
+        "--no-wizard"
       ],
       "program": "GenisysPro-master/start.sh"
     },

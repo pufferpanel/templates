@@ -1,7 +1,7 @@
 {
   "pufferd": {
     "type": "factorio",
-    "display":"Factorio",
+    "display": "Factorio",
     "install": {
       "commands": [
         {

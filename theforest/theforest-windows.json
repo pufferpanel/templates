@@ -14,7 +14,7 @@
         },
         {
           "commands": [
-		  "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -nologo -noprofile -command & {& Add-Type -A 'System.IO.Compression.FileSystem'; [IO.Compression.ZipFile]::ExtractToDirectory('steamcmd.zip', 'steamcmd'); .\\steamcmd\\steamcmd.exe +login anonymous +force_install_dir ${rootdir} +app_update 556450 validate +quit}"
+            "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -nologo -noprofile -command & {& Add-Type -A 'System.IO.Compression.FileSystem'; [IO.Compression.ZipFile]::ExtractToDirectory('steamcmd.zip', 'steamcmd'); .\\steamcmd\\steamcmd.exe +login anonymous +force_install_dir ${rootdir} +app_update 556450 validate +quit}"
           ],
           "type": "command"
         }
@@ -25,36 +25,36 @@
       "pre": [],
       "post": [],
       "arguments": [
-		"-servername",
-		"${servername}",
-		"-serverip",
-		"${ip}",
-		"-serversteamport",
-		"${serversteamport}",
-		"-servergameport",
-		"${servergameport}",
-		"-serverqueryport",
-		"${serverqueryport}",
-		"-serverplayers",
-		"${serverplayers}",
-		"-serverpassword",
-		"${serverpassword}",
-		"-serverpassword_admin",
-		"${serverpassword_admin}",
-		"-serversteamaccount",
-		"${serversteamaccount}",
-		"-serverautosaveinterval",
-		"${serverautosaveinterval}",
-		"-difficulty",
-		"${difficulty}",
-		"-inittype",
-		"${inittype}",
-		"-enableVAC",
-		"-showlogs",
-		"-batchmode",
-		"-dedicated",
-		"-nographics", 
-		"-nosteamclient"
+        "-servername",
+        "${servername}",
+        "-serverip",
+        "${ip}",
+        "-serversteamport",
+        "${serversteamport}",
+        "-servergameport",
+        "${servergameport}",
+        "-serverqueryport",
+        "${serverqueryport}",
+        "-serverplayers",
+        "${serverplayers}",
+        "-serverpassword",
+        "${serverpassword}",
+        "-serverpassword_admin",
+        "${serverpassword_admin}",
+        "-serversteamaccount",
+        "${serversteamaccount}",
+        "-serverautosaveinterval",
+        "${serverautosaveinterval}",
+        "-difficulty",
+        "${difficulty}",
+        "-inittype",
+        "${inittype}",
+        "-enableVAC",
+        "-showlogs",
+        "-batchmode",
+        "-dedicated",
+        "-nographics",
+        "-nosteamclient"
       ],
       "program": "./TheForestDedicatedServer.exe"
     },
@@ -84,7 +84,7 @@
         "internal": false,
         "type": "integer"
       },
-	   "servergameport": {
+      "servergameport": {
         "value": "27015",
         "required": true,
         "desc": "Game Communication Port",
@@ -92,7 +92,7 @@
         "internal": false,
         "type": "integer"
       },
-	  "serverqueryport": {
+      "serverqueryport": {
         "value": "27016",
         "required": true,
         "desc": "Query Communication Port",
@@ -100,7 +100,7 @@
         "internal": false,
         "type": "integer"
       },
-	  "serverplayers": {
+      "serverplayers": {
         "value": "4",
         "required": true,
         "desc": "Maximum number of players",
@@ -108,48 +108,48 @@
         "internal": false,
         "type": "integer"
       },
-	  "serverpassword": {
+      "serverpassword": {
         "value": "",
         "required": false,
         "desc": "Server password. blank means no password",
         "display": "Server Password",
-        "internal": false        
+        "internal": false
       },
-	  "serverpassword_admin": {
+      "serverpassword_admin": {
         "value": "",
         "required": false,
         "desc": "Server administration password. blank means no password",
         "display": "Server Admin Password",
-        "internal": false        
+        "internal": false
       },
-	  "serversteamaccount": {
+      "serversteamaccount": {
         "value": "",
         "required": false,
         "desc": "Your Steam account name. blank means anonymous",
         "display": "Server Steam Account",
-        "internal": false        
+        "internal": false
       },
-	  "serverautosaveinterval": {
+      "serverautosaveinterval": {
         "value": "30",
         "required": false,
         "desc": "Time between server auto saves in minutes - The minumum time is 15 minutes, the default time is 30",
         "display": "Server AutoSave Interval",
         "internal": false,
-		"type": "integer"		
+        "type": "integer"
       },
-	  "difficulty": {
+      "difficulty": {
         "value": "Normal",
         "required": false,
         "desc": "Game difficulty mode. Must be set to Peaceful Normal or Hard",
         "display": "Difficulty",
-        "internal": false        
+        "internal": false
       },
-	  "inittype": {
+      "inittype": {
         "value": "Continue",
         "required": false,
         "desc": "New or continue a game. Must be set to New or Continue",
         "display": "Init Type",
-        "internal": false        
+        "internal": false
       }
     }
   }
