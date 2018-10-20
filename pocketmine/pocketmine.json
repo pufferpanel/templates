@@ -1,6 +1,6 @@
 {
   "pufferd": {
-    "type": "pocketmine",
+    "type": "minecraft-bedrock",
     "display": "PocketMine-MP",
     "install": {
       "commands": [
