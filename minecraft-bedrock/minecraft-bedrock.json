@@ -31,7 +31,7 @@
                 "LD_LIBRARY_PATH": "."
             },
             "arguments": [],
-            "program": "bedrock_server"
+            "program": "./bedrock_server"
         },
         "environment": {
             "type": "standard"
