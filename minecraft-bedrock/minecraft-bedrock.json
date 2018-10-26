@@ -1,0 +1,179 @@
+{
+    "pufferd": {
+        "type": "minecraft-bedrock",
+        "display": "Minecraft Bedrock",
+        "install": {
+            "commands": [
+                {
+                    "type": "download",
+                    "files": "https://minecraft.azureedge.net/bin-linux/bedrock-server-${version}.zip"
+                },
+                {
+                    "type": "command",
+                    "commands": [
+                        "unzip bedrock-server-${version}.zip",
+                        "chmod +x bedrock_server",
+                        "rm server.properties"
+                    ]
+                },
+                {
+                    "type": "writefile",
+                    "target": "server.properties",
+                    "text": "server-name=${server-name}\ngamemode=${gamemode}\ndifficulty=${difficulty}\nallow-cheats=${allow-cheats}\nmax-players=${max-players}\nonline-mode=${online-mode}\nwhite-list=${white-list}\nserver-port=${server-port}\nserver-portv6=${server-portv6}\nview-distance=${view-distance}\ntick-distance=${tick-distance}\nplayer-idle-timeout=${player-idle-timeout}\nmax-threads=${max-threads}\nlevel-name=${level-name}\nlevel-seed=${level-seed}\ndefault-player-permission-level=${default-player-permission-level}\ntexturepack-required=${texturepack-required}\n"
+                }
+            ]
+        },
+        "run": {
+            "stop": "stop",
+            "pre": [],
+            "post": [],
+            "environmentVars": {
+                "LD_LIBRARY_PATH": "."
+            },
+            "arguments": [],
+            "program": "./bedrock_server"
+        },
+        "environment": {
+            "type": "standard"
+        },
+        "data": {
+            "version": {
+                "value": "1.7.0.13",
+                "required": true,
+                "desc": "Version of the Minecraft Bedrock Server to use",
+                "display": "Bedrock Version",
+                "internal": false
+            },
+            "server-name": {
+                "value": "Dedicated Server",
+                "required": true,
+                "desc": "Used as the server name",
+                "display": "Server Name",
+                "internal": false
+            },
+            "gamemode": {
+                "value": "survival",
+                "required": true,
+                "desc": "Sets the game mode for new players.",
+                "display": "Gamemode",
+                "internal": false
+            },
+            "difficulty": {
+                "value": "easy",
+                "required": true,
+                "desc": "Sets the difficulty of the world.",
+                "display": "Difficulty",
+                "internal": false
+            },
+            "allow-cheats": {
+                "value": "false",
+                "required": true,
+                "desc": "If true then cheats like commands can be used.",
+                "display": "Allow Cheats",
+                "internal": false,
+                "type": "boolean"
+            },
+            "max-players": {
+                "value": "10",
+                "required": true,
+                "desc": "The maximum number of players that can play on the server.",
+                "display": "Max Players",
+                "internal": false,
+                "type": "integer"
+            },
+            "online-mode": {
+                "value": "true",
+                "required": true,
+                "desc": "Whether a player is required to be authenticated to XBox Live",
+                "display": "Online Mode",
+                "internal": false,
+                "type": "boolean"
+            },
+            "white-list": {
+                "value": "false",
+                "required": true,
+                "desc": "If true then all connected players must be listed in the separate whitelist.json file.",
+                "display": "Whitelist",
+                "internal": false,
+                "type": "boolean"
+            },
+            "server-port": {
+                "value": "19132",
+                "required": true,
+                "desc": "Which IPv4 port the server should listen to.",
+                "display": "Server Port",
+                "internal": false,
+                "type": "integer"
+            },
+            "server-portv6": {
+                "value": "19133",
+                "required": true,
+                "desc": "Which IPv6 port the server should listen to.",
+                "display": "Server Port (IPv6)",
+                "internal": false,
+                "type": "integer"
+            },
+            "view-distance": {
+                "value": "32",
+                "required": true,
+                "desc": "The maximum allowed view distance in number of chunks.",
+                "display": "View Distance",
+                "internal": false,
+                "type": "integer"
+            },
+            "tick-distance": {
+                "value": "4",
+                "required": true,
+                "desc": "The world will be ticked this many chunks away from any player.",
+                "display": "Tick Distance",
+                "internal": false,
+                "type": "integer"
+            },
+            "player-idle-timeout": {
+                "value": "30",
+                "required": true,
+                "desc": "After a player has idled for this many minutes they will be kicked. If set to 0 then players can idle indefinitely.",
+                "display": "Player Idle Timeout",
+                "internal": false,
+                "type": "integer"
+            },
+            "max-threads": {
+                "value": "8",
+                "required": true,
+                "desc": "Maximum number of threads the server will try to use. If set to 0 or removed then it will use as many as possible.",
+                "display": "Max Threads",
+                "internal": false,
+                "type": "integer"
+            },
+            "level-name": {
+                "value": "Bedrock level",
+                "required": true,
+                "desc": "Name of the World Folder",
+                "display": "Level Name",
+                "internal": false
+            },
+            "level-seed": {
+                "value": "",
+                "required": false,
+                "desc": "Use to randomize the world",
+                "display": "Level Seed",
+                "internal": false
+            },
+            "default-player-permission-level": {
+                "value": "member",
+                "required": true,
+                "desc": "Permission level for new players joining for the first time.",
+                "display": "Default Permission Level",
+                "internal": false
+            },
+            "texturepack-required": {
+                "value": "false",
+                "required": true,
+                "desc": "Force clients to use texture packs in the current world",
+                "display": "Force Server Texturepack",
+                "internal": false,
+                "type": "boolean"
+            }
+        }
+    }
+}
