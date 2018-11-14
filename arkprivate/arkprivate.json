@@ -25,7 +25,7 @@
       "pre": [],
       "post": [],
       "arguments": [
-        "-exclusivejoin",
+        "${exclusive}",
         "${mapname}?listen?SessionName=${sessionname}?ServerAdminPassword=${serveradminpassword}?MultiHome=${ip}?Port=${port}?QueryPort=${queryport}?MaxPlayers=${maxplayers}",
         "-server",
         "-log"
@@ -84,6 +84,13 @@
         "internal": false,
         "required": true,
         "value": "TheIsland"
+      },
+      "exclusive": {
+        "desc": "Set to -exclusivejoin to only permit friends, leave blank for public",
+        "display": "Exclusive?",
+        "internal": false,
+        "required": false,
+        "value": ""
       }
     }
   }
