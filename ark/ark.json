@@ -25,10 +25,10 @@
       "pre": [],
       "post": [],
       "arguments": [
-        "${exclusive}",
         "${mapname}?listen?SessionName=${sessionname}?ServerAdminPassword=${serveradminpassword}?MultiHome=${ip}?Port=${port}?QueryPort=${queryport}?MaxPlayers=${maxplayers}",
         "-server",
-        "-log"
+        "-log",
+        "${exclusive}"
       ],
       "program": "./ShooterGame/Binaries/Linux/ShooterGameServer"
     },
