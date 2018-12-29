@@ -10,7 +10,7 @@
         },
         {
           "commands": [
-            "tar -xvf teamspeak3-server_linux_amd64-${version}.tar.bz2"
+            "tar -xvjf teamspeak3-server_linux_amd64-${version}.tar.bz2"
           ],
           "type": "command"
         }
