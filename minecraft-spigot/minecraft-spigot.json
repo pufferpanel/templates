@@ -33,7 +33,15 @@
     },
     "run": {
       "stop": "stop",
-      "pre": [],
+      "pre": {
+          "commands": {
+            {
+              "type": "writefile",
+              "text": "server-ip=${ip}\nserver-port=${port}\n",
+              "target": "server.properties"
+            }
+          }
+      },
       "post": [],
       "arguments": [
         "-Xmx${memory}M",
