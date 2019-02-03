@@ -1,7 +1,7 @@
 {
   "pufferd": {
     "type": "java",
-    "display": "PaperSpigot - Minecraft",
+    "display": "PaperSpigot - Minecraft (Docker)",
     "install": {
       "commands": [
         {
@@ -38,7 +38,8 @@
       "program": "java"
     },
     "environment": {
-      "type": "standard"
+      "type": "docker",
+      "image": "pufferpanel/minecraft"
     },
     "data": {
       "version": {

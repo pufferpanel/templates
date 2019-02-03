@@ -1,17 +1,23 @@
 {
   "pufferd": {
     "type": "java",
-    "display": "PaperSpigot - Minecraft",
+    "display": "CraftBukkit by Spigot - Minecraft (Docker)",
     "install": {
       "commands": [
         {
-          "files": "https://papermc.io/ci/job/Paper/lastSuccessfulBuild/artifact/paperclip.jar",
+          "files": "https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar",
           "type": "download"
         },
         {
-          "source": "paperclip.jar",
-          "target": "paperspigot.jar",
-          "type": "move"
+          "commands": [
+            "java -jar BuildTools.jar --rev ${version}"
+          ],
+          "type": "command"
+        },
+        {
+          "type": "writefile",
+          "text": "eula=${eula}",
+          "target": "eula.txt"
         },
         {
           "type": "writefile",
@@ -19,9 +25,9 @@
           "target": "server.properties"
         },
         {
-          "type": "writefile",
-          "text": "eula=${eula}",
-          "target": "eula.txt"
+          "source": "craftbukkit-*.jar",
+          "target": "server.jar",
+          "type": "move"
         }
       ]
     },
@@ -31,20 +37,20 @@
       "post": [],
       "arguments": [
         "-Xmx${memory}M",
-        "-Djline.terminal=jline.UnsupportedTerminal",
         "-jar",
-        "paperspigot.jar"
+        "server.jar"
       ],
       "program": "java"
     },
     "environment": {
-      "type": "standard"
+      "type": "docker",
+      "image": "pufferpanel/minecraft"
     },
     "data": {
       "version": {
         "value": "latest",
         "required": true,
-        "desc": "Version of Minecraft to install",
+        "desc": "Version of Minecraft to install (<a href='https://www.spigotmc.org/wiki/buildtools/#versions'>Supported versions</a>)",
         "display": "Version",
         "internal": false
       },
@@ -74,8 +80,8 @@
       "eula": {
         "value": "false",
         "required": true,
-        "desc": "Do you agree to the Minecraft EULA?",
-        "display": "EULA Agreement (true/false)",
+        "desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
+        "display": "EULA Agreement",
         "internal": false,
         "type": "boolean"
       },

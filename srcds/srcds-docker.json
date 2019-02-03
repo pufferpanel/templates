@@ -40,7 +40,8 @@
       "program": "./srcds_run"
     },
     "environment": {
-      "type": "tty"
+      "type": "docker",
+      "image": "pufferpanel/srcds"
     },
     "data": {
       "appid": {

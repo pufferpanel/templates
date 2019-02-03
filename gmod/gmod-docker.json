@@ -1,7 +1,7 @@
 {
   "pufferd": {
     "type": "srcds",
-    "display": "Generic SRCDS (Docker)",
+    "display": "Garry's Mod (Docker)",
     "install": {
       "commands": [
         {
@@ -15,7 +15,7 @@
         {
           "commands": [
             "tar --no-same-owner -xzvf steamcmd_linux.tar.gz -C steamcmd",
-            "steamcmd/steamcmd.sh +login anonymous +force_install_dir ${rootdir} +app_update ${appid} +quit",
+            "steamcmd/steamcmd.sh +login anonymous +force_install_dir ${rootdir} +app_update 4020 +quit",
             "mkdir -p .steam/sdk32",
             "cp steamcmd/linux32/steamclient.so .steam/sdk32/steamclient.so"
           ],
@@ -28,42 +28,40 @@
       "pre": [],
       "post": [],
       "arguments": [
-      	"+ip",
-      	"${ip}",
-      	"+port",
-      	"${port}",
-      	"-game ${gametype}",
-      	"-console",
-        "+map ${map}",
-      	"-norestart"
+        "+ip",
+        "${ip}",
+        "+port",
+        "${port}",
+        "-game",
+        "garrysmod",
+        "-console",
+        "+map",
+        "${map}",
+        "+maxplayers",
+        "${maxplayers}",
+        "-norestart"
       ],
       "program": "./srcds_run"
     },
     "environment": {
-      "type": "tty"
+      "type": "docker",
+      "image": "pufferpanel/srcds"
     },
     "data": {
-      "appid": {
-        "value": "232250",
+      "map": {
+        "value": "gm_construct",
         "required": true,
-        "desc": "App ID",
-        "display": "Application ID",
-        "internal": false,
-        "type": "integer"
-      },
-      "gametype": {
-        "value": "tf",
-        "required": false,
-        "desc": "Game Type",
-        "display": "tf, csgo, etc.",
+        "desc": "Map to load by default",
+        "display": "Map",
         "internal": false
       },
-      "map": {
-      	"value": "ctf_2fort",
-      	"required": false,
-      	"desc": "Map",
-      	"display": "Map to load",
-      	"internal": false
+      "maxplayers": {
+        "value": "20",
+        "required": true,
+        "desc": "Max players allowed on server",
+        "display": "Max Players",
+        "internal": false,
+        "type": "integer"
       },
       "ip": {
         "value": "0.0.0.0",

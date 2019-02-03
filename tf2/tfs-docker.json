@@ -1,7 +1,7 @@
 {
   "pufferd": {
     "type": "srcds",
-    "display": "Generic SRCDS (Docker)",
+    "display": "Team Fortress 2 (Docker)",
     "install": {
       "commands": [
         {
@@ -15,7 +15,7 @@
         {
           "commands": [
             "tar --no-same-owner -xzvf steamcmd_linux.tar.gz -C steamcmd",
-            "steamcmd/steamcmd.sh +login anonymous +force_install_dir ${rootdir} +app_update ${appid} +quit",
+            "steamcmd/steamcmd.sh +login anonymous +force_install_dir ${rootdir} +app_update 232250 +quit",
             "mkdir -p .steam/sdk32",
             "cp steamcmd/linux32/steamclient.so .steam/sdk32/steamclient.so"
           ],
@@ -32,7 +32,7 @@
       	"${ip}",
       	"+port",
       	"${port}",
-      	"-game ${gametype}",
+      	"-game tf",
       	"-console",
         "+map ${map}",
       	"-norestart"
@@ -40,29 +40,15 @@
       "program": "./srcds_run"
     },
     "environment": {
-      "type": "tty"
+      "type": "docker",
+      "image": "pufferpanel/srcds"
     },
     "data": {
-      "appid": {
-        "value": "232250",
-        "required": true,
-        "desc": "App ID",
-        "display": "Application ID",
-        "internal": false,
-        "type": "integer"
-      },
-      "gametype": {
-        "value": "tf",
-        "required": false,
-        "desc": "Game Type",
-        "display": "tf, csgo, etc.",
-        "internal": false
-      },
       "map": {
       	"value": "ctf_2fort",
-      	"required": false,
-      	"desc": "Map",
-      	"display": "Map to load",
+      	"required": true,
+      	"desc": "TF2 Map",
+      	"display": "Team Fortess 2 Map to load",
       	"internal": false
       },
       "ip": {

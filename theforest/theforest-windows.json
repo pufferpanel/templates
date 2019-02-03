@@ -59,7 +59,7 @@
       "program": "./TheForestDedicatedServer.exe"
     },
     "environment": {
-      "type": "tty"
+      "type": "standard"
     },
     "data": {
       "servername": {

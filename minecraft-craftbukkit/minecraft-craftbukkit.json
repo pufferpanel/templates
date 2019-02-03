@@ -49,7 +49,7 @@
       "version": {
         "value": "latest",
         "required": true,
-        "desc": "Version of Minecraft to install",
+        "desc": "Version of Minecraft to install (<a href='https://www.spigotmc.org/wiki/buildtools/#versions'>Supported versions</a>)",
         "display": "Version",
         "internal": false
       },
