@@ -1,17 +1,13 @@
 {
   "pufferd": {
     "type": "java",
-    "display": "PaperSpigot - Minecraft",
+    "display": "Vanilla - Minecraft (Docker)",
     "install": {
       "commands": [
         {
-          "files": "https://papermc.io/ci/job/Paper/lastSuccessfulBuild/artifact/paperclip.jar",
-          "type": "download"
-        },
-        {
-          "source": "paperclip.jar",
-          "target": "paperspigot.jar",
-          "type": "move"
+          "type": "mojangdl",
+          "version": "${version}",
+          "target": "server.jar"
         },
         {
           "type": "writefile",
@@ -31,14 +27,14 @@
       "post": [],
       "arguments": [
         "-Xmx${memory}M",
-        "-Djline.terminal=jline.UnsupportedTerminal",
         "-jar",
-        "paperspigot.jar"
+        "server.jar"
       ],
       "program": "java"
     },
     "environment": {
-      "type": "standard"
+      "type": "docker",
+      "image": "pufferpanel/minecraft"
     },
     "data": {
       "version": {
@@ -68,14 +64,13 @@
         "required": true,
         "desc": "What port to bind the server to",
         "display": "Port",
-        "internal": false,
-        "type": "integer"
+        "internal": false
       },
       "eula": {
         "value": "false",
         "required": true,
-        "desc": "Do you agree to the Minecraft EULA?",
-        "display": "EULA Agreement (true/false)",
+        "desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
+        "display": "EULA Agreement",
         "internal": false,
         "type": "boolean"
       },

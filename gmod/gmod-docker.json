@@ -1,0 +1,83 @@
+{
+  "pufferd": {
+    "type": "srcds",
+    "display": "Garry's Mod (Docker)",
+    "install": {
+      "commands": [
+        {
+          "files": "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz",
+          "type": "download"
+        },
+        {
+          "target": "steamcmd",
+          "type": "mkdir"
+        },
+        {
+          "commands": [
+            "tar --no-same-owner -xzvf steamcmd_linux.tar.gz -C steamcmd",
+            "steamcmd/steamcmd.sh +login anonymous +force_install_dir ${rootdir} +app_update 4020 +quit",
+            "mkdir -p .steam/sdk32",
+            "cp steamcmd/linux32/steamclient.so .steam/sdk32/steamclient.so"
+          ],
+          "type": "command"
+        }
+      ]
+    },
+    "run": {
+      "stop": "exit",
+      "pre": [],
+      "post": [],
+      "arguments": [
+        "+ip",
+        "${ip}",
+        "+port",
+        "${port}",
+        "-game",
+        "garrysmod",
+        "-console",
+        "+map",
+        "${map}",
+        "+maxplayers",
+        "${maxplayers}",
+        "-norestart"
+      ],
+      "program": "./srcds_run"
+    },
+    "environment": {
+      "type": "docker",
+      "image": "pufferpanel/srcds"
+    },
+    "data": {
+      "map": {
+        "value": "gm_construct",
+        "required": true,
+        "desc": "Map to load by default",
+        "display": "Map",
+        "internal": false
+      },
+      "maxplayers": {
+        "value": "20",
+        "required": true,
+        "desc": "Max players allowed on server",
+        "display": "Max Players",
+        "internal": false,
+        "type": "integer"
+      },
+      "ip": {
+        "value": "0.0.0.0",
+        "required": true,
+        "desc": "What IP to bind the server to",
+        "display": "IP",
+        "internal": false
+      },
+      "port": {
+        "value": "27015",
+        "required": true,
+        "desc": "What port to bind the server to",
+        "display": "Port",
+        "internal": false,
+        "type": "integer"
+      }
+    }
+  }
+}
