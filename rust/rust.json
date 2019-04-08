@@ -18,16 +18,6 @@
 						"steamcmd/steamcmd.sh +login anonymous +force_install_dir ${rootdir} +app_update 258550 +quit"
 					],
 					"type": "command"
-				},
-				{
-					"source": "runds.sh",
-					"target": "runds.sh.bak",
-					"type": "move"
-				},
-				{
-					"type": "writefile",
-					"text": "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:`dirname $0`/RustDedicated_Data/Plugins/x86_64 \r\n./RustDedicated \"$@\"",
-					"target": "runds.sh"
 				}
 			]
 		},
@@ -43,7 +33,6 @@
 			],
 			"post": [],
 			"arguments": [
-				"runds.sh",
 				"-nographics",
 				"-batchmode",
 				"+server.port",
@@ -73,7 +62,10 @@
 				"+rcon.web 1",
 				"-logfile 2>&1"
 			],
-			"program": "sh"
+			"program": "./RustDedicated",
+			"environmentVars": {
+				"LD_LIBRARY_PATH": "${rootdir}/RustDedicated_Data/Plugins/x86_64"
+			}
 		},
 		"environment": {
 			"type": "tty"
