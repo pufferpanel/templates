@@ -5,7 +5,7 @@
     "install": {
       "commands": [
         {
-          "files": "https://papermc.io/ci/job/Paper/lastSuccessfulBuild/artifact/paperclip.jar",
+          "files": "https://papermc.io/ci/job/Paper-1.13/lastSuccessfulBuild/artifact/paperclip.jar",
           "type": "download"
         },
         {
