@@ -6,7 +6,9 @@
             "commands": [
                 {
                     "type": "download",
-                    "files": "https://s3-us-west-2.amazonaws.com/eco-releases/EcoServer_v${serverVersion}.zip"
+                    "files": [
+                        "https://s3-us-west-2.amazonaws.com/eco-releases/EcoServer_v${serverVersion}.zip"
+                    ]
                 },
                 {
                     "type": "command",
