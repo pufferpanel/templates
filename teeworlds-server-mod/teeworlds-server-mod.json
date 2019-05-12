@@ -1,0 +1,78 @@
+{
+  "pufferd": {
+    "type": "teeworlds",
+    "display": "Teeworlds Mod Server",
+    "install": {	
+      "commands": [
+		{
+		  "type": "download",
+		  "files": [
+			"${url}"
+		  ]
+		},
+		{
+          "type": "writefile",
+          "text": "#!/bin/bash\n\nexec ./DDNet-Server ${args}\n",
+          "target": "start.sh"
+        },
+		{
+          "commands": [
+			"tar ${tar-args} ${download-filename}",
+			"rm ${download-filename}",
+            "chmod +x ${serverfile} start.sh"
+          ],
+          "type": "command"
+        }
+      ]
+    },
+    "run": {
+      "stopCode": 3,
+      "pre": [],
+      "post": [],
+      "arguments": [
+        "${args}"
+      ],
+      "program": "./start.sh"
+    },
+    "environment": {
+      "type": "standard"
+    },
+    "data": {
+      "serverfile": {
+        "value": "DDNet-Server",
+        "required": true,
+        "desc": "Server File to execute without Path",
+        "display": "Server Filename",
+        "internal": false
+      },
+      "args": {
+        "value": "",
+        "required": true,
+        "desc": "Custom Teeworlds Server arguments.",
+        "display": "Arguments",
+        "internal": false
+      },
+      "url": {
+        "value": "https://ddnet.tw/downloads/DDNet-12.3.1-linux_x86_64.tar.xz",
+        "required": true,
+        "desc": "Server Archive",
+        "display": "Download URL",
+        "internal": false
+      },
+      "download-filename": {
+        "value": "DDNet-12.3.1-linux_x86_64.tar.xz",
+        "required": true,
+        "desc": "Specify the filename of the download. This part is not pretty but it should work.",
+        "display": "Download Filename",
+        "internal": false
+      },
+      "tar-args": {
+        "value": "xJ --strip-components=1 -f",
+        "required": true,
+        "desc": "Arguments to decompress with Tar. If your Archive uses another format repack it or edit this Template.",
+        "display": "Tar Args",
+        "internal": false
+      }
+    }
+  }
+}
