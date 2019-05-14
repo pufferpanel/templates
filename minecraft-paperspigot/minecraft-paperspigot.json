@@ -1,15 +1,15 @@
 {
   "pufferd": {
-    "type": "java",
+    "type": "java",4
     "display": "PaperSpigot - Minecraft",
     "install": {
       "commands": [
         {
-          "files": "https://papermc.io/ci/job/Paper/lastSuccessfulBuild/artifact/paperclip.jar",
+          "files": "https://papermc.io/api/v1/paper/${mcver}/${buildver}/download",
           "type": "download"
         },
         {
-          "source": "paperclip.jar",
+          "source": "paper*.jar",
           "target": "paperspigot.jar",
           "type": "move"
         },
@@ -41,10 +41,10 @@
       "type": "standard"
     },
     "data": {
-      "version": {
+      "buildver": {
         "value": "latest",
         "required": true,
-        "desc": "Version of Minecraft to install",
+        "desc": "Version of the server to install",
         "display": "Version",
         "internal": false
       },
@@ -86,6 +86,14 @@
         "display": "MOTD message of the day",
         "internal": false
       }
+      "mcver": {
+        "value": "1.13.2"
+        "required": true
+        "desc": "Version of Minecraft used in download."
+        "display": "Minecraft Version"
+        "internal": false
+      }
+     
     }
   }
 }
