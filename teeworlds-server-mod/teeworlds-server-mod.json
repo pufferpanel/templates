@@ -12,7 +12,7 @@
 		},
 		{
           "type": "writefile",
-          "text": "#!/bin/bash\n\nexec ./DDNet-Server ${args}\n",
+          "text": "#!/bin/bash\n\nexec ./${serverfile} ${args}\n",
           "target": "start.sh"
         },
 		{
