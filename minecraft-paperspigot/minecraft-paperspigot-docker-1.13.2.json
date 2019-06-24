@@ -1,11 +1,11 @@
 {
   "pufferd": {
     "type": "java",
-    "display": "PaperSpigot - Minecraft 1.14.2 (Unstable)",
+    "display": "PaperSpigot - Minecraft 1.13.2 (Docker)",
     "install": {
       "commands": [
         {
-          "files": "https://papermc.io/ci/job/Paper-1.14/lastSuccessfulBuild/artifact/paperclip.jar",
+          "files": "https://papermc.io/ci/job/Paper-1.13/lastSuccessfulBuild/artifact/paperclip.jar",
           "type": "download"
         },
         {
@@ -38,7 +38,8 @@
       "program": "java"
     },
     "environment": {
-      "type": "standard"
+      "type": "docker",
+      "image": "pufferpanel/minecraft"
     },
     "data": {
       "memory": {
