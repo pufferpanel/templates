@@ -1,7 +1,7 @@
 {
   "pufferd": {
     "type": "java",
-    "display": "PaperSpigot - Minecraft",
+    "display": "PaperSpigot - Minecraft 1.13.2 (Stable)",
     "install": {
       "commands": [
         {
@@ -41,13 +41,6 @@
       "type": "standard"
     },
     "data": {
-      "version": {
-        "value": "latest",
-        "required": true,
-        "desc": "Version of Minecraft to install",
-        "display": "Version",
-        "internal": false
-      },
       "memory": {
         "value": "1024",
         "required": true,
