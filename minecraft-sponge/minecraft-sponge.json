@@ -51,6 +51,7 @@
       "post": [],
       "arguments": [
         "-Xmx${memory}M",
+        "${extraArgs}",
         "-jar",
         "server.jar"
       ],
