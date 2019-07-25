@@ -31,7 +31,7 @@
       "post": [],
       "arguments": [
         "-Xmx${memory}M",
-	    "-Djline.terminal=jline.UnsupportedTerminal",
+	"-Djline.terminal=jline.UnsupportedTerminal",
         "-jar",
         "nukkit.jar"
       ],
