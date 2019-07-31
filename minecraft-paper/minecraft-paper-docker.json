@@ -1,16 +1,16 @@
 {
   "pufferd": {
     "type": "java",
-    "display": "PaperSpigot - Minecraft 1.14.2 (Docker)",
+    "display": "Paper - Minecraft",
     "install": {
       "commands": [
         {
-          "files": "https://papermc.io/ci/job/Paper-1.14/lastSuccessfulBuild/artifact/paperclip.jar",
+          "files": "https://papermc.io/api/v1/paper/${version}/latest/download",
           "type": "download"
         },
         {
-          "source": "paperclip.jar",
-          "target": "paperspigot.jar",
+          "source": "paper-*.jar",
+          "target": "paper.jar",
           "type": "move"
         },
         {
@@ -33,7 +33,7 @@
         "-Xmx${memory}M",
         "-Djline.terminal=jline.UnsupportedTerminal",
         "-jar",
-        "paperspigot.jar"
+        "paper.jar"
       ],
       "program": "java"
     },
@@ -42,6 +42,13 @@
       "image": "pufferpanel/minecraft"
     },
     "data": {
+      "version": {
+        "value": "1.14.4",
+        "required": true,
+        "desc": "Version of Minecraft to install (<a href='https://papermc.io/downloads'>Paper maintained versions</a>)<br/>Must be specified as a release number, e.g. 1.14.4",
+        "display": "Version",
+        "internal": false
+      },
       "memory": {
         "value": "1024",
         "required": true,
