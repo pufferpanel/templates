@@ -1,7 +1,7 @@
 {
   "pufferd": {
     "type": "java",
-    "display": "Paper - Minecraft",
+    "display": "Paper - Minecraft (Docker)",
     "install": {
       "commands": [
         {
