@@ -5,7 +5,7 @@
     "install": {
       "commands": [
         {
-          "files": "http://dl.4players.de/ts/releases/${version}/teamspeak3-server_linux_amd64-${version}.tar.bz2",
+          "files": "https://files.teamspeak-services.com/releases/server/${version}/teamspeak3-server_linux_amd64-${version}.tar.bz2",
           "type": "download"
         },
         {
@@ -70,7 +70,7 @@
         "internal": false
       },
       "version": {
-        "value": "3.4.0",
+        "value": "3.9.1",
         "required": true,
         "desc": "What version of Teamspeak do you want to use?",
         "display": "Version",
