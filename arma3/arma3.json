@@ -1,78 +1,83 @@
 {
-  "pufferd": {
-    "type": "srcds",
-    "install": {
+  "type": "arma3",
+  "install": [
+    {
+      "type": "download",
+      "files": "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"
+    },
+    {
+      "type": "command",
       "commands": [
-        {
-          "files": "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz",
-          "type": "download"
-        },
-        {
-          "commands": [
-            "mkdir steamcmd",
-            "tar --no-same-owner -xzvf steamcmd_linux.tar.gz -C steamcmd",
-            "steamcmd/steamcmd.sh +login ${steam_user} ${steam_password} +force_install_dir ${rootdir} +app_update 233780 +quit",
-            "mkdir -p .steam/sdk32",
-            "cp steamcmd/linux32/steamclient.so .steam/sdk32/steamclient.so",
-            "touch ./config.cfg",
-            "touch ./parameters.txt"
-          ],
-          "type": "command"
-        }
+        "mkdir steamcmd",
+        "tar --no-same-owner -xzvf steamcmd_linux.tar.gz -C steamcmd",
+        "steamcmd/steamcmd.sh +login ${steam_user} ${steam_password} +force_install_dir ${rootdir} +app_update 233780 +quit",
+        "mkdir -p .steam/sdk32",
+        "cp steamcmd/linux32/steamclient.so .steam/sdk32/steamclient.so",
+        "touch ./config.cfg",
+        "touch ./parameters.txt"
       ]
+    }
+  ],
+  "run": {
+    "stopCode": 2,
+    "pre": [],
+    "post": [],
+    "arguments": [
+      "-ip=${ip}",
+      "-port=${port}",
+      "-config=${config}",
+      "-par=parameters.txt"
+    ],
+    "program": "./arma3server"
+  },
+  "environment": {
+    "type": "tty"
+  },
+  "supportedEnvironments": [
+    {
+      "type": "tty"
     },
-    "run": {
-      "stopCode": 2,
-      "pre": [],
-      "post": [],
-      "arguments": [
-        "-ip=${ip}",
-        "-port=${port}",
-        "-config=${config}",
-        "-par=parameters.txt"
-      ],
-      "program": "./arma3server"
+    {
+      "type": "docker",
+      "image": "pufferpanel/srcds"
+    }
+  ],
+  "data": {
+    "steam_user": {
+      "value": "anonymous",
+      "required": true,
+      "desc": "Username for Steam login",
+      "display": "Steam User",
+      "internal": false
     },
-    "environment": {
-      "type": "standard"
+    "steam_password": {
+      "value": "",
+      "required": true,
+      "desc": "Password for Steam login",
+      "display": "Steam Password",
+      "internal": false
     },
-    "data": {
-      "steam_user": {
-        "value": "anonymous",
-        "required": true,
-        "desc": "Username for Steam login",
-        "display": "Steam User",
-        "internal": false
-      },
-      "steam_password": {
-        "value": "",
-        "required": true,
-        "desc": "Password for Steam login",
-        "display": "Steam Password",
-        "internal": false
-      },
-      "ip": {
-        "value": "0.0.0.0",
-        "required": true,
-        "desc": "What IP to bind the server to",
-        "display": "IP",
-        "internal": false
-      },
-      "port": {
-        "value": "2302",
-        "required": true,
-        "desc": "What port to bind the server to",
-        "display": "Port",
-        "internal": false,
-        "type": "integer"
-      },
-      "config": {
-        "value": "config.cfg",
-        "required": false,
-        "desc": "The Config file you want to use. NOTE: config.cfg is created on server installation!",
-        "display": "Config File",
-        "internal": false
-      }
+    "ip": {
+      "value": "0.0.0.0",
+      "required": true,
+      "desc": "What IP to bind the server to",
+      "display": "IP",
+      "internal": false
+    },
+    "port": {
+      "value": "2302",
+      "required": true,
+      "desc": "What port to bind the server to",
+      "display": "Port",
+      "internal": false,
+      "type": "integer"
+    },
+    "config": {
+      "value": "config.cfg",
+      "required": false,
+      "desc": "The Config file you want to use. NOTE: config.cfg is created on server installation!",
+      "display": "Config File",
+      "internal": false
     }
   }
 }
