@@ -38,9 +38,7 @@
     },
     {
       "type": "docker",
-      "metadata": {
-        "image": "pufferpanel/srcds"
-      }
+      "image": "pufferpanel/srcds"
     }
   ],
   "data": {
