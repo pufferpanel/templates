@@ -1,168 +1,176 @@
 {
-	"pufferd": {
-		"type": "srcds",
-		"display": "Rust Public Server",
-		"install": {
-			"commands": [
-				{
-					"files": "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz",
-					"type": "download"
-				},
-				{
-					"target": "steamcmd",
-					"type": "mkdir"
-				},
-				{
-					"commands": [
-						"tar --no-same-owner -xzvf steamcmd_linux.tar.gz -C steamcmd",
-						"steamcmd/steamcmd.sh +login anonymous +force_install_dir ${rootdir} +app_update 258550 +quit"
-					],
-					"type": "command"
-				}
-			]
-		},
-		"run": {
-			"stopCode": 2,
-			"pre": [
-				{
-					"commands": [
-						"steamcmd/steamcmd.sh +login anonymous +force_install_dir ${rootdir} +app_update 258550 +quit"
-					],
-					"type": "command"
-				}
-			],
-			"post": [],
-			"arguments": [
-				"-nographics",
-				"-batchmode",
-				"+server.port",
-				"${port}",
-				"+server.level",
-				"\"${ServerLevel}\"",
-				"+server.seed",
-				"${ServerSeed}",
-				"+server.worldsize",
-				"${WorldSize}",
-				"+server.maxplayers",
-				"${MaxPlayers}",
-				"+server.hostname",
-				"\"${ServerName}\"",
-				"+server.description",
-				"\"${Description}\"",
-				"+server.headerimage",
-				"\"${ServerImage}\"",
-				"+server.url",
-				"\"${URL}\"",
-				"+server.identity",
-				"\"${ServerIdentity}\"",
-				"+rcon.port",
-				"${RConPort}",
-				"+rcon.password",
-				"${RConPassword}",
-				"+rcon.web 1",
-				"-logfile 2>&1"
-			],
-			"program": "./RustDedicated",
-			"environmentVars": {
-				"LD_LIBRARY_PATH": "${rootdir}/RustDedicated_Data/Plugins/x86_64"
-			}
-		},
-		"environment": {
-			"type": "tty"
-		},
-		"data": {
-			"ip": {
-				"value": "0.0.0.0",
-				"required": true,
-				"desc": "What IP to bind the server to",
-				"display": "IP",
-				"internal": false
-			},
-			"port": {
-				"value": "27015",
-				"required": true,
-				"desc": "What port to bind the server to",
-				"display": "Port",
-				"internal": false,
-				"type": "integer"
-			},
-			"ServerLevel": {
-				"value": "Procedural Map",
-				"required": true,
-				"desc": "What map name do you want? If unsure, leave as default.",
-				"display": "Server Level",
-				"internal": false
-			},
-			"ServerSeed": {
-				"value": "1234",
-				"required": true,
-				"desc": "Server seed to use. Default should be fine.",
-				"display": "Server Seed",
-				"internal": false
-			},
-			"WorldSize": {
-				"value": "3000",
-				"required": true,
-				"desc": "World size (number)",
-				"display": "World Size",
-				"internal": false
-			},
-			"MaxPlayers": {
-				"value": "10",
-				"required": true,
-				"desc": "Maximum number of players to support",
-				"display": "Max Players",
-				"internal": false
-			},
-			"ServerName": {
-				"value": "RUST Public Server",
-				"required": true,
-				"desc": "Name of the server to use",
-				"display": "Server Name",
-				"internal": false
-			},
-			"Description": {
-				"value": "RUST Public Server Description",
-				"required": true,
-				"desc": "Server description shown on server browser",
-				"display": "Server Description",
-				"internal": false
-			},
-			"ServerImage": {
-				"value": "http://",
-				"required": true,
-				"desc": "URL For the server image banner",
-				"display": "Server Header Image",
-				"internal": false
-			},
-			"URL": {
-				"value": "http://",
-				"required": true,
-				"desc": "URL for the website dedicated to this server.",
-				"display": "Server Website",
-				"internal": false
-			},
-			"ServerIdentity": {
-				"value": "server1",
-				"required": true,
-				"desc": "Server identity to use, leave as default unless you know what you're doing",
-				"display": "Server identity",
-				"internal": false
-			},
-			"RConPort": {
-				"value": "28016",
-				"required": true,
-				"desc": "Port to use for RCON",
-				"display": "RCON Port",
-				"internal": false
-			},
-			"RConPassword": {
-				"value": "letmein",
-				"required": true,
-				"desc": "Password to use on RCON. CHANGE THIS",
-				"display": "RCON Password",
-				"internal": false
-			}
-		}
-	}
+  "type": "srcds",
+  "display": "Rust Public Server",
+  "install": [
+    {
+      "type": "download",
+      "files": "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"
+    },
+    {
+      "type": "mkdir",
+      "target": "steamcmd"
+    },
+    {
+      "type": "command",
+      "commands": [
+        "tar --no-same-owner -xzvf steamcmd_linux.tar.gz -C steamcmd",
+        "steamcmd/steamcmd.sh +login anonymous +force_install_dir ${rootdir} +app_update 258550 +quit"
+      ]
+    }
+  ],
+  "run": {
+    "stopCode": 2,
+    "pre": [
+      {
+        "type": "command",
+        "commands": [
+          "steamcmd/steamcmd.sh +login anonymous +force_install_dir ${rootdir} +app_update 258550 +quit"
+        ]
+      }
+    ],
+    "post": [],
+    "arguments": [
+      "-nographics",
+      "-batchmode",
+      "+server.port",
+      "${port}",
+      "+server.level",
+      "\"${ServerLevel}\"",
+      "+server.seed",
+      "${ServerSeed}",
+      "+server.worldsize",
+      "${WorldSize}",
+      "+server.maxplayers",
+      "${MaxPlayers}",
+      "+server.hostname",
+      "\"${ServerName}\"",
+      "+server.description",
+      "\"${Description}\"",
+      "+server.headerimage",
+      "\"${ServerImage}\"",
+      "+server.url",
+      "\"${URL}\"",
+      "+server.identity",
+      "\"${ServerIdentity}\"",
+      "+rcon.port",
+      "${RConPort}",
+      "+rcon.password",
+      "${RConPassword}",
+      "+rcon.web 1",
+      "-logfile 2>&1"
+    ],
+    "program": "./RustDedicated",
+    "environmentVars": {
+      "LD_LIBRARY_PATH": "${rootdir}/RustDedicated_Data/Plugins/x86_64"
+    }
+  },
+  "environment": {
+    "type": "tty"
+  },
+  "supportedEnvironments": [
+    {
+      "type": "tty"
+    },
+    {
+      "type": "docker",
+      "image": "pufferpanel/srcds"
+    }
+  ],
+  "data": {
+    "ip": {
+      "value": "0.0.0.0",
+      "required": true,
+      "desc": "What IP to bind the server to",
+      "display": "IP",
+      "internal": false
+    },
+    "port": {
+      "value": "27015",
+      "required": true,
+      "desc": "What port to bind the server to",
+      "display": "Port",
+      "internal": false,
+      "type": "integer"
+    },
+    "ServerLevel": {
+      "value": "Procedural Map",
+      "required": true,
+      "desc": "What map name do you want? If unsure, leave as default.",
+      "display": "Server Level",
+      "internal": false
+    },
+    "ServerSeed": {
+      "value": "1234",
+      "required": true,
+      "desc": "Server seed to use. Default should be fine.",
+      "display": "Server Seed",
+      "internal": false
+    },
+    "WorldSize": {
+      "value": "3000",
+      "required": true,
+      "desc": "World size (number)",
+      "display": "World Size",
+      "internal": false,
+      "type": "integer"
+    },
+    "MaxPlayers": {
+      "value": "10",
+      "required": true,
+      "desc": "Maximum number of players to support",
+      "display": "Max Players",
+      "internal": false,
+      "type": "integer"
+    },
+    "ServerName": {
+      "value": "RUST Public Server",
+      "required": true,
+      "desc": "Name of the server to use",
+      "display": "Server Name",
+      "internal": false
+    },
+    "Description": {
+      "value": "RUST Public Server Description",
+      "required": true,
+      "desc": "Server description shown on server browser",
+      "display": "Server Description",
+      "internal": false
+    },
+    "ServerImage": {
+      "value": "http://",
+      "required": true,
+      "desc": "URL For the server image banner",
+      "display": "Server Header Image",
+      "internal": false
+    },
+    "URL": {
+      "value": "http://",
+      "required": true,
+      "desc": "URL for the website dedicated to this server.",
+      "display": "Server Website",
+      "internal": false
+    },
+    "ServerIdentity": {
+      "value": "server1",
+      "required": true,
+      "desc": "Server identity to use, leave as default unless you know what you're doing",
+      "display": "Server identity",
+      "internal": false
+    },
+    "RConPort": {
+      "value": "28016",
+      "required": true,
+      "desc": "Port to use for RCON",
+      "display": "RCON Port",
+      "internal": false,
+      "type": "integer"
+    },
+    "RConPassword": {
+      "value": "",
+      "required": true,
+      "desc": "Password to use on RCON. CHANGE THIS",
+      "display": "RCON Password",
+      "internal": false
+    }
+  }
 }

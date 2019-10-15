@@ -1,71 +1,85 @@
 {
-	"pufferd": {
-		"type": "starbound",
-		"display": "Starbound",
-		"install": {
-			"commands": [{
-				"type": "download",
-				"files": "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"
-			}, {
-				"type": "mkdir",
-				"target": "steamcmd"
-			}, {
-				"type": "mkdir",
-				"target": "storage"
-			}, {
-				"type": "command",
-				"commands": [
-					"tar --no-same-owner -xzvf steamcmd_linux.tar.gz -C steamcmd",
-					"steamcmd/steamcmd.sh +login ${steam_user} +force_install_dir ${rootdir} +app_update 533830 +quit",
-					"find linux/ -type f -exec mv -ft ${rootdir} {} +",
-					"rm -Rf linux/ .steam/ Steam/ steamapps/ steamcmd/ steamcmd_linux.tar.gz"
-				]
-			}, {
-				"type": "writefile",
-				"text": "{\n\t\"assetDirectories\" : [\n\t\t\"assets/\",\n\t\t\"mods/\"\n\t],\n\t\"storageDirectory\" : \"storage/\"\n}\n",
-				"target": "sbinit.config"
-			}, {
-				"type": "writefile",
-				"text": "{\n\t\"allowAdminCommands\" : true,\n\t\"allowAdminCommandsFromAnyone\" : false,\n\t\"allowAnonymousConnections\" : true,\n\t\"allowAssetsMismatch\" : true,\n\t\"anonymousConnectionsAreAdmin\" : false,\n\t\"bannedIPs\" : [],\n\t\"bannedUuids\" : [],\n\t\"checkAssetsDigest\" : false,\n\t\"clearPlayerFiles\" : false,\n\t\"clearUniverseFiles\" : false,\n\t\"clientIPJoinable\" : true,\n\t\"clientP2PJoinable\" : false,\n\t\"configurationVersion\" : {\n\t\t\"basic\" : 2,\n\t\t\"server\" : 4\n\t},\n\t\"crafting\" : {\n\t\t\"filterHaveMaterials\" : false\n\t},\n\t\"gameServerBind\" : \"::\",\n\t\"gameServerPort\" : ${gameServerPort},\n\t\"interactiveHighlight\" : true,\n\t\"inventory\" : {\n\t\t\"pickupToActionBar\" : true\n\t},\n\t\"maxPlayers\" : ${maxPlayers},\n\t\"maxTeamSize\" : 4,\n\t\"monochromeLighting\" : false,\n\t\"playerBackupFileCount\" : 3,\n\t\"queryServerBind\" : \"::\",\n\t\"queryServerPort\" : 21025,\n\t\"rconServerBind\" : \"::\",\n\t\"rconServerPassword\" : \"\",\n\t\"rconServerPort\" : 21026,\n\t\"rconServerTimeout\" : 1000,\n\t\"runQueryServer\" : false,\n\t\"runRconServer\" : false,\n\t\"safeScripts\" : true,\n\t\"scriptInstructionLimit\" : 10000000,\n\t\"scriptInstructionMeasureInterval\" : 10000,\n\t\"scriptProfilingEnabled\" : false,\n\t\"scriptRecursionLimit\" : 100,\n\t\"serverFidelity\" : \"automatic\",\n\t\"serverName\" : \"${serverName}\",\n\t\"serverOverrideAssetsDigest\" : null,\n\t\"serverUsers\" : {\n\t},\n\t\"tutorialMessages\" : true\n}\n",
-				"target": "storage/starbound_server.config"
-			}]
-		},
-		"run": {
-			"stopCode": 2,
-			"program": "./starbound_server"
-		},
-		"environment": {
-			"type": "tty"
-		},
-		"data": {
-			"steam_user": {
-				"value": "",
-				"required": true,
-				"desc": "Steam Username (required for install)",
-				"display": "Steam Username",
-				"internal": false
-			},
-			"serverName": {
-				"value": "A Starbound Server",
-				"required": true,
-				"desc": "Server Name",
-				"display": "Server Name",
-				"internal": false
-			},
-			"gameServerPort": {
-				"value": "21025",
-				"required": true,
-				"desc": "Server Port",
-				"display": "Server Port",
-				"internal": false
-			},
-			"maxPlayers": {
-				"value": "8",
-				"required": true,
-				"desc": "Maximum Players",
-				"display": "Maximum Players",
-				"internal": false
-			}
-		}
-	}
+  "type": "starbound",
+  "display": "Starbound",
+  "install": [
+    {
+      "type": "download",
+      "files": "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"
+    },
+    {
+      "type": "mkdir",
+      "target": "steamcmd"
+    },
+    {
+      "type": "mkdir",
+      "target": "storage"
+    },
+    {
+      "type": "command",
+      "commands": [
+        "tar --no-same-owner -xzvf steamcmd_linux.tar.gz -C steamcmd",
+        "steamcmd/steamcmd.sh +login ${steam_user} +force_install_dir ${rootdir} +app_update 533830 +quit",
+        "find linux/ -type f -exec mv -ft ${rootdir} {} +",
+        "rm -Rf linux/ .steam/ Steam/ steamapps/ steamcmd/ steamcmd_linux.tar.gz"
+      ]
+    },
+    {
+      "type": "writefile",
+      "text": "{\n\t\"assetDirectories\" : [\n\t\t\"assets/\",\n\t\t\"mods/\"\n\t],\n\t\"storageDirectory\" : \"storage/\"\n}\n",
+      "target": "sbinit.config"
+    },
+    {
+      "type": "writefile",
+      "text": "{\n\t\"allowAdminCommands\" : true,\n\t\"allowAdminCommandsFromAnyone\" : false,\n\t\"allowAnonymousConnections\" : true,\n\t\"allowAssetsMismatch\" : true,\n\t\"anonymousConnectionsAreAdmin\" : false,\n\t\"bannedIPs\" : [],\n\t\"bannedUuids\" : [],\n\t\"checkAssetsDigest\" : false,\n\t\"clearPlayerFiles\" : false,\n\t\"clearUniverseFiles\" : false,\n\t\"clientIPJoinable\" : true,\n\t\"clientP2PJoinable\" : false,\n\t\"configurationVersion\" : {\n\t\t\"basic\" : 2,\n\t\t\"server\" : 4\n\t},\n\t\"crafting\" : {\n\t\t\"filterHaveMaterials\" : false\n\t},\n\t\"gameServerBind\" : \"::\",\n\t\"gameServerPort\" : ${gameServerPort},\n\t\"interactiveHighlight\" : true,\n\t\"inventory\" : {\n\t\t\"pickupToActionBar\" : true\n\t},\n\t\"maxPlayers\" : ${maxPlayers},\n\t\"maxTeamSize\" : 4,\n\t\"monochromeLighting\" : false,\n\t\"playerBackupFileCount\" : 3,\n\t\"queryServerBind\" : \"::\",\n\t\"queryServerPort\" : 21025,\n\t\"rconServerBind\" : \"::\",\n\t\"rconServerPassword\" : \"\",\n\t\"rconServerPort\" : 21026,\n\t\"rconServerTimeout\" : 1000,\n\t\"runQueryServer\" : false,\n\t\"runRconServer\" : false,\n\t\"safeScripts\" : true,\n\t\"scriptInstructionLimit\" : 10000000,\n\t\"scriptInstructionMeasureInterval\" : 10000,\n\t\"scriptProfilingEnabled\" : false,\n\t\"scriptRecursionLimit\" : 100,\n\t\"serverFidelity\" : \"automatic\",\n\t\"serverName\" : \"${serverName}\",\n\t\"serverOverrideAssetsDigest\" : null,\n\t\"serverUsers\" : {\n\t},\n\t\"tutorialMessages\" : true\n}\n",
+      "target": "storage/starbound_server.config"
+    }
+  ],
+  "run": {
+    "stopCode": 2,
+    "program": "./starbound_server"
+  },
+  "environment": {
+    "type": "tty"
+  },
+  "supportedEnvironments": [
+    {
+      "type": "tty"
+    },
+    {
+      "type": "docker",
+      "image": "pufferpanel/srcds"
+    }
+  ],
+  "data": {
+    "steam_user": {
+      "value": "",
+      "required": true,
+      "desc": "Steam Username (required for install)",
+      "display": "Steam Username",
+      "internal": false
+    },
+    "serverName": {
+      "value": "A Starbound Server",
+      "required": true,
+      "desc": "Server Name",
+      "display": "Server Name",
+      "internal": false
+    },
+    "gameServerPort": {
+      "value": "21025",
+      "required": true,
+      "desc": "Server Port",
+      "display": "Server Port",
+      "internal": false,
+      "type": "integer"
+    },
+    "maxPlayers": {
+      "value": "8",
+      "required": true,
+      "desc": "Maximum Players",
+      "display": "Maximum Players",
+      "internal": false,
+      "type": "integer"
+    }
+  }
 }

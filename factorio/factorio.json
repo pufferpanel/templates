@@ -1,70 +1,71 @@
 {
-  "pufferd": {
-    "type": "factorio",
-    "display": "Factorio",
-    "install": {
+  "type": "factorio",
+  "display": "Factorio",
+  "install": [
+    {
+      "type": "command",
       "commands": [
-        {
-          "commands": [
-            "curl -L -o factorio.tar.xz https://www.factorio.com/get-download/latest/headless/linux64",
-            "mkdir factorio",
-            "tar --no-same-owner -xvf factorio.tar.xz",
-            "cp factorio/data/server-settings.example.json factorio/data/server-settings.json",
-            "./factorio/bin/x64/factorio --create saves/default.zip"
-          ],
-          "type": "command"
-        }
+        "curl -L -o factorio.tar.xz https://www.factorio.com/get-download/latest/headless/linux64",
+        "mkdir factorio",
+        "tar --no-same-owner -xvf factorio.tar.xz",
+        "cp factorio/data/server-settings.example.json factorio/data/server-settings.json",
+        "./factorio/bin/x64/factorio --create saves/default.zip"
       ]
-    },
-    "run": {
-      "stop": "/quit",
-      "pre": [],
-      "post": [],
-      "arguments": [
-        "--port",
-        "${port}",
-        "--bind",
-        "${ip}",
-        "--start-server",
-        "${save}",
-        "--server-settings",
-        "${server-settings}"
-      ],
-      "program": "./factorio/bin/x64/factorio"
-    },
-    "environment": {
+    }
+  ],
+  "run": {
+    "stop": "/quit",
+    "pre": [],
+    "post": [],
+    "arguments": [
+      "--port",
+      "${port}",
+      "--bind",
+      "${ip}",
+      "--start-server",
+      "${save}",
+      "--server-settings",
+      "${server-settings}"
+    ],
+    "program": "./factorio/bin/x64/factorio"
+  },
+  "environment": {
+    "type": "tty"
+  },
+  "supportedEnvironments": [
+    {
       "type": "tty"
+    }
+  ],
+  "data": {
+    "save": {
+      "value": "saves/default.zip",
+      "required": true,
+      "desc": "Save File to Use",
+      "display": "Save File to Use",
+      "internal": false
     },
-    "data": {
-      "save": {
-        "value": "saves/default.zip",
-        "required": true,
-        "desc": "Save File to Use",
-        "display": "Save File to Use",
-        "internal": false
-      },
-      "ip": {
-        "value": "0.0.0.0",
-        "required": true,
-        "desc": "What IP to bind the server to",
-        "display": "IP",
-        "internal": false
-      },
-      "port": {
-        "value": "34197",
-        "required": true,
-        "desc": "What port to bind the server to",
-        "display": "Port",
-        "internal": false,
-        "type": "integer"
-      },
-      "server-settings": {
-        "value": "factorio/data/server-settings.json",
-        "required": true,
-        "desc": "Server Settings File Location",
-        "display": "Server Settings JSON",
-        "internal": false
-      }
+    "ip": {
+      "value": "0.0.0.0",
+      "required": true,
+      "desc": "What IP to bind the server to",
+      "display": "IP",
+      "internal": false
+    },
+    "port": {
+      "value": "34197",
+      "required": true,
+      "desc": "What port to bind the server to",
+      "display": "Port",
+      "internal": false,
+      "type": "integer"
+    },
+    "server-settings": {
+      "value": "factorio/data/server-settings.json",
+      "required": true,
+      "desc": "Server Settings File Location",
+      "display": "Server Settings JSON",
+      "internal": false
     }
   }
 }

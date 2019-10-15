@@ -1,108 +1,113 @@
 {
-	"pufferd": {
-		"type": "java",
-		"display": "FTB Launcher - Minecraft",
-		"install": {
-			"commands": [
-				{
-					"type": "download",
-					"files": "${link}"
-				},
-				{
-					"commands": [
-						"unzip -u FTB*.zip"
-					],
-					"type": "command"
-				},
-				{
-					"source": "*.zip",
-					"target": "ZIP.zip",
-					"type": "move"
-				},
-				{
-					"commands": [
-						"rm ZIP.zip",
-						"chmod u+x FTBInstall.sh",
-						"chmod u+x ServerStart.sh",
-						"chmod u+x settings.sh",
-						"./FTBInstall.sh"
-					],
-					"type": "command"
-				},
-				{
-					"type": "writefile",
-					"text": "eula=${eula}",
-					"target": "eula.txt"
-				},
-				{
-					"type": "writefile",
-					"text": "export MAX_RAM=\"${memory}M\"",
-					"target": "settings-local.sh"
-				},
-				{
-					"type": "writefile",
-					"text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}\n",
-					"target": "server.properties"
-				}
-			]
-		},
-		"run": {
-			"stop": "stop",
-			"pre": [],
-			"post": [],
-			"arguments": [],
-			"program": "./ServerStart.sh",
-			"autostart": false
-		},
-		"environment": {
-			"type": "standard"
-		},
-		"data": {
-			"eula": {
-				"value": "false",
-				"required": true,
-				"desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
-				"display": "EULA Agreement",
-				"internal": false,
-				"type": "boolean"
-			},
-			"memory": {
-				"value": "3072",
-				"required": true,
-				"desc": "How much memory in MB to allocate to the Java Heap",
-				"display": "Memory (MB)",
-				"internal": false,
-				"type": "integer"
-			},
-			"link": {
-				"value": "",
-				"required": true,
-				"desc": "Get the link for your preferred Modpack in the <a href='https://www.feed-the-beast.com/modpacks' target='_blank'>Modpacklist</a>.",
-				"display": "Link to the [zip] archive.",
-				"internal": false
-			},
-			"ip": {
-				"value": "0.0.0.0",
-				"required": true,
-				"desc": "What IP to bind the server to",
-				"display": "IP",
-				"internal": false
-			},
-			"port": {
-				"value": "25565",
-				"required": true,
-				"desc": "What port to bind the server to",
-				"display": "Port",
-				"internal": false,
-				"type": "integer"
-			},
-			"motd": {
-				"value": "A Minecraft Server hosted on PufferPanel",
-				"required": true,
-				"desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
-				"display": "MOTD message of the day",
-				"internal": false
-			}
-		}
-	}
+  "type": "minecraft",
+  "display": "FTB Launcher - Minecraft",
+  "install": [
+    {
+      "type": "download",
+      "files": "${link}"
+    },
+    {
+      "type": "command",
+      "commands": [
+        "unzip -u FTB*.zip"
+      ]
+    },
+    {
+      "type": "move",
+      "source": "FTB*.zip",
+      "target": "ZIP.zip"
+    },
+    {
+      "type": "command",
+      "commands": [
+        "rm ZIP.zip",
+        "chmod u+x FTBInstall.sh",
+        "chmod u+x ServerStart.sh",
+        "chmod u+x settings.sh",
+        "./FTBInstall.sh"
+      ]
+    },
+    {
+      "type": "writefile",
+      "text": "eula=${eula}",
+      "target": "eula.txt"
+    },
+    {
+      "type": "writefile",
+      "text": "export MAX_RAM=\"${memory}M\"",
+      "target": "settings-local.sh"
+    },
+    {
+      "type": "writefile",
+      "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}\n",
+      "target": "server.properties"
+    }
+  ],
+  "run": {
+    "stop": "stop",
+    "pre": [],
+    "post": [],
+    "arguments": [],
+    "program": "./ServerStart.sh",
+    "autostart": false
+  },
+  "environment": {
+    "type": "standard"
+  },
+  "supportedEnvironments": [
+    {
+      "type": "standard"
+    },
+    {
+      "type": "docker",
+      "image": "pufferpanel/minecraft"
+    }
+  ],
+  "data": {
+    "eula": {
+      "value": "false",
+      "required": true,
+      "desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
+      "display": "EULA Agreement",
+      "internal": false,
+      "type": "boolean"
+    },
+    "memory": {
+      "value": "3072",
+      "required": true,
+      "desc": "How much memory in MB to allocate to the Java Heap",
+      "display": "Memory (MB)",
+      "internal": false,
+      "type": "integer"
+    },
+    "link": {
+      "value": "",
+      "required": true,
+      "desc": "Get the link for your preferred Modpack in the <a href='https://www.feed-the-beast.com/modpacks' target='_blank'>Modpacklist</a>.",
+      "display": "Link to the [zip] archive.",
+      "internal": false
+    },
+    "ip": {
+      "value": "0.0.0.0",
+      "required": true,
+      "desc": "What IP to bind the server to",
+      "display": "IP",
+      "internal": false
+    },
+    "port": {
+      "value": "25565",
+      "required": true,
+      "desc": "What port to bind the server to",
+      "display": "Port",
+      "internal": false,
+      "type": "integer"
+    },
+    "motd": {
+      "value": "A Minecraft Server hosted on PufferPanel",
+      "required": true,
+      "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
+      "display": "MOTD message of the day",
+      "internal": false
+    }
+  }
 }

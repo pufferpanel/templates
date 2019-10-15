@@ -1,68 +1,70 @@
 {
-  "pufferd": {
-    "type": "pocketmine",
-    "display": "GenisysPro",
-    "install": {
+  "type": "pocketmine",
+  "display": "GenisysPro",
+  "install": [
+    {
+      "type": "download",
+      "files": "https://github.com/GenisysPro/GenisysPro/archive/master.zip"
+    },
+    {
+      "type": "command",
       "commands": [
-        {
-          "type": "download",
-          "files": "https://github.com/GenisysPro/GenisysPro/archive/master.zip"
-        },
-        {
-          "commands": [
-            "unzip GenisysPro-master"
-          ],
-          "type": "command"
-        },
-        {
-          "files": "https://bintray.com/pocketmine/PocketMine/download_file?file_path=PHP_7.0.6_x86-64_Linux.tar.gz",
-          "type": "download"
-        },
-        {
-          "commands": [
-            "tar -zxf PHP_7.0.6_x86-64_Linux.tar.gz"
-          ],
-          "type": "command"
-        },
-        {
-          "source": "bin",
-          "target": "GenisysPro-master",
-          "type": "move"
-        },
-        {
-          "type": "writefile",
-          "text": "server-ip=${ip}\nserver-port=${port}\n",
-          "target": "server.properties"
-        }
+        "unzip GenisysPro-master"
       ]
     },
-    "run": {
-      "stop": "stop",
-      "pre": [],
-      "post": [],
-      "arguments": [
-        "--no-wizard"
-      ],
-      "program": "GenisysPro-master/start.sh"
+    {
+      "type": "download",
+      "files": "https://bintray.com/pocketmine/PocketMine/download_file?file_path=PHP_7.0.6_x86-64_Linux.tar.gz"
     },
-    "environment": {
+    {
+      "type": "command",
+      "commands": [
+        "tar -zxf PHP_7.0.6_x86-64_Linux.tar.gz"
+      ]
+    },
+    {
+      "source": "bin",
+      "target": "GenisysPro-master",
+      "type": "move"
+    },
+    {
+      "type": "writefile",
+      "text": "server-ip=${ip}\nserver-port=${port}\n",
+      "target": "server.properties"
+    }
+  ],
+  "run": {
+    "stop": "stop",
+    "pre": [],
+    "post": [],
+    "arguments": [
+      "--no-wizard"
+    ],
+    "program": "GenisysPro-master/start.sh"
+  },
+  "environment": {
+    "type": "tty"
+  },
+  "supportedEnvironments": [
+    {
       "type": "tty"
+    }
+  ],
+  "data": {
+    "ip": {
+      "value": "0.0.0.0",
+      "required": true,
+      "desc": "What IP to bind the server to",
+      "display": "IP",
+      "internal": false
     },
-    "data": {
-      "ip": {
-        "value": "0.0.0.0",
-        "required": true,
-        "desc": "What IP to bind the server to",
-        "display": "IP",
-        "internal": false
-      },
-      "port": {
-        "value": "19132",
-        "required": true,
-        "desc": "What port to bind the server to",
-        "display": "Port",
-        "internal": false
-      }
+    "port": {
+      "value": "19132",
+      "required": true,
+      "desc": "What port to bind the server to",
+      "display": "Port",
+      "internal": false,
+      "type": "integer"
     }
   }
 }

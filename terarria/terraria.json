@@ -1,51 +1,60 @@
 {
-  "pufferd": {
-    "type": "terraria",
-    "display": "Terraria - Vanilla",
-    "install": {
+  "type": "terraria",
+  "display": "Terraria - Vanilla",
+  "install": [
+    {
+      "type": "download",
+      "files": "http://terraria.org/server/terraria-server-${version}.zip"
+    },
+    {
+      "type": "command",
       "commands": [
-        {
-          "type": "download",
-          "files": "http://terraria.org/server/terraria-server-${version}.zip"
-        },
-        {
-          "commands": [
-            "unzip terraria-server-${version}",
-            "mv -v ${rootdir}/${version}/Linux/ ${rootdir}/Linux/",
-            "chmod +x ${rootdir}/Linux/TerrariaServer",
-            "chmod +x ${rootdir}/Linux/TerrariaServer.bin.x86"
-          ],
-          "type": "command"
-        }
+        "unzip terraria-server-${version}",
+        "mv -v ${rootdir}/${version}/Linux/ ${rootdir}/Linux/",
+        "chmod +x ${rootdir}/Linux/TerrariaServer",
+        "chmod +x ${rootdir}/Linux/TerrariaServer.bin.x86"
       ]
+    }
+  ],
+  "run": {
+    "stopCode": 2,
+    "pre": [],
+    "post": [],
+    "arguments": [
+      "-port",
+      "${port}",
+      "-secure",
+      "-steam"
+    ],
+    "program": "Linux/TerrariaServer"
+  },
+  "environment": {
+    "type": "tty"
+  },
+  "supportedEnvironments": [
+    {
+      "type": "tty"
     },
-    "run": {
-      "stopCode": 2,
-      "pre": [],
-      "post": [],
-      "arguments": [
-        "-port",
-        "${port}",
-        "-secure",
-        "-steam"
-      ],
-      "program": "Linux/TerrariaServer"
+    {
+      "type": "docker",
+      "image": "pufferpanel/generic"
+    }
+  ],
+  "data": {
+    "port": {
+      "value": "7777",
+      "required": true,
+      "desc": "What port to bind the server to",
+      "display": "Port",
+      "internal": false,
+      "type": "integer"
     },
-    "data": {
-      "port": {
-        "value": "7777",
-        "required": true,
-        "desc": "What port to bind the server to",
-        "display": "Port",
-        "internal": false
-      },
-      "version": {
-        "value": "1353",
-        "required": true,
-        "desc": "Server Version",
-        "display": "Server Version (Set this to the latest server version)",
-        "internal": false
-      }
+    "version": {
+      "value": "1353",
+      "required": true,
+      "desc": "Server Version",
+      "display": "Server Version (Set this to the latest server version)",
+      "internal": false
     }
   }
 }

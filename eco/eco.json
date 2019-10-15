@@ -1,77 +1,75 @@
 {
-    "pufferd": {
-        "type": "mono",
-        "display": "ECO – Global Survival (via mono)",
-        "install": {
-            "commands": [
-                {
-                    "type": "download",
-                    "files": [
-                        "https://s3-us-west-2.amazonaws.com/eco-releases/EcoServer_v${serverVersion}.zip"
-                    ]
-                },
-                {
-                    "type": "command",
-                    "commands": [
-                        "unzip EcoServer_v*.zip",
-                        "rm EcoServer_v${serverVersion}.zip"
-                    ]
-                },
-                {
-                    "type": "writefile",
-                    "target": "Configs/Network.eco",
-                    "text": "{\n  \"PublicServer\": false,\n  \"Password\": \"${password}\",\n  \"Description\": \"\",\n  \"IPAddress\": \"${ip}\",\n  \"GameServerPort\": ${port},\n  \"WebServerPort\": ${webServerPort},\n  \"Rate\": 10,\n  \"MaxConnections\": -1\n}"
-                }
-            ]
-        },
-        "run": {
-            "stopCode": 9,
-            "pre": [],
-            "post": [],
-            "arguments": [
-                "EcoServer.exe",
-                "-nogui"
-            ],
-            "program": "mono"
-        },
-        "data": {
-            "ip": {
-                "value": "0.0.0.0",
-                "required": true,
-                "desc": "What IP to bind the Eco game server to.",
-                "display": "IP",
-                "internal": false
-            },
-            "port": {
-                "value": "3000",
-                "required": true,
-                "desc": "What port to bind the server to",
-                "display": "Game-Server Port",
-                "internal": false,
-                "type": "integer"
-            },
-            "webServerPort": {
-                "value": "3001",
-                "required": true,
-                "desc": "What port to bind the Eco web server to.",
-                "display": "Web-Server Port",
-                "internal": false,
-                "type": "integer"
-            },
-            "password": {
-                "value": "",
-                "required": false,
-                "desc": "Password for the Eco Game Server, which will be required for login.",
-                "display": "Password",
-                "internal": false
-            },
-            "serverVersion": {
-                "value": "0.7.7.2-beta",
-                "required": true,
-                "desc": "Version of Eco server to install.",
-                "display": "Server Version",
-                "internal": false
-            }
-        }
+  "type": "eco",
+  "display": "ECO – Global Survival (via mono)",
+  "install": [
+    {
+      "type": "download",
+      "files": [
+        "https://s3-us-west-2.amazonaws.com/eco-releases/EcoServer_v${serverVersion}.zip"
+      ]
+    },
+    {
+      "type": "command",
+      "commands": [
+        "unzip EcoServer_v*.zip",
+        "rm EcoServer_v${serverVersion}.zip"
+      ]
+    },
+    {
+      "type": "writefile",
+      "metadata": {
+      },
+      "target": "Configs/Network.eco",
+      "text": "{\n  \"PublicServer\": false,\n  \"Password\": \"${password}\",\n  \"Description\": \"\",\n  \"IPAddress\": \"${ip}\",\n  \"GameServerPort\": ${port},\n  \"WebServerPort\": ${webServerPort},\n  \"Rate\": 10,\n  \"MaxConnections\": -1\n}"
     }
+  ],
+  "run": {
+    "stopCode": 9,
+    "pre": [],
+    "post": [],
+    "arguments": [
+      "EcoServer.exe",
+      "-nogui"
+    ],
+    "program": "mono"
+  },
+  "data": {
+    "ip": {
+      "value": "0.0.0.0",
+      "required": true,
+      "desc": "What IP to bind the Eco game server to.",
+      "display": "IP",
+      "internal": false
+    },
+    "port": {
+      "value": "3000",
+      "required": true,
+      "desc": "What port to bind the server to",
+      "display": "Game-Server Port",
+      "internal": false,
+      "type": "integer"
+    },
+    "webServerPort": {
+      "value": "3001",
+      "required": true,
+      "desc": "What port to bind the Eco web server to.",
+      "display": "Web-Server Port",
+      "internal": false,
+      "type": "integer"
+    },
+    "password": {
+      "value": "",
+      "required": false,
+      "desc": "Password for the Eco Game Server, which will be required for login.",
+      "display": "Password",
+      "internal": false
+    },
+    "serverVersion": {
+      "value": "0.7.7.2-beta",
+      "required": true,
+      "desc": "Version of Eco server to install.",
+      "display": "Server Version",
+      "internal": false
+    }
+  }
 }

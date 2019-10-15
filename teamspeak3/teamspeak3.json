@@ -1,88 +1,102 @@
 {
-  "pufferd": {
-    "type": "voice",
-    "display": "Teamspeak 3",
-    "install": {
+  "type": "voice",
+  "display": "Teamspeak 3",
+  "install": [
+    {
+      "files": "https://files.teamspeak-services.com/releases/server/${version}/teamspeak3-server_linux_amd64-${version}.tar.bz2",
+      "type": "download"
+    },
+    {
       "commands": [
+        "tar -xvjf teamspeak3-server_linux_amd64-${version}.tar.bz2"
+      ],
+      "type": "command"
+    }
+  ],
+  "run": {
+    "stopCode": 2,
+    "pre": [],
+    "post": [],
+    "arguments": [
+      "default_voice_port=${vport}",
+      "query_port=${qport}",
+      "filetransfer_port=${ftport}",
+      "voice_ip=${ip}",
+      "licensepath=${license}",
+      "license_accepted=${eula}"
+    ],
+    "program": "./teamspeak3-server_linux_amd64/ts3server_minimal_runscript.sh"
+  },
+  "environment": {
+    "type": "tty"
+  },
+  "supportedEnvironments": [
+    {
+      "type": "tty"
+    }
+  ],
+  "data": {
+    "vport": {
+      "value": "9987",
+      "required": false,
+      "desc": "What Port do you want your voice server to run on?",
+      "display": "Port Number",
+      "internal": false,
+      "type": "integer"
+    },
+    "qport": {
+      "value": "10011",
+      "required": false,
+      "desc": "What Port do you want your query server to run on?",
+      "display": "Port Number",
+      "internal": false
+    },
+    "ftport": {
+      "value": "30033",
+      "required": false,
+      "desc": "What Port do you want your file transfer server to run on?",
+      "display": "Port Number",
+      "internal": false,
+      "type": "integer"
+    },
+    "ip": {
+      "value": "0.0.0.0",
+      "required": false,
+      "desc": "What IP do you want your voice server to run on?",
+      "display": "IP Address",
+      "internal": false
+    },
+    "license": {
+      "value": "",
+      "required": false,
+      "desc": "The absolute path to your license file.",
+      "display": "License Path",
+      "internal": false
+    },
+    "version": {
+      "value": "3.9.1",
+      "required": true,
+      "desc": "What version of Teamspeak do you want to use?",
+      "display": "Version",
+      "internal": false
+    },
+    "eula": {
+      "value": "0",
+      "required": true,
+      "desc": "Do you accept the Teamspeak EULA? 1 = Yes, 0 = No.",
+      "display": "EULA",
+      "internal": false,
+      "type": "option",
+      "options": [
         {
-          "files": "https://files.teamspeak-services.com/releases/server/${version}/teamspeak3-server_linux_amd64-${version}.tar.bz2",
-          "type": "download"
+          "value": "0",
+          "display": "No"
         },
         {
-          "commands": [
-            "tar -xvjf teamspeak3-server_linux_amd64-${version}.tar.bz2"
-          ],
-          "type": "command"
+          "value": "1",
+          "display": "Yes"
         }
       ]
-    },
-    "run": {
-      "stopCode": 2,
-      "pre": [],
-      "post": [],
-      "arguments": [
-        "default_voice_port=${vport}",
-        "query_port=${qport}",
-        "filetransfer_port=${ftport}",
-        "voice_ip=${ip}",
-        "licensepath=${license}",
-        "license_accepted=${eula}"
-      ],
-      "program": "./teamspeak3-server_linux_amd64/ts3server_minimal_runscript.sh"
-    },
-    "environment": {
-      "type": "tty"
-    },
-    "data": {
-      "vport": {
-        "value": "9987",
-        "required": false,
-        "desc": "What Port do you want your voice server to run on?",
-        "display": "Port Number",
-        "internal": false
-      },
-      "qport": {
-        "value": "10011",
-        "required": false,
-        "desc": "What Port do you want your query server to run on?",
-        "display": "Port Number",
-        "internal": false
-      },
-      "ftport": {
-        "value": "30033",
-        "required": false,
-        "desc": "What Port do you want your file transfer server to run on?",
-        "display": "Port Number",
-        "internal": false
-      },
-      "ip": {
-        "value": "0.0.0.0",
-        "required": false,
-        "desc": "What IP do you want your voice server to run on?",
-        "display": "IP Address",
-        "internal": false
-      },
-      "license": {
-        "value": "",
-        "required": false,
-        "desc": "The absolute path to your license file.",
-        "display": "License Path",
-        "internal": false
-      },
-      "version": {
-        "value": "3.9.1",
-        "required": true,
-        "desc": "What version of Teamspeak do you want to use?",
-        "display": "Version",
-        "internal": false
-      },
-      "eula": {
-        "value": "0",
-        "required": true,
-        "desc": "Do you accept the Teamspeak EULA? 1 = Yes, 0 = No.",
-        "display": "EULA",
-        "internal": false
-      }
     }
   }
 }

@@ -1,96 +1,101 @@
 {
-  "pufferd": {
-    "type": "java",
-    "display": "CraftBukkit by Spigot - Minecraft",
-    "install": {
+  "type": "minecraft-java",
+  "display": "CraftBukkit by Spigot - Minecraft",
+  "install": [
+    {
+      "type": "download",
+      "files": "https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar"
+    },
+    {
+      "type": "command",
       "commands": [
-        {
-          "files": "https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar",
-          "type": "download"
-        },
-        {
-          "commands": [
-            "java -jar BuildTools.jar --rev ${version}"
-          ],
-          "type": "command"
-        },
-        {
-          "type": "writefile",
-          "text": "eula=${eula}",
-          "target": "eula.txt"
-        },
-        {
-          "type": "writefile",
-          "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}\n",
-          "target": "server.properties"
-        },
-        {
-          "source": "craftbukkit-*.jar",
-          "target": "server.jar",
-          "type": "move"
-        }
+        "java -jar BuildTools.jar --rev ${version}"
       ]
     },
-    "run": {
-      "stop": "stop",
-      "pre": [],
-      "post": [],
-      "arguments": [
-        "-Xmx${memory}M",
-        "-jar",
-        "server.jar"
-      ],
-      "program": "java"
+    {
+      "type": "writefile",
+      "text": "eula=${eula}",
+      "target": "eula.txt"
     },
-    "environment": {
+    {
+      "type": "writefile",
+      "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}\n",
+      "target": "server.properties"
+    },
+    {
+      "type": "move",
+      "source": "craftbukkit-*.jar",
+      "target": "server.jar"
+    }
+  ],
+  "run": {
+    "stop": "stop",
+    "pre": [],
+    "post": [],
+    "arguments": [
+      "-Xmx${memory}M",
+      "-jar",
+      "server.jar"
+    ],
+    "program": "java"
+  },
+  "environment": {
+    "type": "standard"
+  },
+  "supportedEnvironments": [
+    {
       "type": "standard"
     },
-    "data": {
-      "version": {
-        "value": "latest",
-        "required": true,
-        "desc": "Version of Minecraft to install (<a href='https://www.spigotmc.org/wiki/buildtools/#versions'>Supported versions</a>)",
-        "display": "Version",
-        "internal": false
-      },
-      "memory": {
-        "value": "1024",
-        "required": true,
-        "desc": "How much memory in MB to allocate to the Java Heap",
-        "display": "Memory (MB)",
-        "internal": false,
-        "type": "integer"
-      },
-      "ip": {
-        "value": "0.0.0.0",
-        "required": true,
-        "desc": "What IP to bind the server to",
-        "display": "IP",
-        "internal": false
-      },
-      "port": {
-        "value": "25565",
-        "required": true,
-        "desc": "What port to bind the server to",
-        "display": "Port",
-        "internal": false,
-        "type": "integer"
-      },
-      "eula": {
-        "value": "false",
-        "required": true,
-        "desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
-        "display": "EULA Agreement",
-        "internal": false,
-        "type": "boolean"
-      },
-      "motd": {
-        "value": "A Minecraft Server\\n\\u00A79 hosted on PufferPanel",
-        "required": true,
-        "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
-        "display": "MOTD message of the day",
-        "internal": false
-      }
+    {
+      "type": "docker",
+      "image": "pufferpanel/minecraft"
+    }
+  ],
+  "data": {
+    "version": {
+      "value": "latest",
+      "required": true,
+      "desc": "Version of Minecraft to install (<a href='https://www.spigotmc.org/wiki/buildtools/#versions'>Supported versions</a>)",
+      "display": "Version",
+      "internal": false
+    },
+    "memory": {
+      "value": "1024",
+      "required": true,
+      "desc": "How much memory in MB to allocate to the Java Heap",
+      "display": "Memory (MB)",
+      "internal": false,
+      "type": "integer"
+    },
+    "ip": {
+      "value": "0.0.0.0",
+      "required": true,
+      "desc": "What IP to bind the server to",
+      "display": "IP",
+      "internal": false
+    },
+    "port": {
+      "value": "25565",
+      "required": true,
+      "desc": "What port to bind the server to",
+      "display": "Port",
+      "internal": false,
+      "type": "integer"
+    },
+    "eula": {
+      "value": "false",
+      "required": true,
+      "desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
+      "display": "EULA Agreement",
+      "internal": false,
+      "type": "boolean"
+    },
+    "motd": {
+      "value": "A Minecraft Server\\n\\u00A79 hosted on PufferPanel",
+      "required": true,
+      "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
+      "display": "MOTD message of the day",
+      "internal": false
     }
   }
 }

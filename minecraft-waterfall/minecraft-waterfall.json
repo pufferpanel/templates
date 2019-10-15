@@ -1,78 +1,83 @@
 {
-  "pufferd": {
-    "type": "java",
-    "display": "Waterfall - Minecraft",
-    "install": {
-      "commands": [
-        {
-          "files": "https://papermc.io/api/v1/waterfall/${version}/latest/download",
-          "type": "download"
-        },
-        {
-          "source": "waterfall-*.jar",
-          "target": "Waterfall.jar",
-          "type": "move"
-        },
-        {
-          "type": "writefile",
-          "text": "listeners:\n- query_port: ${port}\n  host: ${ip}:${port}\n  motd: '${motd}'\n",
-          "target": "config.yml"
-        }
-      ]
+  "type": "minecraft-java",
+  "display": "Waterfall - Minecraft",
+  "install": [
+    {
+      "type": "download",
+      "files": "https://papermc.io/api/v1/waterfall/${version}/latest/download"
     },
-    "run": {
-      "stop": "end",
-      "pre": [],
-      "post": [],
-      "arguments": [
-        "-Xmx${memory}M",
-        "-Xms${memory}M",
-        "-jar",
-        "Waterfall.jar"
-      ],
-      "program": "java"
+    {
+      "type": "move",
+      "source": "waterfall-*.jar",
+      "target": "Waterfall.jar"
     },
-    "environment": {
+    {
+      "type": "writefile",
+      "text": "listeners:\n- query_port: ${port}\n  host: ${ip}:${port}\n  motd: '${motd}'\n",
+      "target": "config.yml"
+    }
+  ],
+  "run": {
+    "stop": "end",
+    "pre": [],
+    "post": [],
+    "arguments": [
+      "-Xmx${memory}M",
+      "-Xms${memory}M",
+      "-jar",
+      "Waterfall.jar"
+    ],
+    "program": "java"
+  },
+  "environment": {
+    "type": "standard"
+  },
+  "supportedEnvironments": [
+    {
       "type": "standard"
     },
-    "data": {
-      "version": {
-        "value": "1.14",
-        "required": true,
-        "desc": "Version of Minecraft to install. Must be specified as a <strong>minor release number</strong>, e.g. 1.14",
-        "display": "Version",
-        "internal": false
-      },
-      "memory": {
-        "value": "512",
-        "required": true,
-        "desc": "How much memory in MB to allocate to the Waterfall server. It is generally recommended to allocated 512MB RAM for every 500 players. Please keep in mind that additional plugins may impact the amount needed in your case.",
-        "display": "Memory (MB)",
-        "internal": false,
-        "type": "integer"
-      },
-      "ip": {
-        "value": "0.0.0.0",
-        "required": true,
-        "desc": "What IP to bind the server to",
-        "display": "IP",
-        "internal": false
-      },
-      "port": {
-        "value": "25577",
-        "required": true,
-        "desc": "What port to bind the server to",
-        "display": "Port",
-        "internal": false,
-        "type": "integer"
-      },
-      "motd": {
-        "value": "A Waterfall Server &9hosted on PufferPanel",
-        "required": true,
-        "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
-        "display": "MOTD message of the day",
-        "internal": false
-      }
+    {
+      "type": "docker",
+      "image": "pufferpanel/minecraft"
+    }
+  ],
+  "data": {
+    "version": {
+      "value": "1.14",
+      "required": true,
+      "desc": "Version of Minecraft to install. Must be specified as a <strong>minor release number</strong>, e.g. 1.14",
+      "display": "Version",
+      "internal": false
+    },
+    "memory": {
+      "value": "512",
+      "required": true,
+      "desc": "How much memory in MB to allocate to the Waterfall server. It is generally recommended to allocated 512MB RAM for every 500 players. Please keep in mind that additional plugins may impact the amount needed in your case.",
+      "display": "Memory (MB)",
+      "internal": false,
+      "type": "integer"
+    },
+    "ip": {
+      "value": "0.0.0.0",
+      "required": true,
+      "desc": "What IP to bind the server to",
+      "display": "IP",
+      "internal": false
+    },
+    "port": {
+      "value": "25577",
+      "required": true,
+      "desc": "What port to bind the server to",
+      "display": "Port",
+      "internal": false,
+      "type": "integer"
+    },
+    "motd": {
+      "value": "A Waterfall Server &9hosted on PufferPanel",
+      "required": true,
+      "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
+      "display": "MOTD message of the day",
+      "internal": false
     }
   }
 }
