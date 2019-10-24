@@ -676,13 +676,19 @@
     "playerspeed": {
       "value": "1",
       "required": true,
-      "desc": "Player speed multiplier (1 = default, 2 = double)",
+      "desc": "Player speed multiplier",
       "display": "Player Speed Multiplier",
       "internal": false,
       "type": "option",
       "options": [
-        1,
-        2
+        {
+          "value": "1",
+          "display": "Default"
+        },
+        {
+          "value": "2",
+          "display": "Double"
+        }
       ]
     },
     "playerdecayrate": {
