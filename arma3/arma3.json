@@ -1,5 +1,6 @@
 {
   "type": "arma3",
+  "display": "ARMA3",
   "install": [
     {
       "type": "download",
