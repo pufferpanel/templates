@@ -1,0 +1,57 @@
+{
+  "pufferd": {
+    "type": "java",
+    "display": "Discord - JMusicBot",
+    "install": {
+      "commands": [
+        {
+          "type": "download",
+          "files": "${link}"
+        },
+        {
+          "commands": [
+            "java -jar ${jar}"
+          ],
+          "type": "command"
+        }
+      ]
+    },
+    "run": {
+      "stop": "shutdown",
+      "pre": [],
+      "post": [],
+      "arguments": [
+        "-Xmx${memory}M",
+        "-jar",
+        "${jar}"
+      ],
+      "program": "java"
+    },
+    "environment": {
+      "type": "standard"
+    },
+   "data": {
+      "memory": {
+        "value": "512",
+        "required": true,
+        "desc": "How much memory in MB to allocate to the Java Heap",
+        "display": "Memory (MB)",
+        "internal": false
+      },
+      "jar": {
+        "value": "JMusicBot-0.2.7-Linux.jar",
+        "required": true,
+        "desc": "The name of the jar file to be executed. <a href='https://github.com/jagrosh/MusicBot/releases'>(see here)</a>",
+        "display": "Filename (.jar)",
+        "internal": false
+      },
+      "link": {
+        "value": "https://github.com/jagrosh/MusicBot/releases/download/0.2.7/JMusicBot-0.2.7-Linux.jar",
+        "required": true,
+        "desc": "Direct link to download the required .jar file. <a href='https://github.com/jagrosh/MusicBot/releases'>(see here)</a>",
+        "display": "JMusicBot .jar download link",
+        "internal": false
+      }
+    }
+  }
+}
