@@ -20,7 +20,7 @@
         "tar --no-same-owner -xzvf steamcmd_linux.tar.gz -C steamcmd",
         "steamcmd/steamcmd.sh +login ${steam_user} +force_install_dir ${rootdir} +app_update 533830 +quit",
         "find linux/ -type f -exec mv -ft ${rootdir} {} +",
-        "rm -Rf linux/ .steam/ Steam/ steamapps/ steamcmd/ steamcmd_linux.tar.gz"
+        "rm -rf linux/ .steam/ Steam/ steamapps/ steamcmd/ steamcmd_linux.tar.gz"
       ]
     },
     {

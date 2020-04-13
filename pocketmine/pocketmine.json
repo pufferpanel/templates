@@ -23,9 +23,7 @@
     "stop": "stop",
     "pre": [],
     "post": [],
-    "arguments": [
-      "--no-wizard"
-    ],
+    "arguments": "--no-wizard",
     "program": "./start.sh"
   },
   "environment": {

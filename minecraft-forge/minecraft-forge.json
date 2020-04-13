@@ -37,11 +37,7 @@
     "stop": "stop",
     "pre": [],
     "post": [],
-    "arguments": [
-      "-Xmx${memory}M",
-      "-jar",
-      "server.jar"
-    ],
+    "arguments": "-Xmx${memory}M -jar server.jar",
     "program": "java"
   },
   "environment": {
@@ -58,7 +54,7 @@
   ],
   "data": {
     "memory": {
-      "value": "1024",
+      "value": "2048",
       "required": true,
       "desc": "How much memory in MB to allocate to the Java Heap",
       "display": "Memory (MB)",
@@ -89,7 +85,7 @@
       "type": "boolean"
     },
     "version": {
-      "value": "1.12.2-14.23.5.2768",
+      "value": "1.15.2-31.1.44",
       "required": true,
       "desc": "Version of Forge to install (may be located <a href='http://files.minecraftforge.net/#Downloads'>here</a>",
       "display": "Version",

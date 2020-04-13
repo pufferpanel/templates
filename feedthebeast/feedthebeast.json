@@ -47,7 +47,7 @@
     "stop": "stop",
     "pre": [],
     "post": [],
-    "arguments": [],
+    "arguments": "",
     "program": "./ServerStart.sh",
     "autostart": false
   },

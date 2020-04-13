@@ -35,9 +35,7 @@
     "stop": "Quit",
     "pre": [],
     "post": [],
-    "arguments": [
-      "-host ${players}"
-    ],
+    "arguments": "-host ${players}",
     "program": "./zandronum-server"
   },
   "environment": {

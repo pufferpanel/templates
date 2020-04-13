@@ -19,10 +19,7 @@
     "pre": [],
     "post": [],
     "stopCode": 2,
-    "arguments": [
-      "start",
-      "src/index.js"
-    ],
+    "arguments": "start src/index.js",
     "program": "npm"
   },
   "environment": {

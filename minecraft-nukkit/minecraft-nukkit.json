@@ -26,12 +26,7 @@
     "stop": "stop",
     "pre": [],
     "post": [],
-    "arguments": [
-      "-Xmx${memory}M",
-      "-Djline.terminal=jline.UnsupportedTerminal",
-      "-jar",
-      "nukkit.jar"
-    ],
+    "arguments": "-Xmx${memory}M -Djline.terminal=jline.UnsupportedTerminal -jar nukkit.jar",
     "program": "java"
   },
   "environment": {

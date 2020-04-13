@@ -20,12 +20,7 @@
     "stopCode": 2,
     "pre": [],
     "post": [],
-    "arguments": [
-      "-port",
-      "${port}",
-      "-secure",
-      "-steam"
-    ],
+    "arguments": "-port ${port} -secure -steam",
     "program": "Linux/TerrariaServer"
   },
   "environment": {
