@@ -24,7 +24,16 @@
     "stop": "exit",
     "pre": [],
     "post": [],
-    "arguments": "+ip ${ip} +port ${port} -game ${gametype} -console +map ${map} -norestart",
+    "arguments": [
+      "+ip",
+      "${ip}",
+      "+port",
+      "${port}",
+      "-game ${gametype}",
+      "-console",
+      "+map ${map}",
+      "-norestart"
+    ],
     "program": "./srcds_run"
   },
   "environment": {

@@ -24,7 +24,20 @@
     "stop": "exit",
     "pre": [],
     "post": [],
-    "arguments": "+ip ${ip} +port ${port} -game garrysmod -console +map ${map} +maxplayers ${maxplayers} -norestart",
+    "arguments": [
+      "+ip",
+      "${ip}",
+      "+port",
+      "${port}",
+      "-game",
+      "garrysmod",
+      "-console",
+      "+map",
+      "${map}",
+      "+maxplayers",
+      "${maxplayers}",
+      "-norestart"
+    ],
     "program": "./srcds_run"
   },
   "environment": {

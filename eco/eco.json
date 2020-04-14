@@ -27,7 +27,10 @@
     "stopCode": 9,
     "pre": [],
     "post": [],
-    "arguments": "EcoServer.exe -nogui",
+    "arguments": [
+      "EcoServer.exe",
+      "-nogui"
+    ],
     "program": "mono"
   },
   "data": {

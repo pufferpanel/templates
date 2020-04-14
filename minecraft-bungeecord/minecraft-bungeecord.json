@@ -16,7 +16,12 @@
     "stop": "end",
     "pre": [],
     "post": [],
-    "arguments": "-Xmx${memory}M -Xms${memory}M -jar BungeeCord.jar",
+    "arguments": [
+      "-Xmx${memory}M",
+      "-Xms${memory}M",
+      "-jar",
+      "BungeeCord.jar"
+    ],
     "program": "java"
   },
   "environment": {

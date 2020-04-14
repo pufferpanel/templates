@@ -37,7 +37,9 @@
     "stop": "stop",
     "pre": [],
     "post": [],
-    "arguments": "--no-wizard",
+    "arguments": [
+      "--no-wizard"
+    ],
     "program": "GenisysPro-master/start.sh"
   },
   "environment": {
