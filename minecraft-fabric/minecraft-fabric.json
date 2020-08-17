@@ -45,13 +45,28 @@
   "display": "Fabric - Minecraft",
   "install": [
     {
-      "files": ["https://fabric-latest-dl.herokuapp.com"],
+      "files": [
+        "https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux32"
+      ],
       "type": "download"
     },
     {
-      "source": "fabric-installer-*.jar",
-      "target": "fabric-installer.jar",
+      "source": "jq-linux32",
+      "target": "jq",
       "type": "move"
+    },
+    {
+      "target": "install.sh",
+      "text": "chmod +x jq\ncurl 'https://meta.fabricmc.net/v2/versions/installer' | ./jq '.[0].url' | xargs curl --output fabric-installer.jar",
+      "type": "writefile"
+    },
+    {
+      "commands": ["chmod +x install.sh"],
+      "type": "command"
+    },
+    {
+      "commands": ["bash install.sh"],
+      "type": "command"
     },
     {
       "commands": [
@@ -61,7 +76,7 @@
     },
     {
       "target": "eula.txt",
-      "text": "eula=${eula}",
+      "text": "eula=${eula}\n",
       "type": "writefile"
     },
     {
