@@ -1,0 +1,91 @@
+{
+  "data": {
+    "eula": {
+      "desc": "Do you agree to the Minecraft EULA?",
+      "display": "EULA Agreement (true/false)",
+      "required": true,
+      "value": "false",
+      "type": "boolean"
+    },
+    "ip": {
+      "desc": "What IP to bind the server to",
+      "display": "IP",
+      "required": true,
+      "value": "0.0.0.0",
+      "type": "string"
+    },
+    "memory": {
+      "desc": "How much memory in MB to allocate to the Java Heap",
+      "display": "Memory (MB)",
+      "required": true,
+      "value": "1024",
+      "type": "string"
+    },
+    "motd": {
+      "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
+      "display": "MOTD message of the day",
+      "required": true,
+      "value": "A Minecraft Server\\n\\u00A79 hosted on PufferPanel",
+      "type": "string"
+    },
+    "port": {
+      "desc": "What port to bind the server to",
+      "display": "Port",
+      "required": true,
+      "value": "25565",
+      "type": "integer"
+    },
+    "version": {
+      "desc": "Minecraft version to install (Fabric supports 1.14 and above)",
+      "display": "Version",
+      "value": "1.16.2",
+      "type": "string"
+    }
+  },
+  "display": "Fabric - Minecraft",
+  "install": [
+    {
+      "files": ["https://fabric-latest-dl.herokuapp.com"],
+      "type": "download"
+    },
+    {
+      "source": "fabric-installer-*.jar",
+      "target": "fabric-installer.jar",
+      "type": "move"
+    },
+    {
+      "commands": [
+        "java -jar fabric-installer.jar server -downloadMinecraft -mcversion ${version}"
+      ],
+      "type": "command"
+    },
+    {
+      "target": "eula.txt",
+      "text": "eula=${eula}",
+      "type": "writefile"
+    },
+    {
+      "target": "server.properties",
+      "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}",
+      "type": "writefile"
+    }
+  ],
+  "type": "minecraft-java",
+  "run": {
+    "command": "java -Xmx${memory}M -Djline.terminal=jline.UnsupportedTerminal -jar fabric-server-launch.jar",
+    "stop": "stop",
+    "environmentVars": {},
+    "pre": [],
+    "post": []
+  },
+  "supportedEnvironments": [
+    {
+      "type": "standard"
+    },
+    {
+      "image": "pufferpanel/minecraft",
+      "type": "docker"
+    }
+  ],
+  "name": "fabric-server"
+}
