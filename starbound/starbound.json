@@ -18,8 +18,8 @@
       "type": "command",
       "commands": [
         "tar --no-same-owner -xzvf steamcmd_linux.tar.gz -C steamcmd",
-        "steamcmd/steamcmd.sh +login ${steam_user} +force_install_dir ${rootdir} +app_update 533830 +quit",
-        "find linux/ -type f -exec mv -ft ${rootdir} {} +",
+        "steamcmd/steamcmd.sh +login ${steam_user} +force_install_dir ${rootDir} +app_update 533830 +quit",
+        "find linux/ -type f -exec mv -ft ${rootDir} {} +",
         "rm -Rf linux/ .steam/ Steam/ steamapps/ steamcmd/ steamcmd_linux.tar.gz"
       ]
     },

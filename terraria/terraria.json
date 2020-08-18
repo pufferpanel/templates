@@ -10,9 +10,9 @@
       "type": "command",
       "commands": [
         "unzip terraria-server-${version}",
-        "mv -v ${rootdir}/${version}/Linux/ ${rootdir}/Linux/",
-        "chmod +x ${rootdir}/Linux/TerrariaServer",
-        "chmod +x ${rootdir}/Linux/TerrariaServer.bin.x86"
+        "mv -v ${rootDir}/${version}/Linux/ ${rootDir}/Linux/",
+        "chmod +x ${rootDir}/Linux/TerrariaServer",
+        "chmod +x ${rootDir}/Linux/TerrariaServer.bin.x86"
       ]
     }
   ],

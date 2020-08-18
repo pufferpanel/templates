@@ -13,7 +13,7 @@
     {
       "type": "command",
       "commands": [
-        "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -nologo -noprofile -command & {& Add-Type -A 'System.IO.Compression.FileSystem'; [IO.Compression.ZipFile]::ExtractToDirectory('steamcmd.zip', 'steamcmd'); .\\steamcmd\\steamcmd.exe +login anonymous +force_install_dir ${rootdir} +app_update 556450 validate +quit}"
+        "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -nologo -noprofile -command & {& Add-Type -A 'System.IO.Compression.FileSystem'; [IO.Compression.ZipFile]::ExtractToDirectory('steamcmd.zip', 'steamcmd'); .\\steamcmd\\steamcmd.exe +login anonymous +force_install_dir ${rootDir} +app_update 556450 validate +quit}"
       ]
     }
   ],
