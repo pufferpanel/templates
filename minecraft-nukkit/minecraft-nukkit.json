@@ -1,34 +1,39 @@
 {
   "pufferd": {
     "type": "java",
-    "display": "Waterfall - Minecraft",
+    "display": "Nukkit - Minecraft Bedrock",
     "install": {
       "commands": [
         {
-          "files": "https://papermc.io/api/v1/waterfall/${version}/latest/download",
+          "files": "https://ci.nukkitx.com/job/NukkitX/job/Nukkit/job/master/lastSuccessfulBuild/artifact/target/nukkit-1.0-SNAPSHOT.jar",
           "type": "download"
         },
         {
-          "source": "waterfall-*.jar",
-          "target": "Waterfall.jar",
-          "type": "move"
+          "type": "writefile",
+          "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}\n",
+          "target": "server.properties"
         },
         {
+          "source": "nukkit-*.jar",
+          "target": "nukkit.jar",
+          "type": "move"
+        },
+ 	{
           "type": "writefile",
-          "text": "listeners:\n- query_port: ${port}\n  host: ${ip}:${port}\n  motd: '${motd}'\n",
-          "target": "config.yml"
+          "text": " language: \"eng\"\n",
+          "target": "nukkit.yml"
         }
       ]
     },
     "run": {
-      "stop": "end",
+      "stop": "stop",
       "pre": [],
       "post": [],
       "arguments": [
         "-Xmx${memory}M",
-        "-Xms${memory}M",
+	"-Djline.terminal=jline.UnsupportedTerminal",
         "-jar",
-        "Waterfall.jar"
+        "nukkit.jar"
       ],
       "program": "java"
     },
@@ -36,17 +41,10 @@
       "type": "standard"
     },
     "data": {
-      "version": {
-        "value": "1.14",
-        "required": true,
-        "desc": "Version of Minecraft to install. Must be specified as a <strong>minor release number</strong>, e.g. 1.14",
-        "display": "Version",
-        "internal": false
-      },
       "memory": {
-        "value": "512",
+        "value": "1024",
         "required": true,
-        "desc": "How much memory in MB to allocate to the Waterfall server. It is generally recommended to allocated 512MB RAM for every 500 players. Please keep in mind that additional plugins may impact the amount needed in your case.",
+        "desc": "How much memory in MB to allocate to the Java Heap",
         "display": "Memory (MB)",
         "internal": false,
         "type": "integer"
@@ -59,7 +57,7 @@
         "internal": false
       },
       "port": {
-        "value": "25577",
+        "value": "19132",
         "required": true,
         "desc": "What port to bind the server to",
         "display": "Port",
@@ -67,7 +65,7 @@
         "type": "integer"
       },
       "motd": {
-        "value": "A Waterfall Server &9hosted on PufferPanel",
+        "value": "A Nukkit Server, \u00A79hosted on PufferPanel",
         "required": true,
         "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
         "display": "MOTD message of the day",

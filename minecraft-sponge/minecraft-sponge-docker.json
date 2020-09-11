@@ -51,6 +51,7 @@
       "post": [],
       "arguments": [
         "-Xmx${memory}M",
+        "${extraArgs}",
         "-jar",
         "server.jar"
       ],
@@ -104,6 +105,13 @@
         "required": true,
         "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
         "display": "MOTD message of the day",
+        "internal": false
+      },
+      "extraArgs": {
+        "value": "-XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:MaxGCPauseMillis=100 -XX:+DisableExplicitGC -XX:TargetSurvivorRatio=90 -XX:G1NewSizePercent=50 -XX:G1MaxNewSizePercent=80 -XX:G1MixedGCLiveThresholdPercent=50 -XX:+AlwaysPreTouch",
+        "required": false,
+        "desc": "Extra JVM arguments to add to the server",
+        "display": "JVM Arguments",
         "internal": false
       }
     }
