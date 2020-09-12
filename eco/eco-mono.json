@@ -1,36 +1,38 @@
 {
     "pufferd": {
         "type": "eco",
-        "display": "ECO – Global Survival (Versions from 0.9.0.0-beta)",
+        "display": "ECO – Global Survival (via mono), Versions up to 0.8.3.3-beta",
         "install": {
             "commands": [
                 {
                     "type": "download",
                     "files": [
-                        "https://s3-us-west-2.amazonaws.com/eco-releases/EcoServerLinux_v${serverVersion}.zip"
+                        "https://s3-us-west-2.amazonaws.com/eco-releases/EcoServer_v${serverVersion}.zip"
                     ]
                 },
                 {
                     "type": "command",
                     "commands": [
-                        "unzip EcoServerLinux_v${serverVersion}.zip",
-                        "rm EcoServerLinux_v${serverVersion}.zip",
-                        "chmod +x EcoServer"
+                        "unzip EcoServer_v${serverVersion}.zip",
+                        "rm EcoServer_v${serverVersion}.zip"
                     ]
                 },
                 {
                     "type": "writefile",
                     "target": "Configs/Network.eco",
-                    "text": "{\n  \"PublicServer\": false,  \n  \"Playtime\": \"\",\n  \"DiscordAddress\": \"\",\n  \"Password\": \"${password}\",\n  \"Description\": \"\",\n  \"DetailedDescription\": \"\",\n  \"ServerCategory\": \"None\",\n  \"IPAddress\": \"${ip}\",\n  \"RemoteAddress\": \"\",\n  \"GameServerPort\": ${port},\n  \"WebServerPort\": ${webServerPort},\n  \"Rate\": 10,\n  \"MaxConnections\": -1,  \n  \"UPnPEnabled\": true\n}"
+                    "text": "{\n  \"PublicServer\": false,\n  \"Password\": \"${password}\",\n  \"Description\": \"\",\n  \"IPAddress\": \"${ip}\",\n  \"GameServerPort\": ${port},\n  \"WebServerPort\": ${webServerPort},\n  \"Rate\": 10,\n  \"MaxConnections\": -1\n}"
                 }
             ]
         },
         "run": {
-            "stopCode": 2,
+            "stopCode": 9,
             "pre": [],
             "post": [],
-            "arguments": [],
-            "program": "./EcoServer"
+            "arguments": [
+                "EcoServer.exe",
+                "-nogui"
+            ],
+            "program": "mono"
         },
         "data": {
             "ip": {
@@ -64,9 +66,9 @@
                 "internal": false
             },
             "serverVersion": {
-                "value": "0.9.0.1-beta",
+                "value": "0.7.7.2-beta",
                 "required": true,
-                "desc": "Version of Eco server to install (>= 0.9.0.0-beta).",
+                "desc": "Version of Eco server to install.",
                 "display": "Server Version",
                 "internal": false
             }
