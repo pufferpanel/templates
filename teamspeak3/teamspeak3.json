@@ -70,7 +70,7 @@
         "internal": false
       },
       "version": {
-        "value": "3.9.1",
+        "value": "3.12.1",
         "required": true,
         "desc": "What version of Teamspeak do you want to use?",
         "display": "Version",
