@@ -1,31 +1,22 @@
 {
-  "type": "minecraft",
+  "type": "minecraft-java",
   "display": "FTB Launcher - Minecraft",
   "install": [
     {
       "type": "download",
-      "files": "${link}"
+      "files": "https://api.modpacks.ch/public/modpack/${modpack_id}/${modpack_version}/server/linux"
     },
     {
       "type": "command",
       "commands": [
-        "unzip -u FTB*.zip"
+        "chmod u+x serverinstall_${modpack_id}_${modpack_version}",
+        "./serverinstall_${modpack_id}_${modpack_version} --auto --noscript"
       ]
     },
     {
       "type": "move",
-      "source": "FTB*.zip",
-      "target": "ZIP.zip"
-    },
-    {
-      "type": "command",
-      "commands": [
-        "rm ZIP.zip",
-        "chmod u+x FTBInstall.sh",
-        "chmod u+x ServerStart.sh",
-        "chmod u+x settings.sh",
-        "./FTBInstall.sh"
-      ]
+      "source": "forge-*.jar",
+      "target": "ForgeServer.jar"
     },
     {
       "type": "writefile",
@@ -34,22 +25,25 @@
     },
     {
       "type": "writefile",
-      "text": "export MAX_RAM=\"${memory}M\"",
-      "target": "settings-local.sh"
-    },
-    {
-      "type": "writefile",
       "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}\n",
       "target": "server.properties"
     }
   ],
   "run": {
+    "program": "java",
+    "arguments": [
+      "-server",
+      "-XX:+UseG1GC",
+      "-XX:+UnlockExperimentalVMOptions",
+      "-Xmx${memory}M",
+      "-Xms${memory}M",
+      "-jar",
+      "ForgeServer.jar",
+      "nogui"
+    ],
     "stop": "stop",
     "pre": [],
-    "post": [],
-    "arguments": [],
-    "program": "./ServerStart.sh",
-    "autostart": false
+    "post": []
   },
   "environment": {
     "type": "standard"
@@ -72,21 +66,7 @@
       "internal": false,
       "type": "boolean"
     },
-    "memory": {
-      "value": "3072",
-      "required": true,
-      "desc": "How much memory in MB to allocate to the Java Heap",
-      "display": "Memory (MB)",
-      "internal": false,
-      "type": "integer"
-    },
-    "link": {
-      "value": "",
-      "required": true,
-      "desc": "Get the link for your preferred Modpack in the <a href='https://www.feed-the-beast.com/modpacks' target='_blank'>Modpacklist</a>.",
-      "display": "Link to the [zip] archive.",
-      "internal": false
-    },
+    
     "ip": {
       "value": "0.0.0.0",
       "required": true,
@@ -108,6 +88,31 @@
       "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
       "display": "MOTD message of the day",
       "internal": false
+    },
+    
+    "modpack_id": {
+      "desc": "Get the modpack ID for your preffered modpack in the <a href='https://www.feed-the-beast.com/modpack' target='_blank'>Modpacklist</a>.",
+      "display": "Modpack ID",
+      "required": true,
+      "value": "",
+      "userEdit": true,
+      "type": "integer"
+  },
+  "modpack_version": {
+      "desc": "Version ID from the versions tab of the selected modpack in the <a href='https://www.feed-the-beast.com/modpack' target='_blank'>Modpacklist</a>.",
+      "display": "Modpack version ID",
+      "required": true,
+      "value": "",
+      "userEdit": true,
+      "type": "integer"
+  },
+    "memory": {
+      "value": "3072",
+      "required": true,
+      "desc": "How much memory in MB to allocate to the Java Heap",
+      "display": "Memory (MB)",
+      "internal": false,
+      "type": "integer"
     }
   }
 }
