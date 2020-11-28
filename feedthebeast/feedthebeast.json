@@ -36,7 +36,7 @@
       "-XX:+UseG1GC",
       "-XX:+UnlockExperimentalVMOptions",
       "-Xmx${memory}M",
-      "-Xms3072M",
+      "-Xms${memory}M",
       "-jar",
       "ForgeServer.jar",
       "nogui"
