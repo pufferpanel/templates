@@ -29,3 +29,5 @@ Current map values available are:
 * If you want to use a whitelist you have to use the `-exclusivejoin` argument, you can set it on server creation or editing. After that you must set up a whitelist file in the file system manually. You can do this using SFTP. 
   * Create the file in the directory `ShooterGame/Binaries/Linux_OR_Win64/PlayersExclusiveJoinList.txt`
   * Find the Steam64 ID of your friends and paste them, one per line.
+
+This only supports Linux.

@@ -1,4 +1,4 @@
-GenisysPro Template
+# GenisysPro Template
 
 Before using you'll need to install the following
 
@@ -21,7 +21,11 @@ Note: The install guide for GenisysPro requires you to edit `GenisysPro-master/b
 
 So for example, mine looks like
 ```bash
-zend_extension=/var/lib/pufferd/servers/6e0a6050-b1f8-451d-84b4-8aa01a77d94b/GenisysPro-master/bin/php7/lib/php/extensions/no-debug-zts-20151012/opcache.so
+zend_extension=/var/lib/pufferpanel/servers/6e0a6050-b1f8-451d-84b4-8aa01a77d94b/GenisysPro-master/bin/php7/lib/php/extensions/no-debug-zts-20151012/opcache.so
 ```
 
 However, it does appear to run without making this change.
+
+## Notes
+
+This only supports Linux.

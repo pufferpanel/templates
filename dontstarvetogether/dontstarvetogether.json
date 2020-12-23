@@ -128,11 +128,11 @@
         {
             "commands": [
                 "tar --no-same-owner -xzvf steamcmd_linux.tar.gz -C steamcmd",
-                "steamcmd/steamcmd.sh +login anonymous +force_install_dir ${rootDir} +app_update 343050 +quit",
+                "steamcmd/steamcmd.sh +login anonymous +force_install_dir .. +app_update 343050 +quit",
                 "mkdir -p .steam/sdk32",
                 "cp steamcmd/linux32/steamclient.so .steam/sdk32/steamclient.so",
-                "mkdir ${rootDir}/DoNotStarveTogether",
-                "mkdir ${rootDir}/DoNotStarveTogether/DontStarveTogetherServer"
+                "mkdir DoNotStarveTogether",
+                "mkdir DoNotStarveTogether/DontStarveTogetherServer"
             ],
             "type": "command"
         },

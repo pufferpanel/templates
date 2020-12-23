@@ -11,3 +11,7 @@
 * For a 32-bit machine: sudo apt-get install libstdc++6 libgcc1 libcurl4-gnutls-dev
 
 After the installation of the Server, you find the config files in ${rootDir}/DoNotStarveTogether/DontStarveTogetherServer/
+
+## Notes
+
+This only supports Linux.

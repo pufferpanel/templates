@@ -9,3 +9,7 @@ You can find the Source & the Releases here: https://github.com/AeonLucid/Impost
 ## Install the dependencies:
 
 apt-get install unzip
+
+## Notes
+
+This only supports Linux.
