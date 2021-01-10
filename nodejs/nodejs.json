@@ -22,6 +22,7 @@
   "data": {
     "memory": {
       "value": "1024",
+      "type": "integer",
       "required": true,
       "desc": "How much memory in MB to allocate to the Node js",
       "display": "Memory (MB)",
@@ -29,6 +30,7 @@
     },
     "start": {
       "value": "start.js",
+      "type": "string",
       "required": true,
       "desc": "Which file will node js start running",
       "display": "Starting file",
