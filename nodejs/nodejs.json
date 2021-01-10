@@ -1,35 +1,33 @@
 {
-  "pufferd": {
-    "type": "nodejs",
-    "display": "Node JS",
-    "run": {
-      "stop": "stop",
-      "pre": [],
-      "post": [],
-      "arguments": [
-        "--max-old-space-size=${memory}",
-        "${start}"
-      ],
-      "program": "node"
+  "type": "nodejs",
+  "display": "Node JS",
+  "run": {
+    "stop": "stop",
+    "pre": [],
+    "post": [],
+    "arguments": [
+      "--max-old-space-size=${memory}",
+      "${start}"
+    ],
+    "program": "node"
+  },
+  "environment": {
+    "type": "standard"
+  },
+  "data": {
+    "memory": {
+      "value": "1024",
+      "required": true,
+      "desc": "How much memory in MB to allocate to the Node js",
+      "display": "Memory (MB)",
+      "internal": false
     },
-    "environment": {
-      "type": "standard"
-    },
-    "data": {
-      "memory": {
-        "value": "1024",
-        "required": true,
-        "desc": "How much memory in MB to allocate to the Node js",
-        "display": "Memory (MB)",
-        "internal": false
-      },
-      "start": {
-        "value": "start.js",
-        "required": true,
-        "desc": "Which file will node js start running",
-        "display": "Starting file",
-        "internal": false
-      }
+    "start": {
+      "value": "start.js",
+      "required": true,
+      "desc": "Which file will node js start running",
+      "display": "Starting file",
+      "internal": false
     }
   }
 }
