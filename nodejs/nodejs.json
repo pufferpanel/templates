@@ -7,11 +7,10 @@
       "pre": [],
       "post": [],
       "arguments": [
-        "-Xmx${memory}M",
-        "-jar",
-        "server.jar"
+        "--max-old-space-size=${memory}",
+        "start.js"
       ],
-      "program": "java"
+      "program": "node"
     },
     "environment": {
       "type": "standard"
@@ -20,43 +19,8 @@
       "memory": {
         "value": "1024",
         "required": true,
-        "desc": "How much memory in MB to allocate to the Java Heap",
+        "desc": "How much memory in MB to allocate to the Node js",
         "display": "Memory (MB)",
-        "internal": false
-      },
-      "ip": {
-        "value": "0.0.0.0",
-        "required": true,
-        "desc": "What IP to bind the server to",
-        "display": "IP",
-        "internal": false
-      },
-      "port": {
-        "value": "25565",
-        "required": true,
-        "desc": "What port to bind the server to",
-        "display": "Port",
-        "internal": false
-      },
-      "eula": {
-        "value": "false",
-        "required": true,
-        "desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
-        "display": "EULA Agreement (true/false)",
-        "internal": false
-      },
-      "spongeversion": {
-        "value": "1.11.2-2282-6.1.0-BETA-2343",
-        "required": true,
-        "desc": "Version of Sponge to install (may be located <a href='https://www.spongepowered.org/downloads/spongeforge/stable/'>here</a>",
-        "display": "Sponge Version",
-        "internal": false
-      },
-      "forgeversion": {
-        "value": "1.11.2-13.20.0.2298",
-        "required": true,
-        "desc": "Version of Forge to install (use version specified by Sponge)",
-        "display": "Forge Version",
         "internal": false
       }
     }
