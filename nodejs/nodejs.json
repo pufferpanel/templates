@@ -8,7 +8,7 @@
       "post": [],
       "arguments": [
         "--max-old-space-size=${memory}",
-        "start.js"
+        "${start}"
       ],
       "program": "node"
     },
