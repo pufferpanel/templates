@@ -22,6 +22,13 @@
         "desc": "How much memory in MB to allocate to the Node js",
         "display": "Memory (MB)",
         "internal": false
+      },
+      "start": {
+        "value": "start.js",
+        "required": true,
+        "desc": "Which file will node js start running",
+        "display": "Starting file",
+        "internal": false
       }
     }
   }
