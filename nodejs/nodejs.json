@@ -14,6 +14,11 @@
   "environment": {
     "type": "standard"
   },
+  "supportedEnvironments": [
+    {
+      "type": "standard"
+    }
+  ],
   "data": {
     "memory": {
       "value": "1024",
