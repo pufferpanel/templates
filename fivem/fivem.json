@@ -1,0 +1,130 @@
+{
+  "type": "FiveM",
+  "display": "Grand Theft Auto - FiveM [WIP]",
+  "install": {
+    "commands": [
+      {
+        "files": "https://runtime.fivem.net/artifacts/fivem/build_proot_linux/master/${gameversion}/fx.tar.xz",
+        "type": "download"
+      },
+      {
+        "target": "core",
+        "type": "mkdir"
+      },
+      {
+        "target": "core/resources",
+        "type": "mkdir"
+      },
+      {
+        "commands": [
+          "unxz fx.tar.xz fx.tar",
+          "tar --no-same-owner -xf fx.tar -C core",
+          "chmod u+x core/run.sh",
+          "git clone https://github.com/citizenfx/cfx-server-data.git core/resources"
+        ],
+        "type": "command"
+      },
+      {
+        "type": "writefile",
+        "text": "# you probably don't want to change these!\n # only change them if you're using a server with multiple network interfaces\n endpoint_add_tcp \"${ip}:${port}\"\n endpoint_add_udp \"${ip}:${port}\"\n sets tags \"${tags}\"\n  # Load Resources\n exec serverconfiguration-default.cfg\n sv_scriptHookAllowed ${allowscripts}\n  # change this\n #rcon_password ChangeMe\n  sv_hostname \"${servername}\"\n  # loading a server icon (96x96 PNG file)\n load_server_icon ${servericon}\n  # disable announcing? clear out the master by uncommenting this\n #sv_master1 \"\"\n  # want to only allow players authenticated with a third-party provider like Steam?\n #sv_authMaxVariance 1\n #sv_authMinTrust 5\n # add system admins add_ace group.admin command allow\n # allow all commands add_ace group.admin command.quit deny\n # but don't allow quit\n add_principal identifier.steam:110000105204c22 group.admin # xrayhunter\n  # hide player endpoints in external log output\n sv_endpointprivacy ${hideendpointipaddress}\n# server slots limit (default to 30)\n sv_maxclients ${maxclients}\n# Steam Web API key, if you want to use Steam authentication (https://steamcommunity.com/dev/apikey)\n set steam_webApiKey ${steamWebAPI}          # Get a key from https://keymaster.fivem.net sv_licensekey ${licensekey}",
+        "target": "core/serverconfiguration.cfg"
+      },
+      {
+        "type": "writefile",
+        "text": "start mapmanager\nstart chat\nstart spawnmanager\nstart sessionmanager\nstart fivem\nstart hardcap\nstart rconlog\nstart scoreboard\nstart playernames",
+        "target": "core/serverconfiguration-default.cfg"
+      }
+    ]
+  },
+  "run": {
+    "stop": "exit",
+    "pre": [],
+    "post": [],
+    "arguments": [
+      "+exec serverconfiguration.cfg"
+    ],
+    "program": "sh core/run.sh"
+  },
+  "environment": {
+    "type": "tty"
+  },
+  "data": {
+    "ip": {
+      "value": "0.0.0.0",
+      "required": true,
+      "desc": "What IP to bind the server to",
+      "display": "IP",
+      "internal": false
+    },
+    "port": {
+      "value": "30120",
+      "required": true,
+      "desc": "What port to bind the server to",
+      "display": "Port",
+      "internal": false
+    },
+    "gameversion": {
+      "value": "2893-4610d9229c1c5f526870ca6738e5c53004e15b32",
+      "required": true,
+      "desc": "What game version would you like it to install? (<a href=\"https://runtime.fivem.net/artifacts/fivem/build_proot_linux/master/\">Version List</a>)",
+      "display": "Game Version",
+      "internal": false
+    },
+    "licensekey": {
+      "value": "",
+      "required": true,
+      "desc": "You need a license key for your server (<a href=\"https://keymaster.fivem.net\">https://keymaster.fivem.net</a>)",
+      "display": "License Key",
+      "internal": false
+    },
+    "steamWebAPI": {
+      "value": "",
+      "required": true,
+      "desc": "Steam Web API key, if you want to use Steam authentication (https://steamcommunity.com/dev/apikey)",
+      "display": "Steam Web API Key",
+      "internal": false
+    },
+    "maxclients": {
+      "value": "32",
+      "required": false,
+      "desc": "How many clients you would like to limit in your server? (32 max)",
+      "display": "Max Players",
+      "internal": false
+    },
+    "allowscripts": {
+      "value": "1",
+      "required": false,
+      "desc": "Should Clients be able to run custom Client-Sides Scripts?",
+      "display": "Allow Client-Side Scripts",
+      "internal": false
+    },
+    "tags": {
+      "value": "New",
+      "required": false,
+      "desc": "What tags would you like to categorize your server.",
+      "display": "Server tags",
+      "internal": false
+    },
+    "servername": {
+      "value": "New PufferdPanel FiveM-Server",
+      "required": false,
+      "desc": "What would you like to display to the server list",
+      "display": "Server Host Name",
+      "internal": false
+    },
+    "hideendpointipaddress": {
+      "value": "true",
+      "required": false,
+      "desc": "This should keep the player's IP Addresses a bit more secure/hidden.",
+      "display": "Hide Endpoint IP Addresses",
+      "internal": false
+    },
+    "servericon": {
+      "value": "",
+      "required": false,
+      "desc": "Where would you like to upload your icon to the server listing. (Locally prefered)",
+      "display": "Server Icon",
+      "internal": false
+    }
+  }
+}
