@@ -116,7 +116,7 @@
     },
     "tags": {
       "type": "string",
-      "value": "Default",
+      "value": "default",
       "required": true,
       "desc": "What tags would you like to categorize your server.",
       "display": "Server tags",
