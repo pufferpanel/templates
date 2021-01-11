@@ -48,6 +48,11 @@
   "environment": {
     "type": "tty"
   },
+  "supportedEnvironments": [
+        {
+            "type": "tty"
+        }
+  ],
   "data": {
     "ip": {
       "type": "string",
