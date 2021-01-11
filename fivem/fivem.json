@@ -90,7 +90,7 @@
     "steamWebAPI": {
       "type": "string",
       "value": "",
-      "required": true,
+      "required": false,
       "desc": "Steam Web API key, if you want to use Steam authentication (https://steamcommunity.com/dev/apikey)",
       "display": "Steam Web API Key",
       "internal": false
