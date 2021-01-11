@@ -10,19 +10,19 @@
         "type": "download"
       },
       {
-        "target": "core",
+        "target": "server",
         "type": "mkdir"
       },
       {
-        "target": "core/resources",
+        "target": "server-data",
         "type": "mkdir"
       },
       {
         "commands": [
           "unxz fx.tar.xz fx.tar",
-          "tar --no-same-owner -xf fx.tar -C core",
+          "tar --no-same-owner -xf fx.tar -C server",
           "chmod u+x core/run.sh",
-          "git clone https://github.com/citizenfx/cfx-server-data.git core/resources"
+          "git clone https://github.com/citizenfx/cfx-server-data.git server-data"
         ],
         "type": "command"
       },
