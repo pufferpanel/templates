@@ -29,12 +29,12 @@
       {
         "type": "writefile",
         "text": "# you probably don't want to change these!\n # only change them if you're using a server with multiple network interfaces\n endpoint_add_tcp \"${ip}:${port}\"\n endpoint_add_udp \"${ip}:${port}\"\n sets tags \"${tags}\"\n  # Load Resources\n exec serverconfiguration-default.cfg\n sv_scriptHookAllowed ${allowscripts}\n  # change this\n #rcon_password ChangeMe\n  sv_hostname \"${servername}\"\n  # loading a server icon (96x96 PNG file)\n load_server_icon ${servericon}\n  # disable announcing? clear out the master by uncommenting this\n #sv_master1 \"\"\n  # want to only allow players authenticated with a third-party provider like Steam?\n #sv_authMaxVariance 1\n #sv_authMinTrust 5\n # add system admins add_ace group.admin command allow\n # allow all commands add_ace group.admin command.quit deny\n # but don't allow quit\n add_principal identifier.steam:110000105204c22 group.admin # xrayhunter\n  # hide player endpoints in external log output\n sv_endpointprivacy ${hideendpointipaddress}\n# server slots limit (default to 30)\n sv_maxclients ${maxclients}\n# Steam Web API key, if you want to use Steam authentication (https://steamcommunity.com/dev/apikey)\n set steam_webApiKey ${steamWebAPI}          # Get a key from https://keymaster.fivem.net sv_licensekey ${licensekey}",
-        "target": "core/server.cfg"
+        "target": "server-data/server.cfg"
       },
       {
         "type": "writefile",
         "text": "start mapmanager\nstart chat\nstart spawnmanager\nstart sessionmanager\nstart fivem\nstart hardcap\nstart rconlog\nstart scoreboard\nstart playernames",
-        "target": "core/serverconfiguration-default.cfg"
+        "target": "server-data/serverconfiguration-default.cfg"
       }
   ],
   "run": {
