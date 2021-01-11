@@ -90,6 +90,14 @@
       "display": "Steam Web API Key",
       "internal": false
     },
+   "oneSync": {
+      "type": "string",
+      "value": "Off",
+      "required": true,
+      "desc": "If you want to allow more then 32 clients you need to buy One Sync.",
+      "display": "One Sync",
+      "internal": false
+    },
     "maxclients": {
       "type": "integer",
       "value": "32",
