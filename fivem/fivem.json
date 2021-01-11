@@ -50,6 +50,7 @@
   },
   "data": {
     "ip": {
+      "type": "string",
       "value": "0.0.0.0",
       "required": true,
       "desc": "What IP to bind the server to",
@@ -57,6 +58,7 @@
       "internal": false
     },
     "port": {
+      "type": "integer",
       "value": "30120",
       "required": true,
       "desc": "What port to bind the server to",
@@ -64,6 +66,7 @@
       "internal": false
     },
     "gameversion": {
+      "type": "string",
       "value": "3383-913a4441508dcb562337a67c0c727ea11f6cbe39",
       "required": true,
       "desc": "What game version would you like it to install? (<a href=\"https://runtime.fivem.net/artifacts/fivem/build_proot_linux/master/\">Version List</a>)",
@@ -71,6 +74,7 @@
       "internal": false
     },
     "licensekey": {
+      "type": "string",
       "value": "",
       "required": true,
       "desc": "You need a license key for your server (<a href=\"https://keymaster.fivem.net\">https://keymaster.fivem.net</a>)",
@@ -78,6 +82,7 @@
       "internal": false
     },
     "steamWebAPI": {
+      "type": "string",
       "value": "",
       "required": true,
       "desc": "Steam Web API key, if you want to use Steam authentication (https://steamcommunity.com/dev/apikey)",
@@ -85,6 +90,7 @@
       "internal": false
     },
     "maxclients": {
+      "type": "integer",
       "value": "32",
       "required": false,
       "desc": "How many clients you would like to limit in your server? (32 max)",
@@ -92,6 +98,7 @@
       "internal": false
     },
     "allowscripts": {
+      "type": "integer",
       "value": "1",
       "required": false,
       "desc": "Should Clients be able to run custom Client-Sides Scripts?",
@@ -99,6 +106,7 @@
       "internal": false
     },
     "tags": {
+      "type": "string",
       "value": "New",
       "required": false,
       "desc": "What tags would you like to categorize your server.",
@@ -106,13 +114,15 @@
       "internal": false
     },
     "servername": {
-      "value": "New PufferdPanel FiveM-Server",
+      "type": "string",
+      "value": "New FiveM-Server",
       "required": false,
       "desc": "What would you like to display to the server list",
       "display": "Server Host Name",
       "internal": false
     },
     "hideendpointipaddress": {
+      "type": "boolean",
       "value": "true",
       "required": false,
       "desc": "This should keep the player's IP Addresses a bit more secure/hidden.",
@@ -120,6 +130,7 @@
       "internal": false
     },
     "servericon": {
+      "type": "string",
       "value": "",
       "required": false,
       "desc": "Where would you like to upload your icon to the server listing. (Locally prefered)",
