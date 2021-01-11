@@ -21,7 +21,7 @@
         "commands": [
           "unxz fx.tar.xz fx.tar",
           "tar --no-same-owner -xf fx.tar -C server",
-          "chmod u+x core/run.sh",
+          "chmod u+x server/run.sh",
           "git clone https://github.com/citizenfx/cfx-server-data.git server-data"
         ],
         "type": "command"
@@ -44,7 +44,7 @@
     "arguments": [
       "+exec server.cfg"
     ],
-    "program": "sh core/run.sh"
+    "program": "sh server/run.sh"
   },
   "environment": {
     "type": "standart"
