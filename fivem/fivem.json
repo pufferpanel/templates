@@ -37,7 +37,7 @@
     "pre": [],
     "post": [],
     "arguments": [
-      "+exec ../server-data/server.cfg"
+      "+exec server-data/server.cfg"
     ],
     "program": "sh server/run.sh"
   },
