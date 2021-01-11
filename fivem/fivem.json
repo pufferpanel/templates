@@ -1,7 +1,7 @@
 {
   "type": "FiveM",
   "name": "fivem",
-  "display": "Grand Theft Auto - FiveM [WIP]",
+  "display": "Grand Theft Auto - FiveM",
   "install": [
       {
         "files": [
@@ -73,7 +73,7 @@
     },
     "gameversion": {
       "type": "string",
-      "value": "3383-913a4441508dcb562337a67c0c727ea11f6cbe39",
+      "value": "3184-6123f9196eb8cd2a987a1dd7ff7b36907a787962",
       "required": true,
       "desc": "What game version would you like it to install? (<a href=\"https://runtime.fivem.net/artifacts/fivem/build_proot_linux/master/\">Version List</a>)",
       "display": "Game Version",
