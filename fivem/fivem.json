@@ -42,11 +42,11 @@
     "program": "sh server/run.sh"
   },
   "environment": {
-    "type": "standart"
+    "type": "standard"
   },
   "supportedEnvironments": [
         {
-            "type": "standart"
+            "type": "standard"
         }
   ],
   "data": {
