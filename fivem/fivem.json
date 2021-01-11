@@ -47,11 +47,11 @@
     "program": "sh core/run.sh"
   },
   "environment": {
-    "type": "tty"
+    "type": "standart"
   },
   "supportedEnvironments": [
         {
-            "type": "tty"
+            "type": "standart"
         }
   ],
   "data": {
