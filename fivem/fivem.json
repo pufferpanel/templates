@@ -85,7 +85,7 @@
     "steamWebAPI": {
       "type": "string",
       "value": "",
-      "required": false,
+      "required": true,
       "desc": "Steam Web API key, if you want to use Steam authentication (https://steamcommunity.com/dev/apikey)",
       "display": "Steam Web API Key",
       "internal": false
@@ -93,7 +93,7 @@
     "maxclients": {
       "type": "integer",
       "value": "32",
-      "required": false,
+      "required": true,
       "desc": "How many clients you would like to limit in your server? (32 max)",
       "display": "Max Players",
       "internal": false
@@ -101,7 +101,7 @@
     "allowscripts": {
       "type": "integer",
       "value": "1",
-      "required": false,
+      "required": true,
       "desc": "Should Clients be able to run custom Client-Sides Scripts?",
       "display": "Allow Client-Side Scripts",
       "internal": false
