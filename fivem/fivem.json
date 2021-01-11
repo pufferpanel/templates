@@ -92,7 +92,7 @@
     },
    "oneSync": {
       "type": "string",
-      "value": "Off",
+      "value": "off",
       "required": true,
       "desc": "If you want to allow more then 32 clients you need to buy One Sync.",
       "display": "One Sync",
