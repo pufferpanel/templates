@@ -121,22 +121,6 @@
       "desc": "What would you like to display to the server list",
       "display": "Server Host Name",
       "internal": false
-    },
-    "hideendpointipaddress": {
-      "type": "boolean",
-      "value": "true",
-      "required": false,
-      "desc": "This should keep the player's IP Addresses a bit more secure/hidden.",
-      "display": "Hide Endpoint IP Addresses",
-      "internal": false
-    },
-    "servericon": {
-      "type": "string",
-      "value": "",
-      "required": false,
-      "desc": "Where would you like to upload your icon to the server listing. (Locally prefered)",
-      "display": "Server Icon",
-      "internal": false
     }
   }
 }
