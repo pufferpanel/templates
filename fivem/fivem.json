@@ -1,5 +1,6 @@
 {
   "type": "FiveM",
+  "name": "fivem",
   "display": "Grand Theft Auto - FiveM [WIP]",
   "install": [
       {
