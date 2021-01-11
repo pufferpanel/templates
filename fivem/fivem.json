@@ -108,16 +108,24 @@
     },
     "tags": {
       "type": "string",
-      "value": "New",
-      "required": false,
+      "value": "Default",
+      "required": true,
       "desc": "What tags would you like to categorize your server.",
       "display": "Server tags",
       "internal": false
     },
+    "locale": {
+      "type": "string",
+      "value": "en-US",
+      "required": true,
+      "desc": "What would you like to be your server primary language.",
+      "display": "Server language",
+      "internal": false
+    },
     "servername": {
       "type": "string",
-      "value": "New FiveM-Server",
-      "required": false,
+      "value": "FiveM-Server",
+      "required": true,
       "desc": "What would you like to display to the server list",
       "display": "Server Host Name",
       "internal": false
