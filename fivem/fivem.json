@@ -64,7 +64,7 @@
       "internal": false
     },
     "gameversion": {
-      "value": "2893-4610d9229c1c5f526870ca6738e5c53004e15b32",
+      "value": "3383-913a4441508dcb562337a67c0c727ea11f6cbe39",
       "required": true,
       "desc": "What game version would you like it to install? (<a href=\"https://runtime.fivem.net/artifacts/fivem/build_proot_linux/master/\">Version List</a>)",
       "display": "Game Version",
