@@ -1,7 +1,7 @@
 {
   "type": "FiveM",
   "display": "Grand Theft Auto - FiveM [WIP]",
-  "install": {
+  "install": [
       {
         "files": [
           "https://runtime.fivem.net/artifacts/fivem/build_proot_linux/master/${gameversion}/fx.tar.xz"
@@ -35,7 +35,7 @@
         "text": "start mapmanager\nstart chat\nstart spawnmanager\nstart sessionmanager\nstart fivem\nstart hardcap\nstart rconlog\nstart scoreboard\nstart playernames",
         "target": "core/serverconfiguration-default.cfg"
       }
-  },
+  ],
   "run": {
     "stop": "exit",
     "pre": [],
