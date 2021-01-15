@@ -1,0 +1,87 @@
+{
+    "type": "steam",
+    "data": {
+        "appid": {
+            "type": "integer",
+            "display": "Appid",
+            "required": true,
+            "value": "294420"
+        },
+        "configfile": {
+            "type": "string",
+            "display": "Serverconfig File",
+            "required": true,
+            "value": "serverconfig.xml",
+            "userEdit": true
+        },
+        "telnet": {
+            "type": "integer",
+            "display": "Telnet Port",
+            "required": true,
+            "value": "8081",
+            "userEdit": true
+        },
+        "steamacc": {
+            "required": true,
+            "userEdit": true,
+            "display": "Steamaccount",
+            "desc": "",
+            "type": "string",
+            "value": "anonymous"
+        }
+    },
+    "display": "7 Days to Die",
+    "install": [
+        {
+            "files": [
+                "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"
+            ],
+            "type": "download"
+        },
+        {
+            "target": "steamcmd",
+            "type": "mkdir"
+        },
+        {
+            "commands": [
+                "tar --no-same-owner -xzvf steamcmd_linux.tar.gz -C steamcmd",
+                "steamcmd/steamcmd.sh +login ${steamacc} +force_install_dir .. +app_update ${appid} +quit",
+                "mkdir -p .steam/sdk32",
+                "cp steamcmd/linux32/steamclient.so .steam/sdk32/steamclient.so"
+            ],
+            "type": "command"
+        }
+    ],
+    "run": {
+        "command": "telnet localhost ${telnet}",
+        "stop": "shutdown",
+        "pre": [
+            {
+                "target": "startserver.sh",
+                "text": "#!/bin/sh\nSERVERDIR=`dirname \"$0\"`\ncd \"$SERVERDIR\"\n\nPARAMS=$@\n\nCONFIGFILE=\nwhile test $# -gt 0\ndo\n        if [ `echo $1 | cut -c 1-12` = \"-configfile=\" ]; then\n                CONFIGFILE=`echo $1 | cut -c 13-`\n        fi\n        shift\ndone\n\nif [ \"$CONFIGFILE\" = \"\" ]; then\n        echo \"No config file specified. Call this script like this:\"\n        echo \"  ./startserver.sh -configfile=serverconfig.xml\"\n        exit 1\nelse\n        if [ -f \"$CONFIGFILE\" ]; then\n                echo Using config file: $CONFIGFILE\n        else\n                echo \"Specified config file $CONFIGFILE does not exist.\"\n                exit 1\n        fi\nfi\n\nexport LD_LIBRARY_PATH=.\n#export MALLOC_CHECK_=0\n\nnohup ./7DaysToDieServer.x86_64 -logfile $SERVERDIR/7DaysToDieServer_Data/output_log__`date +%Y-%m-%d__%H-%M-%S`.txt -quit -batchmode -nographics -dedicated $PARAMS &",
+                "type": "writefile"
+            },
+            {
+                "commands": [
+                    "nohup ./startserver.sh -configfile=${configfile} & s",
+                    "sleep 60"
+                ],
+                "type": "command"
+            }
+        ],
+        "post": [
+            {
+                "commands": [
+                    "rm startserver.sh"
+                ],
+                "type": "command"
+            }
+        ],
+        "environmentVars": {}
+    },
+    "supportedEnvironments": [
+        {
+            "type": "tty"
+        }
+    ],
+    "name": "7DtD"
