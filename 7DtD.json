@@ -64,7 +64,8 @@
             {
                 "commands": [
                     "nohup ./startserver.sh -configfile=${configfile} & s",
-                    "sleep 60"
+                    "sleep 60",
+                    "chmod 777 startserver.sh"
                 ],
                 "type": "command"
             }
