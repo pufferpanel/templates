@@ -4,7 +4,7 @@
 * Go to https://accounts.klei.com/account/game/servers?game=DontStarveTogether
 * Type in a Name for the new Server
 * click "add new Server"
-* copy the Server Toke
+* copy the Server Token
 
 # Install needed dependencies:
 * For a 64-bit machine: sudo apt-get install libstdc++6:i386 libgcc1:i386 libcurl4-gnutls-dev:i386
