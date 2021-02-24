@@ -1,0 +1,107 @@
+{
+    "type": "minecraft-java",
+    "data": {
+        "eula": {
+            "type": "boolean",
+            "desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
+            "display": "EULA Agreement (true/false)",
+            "required": true,
+            "value": "false"
+        },
+        "installer": {
+            "type": "string",
+            "desc": "Fabric Installer version. Can be found <a href='https://maven.fabricmc.net/net/fabricmc/fabric-installer/'>here</a>",
+            "display": "Fabric Installer",
+            "required": true,
+            "value": "0.6.1.51"
+        },
+        "ip": {
+            "type": "string",
+            "desc": "What IP to bind the server to",
+            "display": "IP",
+            "required": true,
+            "value": "0.0.0.0"
+        },
+        "loader": {
+            "type": "string",
+            "desc": "Version of the Fabric loader. Can be found <a href=\"https://maven.fabricmc.net/net/fabricmc/fabric-loader/\">here</a>.",
+            "display": "Loader Version",
+            "required": true,
+            "value": "0.11.1"
+        },
+        "memory": {
+            "type": "integer",
+            "desc": "How much memory in MB to allocate to the Java Heap",
+            "display": "Memory (MB)",
+            "required": true,
+            "value": "1024"
+        },
+        "motd": {
+            "type": "string",
+            "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
+            "display": "MOTD message of the day",
+            "required": true,
+            "value": "A modded Minecraft Fabric server."
+        },
+        "port": {
+            "type": "integer",
+            "desc": "What port to bind the server to",
+            "display": "Port",
+            "required": true,
+            "value": "25565"
+        },
+        "version": {
+            "type": "string",
+            "desc": "Version of Minecraft to install. (Ensure it is supported by the loader version.)",
+            "display": "Minecraft Version",
+            "required": true,
+            "value": "1.16.5"
+        }
+    },
+    "display": "Fabric - Minecraft",
+    "environment": {
+        "type": "standard"
+    },
+    "install": [
+        {
+            "files": [
+                "https://maven.fabricmc.net/net/fabricmc/fabric-installer/${installer}/fabric-installer-${installer}.jar"
+            ],
+            "type": "download"
+        },
+        {
+            "source": "fabric-installer-*.jar",
+            "target": "fabric-installer.jar",
+            "type": "move"
+        },
+        {
+            "commands": [
+                "java -jar fabric-installer.jar server -mcversion ${version} -loader ${loader} -downloadMinecraft"
+            ],
+            "type": "command"
+        },
+        {
+            "target": "server.properties",
+            "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}\n",
+            "type": "writefile"
+        },
+        {
+            "target": "eula.txt",
+            "text": "eula=${eula}",
+            "type": "writefile"
+        }
+    ],
+    "run": {
+        "command": "java -Xmx${memory}M -jar fabric-server-launch.jar -nogui",
+        "stop": "stop",
+        "environmentVars": {},
+        "pre": [],
+        "post": []
+    },
+    "supportedEnvironments": [
+        {
+            "type": "standard"
+        }
+    ],
+    "name": "minecraft-fabric"
+}
