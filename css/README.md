@@ -7,7 +7,7 @@ Install this for CS:Souce:
 ```
 sudo apt install lib32tinfo5
 ```
-If you use sourcemod and connect to mysql install this:
+If you use SourceMod and connect to MySQL install this:
 ```
 sudo apt install lib32z1
 ```
