@@ -24,6 +24,7 @@ Current map values available are:
 * Ragnarok
 * Aberration_P
 * Extinction
+* Crystalisles
 
 ## Notes
 * If you want to use a whitelist you have to use the `-exclusivejoin` argument, you can set it on server creation or editing. After that you must set up a whitelist file in the file system manually. You can do this using SFTP. 
