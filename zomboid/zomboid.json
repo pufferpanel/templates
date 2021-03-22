@@ -1,0 +1,78 @@
+{
+    "type": "zomboid",
+    "data": {
+        "adminpassword": {
+            "type": "string",
+            "desc": "Password for admin account",
+            "display": "Admin Password",
+            "required": true,
+            "value": "password",
+            "userEdit": true
+        },
+        "port": {
+            "type": "integer",
+            "desc": "Base port (UDP) for server. Additional ports (TCP) beyond this will need to be opened. 1 per user.",
+            "display": "port",
+            "required": true,
+            "value": "16261",
+            "userEdit": true
+        },
+        "steamvac": {
+            "type": "boolean",
+            "desc": "Enable or disable Steam VAC",
+            "display": "steamvac",
+            "required": true,
+            "value": "true",
+            "userEdit": true
+        }
+    },
+    "display": "Project Zomboid",
+    "environment": {
+        "type": "tty"
+    },
+    "install": [
+        {
+            "files": [
+                "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"
+            ],
+            "type": "download"
+        },
+        {
+            "commands": [
+                "mkdir steamcmd",
+                "tar --no-same-owner -xzvf steamcmd_linux.tar.gz -C steamcmd",
+                "steamcmd/steamcmd.sh +login anonymous +force_install_dir .. +app_update 380870 +quit",
+                "mkdir -p .steam/sdk32",
+                "cp steamcmd/linux32/steamclient.so .steam/sdk32/steamclient.so"
+            ],
+            "type": "command"
+        },
+        {
+            "target": "ProjectZomboid64.json",
+            "text": "{\n        \"mainClass\": \"zombie/network/GameServer\",\n        \"classpath\": [\n                \"java/\",\n                \"java/jinput.jar\",\n                \"java/lwjgl.jar\",\n                \"java/lwjgl_util.jar\",\n    \"java/trove-3.0.3.jar\",\n                \"java/sqlite-jdbc-3.8.10.1.jar\",\n                \"java/uncommons-maths-1.2.3.jar\",\n    \"java/javacord-2.0.17-shaded.jar\",\n    \"java/guava-23.0.jar\"\n        ],\n        \"vmArgs\": [\n                \"-Xms2048m\",\n                \"-Xmx2048m\",\n                \"-Duser.home=.\",\n                \"-Dzomboid.steam=1\",\n                \"-Dzomboid.znetlog=1\",\n                \"-Djava.library.path=linux64/:natives/\",\n                \"-XX:-UseSplitVerifier\",\n                \"-Djava.security.egd=file:/dev/urandom\",\n                \"-XX:+UseConcMarkSweepGC\",\n                \"-XX:-OmitStackTraceInFastThrow\"\n        ]\n}",
+            "type": "writefile"
+        },
+        {
+            "target": "ProjectZomboid32.json",
+            "text": "{\n        \"mainClass\": \"zombie/network/GameServer\",\n        \"classpath\": [\n                \"java/\",\n                \"java/jinput.jar\",\n                \"java/lwjgl.jar\",\n                \"java/lwjgl_util.jar\",\n    \"java/trove-3.0.3.jar\",\n                \"java/sqlite-jdbc-3.8.10.1.jar\",\n                \"java/uncommons-maths-1.2.3.jar\",\n    \"java/javacord-2.0.17-shaded.jar\",\n    \"java/guava-23.0.jar\"\n        ],\n        \"vmArgs\": [\n                \"-Xms768m\",\n                \"-Xmx768m\",\n                \"-Duser.home=.\",\n                \"-Dzomboid.steam=1\",\n                \"-Dzomboid.znetlog=1\",\n                \"-Djava.library.path=linux32/:natives/\",\n                \"-XX:-UseSplitVerifier\",\n                \"-Djava.security.egd=file:/dev/urandom\",\n                \"-XX:+UseConcMarkSweepGC\",\n                \"-XX:-OmitStackTraceInFastThrow\"\n        ]\n}\n",
+            "type": "writefile"
+        }
+    ],
+    "run": {
+        "command": "bash start-server.sh -adminpassword ${adminpassword} -steamvac ${steamvac} -port ${port}",
+        "stop": "quit",
+        "environmentVars": {},
+        "pre": [],
+        "post": []
+    },
+    "supportedEnvironments": [
+        {
+            "type": "tty"
+        },
+        {
+            "image": "pufferpanel/srcds",
+            "type": "docker"
+        }
+    ],
+    "name": "Zomboid"
+}
