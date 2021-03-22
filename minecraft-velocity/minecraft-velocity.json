@@ -50,7 +50,7 @@
         },
         {
             "source": "velocity-*.jar",
-            "target": "velocity-.jar",
+            "target": "velocity.jar",
             "type": "move"
         },
         {
