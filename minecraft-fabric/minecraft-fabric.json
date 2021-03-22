@@ -85,7 +85,7 @@
         }
     ],
     "run": {
-        "command": "java -Xmx${memory}M -jar fabric-server.jar",
+        "command": "java -Xmx${memory}M -jar fabric-server.jar nogui",
         "stop": "stop",
         "environmentVars": {},
         "pre": [],
