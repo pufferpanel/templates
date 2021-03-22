@@ -42,31 +42,16 @@
             "display": "PORT",
             "required": true,
             "value": "25565"
-        },
-        "version": {
-            "type": "string",
-            "desc": "Version of Fabric installer to use (may be located <a href='https://fabricmc.net/use/?page=server'>here</a>).  Latest is generaly ideal.",
-            "display": "FABRIC VERSION",
-            "required": true,
-            "value": "0.7.2"
         }
     },
     "display": "Fabric - Minecraft",
     "install": [
         {
-            "files": [
-                "https://maven.fabricmc.net/net/fabricmc/fabric-installer/${version}/fabric-installer-${version}.jar"
-            ],
-            "type": "download"
-        },
-        {
-            "source": "fabric-installer-*.jar",
-            "target": "installer.jar",
-            "type": "move"
+            "type": "fabricdl"
         },
         {
             "commands": [
-                "java -jar installer.jar server -downloadMinecraft -mcversion ${game-version}"
+                "java -jar fabric-installer.jar server -downloadMinecraft -noprofile"
             ],
             "type": "command"
         },
@@ -83,6 +68,19 @@
         {
             "source": "fabric-server-launch.jar",
             "target": "fabric-server.jar",
+            "type": "move"
+        },
+        {
+            "target": "mods",
+            "type": "mkdir"
+        },
+        {
+            "target": "installer",
+            "type": "mkdir"
+        },
+        {
+            "source": "fabric-installer.jar",
+            "target": "installer/fabric-installer.jar",
             "type": "move"
         }
     ],
