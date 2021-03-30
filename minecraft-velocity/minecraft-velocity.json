@@ -1,0 +1,75 @@
+{
+    "type": "minecraft-java",
+    "data": {
+        "ip": {
+            "type": "string",
+            "desc": "What IP to bind the server to",
+            "display": "IP",
+            "required": true,
+            "value": "0.0.0.0"
+        },
+        "memory": {
+            "type": "integer",
+            "desc": "How much memory in MB to allocate to the Waterfall server. It is generally recommended to allocated 512MB RAM for every 500 players. Please keep in mind that additional plugins may impact the amount needed in your case.",
+            "display": "Memory (MB)",
+            "required": true,
+            "value": "512"
+        },
+        "motd": {
+            "type": "string",
+            "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
+            "display": "MOTD message of the day",
+            "required": true,
+            "value": "A Velocity proxy &9hosted on PufferPanel"
+        },
+        "port": {
+            "type": "integer",
+            "desc": "What port to bind the server to",
+            "display": "Port",
+            "required": true,
+            "value": "25565"
+        },
+        "version": {
+            "type": "string",
+            "desc": "Version of Velocity to install.",
+            "display": "Version",
+            "required": true,
+            "value": "1.1.4"
+        }
+    },
+    "display": "Velocity - Minecraft",
+    "environment": {
+        "type": "standard"
+    },
+    "install": [
+        {
+            "files": [
+                "https://versions.velocitypowered.com/download/${version}.jar"
+            ],
+            "type": "download"
+        },
+        {
+            "source": "velocity-*.jar",
+            "target": "velocity.jar",
+            "type": "move"
+        },
+        {
+            "target": "velocity",
+            "text": "bind: \"${ip}:${port}\"\n  motd = \"${motd}\"\n",
+            "type": "writefile"
+        }
+    ],
+    "run": {
+        "command": "java -Xmx${memory}M -Xms${memory}M -jar velocity.jar",
+        "stop": "shutdown",
+        "environmentVars": {},
+        "pre": [],
+        "post": []
+    },
+    "supportedEnvironments": [
+        {
+            "type": "standard"
+        }
+    ],
+    "name": "minecraft-velocity"
+}
