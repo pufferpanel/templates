@@ -1,0 +1,98 @@
+{
+    "type": "minecraft-java",
+    "display": "Mohist - Minecraft",
+    "name": "minecraft-mohist",
+    "install": [
+        {
+            "files": [
+                "https://mohistmc.com/builds/${version}/mohist-${version}-${build}-server.jar"
+            ],
+            "type": "download"
+        },
+        {
+            "source": "mohist-*.jar",
+            "target": "mohist.jar",
+            "type": "move"
+        },
+        {
+            "target": "eula.txt",
+            "text": "eula=${eula}",
+            "type": "writefile"
+        },
+        {
+            "target": "server.properties",
+            "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}",
+            "type": "writefile"
+        }
+    ],
+    "run": {
+        "command": "java -Xmx${memory}M -Djline.terminal=jline.UnsupportedTerminal -jar mohist.jar",
+        "stop": "stop",
+        "environmentVars": {},
+        "pre": [],
+        "post": []
+    },
+    "environment": {
+        "type": "standard"
+    },
+    "supportedEnvironments": [
+        {
+            "type": "standard"
+        },
+        {
+          "type": "docker",
+          "image": "pufferpanel/minecraft"
+        }
+    ],
+    "data": {
+        "version": {
+            "type": "string",
+            "desc": "Version of Minecraft to install (<a href='https://mohistmc.com/download/'>Mohist maintained versions</a>)",
+            "display": "version",
+            "required": true,
+            "value": "1.16.5"
+        },
+        "build": {
+            "type": "string",
+            "desc": "Build of Mohist to install (<a href='https://mohistmc.com/download/'>Mohist version build</a>).",
+            "display": "build",
+            "required": true,
+            "value": "441"
+        },
+        "memory": {
+            "type": "integer",
+            "desc": "How much memory in MB to allocate to the Java Heap",
+            "display": "Memory (MB)",
+            "required": true,
+            "value": "2048"
+        },
+        "ip": {
+            "type": "string",
+            "desc": "What IP to bind the server to",
+            "display": "IP",
+            "required": true,
+            "value": "0.0.0.0"
+        },
+        "port": {
+            "type": "integer",
+            "desc": "What port to bind the server to",
+            "display": "Port",
+            "required": true,
+            "value": "25565"
+        },
+        "eula": {
+            "type": "boolean",
+            "desc": "Do you agree to the Minecraft EULA?",
+            "display": "EULA Agreement (true/false)",
+            "required": true,
+            "value": "false"
+        },
+        "motd": {
+            "type": "string",
+            "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
+            "display": "MOTD message of the day",
+            "required": true,
+            "value": "A Minecraft Server\\n\\u00A79 hosted on PufferPanel"
+        }
+    }
+}
