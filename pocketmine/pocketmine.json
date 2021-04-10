@@ -23,10 +23,7 @@
     "stop": "stop",
     "pre": [],
     "post": [],
-    "arguments": [
-      "--no-wizard"
-    ],
-    "program": "./start.sh"
+    "command": "./start.sh --no-wizard"
   },
   "environment": {
     "type": "tty"

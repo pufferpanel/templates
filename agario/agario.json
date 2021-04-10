@@ -19,11 +19,7 @@
     "pre": [],
     "post": [],
     "stopCode": 2,
-    "arguments": [
-      "start",
-      "src/index.js"
-    ],
-    "program": "npm"
+    "command": "npm start src/index.js"
   },
   "environment": {
     "type": "standard"

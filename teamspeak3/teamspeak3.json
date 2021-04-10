@@ -17,15 +17,7 @@
     "stopCode": 2,
     "pre": [],
     "post": [],
-    "arguments": [
-      "default_voice_port=${vport}",
-      "query_port=${qport}",
-      "filetransfer_port=${ftport}",
-      "voice_ip=${ip}",
-      "licensepath=${license}",
-      "license_accepted=${eula}"
-    ],
-    "program": "./teamspeak3-server_linux_amd64/ts3server_minimal_runscript.sh"
+    "command": "./teamspeak3-server_linux_amd64/ts3server_minimal_runscript.sh default_voice_port=${vport} query_port=${qport} filetransfer_port=${ftport} voice_ip=${ip} licensepath=${license} license_accepted=${eula}"
   },
   "environment": {
     "type": "tty"

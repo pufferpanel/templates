@@ -46,13 +46,7 @@
     "stop": "stop",
     "pre": [],
     "post": [],
-    "arguments": [
-      "-Xmx${memory}M",
-      "${extraArgs}",
-      "-jar",
-      "server.jar"
-    ],
-    "program": "java"
+    "command": "java -Xmx${memory}M ${extraArgs} -jar server.jar"
   },
   "environment": {
     "type": "standard"

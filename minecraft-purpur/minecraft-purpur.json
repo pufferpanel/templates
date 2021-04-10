@@ -26,13 +26,7 @@
     "stop": "stop",
     "pre": [],
     "post": [],
-    "arguments": [
-      "-Xmx${memory}M",
-      "-Djline.terminal=jline.UnsupportedTerminal",
-      "-jar",
-      "purpurclip.jar"
-    ],
-    "program": "java"
+    "command": "java -Xmx${memory}M -Djline.terminal=jline.UnsupportedTerminal -jar purpurclip.jar"
   },
   "environment": {
     "type": "standard"

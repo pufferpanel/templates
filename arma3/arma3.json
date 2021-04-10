@@ -23,13 +23,7 @@
     "stopCode": 2,
     "pre": [],
     "post": [],
-    "arguments": [
-      "-ip=${ip}",
-      "-port=${port}",
-      "-config=${config}",
-      "-par=parameters.txt"
-    ],
-    "program": "./arma3server"
+    "command": "./arma3server -ip=${ip} -port=${port} -config=${config} -par=parameters.txt"
   },
   "environment": {
     "type": "tty"

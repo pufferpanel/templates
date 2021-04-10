@@ -21,13 +21,7 @@
     "stop": "end",
     "pre": [],
     "post": [],
-    "arguments": [
-      "-Xmx${memory}M",
-      "-Xms${memory}M",
-      "-jar",
-      "Waterfall.jar"
-    ],
-    "program": "java"
+    "command": "java -Xmx${memory}M -Xms${memory}M -jar Waterfall.jar"
   },
   "environment": {
     "type": "standard"

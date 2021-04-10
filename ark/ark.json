@@ -21,13 +21,8 @@
     "stopCode": 2,
     "pre": [],
     "post": [],
-    "arguments": [
-      "${mapname}?listen?SessionName=${sessionname}?ServerAdminPassword=${serveradminpassword}?MultiHome=${ip}?Port=${port}?QueryPort=${queryport}?MaxPlayers=${maxplayers}",
-      "-server",
-      "-log",
-      "${exclusive}"
-    ],
-    "program": "./ShooterGame/Binaries/Linux/ShooterGameServer"
+    "command": "./ShooterGame/Binaries/Linux/ShooterGameServer ${mapname}?listen?SessionName=${sessionname}?ServerAdminPassword=${serveradminpassword}?MultiHome=${ip}?Port=${port}?QueryPort=${queryport}?MaxPlayers=${maxplayers} -server -log ${exclusive}",
+    "program": ""
   },
   "environment": {
     "type": "tty"

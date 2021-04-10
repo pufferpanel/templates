@@ -17,17 +17,7 @@
     "stop": "/quit",
     "pre": [],
     "post": [],
-    "arguments": [
-      "--port",
-      "${port}",
-      "--bind",
-      "${ip}",
-      "--start-server",
-      "${save}",
-      "--server-settings",
-      "${server-settings}"
-    ],
-    "program": "./factorio/bin/x64/factorio"
+    "command": "./factorio/bin/x64/factorio --port ${port} --bind ${ip} --start-server ${save} --server-settings ${server-settings}"
   },
   "environment": {
     "type": "tty"

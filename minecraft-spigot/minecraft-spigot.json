@@ -32,13 +32,7 @@
     "stop": "stop",
     "pre": [],
     "post": [],
-    "arguments": [
-      "-Xmx${memory}M",
-      "-Djline.terminal=jline.UnsupportedTerminal",
-      "-jar",
-      "server.jar"
-    ],
-    "program": "java"
+    "command": "java -Xmx${memory}M -Djline.terminal=jline.UnsupportedTerminal -jar server.jar"
   },
   "environment": {
     "type": "standard"

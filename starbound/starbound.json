@@ -34,7 +34,7 @@
   ],
   "run": {
     "stopCode": 2,
-    "program": "./starbound_server"
+    "command": "./starbound_server"
   },
   "environment": {
     "type": "tty"

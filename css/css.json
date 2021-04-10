@@ -24,26 +24,7 @@
     "stop": "exit",
     "pre": [],
     "post": [],
-    "arguments": [
-      "-game",
-      "cstrike",
-      "-ip",
-      "${ip}",
-      "-port",
-      "${port}",
-      "+clientport",
-      "${clientport}",
-      "+tv_port",
-      "${tvport}",
-      "+map",
-      "${map}",
-      "-maxplayers",
-      "${maxplayers}",
-      "-tickrate",
-      "${tickrate}",
-      "-norestart"
-    ],
-    "program": "./srcds_run"
+    "command": "./srcds_run -game cstrike -ip ${ip} -port  ${port} +clientport ${clientport} +tv_port ${tvport} +map ${map} -maxplayers ${maxplayers} -tickrate ${tickrate} -norestart"
   },
   "environment": {
     "type": "tty"

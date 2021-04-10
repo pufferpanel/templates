@@ -30,17 +30,7 @@
     }
   ],
   "run": {
-    "program": "java",
-    "arguments": [
-      "-server",
-      "-XX:+UseG1GC",
-      "-XX:+UnlockExperimentalVMOptions",
-      "-Xmx${memory}M",
-      "-Xms${memory}M",
-      "-jar",
-      "ForgeServer.jar",
-      "nogui"
-    ],
+    "command": "java -server -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -Xmx${memory}M -Xms${memory}M -jar ForgeServer.jar nogui",
     "stop": "stop",
     "pre": [],
     "post": []

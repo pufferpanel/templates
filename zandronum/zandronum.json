@@ -35,10 +35,7 @@
     "stop": "Quit",
     "pre": [],
     "post": [],
-    "arguments": [
-      "-host ${players}"
-    ],
-    "program": "./zandronum-server"
+    "command": "./zandronum-server -host ${players}"
   },
   "environment": {
     "type": "standard"
