@@ -78,7 +78,7 @@
         "environmentVars": {},
         "pre": [],
         "post": [],
-        "stopCode": 0
+        "stop": "stop"
     },
     "supportedEnvironments": [
         {
