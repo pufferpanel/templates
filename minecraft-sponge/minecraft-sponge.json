@@ -23,7 +23,7 @@
     {
       "type": "command",
       "commands": [
-        "{java} -jar installer.jar --installServer"
+        "${java} -jar installer.jar --installServer"
       ]
     },
     {

@@ -60,7 +60,7 @@
         },
         {
             "commands": [
-                "{java} -jar fabric-installer.jar server -mcversion ${game-version} -downloadMinecraft -noprofile"
+                "${java} -jar fabric-installer.jar server -mcversion ${game-version} -downloadMinecraft -noprofile"
             ],
             "type": "command"
         },
