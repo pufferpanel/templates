@@ -26,7 +26,7 @@
     "stop": "stop",
     "pre": [],
     "post": [],
-    "command": "java -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Djline.terminal=jline.UnsupportedTerminal -jar paper.jar"
+    "command": "${java} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Djline.terminal=jline.UnsupportedTerminal -jar paper.jar"
   },
   "environment": {
     "type": "standard"
@@ -41,6 +41,15 @@
     }
   ],
   "data": {
+    "java": {
+      "value": "java",
+      "required": true,
+      "desc": "\"java\" for system standard, else direct path to java",
+      "display": "path to java executable",
+      "internal": false,
+      "type": "string",
+      "userEdit": true
+    },
     "version": {
       "value": "1.16.5",
       "required": true,

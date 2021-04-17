@@ -22,7 +22,7 @@
     "stop": "stop",
     "pre": [],
     "post": [],
-    "command": "java -Xmx${memory}M -jar server.jar"
+    "command": "${java} -Xmx${memory}M -jar server.jar"
   },
   "environment": {
     "type": "standard"
@@ -37,6 +37,15 @@
     }
   ],
   "data": {
+    "java": {
+      "value": "java",
+      "required": true,
+      "desc": "\"java\" for system standard, else direct path to java",
+      "display": "path to java executable",
+      "internal": false,
+      "type": "string",
+      "userEdit": true
+    },
     "version": {
       "value": "latest",
       "required": true,
