@@ -83,7 +83,7 @@
     ],
     "type": "minecraft-java",
     "run": {
-        "command": "{java} -Xmx${memory}M -jar server.jar",
+        "command": "${java} -Xmx${memory}M -jar server.jar",
         "environmentVars": {},
         "pre": [],
         "post": [],

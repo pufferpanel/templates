@@ -69,7 +69,7 @@
         }
     ],
     "run": {
-        "command": "{java} -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true -jar velocity.jar",
+        "command": "${java} -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true -jar velocity.jar",
         "stop": "shutdown",
         "environmentVars": {},
         "pre": [],

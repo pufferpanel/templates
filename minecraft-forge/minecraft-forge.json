@@ -13,7 +13,7 @@
     },
     {
       "commands": [
-        "{java} -jar installer.jar --installServer"
+        "${java} -jar installer.jar --installServer"
       ],
       "type": "command"
     },
@@ -37,7 +37,7 @@
     "stop": "stop",
     "pre": [],
     "post": [],
-    "command": "{java} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -jar server.jar"
+    "command": "${java} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -jar server.jar"
   },
   "environment": {
     "type": "standard"

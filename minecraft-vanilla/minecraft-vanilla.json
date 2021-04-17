@@ -22,7 +22,7 @@
     "stop": "stop",
     "pre": [],
     "post": [],
-    "command": "{java} -Xmx${memory}M -jar server.jar"
+    "command": "${java} -Xmx${memory}M -jar server.jar"
   },
   "environment": {
     "type": "standard"

@@ -46,7 +46,7 @@
     "stop": "stop",
     "pre": [],
     "post": [],
-    "command": "{java} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true ${extraArgs} -jar server.jar"
+    "command": "${java} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true ${extraArgs} -jar server.jar"
   },
   "environment": {
     "type": "standard"
