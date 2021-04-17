@@ -1,5 +1,14 @@
 {
     "data": {
+        "java": {
+            "value": "java",
+            "required": true,
+            "desc": "\"java\" for system standard, else direct path to java",
+            "display": "path to java executable",
+            "internal": false,
+            "type": "string",
+            "userEdit": true
+        },
         "eula": {
             "desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
             "display": "EULA Agreement (true/false)",
@@ -74,7 +83,7 @@
     ],
     "type": "minecraft-java",
     "run": {
-        "command": "java -Xmx${memory}M -jar server.jar",
+        "command": "{java} -Xmx${memory}M -jar server.jar",
         "environmentVars": {},
         "pre": [],
         "post": [],

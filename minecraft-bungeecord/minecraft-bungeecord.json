@@ -16,7 +16,7 @@
     "stop": "end",
     "pre": [],
     "post": [],
-    "command": "java -Xmx${memory}M -Xms${memory}M -jar BungeeCord.jar"
+    "command": "{java} -Xmx${memory}M -Xms${memory}M -jar BungeeCord.jar"
   },
   "environment": {
     "type": "standard"
@@ -31,6 +31,15 @@
     }
   ],
   "data": {
+    "java": {
+      "value": "java",
+      "required": true,
+      "desc": "\"java\" for system standard, else direct path to java",
+      "display": "path to java executable",
+      "internal": false,
+      "type": "string",
+      "userEdit": true
+    },
     "memory": {
       "value": "512",
       "required": true,

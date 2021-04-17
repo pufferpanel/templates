@@ -1,6 +1,15 @@
 {
     "type": "minecraft-java",
     "data": {
+        "java": {
+            "value": "java",
+            "required": true,
+            "desc": "\"java\" for system standard, else direct path to java",
+            "display": "path to java executable",
+            "internal": false,
+            "type": "string",
+            "userEdit": true
+        },
         "eula": {
             "type": "boolean",
             "desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
@@ -51,7 +60,7 @@
         },
         {
             "commands": [
-                "java -jar fabric-installer.jar server -mcversion ${game-version} -downloadMinecraft -noprofile"
+                "{java} -jar fabric-installer.jar server -mcversion ${game-version} -downloadMinecraft -noprofile"
             ],
             "type": "command"
         },
@@ -85,7 +94,7 @@
         }
     ],
     "run": {
-        "command": "java -Xmx${memory}M -jar fabric-server.jar nogui",
+        "command": "{java} -Xmx${memory}M -jar fabric-server.jar nogui",
         "stop": "stop",
         "environmentVars": {},
         "pre": [],
