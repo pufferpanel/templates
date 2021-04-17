@@ -45,13 +45,13 @@
     "install": [
         {
             "files": [
-                "https://github.com/AeonLucid/Impostor/releases/download/v${version}/Impostor-Server-linux-x64.zip"
+                "https://github.com/AeonLucid/Impostor/releases/download/v${version}/Impostor-Server_${version}_linux-x64.zip"
             ],
             "type": "download"
         },
         {
             "commands": [
-                "unzip Impostor-Server-linux-x64.zip"
+                "unzip Impostor-Server_${version}_linux-x64.zip"
             ],
             "type": "command"
         },
