@@ -5,13 +5,13 @@
     {
       "type": "command",
       "commands": [
-        "git clone git://github.com/Megabyte918/MultiOgar-Edited.git .",
+        "git clone git://github.com/Megabyte918/MultiOgarII.git .",
         "npm install"
       ]
     },
     {
       "type": "writefile",
-      "text": "logVerbosity=${logverbosity}\nlogFileVerbosity=${logfileverbosity}\nserverTimeout=${servertimeout}\nserverWsModule=${serverwsmodule}\nserverMaxConnections=${servermaxconnections}\nserverPort=${port}\nserverBind=\"${ip}\"\nserverTracker=${servertracker}\nserverGamemode=${servergamemode}\nserverBots=${serverbots}\nserverViewBaseX=${serverviewbasex}\nserverViewBaseY=${serverviewbasey}\nserverMinScale=${serverminscale}\nserverSpectatorScale=${serverspectatorscale}\nserverStatsPort=${serverstatsport}\nserverStatusUpdate=${serverstatsupdate}\nmobilePhysics=${mobilephysics}\nbadWordFilter=${badwordfilter}\nserverRestart=${serverrestart}\nserverMaxLB=${servermaxlb}\nserverChat=${serverchat}\nserverChatAscii=${serverchatascii}\nseparateChatForTeams=${separatechatforteams}\nserverName=${servername}\nserverWelcome1=${serverwelcome1}\nserverWelcome2=${serverwelcome2}\nclientBind=${clientbind}\nserverIpLimit=${serveriplimit}\nserverMinionIgnoreTime=${serverminionignoretime}\nserverMinionThreshold=${serverminionthreshold}\nserverMinionInterval=${serverminioninterval}\nserverScrambleLevel=${serverscramblelevel}\nplayerBotGrow=${playerbotgrow}\nborderWidth=${borderwidth}\nborderHeight=${borderheight}\nfoodMinSize=${foodminsize}\nfoodMaxSize=${foodmaxsize}\nfoodMinAmount=${foodminamount}\nfoodMaxAmount=${foodmaxamount}\nfoodSpawnAmount=${foodspawnamount}\nfoodMassGrow=${foodmassgrow}\nvirusMinSize=${virusminsize}\nvirusMaxSize=${virusmaxsize}\nvirusMinAmount=${virusminamount}\nvirusMaxAmount=${virusmaxamount}\nmotherCellMaxMass=${mothercellmaxmass}\nvirusVelocity=${virusvelocity}\nvirusMaxCells=${virusmaxcells}\nejectSize=${ejectsize}\nejectSizeLoss=${ejectsizeloss}\nejectCooldown=${ejectcooldown}\nejectSpawnPercent=${ejectspawnpercent}\nejectVirus=${ejectvirus}\nejectVelocity=${ejectvelocity}\nplayerMinSize=${playerminsize}\nplayerMaxSize=${playermaxsize}\nplayerMinSplitSize=${playerminsplitsize}\nplayerMinEjectSize=${playerminejectsize}\nplayerStartSize=${playerstartsize}\nplayerMaxCells=${playermaxcells}\nplayerSpeed=${playerspeed}\nplayerDecayRate=${playerdecayrate}\nplayerDecayCap=${playerdecaycap}\nplayerRecombineTime=${playerrecombinetime}\nplayerMaxNickLength=${playermaxnicklength}\nplayerDisconnectTime=${playerdisconnecttime}\nsplitVelocity=${splitvelocity}\nminionStartSize=${minionstartsize}\nminionMaxStartSize=${minionmaxstartsize}\nminionCollideTeam=${minioncollideteam}\ndisableERTP=${disableertp}\ndisableQ=${disableq}\nserverMinions=${serverminions}\ncollectPellets=${collectpellets}\ndefaultName=${defaultname}\nminionsOnLeaderboard=${minionsonleaderboard}\ntourneyMaxPlayers=${tourneymaxplayers}\ntourneyPrepTime=${tourneypreptime}\ntourneyEndTime=${tourneyendtime}\ntourneyTimeLimit=${tourneytimelimit}\ntourneyAutoFill=${tourneyautofill}\ntourneyAutoFillPlayers=${tourneyautofillplayers}\ntourneyLeaderboardToggleTime=${tourneyleaderboardtoggletime}",
+      "text": "module.exports = Object.seal({\n\"logVerbosity\": ${logverbosity},\n\"logFileVerbosity\": ${logfileverbosity},\n\"serverTimeout\": ${servertimeout},\n\"serverMaxConnections\": ${servermaxconnections},\n\"serverPort\": ${port},\n\"serverBind\": \"${ip}\",\n\"serverTracker\": ${servertracker},\n\"serverGamemode\": ${servergamemode},\n\"serverBots\": ${serverbots},\n\"serverViewBaseX\": ${serverviewbasex},\n\"serverViewBaseY\": ${serverviewbasey},\n\"serverMinScale\": ${serverminscale},\n\"serverSpectatorScale\": ${serverspectatorscale},\n\"serverStatsPort\": ${serverstatsport},\n\"serverStatusUpdate\": ${serverstatsupdate},\n\"mobilePhysics\": ${mobilephysics},\n\"badWordFilter\": ${badwordfilter},\n\"serverRestart\": ${serverrestart},\n\"serverMaxLB\": ${servermaxlb},\n\"serverChat\": ${serverchat},\n\"serverChatAscii\": ${serverchatascii},\n\"separateChatForTeams\": ${separatechatforteams},\n\"serverName\": ${servername},\n\"serverWelcome1\": ${serverwelcome1},\n\"serverWelcome2\": ${serverwelcome2},\n\"clientBind\": \"${clientbind}\",\n\"serverIpLimit\": ${serveriplimit},\n\"serverMinionIgnoreTime\": ${serverminionignoretime},\n\"serverMinionThreshold\": ${serverminionthreshold},\n\"serverMinionInterval\": ${serverminioninterval},\n\"serverScrambleLevel\": ${serverscramblelevel},\n\"playerBotGrow\": ${playerbotgrow},\n\"borderWidth\": ${borderwidth},\n\"borderHeight\": ${borderheight},\n\"foodMinSize\": ${foodminsize},\n\"foodMaxSize\": ${foodmaxsize},\n\"foodMinAmount\": ${foodminamount},\n\"foodMaxAmount\": ${foodmaxamount},\n\"foodSpawnAmount\": ${foodspawnamount},\n\"foodMassGrow\": ${foodmassgrow},\n\"virusMinSize\": ${virusminsize},\n\"virusMaxSize\": ${virusmaxsize},\n\"virusMinAmount\": ${virusminamount},\n\"virusMaxAmount\": ${virusmaxamount},\n\"motherCellMaxMass\": ${mothercellmaxmass},\n\"virusVelocity\": ${virusvelocity},\n\"virusMaxCells\": ${virusmaxcells},\n\"ejectSize\": ${ejectsize},\n\"ejectSizeLoss\": ${ejectsizeloss},\n\"ejectCooldown\": ${ejectcooldown},\n\"ejectSpawnPercent\": ${ejectspawnpercent},\n\"ejectVirus\": ${ejectvirus},\n\"ejectVelocity\": ${ejectvelocity},\n\"playerMinSize\": ${playerminsize},\n\"playerMaxSize\": ${playermaxsize},\n\"playerMinSplitSize\": ${playerminsplitsize},\n\"playerMinEjectSize\": ${playerminejectsize},\n\"playerStartSize\": ${playerstartsize},\n\"playerMaxCells\": ${playermaxcells},\n\"playerSpeed\": ${playerspeed},\n\"playerDecayRate\": ${playerdecayrate},\n\"playerDecayCap\": ${playerdecaycap},\n\"playerRecombineTime\": ${playerrecombinetime},\n\"playerMaxNickLength\": ${playermaxnicklength},\n\"playerDisconnectTime\": ${playerdisconnecttime},\n\"splitVelocity\": ${splitvelocity},\n\"minionStartSize\": ${minionstartsize},\n\"minionMaxStartSize\": ${minionmaxstartsize},\n\"minionCollideTeam\": ${minioncollideteam},\n\"disableERTP\": ${disableertp},\n\"disableQ\": ${disableq},\n\"serverMinions\": ${serverminions},\n\"collectPellets\": ${collectpellets},\n\"defaultName\": ${defaultname},\n\"minionsOnLeaderboard\": ${minionsonleaderboard},\n\"tourneyMaxPlayers\": ${tourneymaxplayers},\n\"tourneyPrepTime\": ${tourneypreptime},\n\"tourneyEndTime\": ${tourneyendtime},\n\"tourneyTimeLimit\": ${tourneytimelimit},\n\"tourneyAutoFill\": ${tourneyautofill},\n\"tourneyAutoFillPlayers\": ${tourneyautofillplayers},\n\"tourneyLeaderboardToggleTime\": ${tourneyleaderboardtoggletime}\n})",
       "target": "src/config.js"
     }
   ],
@@ -105,24 +105,6 @@
       "display": "Connection Keep-alive Timeout",
       "internal": false,
       "type": "integer"
-    },
-    "serverwsmodule": {
-      "value": "\"ws\"",
-      "required": true,
-      "desc": "WebSocket module: 'ws' or 'uws' (install npm package before using uws)",
-      "display": "WebSocket Module",
-      "internal": false,
-      "type": "option",
-      "options": [
-        {
-          "value": "ws",
-          "display": "ws"
-        },
-        {
-          "value": "uws",
-          "display": "uws"
-        }
-      ]
     },
     "servermaxconnections": {
       "value": "500",
@@ -355,7 +337,7 @@
       "internal": false
     },
     "serverwelcome2": {
-      "value": "",
+      "value": "Have fun!",
       "required": false,
       "desc": "The welcome text shown to clients, under the header",
       "display": "Welcome Information",
