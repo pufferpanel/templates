@@ -16,9 +16,9 @@
     }
   ],
   "run": {
+    "stop": "exit",
     "pre": [],
     "post": [],
-    "stopCode": 2,
     "command": "node src/index.js"
   },
   "environment": {
