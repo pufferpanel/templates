@@ -12,14 +12,14 @@
     {
       "type": "writefile",
       "text": "logVerbosity=${logverbosity}\nlogFileVerbosity=${logfileverbosity}\nserverTimeout=${servertimeout}\nserverWsModule=${serverwsmodule}\nserverMaxConnections=${servermaxconnections}\nserverPort=${port}\nserverBind=\"${ip}\"\nserverTracker=${servertracker}\nserverGamemode=${servergamemode}\nserverBots=${serverbots}\nserverViewBaseX=${serverviewbasex}\nserverViewBaseY=${serverviewbasey}\nserverMinScale=${serverminscale}\nserverSpectatorScale=${serverspectatorscale}\nserverStatsPort=${serverstatsport}\nserverStatusUpdate=${serverstatsupdate}\nmobilePhysics=${mobilephysics}\nbadWordFilter=${badwordfilter}\nserverRestart=${serverrestart}\nserverMaxLB=${servermaxlb}\nserverChat=${serverchat}\nserverChatAscii=${serverchatascii}\nseparateChatForTeams=${separatechatforteams}\nserverName=${servername}\nserverWelcome1=${serverwelcome1}\nserverWelcome2=${serverwelcome2}\nclientBind=${clientbind}\nserverIpLimit=${serveriplimit}\nserverMinionIgnoreTime=${serverminionignoretime}\nserverMinionThreshold=${serverminionthreshold}\nserverMinionInterval=${serverminioninterval}\nserverScrambleLevel=${serverscramblelevel}\nplayerBotGrow=${playerbotgrow}\nborderWidth=${borderwidth}\nborderHeight=${borderheight}\nfoodMinSize=${foodminsize}\nfoodMaxSize=${foodmaxsize}\nfoodMinAmount=${foodminamount}\nfoodMaxAmount=${foodmaxamount}\nfoodSpawnAmount=${foodspawnamount}\nfoodMassGrow=${foodmassgrow}\nvirusMinSize=${virusminsize}\nvirusMaxSize=${virusmaxsize}\nvirusMinAmount=${virusminamount}\nvirusMaxAmount=${virusmaxamount}\nmotherCellMaxMass=${mothercellmaxmass}\nvirusVelocity=${virusvelocity}\nvirusMaxCells=${virusmaxcells}\nejectSize=${ejectsize}\nejectSizeLoss=${ejectsizeloss}\nejectCooldown=${ejectcooldown}\nejectSpawnPercent=${ejectspawnpercent}\nejectVirus=${ejectvirus}\nejectVelocity=${ejectvelocity}\nplayerMinSize=${playerminsize}\nplayerMaxSize=${playermaxsize}\nplayerMinSplitSize=${playerminsplitsize}\nplayerMinEjectSize=${playerminejectsize}\nplayerStartSize=${playerstartsize}\nplayerMaxCells=${playermaxcells}\nplayerSpeed=${playerspeed}\nplayerDecayRate=${playerdecayrate}\nplayerDecayCap=${playerdecaycap}\nplayerRecombineTime=${playerrecombinetime}\nplayerMaxNickLength=${playermaxnicklength}\nplayerDisconnectTime=${playerdisconnecttime}\nsplitVelocity=${splitvelocity}\nminionStartSize=${minionstartsize}\nminionMaxStartSize=${minionmaxstartsize}\nminionCollideTeam=${minioncollideteam}\ndisableERTP=${disableertp}\ndisableQ=${disableq}\nserverMinions=${serverminions}\ncollectPellets=${collectpellets}\ndefaultName=${defaultname}\nminionsOnLeaderboard=${minionsonleaderboard}\ntourneyMaxPlayers=${tourneymaxplayers}\ntourneyPrepTime=${tourneypreptime}\ntourneyEndTime=${tourneyendtime}\ntourneyTimeLimit=${tourneytimelimit}\ntourneyAutoFill=${tourneyautofill}\ntourneyAutoFillPlayers=${tourneyautofillplayers}\ntourneyLeaderboardToggleTime=${tourneyleaderboardtoggletime}",
-      "target": "src/gameserver.ini"
+      "target": "src/config.js"
     }
   ],
   "run": {
     "pre": [],
     "post": [],
     "stopCode": 2,
-    "command": "npm start src/index.js"
+    "command": "node src/index.js"
   },
   "environment": {
     "type": "standard"
@@ -115,10 +115,12 @@
       "type": "option",
       "options": [
         {
-          "value": "ws"
+          "value": "ws",
+          "display": "ws"
         },
         {
-          "value": "uws"
+          "value": "uws",
+          "display": "uws"
         }
       ]
     },
