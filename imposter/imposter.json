@@ -45,20 +45,20 @@
     "install": [
         {
             "files": [
-                "https://github.com/AeonLucid/Impostor/releases/download/v${version}/Impostor-Server_${version}_linux-x64.zip"
+                "https://github.com/AeonLucid/Impostor/releases/download/v${version}/Impostor-Server_${version}_linux-x64.tar.gz"
             ],
             "type": "download"
         },
         {
             "commands": [
-                "unzip Impostor-Server_${version}_linux-x64.zip"
+                "tar -zxvf Impostor-Server_${version}_linux-x64.tar.gz"
             ],
             "type": "command"
         },
         {
             "commands": [
                 "chmod +x Impostor.Server",
-                "rm Impostor-Server-linux-x64.zip",
+                "rm Impostor-Server_${version}_linux-x64.zip",
                 "rm config.json"
             ],
             "type": "command"
