@@ -8,8 +8,8 @@ You can find the Source & the Releases here: https://github.com/AeonLucid/Impost
 
 ## Install the dependencies:
 
-apt-get install unzip
+apt-get install tar
 
 ## Notes
 
-This only supports Linux.
+This only supports Linux and Impostor v1.1.0 or higher.
