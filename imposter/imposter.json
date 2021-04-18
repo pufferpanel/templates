@@ -58,7 +58,7 @@
         {
             "commands": [
                 "chmod +x Impostor.Server",
-                "rm Impostor-Server_${version}_linux-x64.zip",
+                "rm Impostor-Server_${version}_linux-x64.tar.gz",
                 "rm config.json"
             ],
             "type": "command"
