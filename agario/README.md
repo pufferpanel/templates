@@ -1,6 +1,6 @@
-Prerequesites: Git, Nodejs-Legacy, NPM
+Prerequesites: Git, NodeJS
 
 Ubuntu:
-`sudo apt-get update && sudo apt-get install git nodejs-legacy npm`
+`sudo apt-get update && sudo apt-get install git nodejs`
 
-Creates the ability to make a custom Agario server
+Creates the ability to make a custom Agar.io server
