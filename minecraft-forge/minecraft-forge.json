@@ -4,7 +4,7 @@
   "install": [
     {
       "type": "download",
-      "files": "http://files.minecraftforge.net/maven/net/minecraftforge/forge/${version}/forge-${version}-installer.jar"
+      "files": "https://maven.minecraftforge.net/net/minecraftforge/forge/${version}/forge-${version}-installer.jar"
     },
     {
       "source": "forge-*.jar",
