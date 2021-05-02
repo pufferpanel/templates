@@ -3,13 +3,9 @@
   "display": "MinecraftForge - Minecraft",
   "install": [
     {
-      "type": "download",
-      "files": "http://files.minecraftforge.net/maven/net/minecraftforge/forge/${version}/forge-${version}-installer.jar"
-    },
-    {
-      "source": "forge-*.jar",
-      "target": "installer.jar",
-      "type": "move"
+      "type": "forgedl",
+      "version": "${version}"
+      "target": "installer.jar"
     },
     {
       "commands": [
