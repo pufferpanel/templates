@@ -1,0 +1,105 @@
+{
+    "name": "minecraft-mohist",
+    "display": "Mohist - Minecraft",
+    "type": "minecraft-java",
+    "install": [
+      {
+        "files": [
+          "https://mohistmc.com/builds/${mc-version}/mohist-${mc-version}-${mohist-version}-server.jar"
+        ],
+        "type": "download"
+      },
+      {
+        "source": "mohist-*-server.jar",
+        "target": "server.jar",
+        "type": "move"
+      },
+      {
+        "target": "server.properties",
+        "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}",
+        "type": "writefile"
+      },
+      {
+        "target": "eula.txt",
+        "text": "eula=${eula}",
+        "type": "writefile"
+      }
+    ],
+    "run": {
+      "stop": "stop",
+      "command": "${java} -Xmx${memory}M -jar server.jar",
+      "pre": [],
+      "post": [],
+      "environmentVars": {}
+    },
+    "data": {
+      "eula": {
+        "type": "boolean",
+        "desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
+        "display": "EULA Agreement (true/false)",
+        "required": true,
+        "value": "false",
+        "userEdit": true
+      },
+      "ip": {
+        "type": "string",
+        "desc": "What IP to bind the server to",
+        "display": "IP",
+        "required": true,
+        "value": "0.0.0.0",
+        "userEdit": true
+      },
+      "java": {
+        "type": "string",
+        "desc": "\"java\" for system standard, else direct path to java",
+        "display": "path to java executable",
+        "required": true,
+        "value": "java",
+        "userEdit": true
+      },
+      "mc-version": {
+        "type": "string",
+        "desc": "Minecraft version",
+        "display": "Minecraft version",
+        "required": true,
+        "value": "1.16.5",
+        "userEdit": true
+      },
+      "memory": {
+        "type": "integer",
+        "desc": "How much memory in MB to allocate to the Java Heap",
+        "display": "Memory (MB)",
+        "required": true,
+        "value": "1024"
+      },
+      "mohist-version": {
+        "type": "string",
+        "desc": "Mohist version to install (may be located <a href='https://mohistmc.com/download/' target='_blank'>here</a>).",
+        "display": "Mohist Version",
+        "required": true,
+        "value": "",
+        "userEdit": true
+      },
+      "motd": {
+        "type": "string",
+        "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
+        "display": "MOTD message of the day",
+        "required": true,
+        "value": "A Minecraft Mohist Server\\n\\u00A79 hosted on PufferPanel",
+        "userEdit": true
+      },
+      "port": {
+        "type": "integer",
+        "desc": "What port to bind the server to",
+        "display": "Port",
+        "required": true,
+        "value": "25565",
+        "userEdit": true
+      }
+    },
+    "supportedEnvironments": [
+      {
+        "type": "standard"
+      }
+    ]
+  }
