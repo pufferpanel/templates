@@ -4,7 +4,7 @@
   "install": [
     {
       "type": "forgedl",
-      "version": "${version}"
+      "version": "${version}",
       "target": "installer.jar"
     },
     {
