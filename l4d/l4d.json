@@ -1,0 +1,82 @@
+{
+  "type": "srcds",
+  "display": "Left 4 Dead",
+  "install": [
+    {
+      "type": "download",
+      "files":"http://media.steampowered.com/installer/steamcmd_linux.tar.gz"
+    },
+    {
+      "type": "mkdir",
+      "target": "steamcmd"
+    },
+    {
+      "type": "command",
+      "commands": [
+        "tar --no-same-owner -xzf steamcmd_linux.tar.gz -C steamcmd",
+        "steamcmd/steamcmd.sh +login anonymous +force_install_dir .. +app_update 222840 +quit",
+        "mkdir -p .steam/sdk32",
+        "cp steamcmd/linux32/steamclient.so .steam/sdk32/steamclient.so",
+        "rm steamcmd_linux.tar.gz"
+      ]
+    }
+  ],
+  "run": {
+    "stop": "exit",
+    "pre": [],
+    "post": [],
+    "command": "./srcds_run -game left4dead -ip ${ip} -port ${port} +clientport ${clientport} +map ${map} -maxplayers ${maxplayers} -norestart"
+  },
+  "environment": {
+    "type": "tty"
+  },
+  "supportedEnvironments": [
+    {
+      "type": "tty"
+    },
+    {
+      "type": "docker",
+      "image": "pufferpanel/srcds"
+    }
+  ],
+  "data": {
+    "map": {
+      "value": "l4d_hospital01_apartment",
+      "required": true,
+      "desc": "Map to load by default",
+      "display": "Map",
+      "internal": false
+    },
+    "maxplayers": {
+      "value": "8",
+      "required": true,
+      "desc": "Max players allowed on server",
+      "display": "Max Players",
+      "internal": false,
+      "type": "integer"
+    },
+    "ip": {
+      "value": "0.0.0.0",
+      "required": true,
+      "desc": "What IP to bind the server to",
+      "display": "IP",
+      "internal": false
+    },
+    "port": {
+      "value": "27015",
+      "required": true,
+      "desc": "What port to bind the server to",
+      "display": "Port",
+      "internal": false,
+      "type": "integer"
+    },
+    "clientport": {
+      "value": "27005",
+      "required": true,
+      "desc": "What port to bind the clientport to",
+      "display": "Client Port",
+      "internal": false,
+      "type": "integer"
+    }
+  }
+}
