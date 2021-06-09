@@ -43,7 +43,7 @@
     },
     {
       "type": "docker",
-      "image": "pufferpanel/minecraft"
+      "image": "openjdk:8-alpine"
     }
   ],
   "data": {

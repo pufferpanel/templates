@@ -44,7 +44,7 @@
     },
     {
       "type": "docker",
-      "image": "pufferpanel/minecraft"
+      "image": "openjdk:8-alpine"
     }
   ],
   "data": {
@@ -89,7 +89,7 @@
       "type": "boolean"
     },
     "version": {
-      "value": "1.16.3-34.1.0",
+      "value": "1.16.5-36.1.0",
       "required": true,
       "desc": "Version of Forge to install (may be located <a href='http://files.minecraftforge.net/#Downloads'>here</a>",
       "display": "Version",

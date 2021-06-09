@@ -105,7 +105,8 @@
             "type": "standard"
         },
         {
-            "type": "docker"
+            "type": "docker",
+            "image": "openjdk:16"
         }
     ],
     "name": "minecraft-fabric"
