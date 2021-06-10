@@ -100,7 +100,7 @@
     },
     {
       "bindings": {},
-      "image": "greysilly7/minecraft:java16",
+      "image": "openjdk:16",
       "networkMode": "host",
       "networkName": "",
       "portBindings": [],
