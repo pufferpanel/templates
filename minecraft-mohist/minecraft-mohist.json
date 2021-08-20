@@ -5,7 +5,7 @@
     "install": [
       {
         "files": [
-          "https://mohistmc.com/builds/${mc-version}/mohist-${mc-version}-${mohist-version}-server.jar"
+          "https://mohistmc.com/api/${mc-version}/${mohist-version}/download/"
         ],
         "type": "download"
       },
@@ -77,7 +77,7 @@
         "desc": "Mohist version to install (may be located <a href='https://mohistmc.com/download/' target='_blank'>here</a>).",
         "display": "Mohist Version",
         "required": true,
-        "value": "",
+        "value": "latest",
         "userEdit": true
       },
       "motd": {
