@@ -1,5 +1,5 @@
 {
-  "type": "gmod",
+  "type": "srcds",
   "display": "Garry's Mod",
   "install": [
     {
@@ -16,7 +16,8 @@
         "tar --no-same-owner -xzvf steamcmd_linux.tar.gz -C steamcmd",
         "steamcmd/steamcmd.sh +login anonymous +force_install_dir .. +app_update 4020 +quit",
         "mkdir -p .steam/sdk32",
-        "cp steamcmd/linux32/steamclient.so .steam/sdk32/steamclient.so"
+        "cp steamcmd/linux32/steamclient.so .steam/sdk32/steamclient.so",
+        "rm steamcmd_linux.tar.gz"
       ]
     }
   ],
@@ -24,7 +25,7 @@
     "stop": "exit",
     "pre": [],
     "post": [],
-    "command": "./srcds_run +ip ${ip} +port ${port} -game garrysmod -console +map ${map} +maxplayers ${maxplayers} -norestart"
+    "command": "./srcds_run +port ${port} -game garrysmod -console +gamemode ${gamemode} +map ${map} +maxplayers ${maxplayers} +host_workshop_collection ${wscollection} +sv_setsteamaccount ${steamaccounttoken} -norestart"
   },
   "environment": {
     "type": "tty"
@@ -39,6 +40,13 @@
     }
   ],
   "data": {
+    "gamemode": {
+      "value": "sandbox",
+      "required": true,
+      "desc": "Gamemode to load",
+      "display": "Gamemode",
+      "internal": false
+    },
     "map": {
       "value": "gm_construct",
       "required": true,
@@ -54,13 +62,6 @@
       "internal": false,
       "type": "integer"
     },
-    "ip": {
-      "value": "0.0.0.0",
-      "required": true,
-      "desc": "What IP to bind the server to",
-      "display": "IP",
-      "internal": false
-    },
     "port": {
       "value": "27015",
       "required": true,
@@ -68,6 +69,20 @@
       "display": "Port",
       "internal": false,
       "type": "integer"
+    },
+    "wscollection": {
+      "value": "",
+      "required": false,
+      "desc": "Specify a ws collection the server should load. *optional*",
+      "display": "Workshop Collection ID",
+      "internal": false
+    },
+    "steamaccounttoken": {
+      "value": "",
+      "required": false,
+      "desc": "Token for a game server account. *optional* (Get one here: https://steamcommunity.com/dev/managegameservers)",
+      "display": "Steam Game Server Account Token",
+      "internal": false
     }
   }
 }
