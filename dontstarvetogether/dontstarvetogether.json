@@ -17,7 +17,7 @@
             "type": "integer"
         },
         "servertoken": {
-            "desc": "Dont Starve Together Server Token (may find here <a href=\"https://accounts.klei.com/account/game/servers?game=DontStarveTogether\" target="_blank">here</a>)",
+            "desc": "Dont Starve Together Server Token (may find here <a href=\"https://accounts.klei.com/account/game/servers?game=DontStarveTogether\" target=\"_blank\">here</a>)",
             "display": "Server Token",
             "required": true,
             "value": "",

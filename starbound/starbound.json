@@ -18,7 +18,7 @@
       "type": "command",
       "commands": [
         "tar --no-same-owner -xzvf steamcmd_linux.tar.gz -C steamcmd",
-        "steamcmd/steamcmd.sh +login ${steam_user} +force_install_dir .. +app_update 533830 +quit",
+        "steamcmd/steamcmd.sh +login ${steam_user} +force_install_dir .. +app_update 533830 +quit"
       ]
     },
     {
