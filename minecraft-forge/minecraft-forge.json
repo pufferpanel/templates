@@ -1,6 +1,6 @@
 {
   "type": "minecraft-java",
-  "display": "MinecraftForge - Minecraft",
+  "display": "MinecraftForge 1.16 or older - Minecraft",
   "install": [
     {
       "type": "forgedl",
