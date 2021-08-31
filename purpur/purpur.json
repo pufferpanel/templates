@@ -1,0 +1,92 @@
+{
+  "name": "minecraft-purpur",
+  "display": "Purpur - Minecraft",
+  "type": "minecraft-java",
+  "install": [
+    {
+      "files": [
+        "https://api.pl3x.net/v2/purpur/${version}/latest/download/server.jar"
+      ],
+      "type": "download"
+    },
+    {
+      "target": "eula.txt",
+      "text": "eula=${eula}",
+      "type": "writefile"
+    },
+    {
+      "target": "server.properties",
+      "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}\n",
+      "type": "writefile"
+    },
+    {
+      "source": "purpur-*.jar",
+      "target": "server.jar",
+      "type": "move"
+    }
+  ],
+  "run": {
+    "stop": "stop",
+    "command": "${java} -Xmx${memory}M -Djline.terminal=jline.UnsupportedTerminal -jar server.jar",
+    "pre": [],
+    "post": [],
+    "environmentVars": {}
+  },
+  "data": {
+    "eula": {
+      "type": "boolean",
+      "desc": "Do you agree to the Minecraft EULA?",
+      "display": "EULA Agreement (true/false)",
+      "required": true,
+      "value": "false"
+    },
+    "ip": {
+      "type": "string",
+      "desc": "What IP to bind the server to",
+      "display": "IP",
+      "required": true,
+      "value": "0.0.0.0"
+    },
+    "java": {
+      "type": "string",
+      "desc": "\"java\" for system standard, else direct path to java",
+      "display": "path to java executable",
+      "required": true,
+      "value": "java",
+      "userEdit": true
+    },
+    "memory": {
+      "type": "integer",
+      "desc": "How much memory in MB to allocate to the Java Heap",
+      "display": "Memory (MB)",
+      "required": true,
+      "value": "1024"
+    },
+    "port": {
+      "type": "integer",
+      "desc": "What port to bind the server to",
+      "display": "Port",
+      "required": true,
+      "value": "25565"
+    },
+    "version": {
+      "type": "string",
+      "desc": "Version of Minecraft to install (<a href='https://www.spigotmc.org/wiki/buildtools/#versions'>Supported versions</a>)",
+      "display": "Version",
+      "required": true,
+      "value": "1.17.1"
+    }
+  },
+  "environment": {
+    "type": "standard"
+  },
+  "supportedEnvironments": [
+    {
+      "type": "standard"
+    },
+    {
+      "image": "pufferpanel/minecraft",
+      "type": "docker"
+    }
+  ]
+}
