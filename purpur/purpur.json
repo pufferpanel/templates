@@ -79,14 +79,5 @@
   },
   "environment": {
     "type": "standard"
-  },
-  "supportedEnvironments": [
-    {
-      "type": "standard"
-    },
-    {
-      "image": "pufferpanel/minecraft",
-      "type": "docker"
-    }
-  ]
+  }
 }
