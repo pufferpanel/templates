@@ -4,12 +4,12 @@
   "install": [
     {
       "type": "download",
-      "files": "https://purpur.pl3x.net/api/v1/purpur/${version}/latest/download"
+      "files": "https://api.pl3x.net/v2/purpur/${version}/latest/download"
     },
     {
       "type": "move",
-      "source": "purpurclip-*.jar",
-      "target": "purpurclip.jar"
+      "source": "purpur*.jar",
+      "target": "purpur.jar"
     },
     {
       "type": "writefile",
@@ -37,7 +37,7 @@
     },
     {
       "type": "docker",
-      "image": "openjdk:8-alpine"
+      "image": "openjdk:17-alpine"
     }
   ],
   "data": {
