@@ -33,7 +33,7 @@
     },
     {
       "type": "docker",
-      "image": "openjdk:16"
+      "image": "openjdk:17-alpine"
     }
   ],
   "data": {
@@ -51,19 +51,7 @@
       "required": true,
       "desc": "Version of Minecraft to install",
       "display": "Version",
-      "internal": false,
-      "options": [
-        {
-          "value": "latest",
-          "display": "Latest"
-        },
-        {
-          "value": "1.14.4"
-        },
-        {
-          "value": "1.12.2"
-        }
-      ]
+      "internal": false
     },
     "memory": {
       "value": "1024",
