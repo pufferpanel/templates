@@ -9,7 +9,7 @@
     {
       "type": "command",
       "commands": [
-        "java -jar BuildTools.jar --rev ${version}"
+        "${java} -jar BuildTools.jar --rev ${version}"
       ]
     },
     {
