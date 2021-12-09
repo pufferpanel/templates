@@ -16,7 +16,7 @@
     "stop": "end",
     "pre": [],
     "post": [],
-    "command": "${java} -Xmx${memory}M -Xms${memory}M -jar BungeeCord.jar"
+    "command": "${java} -Xmx${memory}M -Xms${memory}M -Dlog4j2.formatMsgNoLookups=true -jar BungeeCord.jar"
   },
   "environment": {
     "type": "standard"

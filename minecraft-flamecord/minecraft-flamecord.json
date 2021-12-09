@@ -13,7 +13,7 @@
     "stop": "end",
     "pre": [],
     "post": [],
-    "command": "java -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true -jar FlameCord.jar"
+    "command": "java -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar FlameCord.jar"
   },
   "environment": {
     "type": "standard"

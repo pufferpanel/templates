@@ -21,7 +21,7 @@
     "stop": "end",
     "pre": [],
     "post": [],
-    "command": "${java} -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true -jar Waterfall.jar"
+    "command": "${java} -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar Waterfall.jar"
   },
   "environment": {
     "type": "standard"
