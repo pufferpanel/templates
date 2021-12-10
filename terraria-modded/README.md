@@ -1,7 +1,8 @@
 Terarria Template for latest version (0.11.8.5)
 
 !! PUT MODS ON THE MODS FOLDER AND EDIT THE ENABLED.JSON FILE BEFORE STARTING THE WORLD DUE TO HOW IT IS GENERATED !!
-If for exemple, you created a world and then added the calimity mod, you need to create a new world (just change the world name in settings) so that the new world generates correctly
+
+If for example, you created a world and then added the calimity mod, you need to create a new world (just change the world name in settings) so that the new world generates correctly
 
 Works out of the box
 
