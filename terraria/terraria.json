@@ -13,74 +13,86 @@
       "commands": [
         "unzip terraria-server-${version}.zip",
         "cp -a ${rootDir}/${version}/Linux/. ${rootDir}/",
-        "touch ${rootDir}/serverconfig.txt",
+        "mkdir ${rootDir}/worlds",
         "chmod +x ${rootDir}/TerrariaServer",
+        "chmod +x ${rootDir}/TerrariaServer.bin.x86",
         "chmod +x ${rootDir}/TerrariaServer.bin.x86_64",
         "rm -rf ${rootDir}/${version}",
         "rm ${rootDir}/terraria-server-${version}.zip"
       ],
       "type": "command"
-    },
-    {
-      "target": "serverconfig.txt",
-      "text": "#this is an example config file for TerrariaServer.exe\n#use the command 'TerrariaServer.exe -config serverconfig.txt' to use this configuration or run start-server.bat\n#please report crashes by emailing crashlog.txt to support@terraria.org\n\n#the following is a list of available command line parameters:\n\n#-config <config file>                                      Specifies the configuration file to use.\n#-port <port number>                                          Specifies the port to listen on.\n#-players <number> / -maxplayers <number>       Sets the max number of players\n#-pass <password> / -password <password>                Sets the server password\n#-world <world file>                                    Load a world and automatically start the server.\n#-autocreate <#>                                        Creates a world if none is found in the path specified by -worl>#-banlist <path>                                        Specifies the location of the banlist. Defaults to \"banlist.txt>#-worldname <world name>                                Sets the name of the world when using -autocreate.\n#-secure                                                Adds addition cheat protection to the server.\n#-noupnp                                                Disables automatic port forwarding\n#-steam                                                 Enables Steam Support\n#-lobby <friends> or <private>                          Allows friends to join the server or sets it to private if Stea>#-ip <ip address>                                       Sets the IP address for the server to listen on\n#-forcepriority <priority>                              Sets the process priority for this task. If this is used the \"p>#-disableannouncementbox                                Disables the text announcements Announcement Box makes when pul>#-announcementboxrange <number>                         Sets the announcement box text messaging range in pixels, -1 fo>#-seed <seed>                                           Specifies the world seed when using -autocreate\n\n#remove the # in front of commands to enable them.\n\n#Load a world and automatically start the server.\nworld=./${worldname}.wld\n\n#Creates a new world if none is found. World size is specified by: 1(small), 2(medium), and 3(large).\nautocreate=${worldsize}\n\n#Sets the world seed when using autocreate\nseed=${seed}\n\n#Sets the name of the world when using autocreate\nworldname=${worldname}\n\n#Sets the difficulty of the world when using autocreate 0(classic), 1(expert), 2(master), 3(journey)\ndifficulty=${difficulty}\n\n#Sets the max number of players allowed on a server.  Value must be between 1 and 255\nmaxplayers=10\n\n#Set the port number\nport=${port}\n\n#Set the server password\n#password=p@55w0rd\n\n#Set the message of the day\nmotd=${motd}\n\n#Sets the folder where world files will be stored\nworldpath=./\n\n#Sets the number of rolling world backups to keep\n#worldrollbackstokeep=2\n\n#The location of the banlist. Defaults to \"banlist.txt\" in the working directory.\n#banlist=banlist.txt\n\n#Adds addition cheat protection.\n#secure=1\n\n#Sets the server language from its language code.\n#English = en-US, German = de-DE, Italian = it-IT, French = fr-FR, Spanish = es-ES, Russian = ru-RU, Chinese = zh-Hans,>#language=en-US\n\n#Automatically forward ports with uPNP\n#upnp=1\n\n#Reduces enemy skipping but increases bandwidth usage. The lower the number the less skipping will happen, but more dat>#npcstream=60\n\n#Default system priority 0:Realtime, 1:High, 2:AboveNormal, 3:Normal, 4:BelowNormal, 5:Idle\npriority=1\n\n#Reduces maximum liquids moving at the same time. If enabled may reduce lags but liquids may take longer to settle.\n#slowliquids=1\n\n#Journey mode power permissions for every individual power. 0: Locked for everyone, 1: Can only be changed by host, 2: >#journeypermission_time_setfrozen=2\n#journeypermission_time_setdawn=2\n#journeypermission_time_setnoon=2\n#journeypermission_time_setdusk=2\n#journeypermission_time_setmidnight=2\n#journeypermission_godmode=2\n#journeypermission_wind_setstrength=2\n#journeypermission_rain_setstrength=2\n#journeypermission_time_setspeed=2\n#journeypermission_rain_setfrozen=2\n#journeypermission_wind_setfrozen=2\n#journeypermission_increaseplacementrange=2\n#journeypermission_setdifficulty=2\n#journeypermission_biomespread_setfrozen=2\n#journeypermission_setspawnrate=2",
-      "type": "writefile"
     }
   ],
   "run": {
     "stop": "exit",
-    "command": "./TerrariaServer.bin.x86_64 -config serverconfig.txt",
+    "command": "./TerrariaServer -config ${rootDir}/server_config.txt",
     "workingDirectory": "",
-    "pre": [],
+    "pre": [
+      {
+        "commands": [
+          "rm ./server_config.txt",
+          "touch ./server_config.txt"
+        ],
+        "type": "command"
+      },
+      {
+        "target": "./server_config.txt",
+        "text": "world=${rootDir}/worlds/${worldName}.wld\nautocreate=${worldSize}\nworldname=${worldName}\ndifficulty=${difficulty}\nmaxplayers=${players}\nport=${port}\nmotd='${motd}'\nworldpath=${rootDir}/worlds",
+        "type": "writefile"
+      }
+    ],
     "post": [],
     "environmentVars": {}
   },
   "data": {
     "difficulty": {
       "type": "integer",
-      "desc": "Sets the difficulty of the world when using autocreate 0(classic), 1(expert), 2(master), 3(journey) [Can't be changed afterwards]]",
-      "display": "Difficulty ",
+      "desc": "!Can only be set Once! : 0(normal), 1(expert), 2(master), 3(journey) ",
+      "display": "World Difficulty",
       "required": true,
-      "value": "0"
+      "value": "1"
     },
     "motd": {
       "type": "string",
-      "desc": "Set the message of the day",
-      "display": "MOTD",
+      "desc": "Sets the message of the day",
+      "display": "Message of The Day",
+      "value": "Welcome to Vannila Terraria Server",
+      "userEdit": true
+    },
+    "players": {
+      "type": "integer",
+      "desc": "Number of Players",
+      "display": "Players",
       "required": true,
-      "value": "Welcome to a custom Terraria Vannila Server"
+      "value": "8",
+      "userEdit": true
     },
     "port": {
       "type": "integer",
-      "desc": "What port to bind the server to",
+      "desc": "Port Number",
       "display": "Port",
       "required": true,
-      "value": "7777"
-    },
-    "seed": {
-      "type": "string",
-      "desc": "Sets the world seed when using autocreate",
-      "display": "Seed ",
-      "value": " ",
+      "value": "7777",
       "userEdit": true
     },
     "version": {
       "type": "string",
-      "desc": "Server Version",
-      "display": "Server Version (Set this to the latest server version)",
+      "desc": "Set to the latest Server Version",
+      "display": "Server Version",
       "required": true,
-      "value": "1423"
+      "value": "1432"
     },
-    "worldname": {
+    "worldName": {
       "type": "string",
-      "desc": "Name of the World (NO SPACES!) [Can't be changed afterwards]",
+      "desc": "The name of the World to load",
       "display": "World Name",
       "required": true,
-      "value": "TerrariaVannila"
+      "value": "DefaultWorld",
+      "userEdit": true
     },
-    "worldsize": {
+    "worldSize": {
       "type": "integer",
-      "desc": "1(small), 2(medium), and 3(large). [Can't be changed afterwards]",
+      "desc": "!Can only be set once! : 1(small), 2(medium), and 3(large)",
       "display": "World Size",
       "required": true,
       "value": "2"
