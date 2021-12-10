@@ -1,6 +1,9 @@
 Terarria Template for latest version (0.11.8.5)
 
-Should work out of the box
+!! PUT MODS ON THE MODS FOLDER AND EDIT THE ENABLED.JSON FILE BEFORE STARTING THE WORLD DUE TO HOW IT IS GENERATED !!
+If for exemple, you created a world and then added the calimity mod, you need to create a new world (just change the world name in settings) so that the new world generates correctly
+
+Works out of the box
 
 Read carefully each parameter description
 
@@ -19,9 +22,3 @@ I then modified the enabled.json to look like this:
     "BossChecklist",
     "ThoriumMod"
 ]
-
-----
-
-ToDo:
-- Easily change some parameters after the server is created
-- Better optimization
