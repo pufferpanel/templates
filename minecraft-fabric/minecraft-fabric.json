@@ -94,7 +94,7 @@
         }
     ],
     "run": {
-        "command": "${java} -Xmx${memory}M -jar fabric-server.jar nogui",
+        "command": "${java} -Xmx${memory}M -Dlog4j2.formatMsgNoLookups=true -jar fabric-server.jar nogui",
         "stop": "stop",
         "environmentVars": {},
         "pre": [],

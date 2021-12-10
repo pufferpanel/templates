@@ -1,15 +1,15 @@
 {
   "type": "minecraft-java",
-  "display": "Paper - Minecraft",
+  "display": "Airplane - Minecraft",
   "install": [
     {
       "type": "download",
-      "files": "https://papermc.io/api/v2/projects/paper/versions/${version}/builds/${build}/downloads/paper-${version}-${build}.jar"
+      "files": "https://ci.tivy.ca/view/Purpur/job/Airplane-Purpur-${version}/lastSuccessfulBuild/artifact/launcher-airplanepurpur.jar"
     },
     {
       "type": "move",
-      "source": "paper-*.jar",
-      "target": "paper.jar"
+      "source": "launcher-airplane*.jar",
+      "target": "airplane-purpur.jar"
     },
     {
       "type": "writefile",
@@ -26,7 +26,7 @@
     "stop": "stop",
     "pre": [],
     "post": [],
-    "command": "${java} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Djline.terminal=jline.UnsupportedTerminal -Dlog4j2.formatMsgNoLookups=true -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -jar paper.jar"
+    "command": "${java} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Djline.terminal=jline.UnsupportedTerminal -Dlog4j2.formatMsgNoLookups=true -jar airplane-purpur.jar"
   },
   "environment": {
     "type": "standard"
@@ -37,7 +37,7 @@
     },
     {
       "type": "docker",
-      "image": "openjdk:16"
+      "image": "amazoncorretto:17"
     }
   ],
   "data": {
@@ -51,17 +51,10 @@
       "userEdit": true
     },
     "version": {
-      "value": "1.16.5",
+      "value": "1.17",
       "required": true,
-      "desc": "Version of Minecraft to install (<a href='https://papermc.io/downloads'>Paper maintained versions</a>). Must be specified as a release number, e.g. 1.16.5",
+      "desc": "Version of Minecraft to install (<a href='https://ci.tivy.ca/'>Airplanes maintained versions</a>). Must be specified as the main release number, e.g. 1.17, not 1.17.1",
       "display": "Version",
-      "internal": false
-    },
-    "build": {
-      "value": "634",
-      "required": true,
-      "desc": "Build of Paper to install (<a href='https://papermc.io/downloads'>Paper version build</a>). Must be specified as a build number, e.g. 484",
-      "display": "build",
       "internal": false
     },
     "memory": {

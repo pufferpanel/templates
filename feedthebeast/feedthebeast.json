@@ -30,7 +30,7 @@
     }
   ],
   "run": {
-    "command": "${java} -server -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true -jar ForgeServer.jar nogui",
+    "command": "${java} -server -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -Dlog4j2.formatMsgNoLookups=true -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true -jar ForgeServer.jar nogui",
     "stop": "stop",
     "pre": [],
     "post": []

@@ -28,7 +28,7 @@
     "stop": "stop",
     "pre": [],
     "post": [],
-    "command": "${java} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true @libraries/net/minecraftforge/forge/${version}/unix_args.txt nogui"
+    "command": "${java} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/minecraftforge/forge/${version}/unix_args.txt nogui"
   },
   "environment": {
     "type": "standard"

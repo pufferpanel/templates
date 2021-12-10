@@ -9,7 +9,7 @@
     {
       "type": "command",
       "commands": [
-        "java -jar BuildTools.jar --rev ${version}"
+        "${java} -jar BuildTools.jar --rev ${version}"
       ]
     },
     {
@@ -32,7 +32,7 @@
     "stop": "stop",
     "pre": [],
     "post": [],
-    "command": "${java} -Xmx${memory}M -Djline.terminal=jline.UnsupportedTerminal -jar server.jar"
+    "command": "${java} -Xmx${memory}M -Djline.terminal=jline.UnsupportedTerminal -Dlog4j2.formatMsgNoLookups=true -jar server.jar"
   },
   "environment": {
     "type": "standard"
