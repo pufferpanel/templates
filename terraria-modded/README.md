@@ -8,6 +8,9 @@ Works out of the box
 
 Read carefully each parameter description
 
+!! Warning !!
+You can only set World Difficulty and World Size once per World
+
 -----
 
 ! How to add mods? !
