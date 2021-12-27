@@ -4,7 +4,7 @@
   "install": [
     {
       "type": "download",
-      "files": "https://api.pl3x.net/v2/purpur/${version}/latest/download"
+      "files": "https://api.purpurmc.org/v2/purpur/${version}/latest/download"
     },
     {
       "type": "move",
