@@ -23,7 +23,7 @@
   ],
   "run": {
     "stop": "exit",
-    "command": "${rootDir}/TerrariaServer -port ${port} -secure -steam -world ${world} -password ${password} -players ${players} -autocreate ${size} -worldname ${world} -seed ${seed}",
+    "command": "${rootDir}/TerrariaServer -port ${port} -secure -steam -password ${password} -players ${players} -world ${rootDir}/.local/share/Terraria/Worlds/${world}.wld -autocreate ${size} -worldname ${world} -seed ${seed}",
     "workingDirectory": "",
     "pre": [],
     "post": [],
@@ -35,7 +35,7 @@
       "desc": "Server Password - leave blank for none",
       "display": "Password",
       "required": true,
-      "value": "123"
+      "value": ""
     },
     "players": {
       "type": "string",
@@ -77,7 +77,7 @@
       "desc": "Name of your World",
       "display": "World-Name",
       "required": true,
-      "value": "Terraria"
+      "value": "Terraria-World-1"
     }
   },
   "environment": {
