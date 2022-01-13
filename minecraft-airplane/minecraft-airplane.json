@@ -1,10 +1,10 @@
 {
   "type": "minecraft-java",
-  "display": "Airplane - Minecraft",
+  "display": "Airplane - Minecraft 1.17.1",
   "install": [
     {
       "type": "download",
-      "files": "https://ci.tivy.ca/job/Airplane-${version}/lastSuccessfulBuild/artifact/launcher-airplane.jar"
+      "files": "https://airplane.gg/dl/launcher-airplane1.17.1.jar"
     },
     {
       "type": "move",
@@ -49,13 +49,6 @@
       "internal": false,
       "type": "string",
       "userEdit": true
-    },
-    "version": {
-      "value": "1.17",
-      "required": true,
-      "desc": "Version of Minecraft to install (<a href='https://ci.tivy.ca/'>Airplanes maintained versions</a>). Must be specified as the main release number, e.g. 1.17, not 1.17.1",
-      "display": "Version",
-      "internal": false
     },
     "memory": {
       "value": "1024",
