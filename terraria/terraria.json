@@ -60,7 +60,7 @@
     },
     "lang": {
       "type": "string",
-      "desc": "English=en-US, German=de-DE, Italian=it-IT, French=fr-FR, Spanish=es-ES, Russian=ru-RU, Chinese=zh-Hans, Portuguese=pt-BR, Polish=pl-PL",
+      "desc": "Please use the short lang code - English=en-US, German=de-DE, Italian=it-IT, French=fr-FR, Spanish=es-ES, Russian=ru-RU, Chinese=zh-Hans, Portuguese=pt-BR, Polish=pl-PL",
       "display": "Language",
       "required": true,
       "value": "en-US"
