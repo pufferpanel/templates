@@ -11,12 +11,12 @@
     },
     {
       "commands": [
-        "rm -r ${rootDir}/Server",
+        "rm -r ${rootDir}/server",
         "unzip terraria-server-${version}.zip",
-        "mkdir ${rootDir}/Server",
-        "cp -r ${rootDir}/${version}/Linux/. ${rootDir}/Server",
-        "chmod +x ${rootDir}/Server/TerrariaServer",
-        "chmod +x ${rootDir}/Server/TerrariaServer.bin.x86_64",
+        "mkdir ${rootDir}/server",
+        "cp -r ${rootDir}/${version}/Linux/. ${rootDir}/server",
+        "chmod +x ${rootDir}/server/TerrariaServer",
+        "chmod +x ${rootDir}/server/TerrariaServer.bin.x86_64",
         "mkdir ${rootDir}/${wp}",
         "rm terraria-server-${version}.zip",
         "rm -r ${version}"
@@ -31,9 +31,15 @@
   ],
   "run": {
     "stop": "exit",
-    "command": "${rootDir}/Server/TerrariaServer -config ${rootDir}/serverconfig.txt",
+    "command": "${rootDir}/server/TerrariaServer -config ${rootDir}/serverconfig.txt",
     "workingDirectory": "",
-    "pre": [],
+    "pre": [
+      {
+        "target": "serverconfig.txt",
+        "text": "world=${rootDir}/${wp}/${world}.wld\nautocreate=${size}\nseed=${seed}\nworldname=${world}\ndifficulty=${difficulty}\nmaxplayers=${players}\nport=${port}\npassword=${password}\nmotd=${motd}\nworldpath=${rootDir}/${wp}\nbanlist=${rootDir}/${ban}\nsecure=${secure}\nlanguage=${lang}\nupnp=${upnp}\nnpcstream=${npcs}\npriority=${priority}\nsteam=${steam}",
+        "type": "writefile"
+      }
+    ],
     "post": [],
     "environmentVars": {}
   },
@@ -54,7 +60,7 @@
     },
     "lang": {
       "type": "string",
-      "desc": "en-US = English     de-DE = German     it-IT = Italian     fr-FR = French     es-ES = Spanish     ru-RU = Russian     zh-Hans = Chinese     pt-BR = Portuguese     pl-PL = Polish",
+      "desc": "English=en-US, German=de-DE, Italian=it-IT, French=fr-FR, Spanish=es-ES, Russian=ru-RU, Chinese=zh-Hans, Portuguese=pt-BR, Polish=pl-PL",
       "display": "Language",
       "required": true,
       "value": "en-US"
@@ -96,7 +102,7 @@
     },
     "priority": {
       "type": "string",
-      "desc": "Set priority 0:Realtime, 1:High, 2:AboveNormal, 3:Normal, 4:BelowNormal, 5:Idle",
+      "desc": "Set priority 0:Realtime, 1:High, 2:Above-Normal, 3:Normal, 4:Below-Normal, 5:Idle",
       "display": "priority",
       "required": true,
       "value": "1"
