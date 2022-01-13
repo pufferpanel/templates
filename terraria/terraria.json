@@ -12,24 +12,66 @@
     {
       "commands": [
         "unzip terraria-server-${version}.zip",
-        "cp -r ${rootDir}/${version}/Linux/. ${rootDir}",
-        "chmod +x ${rootDir}/TerrariaServer",
-        "chmod +x ${rootDir}/TerrariaServer.bin.x86_64",
+        "mkdir ${rootDir}/Server",
+        "cp -r ${rootDir}/${version}/Linux/. ${rootDir}/Server",
+        "chmod +x ${rootDir}/Server/TerrariaServer",
+        "chmod +x ${rootDir}/Server/TerrariaServer.bin.x86_64",
+        "mkdir ${rootDir}/${wp}",
         "rm terraria-server-${version}.zip",
         "rm -r ${version}"
       ],
       "type": "command"
+    },
+    {
+      "target": "serverconfig.txt",
+      "text": "world=${rootDir}/${wp}/${world}.wld\nautocreate=${size}\nseed=${seed}\nworldname=${world}\ndifficulty=${difficulty}\nmaxplayers=${players}\nport=${port}\npassword=${password}\nmotd=${motd}\nworldpath=${rootDir}/${wp}\nbanlist=${rootDir}/${ban}\nsecure=${secure}\nlanguage=${lang}\nupnp=${upnp}\nnpcstream=${npcs}\npriority=${priority}\nsteam=${steam}",
+      "type": "writefile"
     }
   ],
   "run": {
     "stop": "exit",
-    "command": "${rootDir}/TerrariaServer -port ${port} -secure -steam -password ${password} -players ${players} -world ${rootDir}/.local/share/Terraria/Worlds/${world}.wld -autocreate ${size} -worldname ${world} -seed ${seed}",
+    "command": "${rootDir}/Server/TerrariaServer -config ${rootDir}/serverconfig.txt",
     "workingDirectory": "",
     "pre": [],
     "post": [],
     "environmentVars": {}
   },
   "data": {
+    "ban": {
+      "type": "string",
+      "desc": "Name of the banlist file",
+      "display": "Banlist",
+      "required": true,
+      "value": "banlist.txt"
+    },
+    "difficulty": {
+      "type": "string",
+      "desc": "Options: 0 - (normal), 1 - (expert), 2 - (master), 3 - (journey)",
+      "display": "Difficulty",
+      "required": true,
+      "value": "0"
+    },
+    "lang": {
+      "type": "string",
+      "desc": "en-US = English     de-DE = German     it-IT = Italian     fr-FR = French     es-ES = Spanish     ru-RU = Russian     zh-Hans = Chinese     pt-BR = Portuguese     pl-PL = Polish",
+      "display": "Language",
+      "required": true,
+      "value": "en-US"
+    },
+    "motd": {
+      "type": "string",
+      "desc": "Set the message of the day",
+      "display": "motd",
+      "required": true,
+      "value": "Hello!"
+    },
+    "npcs": {
+      "type": "string",
+      "desc": "Reduces enemy skipping but increases bandwidth usage. The lower the number the less skipping will happen, but more data is sent. 0 is off.",
+      "display": "npcstream",
+      "required": true,
+      "value": "60"
+    },
     "password": {
       "type": "string",
       "desc": "Server Password - leave blank for none",
@@ -51,6 +93,20 @@
       "required": true,
       "value": "7777"
     },
+    "priority": {
+      "type": "string",
+      "desc": "Set priority 0:Realtime, 1:High, 2:AboveNormal, 3:Normal, 4:BelowNormal, 5:Idle",
+      "display": "priority",
+      "required": true,
+      "value": "1"
+    },
+    "secure": {
+      "type": "string",
+      "desc": "Enable cheat protection = 1 and disable = 0",
+      "display": "secure",
+      "required": true,
+      "value": "1"
+    },
     "seed": {
       "type": "string",
       "desc": "Seed of the World",
@@ -65,10 +121,23 @@
       "required": true,
       "value": "3"
     },
+    "steam": {
+      "type": "string",
+      "desc": "Enable steam support = 1 and disable = 0",
+      "display": "steam support",
+      "value": "1"
+    },
+    "upnp": {
+      "type": "string",
+      "desc": "Enable upnp = 1 and disable = 0",
+      "display": "upnp",
+      "required": true,
+      "value": "1"
+    },
     "version": {
       "type": "string",
-      "desc": "Server Version (Set this to the latest server version) - It is the current terraria Version without the Points (Client Version: 1.4.3.2 -> Server Version: 1432)",
-      "display": "Server Version",
+      "desc": "Server Version",
+      "display": "Server Version (Set this to the latest server version) - It is the current terraria Version without the Points (Client Version: 1.4.3.2 -> Server Version: 1432)",
       "required": true,
       "value": "1432"
     },
@@ -78,6 +147,13 @@
       "display": "World-Name",
       "required": true,
       "value": "Terraria-World-1"
+    },
+    "wp": {
+      "type": "string",
+      "desc": "Name of the worlds folder",
+      "display": "Worldpath",
+      "required": true,
+      "value": "worlds"
     }
   },
   "environment": {
@@ -86,16 +162,6 @@
   "supportedEnvironments": [
     {
       "type": "tty"
-    },
-    {
-      "bindings": {},
-      "image": "pufferpanel/generic",
-      "networkMode": "host",
-      "networkName": "",
-      "portBindings": [
-        "0.0.0.0:7777:7777/tcp"
-      ],
-      "type": "docker"
     }
   ]
 }
