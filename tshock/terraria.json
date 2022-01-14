@@ -1,0 +1,180 @@
+{
+  "name": "tshock",
+  "display": "Terraria - TShock",
+  "type": "terraria",
+  "install": [
+    {
+      "files": [
+        "https://github.com/Pryaxis/TShock/releases/download/v${tversion}/TShock${tversion}_Terraria${version}.zip"
+      ],
+      "type": "download"
+    },
+    {
+      "commands": [
+        "mv ${rootDir}/server/ServerPlugins ${rootDir}",
+        "rm -r ${rootDir}/server",
+        "mkdir ${rootDir}/server",
+        "unzip ${rootDir}/TShock${tversion}_Terraria${version}.zip -d ${rootDir}/server",
+        "rm -r ${rootDir}/server/ServerPlugins",
+        "mv ${rootDir}/ServerPlugins ${rootDir}/server",
+        "mkdir ${rootDir}/${wp}",
+        "rm ${rootDir}/TShock${tversion}_Terraria${version}.zip"
+      ],
+      "type": "command"
+    },
+    {
+      "target": "serverconfig.txt",
+      "text": "world=${rootDir}/${wp}/${world}.wld\nautocreate=${size}\nseed=${seed}\nworldname=${world}\ndifficulty=${difficulty}\nmaxplayers=${players}\nport=${port}\npassword=${password}\nmotd=${motd}\nworldpath=${rootDir}/${wp}\nbanlist=${rootDir}/${ban}\nsecure=${secure}\nlanguage=${lang}\nupnp=${upnp}\nnpcstream=${npcs}\npriority=${priority}\nsteam=${steam}",
+      "type": "writefile"
+    }
+  ],
+  "run": {
+    "stop": "exit",
+    "command": "mono ${rootDir}/server/TerrariaServer.exe -config ${rootDir}/serverconfig.txt",
+    "workingDirectory": "${rootDir}",
+    "pre": [
+      {
+        "target": "serverconfig.txt",
+        "text": "world=${rootDir}/${wp}/${world}.wld\nautocreate=${size}\nseed=${seed}\nworldname=${world}\ndifficulty=${difficulty}\nmaxplayers=${players}\nport=${port}\npassword=${password}\nmotd=${motd}\nworldpath=${rootDir}/${wp}\nbanlist=${rootDir}/${ban}\nsecure=${secure}\nlanguage=${lang}\nupnp=${upnp}\nnpcstream=${npcs}\npriority=${priority}\nsteam=${steam}",
+        "type": "writefile"
+      }
+    ],
+    "post": [],
+    "environmentVars": {}
+  },
+  "data": {
+    "ban": {
+      "type": "string",
+      "desc": "Name of the banlist file",
+      "display": "Banlist",
+      "required": true,
+      "value": "banlist.txt"
+    },
+    "difficulty": {
+      "type": "string",
+      "desc": "This can not be changed after the world was generated - Options: 0 - (normal), 1 - (expert), 2 - (master), 3 - (journey)",
+      "display": "Difficulty",
+      "required": true,
+      "value": "0"
+    },
+    "lang": {
+      "type": "string",
+      "desc": "Please use the short lang code - English=en-US, German=de-DE, Italian=it-IT, French=fr-FR, Spanish=es-ES, Russian=ru-RU, Chinese=zh-Hans, Portuguese=pt-BR, Polish=pl-PL",
+      "display": "Language",
+      "required": true,
+      "value": "en-US"
+    },
+    "motd": {
+      "type": "string",
+      "desc": "Set the message of the day",
+      "display": "motd",
+      "required": true,
+      "value": "Hello!"
+    },
+    "npcs": {
+      "type": "string",
+      "desc": "Reduces enemy skipping but increases bandwidth usage. The lower the number the less skipping will happen, but more data is sent. 0 is off.",
+      "display": "npcstream",
+      "required": true,
+      "value": "60"
+    },
+    "password": {
+      "type": "string",
+      "desc": "Server Password - leave blank for none",
+      "display": "Password",
+      "required": true,
+      "value": ""
+    },
+    "players": {
+      "type": "string",
+      "desc": "Max Players",
+      "display": "Players",
+      "required": true,
+      "value": "4"
+    },
+    "port": {
+      "type": "string",
+      "desc": "What port to bind the server to",
+      "display": "Port",
+      "required": true,
+      "value": "7777"
+    },
+    "priority": {
+      "type": "string",
+      "desc": "Set priority 0:Realtime, 1:High, 2:Above-Normal, 3:Normal, 4:Below-Normal, 5:Idle",
+      "display": "priority",
+      "required": true,
+      "value": "1"
+    },
+    "secure": {
+      "type": "string",
+      "desc": "Enable cheat protection = 1 and disable = 0",
+      "display": "secure",
+      "required": true,
+      "value": "1"
+    },
+    "seed": {
+      "type": "string",
+      "desc": "This can not be changed after the world was generated - Seed of the World",
+      "display": "Seed",
+      "required": true,
+      "value": "VeryGoodStartingSeed"
+    },
+    "size": {
+      "type": "string",
+      "desc": "This can not be changed after the world was generated - World Size (1-3 - 3 is biggest)",
+      "display": "World-Size",
+      "required": true,
+      "value": "3"
+    },
+    "steam": {
+      "type": "string",
+      "desc": "Enable steam support = 1 and disable = 0",
+      "display": "steam support",
+      "value": "1"
+    },
+    "tversion": {
+      "type": "string",
+      "desc": "TShock Version",
+      "display": "TShock Version (Set this to the latest server version - see here https://github.com/Pryaxis/TShock/releases/latest)",
+      "required": true,
+      "value": "4.5.12"
+    },
+    "upnp": {
+      "type": "string",
+      "desc": "Enable upnp = 1 and disable = 0",
+      "display": "upnp",
+      "required": true,
+      "value": "1"
+    },
+    "version": {
+      "type": "string",
+      "desc": "Terraria Version",
+      "display": "Server Version (Set this to the latest server version)",
+      "required": true,
+      "value": "1.4.3.2"
+    },
+    "world": {
+      "type": "string",
+      "desc": "Name of your World",
+      "display": "World-Name",
+      "required": true,
+      "value": "Terraria-World-1"
+    },
+    "wp": {
+      "type": "string",
+      "desc": "Name of the worlds folder",
+      "display": "Worldpath",
+      "required": true,
+      "value": "worlds"
+    }
+  },
+  "environment": {
+    "type": "tty"
+  },
+  "supportedEnvironments": [
+    {
+      "type": "tty"
+    }
+  ]
+}
