@@ -8,4 +8,4 @@ And here how you can install mono-complete:
  - CentOS/RHEL: https://www.mono-project.com/download/stable/#download-lin-centos
  - Fedora: https://www.mono-project.com/download/stable/#download-lin-fedora
  
- Note you need to install mono-complete not mono-devel how it is descript!
+Note you need to install mono-complete not mono-devel how it is descript!
