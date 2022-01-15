@@ -44,6 +44,20 @@
     "environmentVars": {}
   },
   "data": {
+    "abr": {
+      "type": "string",
+      "desc": "Sets the announcementbox text messaging range in pixels, -1 for serverwide announcements.",
+      "display": "announcementbox-range",
+      "required": true,
+      "value": "-1"
+    },
+    "backups": {
+      "type": "string",
+      "desc": "Sets the number of rolling world backups to keep",
+      "display": "Backups",
+      "required": true,
+      "value": "2"
+    },
     "ban": {
       "type": "string",
       "desc": "Name of the banlist file",
@@ -58,6 +72,19 @@
       "required": true,
       "value": "0"
     },
+    "disableannouncementbox": {
+      "type": "string",
+      "desc": "Disables the text announcements Announcement Box makes when pulsed from wire. - leave blank to let them enabled - or set it to `-disableannouncementbox` to disable it",
+      "display": "announcementbox",
+      "value": ""
+    },
+    "ip": {
+      "type": "string",
+      "desc": "Sets the IP address for the server to listen on - 0.0.0.0 means every possible IP",
+      "display": "IP",
+      "required": true,
+      "value": "0.0.0.0"
+    },
     "lang": {
       "type": "string",
       "desc": "Please use the short lang code - English=en-US, German=de-DE, Italian=it-IT, French=fr-FR, Spanish=es-ES, Russian=ru-RU, Chinese=zh-Hans, Portuguese=pt-BR, Polish=pl-PL",
@@ -71,6 +98,13 @@
       "display": "motd",
       "required": true,
       "value": "Hello!"
+    },
+    "mp": {
+      "type": "string",
+      "desc": "Name of the mods folder",
+      "display": "Mods-path",
+      "required": true,
+      "value": "mods"
     },
     "npcs": {
       "type": "string",
@@ -128,19 +162,32 @@
       "required": true,
       "value": "3"
     },
+    "sl": {
+      "type": "string",
+      "desc": "Reduces maximum liquids moving at the same time. If enabled may reduce lags but liquids may take longer to settle.",
+      "display": "maximum liquids moving",
+      "required": true,
+      "value": "1"
+    },
+    "steam": {
+      "type": "string",
+      "desc": "Enables Steam Support - leave blank to disable - or set it to `-steam` to enable it",
+      "display": "Steam",
+      "value": "-steam"
+    },
+    "tversion": {
+      "type": "string",
+      "desc": "tModLoader Version",
+      "display": "tModLoader Version (Set this to the latest tModLoader version - see https://github.com/tModLoader/tModLoader/releases/latest)",
+      "required": true,
+      "value": "0.11.8.5"
+    },
     "upnp": {
       "type": "string",
       "desc": "Enable upnp = 1 and disable = 0",
       "display": "upnp",
       "required": true,
       "value": "1"
-    },
-    "version": {
-      "type": "string",
-      "desc": "Server Version",
-      "display": "Server Version (Set this to the latest server version) - It is the current terraria Version without the Points (Client Version: 1.4.3.2 -> Server Version: 1432)",
-      "required": true,
-      "value": "1432"
     },
     "world": {
       "type": "string",
@@ -151,49 +198,10 @@
     },
     "wp": {
       "type": "string",
-      "desc": "Name of the worlds folder",
+      "desc": "Name of the world folder",
       "display": "Worldpath",
       "required": true,
       "value": "worlds"
-    },
-    "backups": {
-      "type": "string",
-      "required": true,
-      "value": "2",
-      "desc": "Sets the number of rolling world backups to keep",
-      "display": "Backups"
-    },
-    "sl": {
-      "type": "string",
-      "desc": "Reduces maximum liquids moving at the same time. If enabled may reduce lags but liquids may take longer to settle.",
-      "value": "1",
-      "required": true,
-      "display": "maximum liquids moving"
-    },
-    "ip": {
-      "type": "string",
-      "desc": "Sets the IP address for the server to listen on - 0.0.0.0 means every possible IP",
-      "value": "0.0.0.0",
-      "required": true,
-      "display": "IP"
-    },
-    "steam": {
-      "type": "string",
-      "desc": "Enables Steam Support - leave blank to disable - or set it to `-steam` to enable it (but without the ``)",
-      "value": "-steam",
-      "display": "Steam"
-    },
-    "abr": {
-      "type": "string",
-      "desc": "Sets the announcementbox text messaging range in pixels, -1 for serverwide announcements. - leave blank for default",
-      "value": "",
-      "display": "announcementbox-range"
-    },
-    "disableannouncementbox": {
-      "type": "string",
-      "desc": "Disables the text announcements Announcement Box makes when pulsed from wire. - leave blank to enable - or set it to `-disableannouncementbox` to disable it (but without the ``)",
-      "value": "-disableannouncementbox",
-      "display": "announcementbox"
     }
   },
   "environment": {
