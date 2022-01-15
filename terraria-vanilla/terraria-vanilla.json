@@ -31,7 +31,7 @@
   ],
   "run": {
     "stop": "exit",
-    "command": "${rootDir}/server/TerrariaServer -ip ${ip} ${steam} ${lobby} ${disableannouncementbox} -announcementboxrange ${abr} -config ${rootDir}/serverconfig.txt",
+    "command": "${rootDir}/server/TerrariaServer -ip ${ip} ${steam} ${disableannouncementbox} -announcementboxrange ${abr} -config ${rootDir}/serverconfig.txt",
     "workingDirectory": "",
     "pre": [
       {
