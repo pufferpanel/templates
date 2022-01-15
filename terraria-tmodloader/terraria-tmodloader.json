@@ -57,6 +57,20 @@
     "environmentVars": {}
   },
   "data": {
+    "abr": {
+      "type": "string",
+      "desc": "Sets the announcementbox text messaging range in pixels, -1 for serverwide announcements.",
+      "display": "announcementbox-range",
+      "required": true,
+      "value": "-1"
+    },
+    "backups": {
+      "type": "string",
+      "desc": "Sets the number of rolling world backups to keep",
+      "display": "Backups",
+      "required": true,
+      "value": "2"
+    },
     "ban": {
       "type": "string",
       "desc": "Name of the banlist file",
@@ -70,6 +84,19 @@
       "display": "Difficulty",
       "required": true,
       "value": "0"
+    },
+    "disableannouncementbox": {
+      "type": "string",
+      "desc": "Disables the text announcements Announcement Box makes when pulsed from wire. - leave blank to let them enabled - or set it to `-disableannouncementbox` to disable it",
+      "display": "announcementbox",
+      "value": ""
+    },
+    "ip": {
+      "type": "string",
+      "desc": "Sets the IP address for the server to listen on - 0.0.0.0 means every possible IP",
+      "display": "IP",
+      "required": true,
+      "value": "0.0.0.0"
     },
     "lang": {
       "type": "string",
@@ -148,6 +175,19 @@
       "required": true,
       "value": "3"
     },
+    "sl": {
+      "type": "string",
+      "desc": "Reduces maximum liquids moving at the same time. If enabled may reduce lags but liquids may take longer to settle.",
+      "display": "maximum liquids moving",
+      "required": true,
+      "value": "1"
+    },
+    "steam": {
+      "type": "string",
+      "desc": "Enables Steam Support - leave blank to disable - or set it to `-steam` to enable it",
+      "display": "Steam",
+      "value": "-steam"
+    },
     "tversion": {
       "type": "string",
       "desc": "tModLoader Version",
@@ -175,45 +215,6 @@
       "display": "Worldpath",
       "required": true,
       "value": "worlds"
-    },
-    "backups": {
-      "type": "string",
-      "required": true,
-      "value": "2",
-      "desc": "Sets the number of rolling world backups to keep",
-      "display": "Backups"
-    },
-    "sl": {
-      "type": "string",
-      "desc": "Reduces maximum liquids moving at the same time. If enabled may reduce lags but liquids may take longer to settle.",
-      "value": "1",
-      "required": true,
-      "display": "maximum liquids moving"
-    },
-    "ip": {
-      "type": "string",
-      "desc": "Sets the IP address for the server to listen on - 0.0.0.0 means every possible IP",
-      "value": "0.0.0.0",
-      "required": true,
-      "display": "IP"
-    },
-    "steam": {
-      "type": "string",
-      "desc": "Enables Steam Support - leave blank to disable - or set it to `-steam` to enable it (but without the ``)",
-      "value": "-steam",
-      "display": "Steam"
-    },
-    "abr": {
-      "type": "string",
-      "desc": "Sets the announcementbox text messaging range in pixels, -1 for serverwide announcements. - leave blank for default",
-      "value": "",
-      "display": "announcementbox-range"
-    },
-    "disableannouncementbox": {
-      "type": "string",
-      "desc": "Disables the text announcements Announcement Box makes when pulsed from wire. - leave blank to enable - or set it to `-disableannouncementbox` to disable it (but without the ``)",
-      "value": "-disableannouncementbox",
-      "display": "announcementbox"
     }
   },
   "environment": {
