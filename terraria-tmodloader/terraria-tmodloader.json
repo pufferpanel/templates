@@ -1,26 +1,24 @@
 {
-  "name": "terraria-tModLoader",
-  "display": "Terraria - tModLoader",
+  "name": "terraria-tshock",
+  "display": "Terraria - TShock",
   "type": "terraria",
   "install": [
     {
       "files": [
-        "https://github.com/tModLoader/tModLoader/releases/download/v${tversion}/tModLoader.Linux.v${tversion}.tar.gz"
+        "https://github.com/Pryaxis/TShock/releases/download/v${tversion}/TShock${tversion}_Terraria${version}.zip"
       ],
       "type": "download"
     },
     {
       "commands": [
-        "mv ${rootDir}/${mp}/enabled.json ${rootDir}",
+        "mv ${rootDir}/server/ServerPlugins ${rootDir}",
         "rm -r ${rootDir}/server",
         "mkdir ${rootDir}/server",
-        "tar -xf tModLoader.Linux.v${tversion}.tar.gz --directory ${rootDir}/server",
-        "chmod +x ${rootDir}/server/tModLoaderServer",
-        "chmod +x ${rootDir}/server/tModLoaderServer.bin.x86",
-        "chmod +x ${rootDir}/server/tModLoaderServer.bin.x86_64",
+        "unzip ${rootDir}/TShock${tversion}_Terraria${version}.zip -d ${rootDir}/server",
+        "rm -r ${rootDir}/server/ServerPlugins",
+        "mv ${rootDir}/ServerPlugins ${rootDir}/server",
         "mkdir ${rootDir}/${wp}",
-        "mkdir ${rootDir}/${mp}",
-        "rm tModLoader.Linux.v${tversion}.tar.gz"
+        "rm ${rootDir}/TShock${tversion}_Terraria${version}.zip"
       ],
       "type": "command"
     },
@@ -28,24 +26,12 @@
       "target": "serverconfig.txt",
       "text": "world=${rootDir}/${wp}/${world}.wld\nautocreate=${size}\nseed=${seed}\nworldname=${world}\ndifficulty=${difficulty}\nmaxplayers=${players}\nport=${port}\npassword=${password}\nmotd=${motd}\nworldpath=${rootDir}/${wp}\nbanlist=${rootDir}/${ban}\nsecure=${secure}\nlanguage=${lang}\nupnp=${upnp}\nnpcstream=${npcs}\npriority=${priority}\nslowliquids=${sl}\nworldrollbackstokeep=${backups}",
       "type": "writefile"
-    },
-    {
-      "target": "enabled.jsonn",
-      "text": "[\n    \"Mod1\",\n    \"Mod2\",\n    \"Mod3\"\n]",
-      "type": "writefile"
-    },
-    {
-      "commands": [
-        "mv ${rootDir}/enabled.jsonn ${rootDir}/${mp}/enabled.json",
-        "mv ${rootDir}/enabled.json ${rootDir}/${mp}/enabled.json"
-      ],
-      "type": "command"
     }
   ],
   "run": {
     "stop": "exit",
-    "command": "${rootDir}/server/tModLoaderServer -ip ${ip} ${steam} ${disableannouncementbox} -announcementboxrange ${abr} -config ${rootDir}/serverconfig.txt",
-    "workingDirectory": "",
+    "command": "mono ${rootDir}/server/TerrariaServer.exe -ip ${ip} ${disableannouncementbox} -announcementboxrange ${abr} -config ${rootDir}/serverconfig.txt",
+    "workingDirectory": "${rootDir}",
     "pre": [
       {
         "target": "serverconfig.txt",
@@ -112,13 +98,6 @@
       "required": true,
       "value": "Hello!"
     },
-    "mp": {
-      "type": "string",
-      "desc": "Name of the mods folder",
-      "display": "Mods-path",
-      "required": true,
-      "value": "mods"
-    },
     "npcs": {
       "type": "string",
       "desc": "Reduces enemy skipping but increases bandwidth usage. The lower the number the less skipping will happen, but more data is sent. 0 is off.",
@@ -182,18 +161,12 @@
       "required": true,
       "value": "1"
     },
-    "steam": {
-      "type": "string",
-      "desc": "Enables Steam Support - leave blank to disable - or set it to `-steam` to enable it",
-      "display": "Steam",
-      "value": "-steam"
-    },
     "tversion": {
       "type": "string",
-      "desc": "tModLoader Version",
-      "display": "tModLoader Version (Set this to the latest tModLoader version - see https://github.com/tModLoader/tModLoader/releases/latest)",
+      "desc": "TShock Version",
+      "display": "TShock Version (Set this to the latest server version - see here https://github.com/Pryaxis/TShock/releases/latest)",
       "required": true,
-      "value": "0.11.8.5"
+      "value": "4.5.12"
     },
     "upnp": {
       "type": "string",
@@ -201,6 +174,13 @@
       "display": "upnp",
       "required": true,
       "value": "1"
+    },
+    "version": {
+      "type": "string",
+      "desc": "Server Version",
+      "display": "Server Version (Set this to the latest server version)",
+      "required": true,
+      "value": "1.4.3.2"
     },
     "world": {
       "type": "string",
