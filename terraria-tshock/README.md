@@ -1,4 +1,4 @@
-Terarria - TShock Template
+Terarria - TShock Template - made for linux
 
 You need to have unzip and mono-complete installed, see here how you can install unzip it on Linux: https://command-not-found.com/unzip
 And here how you can install mono-complete:
