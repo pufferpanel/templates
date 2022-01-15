@@ -30,7 +30,7 @@
   ],
   "run": {
     "stop": "exit",
-    "command": "mono ${rootDir}/server/TerrariaServer.exe -ip ${ip} ${steam} ${lobby} ${disableannouncementbox} -announcementboxrange ${abr} -config ${rootDir}/serverconfig.txt",
+    "command": "mono ${rootDir}/server/TerrariaServer.exe -ip ${ip} ${steam} ${disableannouncementbox} -announcementboxrange ${abr} -config ${rootDir}/serverconfig.txt",
     "workingDirectory": "${rootDir}",
     "pre": [
       {
