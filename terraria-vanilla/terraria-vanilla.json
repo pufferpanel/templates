@@ -168,19 +168,19 @@
       "display": "Steam",
       "value": "-steam"
     },
-    "tversion": {
-      "type": "string",
-      "desc": "tModLoader Version",
-      "display": "tModLoader Version (Set this to the latest tModLoader version - see https://github.com/tModLoader/tModLoader/releases/latest)",
-      "required": true,
-      "value": "0.11.8.5"
-    },
     "upnp": {
       "type": "string",
       "desc": "Enable upnp = 1 and disable = 0",
       "display": "upnp",
       "required": true,
       "value": "1"
+    },
+    "version": {
+      "type": "string",
+      "desc": "Server Version",
+      "display": "Server Version (Set this to the latest server version) - It is the current terraria Version without the Points (Client Version: 1.4.3.2 -> Server Version: 1432)",
+      "required": true,
+      "value": "1432"
     },
     "world": {
       "type": "string",
