@@ -99,13 +99,6 @@
       "required": true,
       "value": "Hello!"
     },
-    "mp": {
-      "type": "string",
-      "desc": "Name of the mods folder",
-      "display": "Mods-path",
-      "required": true,
-      "value": "mods"
-    },
     "npcs": {
       "type": "string",
       "desc": "Reduces enemy skipping but increases bandwidth usage. The lower the number the less skipping will happen, but more data is sent. 0 is off.",
