@@ -24,18 +24,18 @@
     },
     {
       "target": "serverconfig.txt",
-      "text": "world=${rootDir}/${wp}/${world}.wld\nautocreate=${size}\nseed=${seed}\nworldname=${world}\ndifficulty=${difficulty}\nmaxplayers=${players}\nport=${port}\npassword=${password}\nmotd=${motd}\nworldpath=${rootDir}/${wp}\nbanlist=${rootDir}/${ban}\nsecure=${secure}\nlanguage=${lang}\nupnp=${upnp}\nnpcstream=${npcs}\npriority=${priority}\nsteam=${steam}",
+      "text": "world=${rootDir}/${wp}/${world}.wld\nautocreate=${size}\nseed=${seed}\nworldname=${world}\ndifficulty=${difficulty}\nmaxplayers=${players}\nport=${port}\npassword=${password}\nmotd=${motd}\nworldpath=${rootDir}/${wp}\nbanlist=${rootDir}/${ban}\nsecure=${secure}\nlanguage=${lang}\nupnp=${upnp}\nnpcstream=${npcs}\npriority=${priority}\nslowliquids=${sl}\nworldrollbackstokeep=${backups}",
       "type": "writefile"
     }
   ],
   "run": {
     "stop": "exit",
-    "command": "mono ${rootDir}/server/TerrariaServer.exe -config ${rootDir}/serverconfig.txt",
+    "command": "mono ${rootDir}/server/TerrariaServer.exe -ip ${ip} ${steam} ${lobby} ${disableannouncementbox} -announcementboxrange ${abr} -config ${rootDir}/serverconfig.txt",
     "workingDirectory": "${rootDir}",
     "pre": [
       {
         "target": "serverconfig.txt",
-        "text": "world=${rootDir}/${wp}/${world}.wld\nautocreate=${size}\nseed=${seed}\nworldname=${world}\ndifficulty=${difficulty}\nmaxplayers=${players}\nport=${port}\npassword=${password}\nmotd=${motd}\nworldpath=${rootDir}/${wp}\nbanlist=${rootDir}/${ban}\nsecure=${secure}\nlanguage=${lang}\nupnp=${upnp}\nnpcstream=${npcs}\npriority=${priority}\nsteam=${steam}",
+        "text": "world=${rootDir}/${wp}/${world}.wld\nautocreate=${size}\nseed=${seed}\nworldname=${world}\ndifficulty=${difficulty}\nmaxplayers=${players}\nport=${port}\npassword=${password}\nmotd=${motd}\nworldpath=${rootDir}/${wp}\nbanlist=${rootDir}/${ban}\nsecure=${secure}\nlanguage=${lang}\nupnp=${upnp}\nnpcstream=${npcs}\npriority=${priority}\nslowliquids=${sl}\nworldrollbackstokeep=${backups}",
         "type": "writefile"
       }
     ],
@@ -127,12 +127,6 @@
       "required": true,
       "value": "3"
     },
-    "steam": {
-      "type": "string",
-      "desc": "Enable steam support = 1 and disable = 0",
-      "display": "steam support",
-      "value": "1"
-    },
     "tversion": {
       "type": "string",
       "desc": "TShock Version",
@@ -167,6 +161,45 @@
       "display": "Worldpath",
       "required": true,
       "value": "worlds"
+    },
+    "backups": {
+      "type": "string",
+      "required": true,
+      "value": "2",
+      "desc": "Sets the number of rolling world backups to keep",
+      "display": "Backups"
+    },
+    "sl": {
+      "type": "string",
+      "desc": "Reduces maximum liquids moving at the same time. If enabled may reduce lags but liquids may take longer to settle.",
+      "value": "1",
+      "required": true,
+      "display": "maximum liquids moving"
+    },
+    "ip": {
+      "type": "string",
+      "desc": "Sets the IP address for the server to listen on - 0.0.0.0 means every possible IP",
+      "value": "0.0.0.0",
+      "required": true,
+      "display": "IP"
+    },
+    "steam": {
+      "type": "string",
+      "desc": "Enables Steam Support - leave blank to disable - or set it to `-steam` to enable it (but without the ``)",
+      "value": "-steam",
+      "display": "Steam"
+    },
+    "abr": {
+      "type": "string",
+      "desc": "Sets the announcementbox text messaging range in pixels, -1 for serverwide announcements. - leave blank for default",
+      "value": "",
+      "display": "announcementbox-range"
+    },
+    "disableannouncementbox": {
+      "type": "string",
+      "desc": "Disables the text announcements Announcement Box makes when pulsed from wire. - leave blank to enable - or set it to `-disableannouncementbox` to disable it (but without the ``)",
+      "value": "-disableannouncementbox",
+      "display": "announcementbox"
     }
   },
   "environment": {
