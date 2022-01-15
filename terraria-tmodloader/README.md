@@ -1,4 +1,4 @@
-Terarria - tModLoader Template
+Terarria - tModLoader Template - made for linux non arm
 
 How to install mods:
 
