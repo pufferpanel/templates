@@ -11,13 +11,13 @@
     },
     {
       "commands": [
-        "rm -r ${rootDir}/server",
+        "rm -r ./server",
         "unzip terraria-server-${version}.zip",
-        "mkdir ${rootDir}/server",
-        "cp -r ${rootDir}/${version}/Linux/. ${rootDir}/server",
-        "chmod +x ${rootDir}/server/TerrariaServer",
-        "chmod +x ${rootDir}/server/TerrariaServer.bin.x86_64",
-        "mkdir ${rootDir}/${wp}",
+        "mkdir ./server",
+        "cp -r ./${version}/Linux/. ./server",
+        "chmod +x ./server/TerrariaServer",
+        "chmod +x ./server/TerrariaServer.bin.x86_64",
+        "mkdir ./${wp}",
         "rm terraria-server-${version}.zip",
         "rm -r ${version}"
       ],
@@ -31,7 +31,7 @@
   ],
   "run": {
     "stop": "exit",
-    "command": "${rootDir}/server/TerrariaServer -ip ${ip} ${steam} ${disableannouncementbox} -announcementboxrange ${abr} -config ${rootDir}/serverconfig.txt",
+    "command": "./server/TerrariaServer -ip ${ip} ${steam} ${disableannouncementbox} -announcementboxrange ${abr} -config ${rootDir}/serverconfig.txt",
     "workingDirectory": "",
     "pre": [
       {
