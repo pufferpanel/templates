@@ -11,15 +11,15 @@
     },
     {
       "commands": [
-        "mv ${rootDir}/${mp}/enabled.json ${rootDir}",
-        "rm -r ${rootDir}/server",
-        "mkdir ${rootDir}/server",
-        "tar -xf tModLoader.Linux.v${tversion}.tar.gz --directory ${rootDir}/server",
-        "chmod +x ${rootDir}/server/tModLoaderServer",
-        "chmod +x ${rootDir}/server/tModLoaderServer.bin.x86",
-        "chmod +x ${rootDir}/server/tModLoaderServer.bin.x86_64",
-        "mkdir ${rootDir}/${wp}",
-        "mkdir ${rootDir}/${mp}",
+        "mv ./${mp}/enabled.json ./",
+        "rm -r ./server",
+        "mkdir ./server",
+        "tar -xf tModLoader.Linux.v${tversion}.tar.gz --directory ./server",
+        "chmod +x ./server/tModLoaderServer",
+        "chmod +x ./server/tModLoaderServer.bin.x86",
+        "chmod +x ./server/tModLoaderServer.bin.x86_64",
+        "mkdir ./${wp}",
+        "mkdir ./${mp}",
         "rm tModLoader.Linux.v${tversion}.tar.gz"
       ],
       "type": "command"
@@ -36,15 +36,15 @@
     },
     {
       "commands": [
-        "mv ${rootDir}/enabled.jsonn ${rootDir}/${mp}/enabled.json",
-        "mv ${rootDir}/enabled.json ${rootDir}/${mp}/enabled.json"
+        "mv ./enabled.jsonn ./${mp}/enabled.json",
+        "mv ./enabled.json ./${mp}/enabled.json"
       ],
       "type": "command"
     }
   ],
   "run": {
     "stop": "exit",
-    "command": "${rootDir}/server/tModLoaderServer -ip ${ip} ${disableannouncementbox} -announcementboxrange ${abr} -config ${rootDir}/serverconfig.txt",
+    "command": "./server/tModLoaderServer -ip ${ip} ${disableannouncementbox} -announcementboxrange ${abr} -config ${rootDir}/serverconfig.txt",
     "workingDirectory": "",
     "pre": [
       {
