@@ -11,14 +11,14 @@
     },
     {
       "commands": [
-        "mv ${rootDir}/server/ServerPlugins ${rootDir}",
-        "rm -r ${rootDir}/server",
-        "mkdir ${rootDir}/server",
-        "unzip ${rootDir}/TShock${tversion}_Terraria${version}.zip -d ${rootDir}/server",
-        "rm -r ${rootDir}/server/ServerPlugins",
-        "mv ${rootDir}/ServerPlugins ${rootDir}/server",
-        "mkdir ${rootDir}/${wp}",
-        "rm ${rootDir}/TShock${tversion}_Terraria${version}.zip"
+        "mv ./server/ServerPlugins ./",
+        "rm -r ./server",
+        "mkdir ./server",
+        "unzip ./TShock${tversion}_Terraria${version}.zip -d ./server",
+        "rm -r ./server/ServerPlugins",
+        "mv ./ServerPlugins ./server",
+        "mkdir ./${wp}",
+        "rm ./TShock${tversion}_Terraria${version}.zip"
       ],
       "type": "command"
     },
@@ -30,8 +30,8 @@
   ],
   "run": {
     "stop": "exit",
-    "command": "mono ${rootDir}/server/TerrariaServer.exe -ip ${ip} ${steam} ${disableannouncementbox} -announcementboxrange ${abr} -config ${rootDir}/serverconfig.txt",
-    "workingDirectory": "${rootDir}",
+    "command": "mono ./server/TerrariaServer.exe -ip ${ip} ${steam} ${disableannouncementbox} -announcementboxrange ${abr} -config ${rootDir}/serverconfig.txt",
+    "workingDirectory": ".",
     "pre": [
       {
         "target": "serverconfig.txt",
