@@ -1,0 +1,113 @@
+{
+  "display": "MinecraftForge 1.7.10 & 1.8.9 ONLY - Minecraft",
+  "type": "minecraft-java",
+  "install": [
+    {
+      "filename": "",
+      "target": "installer.jar",
+      "type": "forgedl",
+      "version": "${forge-version}-${mc-version}"
+    },
+    {
+      "commands": [
+        "${java} -jar installer.jar --installServer"
+      ],
+      "type": "command"
+    },
+    {
+      "target": "server.properties",
+      "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}\n",
+      "type": "writefile"
+    },
+    {
+      "target": "eula.txt",
+      "text": "eula=${eula}",
+      "type": "writefile"
+    },
+    {
+      "source": "forge-*.jar",
+      "target": "server.jar",
+      "type": "move"
+    }
+  ],
+  "run": {
+    "stop": "stop",
+    "command": "${java} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar server.jar",
+    "workingDirectory": "",
+    "pre": [],
+    "post": [],
+    "environmentVars": {}
+  },
+  "data": {
+    "eula": {
+      "type": "boolean",
+      "desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
+      "display": "EULA Agreement (true/false)",
+      "required": true,
+      "value": false
+    },
+    "forge-version": {
+      "type": "string",
+      "desc": "Version of Forge to install (may be located <a href='http://files.minecraftforge.net/#Downloads'>here</a>)",
+      "display": "Forge Version",
+      "required": true,
+      "value": "1.7.10-10.13.4.1614"
+    },
+    "ip": {
+      "type": "string",
+      "desc": "What IP to bind the server to",
+      "display": "IP",
+      "required": true,
+      "value": "0.0.0.0"
+    },
+    "java": {
+      "type": "string",
+      "desc": "\"java\" for system standard, else direct path to java",
+      "display": "path to java executable",
+      "required": true,
+      "value": "java",
+      "userEdit": true
+    },
+    "mc-version": {
+      "type": "option",
+      "desc": "On which Minecraft Version should forge be installed",
+      "display": "Minecraft Version",
+      "required": true,
+      "value": "1.7.10",
+      "options": [
+        {
+          "value": "1.7.10",
+          "display": "Minecraft 1.7.10"
+        },
+        {
+          "value": "1.8.9",
+          "display": "Minecraft 1.8.9"
+        }
+      ]
+    },
+    "memory": {
+      "type": "integer",
+      "desc": "How much memory in MB to allocate to the Java Heap",
+      "display": "Memory (MB)",
+      "required": true,
+      "value": "1024"
+    },
+    "motd": {
+      "type": "string",
+      "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
+      "display": "MOTD message of the day",
+      "required": true,
+      "value": "A Minecraft Server\\n\\u00A79 hosted on PufferPanel"
+    },
+    "port": {
+      "type": "integer",
+      "desc": "What port to bind the server to",
+      "display": "Port",
+      "required": true,
+      "value": 25565
+    }
+  },
+  "environment": {
+    "type": "standard"
+  }
+}
