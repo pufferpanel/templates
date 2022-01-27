@@ -24,18 +24,18 @@
     },
     {
       "target": "serverconfig.txt",
-      "text": "world=${rootDir}/${wp}/${world}.wld\nautocreate=${size}\nseed=${seed}\nworldname=${world}\ndifficulty=${difficulty}\nmaxplayers=${players}\nport=${port}\npassword=${password}\nmotd=${motd}\nworldpath=${rootDir}/${wp}\nbanlist=${rootDir}/${ban}\nsecure=${secure}\nlanguage=${lang}\nupnp=${upnp}\nnpcstream=${npcs}\npriority=${priority}\nslowliquids=${sl}\nworldrollbackstokeep=${backups}",
+      "text": "world=../${wp}/${world}.wld\nautocreate=${size}\nseed=${seed}\nworldname=${world}\ndifficulty=${difficulty}\nmaxplayers=${players}\nport=${port}\npassword=${password}\nmotd=${motd}\nworldpath=../${wp}\nbanlist=../${ban}\nsecure=${secure}\nlanguage=${lang}\nupnp=${upnp}\nnpcstream=${npcs}\npriority=${priority}\nslowliquids=${sl}\nworldrollbackstokeep=${backups}",
       "type": "writefile"
     }
   ],
   "run": {
     "stop": "exit",
-    "command": "mono ./server/TerrariaServer.exe -ip ${ip} ${steam} ${disableannouncementbox} -announcementboxrange ${abr} -config ${rootDir}/serverconfig.txt",
+    "command": "mono ./server/TerrariaServer.exe -ip ${ip} ${steam} ${disableannouncementbox} -announcementboxrange ${abr} -config ../serverconfig.txt",
     "workingDirectory": ".",
     "pre": [
       {
         "target": "serverconfig.txt",
-        "text": "world=${rootDir}/${wp}/${world}.wld\nautocreate=${size}\nseed=${seed}\nworldname=${world}\ndifficulty=${difficulty}\nmaxplayers=${players}\nport=${port}\npassword=${password}\nmotd=${motd}\nworldpath=${rootDir}/${wp}\nbanlist=${rootDir}/${ban}\nsecure=${secure}\nlanguage=${lang}\nupnp=${upnp}\nnpcstream=${npcs}\npriority=${priority}\nslowliquids=${sl}\nworldrollbackstokeep=${backups}",
+        "text": "world=../${wp}/${world}.wld\nautocreate=${size}\nseed=${seed}\nworldname=${world}\ndifficulty=${difficulty}\nmaxplayers=${players}\nport=${port}\npassword=${password}\nmotd=${motd}\nworldpath=../${wp}\nbanlist=../${ban}\nsecure=${secure}\nlanguage=${lang}\nupnp=${upnp}\nnpcstream=${npcs}\npriority=${priority}\nslowliquids=${sl}\nworldrollbackstokeep=${backups}",
         "type": "writefile"
       }
     ],
