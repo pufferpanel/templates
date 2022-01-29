@@ -82,6 +82,14 @@
         {
           "value": "1.8.9",
           "display": "Minecraft 1.8.9"
+        },
+        {
+          "value": "1.9.0",
+          "display": "Minecraft 1.9"
+        },
+        {
+          "value": "1.9.4"
+          "display": "Minecraft 1.9.4"
         }
       ]
     },
