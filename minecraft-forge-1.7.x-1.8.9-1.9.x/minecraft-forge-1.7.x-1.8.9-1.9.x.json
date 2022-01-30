@@ -1,7 +1,7 @@
 {
-  "display": "Minecraft Forge 1.7.x & 1.8.9 & 1.9.x ONLY - Minecraft",
+  "display": "Minecraft Forge 1.7.x & 1.8.x & 1.9.x ONLY - Minecraft",
   "type": "minecraft-java",
-  "name": "minecraft-forge-1.7.x-1.8.9-1.9.x",
+  "name": "minecraft-forge-1.7.x-1.8.x-1.9.x",
   "install": [
     {
       "filename": "",
@@ -83,6 +83,18 @@
         {
           "value": "1.7.10",
           "display": "Minecraft 1.7.10"
+        },
+        {
+          "value": "1.7.10_pre4",
+          "display": "Minecraft 1.7.10_pre4 - Fot this you need to add ´-prerelease´ to your Forge Version"
+        },
+        {
+          "value": "1.8.8",
+          "display": "Minecraft 1.8.8"
+        },
+        {
+          "value": "1.8",
+          "display": "Minecraft 1.8"
         },
         {
           "value": "1.8.9",
