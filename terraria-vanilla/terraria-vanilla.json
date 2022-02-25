@@ -180,7 +180,7 @@
       "desc": "Server Version",
       "display": "Server Version (Set this to the latest server version) - It is the current terraria Version without the Points (Client Version: 1.4.3.2 -> Server Version: 1432)",
       "required": true,
-      "value": "1432"
+      "value": "1434"
     },
     "world": {
       "type": "string",
