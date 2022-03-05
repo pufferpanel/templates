@@ -172,7 +172,7 @@
       "desc": "TShock Version",
       "display": "TShock Version (Set this to the latest server version - see here https://github.com/Pryaxis/TShock/releases/latest)",
       "required": true,
-      "value": "4.5.14"
+      "value": "4.5.15"
     },
     "upnp": {
       "type": "string",
@@ -186,7 +186,7 @@
       "desc": "Server Version",
       "display": "Server Version (Set this to the latest server version)",
       "required": true,
-      "value": "1.4.3.4"
+      "value": "1.4.3.5"
     },
     "world": {
       "type": "string",
