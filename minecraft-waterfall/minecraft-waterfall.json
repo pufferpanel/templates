@@ -34,7 +34,7 @@
       "desc": "Build number",
       "display": "build",
       "required": true,
-      "value": "477"
+      "value": "480"
     },
     "ip": {
       "type": "string",
@@ -88,7 +88,7 @@
       "type": "standard"
     },
     {
-      "image": "openjdk:8-alpine",
+      "image": "amazoncorretto:17-alpine",
       "type": "docker"
     }
   ]
