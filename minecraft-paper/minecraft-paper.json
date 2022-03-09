@@ -51,14 +51,14 @@
       "userEdit": true
     },
     "version": {
-      "value": "1.16.5",
+      "value": "1.18.2",
       "required": true,
       "desc": "Version of Minecraft to install (<a href='https://papermc.io/downloads'>Paper maintained versions</a>). Must be specified as a release number, e.g. 1.16.5",
       "display": "Version",
       "internal": false
     },
     "build": {
-      "value": "634",
+      "value": "237",
       "required": true,
       "desc": "Build of Paper to install (<a href='https://papermc.io/downloads'>Paper version build</a>). Must be specified as a build number, e.g. 484",
       "display": "build",
