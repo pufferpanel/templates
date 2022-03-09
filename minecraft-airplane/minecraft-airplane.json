@@ -37,7 +37,7 @@
     },
     {
       "type": "docker",
-      "image": "amazoncorretto:17"
+      "image": "amazoncorretto:17-alpine"
     }
   ],
   "data": {
