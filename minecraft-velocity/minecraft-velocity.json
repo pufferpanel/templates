@@ -1,6 +1,13 @@
 {
     "type": "minecraft-java",
     "data": {
+        "build": {
+          "type": "string",
+          "desc": "Build number",
+          "display": "build",
+          "required": true,
+          "value": "121"
+        },
         "java": {
             "value": "java",
             "required": true,
@@ -43,7 +50,7 @@
             "desc": "Version of Velocity to install.",
             "display": "Version",
             "required": true,
-            "value": "1.1.4"
+            "value": "3.1.2-SNAPSHOT"
         }
     },
     "display": "Velocity - Minecraft",
@@ -53,7 +60,7 @@
     "install": [
         {
             "files": [
-                "https://versions.velocitypowered.com/download/${version}.jar"
+                "https://papermc.io/api/v2/projects/velocity/versions/${version}/builds/${build}/downloads/velocity-${version}-${build}.jar"
             ],
             "type": "download"
         },
@@ -76,9 +83,13 @@
         "post": []
     },
     "supportedEnvironments": [
-        {
-            "type": "standard"
-        }
-    ],
+      {
+        "type": "standard"
+      },
+      {
+        "image": "amazoncorretto:17-alpine",
+        "type": "docker"
+      }
+    ]
     "name": "minecraft-velocity"
 }
