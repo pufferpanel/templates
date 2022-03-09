@@ -37,7 +37,7 @@
     },
     {
       "type": "docker",
-      "image": "openjdk:8-alpine"
+      "image": "amazoncorretto:17-alpine"
     }
   ],
   "data": {
