@@ -28,7 +28,7 @@
     "stop": "stop",
     "pre": [],
     "post": [],
-    "command": "${java} --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.net=ALL-UNNAMED -Djava.util.concurrent.ForkJoinPool.common.parallelism=1 -Dlog4j2.formatMsgNoLookups=true -DGeyserSkinManager.ForceShowSkins=true -Xmx${memory}M -Xms${memory}M -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true --add-modules=jdk.incubator.vector -Dterminal.jline=false -Dterminal.ansi=true @user_jvm_args.txt @libraries/net/minecraftforge/forge/1.18.2-40.0.12/unix_args.txt '$@' nogui"
+    "command": "${java} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/minecraftforge/forge/${version}/unix_args.txt nogui"
   },
   "environment": {
     "type": "standard"
