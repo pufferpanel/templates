@@ -106,7 +106,7 @@
         },
         {
             "type": "docker",
-            "image": "openjdk:16"
+            "image": "amazoncorretto:17-alpine"
         }
     ],
     "name": "minecraft-fabric"
