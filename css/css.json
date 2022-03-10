@@ -4,7 +4,7 @@
   "install": [
     {
       "type": "download",
-      "files":"http://media.steampowered.com/installer/steamcmd_linux.tar.gz"
+      "files": "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"
     },
     {
       "type": "mkdir",
