@@ -133,7 +133,7 @@
         },
         {
             "files": [
-                "http://media.steampowered.com/client/steamcmd_linux.tar.gz"
+                "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"
             ],
             "type": "download"
         },
