@@ -1,1 +1,1 @@
-#Rust Public Server Template
+# Rust Public Server Template
