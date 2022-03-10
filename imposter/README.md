@@ -7,8 +7,9 @@ Just install the Server. Enter the IP in the Client, restart Amoung Us and then 
 You can find the Source & the Releases here: https://github.com/AeonLucid/Impostor
 
 ## Install the dependencies:
-
+```sh
 apt-get install tar
+```
 
 ## Notes
 
