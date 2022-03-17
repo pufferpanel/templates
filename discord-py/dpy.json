@@ -11,12 +11,8 @@
       }
     ],
     "run": {
-      "stop": "",
-      "command": "python3 ${bot-py-file}",
-      "workingDirectory": "",
-      "pre": [],
-      "post": [],
-      "environmentVars": {}
+      "stop": "stop",
+      "command": "python3 ${bot-py-file}"
     },
     "data": {
       "bot-py-file": {
