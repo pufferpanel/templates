@@ -187,7 +187,7 @@
       "desc": "tModLoader Version",
       "display": "tModLoader Version (Set this to the latest tModLoader version - see https://github.com/tModLoader/tModLoader/releases/latest)",
       "required": true,
-      "value": "0.11.8.7"
+      "value": "0.11.8.8"
     },
     "upnp": {
       "type": "string",
