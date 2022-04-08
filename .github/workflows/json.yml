@@ -3,6 +3,7 @@ name: JSON check
 on:
   push:
   pull_request:
+  workflow_dispatch:
 
 jobs:
   test-json:
