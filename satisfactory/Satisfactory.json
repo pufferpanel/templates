@@ -25,11 +25,6 @@
         "mkdir -p ./FactoryGame/Saved/Config/LinuxServer/"
       ],
       "type": "command"
-    },
-    {
-      "target": "./FactoryGame/Saved/Config/LinuxServer/Game.ini",
-      "text": "[/Script/Engine.GameSession]\nMaxPlayers=${maxplayer}",
-      "type": "writefile"
     }
   ],
   "run": {
@@ -79,14 +74,6 @@
           "display": "yes"
         }
       ]
-    },
-    "maxplayer": {
-      "type": "integer",
-      "desc": "Maximal Player Count (Default: 4)",
-      "display": "Max Player",
-      "required": true,
-      "value": "4",
-      "userEdit": true
     },
     "multihome": {
       "type": "string",
