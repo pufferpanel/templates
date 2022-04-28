@@ -75,13 +75,13 @@
       "type": "string",
       "desc": "The message displayed when someone joins the server for the first time",
       "display": "Server First Join Message",
+      "value": "Welcome!",
       "userEdit": true
     },
     "password": {
       "type": "string",
       "desc": "Password for the server",
       "display": "Server Password",
-      "required": true,
       "value": "",
       "userEdit": true
     },
@@ -97,6 +97,7 @@
       "type": "string",
       "desc": "The message displayed when a returning player joins the server",
       "display": "Returning Join Message",
+      "value": "Welcome Back",
       "userEdit": true
     },
     "servername": {
@@ -104,7 +105,7 @@
       "desc": "The name for the server",
       "display": "Server Name",
       "required": true,
-      "value": "My Server using PufferPanel",
+      "value": "My Survive The Nights Server using PufferPanel",
       "userEdit": true
     }
   },
