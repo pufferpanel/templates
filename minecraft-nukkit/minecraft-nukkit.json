@@ -1,8 +1,7 @@
 {
   "type": "minecraft-bedrock",
   "display": "Nukkit - Minecraft Bedrock",
-  "install": [
-    {
+  "install": [{
       "type": "download",
       "files": "https://ci.nukkitx.com/job/NukkitX/job/Nukkit/job/master/lastSuccessfulBuild/artifact/target/nukkit-1.0-SNAPSHOT.jar"
     },
@@ -31,8 +30,7 @@
   "environment": {
     "type": "standard"
   },
-  "supportedEnvironments": [
-    {
+  "supportedEnvironments": [{
       "type": "standard"
     },
     {
@@ -80,6 +78,8 @@
       "display": "MOTD message of the day",
       "internal": false
     }
+  },
+  "requirements": {
+    "binaries": ["${java}"]
   }
 }
-

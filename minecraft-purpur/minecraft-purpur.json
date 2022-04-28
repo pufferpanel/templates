@@ -1,8 +1,7 @@
 {
   "type": "minecraft-java",
   "display": "Purpur - Minecraft",
-  "install": [
-    {
+  "install": [{
       "type": "download",
       "files": "https://api.purpurmc.org/v2/purpur/${version}/latest/download"
     },
@@ -31,8 +30,7 @@
   "environment": {
     "type": "standard"
   },
-  "supportedEnvironments": [
-    {
+  "supportedEnvironments": [{
       "type": "standard"
     },
     {
@@ -95,5 +93,8 @@
       "display": "MOTD message of the day",
       "internal": false
     }
+  },
+  "requirements": {
+    "binaries": ["${java}"]
   }
 }

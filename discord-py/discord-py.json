@@ -1,46 +1,46 @@
 {
-    "name": "Discord Python Bot",
-    "display": "discord.py",
-    "type": "python",
-    "install": [
-      {
-        "commands": [
-          "python3 -m pip install -r ${req-txt-file}"
-        ],
-        "type": "command"
-      }
+  "name": "Discord Python Bot",
+  "display": "discord.py",
+  "type": "python",
+  "install": [{
+    "commands": [
+      "python3 -m pip install -r ${req-txt-file}"
     ],
-    "run": {
-      "stop": "stop",
-      "command": "python3 ${bot-py-file}"
+    "type": "command"
+  }],
+  "run": {
+    "stop": "stop",
+    "command": "python3 ${bot-py-file}"
+  },
+  "data": {
+    "bot-py-file": {
+      "type": "string",
+      "desc": "The main bot file.",
+      "display": "Main bot file",
+      "required": true,
+      "value": "bot.py"
     },
-    "data": {
-      "bot-py-file": {
-        "type": "string",
-        "desc": "The main bot file.",
-        "display": "Main bot file",
-        "required": true,
-        "value": "bot.py"
-      },
-      "req-txt-file": {
-        "type": "string",
-        "desc": "The file used to install the python libs.",
-        "display": "Requirements txt file",
-        "required": true,
-        "value": "requirements.txt"
-      }
+    "req-txt-file": {
+      "type": "string",
+      "desc": "The file used to install the python libs.",
+      "display": "Requirements txt file",
+      "required": true,
+      "value": "requirements.txt"
+    }
+  },
+  "environment": {
+    "type": "standard"
+  },
+  "supportedEnvironments": [{
+      "type": "standard"
     },
-    "environment": {
-        "type": "standard"
-    },
-    "supportedEnvironments": [
-      {
-        "type": "standard"
-      },
-      {
-        "image": "python",
-        "networkMode": "host",
-        "type": "docker"
-      }
-    ]
+    {
+      "image": "python",
+      "networkMode": "host",
+      "type": "docker"
+    }
+  ],
+  "requirements": {
+    "binaries": ["python3"]
   }
+}

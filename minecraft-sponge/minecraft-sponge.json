@@ -1,8 +1,7 @@
 {
   "type": "minecraft-java",
   "display": "SpongeForge - Minecraft",
-  "install": [
-    {
+  "install": [{
       "type": "spongeforgedl",
       "releaseType": "${releaseType}"
     },
@@ -51,8 +50,7 @@
   "environment": {
     "type": "standard"
   },
-  "supportedEnvironments": [
-    {
+  "supportedEnvironments": [{
       "type": "standard"
     },
     {
@@ -122,5 +120,8 @@
       "display": "JVM Arguments",
       "internal": false
     }
+  },
+  "requirements": {
+    "binaries": ["${java}"]
   }
 }

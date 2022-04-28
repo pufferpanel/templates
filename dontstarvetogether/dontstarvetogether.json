@@ -71,8 +71,7 @@
             "value": "",
             "userEdit": true,
             "type": "option",
-            "options": [
-                {
+            "options": [{
                     "value": "survival",
                     "display": "Survival"
                 },
@@ -93,8 +92,7 @@
             "value": "",
             "userEdit": true,
             "type": "option",
-            "options": [
-                {
+            "options": [{
                     "value": "social",
                     "display": "Social"
                 },
@@ -114,8 +112,7 @@
         }
     },
     "display": "Dont Starve Together",
-    "install": [
-        {
+    "install": [{
             "files": [
                 "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"
             ],
@@ -160,10 +157,12 @@
         "pre": [],
         "post": []
     },
-    "supportedEnvironments": [
-        {
-            "type": "standard"
-        }
-    ],
-    "name": "dontstarvetogether"
+    "supportedEnvironments": [{
+        "type": "standard"
+    }],
+    "name": "dontstarvetogether",
+    "requirements": {
+        "os": "linux",
+        "arch": "amd64"
+    }
 }

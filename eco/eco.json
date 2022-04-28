@@ -1,8 +1,7 @@
 {
   "type": "eco",
   "display": "ECO – Global Survival (via mono)",
-  "install": [
-    {
+  "install": [{
       "type": "download",
       "files": [
         "https://s3-us-west-2.amazonaws.com/eco-releases/EcoServer_v${serverVersion}.zip"
@@ -17,8 +16,7 @@
     },
     {
       "type": "writefile",
-      "metadata": {
-      },
+      "metadata": {},
       "target": "Configs/Network.eco",
       "text": "{\n  \"PublicServer\": false,\n  \"Password\": \"${password}\",\n  \"Description\": \"\",\n  \"IPAddress\": \"${ip}\",\n  \"GameServerPort\": ${port},\n  \"WebServerPort\": ${webServerPort},\n  \"Rate\": 10,\n  \"MaxConnections\": -1\n}"
     }
@@ -67,5 +65,10 @@
       "display": "Server Version",
       "internal": false
     }
+  },
+  "requirements": {
+    "binaries": ["unzip", "mono"],
+    "arch": "amd64",
+    "os": "linux"
   }
 }

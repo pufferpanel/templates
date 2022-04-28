@@ -42,8 +42,7 @@
         }
     },
     "display": "Imposter",
-    "install": [
-        {
+    "install": [{
             "files": [
                 "https://github.com/AeonLucid/Impostor/releases/download/v${version}/Impostor-Server_${version}_linux-x64.tar.gz"
             ],
@@ -77,10 +76,13 @@
         "pre": [],
         "post": []
     },
-    "supportedEnvironments": [
-        {
-            "type": "standard"
-        }
-    ],
-    "name": "imposter"
+    "supportedEnvironments": [{
+        "type": "standard"
+    }],
+    "name": "imposter",
+    "requirements": {
+        "binaries": ["tar"],
+        "os": "linux",
+        "arch": "amd64"
+    }
 }

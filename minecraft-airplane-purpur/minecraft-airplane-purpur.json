@@ -1,8 +1,7 @@
 {
   "type": "minecraft-java",
   "display": "Airplane - Minecraft 1.17.1",
-  "install": [
-    {
+  "install": [{
       "type": "download",
       "files": "https://airplane.gg/dl/launcher-airplanepurpur1.17.1.jar"
     },
@@ -31,8 +30,7 @@
   "environment": {
     "type": "standard"
   },
-  "supportedEnvironments": [
-    {
+  "supportedEnvironments": [{
       "type": "standard"
     },
     {
@@ -88,5 +86,8 @@
       "display": "MOTD message of the day",
       "internal": false
     }
+  },
+  "requirements": {
+    "binaries": ["${java}"]
   }
 }

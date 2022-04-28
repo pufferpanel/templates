@@ -54,8 +54,7 @@
         }
     },
     "display": "Fabric - Minecraft",
-    "install": [
-        {
+    "install": [{
             "type": "fabricdl"
         },
         {
@@ -100,8 +99,7 @@
         "pre": [],
         "post": []
     },
-    "supportedEnvironments": [
-        {
+    "supportedEnvironments": [{
             "type": "standard"
         },
         {
@@ -109,5 +107,8 @@
             "image": "openjdk:16"
         }
     ],
-    "name": "minecraft-fabric"
+    "name": "minecraft-fabric",
+    "requirements": {
+        "binaries": ["${java}"]
+    }
 }

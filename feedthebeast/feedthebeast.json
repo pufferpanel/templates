@@ -113,5 +113,8 @@
       "internal": false,
       "type": "integer"
     }
+  },
+  "requirements": {
+    "binaries": ["${java}"]
   }
 }

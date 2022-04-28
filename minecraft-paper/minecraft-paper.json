@@ -1,8 +1,7 @@
 {
   "type": "minecraft-java",
   "display": "Paper - Minecraft",
-  "install": [
-    {
+  "install": [{
       "type": "download",
       "files": "https://papermc.io/api/v2/projects/paper/versions/${version}/builds/${build}/downloads/paper-${version}-${build}.jar"
     },
@@ -31,8 +30,7 @@
   "environment": {
     "type": "standard"
   },
-  "supportedEnvironments": [
-    {
+  "supportedEnvironments": [{
       "type": "standard"
     },
     {
@@ -102,5 +100,8 @@
       "display": "MOTD message of the day",
       "internal": false
     }
+  },
+  "requirements": {
+    "binaries": ["${java}"]
   }
 }

@@ -38,8 +38,7 @@
     "environment": {
         "type": "tty"
     },
-    "install": [
-        {
+    "install": [{
             "files": [
                 "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"
             ],
@@ -70,10 +69,12 @@
         "pre": [],
         "post": []
     },
-    "supportedEnvironments": [
-        {
-            "type": "tty"
-        }
-    ],
-    "name": "Valheim"
+    "supportedEnvironments": [{
+        "type": "tty"
+    }],
+    "name": "Valheim",
+    "requirements": {
+        "os": "linux",
+        "arch": "amd64"
+    }
 }

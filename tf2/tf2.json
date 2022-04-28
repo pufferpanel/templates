@@ -1,8 +1,7 @@
 {
   "type": "srcds",
   "display": "Team Fortress 2",
-  "install": [
-    {
+  "install": [{
       "type": "download",
       "files": "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"
     },
@@ -29,8 +28,7 @@
   "environment": {
     "type": "tty"
   },
-  "supportedEnvironments": [
-    {
+  "supportedEnvironments": [{
       "type": "tty"
     },
     {
@@ -61,5 +59,9 @@
       "internal": false,
       "type": "integer"
     }
+  },
+  "requirements": {
+    "os": "linux",
+    "arch": "amd64"
   }
 }

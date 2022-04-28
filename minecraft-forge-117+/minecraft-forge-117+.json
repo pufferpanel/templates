@@ -1,8 +1,7 @@
 {
   "type": "minecraft-java",
   "display": "MinecraftForge 1.17+ - Minecraft",
-  "install": [
-    {
+  "install": [{
       "type": "forgedl",
       "version": "${version}",
       "target": "installer.jar"
@@ -33,8 +32,7 @@
   "environment": {
     "type": "standard"
   },
-  "supportedEnvironments": [
-    {
+  "supportedEnvironments": [{
       "type": "standard"
     },
     {
@@ -97,5 +95,8 @@
       "display": "MOTD message of the day",
       "internal": false
     }
+  },
+  "requirements": {
+    "binaries": ["${java}"]
   }
 }

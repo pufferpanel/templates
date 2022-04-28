@@ -2,8 +2,7 @@
   "name": "Satisfactory",
   "display": "Satisfactory Dedicated Server",
   "type": "satisfactory",
-  "install": [
-    {
+  "install": [{
       "files": [
         "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"
       ],
@@ -46,8 +45,7 @@
       "display": "GameType",
       "required": true,
       "userEdit": true,
-      "options": [
-        {
+      "options": [{
           "value": "public",
           "display": "Public branch"
         },
@@ -64,8 +62,7 @@
       "required": true,
       "value": "false",
       "userEdit": true,
-      "options": [
-        {
+      "options": [{
           "value": "",
           "display": "no"
         },
@@ -93,9 +90,11 @@
   "environment": {
     "type": "tty"
   },
-  "supportedEnvironments": [
-    {
-      "type": "tty"
-    }
-  ]
+  "supportedEnvironments": [{
+    "type": "tty"
+  }],
+  "requirements": {
+    "os": "linux",
+    "arch": "amd64"
+  }
 }

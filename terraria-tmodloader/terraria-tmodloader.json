@@ -2,8 +2,7 @@
   "name": "terraria-tModLoader",
   "display": "Terraria - tModLoader",
   "type": "terraria",
-  "install": [
-    {
+  "install": [{
       "files": [
         "https://github.com/tModLoader/tModLoader/releases/download/v${tversion}/tModLoader.Linux.v${tversion}.tar.gz"
       ],
@@ -46,13 +45,11 @@
     "stop": "exit",
     "command": "./server/tModLoaderServer -ip ${ip} ${disableannouncementbox} -announcementboxrange ${abr} -config ../serverconfig.txt",
     "workingDirectory": "",
-    "pre": [
-      {
-        "target": "serverconfig.txt",
-        "text": "world=../${wp}/${world}.wld\nautocreate=${size}\nseed=${seed}\nworldname=${world}\ndifficulty=${difficulty}\nmaxplayers=${players}\nport=${port}\npassword=${password}\nmotd=${motd}\nworldpath=../${wp}\nbanlist=../${ban}\nsecure=${secure}\nlanguage=${lang}\nupnp=${upnp}\nnpcstream=${npcs}\npriority=${priority}\nslowliquids=${sl}\nworldrollbackstokeep=${backups}",
-        "type": "writefile"
-      }
-    ],
+    "pre": [{
+      "target": "serverconfig.txt",
+      "text": "world=../${wp}/${world}.wld\nautocreate=${size}\nseed=${seed}\nworldname=${world}\ndifficulty=${difficulty}\nmaxplayers=${players}\nport=${port}\npassword=${password}\nmotd=${motd}\nworldpath=../${wp}\nbanlist=../${ban}\nsecure=${secure}\nlanguage=${lang}\nupnp=${upnp}\nnpcstream=${npcs}\npriority=${priority}\nslowliquids=${sl}\nworldrollbackstokeep=${backups}",
+      "type": "writefile"
+    }],
     "post": [],
     "environmentVars": {}
   },
@@ -214,9 +211,11 @@
   "environment": {
     "type": "tty"
   },
-  "supportedEnvironments": [
-    {
-      "type": "tty"
-    }
-  ]
+  "supportedEnvironments": [{
+    "type": "tty"
+  }],
+  "requirements": {
+    "os": "linux",
+    "arch": "amd64"
+  }
 }

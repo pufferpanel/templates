@@ -135,8 +135,7 @@
         }
     },
     "display": "SA-MP",
-    "install": [
-        {
+    "install": [{
             "files": [
                 "http://files.sa-mp.com/samp037svr_R2-1.tar.gz"
             ],
@@ -162,10 +161,12 @@
         "pre": [],
         "post": []
     },
-    "supportedEnvironments": [
-        {
-            "type": "tty"
-        }
-    ],
-    "name": "SAMP(Linux)"
+    "supportedEnvironments": [{
+        "type": "tty"
+    }],
+    "name": "SAMP(Linux)",
+    "requirements": {
+        "os": "linux",
+        "arch": "amd64"
+    }
 }

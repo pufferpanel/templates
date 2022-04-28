@@ -1,14 +1,12 @@
 {
   "type": "minecraft-java",
   "display": "FlameCord - Minecraft",
-  "install": [
-    {
-      "files": [
-        "https://github.com/2lstudios-mc/FlameCord/releases/latest/download/FlameCord.jar"
-      ],
-      "type": "download"
-    }
-  ],
+  "install": [{
+    "files": [
+      "https://github.com/2lstudios-mc/FlameCord/releases/latest/download/FlameCord.jar"
+    ],
+    "type": "download"
+  }],
   "run": {
     "stop": "end",
     "pre": [],
@@ -18,8 +16,7 @@
   "environment": {
     "type": "standard"
   },
-  "supportedEnvironments": [
-    {
+  "supportedEnvironments": [{
       "type": "standard"
     },
     {
@@ -58,5 +55,8 @@
       "display": "MOTD message of the day",
       "internal": false
     }
+  },
+  "requirements": {
+    "binaries": ["java"]
   }
 }

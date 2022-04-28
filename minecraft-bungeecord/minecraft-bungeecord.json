@@ -1,8 +1,7 @@
 {
   "type": "minecraft-java",
   "display": "Bungeecord - Minecraft",
-  "install": [
-    {
+  "install": [{
       "files": "http://ci.md-5.net/job/BungeeCord/lastSuccessfulBuild/artifact/bootstrap/target/BungeeCord.jar",
       "type": "download"
     },
@@ -21,8 +20,7 @@
   "environment": {
     "type": "standard"
   },
-  "supportedEnvironments": [
-    {
+  "supportedEnvironments": [{
       "type": "standard"
     },
     {
@@ -70,5 +68,8 @@
       "display": "MOTD message of the day",
       "internal": false
     }
+  },
+  "requirements": {
+    "binaries": ["${java}"]
   }
 }

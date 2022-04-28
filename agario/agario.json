@@ -1,8 +1,7 @@
 {
   "type": "agario",
   "display": "Agario Server",
-  "install": [
-    {
+  "install": [{
       "type": "command",
       "commands": [
         "git clone git://github.com/Megabyte918/MultiOgarII.git .",
@@ -24,11 +23,9 @@
   "environment": {
     "type": "standard"
   },
-  "supportedEnvironments": [
-    {
-      "type": "standard"
-    }
-  ],
+  "supportedEnvironments": [{
+    "type": "standard"
+  }],
   "data": {
     "logverbosity": {
       "value": "4",
@@ -37,8 +34,7 @@
       "display": "Console Log Verbosity",
       "internal": false,
       "type": "option",
-      "options": [
-        {
+      "options": [{
           "value": "0",
           "display": "None"
         },
@@ -71,8 +67,7 @@
       "display": "File Log Verbosity",
       "internal": false,
       "type": "option",
-      "options": [
-        {
+      "options": [{
           "value": "0",
           "display": "None"
         },
@@ -144,8 +139,7 @@
       "display": "Gamemode",
       "internal": false,
       "type": "option",
-      "options": [
-        {
+      "options": [{
           "value": "0",
           "display": "FFA"
         },
@@ -224,8 +218,7 @@
       "display": "Mobile Physics",
       "internal": false,
       "type": "option",
-      "options": [
-        {
+      "options": [{
           "value": "0",
           "display": "No"
         },
@@ -242,8 +235,7 @@
       "display": "Bad Word Filter",
       "internal": false,
       "type": "option",
-      "options": [
-        {
+      "options": [{
           "value": "0",
           "display": "No"
         },
@@ -275,8 +267,7 @@
       "display": "Server Chat",
       "internal": false,
       "type": "option",
-      "options": [
-        {
+      "options": [{
           "value": "0",
           "display": "No"
         },
@@ -293,8 +284,7 @@
       "display": "Server ASCII Chat",
       "internal": false,
       "type": "option",
-      "options": [
-        {
+      "options": [{
           "value": "0",
           "display": "No"
         },
@@ -311,8 +301,7 @@
       "display": "Team Chat",
       "internal": false,
       "type": "option",
-      "options": [
-        {
+      "options": [{
           "value": "0",
           "display": "No"
         },
@@ -389,8 +378,7 @@
       "display": "Scramble Level",
       "internal": false,
       "type": "option",
-      "options": [
-        {
+      "options": [{
           "value": "0",
           "display": "None"
         },
@@ -415,8 +403,7 @@
       "display": "Player Bot Growth Limit",
       "internal": false,
       "type": "option",
-      "options": [
-        {
+      "options": [{
           "value": "0",
           "display": "No"
         },
@@ -487,8 +474,7 @@
       "display": "Food Mass Growth",
       "internal": false,
       "type": "option",
-      "options": [
-        {
+      "options": [{
           "value": "0",
           "display": "No"
         },
@@ -590,8 +576,7 @@
       "display": "Eject Virus",
       "internal": false,
       "type": "option",
-      "options": [
-        {
+      "options": [{
           "value": "0",
           "display": "No"
         },
@@ -660,8 +645,7 @@
       "display": "Player Speed Multiplier",
       "internal": false,
       "type": "option",
-      "options": [
-        {
+      "options": [{
           "value": "1",
           "display": "Default"
         },
@@ -739,8 +723,7 @@
       "display": "Minion Team Collision",
       "internal": false,
       "type": "integer",
-      "options": [
-        {
+      "options": [{
           "value": "0",
           "display": "No"
         },
@@ -757,8 +740,7 @@
       "display": "Disable ERTP",
       "internal": false,
       "type": "option",
-      "options": [
-        {
+      "options": [{
           "value": "0",
           "display": "Enable"
         },
@@ -775,8 +757,7 @@
       "display": "Disable Q",
       "internal": false,
       "type": "option",
-      "options": [
-        {
+      "options": [{
           "value": "0",
           "display": "Enable"
         },
@@ -801,8 +782,7 @@
       "display": "Minion Pellet Collection",
       "internal": false,
       "type": "option",
-      "options": [
-        {
+      "options": [{
           "value": "0",
           "display": "No"
         },
@@ -826,8 +806,7 @@
       "display": "Minion Leaderboard Display",
       "internal": false,
       "type": "option",
-      "options": [
-        {
+      "options": [{
           "value": "0",
           "display": "No"
         },
@@ -893,5 +872,8 @@
       "internal": false,
       "type": "integer"
     }
+  },
+  "requirements": {
+    "binaries": ["git", "npm", "node"]
   }
 }

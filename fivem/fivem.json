@@ -2,8 +2,7 @@
   "name": "FiveM",
   "display": "FiveM",
   "type": "gta",
-  "install": [
-    {
+  "install": [{
       "target": "install.sh",
       "text": "#!/bin/bash\n\n# artifacts installer\nwget ${artifacts}\ntar xf fx.tar.xz\n\n#cfx server data setup\nmkdir -p server-data\ngit clone --quiet https://github.com/citizenfx/cfx-server-data.git ./server-data\n\nchmod +x ./run.sh\n\n#cleanup\nrm -f fx.tar.xz\nrm -f .wget-hsts",
       "type": "writefile"
@@ -87,9 +86,11 @@
   "environment": {
     "type": "standard"
   },
-  "supportedEnvironments": [
-    {
-      "type": "standard"
-    }
-  ]
+  "supportedEnvironments": [{
+    "type": "standard"
+  }],
+  "requirements": {
+    "binaries": ["bash", "git"],
+    "os": "linux"
+  }
 }

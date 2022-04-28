@@ -1,8 +1,7 @@
 {
   "type": "ark",
   "display": "ARK: Survival Evolved",
-  "install": [
-    {
+  "install": [{
       "type": "download",
       "files": "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"
     },
@@ -27,8 +26,7 @@
   "environment": {
     "type": "tty"
   },
-  "supportedEnvironments": [
-    {
+  "supportedEnvironments": [{
       "type": "tty"
     },
     {
@@ -96,8 +94,7 @@
       "required": false,
       "value": "",
       "type": "option",
-      "options": [
-        {
+      "options": [{
           "value": "",
           "display": "No"
         },
@@ -107,5 +104,9 @@
         }
       ]
     }
+  },
+  "requirements": {
+    "os": "linux",
+    "arch": "amd64"
   }
 }

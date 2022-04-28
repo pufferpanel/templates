@@ -1,8 +1,7 @@
 {
   "type": "minecraft-java",
   "display": "MinecraftForge 1.16 or older - Minecraft",
-  "install": [
-    {
+  "install": [{
       "type": "forgedl",
       "version": "${version}${mc-version}",
       "target": "installer.jar"
@@ -38,8 +37,7 @@
   "environment": {
     "type": "standard"
   },
-  "supportedEnvironments": [
-    {
+  "supportedEnvironments": [{
       "type": "standard"
     },
     {
@@ -101,8 +99,7 @@
       "display": "Minecraft Version",
       "required": true,
       "value": "",
-      "options": [
-        {
+      "options": [{
           "value": "",
           "display": "Any other version"
         },
@@ -139,5 +136,8 @@
       "display": "MOTD message of the day",
       "internal": false
     }
+  },
+  "requirements": {
+    "binaries": ["${java}"]
   }
 }

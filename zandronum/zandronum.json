@@ -1,8 +1,7 @@
 {
   "type": "doom",
   "display": "Zandronum",
-  "install": [
-    {
+  "install": [{
       "type": "download",
       "files": [
         "https://zandronum.com/downloads/zandronum${version}-linux-${arch}.tar.bz2",
@@ -40,8 +39,7 @@
   "environment": {
     "type": "standard"
   },
-  "supportedEnvironments": [
-    {
+  "supportedEnvironments": [{
       "type": "standard"
     },
     {
@@ -64,11 +62,13 @@
       "display": "Architecture",
       "internal": false,
       "type": "option",
-      "options": [
-        {
-          "value": "x86_64"
-        }
-      ]
+      "options": [{
+        "value": "x86_64"
+      }]
     }
+  },
+  "requirements": {
+    "os": "linux",
+    "arch": "amd64"
   }
 }

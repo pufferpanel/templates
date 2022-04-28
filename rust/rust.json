@@ -1,8 +1,7 @@
 {
   "type": "srcds",
   "display": "Rust Public Server",
-  "install": [
-    {
+  "install": [{
       "type": "download",
       "files": "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"
     },
@@ -20,14 +19,12 @@
   ],
   "run": {
     "stopCode": 2,
-    "pre": [
-      {
-        "type": "command",
-        "commands": [
-          "steamcmd/steamcmd.sh +login anonymous +force_install_dir .. +app_update 258550 +quit"
-        ]
-      }
-    ],
+    "pre": [{
+      "type": "command",
+      "commands": [
+        "steamcmd/steamcmd.sh +login anonymous +force_install_dir .. +app_update 258550 +quit"
+      ]
+    }],
     "post": [],
     "command": "./RustDedicated -nographics -batchmode +server.port ${port} +server.level \"${ServerLevel}\" +server.seed ${ServerSeed} +server.worldsize ${WorldSize} +server.maxplayers ${MaxPlayers} +server.hostname \"${ServerName}\" +server.description \"${Description}\" +server.headerimage \"${ServerImage}\" +server.url \"${URL}\" +server.identity \"${ServerIdentity}\" +rcon.port ${RConPort} +rcon.password ${RConPassword} +rcon.web 1 -logfile 2>&1",
     "environmentVars": {
@@ -37,8 +34,7 @@
   "environment": {
     "type": "tty"
   },
-  "supportedEnvironments": [
-    {
+  "supportedEnvironments": [{
       "type": "tty"
     },
     {
@@ -142,5 +138,9 @@
       "display": "RCON Password",
       "internal": false
     }
+  },
+  "requirements": {
+    "os": "linux",
+    "arch": "amd64"
   }
 }

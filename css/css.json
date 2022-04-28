@@ -1,10 +1,9 @@
 {
   "type": "css",
   "display": "Counter Strike: Source",
-  "install": [
-    {
+  "install": [{
       "type": "download",
-      "files":"http://media.steampowered.com/installer/steamcmd_linux.tar.gz"
+      "files": "http://media.steampowered.com/installer/steamcmd_linux.tar.gz"
     },
     {
       "type": "mkdir",
@@ -29,8 +28,7 @@
   "environment": {
     "type": "tty"
   },
-  "supportedEnvironments": [
-    {
+  "supportedEnvironments": [{
       "type": "tty"
     },
     {
@@ -93,5 +91,9 @@
       "internal": false,
       "type": "integer"
     }
+  },
+  "requirements": {
+    "os": "linux",
+    "arch": "amd64"
   }
 }

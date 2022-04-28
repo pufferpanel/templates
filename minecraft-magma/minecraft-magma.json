@@ -58,8 +58,7 @@
         }
     },
     "display": "Magma - Minecraft",
-    "install": [
-        {
+    "install": [{
             "files": [
                 "https://github.com/magmafoundation/Magma/releases/download/v${version}/Magma-${version}-server.jar"
             ],
@@ -89,10 +88,11 @@
         "post": [],
         "stop": "stop"
     },
-    "supportedEnvironments": [
-        {
-            "type": "standard"
-        }
-    ],
-    "name": "minecraft-magma"
+    "supportedEnvironments": [{
+        "type": "standard"
+    }],
+    "name": "minecraft-magma",
+    "requirements": {
+        "binaries": ["${java}"]
+    }
 }

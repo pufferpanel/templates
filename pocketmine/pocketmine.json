@@ -1,8 +1,7 @@
 {
   "type": "minecraft-bedrock",
   "display": "PocketMine-MP",
-  "install": [
-    {
+  "install": [{
       "type": "download",
       "files": "https://raw.githubusercontent.com/pmmp/php-build-scripts/master/installer.sh"
     },
@@ -28,11 +27,9 @@
   "environment": {
     "type": "tty"
   },
-  "supportedEnvironments": [
-    {
-      "type": "tty"
-    }
-  ],
+  "supportedEnvironments": [{
+    "type": "tty"
+  }],
   "data": {
     "ip": {
       "value": "0.0.0.0",
@@ -49,5 +46,9 @@
       "internal": false,
       "type": "integer"
     }
+  },
+  "requirements": {
+    "os": "linux",
+    "arch": "amd64"
   }
 }

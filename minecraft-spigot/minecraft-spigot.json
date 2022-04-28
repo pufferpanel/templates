@@ -1,8 +1,7 @@
 {
   "type": "minecraft-java",
   "display": "Spigot - Minecraft",
-  "install": [
-    {
+  "install": [{
       "type": "download",
       "files": "https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar"
     },
@@ -37,8 +36,7 @@
   "environment": {
     "type": "standard"
   },
-  "supportedEnvironments": [
-    {
+  "supportedEnvironments": [{
       "type": "standard"
     },
     {
@@ -101,5 +99,8 @@
       "display": "MOTD message of the day",
       "internal": false
     }
+  },
+  "requirements": {
+    "binaries": ["${java}", "git"]
   }
 }

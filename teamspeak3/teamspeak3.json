@@ -1,8 +1,7 @@
 {
   "type": "voice",
   "display": "Teamspeak 3",
-  "install": [
-    {
+  "install": [{
       "files": "https://files.teamspeak-services.com/releases/server/${version}/teamspeak3-server_linux_amd64-${version}.tar.bz2",
       "type": "download"
     },
@@ -22,11 +21,9 @@
   "environment": {
     "type": "tty"
   },
-  "supportedEnvironments": [
-    {
-      "type": "tty"
-    }
-  ],
+  "supportedEnvironments": [{
+    "type": "tty"
+  }],
   "data": {
     "vport": {
       "value": "9987",
@@ -79,8 +76,7 @@
       "display": "EULA",
       "internal": false,
       "type": "option",
-      "options": [
-        {
+      "options": [{
           "value": "0",
           "display": "No"
         },
@@ -90,5 +86,9 @@
         }
       ]
     }
+  },
+  "requirements": {
+    "os": "linux",
+    "arch": "amd64"
   }
 }

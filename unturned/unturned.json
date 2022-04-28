@@ -5,8 +5,7 @@
             "display": "Map",
             "value": "PEI",
             "type": "option",
-            "options": [
-                {
+            "options": [{
                     "value": "PEI",
                     "display": "PEI"
                 },
@@ -40,8 +39,7 @@
             "required": true,
             "value": "normal",
             "type": "option",
-            "options": [
-                {
+            "options": [{
                     "value": "easy",
                     "display": "Easy"
                 },
@@ -73,8 +71,7 @@
             "display": "Perspective",
             "value": "",
             "type": "option",
-            "options": [
-                {
+            "options": [{
                     "value": "First",
                     "display": "First"
                 },
@@ -124,8 +121,7 @@
     "environment": {
         "type": "tty"
     },
-    "install": [
-        {
+    "install": [{
             "commands": [
                 "mkdir steamcmd"
             ],
@@ -167,10 +163,12 @@
         "pre": [],
         "post": []
     },
-    "supportedEnvironments": [
-        {
-            "type": "tty"
-        }
-    ],
-    "name": "Unturned"
+    "supportedEnvironments": [{
+        "type": "tty"
+    }],
+    "name": "Unturned",
+    "requirements": {
+        "os": "linux",
+        "arch": "amd64"
+    }
 }

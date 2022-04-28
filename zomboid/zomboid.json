@@ -2,8 +2,7 @@
   "name": "zomboid",
   "display": "Project Zomboid",
   "type": "zomboid",
-  "install": [
-    {
+  "install": [{
       "files": [
         "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"
       ],
@@ -74,13 +73,17 @@
   "environment": {
     "type": "tty"
   },
-  "supportedEnvironments": [
-    {
+  "supportedEnvironments": [{
       "type": "tty"
     },
     {
       "type": "docker",
       "image": "pufferpanel/srcds"
     }
-  ]
+  ],
+  "requirements": {
+    "binaries": ["bash"],
+    "os": "linux",
+    "arch": "amd64"
+  }
 }

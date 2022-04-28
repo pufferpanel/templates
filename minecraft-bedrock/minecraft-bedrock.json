@@ -1,8 +1,7 @@
 {
   "type": "minecraft-bedrock",
   "display": "Minecraft Bedrock",
-  "install": [
-    {
+  "install": [{
       "type": "download",
       "files": "https://minecraft.azureedge.net/bin-linux/bedrock-server-${version}.zip"
     },
@@ -32,11 +31,9 @@
   "environment": {
     "type": "standard"
   },
-  "supportedEnvironments": [
-    {
-      "type": "standard"
-    }
-  ],
+  "supportedEnvironments": [{
+    "type": "standard"
+  }],
   "data": {
     "version": {
       "value": "1.17.11.01",
@@ -175,5 +172,9 @@
       "internal": false,
       "type": "boolean"
     }
+  },
+  "requirements": {
+    "os": "linux",
+    "arch": "amd64"
   }
 }

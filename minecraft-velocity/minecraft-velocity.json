@@ -50,8 +50,7 @@
     "environment": {
         "type": "standard"
     },
-    "install": [
-        {
+    "install": [{
             "files": [
                 "https://versions.velocitypowered.com/download/${version}.jar"
             ],
@@ -75,10 +74,11 @@
         "pre": [],
         "post": []
     },
-    "supportedEnvironments": [
-        {
-            "type": "standard"
-        }
-    ],
-    "name": "minecraft-velocity"
+    "supportedEnvironments": [{
+        "type": "standard"
+    }],
+    "name": "minecraft-velocity",
+    "requirements": {
+        "binaries": ["${java}"]
+    }
 }

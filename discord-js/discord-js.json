@@ -1,45 +1,45 @@
 {
-    "name": "Discord JS Bot",
-    "display": "discord.js",
-    "type": "discord",
-    "install": [
-      {
-        "commands": [
-          "npm i"
-        ],
-        "type": "command"
-      }
+  "name": "Discord JS Bot",
+  "display": "discord.js",
+  "type": "discord",
+  "install": [{
+    "commands": [
+      "npm i"
     ],
-    "run": {
-      "stop": "stop",
-      "command": "node ./${bot-js-file}",
-      "workingDirectory": "",
-      "pre": [],
-      "post": [],
-      "environmentVars": {}
+    "type": "command"
+  }],
+  "run": {
+    "stop": "stop",
+    "command": "node ./${bot-js-file}",
+    "workingDirectory": "",
+    "pre": [],
+    "post": [],
+    "environmentVars": {}
+  },
+  "data": {
+    "bot-js-file": {
+      "type": "string",
+      "desc": "The main bot file.",
+      "display": "Main bot file",
+      "required": true,
+      "value": "bot.js"
+    }
+  },
+  "environment": {
+    "image": "node",
+    "networkMode": "host",
+    "type": "docker"
+  },
+  "supportedEnvironments": [{
+      "type": "standard"
     },
-    "data": {
-      "bot-js-file": {
-        "type": "string",
-        "desc": "The main bot file.",
-        "display": "Main bot file",
-        "required": true,
-        "value": "bot.js"
-      }
-    },
-    "environment": {
+    {
       "image": "node",
       "networkMode": "host",
       "type": "docker"
-    },
-    "supportedEnvironments": [
-      {
-        "type": "standard"
-      },
-      {
-        "image": "node",
-        "networkMode": "host",
-        "type": "docker"
-      }
-    ]
+    }
+  ],
+  "requirements": {
+    "binaries": ["node", "npm"]
   }
+}

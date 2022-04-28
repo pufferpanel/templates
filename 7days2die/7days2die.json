@@ -14,8 +14,7 @@
     "environment": {
         "type": "tty"
     },
-    "install": [
-        {
+    "install": [{
             "files": [
                 "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"
             ],
@@ -43,8 +42,7 @@
         "pre": [],
         "post": []
     },
-    "supportedEnvironments": [
-        {
+    "supportedEnvironments": [{
             "type": "tty"
         },
         {
@@ -52,5 +50,9 @@
             "type": "docker"
         }
     ],
+    "requirements": {
+        "os": "linux",
+        "arch": "amd64"
+    },
     "name": "7days"
 }

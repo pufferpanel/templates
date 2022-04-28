@@ -1,8 +1,7 @@
 {
   "type": "arma3",
   "display": "ARMA3",
-  "install": [
-    {
+  "install": [{
       "type": "download",
       "files": "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"
     },
@@ -28,8 +27,7 @@
   "environment": {
     "type": "tty"
   },
-  "supportedEnvironments": [
-    {
+  "supportedEnvironments": [{
       "type": "tty"
     },
     {
@@ -74,5 +72,9 @@
       "display": "Config File",
       "internal": false
     }
+  },
+  "requirements": {
+    "os": "linux",
+    "arch": "amd64"
   }
 }

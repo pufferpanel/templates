@@ -1,8 +1,7 @@
 {
   "type": "minecraft-java",
   "display": "Vanilla - Minecraft",
-  "install": [
-    {
+  "install": [{
       "type": "mojangdl",
       "version": "${version}",
       "target": "server.jar"
@@ -27,8 +26,7 @@
   "environment": {
     "type": "standard"
   },
-  "supportedEnvironments": [
-    {
+  "supportedEnvironments": [{
       "type": "standard"
     },
     {
@@ -91,5 +89,8 @@
       "display": "MOTD message of the day",
       "internal": false
     }
+  },
+  "requirements": {
+    "binaries": ["${java}"]
   }
 }
