@@ -27,7 +27,7 @@
     ],
     "run": {
       "stop": "stop",
-      "command": "${java} -Xmx${memory}M -Dlog4j2.formatMsgNoLookups=true -jar server.jar",
+      "command": "${java} -Xmx${memory}M -Dlog4j2.formatMsgNoLookups=true -jar server.jar nogui",
       "pre": [],
       "post": [],
       "environmentVars": {}

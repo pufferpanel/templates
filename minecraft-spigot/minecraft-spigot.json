@@ -32,7 +32,7 @@
     "stop": "stop",
     "pre": [],
     "post": [],
-    "command": "${java} -Xmx${memory}M -Djline.terminal=jline.UnsupportedTerminal -Dlog4j2.formatMsgNoLookups=true -jar server.jar"
+    "command": "${java} -Xmx${memory}M -Djline.terminal=jline.UnsupportedTerminal -Dlog4j2.formatMsgNoLookups=true -jar server.jar nogui"
   },
   "environment": {
     "type": "standard"

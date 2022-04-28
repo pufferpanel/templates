@@ -46,7 +46,7 @@
     "stop": "stop",
     "pre": [],
     "post": [],
-    "command": "${java} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true ${extraArgs} -jar server.jar"
+    "command": "${java} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true ${extraArgs} -jar server.jar nogui"
   },
   "environment": {
     "type": "standard"
