@@ -14,7 +14,8 @@
     },
     {
       "type": "writefile",
-      "text": "server-ip=${ip}\nserver-port=${port}\n",
+      "text": "server-ip=${ip}\nserver-port=${portv4}\n",
+      "text": "server-ip=${ip}\nserver-portv6=${portv6}\n",
       "target": "server.properties"
     }
   ],
@@ -38,11 +39,19 @@
       "display": "IP",
       "internal": false
     },
-    "port": {
+    "portv4": {
       "value": "19132",
       "required": true,
-      "desc": "What port to bind the server to",
-      "display": "Port",
+      "desc": "What port ipv4 to bind the server to",
+      "display": "Port-ipv4",
+      "internal": false,
+      "type": "integer"
+    },
+    "portv6": {
+      "value": "19133",
+      "required": true,
+      "desc": "What port ipv6 to bind the server to",
+      "display": "Port-ipv6",
       "internal": false,
       "type": "integer"
     }
