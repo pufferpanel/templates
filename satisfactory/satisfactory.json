@@ -20,7 +20,6 @@
         "cp steamcmd/linux32/steamclient.so .steam/sdk32/steamclient.so",
         "chmod +x Engine/Binaries/Linux/UE4Server-Linux-Shipping",
         "rm steamcmd_linux.tar.gz ",
-        "chsh -s /bin/bash games",
         "mkdir -p ./FactoryGame/Saved/Config/LinuxServer/"
       ],
       "type": "command"
@@ -28,7 +27,7 @@
   ],
   "run": {
     "stopCode": 2,
-    "command": "${insidedocker}./Engine/Binaries/Linux/UE4Server-Linux-Shipping FactoryGame ?listen -multihome=${multihome} -ServerQueryPort=${port}",
+    "command": "./Engine/Binaries/Linux/UE4Server-Linux-Shipping FactoryGame ?listen -multihome=${multihome} -ServerQueryPort=${port}",
     "workingDirectory": "",
     "pre": [],
     "post": [],
@@ -52,23 +51,6 @@
         {
           "value": "experimental",
           "display": "Experimental branch"
-        }
-      ]
-    },
-    "insidedocker": {
-      "type": "option",
-      "desc": "Is pufferpanel itself or this Satisfactory instance running inside a Docker?",
-      "display": "Running in Docker",
-      "required": true,
-      "value": "false",
-      "userEdit": true,
-      "options": [{
-          "value": "",
-          "display": "no"
-        },
-        {
-          "value": "runuser -m -P -u games -- ",
-          "display": "yes"
         }
       ]
     },
