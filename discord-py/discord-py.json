@@ -29,7 +29,9 @@
     }
   },
   "environment": {
-    "type": "standard"
+    "image": "python",
+    "networkMode": "host",
+    "type": "docker"
   },
   "supportedEnvironments": [{
       "type": "standard"
