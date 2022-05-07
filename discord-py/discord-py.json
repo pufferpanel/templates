@@ -1,7 +1,7 @@
 {
   "name": "Discord Python Bot",
   "display": "discord.py",
-  "type": "python",
+  "type": "discord",
   "install": [{
     "commands": [
       "python3 -m pip install -r ${req-txt-file}"
