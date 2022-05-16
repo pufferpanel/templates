@@ -1,0 +1,45 @@
+{
+    "name": "JDA",
+    "display": "JDA Bot",
+    "type": "discord",
+    "install": [],
+    "run": {
+      "stop": "",
+      "command": "java -jar ${bot-jar}",
+      "workingDirectory": "",
+      "pre": [],
+      "post": [],
+      "environmentVars": {}
+    },
+    "data": {
+      "bot-jar": {
+        "type": "string",
+        "display": "bot-jar-file",
+        "required": true,
+        "value": "bot.jar",
+        "userEdit": true,
+        "desc": "The .jar bot file"
+      }
+    },
+    "environment": {
+      "bindings": {},
+      "image": "openjdk",
+      "networkMode": "host",
+      "networkName": "",
+      "portBindings": [],
+      "type": "docker"
+    },
+    "supportedEnvironments": [
+      {
+        "bindings": {},
+        "image": "openjdk",
+        "networkMode": "host",
+        "networkName": "",
+        "portBindings": [],
+        "type": "docker"
+      },
+      {
+        "type": "standard"
+      }
+    ]
+  }
