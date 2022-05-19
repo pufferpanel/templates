@@ -1,0 +1,45 @@
+{
+  "name": "CloudNet3",
+  "display": "CloudNet 3",
+  "type": "cloudnet",
+  "install": [
+    {
+      "files": [
+        "https://cloudnetservice.eu/cloudnet/version/release/${version}/CloudNet.zip"
+      ],
+      "type": "download"
+    },
+    {
+      "commands": [
+        "unzip CloudNet.zip",
+        "chmod -R 777 ."
+      ],
+      "type": "command"
+    }
+  ],
+  "run": {
+    "stop": "exit",
+    "command": "./start.sh",
+    "workingDirectory": "",
+    "pre": [],
+    "post": [],
+    "environmentVars": {}
+  },
+  "data": {
+    "version": {
+      "type": "string",
+      "desc": "Version",
+      "display": "CloudNET Version",
+      "required": true,
+      "value": "3.4.3"
+    }
+  },
+  "environment": {
+    "type": "standard"
+  },
+  "supportedEnvironments": [
+    {
+      "type": "standard"
+    }
+  ]
+}
