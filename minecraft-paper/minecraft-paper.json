@@ -3,7 +3,7 @@
   "display": "Paper - Minecraft",
   "install": [{
       "type": "download",
-      "files": "https://papermc.io/api/v2/projects/paper/versions/${version}/builds/${build}/downloads/paper-${version}-${build}.jar"
+      "files": "https://api.papermc.io/v2/projects/paper/versions/${version}/builds/${build}/downloads/paper-${version}-${build}.jar"
     },
     {
       "type": "move",
