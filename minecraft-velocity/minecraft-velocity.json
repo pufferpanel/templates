@@ -79,6 +79,9 @@
     "supportedEnvironments": [{
         "type": "standard"
     }],
+    "requirements": {
+        "binaries": ["${java}"]
+    }
     "environment": {
         "type": "standard"
     }
