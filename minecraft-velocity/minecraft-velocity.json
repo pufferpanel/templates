@@ -76,6 +76,9 @@
         "post": [],
         "environmentVars": {}
     },
+    "supportedEnvironments": [{
+        "type": "standard"
+    }],
     "environment": {
         "type": "standard"
     }
