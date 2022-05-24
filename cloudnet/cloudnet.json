@@ -11,27 +11,44 @@
     },
     {
       "commands": [
-        "unzip CloudNet.zip",
-        "chmod -R 777 ."
+        "unzip CloudNet.zip"
       ],
       "type": "command"
     }
   ],
   "run": {
     "stop": "exit",
-    "command": "./start.sh",
+    "command": "java -XX:+UseG1GC -XX:MaxGCPauseMillis=50 -XX:+UnlockExperimentalVMOptions -XX:+UseCompressedOops -XX:-UseAdaptiveSizePolicy -XX:CompileThreshold=100 -Dfile.encoding=UTF-8 -Xmx${memory}M -Xms${memory}m -jar launcher.jar",
     "workingDirectory": "",
     "pre": [],
     "post": [],
     "environmentVars": {}
   },
   "data": {
-    "version": {
-      "type": "string",
-      "desc": "Version",
-      "display": "CloudNET Version",
-      "required": true,
-      "value": "3.4.3"
+        "java": {
+            "value": "java",
+            "required": true,
+            "desc": "\"java\" for system standard, else direct path to java",
+            "display": "path to java executable",
+            "internal": false,
+            "type": "string",
+            "userEdit": true
+        },
+        "memory": {
+            "type": "integer",
+            "desc": "How much memory in MB to allocate to the Java Heap",
+            "display": "MEMORY (MB)",
+            "required": true,
+            "value": "512"
+        },
+        "version": {
+            "type": "string",
+            "desc": "Version",
+            "display": "CloudNET Version",
+            "required": true,
+            "value": "3.4.3",
+            "internal": false,
+            "userEdit": true
     }
   },
   "environment": {
