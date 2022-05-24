@@ -81,7 +81,7 @@
     }],
     "requirements": {
         "binaries": ["${java}"]
-    }
+    },
     "environment": {
         "type": "standard"
     }
