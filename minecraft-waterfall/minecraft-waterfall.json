@@ -4,7 +4,7 @@
   "type": "minecraft-java",
   "install": [{
       "files": [
-        "https://papermc.io/api/v2/projects/waterfall/versions/${version}/builds/${build}/downloads/waterfall-${version}-${build}.jar"
+        "https://api.papermc.io/v2/projects/waterfall/versions/${version}/builds/${build}/downloads/waterfall-${version}-${build}.jar"
       ],
       "type": "download"
     },

@@ -1,13 +1,22 @@
 {
+    "name": "minecraft-velocity",
+    "display": "Velocity - Minecraft",
     "type": "minecraft-java",
     "data": {
-        "java": {
-            "value": "java",
-            "required": true,
-            "desc": "\"java\" for system standard, else direct path to java",
-            "display": "path to java executable",
-            "internal": false,
+        "version": {
             "type": "string",
+            "desc": "Version of Velocity to install.",
+            "display": "Velocity Version",
+            "required": true,
+            "value": "3.1.2-SNAPSHOT",
+            "userEdit": true
+        },
+        "build": {
+            "type": "integer",
+            "desc": "Build of the Velocity Version to use",
+            "display": "Velocity Build",
+            "required": true,
+            "value": "138",
             "userEdit": true
         },
         "ip": {
@@ -17,12 +26,19 @@
             "required": true,
             "value": "0.0.0.0"
         },
+        "java": {
+            "type": "string",
+            "desc": "\"java\" for system standard, else direct path to java",
+            "display": "path to java executable",
+            "required": true,
+            "value": "java"
+        },
         "memory": {
             "type": "integer",
             "desc": "How much memory in MB to allocate to the Waterfall server. It is generally recommended to allocated 512MB RAM for every 500 players. Please keep in mind that additional plugins may impact the amount needed in your case.",
             "display": "Memory (MB)",
             "required": true,
-            "value": "512"
+            "value": 512
         },
         "motd": {
             "type": "string",
@@ -37,48 +53,36 @@
             "display": "Port",
             "required": true,
             "value": "25565"
-        },
-        "version": {
-            "type": "string",
-            "desc": "Version of Velocity to install.",
-            "display": "Version",
-            "required": true,
-            "value": "1.1.4"
         }
     },
-    "display": "Velocity - Minecraft",
-    "environment": {
-        "type": "standard"
+    "install": [
+    {
+        "files": [
+            "https://api.papermc.io/v2/projects/velocity/versions/${version}/builds/${build}/downloads/velocity-${version}-${build}.jar"
+        ],
+        "type": "download"
     },
-    "install": [{
-            "files": [
-                "https://versions.velocitypowered.com/download/${version}.jar"
-            ],
-            "type": "download"
-        },
-        {
-            "source": "velocity-*.jar",
-            "target": "velocity.jar",
-            "type": "move"
-        },
-        {
-            "target": "velocity",
-            "text": "bind: \"${ip}:${port}\"\n  motd = \"${motd}\"\n",
-            "type": "writefile"
-        }
+    {
+        "source": "velocity-*.jar",
+        "target": "velocity.jar",
+        "type": "move"
+    }
     ],
     "run": {
-        "command": "${java} -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar velocity.jar",
         "stop": "shutdown",
-        "environmentVars": {},
+        "command": "${java} -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar velocity.jar",
+        "workingDirectory": "",
         "pre": [],
-        "post": []
+        "post": [],
+        "environmentVars": {}
     },
     "supportedEnvironments": [{
         "type": "standard"
     }],
-    "name": "minecraft-velocity",
     "requirements": {
         "binaries": ["${java}"]
+    },
+    "environment": {
+        "type": "standard"
     }
 }
