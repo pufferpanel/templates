@@ -1,7 +1,7 @@
 {
   "name": "CloudNet3",
   "display": "CloudNet 3",
-  "type": "cloudnet",
+  "type": "minecraft-java",
   "install": [
     {
       "files": [
@@ -18,7 +18,7 @@
   ],
   "run": {
     "stop": "exit",
-    "command": "java -XX:+UseG1GC -XX:MaxGCPauseMillis=50 -XX:+UnlockExperimentalVMOptions -XX:+UseCompressedOops -XX:-UseAdaptiveSizePolicy -XX:CompileThreshold=100 -Dfile.encoding=UTF-8 -Xmx${memory}M -Xms${memory}m -jar launcher.jar",
+    "command": "${java} -XX:+UseG1GC -XX:MaxGCPauseMillis=50 -XX:+UnlockExperimentalVMOptions -XX:+UseCompressedOops -XX:-UseAdaptiveSizePolicy -XX:CompileThreshold=100 -Dfile.encoding=UTF-8 -Xmx${memory}M -Xms${memory}m -jar launcher.jar",
     "workingDirectory": "",
     "pre": [],
     "post": [],
