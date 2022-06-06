@@ -46,7 +46,7 @@
             "desc": "Version",
             "display": "CloudNET Version",
             "required": true,
-            "value": "3.4.3",
+            "value": "3.4.4",
             "internal": false,
             "userEdit": true
     }
