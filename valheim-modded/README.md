@@ -1,5 +1,8 @@
 Valheim modded with BepInExPack courtesy of Thunderstore.io
 
+IMPORTANT: Make sure you have unzip installed on the machine Puffer is being hosted on.
+You can get that with `sudo apt unzip` if you dont already.
+
 How to install mods:
 The modpages on Thunderstore will usually have instructions - however the usual way is as follows.
 
