@@ -1,0 +1,94 @@
+{
+  "name": "hl2dm",
+  "display": "hl2dm",
+  "type": "srcds",
+  "install": [
+    {
+      "files": [
+        "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"
+      ],
+      "type": "download"
+    },
+    {
+      "target": "steamcmd",
+      "type": "mkdir"
+    },
+    {
+      "commands": [
+        "tar --no-same-owner -xzvf steamcmd_linux.tar.gz -C steamcmd",
+        "steamcmd/steamcmd.sh +login anonymous +force_install_dir .. +app_update 232370 +quit",
+        "mkdir -p .steam/sdk32",
+        "cp steamcmd/linux32/steamclient.so .steam/sdk32/steamclient.so",
+        "rm steamcmd_linux.tar.gz"
+      ],
+      "type": "command"
+    }
+  ],
+  "run": {
+    "stop": "exit",
+    "command": "./srcds_run +port ${port} -game hl2mp -console +gamemode ${gamemode} +hostname ${hostname} +map ${map} +maxplayers ${maxplayers} -norestart",
+    "workingDirectory": "",
+    "pre": [],
+    "post": [],
+    "environmentVars": {},
+    "autostart": true,
+    "autorestart": true,
+    "autorecover": true
+  },
+  "data": {
+    "fastdownload": {
+      "type": "string",
+      "desc": "Location of fast download server",
+      "display": "fast download url"
+    },
+    "gamemode": {
+      "type": "string",
+      "desc": "gamemode to load",
+      "display": "gamemode",
+      "required": true,
+      "value": "hl2mp"
+    },
+    "hostname": {
+      "type": "string",
+      "desc": "Name of the server",
+      "display": "Hostname",
+      "required": true,
+      "value": ".:HoM:. .:|House of Mayhem|:."
+    },
+    "map": {
+      "type": "string",
+      "desc": "map to load",
+      "display": "Map",
+      "required": true,
+      "value": "dm_lockdown"
+    },
+    "maxplayers": {
+      "type": "integer",
+      "desc": "number of players",
+      "display": "Max Players",
+      "required": true,
+      "value": 16
+    },
+    "port": {
+      "type": "integer",
+      "desc": "What port to bind to",
+      "display": "Port",
+      "required": true,
+      "value": 27016
+    }
+  },
+  "environment": {
+    "type": "tty"
+  },
+  "supportedEnvironments": [
+    {
+      "type": "tty"
+    },
+    {
+      "image": "pufferpanel/srcds",
+      "networkMode": "host",
+      "type": "docker"
+    }
+  ],
+  "requirements": {}
+}
