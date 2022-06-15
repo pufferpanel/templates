@@ -3,7 +3,7 @@
   "display": "FlameCord - Minecraft",
   "install": [{
     "files": [
-      "https://github.com/2lstudios-mc/FlameCord/releases/latest/download/FlameCord.jar"
+      "https://ci.2lstudios.dev/job/FlameCord/lastBuild/artifact/FlameCord-Proxy/bootstrap/target/FlameCord.jar"
     ],
     "type": "download"
   }],
