@@ -7,7 +7,8 @@
     },
     {
       "commands": [
-        "tar -xvjf teamspeak3-server_linux_amd64-${version}.tar.bz2"
+        "tar -xjf teamspeak3-server_linux_amd64-${version}.tar.bz2 --strip-components 1",
+        "rm teamspeak3-server_linux_amd64-${version}.tar.bz2"
       ],
       "type": "command"
     }
@@ -16,7 +17,7 @@
     "stopCode": 2,
     "pre": [],
     "post": [],
-    "command": "./teamspeak3-server_linux_amd64/ts3server_minimal_runscript.sh default_voice_port=${vport} query_port=${qport} filetransfer_port=${ftport} voice_ip=${ip} licensepath=${license} license_accepted=${eula}"
+    "command": "./ts3server_minimal_runscript.sh default_voice_port=${vport} query_port=${qport} filetransfer_port=${ftport} voice_ip=${ip} licensepath=${license} license_accepted=${eula}"
   },
   "environment": {
     "type": "tty"
