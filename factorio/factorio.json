@@ -55,7 +55,7 @@
     }
   },
   "requirements": {
-    "binaries": ["curl"],
+    "binaries": ["curl", "tar", "xz"],
     "os": "linux",
     "arch": "amd64"
   }
