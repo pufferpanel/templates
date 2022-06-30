@@ -4,6 +4,6 @@ This template makes it possible to run [tModLoader](https://www.tmodloader.net/)
 
 ## Notes
 * It features a script for automatic mod enable listing.
-* This is a seperate template to the other tModLoader because of the server changes that came with the 1.4 release.
+* This is a seperate template to the other tModLoader template because of the server changes that came with the 1.4 release.
 
 This only supports Linux.
