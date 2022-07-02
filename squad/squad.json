@@ -1,0 +1,104 @@
+{
+  "name": "SQUAD",
+  "display": "SQUAD Dedicated Server",
+  "type": "squad",
+  "install": [
+    {
+      "files": [
+        "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"
+      ],
+      "type": "download"
+    },
+    {
+      "target": "steamcmd",
+      "type": "mkdir"
+    },
+    {
+      "target": "install_squad.txt",
+      "text": "@ShutdownOnFailedCommand 1\n@NoPromptForPassword 1\nforce_install_dir ..\nlogin anonymous\napp_update 403240\nquit",
+      "type": "writefile"
+    },
+    {
+      "commands": [
+        "tar --no-same-owner -xzvf steamcmd_linux.tar.gz -C steamcmd",
+        "steamcmd/steamcmd.sh +runscript ../install_squad.txt",
+        "mkdir -p .steam/sdk32",
+        "cp steamcmd/linux32/steamclient.so .steam/sdk32/steamclient.so"
+      ],
+      "type": "command"
+    }
+  ],
+  "run": {
+    "stop": "exit",
+    "command": "./SquadGameServer.sh Port=${port} QueryPort=${query_port} FIXEDMAXPLAYERS=${fixed_max_players} RANDOM=${random}",
+    "workingDirectory": "",
+    "pre": [
+      {
+        "commands": ["steamcmd/steamcmd.sh +runscript ../install_squad.txt"],
+        "type": "command"
+      },
+      {
+        "commands": ["chmod +x ./SquadGameServer.sh"],
+        "type": "command"
+      }
+    ],
+    "post": [],
+    "environmentVars": {}
+  },
+  "data": {
+    "fixed_max_players": {
+      "type": "integer",
+      "desc": "Player count cannot go higher than this",
+      "display": "Fixed Max Players",
+      "required": true,
+      "value": "80"
+    },
+    "port": {
+      "type": "integer",
+      "desc": "Game server port",
+      "display": "Port",
+      "required": true,
+      "value": "7787"
+    },
+    "query_port": {
+      "type": "integer",
+      "desc": "Steam query port",
+      "display": "Steam Query Port",
+      "required": true,
+      "value": "27165"
+    },
+    "random": {
+      "desc": "Randomize map rotation",
+      "display": "Random",
+      "required": true,
+      "value": "NONE",
+      "type": "option",
+      "options": [
+        {
+          "value": "NONE",
+          "display": "None"
+        },
+        {
+          "value": "FIRST",
+          "display": "First"
+        },
+        {
+          "value": "ALWAYS",
+          "display": "Always"
+        }
+      ]
+    }
+  },
+  "environment": {
+    "type": "tty"
+  },
+  "supportedEnvironments": [
+    {
+      "type": "tty"
+    }
+  ],
+  "requirements": {
+    "os": "linux",
+    "arch": "amd64"
+  }
+}
