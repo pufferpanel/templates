@@ -1,88 +1,85 @@
 {
-    "name": "minecraft-velocity",
-    "display": "Velocity - Minecraft",
-    "type": "minecraft-java",
-    "data": {
-        "version": {
-            "type": "string",
-            "desc": "Version of Velocity to install.",
-            "display": "Velocity Version",
-            "required": true,
-            "value": "3.1.2-SNAPSHOT",
-            "userEdit": true
-        },
-        "build": {
-            "type": "integer",
-            "desc": "Build of the Velocity Version to use",
-            "display": "Velocity Build",
-            "required": true,
-            "value": "138",
-            "userEdit": true
-        },
-        "ip": {
-            "type": "string",
-            "desc": "What IP to bind the server to",
-            "display": "IP",
-            "required": true,
-            "value": "0.0.0.0"
-        },
-        "java": {
-            "type": "string",
-            "desc": "\"java\" for system standard, else direct path to java",
-            "display": "path to java executable",
-            "required": true,
-            "value": "java"
-        },
-        "memory": {
-            "type": "integer",
-            "desc": "How much memory in MB to allocate to the Waterfall server. It is generally recommended to allocated 512MB RAM for every 500 players. Please keep in mind that additional plugins may impact the amount needed in your case.",
-            "display": "Memory (MB)",
-            "required": true,
-            "value": 512
-        },
-        "motd": {
-            "type": "string",
-            "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
-            "display": "MOTD message of the day",
-            "required": true,
-            "value": "A Velocity proxy &9hosted on PufferPanel"
-        },
-        "port": {
-            "type": "integer",
-            "desc": "What port to bind the server to",
-            "display": "Port",
-            "required": true,
-            "value": "25565"
-        }
-    },
-    "install": [
+  "name": "minecraft-velocity",
+  "display": "Velocity - Minecraft",
+  "type": "minecraft-java",
+  "install": [
     {
-        "files": [
-            "https://api.papermc.io/v2/projects/velocity/versions/${version}/builds/${build}/downloads/velocity-${version}-${build}.jar"
-        ],
-        "type": "download"
+      "files": [
+        "https://versions.velocitypowered.com/download/${version}.jar"
+      ],
+      "type": "download"
     },
     {
-        "source": "velocity-*.jar",
-        "target": "velocity.jar",
-        "type": "move"
-    }
-    ],
-    "run": {
-        "stop": "shutdown",
-        "command": "${java} -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar velocity.jar",
-        "workingDirectory": "",
-        "pre": [],
-        "post": [],
-        "environmentVars": {}
+      "source": "velocity-*.jar",
+      "target": "velocity.jar",
+      "type": "move"
     },
-    "supportedEnvironments": [{
-        "type": "standard"
-    }],
-    "requirements": {
-        "binaries": ["${java}"]
-    },
-    "environment": {
-        "type": "standard"
+    {
+      "target": "velocity.toml",
+      "text": "bind: \"${ip}:${port}\"\n  motd = \"${motd}\"\n",
+      "type": "writefile"
     }
+  ],
+  "run": {
+    "stop": "shutdown",
+    "command": "${java} -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar velocity.jar",
+    "workingDirectory": "",
+    "pre": [],
+    "post": [],
+    "environmentVars": {}
+  },
+  "data": {
+    "ip": {
+      "type": "string",
+      "desc": "What IP to bind the server to",
+      "display": "IP",
+      "required": true,
+      "value": "0.0.0.0"
+    },
+    "java": {
+      "type": "string",
+      "desc": "\"java\" for system standard, else direct path to java",
+      "display": "path to java executable",
+      "required": true,
+      "value": "java",
+      "userEdit": true
+    },
+    "memory": {
+      "type": "integer",
+      "desc": "How much memory in MB to allocate to the Waterfall server. It is generally recommended to allocated 512MB RAM for every 500 players. Please keep in mind that additional plugins may impact the amount needed in your case.",
+      "display": "Memory (MB)",
+      "required": true,
+      "value": "512"
+    },
+    "motd": {
+      "type": "string",
+      "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
+      "display": "MOTD message of the day",
+      "required": true,
+      "value": "A Velocity proxy &9hosted on PufferPanel"
+    },
+    "port": {
+      "type": "integer",
+      "desc": "What port to bind the server to",
+      "display": "Port",
+      "required": true,
+      "value": "25565"
+    },
+    "version": {
+      "type": "string",
+      "desc": "Version of Velocity to install.",
+      "display": "Version",
+      "required": true,
+      "value": "1.1.4"
+    }
+  },
+  "environment": {
+    "type": "standard"
+  },
+  "supportedEnvironments": [
+    {
+      "type": "standard"
+    }
+  ],
+  "requirements": {}
 }
