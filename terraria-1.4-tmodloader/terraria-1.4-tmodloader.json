@@ -57,7 +57,7 @@
   },
   "data": {
     "abr": {
-      "type": "string",
+      "type": "integer",
       "desc": "Sets the announcementbox text messaging range in pixels, -1 for serverwide announcements.",
       "display": "announcementbox-range",
       "required": true,
@@ -71,7 +71,7 @@
       "value": "true"
     },
     "backups": {
-      "type": "string",
+      "type": "integer",
       "desc": "Sets the number of rolling world backups to keep",
       "display": "Backups",
       "required": true,
@@ -85,7 +85,7 @@
       "value": "banlist.txt"
     },
     "difficulty": {
-      "type": "string",
+      "type": "integer",
       "desc": "This can not be changed after the world was generated - Options: 0 - (normal), 1 - (expert), 2 - (master), 3 - (journey)",
       "display": "Difficulty",
       "required": true,
@@ -126,7 +126,7 @@
       "value": "mods"
     },
     "npcs": {
-      "type": "string",
+      "type": "integer",
       "desc": "Reduces enemy skipping but increases bandwidth usage. The lower the number the less skipping will happen, but more data is sent. 0 is off.",
       "display": "npcstream",
       "required": true,
@@ -140,28 +140,28 @@
       "value": ""
     },
     "players": {
-      "type": "string",
+      "type": "integer",
       "desc": "Max Players",
       "display": "Players",
       "required": true,
       "value": "4"
     },
     "port": {
-      "type": "string",
+      "type": "integer",
       "desc": "What port to bind the server to",
       "display": "Port",
       "required": true,
       "value": "7777"
     },
     "priority": {
-      "type": "string",
+      "type": "integer",
       "desc": "Set priority 0:Realtime, 1:High, 2:Above-Normal, 3:Normal, 4:Below-Normal, 5:Idle",
       "display": "priority",
       "required": true,
       "value": "1"
     },
     "secure": {
-      "type": "string",
+      "type": "integer",
       "desc": "Enable cheat protection = 1 and disable = 0",
       "display": "secure",
       "required": true,
@@ -175,21 +175,21 @@
       "value": ""
     },
     "size": {
-      "type": "string",
+      "type": "integer",
       "desc": "This can not be changed after the world was generated - World Size (1-3 - 3 is biggest)",
       "display": "World-Size",
       "required": true,
       "value": "3"
     },
     "sl": {
-      "type": "string",
+      "type": "integer",
       "desc": "Reduces maximum liquids moving at the same time. If enabled may reduce lags but liquids may take longer to settle.",
       "display": "maximum liquids moving",
       "required": true,
       "value": "1"
     },
     "upnp": {
-      "type": "string",
+      "type": "integer",
       "desc": "Enable upnp = 1 and disable = 0",
       "display": "upnp",
       "required": true,
