@@ -2,7 +2,7 @@
 
 ## Template OS suport
 
-This template only works for the folling operating systems:
+This template only works for the following operating systems:
 
 - Linux
 
