@@ -225,5 +225,12 @@
       "type": "tty"
     }
   ],
-  "requirements": {}
+  "requirements": {
+    "binaries": [
+      "unzip",
+      "curl"
+    ],
+    "os": "linux",
+    "arch": "amd64"
+  }
 }
