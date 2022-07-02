@@ -73,7 +73,8 @@
       "required": true,
       "value": "NONE",
       "type": "option",
-      "options": [{
+      "options": [
+        {
           "value": "NONE",
           "display": "None"
         },
