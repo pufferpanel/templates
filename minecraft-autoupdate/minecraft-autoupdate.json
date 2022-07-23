@@ -1,0 +1,118 @@
+"name": "Minecraft - AutoUpdate",
+  "display": "Minecraft - AutoUpdate",
+  "type": "minecraft-java",
+  "install": [
+    {
+      "files": [
+        "https://github.com/ServerJars/updater/releases/download/v3.1.0/ServerJars.jar"
+      ],
+      "type": "download"
+    },
+    {
+      "target": "serverjars.properties",
+      "text": "type=${software}\nversion=${version}",
+      "type": "writefile"
+    },
+    {
+      "target": "eula.txt",
+      "text": "eula=${eula}",
+      "type": "writefile"
+    },
+    {
+      "target": "server.properties",
+      "text": "server-port=${port}\n",
+      "type": "writefile"
+    }
+  ],
+  "run": {
+    "stop": "stop",
+    "command": "java -Xms${minram}M -Xmx${maxram}M -jar ServerJars.jar",
+    "workingDirectory": "",
+    "pre": [],
+    "post": [],
+    "environmentVars": {}
+  },
+  "data": {
+    "eula": {
+      "type": "option",
+      "desc": "To start the server you have to agree to the eula.",
+      "display": "Do you agree to Minecraft´s EULA",
+      "required": true,
+      "value": "false",
+      "options": [
+        {
+          "value": "true",
+          "display": "Yes, I do!"
+        },
+        {
+          "value": "flase",
+          "display": "No, I don´t! (You won´t be able to user your Minecraft Server)"
+        }
+      ]
+    },
+    "maxram": {
+      "type": "string",
+      "desc": "(Megabytes) The maximum amount of RAM the server can use.",
+      "display": "Max RAM",
+      "required": true,
+      "value": "2048"
+    },
+    "minram": {
+      "type": "string",
+      "desc": "(Megabytes) The smallest amout of RAM the serevr can use",
+      "display": "Min RAM",
+      "value": "1024"
+    },
+    "port": {
+      "type": "string",
+      "desc": "The server´s port",
+      "display": "Port",
+      "value": "25565"
+    },
+    "software": {
+      "type": "option",
+      "desc": "The software the server is going to use",
+      "display": "Server Software",
+      "required": true,
+      "userEdit": true,
+      "options": [
+        {
+          "value": "purpur",
+          "display": "Purpur (tweaked Paper)"
+        },
+        {
+          "value": "paper",
+          "display": "Paper"
+        },
+        {
+          "value": "spigot",
+          "display": "Spigot"
+        },
+        {
+          "value": "bukkit",
+          "display": "Bukkit"
+        },
+        {
+          "value": "anilla",
+          "display": "vanilla"
+        }
+      ]
+    },
+    "version": {
+      "type": "string",
+      "desc": "Name of the Minecraft Version",
+      "display": "Version",
+      "required": true,
+      "value": "1.18.2"
+    }
+  },
+  "environment": {
+    "type": "standard"
+  },
+  "supportedEnvironments": [
+    {
+      "type": "standard"
+    }
+  ],
+  "requirements": {}
+}
