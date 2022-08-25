@@ -9,7 +9,7 @@
     "type": "command"
   }],
   "run": {
-    "stop": "stop",
+    "stopCode": 2,
     "command": "node ./${bot-js-file}",
     "workingDirectory": "",
     "pre": [],
