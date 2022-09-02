@@ -1,0 +1,176 @@
+{
+  "name": "minecraft-forge116-lazymc",
+  "display": "MinecraftForge 1.16 or older - Minecraft + Lazymc",
+  "type": "minecraft-java",
+  "install": [
+    {
+      "files": [
+        "https://github.com/timvisee/lazymc/releases/download/v0.2.7/lazymc-v0.2.7-linux-x64"
+      ],
+      "type": "download"
+    },
+    {
+      "source": "lazymc-v0.2.7-linux-x64",
+      "target": "lazymc",
+      "type": "move"
+    },
+    {
+      "commands": [
+        "chmod a+x lazymc"
+      ],
+      "type": "command"
+    },
+    {
+      "commands": [
+        "./lazymc config generate"
+      ],
+      "type": "command"
+    },
+    {
+      "target": "lazymc.toml",
+      "text": "# lazymc configuration\n#\n# You must configure your server directory and start command, see:\n# - server.directory\n# - server.command\n#\n# All defaults are commented out, change it if you desire.\n# You can probably leave the rest as-is.\n#\n# You may generate a new configuration with: lazymc config generate\n# Or find the latest at: https://git.io/J1Fvq\n\n[public]\n# Public address. IP and port users connect to.\n# Shows sleeping status, starts server on connect, and proxies to server.\naddress = \"${ip}:${portlmc}\"\n\n# Server version & protocol hint.\n# Sent to clients until actual server version is known.\n# See: https://git.io/J1Fvx\nversion = \"${version}\"\nprotocol = ${protocol}\n\n[server]\n# Server address. Internal IP and port of server started by lazymc to proxy to.\n# Port must be different from public port.\naddress = \"127.0.0.1:${portint}\"\n\n# Server directory, defaults to current directory.\ndirectory = \".\"\n\n# Command to start the server.\n# Warning: if using a bash script read: https://git.io/JMIKH\ncommand = \"${java} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar forge-server.jar nogui\"\n\n# Immediately wake server when starting lazymc.\nwake_on_start = true\n\n# Immediately wake server after crash.\nwake_on_crash = false\n\n# Probe required server details when starting lazymc, wakes server on start.\n# Improves client compatibility. Automatically enabled if required by other config properties.\n#probe_on_start = false\n\n# Set to true if this server runs Forge.\n#forge = false\n\n# Server start/stop timeout in seconds. Force kill server process if it takes too long.\n#start_timeout = 300\n#stop_timeout = 150\n\n# To wake server, user must be in server whitelist if enabled on server.\n#wake_whitelist = true\n\n# Block banned IPs as listed in banned-ips.json in server directory.\n#block_banned_ips = true\n\n# Drop connections from banned IPs.\n# Banned IPs won't be able to ping or request server status.\n# On connect, clients show a 'Disconnected' message rather than the ban reason.\n#drop_banned_ips = false\n\n# Add HAProxy v2 header to proxied connections.\n# See: https://git.io/J1bYb\n#send_proxy_v2 = false\n\n[time]\n# Sleep after number of seconds.\n#sleep_after = 60\n\n# Minimum time in seconds to stay online when server is started.\n#minimum_online_time = 60\n\n[motd]\n# MOTD, shown in server browser.\n#sleeping = \"☠ Server is sleeping\\n§2☻ Join to start it up\"\n#starting = \"§2☻ Server is starting...\\n§7⌛ Please wait...\"\n#stopping = \"☠ Server going to sleep...\\n⌛ Please wait...\"\n\n# Use MOTD from Minecraft server once known.\n#from_server = false\n\n[join]\n# Methods to use to occupy a client on join while the server is starting.\n# Read about all methods and configure them below.\n# Methods are used in order, if none is set, the client disconnects without a message.\n#methods = [\n#    \"hold\",\n#    \"kick\",\n#]\n\n[join.kick]\n# Kick occupation method.\n# Instantly kicks a client with a message.\n\n# Message shown when client is kicked while server is starting/stopping.\n#starting = \"Server is starting... §c♥§r\\n\\nThis may take some time.\\n\\nPlease try to reconnect in a minute.\"\n#stopping = \"Server is going to sleep... §7☠§r\\n\\nPlease try to reconnect in a minute to wake it again.\"\n\n[join.hold]\n# Hold occupation method.\n# Holds back a joining client while the server is started until it is ready.\n# 'Connecting the server...' is shown on the client while it's held back.\n# If the server starts fast enough, the client won't notice it was sleeping at all.\n# This works for a limited time of 30 seconds, after which the Minecraft client times out.\n\n# Hold client for number of seconds on connect while server starts.\n# Keep below Minecraft timeout of 30 seconds.\n#timeout = 25\n\n[join.forward]\n# Forward occupation method.\n# Instantly forwards (proxies) the client to a different address.\n# You may need to configure target server for it, such as allowing proxies.\n# Consumes client, not allowing other join methods afterwards.\n\n# IP and port to forward to.\n# The target server will receive original client handshake and login request as received by lazymc.\n#address = \"127.0.0.1:25565\"\n\n# Add HAProxy v2 header to forwarded connections.\n# See: https://git.io/J1bYb\n#send_proxy_v2 = false\n\n[join.lobby]\n# Lobby occupation method.\n# The client joins a fake lobby server with an empty world, floating in space.\n# A message is overlayed on screen to notify the server is starting.\n# The client will be teleported to the real server once it is ready.\n# This may keep the client occupied forever if no timeout is set.\n# Consumes client, not allowing other join methods afterwards.\n# See: https://git.io/JMIi4\n\n# !!! WARNING !!!\n# This is highly experimental, incomplete and unstable.\n# This may break the game and crash clients.\n# Don't enable this unless you know what you're doing.\n#\n# - Server must be in offline mode\n# - Server must use Minecraft version 1.16.3 to 1.17.1 (tested with 1.17.1)\n# - Server must use vanilla Minecraft\n#   - May work with Forge, enable in config, depends on used mods, test before use\n#   - Does not work with other mods, such as FTB\n\n# Maximum time in seconds in the lobby while the server starts.\n#timeout = 600\n\n# Message banner in lobby shown to client.\n#message = \"§2Server is starting\\n§7⌛ Please wait...\"\n\n# Sound effect to play when server is ready.\n#ready_sound = \"block.note_block.chime\"\n\n[lockout]\n# Enable to prevent everybody from connecting through lazymc. Instantly kicks player.\n#enabled = false\n\n# Kick players with following message.\n#message = \"Server is closed §7☠§r\\n\\nPlease try to reconnect in a minute.\"\n\n[rcon]\n# Enable sleeping server through RCON.\n# Must be enabled on Windows.\n#enabled = false # default: false, true on Windows\n\n# Server RCON port. Must differ from public and server port.\n#port = 25575\n\n# Server RCON password.\n# Or whether to randomize password each start (recommended).\n#password = \"\"\n#randomize_password = true\n\n# Add HAProxy v2 header to RCON connections.\n# See: https://git.io/J1bYb\n#send_proxy_v2 = false\n\n[advanced]\n# Automatically update values in Minecraft server.properties file as required.\nrewrite_server_properties = true\n\n[config]\n# lazymc version this configuration is for.\n# Don't change unless you know what you're doing.\nversion = \"0.2.7\"\n",
+      "type": "writefile"
+    },
+    {
+      "filename": "",
+      "target": "installer.jar",
+      "type": "forgedl",
+      "version": "${version}${mc-version}"
+    },
+    {
+      "commands": [
+        "${java} -jar installer.jar --installServer"
+      ],
+      "type": "command"
+    },
+    {
+      "target": "eula.txt",
+      "text": "eula=${eula}",
+      "type": "writefile"
+    },
+    {
+      "target": "mods",
+      "type": "mkdir"
+    },
+    {
+      "target": "server.properties",
+      "text": "server-ip=127.0.0.1\nserver-port=${portint}",
+      "type": "writefile"
+    },
+    {
+      "source": "forge-*.jar",
+      "target": "forge-server.jar",
+      "type": "move"
+    }
+  ],
+  "run": {
+    "stopCode": 2,
+    "command": "./lazymc start",
+    "workingDirectory": "",
+    "pre": [],
+    "post": [],
+    "environmentVars": {}
+  },
+  "data": {
+    "eula": {
+      "type": "boolean",
+      "desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
+      "display": "EULA Agreement (true/false)",
+      "value": "true"
+    },
+    "ip": {
+      "type": "string",
+      "desc": "What IP to bind server to",
+      "display": "IP",
+      "required": true,
+      "value": "0.0.0.0"
+    },
+    "java": {
+      "type": "string",
+      "desc": "\"java\" for system standard, else direct path to java",
+      "display": "path to java executable",
+      "required": true,
+      "value": "java"
+    },
+    "mc-version": {
+      "type": "option",
+      "desc": "On which Minecraft Version should forge be installed",
+      "display": "Minecraft Version",
+      "required": true,
+      "value": "",
+      "options": [
+        {
+          "value": "",
+          "display": "Any other version"
+        },
+        {
+          "value": "-mc172",
+          "display": "Minecraft 1.7.2"
+        },
+        {
+          "value": "-1.7.10",
+          "display": "Minecraft 1.7.10"
+        },
+        {
+          "value": "-prerelease",
+          "display": "Minecraft 1.7.10_pre4"
+        },
+        {
+          "value": "-1.8.9",
+          "display": "Minecraft 1.8.9"
+        },
+        {
+          "value": "-1.9.0",
+          "display": "Minecraft 1.9"
+        },
+        {
+          "value": "-1.9.4",
+          "display": "Minecraft 1.9.4"
+        }
+      ]
+    },
+    "memory": {
+      "type": "integer",
+      "desc": "How much memory in MB to allocate to the Java Heap",
+      "display": "Memory (MB)",
+      "required": true,
+      "value": "1024"
+    },
+    "portint": {
+      "type": "integer",
+      "desc": "The port where lazymc will redirect requests",
+      "display": "Internal server port",
+      "value": "25566"
+    },
+    "portlmc": {
+      "type": "integer",
+      "desc": "What port to bind the server to",
+      "display": "Port of Lazymc",
+      "required": true,
+      "value": "25565"
+    },
+    "protocol": {
+      "type": "integer",
+      "desc": "chet the protocol here https://wiki.vg/Protocol_version_numbers#Versions_after_the_Netty_rewrite",
+      "display": "Protocol",
+      "required": true,
+      "value": "0"
+    },
+    "version": {
+      "type": "string",
+      "desc": "Version of Forge to install (may be located <a href='http://files.minecraftforge.net/#Downloads'>here</a>",
+      "display": "Version",
+      "required": true,
+      "value": "1.16.5-36.2.20"
+    }
+  },
+  "environment": {
+    "type": "standard"
+  },
+  "supportedEnvironments": [
+    {
+      "type": "standard"
+    }
+  ],
+  "requirements": {}
+}
