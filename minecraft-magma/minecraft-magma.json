@@ -1,98 +1,167 @@
 {
-    "data": {
-        "java": {
-            "value": "java",
-            "required": true,
-            "desc": "\"java\" for system standard, else direct path to java",
-            "display": "path to java executable",
-            "internal": false,
-            "type": "string",
-            "userEdit": true
-        },
-        "eula": {
-            "desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
-            "display": "EULA Agreement (true/false)",
-            "required": true,
-            "value": "false",
-            "userEdit": true,
-            "type": "boolean"
-        },
-        "ip": {
-            "desc": "What IP to bind the server to",
-            "display": "IP",
-            "required": true,
-            "value": "0.0.0.0",
-            "userEdit": true,
-            "type": "string"
-        },
-        "memory": {
-            "desc": "How much memory in MB to allocate to the Java Heap",
-            "display": "Memory (MB)",
-            "required": true,
-            "value": "1024",
-            "type": "integer"
-        },
-        "motd": {
-            "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
-            "display": "MOTD message of the day",
-            "required": true,
-            "value": "A Minecraft Server\\n\\u00A79 hosted on PufferPanel",
-            "userEdit": true,
-            "type": "string"
-        },
-        "port": {
-            "desc": "What port to bind the server to",
-            "display": "Port",
-            "required": true,
-            "value": "25565",
-            "userEdit": true,
-            "type": "integer"
-        },
-        "version": {
-            "desc": "Version Tag of Magma to install (may be located <a href='https://github.com/magmafoundation/Magma/releases'>here</a>",
-            "display": "Magma Version Tag",
-            "required": true,
-            "value": "3a65e28",
-            "userEdit": true,
-            "type": "string"
-        }
-    },
-    "display": "Magma - Minecraft",
-    "install": [{
-            "files": [
-                "https://github.com/magmafoundation/Magma/releases/download/v${version}/Magma-${version}-server.jar"
-            ],
-            "type": "download"
-        },
-        {
-            "source": "Magma-*-server.jar",
-            "target": "server.jar",
-            "type": "move"
-        },
-        {
-            "target": "server.properties",
-            "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}",
-            "type": "writefile"
-        },
-        {
-            "target": "eula.txt",
-            "text": "eula=${eula}",
-            "type": "writefile"
-        }
-    ],
-    "type": "minecraft-java",
-    "run": {
-        "command": "${java} -Xmx${memory}M -Dlog4j2.formatMsgNoLookups=true -jar server.jar nogui",
-        "environmentVars": {},
-        "pre": [],
-        "post": [],
-        "stop": "stop"
-    },
-    "supportedEnvironments": [{
-        "type": "standard"
-    }],
     "name": "minecraft-magma",
-    "requirements": {
-        "binaries": ["${java}"]
-    }
-}
+    "display": "Magma - Minecraft",
+    "type": "minecraft-java",
+    "install": [
+      {
+        "files": [
+          "${version}"
+        ],
+        "type": "download"
+      },
+      {
+        "source": "Magma-*-server.jar",
+        "target": "magma-server.jar",
+        "type": "move"
+      },
+      {
+        "target": "eula.txt",
+        "text": "eula=${eula}",
+        "type": "writefile"
+      },
+      {
+        "target": "server.properties",
+        "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}",
+        "type": "writefile"
+      }
+    ],
+    "run": {
+      "stop": "stop",
+      "command": "${java} -Xmx${memory}M -Xms1G -jar magma-server.jar nogui",
+      "workingDirectory": "",
+      "pre": [],
+      "post": [],
+      "environmentVars": {}
+    },
+    "data": {
+      "eula": {
+        "type": "boolean",
+        "desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
+        "display": "EULA Agreement (true/false)",
+        "value": "true"
+      },
+      "ip": {
+        "type": "string",
+        "desc": "What IP to bind server to",
+        "display": "IP",
+        "required": true,
+        "value": "0.0.0.0"
+      },
+      "java": {
+        "type": "string",
+        "desc": "\"java\" for system standard, else direct path to java",
+        "display": "path to java executable",
+        "required": true,
+        "value": "java"
+      },
+      "memory": {
+        "type": "integer",
+        "desc": "How much memory in MB to allocate to the Java Heap",
+        "display": "Memory (MB)",
+        "required": true,
+        "value": "1024"
+      },
+      "motd": {
+        "type": "string",
+        "desc": "The mensaje that displays in the mc server list",
+        "display": "Mensage of the day (MOTD)",
+        "value": "A pufferpanel hosted server"
+      },
+      "port": {
+        "type": "integer",
+        "desc": "The port of the server ",
+        "display": "Port",
+        "value": "25565"
+      },
+      "version": {
+        "type": "option",
+        "desc": "Version of Minecraft and Magma to install. More info https://magmafoundation.org",
+        "display": "Version",
+        "required": true,
+        "value": "",
+        "options": [
+          {
+            "value": "https://git.magmafoundation.org/api/v4/projects/7/packages/maven/org/magmafoundation/Magma/1.12.2-9a3e486d/Magma-1.12.2-9a3e486d.jar",
+            "display": "1.12.2-9a3e486d"
+          },
+          {
+            "value": "https://git.magmafoundation.org/api/v4/projects/7/packages/maven/org/magmafoundation/Magma/1.12.2-efb9116e/Magma-1.12.2-efb9116e.jar",
+            "display": "1.12.2-efb9116e"
+          },
+          {
+            "value": "https://git.magmafoundation.org/api/v4/projects/7/packages/maven/org/magmafoundation/Magma/1.12.2-866f4a2c/Magma-1.12.2-866f4a2c.jar",
+            "display": "1.12.2-866f4a2c"
+          },
+          {
+            "value": "https://git.magmafoundation.org/api/v4/projects/7/packages/maven/org/magmafoundation/Magma/1.12.2-42b9ed30/Magma-1.12.2-42b9ed30.jar",
+            "display": "1.12.2-42b9ed30"
+          },
+          {
+            "value": "https://git.magmafoundation.org/api/v4/projects/7/packages/maven/org/magmafoundation/Magma/1.12.2-05edfca1/Magma-1.12.2-05edfca1.jar",
+            "display": "1.12.2-05edfca1"
+          },
+          {
+            "value": "https://git.magmafoundation.org/api/v4/projects/7/packages/maven/org/magmafoundation/Magma/1.12.2-c24c6905/Magma-1.12.2-c24c6905.jar",
+            "display": "1.12.2-c24c6905"
+          },
+          {
+            "value": "https://git.magmafoundation.org/api/v4/projects/8/packages/maven/org/magmafoundation/Magma/1.16.5-36.2.35-80d5f97a/Magma-1.16.5-36.2.35-80d5f97a-server.jar",
+            "display": "1.16.5-36.2.35-80d5f97a"
+          },
+          {
+            "value": "https://git.magmafoundation.org/api/v4/projects/8/packages/maven/org/magmafoundation/Magma/1.16.5-36.2.35-5e2d6064/Magma-1.16.5-36.2.35-5e2d6064-server.jar",
+            "display": "1.16.5-36.2.35-5e2d6064"
+          },
+          {
+            "value": "https://git.magmafoundation.org/api/v4/projects/8/packages/maven/org/magmafoundation/Magma/1.16.5-36.2.35-8d543ec6/Magma-1.16.5-36.2.35-8d543ec6-server.jar",
+            "display": "1.16.5-36.2.35-8d543ec6"
+          },
+          {
+            "value": "https://git.magmafoundation.org/api/v4/projects/8/packages/maven/org/magmafoundation/Magma/1.16.5-36.2.35-76af30ed/Magma-1.16.5-36.2.35-76af30ed-server.jar",
+            "display": "1.16.5-36.2.35-76af30ed"
+          },
+          {
+            "value": "https://git.magmafoundation.org/api/v4/projects/8/packages/maven/org/magmafoundation/Magma/1.16.5-36.2.35-5ec3a017/Magma-1.16.5-36.2.35-5ec3a017-server.jar",
+            "display": "1.16.5-36.2.35-5ec3a017"
+          },
+          {
+            "value": "https://git.magmafoundation.org/api/v4/projects/8/packages/maven/org/magmafoundation/Magma/1.16.5-36.2.35-89287b58/Magma-1.16.5-36.2.35-89287b58-server.jar",
+            "display": "1.16.5-36.2.35-89287b58"
+          },
+          {
+            "value": "https://git.magmafoundation.org/api/v4/projects/5/packages/maven/org/magmafoundation/Magma/1.18.2-40.1.74-9aaf337f/Magma-1.18.2-40.1.74-9aaf337f-server.jar",
+            "display": "1.18.2-40.1.74-9aaf337f"
+          },
+          {
+            "value": "https://git.magmafoundation.org/api/v4/projects/5/packages/maven/org/magmafoundation/Magma/1.18.2-40.1.73-baa4f309/Magma-1.18.2-40.1.73-baa4f309-server.jar",
+            "display": "1.18.2-40.1.73-baa4f309"
+          },
+          {
+            "value": "https://git.magmafoundation.org/api/v4/projects/5/packages/maven/org/magmafoundation/Magma/1.18.2-40.1.73-9057d0ab/Magma-1.18.2-40.1.73-9057d0ab-server.jar",
+            "display": "1.18.2-40.1.73-9057d0ab"
+          },
+          {
+            "value": "https://git.magmafoundation.org/api/v4/projects/5/packages/maven/org/magmafoundation/Magma/1.18.2-40.1.73-dad038a1/Magma-1.18.2-40.1.73-dad038a1-server.jar",
+            "display": "1.18.2-40.1.73-dad038a1"
+          },
+          {
+            "value": "https://git.magmafoundation.org/api/v4/projects/5/packages/maven/org/magmafoundation/Magma/1.18.2-40.1.73-cca106b5/Magma-1.18.2-40.1.73-cca106b5-server.jar",
+            "display": "1.18.2-40.1.73-cca106b5"
+          },
+          {
+            "value": "https://git.magmafoundation.org/api/v4/projects/5/packages/maven/org/magmafoundation/Magma/1.18.2-40.1.73-1776ef83/Magma-1.18.2-40.1.73-1776ef83-server.jar",
+            "display": "1.18.2-40.1.73-1776ef83"
+          }
+        ]
+      }
+    },
+    "environment": {
+      "type": "standard"
+    },
+    "supportedEnvironments": [
+      {
+        "type": "standard"
+      }
+    ],
+    "requirements": {}
+  }
