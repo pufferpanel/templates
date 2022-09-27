@@ -11,18 +11,8 @@
     },
     {
       "commands": [
-        "rm BeamMP-Server-linux",
-        "unzip BeamMP_Server.zip",
+        "unzip -u BeamMP_Server.zip",
         "chmod +x BeamMP-Server-linux",
-        "rm BeamMP-Server.exe",
-        "apt update",
-        "apt install liblua5.3-0",
-        "rm LICENSE.txt"
-      ],
-      "type": "command"
-    },
-    {
-      "commands": [
         "rm ServerConfig.toml"
       ],
       "type": "command"
