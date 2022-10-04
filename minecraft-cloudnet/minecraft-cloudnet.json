@@ -1,0 +1,62 @@
+{
+  "name": "CloudNet3",
+  "display": "CloudNet 3",
+  "type": "minecraft-java",
+  "install": [
+    {
+      "files": [
+        "https://cloudnetservice.eu/cloudnet/version/release/${version}/CloudNet.zip"
+      ],
+      "type": "download"
+    },
+    {
+      "commands": [
+        "unzip CloudNet.zip"
+      ],
+      "type": "command"
+    }
+  ],
+  "run": {
+    "stop": "exit",
+    "command": "${java} -XX:+UseG1GC -XX:MaxGCPauseMillis=50 -XX:+UnlockExperimentalVMOptions -XX:+UseCompressedOops -XX:-UseAdaptiveSizePolicy -XX:CompileThreshold=100 -Dfile.encoding=UTF-8 -Xmx${memory}M -Xms${memory}m -jar launcher.jar",
+    "workingDirectory": "",
+    "pre": [],
+    "post": [],
+    "environmentVars": {}
+  },
+  "data": {
+        "java": {
+            "value": "java",
+            "required": true,
+            "desc": "\"java\" for system standard, else direct path to java",
+            "display": "path to java executable",
+            "internal": false,
+            "type": "string",
+            "userEdit": true
+        },
+        "memory": {
+            "type": "integer",
+            "desc": "How much memory in MB to allocate to the Java Heap",
+            "display": "MEMORY (MB)",
+            "required": true,
+            "value": "512"
+        },
+        "version": {
+            "type": "string",
+            "desc": "Version",
+            "display": "CloudNET Version",
+            "required": true,
+            "value": "3.4.4",
+            "internal": false,
+            "userEdit": true
+    }
+  },
+  "environment": {
+    "type": "standard"
+  },
+  "supportedEnvironments": [
+    {
+      "type": "standard"
+    }
+  ]
+}
