@@ -1,0 +1,49 @@
+{
+    "name": "Scheduler",
+    "display": "scheduler",
+    "type": "system",
+    "install": [
+      {
+        "files": [
+          "https://raw.githubusercontent.com/CristianEduardMihai/pufferpanel-scheduler/main/scheduler.py",
+          "https://raw.githubusercontent.com/CristianEduardMihai/pufferpanel-scheduler/main/requirements.txt",
+          "https://raw.githubusercontent.com/CristianEduardMihai/pufferpanel-scheduler/main/config.yaml",
+          "https://raw.githubusercontent.com/CristianEduardMihai/pufferpanel-scheduler/main/LICENSE"
+        ],
+        "type": "download"
+      },
+      {
+        "commands": [
+          "python3 -m pip install -r requirements.txt"
+        ],
+        "type": "command"
+      }
+    ],
+    "run": {
+      "stop": "stop",
+      "command": "python3 scheduler.py",
+      "workingDirectory": "",
+      "pre": [],
+      "post": [],
+      "environmentVars": {}
+    },
+    "data": {},
+    "environment": {
+      "type": "standard"
+    },
+    "supportedEnvironments": [
+      {
+        "type": "standard"
+      },
+      {
+        "image": "python",
+        "networkMode": "host",
+        "type": "docker"
+      }
+    ],
+    "requirements": {
+      "binaries": [
+        "python3"
+      ]
+    }
+  }
