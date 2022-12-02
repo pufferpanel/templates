@@ -10,7 +10,7 @@
       "commands": [
         "mkdir steamcmd",
         "tar --no-same-owner -xzvf steamcmd_linux.tar.gz -C steamcmd",
-        "steamcmd/steamcmd.sh +login anonymous +force_install_dir .. +app_update 376030 +quit",
+        "steamcmd/steamcmd.sh +force_install_dir .. +login anonymous +app_update 376030 +quit",
         "mkdir -p .steam/sdk32",
         "cp steamcmd/linux32/steamclient.so .steam/sdk32/steamclient.so"
       ]
