@@ -1,32 +1,6 @@
 {
   "type": "eco",
-  "display": "ECO – Global Survival (via mono)",
-  "install": [{
-      "type": "download",
-      "files": [
-        "https://s3-us-west-2.amazonaws.com/eco-releases/EcoServer_v${serverVersion}.zip"
-      ]
-    },
-    {
-      "type": "command",
-      "commands": [
-        "unzip EcoServer_v*.zip",
-        "rm EcoServer_v${serverVersion}.zip"
-      ]
-    },
-    {
-      "type": "writefile",
-      "metadata": {},
-      "target": "Configs/Network.eco",
-      "text": "{\n  \"PublicServer\": false,\n  \"Password\": \"${password}\",\n  \"Description\": \"\",\n  \"IPAddress\": \"${ip}\",\n  \"GameServerPort\": ${port},\n  \"WebServerPort\": ${webServerPort},\n  \"Rate\": 10,\n  \"MaxConnections\": -1\n}"
-    }
-  ],
-  "run": {
-    "stopCode": 9,
-    "pre": [],
-    "post": [],
-    "command": "mono EcoServer.exe -nogui"
-  },
+  "display": "ECO - Global Survival",
   "data": {
     "ip": {
       "value": "0.0.0.0",
@@ -66,8 +40,32 @@
       "internal": false
     }
   },
+  "install": [
+    {
+      "type": "download",
+      "files": [
+        "https://s3-us-west-2.amazonaws.com/eco-releases/EcoServer_v${serverVersion}.zip"
+      ]
+    },
+    {
+      "type": "command",
+      "commands": [
+        "unzip EcoServer_v*.zip",
+        "rm EcoServer_v${serverVersion}.zip"
+      ]
+    },
+    {
+      "type": "writefile",
+      "target": "Configs/Network.eco",
+      "text": "{\n  \"PublicServer\": false,\n  \"Password\": \"${password}\",\n  \"Description\": \"\",\n  \"IPAddress\": \"${ip}\",\n  \"GameServerPort\": ${port},\n  \"WebServerPort\": ${webServerPort},\n  \"Rate\": 10,\n  \"MaxConnections\": -1\n}"
+    }
+  ],
+  "run": {
+    "command": "mono EcoServer.exe -nogui",
+    "stopCode": 9
+  },
   "requirements": {
-    "binaries": ["unzip", "mono"],
+    "binaries": [ "unzip", "mono" ],
     "arch": "amd64",
     "os": "linux"
   }

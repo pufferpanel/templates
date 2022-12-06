@@ -1,51 +1,6 @@
 {
-  "name": "feedthebeast-forge-117+",
-  "display": "FTB Launcher - Forge 1.17+",
   "type": "minecraft-java",
-  "install": [
-    {
-      "files": [
-        "https://api.modpacks.ch/public/modpack/${modpack_id}/${modpack_version}/server/linux"
-      ],
-      "type": "download"
-    },
-    {
-      "commands": [
-        "chmod u+x serverinstall_${modpack_id}_${modpack_version}",
-        "./serverinstall_${modpack_id}_${modpack_version} --auto --noscript"
-      ],
-      "type": "command"
-    },
-    {
-      "source": "forge-*.jar",
-      "target": "ForgeServer.jar",
-      "type": "move"
-    },
-    {
-      "target": "eula.txt",
-      "text": "eula=${eula}",
-      "type": "writefile"
-    },
-    {
-      "target": "server.properties",
-      "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}\n",
-      "type": "writefile"
-    },
-    {
-      "commands": [
-        "${java} -jar forge-1.1*.*-installer.jar --installServer"
-      ],
-      "type": "command"
-    }
-  ],
-  "run": {
-    "stop": "stop",
-    "command": "${java} -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -Dlog4j2.formatMsgNoLookups=true -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true @libraries/net/minecraftforge/forge/${version}/unix_args.txt nogui",
-    "workingDirectory": "",
-    "pre": [],
-    "post": [],
-    "environmentVars": {}
-  },
+  "display": "FTB - Forge 1.17+",
   "data": {
     "eula": {
       "type": "boolean",
@@ -114,21 +69,51 @@
       "value": "1.17.1-37.0.45"
     }
   },
-  "environment": {
-    "type": "standard"
-  },
-  "supportedEnvironments": [
+  "install": [
     {
-      "type": "standard"
+      "type": "javadl",
+      "version": "17"
     },
     {
-      "image": "openjdk:8-alpine",
-      "type": "docker"
+      "files": [
+        "https://api.modpacks.ch/public/modpack/${modpack_id}/${modpack_version}/server/linux"
+      ],
+      "type": "download"
+    },
+    {
+      "commands": [
+        "chmod u+x serverinstall_${modpack_id}_${modpack_version}",
+        "./serverinstall_${modpack_id}_${modpack_version} --auto --noscript"
+      ],
+      "type": "command"
+    },
+    {
+      "source": "forge-*.jar",
+      "target": "ForgeServer.jar",
+      "type": "move"
+    },
+    {
+      "target": "eula.txt",
+      "text": "eula=${eula}",
+      "type": "writefile"
+    },
+    {
+      "target": "server.properties",
+      "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}\n",
+      "type": "writefile"
+    },
+    {
+      "commands": [
+        "java17 -jar forge-1.1*.*-installer.jar --installServer"
+      ],
+      "type": "command"
     }
   ],
-  "requirements": {
-    "binaries": [
-      "${java}"
-    ]
+  "run": {
+    "command": "java17 -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -Dlog4j2.formatMsgNoLookups=true -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true @libraries/net/minecraftforge/forge/${version}/unix_args.txt nogui",
+    "stop": "stop"
+  },
+  "environment": {
+    "type": "standard"
   }
 }

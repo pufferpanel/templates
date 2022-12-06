@@ -1,7 +1,6 @@
 {
-  "name": "arma3",
   "type": "srcds",
-  "display": "ARMA3",
+  "display": "ARMA3 (Docker)",
   "data": {
     "steam_user": {
       "value": "anonymous",
@@ -35,13 +34,9 @@
   },
   "install": [
     {
-      "type": "steamgamedl",
-      "appId": "233780",
-      "username": "${steam_user}"
-    },
-    {
       "type": "command",
       "commands": [
+        "steamcmd +login ${steam_user} +force_install_dir .. +app_update 233780 +quit",
         "touch ./config.cfg",
         "touch ./parameters.txt"
       ]
@@ -52,10 +47,10 @@
     "stopCode": 2
   },
   "environment": {
-    "type": "tty"
+    "type": "docker",
+    "image": "steamcmd/steamcmd"
   },
   "requirements": {
-    "os": "linux",
     "arch": "amd64"
   }
 }

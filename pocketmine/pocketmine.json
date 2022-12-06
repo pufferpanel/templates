@@ -1,35 +1,6 @@
 {
   "type": "minecraft-bedrock",
   "display": "PocketMine-MP",
-  "install": [{
-      "type": "download",
-      "files": "https://raw.githubusercontent.com/pmmp/php-build-scripts/master/installer.sh"
-    },
-    {
-      "commands": [
-        "chmod +x ./installer.sh",
-        "./installer.sh"
-      ],
-      "type": "command"
-    },
-    {
-      "type": "writefile",
-      "text": "server-ip=${ip}\nserver-port=${port}\n",
-      "target": "server.properties"
-    }
-  ],
-  "run": {
-    "stop": "stop",
-    "pre": [],
-    "post": [],
-    "command": "./start.sh --no-wizard"
-  },
-  "environment": {
-    "type": "tty"
-  },
-  "supportedEnvironments": [{
-    "type": "tty"
-  }],
   "data": {
     "ip": {
       "value": "0.0.0.0",
@@ -46,6 +17,31 @@
       "internal": false,
       "type": "integer"
     }
+  },
+  "install": [
+    {
+      "type": "download",
+      "files": "https://raw.githubusercontent.com/pmmp/php-build-scripts/master/installer.sh"
+    },
+    {
+      "type": "command",
+      "commands": [
+        "chmod +x ./installer.sh",
+        "./installer.sh"
+      ]
+    },
+    {
+      "type": "writefile",
+      "text": "server-ip=${ip}\nserver-port=${port}\n",
+      "target": "server.properties"
+    }
+  ],
+  "run": {
+    "command": "./start.sh --no-wizard",
+    "stop": "stop"
+  },
+  "environment": {
+    "type": "standard"
   },
   "requirements": {
     "os": "linux",

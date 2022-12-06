@@ -1,6 +1,6 @@
 {
   "type": "srcds",
-  "display": "Counter Strike: Global Offensive",
+  "display": "Counter Strike: Global Offensive (Docker)",
   "data": {
     "map": {
       "value": "de_dust2",
@@ -90,8 +90,10 @@
   },
   "install": [
     {
-      "type": "steamgamedl",
-      "target": "740"
+      "type": "command",
+      "commands": [
+        "steamcmd +force_install_dir . +login anonymous +app_update 740 +quit"
+      ]
     }
   ],
   "run": {
@@ -99,10 +101,10 @@
     "stop": "exit"
   },
   "environment": {
-    "type": "tty"
+    "type": "docker",
+    "image": "steamcmd/steamcmd"
   },
   "requirements": {
-    "os": "linux",
     "arch": "amd64"
   }
 }

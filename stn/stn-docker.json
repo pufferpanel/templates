@@ -1,6 +1,6 @@
 {
   "type": "stn",
-  "display": "Survive The Nights",
+  "display": "Survive The Nights (Docker)",
   "data": {
     "firstjoinmessage": {
       "type": "string",
@@ -81,8 +81,10 @@
       "type": "writefile"
     },
     {
-      "type": "steamgamedl",
-      "appId": "1502300"
+      "commands": [
+        "steamcmd +login anonymous +force_install_dir . +app_update 1502300 +quit"
+      ],
+      "type": "command"
     }
   ],
   "run": {

@@ -1,6 +1,6 @@
 {
   "type": "srcds",
-  "display": "Eco 9 Beta Version",
+  "display": "Eco 9 Beta Version (Docker)",
   "data": {
     "ServerName": {
       "desc": "Server Name",
@@ -55,8 +55,10 @@
   },
   "install": [
     {
-      "type": "steamgamedl",
-      "appId": "739590"
+      "type": "command",
+      "commands": [
+        "steamcmd +login anonymous +force_install_dir . +app_update 739590 -beta default validate +quit"
+      ]
     },
     {
       "type": "writefile",
@@ -70,10 +72,10 @@
     "stopCode": 2
   },
   "environment": {
-    "type": "tty"
+    "type": "docker",
+    "image": "steamcmd/steamcmd"
   },
   "requirements": {
-    "os": "linux",
     "arch": "amd64"
   }
 }

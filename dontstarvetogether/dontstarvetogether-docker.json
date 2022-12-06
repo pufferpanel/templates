@@ -1,5 +1,5 @@
 {
-  "display": "Dont Starve Together",
+  "display": "Dont Starve Together (Docker)",
   "type": "srcds",
   "data": {
     "ip": {
@@ -117,8 +117,10 @@
   },
   "install": [
     {
-      "type": "steamgamedl",
-      "appId": "343050"
+      "type": "command",
+      "commands": [
+        "steamcmd +login anonymous +force_install_dir . +app_update 343050 +quit"
+      ]
     },
     {
       "type": "mkdir",
@@ -149,10 +151,10 @@
     "stop": "c_shutdown()"
   },
   "environment": {
-    "type": "standard"
+    "type": "docker",
+    "image": "steamcmd/steamcmd"
   },
   "requirements": {
-    "os": "linux",
     "arch": "amd64"
   }
 }
