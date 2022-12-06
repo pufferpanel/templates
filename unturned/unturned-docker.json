@@ -1,6 +1,6 @@
 {
   "type": "srcds",
-  "display": "Unturned",
+  "display": "Unturned (Docker)",
   "data": {
     "map": {
       "desc": "Server map.",
@@ -124,20 +124,15 @@
   },
   "install": [
     {
-      "type": "steamgamedl",
-      "appId": "1110390"
-    },
-    {
+      "type": "command",
       "commands": [
-        "steamcmd +login anonymous +force_install_dir ../ +app_update 1110390 validate +exit"
-      ],
-      "type": "command"
+        "steamcmd +login anonymous +force_install_dir . +app_update 1110390 validate +exit"
+      ]
     },
     {
       "type": "command",
       "commands": [
-        "mkdir Servers/${server}",
-        "mkdir Servers/${server}/Server/"
+        "mkdir -p Servers/${server}/Server/"
       ]
     },
     {
@@ -151,10 +146,10 @@
     "stop": "shutdown"
   },
   "environment": {
-    "type": "tty"
+    "type": "docker",
+    "image": "steamcmd/steamcmd"
   },
   "requirements": {
-    "os": "linux",
     "arch": "amd64"
   }
 }

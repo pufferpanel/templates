@@ -1,6 +1,6 @@
 {
   "type": "valheim",
-  "display": "Valheim Dedicated Server (Modded w. BepInEx)",
+  "display": "Valheim Dedicated Server (Modded w. BepInEx) (Docker)",
   "data": {
     "modpack": {
       "type": "string",
@@ -54,12 +54,9 @@
       ]
     },
     {
-      "type": "steamgamedl",
-      "appId": "896660"
-    },
-    {
       "type": "command",
       "commands": [
+        "steamcmd +login anonymous +force_install_dir . +app_update 896660 +quit",
         "unzip ./denikson-BepInExPack_Valheim*.zip -d ./bepin_temp/",
         "cp -r ./bepin_temp/BepInExPack_Valheim/. ./",
         "rm -r ./bepin_temp"
@@ -78,10 +75,10 @@
     }
   },
   "environment": {
-    "type": "tty"
+    "type": "docker",
+    "image": "steamcmd/steamcmd"
   },
   "requirements": {
-    "os": "linux",
     "arch": "amd64"
   }
 }

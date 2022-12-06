@@ -1,6 +1,6 @@
 {
   "type": "srcds",
-  "display": "Counter Strike: Source",
+  "display": "Counter Strike: Source (Docker)",
   "data": {
     "map": {
       "value": "de_dust2",
@@ -59,8 +59,10 @@
   },
   "install": [
     {
-      "type": "steamgamedl",
-      "appId": "232330"
+      "type": "command",
+      "commands": [
+        "steamcmd +login anonymous +force_install_dir . +app_update 232330 +quit"
+      ]
     }
   ],
   "run": {
@@ -68,10 +70,10 @@
     "stop": "exit"
   },
   "environment": {
-    "type": "tty"
+    "type": "docker",
+    "image": "steamcmd/steamcmd"
   },
   "requirements": {
-    "os": "linux",
     "arch": "amd64"
   }
 }

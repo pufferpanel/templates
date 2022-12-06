@@ -1,6 +1,6 @@
 {
   "type": "srcds",
-  "display": "Rust",
+  "display": "Rust (Docker)",
   "data": {
     "ip": {
       "value": "0.0.0.0",
@@ -100,8 +100,11 @@
   },
   "install": [
     {
-      "type": "steamgamedl",
-      "appId": "258550"
+      "type": "command",
+      "commands": [
+        "tar --no-same-owner -xzvf steamcmd_linux.tar.gz -C steamcmd",
+        "steamcmd/steamcmd.sh +login anonymous +force_install_dir .. +app_update 258550 +quit"
+      ]
     }
   ],
   "run": {
@@ -112,16 +115,18 @@
     },
     "pre": [
       {
-        "type": "steamgamedl",
-        "appId": "258550"
+        "type": "command",
+        "commands": [
+          "steamcmd/steamcmd.sh +login anonymous +force_install_dir .. +app_update 258550 +quit"
+        ]
       }
     ]
   },
   "environment": {
-    "type": "tty"
+    "type": "docker",
+    "image": "steamcmd/steamcmd"
   },
   "requirements": {
-    "os": "linux",
     "arch": "amd64"
   }
 }

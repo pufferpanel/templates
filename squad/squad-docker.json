@@ -1,6 +1,6 @@
 {
   "type": "squad",
-  "display": "SQUAD Dedicated Server",
+  "display": "SQUAD Dedicated Server (Docker)",
   "data": {
     "fixed_max_players": {
       "type": "integer",
@@ -47,8 +47,10 @@
   },
   "install": [
     {
-      "type": "steamgamedl",
-      "appId": "403240"
+      "type": "command",
+      "commands": [
+        "steamcmd +login anonymous +force_install_dir . +app_update 403240 +quit"
+      ]
     }
   ],
   "run": {
@@ -57,8 +59,10 @@
     "workingDirectory": "",
     "pre": [
       {
-        "type": "steamgamedl",
-        "appId": "403240"
+        "type": "command",
+        "commands": [
+          "steamcmd +login anonymous +force_install_dir . +app_update 403240 +quit"
+        ]
       },
       {
         "commands": [ "chmod +x ./SquadGameServer.sh" ],
@@ -67,10 +71,10 @@
     ]
   },
   "environment": {
-    "type": "tty"
+    "type": "docker",
+    "image": "steamcmd/steamcmd"
   },
   "requirements": {
-    "os": "linux",
     "arch": "amd64"
   }
 }

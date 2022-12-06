@@ -30,18 +30,7 @@
     "stop": "stop"
   },
   "environment": {
-    "type": "standard"
-  },
-  "supportedEnvironments": [ {
-      "type": "standard"
-    },
-    {
-      "image": "python",
-      "networkMode": "host",
-      "type": "docker"
-    }
-  ],
-  "requirements": {
-    "binaries": [ "python3" ]
+    "type": "docker",
+    "image": "python"
   }
 }

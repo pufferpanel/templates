@@ -1,6 +1,6 @@
 {
   "type": "srcds",
-  "display": "ARK: Survival Evolved",
+  "display": "ARK: Survival Evolved (Docker)",
   "data": {
     "sessionname": {
       "value": "My ARK Server",
@@ -75,8 +75,10 @@
   },
   "install": [
     {
-      "type": "steamgamedl",
-      "appId": "376030"
+      "type": "command",
+      "commands": [
+        "steamcmd +force_install_dir . +login anonymous +app_update 376030 +quit"
+      ]
     }
   ],
   "run": {
@@ -84,10 +86,10 @@
     "stopCode": 2
   },
   "environment": {
-    "type": "tty"
+    "type": "docker",
+    "image": "steamcmd/steamcmd"
   },
   "requirements": {
-    "os": "linux",
     "arch": "amd64"
   }
 }

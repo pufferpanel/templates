@@ -1,49 +1,6 @@
 {
   "type": "pocketmine",
   "display": "GenisysPro",
-  "install": [{
-      "type": "download",
-      "files": "https://github.com/GenisysPro/GenisysPro/archive/master.zip"
-    },
-    {
-      "type": "command",
-      "commands": [
-        "unzip GenisysPro-master"
-      ]
-    },
-    {
-      "type": "download",
-      "files": "https://bintray.com/pocketmine/PocketMine/download_file?file_path=PHP_7.0.6_x86-64_Linux.tar.gz"
-    },
-    {
-      "type": "command",
-      "commands": [
-        "tar -zxf PHP_7.0.6_x86-64_Linux.tar.gz"
-      ]
-    },
-    {
-      "source": "bin",
-      "target": "GenisysPro-master",
-      "type": "move"
-    },
-    {
-      "type": "writefile",
-      "text": "server-ip=${ip}\nserver-port=${port}\n",
-      "target": "server.properties"
-    }
-  ],
-  "run": {
-    "stop": "stop",
-    "pre": [],
-    "post": [],
-    "command": "GenisysPro-master/start.sh --no-wizard"
-  },
-  "environment": {
-    "type": "tty"
-  },
-  "supportedEnvironments": [{
-    "type": "tty"
-  }],
   "data": {
     "ip": {
       "value": "0.0.0.0",
@@ -61,8 +18,50 @@
       "type": "integer"
     }
   },
+  "install": [
+    {
+      "type": "download",
+      "files": "https://github.com/GenisysPro/GenisysPro/archive/master.zip"
+    },
+    {
+      "type": "command",
+      "commands": [
+        "unzip GenisysPro-master",
+        "rm master.zip"
+      ]
+    },
+    {
+      "type": "download",
+      "files": "https://bintray.com/pocketmine/PocketMine/download_file?file_path=PHP_7.0.6_x86-64_Linux.tar.gz"
+    },
+    {
+      "type": "command",
+      "commands": [
+        "tar -zxf PHP_7.0.6_x86-64_Linux.tar.gz",
+        "rm PHP_7.0.6_x86-64_Linux.tar.gz"
+      ]
+    },
+    {
+      "type": "move",
+      "source": "bin",
+      "target": "GenisysPro-master"
+    },
+    {
+      "type": "writefile",
+      "text": "server-ip=${ip}\nserver-port=${port}\n",
+      "target": "server.properties"
+    }
+  ],
+  "run": {
+    "command": "GenisysPro-master/start.sh --no-wizard",
+    "stop": "stop"
+  },
+  "environment": {
+    "type": "tty"
+  },
   "requirements": {
-    "binaries": ["unzip"],
-    "os": "linux"
+    "binaries": [ "unzip" ],
+    "os": "linux",
+    "arch": "amd64"
   }
 }

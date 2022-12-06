@@ -1,24 +1,7 @@
 {
   "type": "srcds",
-  "display": "Satisfactory",
+  "display": "Satisfactory (Docker)",
   "data": {
-    "game_type": {
-      "type": "option",
-      "desc": "Gameserver branch",
-      "display": "GameType",
-      "required": true,
-      "userEdit": true,
-      "options": [
-        {
-          "value": "public",
-          "display": "Public branch"
-        },
-        {
-          "value": "experimental",
-          "display": "Experimental branch"
-        }
-      ]
-    },
     "multihome": {
       "type": "string",
       "desc": "Ip address to bind the server to",
@@ -36,12 +19,9 @@
   },
   "install": [
     {
-      "type": "steamgamedl",
-      "appId": "1690800"
-    },
-    {
       "type": "command",
       "commands": [
+        "steamcmd +login anonymous +force_install_dir . +app_update 1690800 +quit",
         "chmod +x Engine/Binaries/Linux/UE4Server-Linux-Shipping",
         "mkdir -p ./FactoryGame/Saved/Config/LinuxServer/"
       ]
@@ -55,10 +35,10 @@
     }
   },
   "environment": {
-    "type": "tty"
+    "type": "docker",
+    "image": "steamcmd/steamcmd"
   },
   "requirements": {
-    "os": "linux",
     "arch": "amd64"
   }
 }

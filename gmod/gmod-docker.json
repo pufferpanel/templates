@@ -1,6 +1,6 @@
 {
   "type": "srcds",
-  "display": "Garry's Mod",
+  "display": "Garry's Mod (Docker)",
   "data": {
     "gamemode": {
       "value": "sandbox",
@@ -49,8 +49,10 @@
   },
   "install": [
     {
-      "type": "steamgamedl",
-      "appId": "4020"
+      "type": "command",
+      "commands": [
+        "steamcmd +login anonymous +force_install_dir . +app_update 4020 +quit"
+      ]
     }
   ],
   "run": {
@@ -58,10 +60,10 @@
     "stop": "exit"
   },
   "environment": {
-    "type": "tty"
+    "type": "docker",
+    "image": "steamcmd/steamcmd"
   },
   "requirements": {
-    "os": "linux",
     "arch": "amd64"
   }
 }

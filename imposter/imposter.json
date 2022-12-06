@@ -1,88 +1,79 @@
 {
-    "data": {
-        "listenip": {
-            "desc": "The IP the Server should listen on",
-            "display": "listeIP",
-            "required": true,
-            "value": "0.0.0.0",
-            "userEdit": true,
-            "type": "string"
-        },
-        "listenport": {
-            "desc": "The Port the Server listen on",
-            "display": "listenPort",
-            "required": true,
-            "value": "22023",
-            "userEdit": true,
-            "type": "integer"
-        },
-        "publicip": {
-            "desc": "The Adress the clients should connect to",
-            "display": "publicIP",
-            "required": true,
-            "value": "127.0.0.1",
-            "userEdit": true,
-            "type": "string"
-        },
-        "publicport": {
-            "desc": "The Port, which is used to connect to the Server",
-            "display": "publicPort",
-            "required": true,
-            "value": "22023",
-            "userEdit": true,
-            "type": "integer"
-        },
-        "version": {
-            "desc": "The Version of the Imposter Server you want to use",
-            "display": "Version",
-            "required": true,
-            "value": "1.1.0",
-            "userEdit": true,
-            "type": "string"
-        }
+  "type": "amoung-us",
+  "display": "Imposter",
+  "data": {
+    "listenip": {
+      "desc": "The IP the Server should listen on",
+      "display": "listeIP",
+      "required": true,
+      "value": "0.0.0.0",
+      "userEdit": true,
+      "type": "string"
     },
-    "display": "Imposter",
-    "install": [{
-            "files": [
-                "https://github.com/AeonLucid/Impostor/releases/download/v${version}/Impostor-Server_${version}_linux-x64.tar.gz"
-            ],
-            "type": "download"
-        },
-        {
-            "commands": [
-                "tar -zxvf Impostor-Server_${version}_linux-x64.tar.gz"
-            ],
-            "type": "command"
-        },
-        {
-            "commands": [
-                "chmod +x Impostor.Server",
-                "rm Impostor-Server_${version}_linux-x64.tar.gz",
-                "rm config.json"
-            ],
-            "type": "command"
-        },
-        {
-            "target": "config.json",
-            "text": " {\n  \"Server\": {\n    \"PublicIp\": \"${publicip}\",\n    \"PublicPort\": ${publicport},\n    \"ListenIp\": \"${listenip}\",\n    \"ListenPort\": ${listenport}\n  }\n}",
-            "type": "writefile"
-        }
-    ],
-    "type": "amoung-us",
-    "run": {
-        "command": "./Impostor.Server",
-        "stopCode": 1,
-        "environmentVars": {},
-        "pre": [],
-        "post": []
+    "listenport": {
+      "desc": "The Port the Server listen on",
+      "display": "listenPort",
+      "required": true,
+      "value": "22023",
+      "userEdit": true,
+      "type": "integer"
     },
-    "supportedEnvironments": [{
-        "type": "standard"
-    }],
-    "name": "imposter",
-    "requirements": {
-        "binaries": ["tar"],
-        "os": "linux",
-        "arch": "amd64"
+    "publicip": {
+      "desc": "The Adress the clients should connect to",
+      "display": "publicIP",
+      "required": true,
+      "value": "127.0.0.1",
+      "userEdit": true,
+      "type": "string"
+    },
+    "publicport": {
+      "desc": "The Port, which is used to connect to the Server",
+      "display": "publicPort",
+      "required": true,
+      "value": "22023",
+      "userEdit": true,
+      "type": "integer"
+    },
+    "version": {
+      "desc": "The Version of the Imposter Server you want to use",
+      "display": "Version",
+      "required": true,
+      "value": "1.1.0",
+      "userEdit": true,
+      "type": "string"
     }
+  },
+  "install": [
+    {
+      "type": "download",
+      "files": [
+        "https://github.com/AeonLucid/Impostor/releases/download/v${version}/Impostor-Server_${version}_linux-x64.tar.gz"
+      ]
+    },
+    {
+      "type": "command",
+      "commands": [
+        "tar -zxvf Impostor-Server_${version}_linux-x64.tar.gz",
+        "chmod +x Impostor.Server",
+        "rm Impostor-Server_${version}_linux-x64.tar.gz config.json"
+      ]
+    },
+    {
+      "type": "writefile",
+      "target": "config.json",
+      "text": " {\n  \"Server\": {\n    \"PublicIp\": \"${publicip}\",\n    \"PublicPort\": ${publicport},\n    \"ListenIp\": \"${listenip}\",\n    \"ListenPort\": ${listenport}\n  }\n}"
+    }
+  ],
+  "run": {
+    "command": "./Impostor.Server",
+    "stopCode": 1
+  },
+  "environment": {
+    "type": "standard"
+  },
+  "requirements": {
+    "binaries": [ "tar" ],
+    "os": "linux",
+    "arch": "amd64"
+  }
 }

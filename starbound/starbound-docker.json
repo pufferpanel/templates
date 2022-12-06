@@ -1,6 +1,6 @@
 {
   "type": "starbound",
-  "display": "Starbound",
+  "display": "Starbound (Docker)",
   "data": {
     "steam_user": {
       "value": "",
@@ -39,9 +39,10 @@
       "target": "storage"
     },
     {
-      "type": "steamgamedl",
-      "appId": "533830",
-      "username": "${steam_user}"
+      "type": "command",
+      "commands": [
+        "steamcmd +login ${steam_user} +force_install_dir . +app_update 533830 +quit"
+      ]
     },
     {
       "type": "writefile",
@@ -62,7 +63,6 @@
     "type": "tty"
   },
   "requirements": {
-    "os": "linux",
     "arch": "amd64"
   }
 }

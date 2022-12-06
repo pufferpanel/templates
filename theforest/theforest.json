@@ -1,33 +1,6 @@
 {
   "type": "theforest_win",
-  "display": "The Forest (Windows Only)",
-  "install": [{
-      "type": "download",
-      "files": "https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip"
-    },
-    {
-      "type": "mkdir",
-      "target": "steamcmd"
-    },
-    {
-      "type": "command",
-      "commands": [
-        "powershell.exe -nologo -noprofile -command & {& Add-Type -A 'System.IO.Compression.FileSystem'; [IO.Compression.ZipFile]::ExtractToDirectory('steamcmd.zip', 'steamcmd'); .\\steamcmd\\steamcmd.exe +login anonymous +force_install_dir ${rootDir} +app_update 556450 validate +quit}"
-      ]
-    }
-  ],
-  "run": {
-    "stop": "exit",
-    "pre": [],
-    "post": [],
-    "command": "./TheForestDedicatedServer.exe -servername ${servername} -serverip ${ip} -serversteamport ${serversteamport} -servergameport ${servergameport} -serverqueryport ${serverqueryport} -serverplayers ${serverplayers} -serverpassword ${serverpassword} -serverpassword_admin ${serverpassword_admin} -serversteamaccount ${serversteamaccount} -serverautosaveinterval ${serverautosaveinterval} -difficulty ${difficulty} -inittype ${inittype} -enableVAC -showlogs -batchmode -dedicated -nographics -nosteamclient"
-  },
-  "environment": {
-    "type": "standard"
-  },
-  "supportedEnvironments": [{
-    "type": "standard"
-  }],
+  "display": "The Forest",
   "data": {
     "servername": {
       "value": "The Forest",
@@ -111,7 +84,8 @@
       "display": "Difficulty",
       "internal": false,
       "type": "option",
-      "options": [{
+      "options": [
+        {
           "value": "Peaceful"
         },
         {
@@ -129,7 +103,8 @@
       "display": "Init Type",
       "internal": false,
       "type": "option",
-      "options": [{
+      "options": [
+        {
           "value": "Continue"
         },
         {
@@ -137,6 +112,19 @@
         }
       ]
     }
+  },
+  "install": [
+    {
+      "type": "steamgamedl",
+      "appId": "556450"
+    }
+  ],
+  "run": {
+    "command": "./TheForestDedicatedServer.exe -servername ${servername} -serverip ${ip} -serversteamport ${serversteamport} -servergameport ${servergameport} -serverqueryport ${serverqueryport} -serverplayers ${serverplayers} -serverpassword ${serverpassword} -serverpassword_admin ${serverpassword_admin} -serversteamaccount ${serversteamaccount} -serverautosaveinterval ${serverautosaveinterval} -difficulty ${difficulty} -inittype ${inittype} -enableVAC -showlogs -batchmode -dedicated -nographics -nosteamclient",
+    "stop": "exit"
+  },
+  "environment": {
+    "type": "standard"
   },
   "requirements": {
     "os": "windows",
