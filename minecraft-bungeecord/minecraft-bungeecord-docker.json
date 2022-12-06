@@ -1,6 +1,6 @@
 {
   "type": "minecraft-java",
-  "display": "Bungeecord - Minecraft",
+  "display": "Bungeecord - Minecraft (Docker)",
   "data": {
     "memory": {
       "value": "512",
@@ -35,10 +35,6 @@
   },
   "install": [
     {
-      "type": "javadl",
-      "version": "17"
-    },
-    {
       "files": "http://ci.md-5.net/job/BungeeCord/lastSuccessfulBuild/artifact/bootstrap/target/BungeeCord.jar",
       "type": "download"
     },
@@ -49,10 +45,11 @@
     }
   ],
   "run": {
-    "command": "java8 -Xmx${memory}M -Xms${memory}M -Dlog4j2.formatMsgNoLookups=true -jar BungeeCord.jar",
+    "command": "java -Xmx${memory}M -Xms${memory}M -Dlog4j2.formatMsgNoLookups=true -jar BungeeCord.jar",
     "stop": "end"
   },
   "environment": {
-    "type": "standard"
+    "type": "docker",
+    "image": "eclipse-temurin:17"
   }
 }

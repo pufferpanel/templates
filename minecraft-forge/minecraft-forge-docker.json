@@ -1,6 +1,6 @@
 {
   "type": "minecraft-java",
-  "display": "MinecraftForge 1.16 or older - Minecraft",
+  "display": "MinecraftForge 1.16 or older - Minecraft (Docker)",
   "data": {
     "memory": {
       "value": "1024",
@@ -87,17 +87,13 @@
   },
   "install": [
     {
-      "type": "javadl",
-      "version": "8"
-    },
-    {
       "type": "forgedl",
       "version": "${version}${mc-version}",
       "target": "installer.jar"
     },
     {
       "commands": [
-        "java8 -jar installer.jar --installServer"
+        "java -jar installer.jar --installServer"
       ],
       "type": "command"
     },
@@ -118,10 +114,11 @@
     }
   ],
   "run": {
-    "command": "java8 -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar server.jar nogui",
+    "command": "java -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar server.jar nogui",
     "stop": "stop"
   },
   "environment": {
-    "type": "standard"
+    "type": "docker",
+    "image": "eclipse-temurin:8"
   }
 }

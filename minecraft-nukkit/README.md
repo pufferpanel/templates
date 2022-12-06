@@ -1,1 +1,0 @@
-## Nukkit Script* The only limitation so far is that there is no known way to disable colours in the console, leading to some invalid characters being displayed.

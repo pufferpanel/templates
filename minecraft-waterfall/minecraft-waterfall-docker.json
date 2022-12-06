@@ -1,22 +1,13 @@
 {
   "type": "minecraft-java",
-  "display": "Velocity - Minecraft",
+  "display": "Waterfall - Minecraft (Docker)",
   "data": {
-    "version": {
-      "type": "string",
-      "desc": "Version of Velocity to install.",
-      "display": "Velocity Version",
-      "required": true,
-      "value": "3.1.2-SNAPSHOT",
-      "userEdit": true
-    },
     "build": {
-      "type": "integer",
-      "desc": "Build of the Velocity Version to use",
-      "display": "Velocity Build",
+      "type": "string",
+      "desc": "Build number",
+      "display": "build",
       "required": true,
-      "value": "138",
-      "userEdit": true
+      "value": "477"
     },
     "ip": {
       "type": "string",
@@ -30,45 +21,54 @@
       "desc": "How much memory in MB to allocate to the Waterfall server. It is generally recommended to allocated 512MB RAM for every 500 players. Please keep in mind that additional plugins may impact the amount needed in your case.",
       "display": "Memory (MB)",
       "required": true,
-      "value": 512
+      "value": "512"
     },
     "motd": {
       "type": "string",
       "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
       "display": "MOTD message of the day",
       "required": true,
-      "value": "A Velocity proxy &9hosted on PufferPanel"
+      "value": "A Waterfall Server &9hosted on PufferPanel"
     },
     "port": {
       "type": "integer",
       "desc": "What port to bind the server to",
       "display": "Port",
       "required": true,
-      "value": "25565"
+      "value": "25577"
+    },
+    "version": {
+      "type": "string",
+      "desc": "Version of Minecraft to install. Must be specified as a <strong>minor release number</strong>, e.g. 1.16",
+      "display": "Version",
+      "required": true,
+      "value": "1.18"
     }
   },
   "install": [
     {
-      "type": "javadl",
-      "version": "17"
-    },
-    {
       "files": [
-        "https://api.papermc.io/v2/projects/velocity/versions/${version}/builds/${build}/downloads/velocity-${version}-${build}.jar"
+        "https://api.papermc.io/v2/projects/waterfall/versions/${version}/builds/${build}/downloads/waterfall-${version}-${build}.jar"
       ],
       "type": "download"
     },
     {
-      "source": "velocity-*.jar",
-      "target": "velocity.jar",
+      "source": "waterfall-*.jar",
+      "target": "Waterfall.jar",
       "type": "move"
+    },
+    {
+      "target": "config.yml",
+      "text": "listeners:\n- query_port: ${port}\n  host: ${ip}:${port}\n  motd: '${motd}'\n",
+      "type": "writefile"
     }
   ],
   "run": {
-    "command": "java17 -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar velocity.jar",
-    "stop": "shutdown"
+    "command": "java17 -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar Waterfall.jar",
+    "stop": "end"
   },
   "environment": {
-    "type": "standard"
+    "type": "docker",
+    "image": "eclipse-temurin:17"
   }
 }

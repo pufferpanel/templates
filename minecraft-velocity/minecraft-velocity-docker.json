@@ -1,6 +1,6 @@
 {
   "type": "minecraft-java",
-  "display": "Velocity - Minecraft",
+  "display": "Velocity - Minecraft (Docker)",
   "data": {
     "version": {
       "type": "string",
@@ -49,10 +49,6 @@
   },
   "install": [
     {
-      "type": "javadl",
-      "version": "17"
-    },
-    {
       "files": [
         "https://api.papermc.io/v2/projects/velocity/versions/${version}/builds/${build}/downloads/velocity-${version}-${build}.jar"
       ],
@@ -65,10 +61,11 @@
     }
   ],
   "run": {
-    "command": "java17 -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar velocity.jar",
+    "command": "java -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar velocity.jar",
     "stop": "shutdown"
   },
   "environment": {
-    "type": "standard"
+    "type": "docker",
+    "image": "eclipse-temurin:17"
   }
 }

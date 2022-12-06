@@ -1,6 +1,6 @@
 {
   "type": "minecraft-java",
-  "display": "Mohist - Minecraft",
+  "display": "Mohist - Minecraft (Docker)",
   "data": {
     "eula": {
       "type": "boolean",
@@ -60,10 +60,6 @@
   },
   "install": [
     {
-      "type": "javadl",
-      "version": "17"
-    },
-    {
       "files": [
         "https://mohistmc.com/api/${mc-version}/${mohist-version}/download/"
       ],
@@ -86,10 +82,11 @@
     }
   ],
   "run": {
-    "command": "java17 -Xmx${memory}M -Dlog4j2.formatMsgNoLookups=true -jar server.jar nogui",
+    "command": "java -Xmx${memory}M -Dlog4j2.formatMsgNoLookups=true -jar server.jar nogui",
     "stop": "stop"
   },
   "environment": {
-    "type": "standard"
+    "type": "docker",
+    "image": "eclipse-temurin:17"
   }
 }

@@ -1,11 +1,11 @@
 {
   "type": "minecraft-java",
-  "display": "Purpur - Minecraft",
+  "display": "Vanilla - Minecraft (Docker)",
   "data": {
     "version": {
-      "value": "1.16.3",
+      "value": "latest",
       "required": true,
-      "desc": "Version of Minecraft to install (<a href='https://purpur.pl3x.net/downloads'>Purpur maintained versions</a>). Must be specified as a release number, e.g. 1.16.3",
+      "desc": "Version of Minecraft to install",
       "display": "Version",
       "internal": false
     },
@@ -35,8 +35,8 @@
     "eula": {
       "value": "false",
       "required": true,
-      "desc": "Do you agree to the Minecraft EULA?",
-      "display": "EULA Agreement (true/false)",
+      "desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
+      "display": "EULA Agreement",
       "internal": false,
       "type": "boolean"
     },
@@ -50,17 +50,9 @@
   },
   "install": [
     {
-      "type": "javadl",
-      "version": "17"
-    },
-    {
-      "type": "download",
-      "files": "https://api.purpurmc.org/v2/purpur/${version}/latest/download"
-    },
-    {
-      "type": "move",
-      "source": "purpur*.jar",
-      "target": "purpur.jar"
+      "type": "mojangdl",
+      "version": "${version}",
+      "target": "server.jar"
     },
     {
       "type": "writefile",
@@ -74,10 +66,11 @@
     }
   ],
   "run": {
-    "command": "java17 -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Djline.terminal=jline.UnsupportedTerminal -Dlog4j2.formatMsgNoLookups=true -jar purpur.jar nogui",
+    "command": "java -Xmx${memory}M -Dlog4j2.formatMsgNoLookups=true -jar server.jar nogui",
     "stop": "stop"
   },
   "environment": {
-    "type": "standard"
+    "type": "docker",
+    "image": "eclipse-temurin:17"
   }
 }

@@ -1,32 +1,6 @@
 {
-  "name": "minecraft-waterfall",
-  "display": "Waterfall - Minecraft",
   "type": "minecraft-java",
-  "install": [{
-      "files": [
-        "https://api.papermc.io/v2/projects/waterfall/versions/${version}/builds/${build}/downloads/waterfall-${version}-${build}.jar"
-      ],
-      "type": "download"
-    },
-    {
-      "source": "waterfall-*.jar",
-      "target": "Waterfall.jar",
-      "type": "move"
-    },
-    {
-      "target": "config.yml",
-      "text": "listeners:\n- query_port: ${port}\n  host: ${ip}:${port}\n  motd: '${motd}'\n",
-      "type": "writefile"
-    }
-  ],
-  "run": {
-    "stop": "end",
-    "command": "${java} -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar Waterfall.jar",
-    "workingDirectory": "",
-    "pre": [],
-    "post": [],
-    "environmentVars": {}
-  },
+  "display": "Waterfall - Minecraft",
   "data": {
     "build": {
       "type": "string",
@@ -41,14 +15,6 @@
       "display": "IP",
       "required": true,
       "value": "0.0.0.0"
-    },
-    "java": {
-      "type": "string",
-      "desc": "\"java\" for system standard, else direct path to java",
-      "display": "path to java executable",
-      "required": true,
-      "value": "java",
-      "userEdit": true
     },
     "memory": {
       "type": "integer",
@@ -79,18 +45,33 @@
       "value": "1.18"
     }
   },
-  "environment": {
-    "type": "standard"
-  },
-  "supportedEnvironments": [{
-      "type": "standard"
+  "install": [
+    {
+      "type": "javadl",
+      "version": "17"
     },
     {
-      "image": "openjdk:8-alpine",
-      "type": "docker"
+      "files": [
+        "https://api.papermc.io/v2/projects/waterfall/versions/${version}/builds/${build}/downloads/waterfall-${version}-${build}.jar"
+      ],
+      "type": "download"
+    },
+    {
+      "source": "waterfall-*.jar",
+      "target": "Waterfall.jar",
+      "type": "move"
+    },
+    {
+      "target": "config.yml",
+      "text": "listeners:\n- query_port: ${port}\n  host: ${ip}:${port}\n  motd: '${motd}'\n",
+      "type": "writefile"
     }
   ],
-  "requirements": {
-    "binaries": ["${java}"]
+  "run": {
+    "command": "java17 -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar Waterfall.jar",
+    "stop": "end"
+  },
+  "environment": {
+    "type": "standard"
   }
 }

@@ -1,14 +1,7 @@
 {
   "type": "minecraft-java",
-  "display": "Spigot - Minecraft",
+  "display": "SpongeForge - Minecraft (Docker)",
   "data": {
-    "version": {
-      "value": "latest",
-      "required": true,
-      "desc": "Version of Minecraft to install (<a href='https://www.spigotmc.org/wiki/buildtools/#versions'>Supported versions</a>)",
-      "display": "Version",
-      "internal": false
-    },
     "memory": {
       "value": "1024",
       "required": true,
@@ -35,10 +28,17 @@
     "eula": {
       "value": "false",
       "required": true,
-      "desc": "Do you agree to the Minecraft EULA?",
+      "desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
       "display": "EULA Agreement (true/false)",
       "internal": false,
       "type": "boolean"
+    },
+    "releaseType": {
+      "value": "latest",
+      "required": true,
+      "desc": "'latest' will provide the latest version, any other value will get the recommended build",
+      "display": "Sponge Release Type",
+      "internal": false
     },
     "motd": {
       "value": "A Minecraft Server\\n\\u00A79 hosted on PufferPanel",
@@ -46,21 +46,38 @@
       "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
       "display": "MOTD message of the day",
       "internal": false
+    },
+    "extraArgs": {
+      "value": "-XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:MaxGCPauseMillis=100 -XX:+DisableExplicitGC -XX:TargetSurvivorRatio=90 -XX:G1NewSizePercent=50 -XX:G1MaxNewSizePercent=80 -XX:G1MixedGCLiveThresholdPercent=50 -XX:+AlwaysPreTouch",
+      "required": false,
+      "desc": "Extra JVM arguments to add to the server",
+      "display": "JVM Arguments",
+      "internal": false
     }
   },
   "install": [
     {
-      "type": "javadl",
-      "version": "17"
+      "type": "spongeforgedl",
+      "releaseType": "${releaseType}"
     },
     {
-      "type": "download",
-      "files": "https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar"
+      "type": "move",
+      "source": "forge-*.jar",
+      "target": "installer.jar"
+    },
+    {
+      "type": "mkdir",
+      "target": "mods"
+    },
+    {
+      "type": "move",
+      "source": "spongeforge-*.jar",
+      "target": "mods"
     },
     {
       "type": "command",
       "commands": [
-        "java17 -jar BuildTools.jar --rev ${version}"
+        "java -jar installer.jar --installServer"
       ]
     },
     {
@@ -75,15 +92,16 @@
     },
     {
       "type": "move",
-      "source": "spigot-*.jar",
+      "source": "forge-*-universal.jar",
       "target": "server.jar"
     }
   ],
   "run": {
-    "command": "java17 -Xmx${memory}M -Djline.terminal=jline.UnsupportedTerminal -Dlog4j2.formatMsgNoLookups=true -jar server.jar nogui",
+    "command": "java -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true ${extraArgs} -jar server.jar nogui",
     "stop": "stop"
   },
   "environment": {
-    "type": "standard"
+    "type": "docker",
+    "image": "eclipse-temurin:17"
   }
 }

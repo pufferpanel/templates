@@ -1,52 +1,13 @@
 {
   "type": "minecraft-java",
-  "display": "Airplane - Minecraft 1.17.1",
-  "install": [{
-      "type": "download",
-      "files": "https://airplane.gg/dl/launcher-airplane1.17.1.jar"
-    },
-    {
-      "type": "move",
-      "source": "launcher-airplane.jar",
-      "target": "airplane.jar"
-    },
-    {
-      "type": "writefile",
-      "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}\n",
-      "target": "server.properties"
-    },
-    {
-      "type": "writefile",
-      "text": "eula=${eula}",
-      "target": "eula.txt"
-    }
-  ],
-  "run": {
-    "stop": "stop",
-    "pre": [],
-    "post": [],
-    "command": "${java} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Djline.terminal=jline.UnsupportedTerminal -Dlog4j2.formatMsgNoLookups=true -jar airplane.jar nogui"
-  },
-  "environment": {
-    "type": "standard"
-  },
-  "supportedEnvironments": [{
-      "type": "standard"
-    },
-    {
-      "type": "docker",
-      "image": "amazoncorretto:17"
-    }
-  ],
+  "display": "Spigot - Minecraft (Docker)",
   "data": {
-    "java": {
-      "value": "java",
+    "version": {
+      "value": "latest",
       "required": true,
-      "desc": "\"java\" for system standard, else direct path to java",
-      "display": "path to java executable",
-      "internal": false,
-      "type": "string",
-      "userEdit": true
+      "desc": "Version of Minecraft to install (<a href='https://www.spigotmc.org/wiki/buildtools/#versions'>Supported versions</a>)",
+      "display": "Version",
+      "internal": false
     },
     "memory": {
       "value": "1024",
@@ -87,7 +48,39 @@
       "internal": false
     }
   },
-  "requirements": {
-    "binaries": ["${java}"]
+  "install": [
+    {
+      "type": "download",
+      "files": "https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar"
+    },
+    {
+      "type": "command",
+      "commands": [
+        "java17 -jar BuildTools.jar --rev ${version}"
+      ]
+    },
+    {
+      "type": "writefile",
+      "text": "eula=${eula}",
+      "target": "eula.txt"
+    },
+    {
+      "type": "writefile",
+      "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}\n",
+      "target": "server.properties"
+    },
+    {
+      "type": "move",
+      "source": "spigot-*.jar",
+      "target": "server.jar"
+    }
+  ],
+  "run": {
+    "command": "java17 -Xmx${memory}M -Djline.terminal=jline.UnsupportedTerminal -Dlog4j2.formatMsgNoLookups=true -jar server.jar nogui",
+    "stop": "stop"
+  },
+  "environment": {
+    "type": "docker",
+    "image": "eclipse-temurin:17"
   }
 }
