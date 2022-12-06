@@ -1,6 +1,31 @@
 {
   "type": "agario",
   "display": "Agario Server",
+  "install": [{
+      "type": "command",
+      "commands": [
+        "git clone git://github.com/Megabyte918/MultiOgarII.git .",
+        "npm install"
+      ]
+    },
+    {
+      "type": "writefile",
+      "text": "module.exports = Object.seal({\n\"logVerbosity\": ${logverbosity},\n\"logFileVerbosity\": ${logfileverbosity},\n\"serverTimeout\": ${servertimeout},\n\"serverMaxConnections\": ${servermaxconnections},\n\"serverPort\": ${port},\n\"serverBind\": \"${ip}\",\n\"serverTracker\": ${servertracker},\n\"serverGamemode\": ${servergamemode},\n\"serverBots\": ${serverbots},\n\"serverViewBaseX\": ${serverviewbasex},\n\"serverViewBaseY\": ${serverviewbasey},\n\"serverMinScale\": ${serverminscale},\n\"serverSpectatorScale\": ${serverspectatorscale},\n\"serverStatsPort\": ${serverstatsport},\n\"serverStatusUpdate\": ${serverstatsupdate},\n\"mobilePhysics\": ${mobilephysics},\n\"badWordFilter\": ${badwordfilter},\n\"serverRestart\": ${serverrestart},\n\"serverMaxLB\": ${servermaxlb},\n\"serverChat\": ${serverchat},\n\"serverChatAscii\": ${serverchatascii},\n\"separateChatForTeams\": ${separatechatforteams},\n\"serverName\": ${servername},\n\"serverWelcome1\": ${serverwelcome1},\n\"serverWelcome2\": ${serverwelcome2},\n\"clientBind\": \"${clientbind}\",\n\"serverIpLimit\": ${serveriplimit},\n\"serverMinionIgnoreTime\": ${serverminionignoretime},\n\"serverMinionThreshold\": ${serverminionthreshold},\n\"serverMinionInterval\": ${serverminioninterval},\n\"serverScrambleLevel\": ${serverscramblelevel},\n\"playerBotGrow\": ${playerbotgrow},\n\"borderWidth\": ${borderwidth},\n\"borderHeight\": ${borderheight},\n\"foodMinSize\": ${foodminsize},\n\"foodMaxSize\": ${foodmaxsize},\n\"foodMinAmount\": ${foodminamount},\n\"foodMaxAmount\": ${foodmaxamount},\n\"foodSpawnAmount\": ${foodspawnamount},\n\"foodMassGrow\": ${foodmassgrow},\n\"virusMinSize\": ${virusminsize},\n\"virusMaxSize\": ${virusmaxsize},\n\"virusMinAmount\": ${virusminamount},\n\"virusMaxAmount\": ${virusmaxamount},\n\"motherCellMaxMass\": ${mothercellmaxmass},\n\"virusVelocity\": ${virusvelocity},\n\"virusMaxCells\": ${virusmaxcells},\n\"ejectSize\": ${ejectsize},\n\"ejectSizeLoss\": ${ejectsizeloss},\n\"ejectCooldown\": ${ejectcooldown},\n\"ejectSpawnPercent\": ${ejectspawnpercent},\n\"ejectVirus\": ${ejectvirus},\n\"ejectVelocity\": ${ejectvelocity},\n\"playerMinSize\": ${playerminsize},\n\"playerMaxSize\": ${playermaxsize},\n\"playerMinSplitSize\": ${playerminsplitsize},\n\"playerMinEjectSize\": ${playerminejectsize},\n\"playerStartSize\": ${playerstartsize},\n\"playerMaxCells\": ${playermaxcells},\n\"playerSpeed\": ${playerspeed},\n\"playerDecayRate\": ${playerdecayrate},\n\"playerDecayCap\": ${playerdecaycap},\n\"playerRecombineTime\": ${playerrecombinetime},\n\"playerMaxNickLength\": ${playermaxnicklength},\n\"playerDisconnectTime\": ${playerdisconnecttime},\n\"splitVelocity\": ${splitvelocity},\n\"minionStartSize\": ${minionstartsize},\n\"minionMaxStartSize\": ${minionmaxstartsize},\n\"minionCollideTeam\": ${minioncollideteam},\n\"disableERTP\": ${disableertp},\n\"disableQ\": ${disableq},\n\"serverMinions\": ${serverminions},\n\"collectPellets\": ${collectpellets},\n\"defaultName\": ${defaultname},\n\"minionsOnLeaderboard\": ${minionsonleaderboard},\n\"tourneyMaxPlayers\": ${tourneymaxplayers},\n\"tourneyPrepTime\": ${tourneypreptime},\n\"tourneyEndTime\": ${tourneyendtime},\n\"tourneyTimeLimit\": ${tourneytimelimit},\n\"tourneyAutoFill\": ${tourneyautofill},\n\"tourneyAutoFillPlayers\": ${tourneyautofillplayers},\n\"tourneyLeaderboardToggleTime\": ${tourneyleaderboardtoggletime}\n})",
+      "target": "src/config.js"
+    }
+  ],
+  "run": {
+    "stop": "exit",
+    "pre": [],
+    "post": [],
+    "command": "node src/index.js"
+  },
+  "environment": {
+    "type": "standard"
+  },
+  "supportedEnvironments": [{
+    "type": "standard"
+  }],
   "data": {
     "logverbosity": {
       "value": "4",
@@ -9,7 +34,7 @@
       "display": "Console Log Verbosity",
       "internal": false,
       "type": "option",
-      "options": [ {
+      "options": [{
           "value": "0",
           "display": "None"
         },
@@ -42,7 +67,7 @@
       "display": "File Log Verbosity",
       "internal": false,
       "type": "option",
-      "options": [ {
+      "options": [{
           "value": "0",
           "display": "None"
         },
@@ -114,7 +139,7 @@
       "display": "Gamemode",
       "internal": false,
       "type": "option",
-      "options": [ {
+      "options": [{
           "value": "0",
           "display": "FFA"
         },
@@ -193,7 +218,7 @@
       "display": "Mobile Physics",
       "internal": false,
       "type": "option",
-      "options": [ {
+      "options": [{
           "value": "0",
           "display": "No"
         },
@@ -210,7 +235,7 @@
       "display": "Bad Word Filter",
       "internal": false,
       "type": "option",
-      "options": [ {
+      "options": [{
           "value": "0",
           "display": "No"
         },
@@ -242,7 +267,7 @@
       "display": "Server Chat",
       "internal": false,
       "type": "option",
-      "options": [ {
+      "options": [{
           "value": "0",
           "display": "No"
         },
@@ -259,7 +284,7 @@
       "display": "Server ASCII Chat",
       "internal": false,
       "type": "option",
-      "options": [ {
+      "options": [{
           "value": "0",
           "display": "No"
         },
@@ -276,7 +301,7 @@
       "display": "Team Chat",
       "internal": false,
       "type": "option",
-      "options": [ {
+      "options": [{
           "value": "0",
           "display": "No"
         },
@@ -353,7 +378,7 @@
       "display": "Scramble Level",
       "internal": false,
       "type": "option",
-      "options": [ {
+      "options": [{
           "value": "0",
           "display": "None"
         },
@@ -378,7 +403,7 @@
       "display": "Player Bot Growth Limit",
       "internal": false,
       "type": "option",
-      "options": [ {
+      "options": [{
           "value": "0",
           "display": "No"
         },
@@ -449,7 +474,7 @@
       "display": "Food Mass Growth",
       "internal": false,
       "type": "option",
-      "options": [ {
+      "options": [{
           "value": "0",
           "display": "No"
         },
@@ -551,7 +576,7 @@
       "display": "Eject Virus",
       "internal": false,
       "type": "option",
-      "options": [ {
+      "options": [{
           "value": "0",
           "display": "No"
         },
@@ -620,7 +645,7 @@
       "display": "Player Speed Multiplier",
       "internal": false,
       "type": "option",
-      "options": [ {
+      "options": [{
           "value": "1",
           "display": "Default"
         },
@@ -698,7 +723,7 @@
       "display": "Minion Team Collision",
       "internal": false,
       "type": "integer",
-      "options": [ {
+      "options": [{
           "value": "0",
           "display": "No"
         },
@@ -715,7 +740,7 @@
       "display": "Disable ERTP",
       "internal": false,
       "type": "option",
-      "options": [ {
+      "options": [{
           "value": "0",
           "display": "Enable"
         },
@@ -732,7 +757,7 @@
       "display": "Disable Q",
       "internal": false,
       "type": "option",
-      "options": [ {
+      "options": [{
           "value": "0",
           "display": "Enable"
         },
@@ -757,7 +782,7 @@
       "display": "Minion Pellet Collection",
       "internal": false,
       "type": "option",
-      "options": [ {
+      "options": [{
           "value": "0",
           "display": "No"
         },
@@ -781,7 +806,7 @@
       "display": "Minion Leaderboard Display",
       "internal": false,
       "type": "option",
-      "options": [ {
+      "options": [{
           "value": "0",
           "display": "No"
         },
@@ -848,28 +873,7 @@
       "type": "integer"
     }
   },
-  "install": [
-    {
-      "type": "command",
-      "commands": [
-        "git clone git://github.com/Megabyte918/MultiOgarII.git .",
-        "npm install"
-      ]
-    },
-    {
-      "type": "writefile",
-      "text": "module.exports = Object.seal({\n\"logVerbosity\": ${logverbosity},\n\"logFileVerbosity\": ${logfileverbosity},\n\"serverTimeout\": ${servertimeout},\n\"serverMaxConnections\": ${servermaxconnections},\n\"serverPort\": ${port},\n\"serverBind\": \"${ip}\",\n\"serverTracker\": ${servertracker},\n\"serverGamemode\": ${servergamemode},\n\"serverBots\": ${serverbots},\n\"serverViewBaseX\": ${serverviewbasex},\n\"serverViewBaseY\": ${serverviewbasey},\n\"serverMinScale\": ${serverminscale},\n\"serverSpectatorScale\": ${serverspectatorscale},\n\"serverStatsPort\": ${serverstatsport},\n\"serverStatusUpdate\": ${serverstatsupdate},\n\"mobilePhysics\": ${mobilephysics},\n\"badWordFilter\": ${badwordfilter},\n\"serverRestart\": ${serverrestart},\n\"serverMaxLB\": ${servermaxlb},\n\"serverChat\": ${serverchat},\n\"serverChatAscii\": ${serverchatascii},\n\"separateChatForTeams\": ${separatechatforteams},\n\"serverName\": ${servername},\n\"serverWelcome1\": ${serverwelcome1},\n\"serverWelcome2\": ${serverwelcome2},\n\"clientBind\": \"${clientbind}\",\n\"serverIpLimit\": ${serveriplimit},\n\"serverMinionIgnoreTime\": ${serverminionignoretime},\n\"serverMinionThreshold\": ${serverminionthreshold},\n\"serverMinionInterval\": ${serverminioninterval},\n\"serverScrambleLevel\": ${serverscramblelevel},\n\"playerBotGrow\": ${playerbotgrow},\n\"borderWidth\": ${borderwidth},\n\"borderHeight\": ${borderheight},\n\"foodMinSize\": ${foodminsize},\n\"foodMaxSize\": ${foodmaxsize},\n\"foodMinAmount\": ${foodminamount},\n\"foodMaxAmount\": ${foodmaxamount},\n\"foodSpawnAmount\": ${foodspawnamount},\n\"foodMassGrow\": ${foodmassgrow},\n\"virusMinSize\": ${virusminsize},\n\"virusMaxSize\": ${virusmaxsize},\n\"virusMinAmount\": ${virusminamount},\n\"virusMaxAmount\": ${virusmaxamount},\n\"motherCellMaxMass\": ${mothercellmaxmass},\n\"virusVelocity\": ${virusvelocity},\n\"virusMaxCells\": ${virusmaxcells},\n\"ejectSize\": ${ejectsize},\n\"ejectSizeLoss\": ${ejectsizeloss},\n\"ejectCooldown\": ${ejectcooldown},\n\"ejectSpawnPercent\": ${ejectspawnpercent},\n\"ejectVirus\": ${ejectvirus},\n\"ejectVelocity\": ${ejectvelocity},\n\"playerMinSize\": ${playerminsize},\n\"playerMaxSize\": ${playermaxsize},\n\"playerMinSplitSize\": ${playerminsplitsize},\n\"playerMinEjectSize\": ${playerminejectsize},\n\"playerStartSize\": ${playerstartsize},\n\"playerMaxCells\": ${playermaxcells},\n\"playerSpeed\": ${playerspeed},\n\"playerDecayRate\": ${playerdecayrate},\n\"playerDecayCap\": ${playerdecaycap},\n\"playerRecombineTime\": ${playerrecombinetime},\n\"playerMaxNickLength\": ${playermaxnicklength},\n\"playerDisconnectTime\": ${playerdisconnecttime},\n\"splitVelocity\": ${splitvelocity},\n\"minionStartSize\": ${minionstartsize},\n\"minionMaxStartSize\": ${minionmaxstartsize},\n\"minionCollideTeam\": ${minioncollideteam},\n\"disableERTP\": ${disableertp},\n\"disableQ\": ${disableq},\n\"serverMinions\": ${serverminions},\n\"collectPellets\": ${collectpellets},\n\"defaultName\": ${defaultname},\n\"minionsOnLeaderboard\": ${minionsonleaderboard},\n\"tourneyMaxPlayers\": ${tourneymaxplayers},\n\"tourneyPrepTime\": ${tourneypreptime},\n\"tourneyEndTime\": ${tourneyendtime},\n\"tourneyTimeLimit\": ${tourneytimelimit},\n\"tourneyAutoFill\": ${tourneyautofill},\n\"tourneyAutoFillPlayers\": ${tourneyautofillplayers},\n\"tourneyLeaderboardToggleTime\": ${tourneyleaderboardtoggletime}\n})",
-      "target": "src/config.js"
-    }
-  ],
-  "run": {
-    "command": "node src/index.js",
-    "stop": "exit"
-  },
-  "environment": {
-    "type": "standard"
-  },
   "requirements": {
-    "binaries": [ "git", "npm", "node" ]
+    "binaries": ["git", "npm", "node"]
   }
 }

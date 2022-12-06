@@ -1,6 +1,42 @@
 {
-  "type": "srcds",
-  "display": "Satisfactory",
+  "name": "Satisfactory",
+  "display": "Satisfactory Dedicated Server",
+  "type": "satisfactory",
+  "install": [{
+      "files": [
+        "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"
+      ],
+      "type": "download"
+    },
+    {
+      "target": "steamcmd",
+      "type": "mkdir"
+    },
+    {
+      "commands": [
+        "tar --no-same-owner -xzvf steamcmd_linux.tar.gz -C steamcmd",
+        "steamcmd/steamcmd.sh +login anonymous +force_install_dir .. +app_update 1690800 -beta ${game_type} +quit",
+        "mkdir -p .steam/sdk32",
+        "cp steamcmd/linux32/steamclient.so .steam/sdk32/steamclient.so",
+        "chmod +x Engine/Binaries/Linux/UE4Server-Linux-Shipping",
+        "rm steamcmd_linux.tar.gz ",
+        "mkdir -p ./FactoryGame/Saved/Config/LinuxServer/"
+      ],
+      "type": "command"
+    }
+  ],
+  "run": {
+    "stopCode": 2,
+    "command": "./Engine/Binaries/Linux/UE4Server-Linux-Shipping FactoryGame ?listen -multihome=${multihome} -ServerQueryPort=${port}",
+    "workingDirectory": "",
+    "pre": [],
+    "post": [],
+    "environmentVars": {
+      "LD_LIBRARY_PATH": "./linux64:$LD_LIBRARY_PATH",
+      "SteamAppId": "1690800",
+      "templdpath": "$LD_LIBRARY_PATH"
+    }
+  },
   "data": {
     "game_type": {
       "type": "option",
@@ -8,8 +44,7 @@
       "display": "GameType",
       "required": true,
       "userEdit": true,
-      "options": [
-        {
+      "options": [{
           "value": "public",
           "display": "Public branch"
         },
@@ -34,29 +69,12 @@
       "userEdit": true
     }
   },
-  "install": [
-    {
-      "type": "steamgamedl",
-      "appId": "1690800"
-    },
-    {
-      "type": "command",
-      "commands": [
-        "chmod +x Engine/Binaries/Linux/UE4Server-Linux-Shipping",
-        "mkdir -p ./FactoryGame/Saved/Config/LinuxServer/"
-      ]
-    }
-  ],
-  "run": {
-    "stopCode": 2,
-    "command": "./Engine/Binaries/Linux/UE4Server-Linux-Shipping FactoryGame ?listen -multihome=${multihome} -ServerQueryPort=${port}",
-    "environmentVars": {
-      "LD_LIBRARY_PATH": "./linux64:$LD_LIBRARY_PATH"
-    }
-  },
   "environment": {
     "type": "tty"
   },
+  "supportedEnvironments": [{
+    "type": "tty"
+  }],
   "requirements": {
     "os": "linux",
     "arch": "amd64"

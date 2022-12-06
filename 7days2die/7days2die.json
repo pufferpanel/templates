@@ -1,39 +1,58 @@
 {
-  "type": "srcds",
-  "display": "7 Days to Die",
-  "data": {
-    "serverconfig": {
-      "type": "string",
-      "desc": "Relative path to server config file containing all setup vars. (default: ./serverconfig.xml)",
-      "display": "Server config file",
-      "required": true,
-      "value": "./serverconfig.xml",
-      "userEdit": true
-    }
-  },
-  "environment": {
-    "type": "tty"
-  },
-  "install": [
-    {
-      "appId": "294420",
-      "type": "steamgamedl"
-    }
-  ],
-  "run": {
-    "command": "./startserver.sh -configfile=${serverconfig}",
-    "stopCode": 2,
-    "environmentVars": {
-      "LD_LIBRARY_PATH": "./linux64:$LD_LIBRARY_PATH"
-    }
-  },
-  "supportedEnvironments": [
-    {
-      "type": "tty"
-    }
-  ],
-  "requirements": {
-    "os": "linux",
-    "arch": "amd64"
-  }
+    "type": "7days",
+    "data": {
+        "serverconfig": {
+            "type": "string",
+            "desc": "Relative path to server config file containing all setup vars. (default: ./serverconfig.xml)",
+            "display": "Server config file",
+            "required": true,
+            "value": "./serverconfig.xml",
+            "userEdit": true
+        }
+    },
+    "display": "7 Days to Die",
+    "environment": {
+        "type": "tty"
+    },
+    "install": [{
+            "files": [
+                "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"
+            ],
+            "type": "download"
+        },
+        {
+            "commands": [
+                "mkdir steamcmd",
+                "tar --no-same-owner -xzvf steamcmd_linux.tar.gz -C steamcmd",
+                "steamcmd/steamcmd.sh +login anonymous +force_install_dir .. +app_update 294420 +quit",
+                "mkdir -p .steam/sdk32",
+                "cp steamcmd/linux32/steamclient.so .steam/sdk32/steamclient.so"
+            ],
+            "type": "command"
+        }
+    ],
+    "run": {
+        "command": "./startserver.sh -configfile=${serverconfig}",
+        "stopCode": 2,
+        "environmentVars": {
+            "LD_LIBRARY_PATH": "./linux64:$LD_LIBRARY_PATH",
+            "SteamAppId": "294420",
+            "templdpath": "$LD_LIBRARY_PATH"
+        },
+        "pre": [],
+        "post": []
+    },
+    "supportedEnvironments": [{
+            "type": "tty"
+        },
+        {
+            "image": "pufferpanel/srcds",
+            "type": "docker"
+        }
+    ],
+    "requirements": {
+        "os": "linux",
+        "arch": "amd64"
+    },
+    "name": "7days"
 }

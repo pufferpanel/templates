@@ -1,6 +1,42 @@
 {
-  "type": "zomboid",
+  "name": "zomboid",
   "display": "Project Zomboid",
+  "type": "zomboid",
+  "install": [{
+      "files": [
+        "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"
+      ],
+      "type": "download"
+    },
+    {
+      "commands": [
+        "mkdir steamcmd",
+        "tar --no-same-owner -xzvf steamcmd_linux.tar.gz -C steamcmd",
+        "steamcmd/steamcmd.sh +login anonymous +force_install_dir .. +app_update 380870 +quit",
+        "mkdir -p .steam/sdk32",
+        "cp steamcmd/linux32/steamclient.so .steam/sdk32/steamclient.so"
+      ],
+      "type": "command"
+    },
+    {
+      "target": "ProjectZomboid64.json",
+      "text": "{\n\t\"mainClass\": \"zombie/network/GameServer\",\n\t\"classpath\": [\n\t\t\"java/.\",\n\t\t\"java/istack-commons-runtime.jar\",\n\t\t\"java/jassimp.jar\",\n\t\t\"java/javacord-2.0.17-shaded.jar\",\n\t\t\"java/javax.activation-api.jar\",\n\t\t\"java/jaxb-api.jar\",\n\t\t\"java/jaxb-runtime.jar\",\n\t\t\"java/lwjgl.jar\",\n\t\t\"java/lwjgl-natives-linux.jar\",\n\t\t\"java/lwjgl-glfw.jar\",\n\t\t\"java/lwjgl-glfw-natives-linux.jar\",\n\t\t\"java/lwjgl-jemalloc.jar\",\n\t\t\"java/lwjgl-jemalloc-natives-linux.jar\",\n\t\t\"java/lwjgl-opengl.jar\",\n\t\t\"java/lwjgl-opengl-natives-linux.jar\",\n\t\t\"java/lwjgl_util.jar\",\n\t\t\"java/sqlite-jdbc-3.27.2.1.jar\",\n\t\t\"java/trove-3.0.3.jar\",\n\t\t\"java/uncommons-maths-1.2.3.jar\"\n\t],\n\t\"vmArgs\": [\n\t\t\"-Djava.awt.headless=true\",\n\t\t\"-Xmx8g\",\n\t\t\"-Dzomboid.steam=1\",\n\t\t\"-Dzomboid.znetlog=1\",\n\t\t\"-Djava.library.path=linux64/:natives/\",\n        \"-Duser.home=./\",\n\t\t\"-Djava.security.egd=file:/dev/urandom\",\n\t\t\"-XX:+UseZGC\",\n\t\t\"-XX:-OmitStackTraceInFastThrow\"\n\t]\n}",
+      "type": "writefile"
+    },
+    {
+      "target": "ProjectZomboid32.json",
+      "text": "{\n\t\"mainClass\": \"zombie/network/GameServer\",\n\t\"classpath\": [\n\t\t\"java/.\",\n\t\t\"java/istack-commons-runtime.jar\",\n\t\t\"java/jassimp.jar\",\n\t\t\"java/javacord-2.0.17-shaded.jar\",\n\t\t\"java/javax.activation-api.jar\",\n\t\t\"java/jaxb-api.jar\",\n\t\t\"java/jaxb-runtime.jar\",\n\t\t\"java/lwjgl.jar\",\n\t\t\"java/lwjgl-natives-linux.jar\",\n\t\t\"java/lwjgl-glfw.jar\",\n\t\t\"java/lwjgl-glfw-natives-linux.jar\",\n\t\t\"java/lwjgl-jemalloc.jar\",\n\t\t\"java/lwjgl-jemalloc-natives-linux.jar\",\n\t\t\"java/lwjgl-opengl.jar\",\n\t\t\"java/lwjgl-opengl-natives-linux.jar\",\n\t\t\"java/lwjgl_util.jar\",\n\t\t\"java/sqlite-jdbc-3.27.2.1.jar\",\n\t\t\"java/trove-3.0.3.jar\",\n\t\t\"java/uncommons-maths-1.2.3.jar\"\n\t],\n\t\"vmArgs\": [\n\t\t\"-Djava.awt.headless=true\",\n\t\t\"-Xms768m\",\n\t\t\"-Xmx768m\",\n\t\t\"-Dzomboid.steam=1\",\n\t\t\"-Dzomboid.znetlog=1\",\n\t\t\"-Djava.library.path=linux32/:natives/\",\n        \"-Duser.home=./\",\n\t\t\"-Djava.security.egd=file:/dev/urandom\",\n\t\t\"-XX:+UseG1GC\",\n\t\t\"-XX:-OmitStackTraceInFastThrow\"\n\t]\n}",
+      "type": "writefile"
+    }
+  ],
+  "run": {
+    "stop": "quit",
+    "command": "bash start-server.sh -servername ${serverName} -adminpassword ${adminPassword} -steamvac ${steamVAC} -port ${port}",
+    "workingDirectory": "",
+    "pre": [],
+    "post": [],
+    "environmentVars": {}
+  },
   "data": {
     "adminPassword": {
       "type": "string",
@@ -34,30 +70,19 @@
       "userEdit": true
     }
   },
-  "install": [
-    {
-      "type": "steamgamedl",
-      "appId": "380870"
-    },
-    {
-      "target": "ProjectZomboid64.json",
-      "text": "{\n\t\"mainClass\": \"zombie/network/GameServer\",\n\t\"classpath\": [\n\t\t\"java/.\",\n\t\t\"java/istack-commons-runtime.jar\",\n\t\t\"java/jassimp.jar\",\n\t\t\"java/javacord-2.0.17-shaded.jar\",\n\t\t\"java/javax.activation-api.jar\",\n\t\t\"java/jaxb-api.jar\",\n\t\t\"java/jaxb-runtime.jar\",\n\t\t\"java/lwjgl.jar\",\n\t\t\"java/lwjgl-natives-linux.jar\",\n\t\t\"java/lwjgl-glfw.jar\",\n\t\t\"java/lwjgl-glfw-natives-linux.jar\",\n\t\t\"java/lwjgl-jemalloc.jar\",\n\t\t\"java/lwjgl-jemalloc-natives-linux.jar\",\n\t\t\"java/lwjgl-opengl.jar\",\n\t\t\"java/lwjgl-opengl-natives-linux.jar\",\n\t\t\"java/lwjgl_util.jar\",\n\t\t\"java/sqlite-jdbc-3.27.2.1.jar\",\n\t\t\"java/trove-3.0.3.jar\",\n\t\t\"java/uncommons-maths-1.2.3.jar\"\n\t],\n\t\"vmArgs\": [\n\t\t\"-Djava.awt.headless=true\",\n\t\t\"-Xmx8g\",\n\t\t\"-Dzomboid.steam=1\",\n\t\t\"-Dzomboid.znetlog=1\",\n\t\t\"-Djava.library.path=linux64/:natives/\",\n        \"-Duser.home=./\",\n\t\t\"-Djava.security.egd=file:/dev/urandom\",\n\t\t\"-XX:+UseZGC\",\n\t\t\"-XX:-OmitStackTraceInFastThrow\"\n\t]\n}",
-      "type": "writefile"
-    },
-    {
-      "target": "ProjectZomboid32.json",
-      "text": "{\n\t\"mainClass\": \"zombie/network/GameServer\",\n\t\"classpath\": [\n\t\t\"java/.\",\n\t\t\"java/istack-commons-runtime.jar\",\n\t\t\"java/jassimp.jar\",\n\t\t\"java/javacord-2.0.17-shaded.jar\",\n\t\t\"java/javax.activation-api.jar\",\n\t\t\"java/jaxb-api.jar\",\n\t\t\"java/jaxb-runtime.jar\",\n\t\t\"java/lwjgl.jar\",\n\t\t\"java/lwjgl-natives-linux.jar\",\n\t\t\"java/lwjgl-glfw.jar\",\n\t\t\"java/lwjgl-glfw-natives-linux.jar\",\n\t\t\"java/lwjgl-jemalloc.jar\",\n\t\t\"java/lwjgl-jemalloc-natives-linux.jar\",\n\t\t\"java/lwjgl-opengl.jar\",\n\t\t\"java/lwjgl-opengl-natives-linux.jar\",\n\t\t\"java/lwjgl_util.jar\",\n\t\t\"java/sqlite-jdbc-3.27.2.1.jar\",\n\t\t\"java/trove-3.0.3.jar\",\n\t\t\"java/uncommons-maths-1.2.3.jar\"\n\t],\n\t\"vmArgs\": [\n\t\t\"-Djava.awt.headless=true\",\n\t\t\"-Xms768m\",\n\t\t\"-Xmx768m\",\n\t\t\"-Dzomboid.steam=1\",\n\t\t\"-Dzomboid.znetlog=1\",\n\t\t\"-Djava.library.path=linux32/:natives/\",\n        \"-Duser.home=./\",\n\t\t\"-Djava.security.egd=file:/dev/urandom\",\n\t\t\"-XX:+UseG1GC\",\n\t\t\"-XX:-OmitStackTraceInFastThrow\"\n\t]\n}",
-      "type": "writefile"
-    }
-  ],
-  "run": {
-    "command": "./start-server.sh -servername ${serverName} -adminpassword ${adminPassword} -steamvac ${steamVAC} -port ${port}",
-    "stop": "quit"
-  },
   "environment": {
     "type": "tty"
   },
+  "supportedEnvironments": [{
+      "type": "tty"
+    },
+    {
+      "type": "docker",
+      "image": "pufferpanel/srcds"
+    }
+  ],
   "requirements": {
+    "binaries": ["bash"],
     "os": "linux",
     "arch": "amd64"
   }

@@ -1,6 +1,58 @@
 {
-  "type": "terraria",
+  "name": "terraria-tModLoader",
   "display": "Terraria - tModLoader",
+  "type": "terraria",
+  "install": [{
+      "files": [
+        "https://github.com/tModLoader/tModLoader/releases/download/v${tversion}/tModLoader.Linux.v${tversion}.tar.gz"
+      ],
+      "type": "download"
+    },
+    {
+      "commands": [
+        "mv ./${mp}/enabled.json ./",
+        "rm -r ./server",
+        "mkdir ./server",
+        "tar -xf tModLoader.Linux.v${tversion}.tar.gz --directory ./server",
+        "chmod +x ./server/tModLoaderServer",
+        "chmod +x ./server/tModLoaderServer.bin.x86",
+        "chmod +x ./server/tModLoaderServer.bin.x86_64",
+        "mkdir ./${wp}",
+        "mkdir ./${mp}",
+        "rm tModLoader.Linux.v${tversion}.tar.gz"
+      ],
+      "type": "command"
+    },
+    {
+      "target": "serverconfig.txt",
+      "text": "world=../${wp}/${world}.wld\nautocreate=${size}\nseed=${seed}\nworldname=${world}\ndifficulty=${difficulty}\nmaxplayers=${players}\nport=${port}\npassword=${password}\nmotd=${motd}\nworldpath=../${wp}\nbanlist=../${ban}\nsecure=${secure}\nlanguage=${lang}\nupnp=${upnp}\nnpcstream=${npcs}\npriority=${priority}\nslowliquids=${sl}\nworldrollbackstokeep=${backups}",
+      "type": "writefile"
+    },
+    {
+      "target": "enabled.jsonn",
+      "text": "[\n    \"Mod1\",\n    \"Mod2\",\n    \"Mod3\"\n]",
+      "type": "writefile"
+    },
+    {
+      "commands": [
+        "mv ./enabled.jsonn ./${mp}/enabled.json",
+        "mv ./enabled.json ./${mp}/enabled.json"
+      ],
+      "type": "command"
+    }
+  ],
+  "run": {
+    "stop": "exit",
+    "command": "./server/tModLoaderServer -ip ${ip} ${disableannouncementbox} -announcementboxrange ${abr} -config ../serverconfig.txt",
+    "workingDirectory": "",
+    "pre": [{
+      "target": "serverconfig.txt",
+      "text": "world=../${wp}/${world}.wld\nautocreate=${size}\nseed=${seed}\nworldname=${world}\ndifficulty=${difficulty}\nmaxplayers=${players}\nport=${port}\npassword=${password}\nmotd=${motd}\nworldpath=../${wp}\nbanlist=../${ban}\nsecure=${secure}\nlanguage=${lang}\nupnp=${upnp}\nnpcstream=${npcs}\npriority=${priority}\nslowliquids=${sl}\nworldrollbackstokeep=${backups}",
+      "type": "writefile"
+    }],
+    "post": [],
+    "environmentVars": {}
+  },
   "data": {
     "abr": {
       "type": "string",
@@ -156,62 +208,13 @@
       "value": "worlds"
     }
   },
-  "install": [
-    {
-      "files": [
-        "https://github.com/tModLoader/tModLoader/releases/download/v${tversion}/tModLoader.Linux.v${tversion}.tar.gz"
-      ],
-      "type": "download"
-    },
-    {
-      "commands": [
-        "mv ./${mp}/enabled.json ./",
-        "rm -r ./server",
-        "mkdir ./server",
-        "tar -xf tModLoader.Linux.v${tversion}.tar.gz --directory ./server",
-        "chmod +x ./server/tModLoaderServer",
-        "chmod +x ./server/tModLoaderServer.bin.x86",
-        "chmod +x ./server/tModLoaderServer.bin.x86_64",
-        "mkdir ./${wp}",
-        "mkdir ./${mp}",
-        "rm tModLoader.Linux.v${tversion}.tar.gz"
-      ],
-      "type": "command"
-    },
-    {
-      "target": "serverconfig.txt",
-      "text": "world=../${wp}/${world}.wld\nautocreate=${size}\nseed=${seed}\nworldname=${world}\ndifficulty=${difficulty}\nmaxplayers=${players}\nport=${port}\npassword=${password}\nmotd=${motd}\nworldpath=../${wp}\nbanlist=../${ban}\nsecure=${secure}\nlanguage=${lang}\nupnp=${upnp}\nnpcstream=${npcs}\npriority=${priority}\nslowliquids=${sl}\nworldrollbackstokeep=${backups}",
-      "type": "writefile"
-    },
-    {
-      "target": "enabled.jsonn",
-      "text": "[\n    \"Mod1\",\n    \"Mod2\",\n    \"Mod3\"\n]",
-      "type": "writefile"
-    },
-    {
-      "commands": [
-        "mv ./enabled.jsonn ./${mp}/enabled.json",
-        "mv ./enabled.json ./${mp}/enabled.json"
-      ],
-      "type": "command"
-    }
-  ],
-  "run": {
-    "command": "./server/tModLoaderServer -ip ${ip} ${disableannouncementbox} -announcementboxrange ${abr} -config ../serverconfig.txt",
-    "stop": "exit",
-    "pre": [
-      {
-        "target": "serverconfig.txt",
-        "text": "world=../${wp}/${world}.wld\nautocreate=${size}\nseed=${seed}\nworldname=${world}\ndifficulty=${difficulty}\nmaxplayers=${players}\nport=${port}\npassword=${password}\nmotd=${motd}\nworldpath=../${wp}\nbanlist=../${ban}\nsecure=${secure}\nlanguage=${lang}\nupnp=${upnp}\nnpcstream=${npcs}\npriority=${priority}\nslowliquids=${sl}\nworldrollbackstokeep=${backups}",
-        "type": "writefile"
-      }
-    ]
-  },
   "environment": {
     "type": "tty"
   },
+  "supportedEnvironments": [{
+    "type": "tty"
+  }],
   "requirements": {
-    "binaries": [ "tar" ],
     "os": "linux",
     "arch": "amd64"
   }

@@ -1,28 +1,29 @@
 {
-  "type": "arma3",
-  "display": "ARMA3",
+  "type": "srcds",
+  "display": "Generic SRCDS",
   "install": [{
       "type": "download",
       "files": "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"
     },
     {
+      "type": "mkdir",
+      "target": "steamcmd"
+    },
+    {
       "type": "command",
       "commands": [
-        "mkdir steamcmd",
         "tar --no-same-owner -xzvf steamcmd_linux.tar.gz -C steamcmd",
-        "steamcmd/steamcmd.sh +login ${steam_user} ${steam_password} +force_install_dir .. +app_update 233780 +quit",
+        "steamcmd/steamcmd.sh +login anonymous +force_install_dir .. +app_update ${appid} +quit",
         "mkdir -p .steam/sdk32",
-        "cp steamcmd/linux32/steamclient.so .steam/sdk32/steamclient.so",
-        "touch ./config.cfg",
-        "touch ./parameters.txt"
+        "cp steamcmd/linux32/steamclient.so .steam/sdk32/steamclient.so"
       ]
     }
   ],
   "run": {
-    "stopCode": 2,
+    "stop": "exit",
     "pre": [],
     "post": [],
-    "command": "./arma3server -ip=${ip} -port=${port} -config=${config} -par=parameters.txt"
+    "command": "./srcds_run +ip ${ip} +port ${port} -game ${gametype} -console +map ${map} -norestart"
   },
   "environment": {
     "type": "tty"
@@ -36,18 +37,26 @@
     }
   ],
   "data": {
-    "steam_user": {
-      "value": "anonymous",
+    "appid": {
+      "value": "232250",
       "required": true,
-      "desc": "Username for Steam login",
-      "display": "Steam User",
+      "desc": "App ID",
+      "display": "Application ID",
+      "internal": false,
+      "type": "integer"
+    },
+    "gametype": {
+      "value": "tf",
+      "required": false,
+      "desc": "Game Type",
+      "display": "tf, csgo, etc.",
       "internal": false
     },
-    "steam_password": {
-      "value": "",
-      "required": true,
-      "desc": "Password for Steam login",
-      "display": "Steam Password",
+    "map": {
+      "value": "ctf_2fort",
+      "required": false,
+      "desc": "Map",
+      "display": "Map to load",
       "internal": false
     },
     "ip": {
@@ -58,19 +67,12 @@
       "internal": false
     },
     "port": {
-      "value": "2302",
+      "value": "27015",
       "required": true,
       "desc": "What port to bind the server to",
       "display": "Port",
       "internal": false,
       "type": "integer"
-    },
-    "config": {
-      "value": "config.cfg",
-      "required": false,
-      "desc": "The Config file you want to use. NOTE: config.cfg is created on server installation!",
-      "display": "Config File",
-      "internal": false
     }
   },
   "requirements": {

@@ -1,6 +1,47 @@
 {
   "type": "srcds",
-  "display": "Rust",
+  "display": "Rust Public Server",
+  "install": [{
+      "type": "download",
+      "files": "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"
+    },
+    {
+      "type": "mkdir",
+      "target": "steamcmd"
+    },
+    {
+      "type": "command",
+      "commands": [
+        "tar --no-same-owner -xzvf steamcmd_linux.tar.gz -C steamcmd",
+        "steamcmd/steamcmd.sh +login anonymous +force_install_dir .. +app_update 258550 +quit"
+      ]
+    }
+  ],
+  "run": {
+    "stopCode": 2,
+    "pre": [{
+      "type": "command",
+      "commands": [
+        "steamcmd/steamcmd.sh +login anonymous +force_install_dir .. +app_update 258550 +quit"
+      ]
+    }],
+    "post": [],
+    "command": "./RustDedicated -nographics -batchmode +server.port ${port} +server.level \"${ServerLevel}\" +server.seed ${ServerSeed} +server.worldsize ${WorldSize} +server.maxplayers ${MaxPlayers} +server.hostname \"${ServerName}\" +server.description \"${Description}\" +server.headerimage \"${ServerImage}\" +server.url \"${URL}\" +server.identity \"${ServerIdentity}\" +rcon.port ${RConPort} +rcon.password ${RConPassword} +rcon.web 1 -logfile 2>&1",
+    "environmentVars": {
+      "LD_LIBRARY_PATH": "${rootDir}/RustDedicated_Data/Plugins/x86_64"
+    }
+  },
+  "environment": {
+    "type": "tty"
+  },
+  "supportedEnvironments": [{
+      "type": "tty"
+    },
+    {
+      "type": "docker",
+      "image": "pufferpanel/srcds"
+    }
+  ],
   "data": {
     "ip": {
       "value": "0.0.0.0",
@@ -97,28 +138,6 @@
       "display": "RCON Password",
       "internal": false
     }
-  },
-  "install": [
-    {
-      "type": "steamgamedl",
-      "appId": "258550"
-    }
-  ],
-  "run": {
-    "command": "./RustDedicated -nographics -batchmode +server.port ${port} +server.level \"${ServerLevel}\" +server.seed ${ServerSeed} +server.worldsize ${WorldSize} +server.maxplayers ${MaxPlayers} +server.hostname \"${ServerName}\" +server.description \"${Description}\" +server.headerimage \"${ServerImage}\" +server.url \"${URL}\" +server.identity \"${ServerIdentity}\" +rcon.port ${RConPort} +rcon.password ${RConPassword} +rcon.web 1 -logfile 2>&1",
-    "stopCode": 2,
-    "environmentVars": {
-      "LD_LIBRARY_PATH": "${rootDir}/RustDedicated_Data/Plugins/x86_64"
-    },
-    "pre": [
-      {
-        "type": "steamgamedl",
-        "appId": "258550"
-      }
-    ]
-  },
-  "environment": {
-    "type": "tty"
   },
   "requirements": {
     "os": "linux",

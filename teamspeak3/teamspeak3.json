@@ -1,6 +1,30 @@
 {
   "type": "voice",
   "display": "Teamspeak 3",
+  "install": [{
+      "files": "https://files.teamspeak-services.com/releases/server/${version}/teamspeak3-server_linux_amd64-${version}.tar.bz2",
+      "type": "download"
+    },
+    {
+      "commands": [
+        "tar -xjf teamspeak3-server_linux_amd64-${version}.tar.bz2 --strip-components 1",
+        "rm teamspeak3-server_linux_amd64-${version}.tar.bz2"
+      ],
+      "type": "command"
+    }
+  ],
+  "run": {
+    "stopCode": 2,
+    "pre": [],
+    "post": [],
+    "command": "./ts3server_minimal_runscript.sh default_voice_port=${vport} query_port=${qport} filetransfer_port=${ftport} voice_ip=${ip} licensepath=${license} license_accepted=${eula}"
+  },
+  "environment": {
+    "type": "tty"
+  },
+  "supportedEnvironments": [{
+    "type": "tty"
+  }],
   "data": {
     "vport": {
       "value": "9987",
@@ -53,8 +77,7 @@
       "display": "EULA",
       "internal": false,
       "type": "option",
-      "options": [
-        {
+      "options": [{
           "value": "0",
           "display": "No"
         },
@@ -65,28 +88,7 @@
       ]
     }
   },
-  "install": [
-    {
-      "files": "https://files.teamspeak-services.com/releases/server/${version}/teamspeak3-server_linux_amd64-${version}.tar.bz2",
-      "type": "download"
-    },
-    {
-      "commands": [
-        "tar -xjf teamspeak3-server_linux_amd64-${version}.tar.bz2 --strip-components 1",
-        "rm teamspeak3-server_linux_amd64-${version}.tar.bz2"
-      ],
-      "type": "command"
-    }
-  ],
-  "run": {
-    "command": "./ts3server_minimal_runscript.sh default_voice_port=${vport} query_port=${qport} filetransfer_port=${ftport} voice_ip=${ip} licensepath=${license} license_accepted=${eula}",
-    "stopCode": 2
-  },
-  "environment": {
-    "type": "tty"
-  },
   "requirements": {
-    "binaries": [ "tar" ],
     "os": "linux",
     "arch": "amd64"
   }

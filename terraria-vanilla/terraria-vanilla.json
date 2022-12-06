@@ -1,6 +1,45 @@
 {
-  "type": "terraria",
+  "name": "terraria-vanila",
   "display": "Terraria - Vanila",
+  "type": "terraria",
+  "install": [{
+      "files": [
+        "https://terraria.org/api/download/pc-dedicated-server/terraria-server-${version}.zip"
+      ],
+      "type": "download"
+    },
+    {
+      "commands": [
+        "rm -r ./server",
+        "unzip terraria-server-${version}.zip",
+        "mkdir ./server",
+        "cp -r ./${version}/Linux/. ./server",
+        "chmod +x ./server/TerrariaServer",
+        "chmod +x ./server/TerrariaServer.bin.x86_64",
+        "mkdir ./${wp}",
+        "rm terraria-server-${version}.zip",
+        "rm -r ${version}"
+      ],
+      "type": "command"
+    },
+    {
+      "target": "serverconfig.txt",
+      "text": "world=../${wp}/${world}.wld\nautocreate=${size}\nseed=${seed}\nworldname=${world}\ndifficulty=${difficulty}\nmaxplayers=${players}\nport=${port}\npassword=${password}\nmotd=${motd}\nworldpath=../${wp}\nbanlist=../${ban}\nsecure=${secure}\nlanguage=${lang}\nupnp=${upnp}\nnpcstream=${npcs}\npriority=${priority}\nslowliquids=${sl}\nworldrollbackstokeep=${backups}",
+      "type": "writefile"
+    }
+  ],
+  "run": {
+    "stop": "exit",
+    "command": "./server/TerrariaServer -ip ${ip} ${steam} ${disableannouncementbox} -announcementboxrange ${abr} -config ../serverconfig.txt",
+    "workingDirectory": "",
+    "pre": [{
+      "target": "serverconfig.txt",
+      "text": "world=../${wp}/${world}.wld\nautocreate=${size}\nseed=${seed}\nworldname=${world}\ndifficulty=${difficulty}\nmaxplayers=${players}\nport=${port}\npassword=${password}\nmotd=${motd}\nworldpath=../${wp}\nbanlist=../${ban}\nsecure=${secure}\nlanguage=${lang}\nupnp=${upnp}\nnpcstream=${npcs}\npriority=${priority}\nslowliquids=${sl}\nworldrollbackstokeep=${backups}",
+      "type": "writefile"
+    }],
+    "post": [],
+    "environmentVars": {}
+  },
   "data": {
     "abr": {
       "type": "string",
@@ -155,49 +194,13 @@
       "value": "worlds"
     }
   },
-  "install": [
-    {
-      "files": [
-        "https://terraria.org/api/download/pc-dedicated-server/terraria-server-${version}.zip"
-      ],
-      "type": "download"
-    },
-    {
-      "commands": [
-        "rm -r ./server",
-        "unzip terraria-server-${version}.zip",
-        "mkdir ./server",
-        "cp -r ./${version}/Linux/. ./server",
-        "chmod +x ./server/TerrariaServer",
-        "chmod +x ./server/TerrariaServer.bin.x86_64",
-        "mkdir ./${wp}",
-        "rm terraria-server-${version}.zip",
-        "rm -r ${version}"
-      ],
-      "type": "command"
-    },
-    {
-      "target": "serverconfig.txt",
-      "text": "world=../${wp}/${world}.wld\nautocreate=${size}\nseed=${seed}\nworldname=${world}\ndifficulty=${difficulty}\nmaxplayers=${players}\nport=${port}\npassword=${password}\nmotd=${motd}\nworldpath=../${wp}\nbanlist=../${ban}\nsecure=${secure}\nlanguage=${lang}\nupnp=${upnp}\nnpcstream=${npcs}\npriority=${priority}\nslowliquids=${sl}\nworldrollbackstokeep=${backups}",
-      "type": "writefile"
-    }
-  ],
-  "run": {
-    "command": "./server/TerrariaServer -ip ${ip} ${steam} ${disableannouncementbox} -announcementboxrange ${abr} -config ../serverconfig.txt",
-    "stop": "exit",
-    "pre": [
-      {
-        "target": "serverconfig.txt",
-        "text": "world=../${wp}/${world}.wld\nautocreate=${size}\nseed=${seed}\nworldname=${world}\ndifficulty=${difficulty}\nmaxplayers=${players}\nport=${port}\npassword=${password}\nmotd=${motd}\nworldpath=../${wp}\nbanlist=../${ban}\nsecure=${secure}\nlanguage=${lang}\nupnp=${upnp}\nnpcstream=${npcs}\npriority=${priority}\nslowliquids=${sl}\nworldrollbackstokeep=${backups}",
-        "type": "writefile"
-      }
-    ]
-  },
   "environment": {
     "type": "tty"
   },
+  "supportedEnvironments": [{
+    "type": "tty"
+  }],
   "requirements": {
-    "binaries": [ "unzip" ],
     "os": "linux",
     "arch": "amd64"
   }

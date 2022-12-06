@@ -1,6 +1,28 @@
 {
   "type": "factorio",
   "display": "Factorio",
+  "install": [{
+    "type": "command",
+    "commands": [
+      "curl -L -o factorio.tar.xz https://www.factorio.com/get-download/latest/headless/linux64",
+      "mkdir factorio",
+      "tar --no-same-owner -xvf factorio.tar.xz",
+      "cp factorio/data/server-settings.example.json factorio/data/server-settings.json",
+      "./factorio/bin/x64/factorio --create saves/default.zip"
+    ]
+  }],
+  "run": {
+    "stop": "/quit",
+    "pre": [],
+    "post": [],
+    "command": "./factorio/bin/x64/factorio --port ${port} --bind ${ip} --start-server ${save} --server-settings ${server-settings}"
+  },
+  "environment": {
+    "type": "tty"
+  },
+  "supportedEnvironments": [{
+    "type": "tty"
+  }],
   "data": {
     "save": {
       "value": "saves/default.zip",
@@ -32,27 +54,8 @@
       "internal": false
     }
   },
-  "install": [
-    {
-      "type": "command",
-      "commands": [
-        "curl -L -o factorio.tar.xz https://www.factorio.com/get-download/latest/headless/linux64",
-        "mkdir factorio",
-        "tar --no-same-owner -xvf factorio.tar.xz",
-        "cp factorio/data/server-settings.example.json factorio/data/server-settings.json",
-        "./factorio/bin/x64/factorio --create saves/default.zip"
-      ]
-    }
-  ],
-  "run": {
-    "command": "./factorio/bin/x64/factorio --port ${port} --bind ${ip} --start-server ${save} --server-settings ${server-settings}",
-    "stop": "/quit"
-  },
-  "environment": {
-    "type": "tty"
-  },
   "requirements": {
-    "binaries": [ "curl", "tar", "xz" ],
+    "binaries": ["curl", "tar", "xz"],
     "os": "linux",
     "arch": "amd64"
   }

@@ -1,19 +1,10 @@
 {
   "type": "doom",
   "display": "Zandronum",
-  "data": {
-    "version": {
-      "value": "2.1.2",
-      "required": true,
-      "desc": "Which version of Zandronum you want to download.",
-      "display": "Version",
-      "internal": false
-    }
-  },
-  "install": [ {
+  "install": [{
       "type": "download",
       "files": [
-        "https://zandronum.com/downloads/zandronum${version}-linux-x86_64.tar.bz2",
+        "https://zandronum.com/downloads/zandronum${version}-linux-${arch}.tar.bz2",
         "http://distro.ibiblio.org/pub/linux/distributions/slitaz/sources/packages/d/doom1.wad"
       ]
     },
@@ -40,14 +31,43 @@
     }
   ],
   "run": {
-    "command": "./zandronum-server -host ${players}",
-    "stop": "Quit"
+    "stop": "Quit",
+    "pre": [],
+    "post": [],
+    "command": "./zandronum-server -host ${players}"
   },
   "environment": {
     "type": "standard"
   },
+  "supportedEnvironments": [{
+      "type": "standard"
+    },
+    {
+      "type": "docker",
+      "image": "pufferpanel/generic"
+    }
+  ],
+  "data": {
+    "version": {
+      "value": "2.1.2",
+      "required": true,
+      "desc": "Which version of Zandronum you want to download.",
+      "display": "Version",
+      "internal": false
+    },
+    "arch": {
+      "value": "x86_64",
+      "required": true,
+      "desc": "Which architecture of Zandronum you want to download",
+      "display": "Architecture",
+      "internal": false,
+      "type": "option",
+      "options": [{
+        "value": "x86_64"
+      }]
+    }
+  },
   "requirements": {
-    "binaries": [ "tar" ],
     "os": "linux",
     "arch": "amd64"
   }

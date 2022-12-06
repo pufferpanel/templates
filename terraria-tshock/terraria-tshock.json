@@ -2,6 +2,38 @@
   "name": "terraria-tshock",
   "display": "Terraria - TShock",
   "type": "terraria",
+  "install": [
+    {
+      "files": [
+        "https://github.com/Pryaxis/TShock/releases/download/v${tshockversion}/TShock-${tshockversion}-for-Terraria-${version}-linux-${arch}-Release.zip",
+        "https://dotnetcli.azureedge.net/dotnet/Runtime/${dotnetversion}/dotnet-runtime-${dotnetversion}-linux-${arch}.tar.gz"
+      ],
+      "type": "download"
+    },
+    {
+      "commands": [
+        "unzip TShock-${tshockversion}-for-Terraria-${version}-linux-${arch}-Release.zip",
+        "tar xf TShock-Beta-linux-${arch}-Release.tar",
+        "mkdir -p ${rootDir}/${wpath}",
+        "mkdir -p ${rootDir}/dotnet",
+        "tar xzf dotnet-runtime-${dotnetversion}-linux-${arch}.tar.gz -C ${rootDir}/dotnet",
+        "rm -rf TShock-${tshockversion}-for-Terraria-${version}-linux-${arch}-Release.zip",
+        "rm -rf TShock-Beta-linux-${arch}-Release.tar",
+        "rm -rf dotnet-runtime-linux-${arch}.tar.gz"
+      ],
+      "type": "command"
+    }
+  ],
+  "run": {
+    "stop": "exit",
+    "command": "./TShock.Server -ip ${ip} -port ${port} -worldselectpath ${wpath} ${secure}",
+    "workingDirectory": "",
+    "pre": [],
+    "post": [],
+    "environmentVars": {
+      "DOTNET_ROOT": "${rootDir}/dotnet"
+    }
+  },
   "data": {
     "ip": {
       "type": "string",
@@ -85,39 +117,14 @@
       ]
     }
   },
-  "install": [
-    {
-      "type": "download",
-      "files": [
-        "https://github.com/Pryaxis/TShock/releases/download/v${tshockversion}/TShock-${tshockversion}-for-Terraria-${version}-linux-${arch}-Release.zip",
-        "https://dotnetcli.azureedge.net/dotnet/Runtime/${dotnetversion}/dotnet-runtime-${dotnetversion}-linux-${arch}.tar.gz"
-      ]
-    },
-    {
-      "type": "command",
-      "commands": [
-        "unzip TShock-${tshockversion}-for-Terraria-${version}-linux-${arch}-Release.zip",
-        "tar xf TShock-Beta-linux-${arch}-Release.tar",
-        "mkdir ${wpath}",
-        "mkdir dotnet",
-        "tar xzf dotnet-runtime-${dotnetversion}-linux-${arch}.tar.gz -C dotnet",
-        "rm -rf TShock-${tshockversion}-for-Terraria-${version}-linux-${arch}-Release.zip",
-        "rm -rf TShock-Beta-linux-${arch}-Release.tar",
-        "rm -rf dotnet-runtime-linux-${arch}.tar.gz"
-      ]
-    }
-  ],
-  "run": {
-    "command": "./TShock.Server -ip ${ip} -port ${port} -worldselectpath ${wpath} ${secure}",
-    "stop": "exit",
-    "environmentVars": {
-      "DOTNET_ROOT": "${rootDir}/dotnet"
-    }
-  },
-
   "environment": {
     "type": "tty"
   },
+  "supportedEnvironments": [
+    {
+      "type": "tty"
+    }
+  ],
   "requirements": {
     "os": "linux",
     "binaries": [

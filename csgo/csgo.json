@@ -1,6 +1,41 @@
 {
-  "type": "srcds",
+  "type": "csgo",
   "display": "Counter Strike: Global Offensive",
+  "install": [{
+      "type": "download",
+      "files": "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"
+    },
+    {
+      "type": "mkdir",
+      "target": "steamcmd"
+    },
+    {
+      "type": "command",
+      "commands": [
+        "tar --no-same-owner -xzvf steamcmd_linux.tar.gz -C steamcmd",
+        "steamcmd/steamcmd.sh +login anonymous +force_install_dir .. +app_update 740 +quit",
+        "mkdir -p .steam/sdk32",
+        "cp steamcmd/linux32/steamclient.so .steam/sdk32/steamclient.so"
+      ]
+    }
+  ],
+  "run": {
+    "stop": "exit",
+    "pre": [],
+    "post": [],
+    "command": "./srcds_run -game csgo -usercon -strictportbind -ip ${ip} -port ${port} +clientport ${clientport} +tv_port ${tvport} +map ${map} -maxplayers_override ${maxplayers} +sv_setsteamaccount ${gslt} -tickrate ${tickrate} +mapgroup ${mapgroup} +game_mode ${gamemode} +game_type ${gametype} -net_port_try 1 -norestart"
+  },
+  "environment": {
+    "type": "tty"
+  },
+  "supportedEnvironments": [{
+      "type": "tty"
+    },
+    {
+      "type": "docker",
+      "image": "pufferpanel/srcds"
+    }
+  ],
   "data": {
     "map": {
       "value": "de_dust2",
@@ -87,19 +122,6 @@
       "internal": false,
       "type": "integer"
     }
-  },
-  "install": [
-    {
-      "type": "steamgamedl",
-      "target": "740"
-    }
-  ],
-  "run": {
-    "command": "./srcds_run -game csgo -usercon -strictportbind -ip ${ip} -port ${port} +clientport ${clientport} +tv_port ${tvport} +map ${map} -maxplayers_override ${maxplayers} +sv_setsteamaccount ${gslt} -tickrate ${tickrate} +mapgroup ${mapgroup} +game_mode ${gamemode} +game_type ${gametype} -net_port_try 1 -norestart",
-    "stop": "exit"
-  },
-  "environment": {
-    "type": "tty"
   },
   "requirements": {
     "os": "linux",

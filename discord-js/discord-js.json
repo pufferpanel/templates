@@ -1,6 +1,21 @@
 {
-  "type": "discord",
+  "name": "Discord JS Bot",
   "display": "discord.js",
+  "type": "discord",
+  "install": [{
+    "commands": [
+      "npm i"
+    ],
+    "type": "command"
+  }],
+  "run": {
+    "stop": "stop",
+    "command": "node ./${bot-js-file}",
+    "workingDirectory": "",
+    "pre": [],
+    "post": [],
+    "environmentVars": {}
+  },
   "data": {
     "bot-js-file": {
       "type": "string",
@@ -10,22 +25,21 @@
       "value": "bot.js"
     }
   },
-  "install": [
+  "environment": {
+    "image": "node",
+    "networkMode": "host",
+    "type": "docker"
+  },
+  "supportedEnvironments": [{
+      "type": "standard"
+    },
     {
-      "type": "command",
-      "commands": [
-        "npm i"
-      ]
+      "image": "node",
+      "networkMode": "host",
+      "type": "docker"
     }
   ],
-  "run": {
-    "command": "node ./${bot-js-file}",
-    "stop": "stop"
-  },
-  "environment": {
-    "type": "standard"
-  },
   "requirements": {
-    "binaries": [ "node", "npm" ]
+    "binaries": ["node", "npm"]
   }
 }

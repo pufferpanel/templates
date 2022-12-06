@@ -1,6 +1,17 @@
 {
-  "display": "discord.py Bot",
+  "name": "Discord Python Bot",
+  "display": "discord.py",
   "type": "discord",
+  "install": [{
+    "commands": [
+      "python3 -m pip install -r ${req-txt-file}"
+    ],
+    "type": "command"
+  }],
+  "run": {
+    "stop": "stop",
+    "command": "python3 ${bot-py-file}"
+  },
   "data": {
     "bot-py-file": {
       "type": "string",
@@ -17,22 +28,10 @@
       "value": "requirements.txt"
     }
   },
-  "install": [
-    {
-      "type": "command",
-      "commands": [
-        "python3 -m pip install -r ${req-txt-file}"
-      ]
-    }
-  ],
-  "run": {
-    "command": "python3 ${bot-py-file}",
-    "stop": "stop"
-  },
   "environment": {
     "type": "standard"
   },
-  "supportedEnvironments": [ {
+  "supportedEnvironments": [{
       "type": "standard"
     },
     {
@@ -42,6 +41,6 @@
     }
   ],
   "requirements": {
-    "binaries": [ "python3" ]
+    "binaries": ["python3"]
   }
 }
