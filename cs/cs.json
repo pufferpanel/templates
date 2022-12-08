@@ -1,0 +1,72 @@
+{
+  "type": "cs",
+  "display": "Counter-Strike",
+  "install": [{
+      "type": "download",
+      "files": "http://media.steampowered.com/installer/steamcmd_linux.tar.gz"
+    },
+    {
+      "type": "mkdir",
+      "target": "steamcmd"
+    },
+    {
+      "type": "command",
+      "commands": [
+        "tar --no-same-owner -xzvf steamcmd_linux.tar.gz -C steamcmd",
+        "steamcmd/steamcmd.sh +login anonymous +force_install_dir .. +app_update 90 -beta beta validate +quit",
+        "mkdir -p .steam/sdk32",
+        "cp steamcmd/linux32/steamclient.so .steam/sdk32/steamclient.so"
+      ]
+    }
+  ],
+  "run": {
+    "stop": "exit",
+    "pre": [],
+    "post": [],
+    "command": "./hlds_run -console -game cstrike -ip ${ip} -port ${port} +map ${map} -maxplayers ${maxplayers} -secure -norestart"
+  },
+  "environment": {
+    "type": "tty"
+  },
+  "supportedEnvironments": [{
+      "type": "tty"
+    }
+  ],
+  "data": {
+    "map": {
+      "value": "de_dust2",
+      "required": true,
+      "desc": "Map to load by default",
+      "display": "Map",
+      "internal": false,
+      "userEdit": true
+    },
+    "maxplayers": {
+      "value": "24",
+      "required": true,
+      "desc": "Max players allowed on server",
+      "display": "Max Players",
+      "internal": false,
+      "type": "integer"
+    },
+    "ip": {
+      "value": "0.0.0.0",
+      "required": true,
+      "desc": "What IP to bind the server to",
+      "display": "IP",
+      "internal": false
+    },
+    "port": {
+      "value": "27015",
+      "required": true,
+      "desc": "What port to bind the server to",
+      "display": "Port",
+      "internal": false,
+      "type": "integer"
+    }
+  },
+  "requirements": {
+    "os": "linux",
+    "arch": "amd64"
+  }
+}
