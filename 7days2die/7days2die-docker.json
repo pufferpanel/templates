@@ -13,10 +13,10 @@
   },
   "install": [
     {
+      "type": "command",
       "commands": [
-        "steamcmd +login anonymous +force_install_dir . +app_update 294420 +quit"
-      ],
-      "type": "command"
+        "steamcmd +force_install_dir . +login anonymous +app_update 294420 +quit"
+      ]      
     }
   ],
   "run": {
