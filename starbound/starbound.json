@@ -52,6 +52,12 @@
       "type": "writefile",
       "text": "{\n\t\"allowAdminCommands\" : true,\n\t\"allowAdminCommandsFromAnyone\" : false,\n\t\"allowAnonymousConnections\" : true,\n\t\"allowAssetsMismatch\" : true,\n\t\"anonymousConnectionsAreAdmin\" : false,\n\t\"bannedIPs\" : [],\n\t\"bannedUuids\" : [],\n\t\"checkAssetsDigest\" : false,\n\t\"clearPlayerFiles\" : false,\n\t\"clearUniverseFiles\" : false,\n\t\"clientIPJoinable\" : true,\n\t\"clientP2PJoinable\" : false,\n\t\"configurationVersion\" : {\n\t\t\"basic\" : 2,\n\t\t\"server\" : 4\n\t},\n\t\"crafting\" : {\n\t\t\"filterHaveMaterials\" : false\n\t},\n\t\"gameServerBind\" : \"::\",\n\t\"gameServerPort\" : ${gameServerPort},\n\t\"interactiveHighlight\" : true,\n\t\"inventory\" : {\n\t\t\"pickupToActionBar\" : true\n\t},\n\t\"maxPlayers\" : ${maxPlayers},\n\t\"maxTeamSize\" : 4,\n\t\"monochromeLighting\" : false,\n\t\"playerBackupFileCount\" : 3,\n\t\"queryServerBind\" : \"::\",\n\t\"queryServerPort\" : 21025,\n\t\"rconServerBind\" : \"::\",\n\t\"rconServerPassword\" : \"\",\n\t\"rconServerPort\" : 21026,\n\t\"rconServerTimeout\" : 1000,\n\t\"runQueryServer\" : false,\n\t\"runRconServer\" : false,\n\t\"safeScripts\" : true,\n\t\"scriptInstructionLimit\" : 10000000,\n\t\"scriptInstructionMeasureInterval\" : 10000,\n\t\"scriptProfilingEnabled\" : false,\n\t\"scriptRecursionLimit\" : 100,\n\t\"serverFidelity\" : \"automatic\",\n\t\"serverName\" : \"${serverName}\",\n\t\"serverOverrideAssetsDigest\" : null,\n\t\"serverUsers\" : {\n\t},\n\t\"tutorialMessages\" : true\n}\n",
       "target": "storage/starbound_server.config"
+    },
+    {
+      "type": "command",
+      "commands": [
+        "chmod +x starbound_server"
+      ]
     }
   ],
   "run": {

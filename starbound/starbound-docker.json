@@ -60,7 +60,8 @@
     "command": "./starbound_server"
   },
   "environment": {
-    "type": "tty"
+    "type": "docker",
+    "image": "steamcmd/steamcmd"
   },
   "requirements": {
     "arch": "amd64"
