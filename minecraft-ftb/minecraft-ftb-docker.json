@@ -63,6 +63,7 @@
       "files": "https://api.modpacks.ch/public/modpack/${modpack_id}/${modpack_version}/server/linux"
     },
     {
+      "type": "command",
       "commands": [
         "chmod u+x linux",
         "./linux --auto --noscript"
