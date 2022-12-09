@@ -64,6 +64,9 @@
     "command": "mono EcoServer.exe -nogui",
     "stopCode": 9
   },
+  "environment": {
+    "type": "standard"
+  },
   "requirements": {
     "binaries": [ "unzip", "mono" ],
     "arch": "amd64",

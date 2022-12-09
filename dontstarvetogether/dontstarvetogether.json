@@ -146,7 +146,7 @@
     {
       "type": "command",
       "commands": [
-        "chmod +x start.sh"
+        "chmod +x start.sh dontstarve_dedicated_server_nullrenderer"
       ]
     }
   ],

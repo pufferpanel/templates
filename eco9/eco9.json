@@ -62,7 +62,12 @@
       "type": "writefile",
       "target": "Configs/Network.eco",
       "text": "{\n  \"PublicServer\": false,\n  \"Password\": \"${password}\",\n  \"Description\": \"${ServerName}\",\n  \"IPAddress\": \"${ip}\",\n  \"GameServerPort\": ${port},\n  \"WebServerPort\": ${webServerPort},\n  \"Rate\": 10,\n  \"MaxConnections\": ${maxcon},\n \"UPnPEnabled\": ${upnp}\n}"
-
+    },
+    {
+      "type": "command",
+      "commands": [
+        "chmod +x EcoServer"
+      ]
     }
   ],
   "run": {
