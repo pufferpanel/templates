@@ -15,7 +15,7 @@
       "desc": "Build of the Velocity Version to use",
       "display": "Velocity Build",
       "required": true,
-      "value": "138",
+      "value": "195",
       "userEdit": true
     },
     "ip": {

@@ -56,7 +56,7 @@
     {
       "type": "command",
       "commands": [
-        "java17 -jar BuildTools.jar --rev ${version}"
+        "java -jar BuildTools.jar --rev ${version}"
       ]
     },
     {
@@ -76,7 +76,7 @@
     }
   ],
   "run": {
-    "command": "java17 -Xmx${memory}M -Djline.terminal=jline.UnsupportedTerminal -Dlog4j2.formatMsgNoLookups=true -jar server.jar nogui",
+    "command": "java -Xmx${memory}M -Djline.terminal=jline.UnsupportedTerminal -Dlog4j2.formatMsgNoLookups=true -jar server.jar nogui",
     "stop": "stop"
   },
   "environment": {

@@ -7,7 +7,7 @@
       "desc": "Build number",
       "display": "build",
       "required": true,
-      "value": "477"
+      "value": "510"
     },
     "ip": {
       "type": "string",
@@ -42,7 +42,7 @@
       "desc": "Version of Minecraft to install. Must be specified as a <strong>minor release number</strong>, e.g. 1.16",
       "display": "Version",
       "required": true,
-      "value": "1.18"
+      "value": "1.19"
     }
   },
   "install": [

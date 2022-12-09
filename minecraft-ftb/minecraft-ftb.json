@@ -57,7 +57,7 @@
       "type": "integer"
     },
     "javaversion": {
-      "value": "17",
+      "value": "8",
       "required": false,
       "display": "Java Version",
       "desc": "Version of Java to use",
