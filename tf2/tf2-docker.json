@@ -29,7 +29,7 @@
     {
       "type": "command",
       "commands": [
-        "steamcmd +login anonymous +force_install_dir ${rootDir} +app_update 232250 +quit"
+        "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 232250 +quit"
       ]
     }
   ],

@@ -41,7 +41,7 @@
     {
       "type": "command",
       "commands": [
-        "steamcmd +login ${steam_user} +force_install_dir . +app_update 533830 +quit"
+        "steamcmd +force_install_dir /pufferpanel +login ${steam_user} +app_update 533830 +quit"
       ]
     },
     {

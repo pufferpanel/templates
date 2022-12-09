@@ -852,7 +852,7 @@
     {
       "type": "command",
       "commands": [
-        "git clone git://github.com/Megabyte918/MultiOgarII.git .",
+        "git clone https://github.com/Megabyte918/MultiOgarII .",
         "npm install"
       ]
     },

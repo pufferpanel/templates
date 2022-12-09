@@ -1,16 +1,6 @@
 {
   "type": "srcds",
   "display": "7 Days to Die",
-  "data": {
-    "serverconfig": {
-      "type": "string",
-      "desc": "Relative path to server config file containing all setup vars. (default: ./serverconfig.xml)",
-      "display": "Server config file",
-      "required": true,
-      "value": "./serverconfig.xml",
-      "userEdit": true
-    }
-  },
   "environment": {
     "type": "tty"
   },
@@ -21,7 +11,7 @@
     }
   ],
   "run": {
-    "command": "./startserver.sh -configfile=${serverconfig}",
+    "command": "./7DaysToDieServer.x86_64 -quit -batchmode -nographics -dedicated -configfile=serverconfig.xml",
     "stopCode": 2,
     "environmentVars": {
       "LD_LIBRARY_PATH": "./linux64:$LD_LIBRARY_PATH"
