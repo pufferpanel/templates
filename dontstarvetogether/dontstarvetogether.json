@@ -142,6 +142,12 @@
       "type": "writefile",
       "target": "start.sh",
       "text": "#!/bin/bash\n\ninstall_dir=\"${rootDir}\"\ncluster_name=\"DontStarveTogetherServer\"\ndontstarve_dir=\"${rootDir}\"\n\ncd \"$install_dir/bin\"\n\n./dontstarve_dedicated_server_nullrenderer -persistent_storage_root \"${rootDir}\" -console -cluster \"$cluster_name\" -monitor_parent_process $$"
+    },
+    {
+      "type": "command",
+      "commands": [
+        "chmod +x start.sh"
+      ]
     }
   ],
   "run": {

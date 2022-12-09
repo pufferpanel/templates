@@ -91,7 +91,7 @@
   "install": [
     {
       "type": "steamgamedl",
-      "target": "740"
+      "appId": "740"
     }
   ],
   "run": {
