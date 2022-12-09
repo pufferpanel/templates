@@ -108,12 +108,18 @@
     "command": "./RustDedicated -nographics -batchmode +server.port ${port} +server.level \"${ServerLevel}\" +server.seed ${ServerSeed} +server.worldsize ${WorldSize} +server.maxplayers ${MaxPlayers} +server.hostname \"${ServerName}\" +server.description \"${Description}\" +server.headerimage \"${ServerImage}\" +server.url \"${URL}\" +server.identity \"${ServerIdentity}\" +rcon.port ${RConPort} +rcon.password ${RConPassword} +rcon.web 1 -logfile 2>&1",
     "stopCode": 2,
     "environmentVars": {
-      "LD_LIBRARY_PATH": "${rootDir}/RustDedicated_Data/Plugins/x86_64"
+      "LD_LIBRARY_PATH": "./RustDedicated_Data/Plugins/x86_64"
     },
     "pre": [
       {
         "type": "steamgamedl",
         "appId": "258550"
+      },
+      {
+        "type": "command",
+        "commands": [
+          "chmod +x RustDedicated"
+        ]
       }
     ]
   },
