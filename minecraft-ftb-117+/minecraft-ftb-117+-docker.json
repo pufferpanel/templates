@@ -78,8 +78,8 @@
     },
     {
       "commands": [
-        "chmod u+x serverinstall_${modpack_id}_${modpack_version}",
-        "./serverinstall_${modpack_id}_${modpack_version} --auto --noscript"
+        "chmod u+x linux",
+        "./linux --auto --noscript"
       ],
       "type": "command"
     },
