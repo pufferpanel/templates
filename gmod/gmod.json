@@ -51,6 +51,12 @@
     {
       "type": "steamgamedl",
       "appId": "4020"
+    },
+    {
+      "type": "command",
+      "commands": [
+        "chmod +x srcds_run"
+      ]
     }
   ],
   "run": {

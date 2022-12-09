@@ -49,7 +49,7 @@
     }
   ],
   "run": {
-    "command": "java8 -Xmx${memory}M -Xms${memory}M -Dlog4j2.formatMsgNoLookups=true -jar BungeeCord.jar",
+    "command": "java17 -Xmx${memory}M -Xms${memory}M -Dlog4j2.formatMsgNoLookups=true -jar BungeeCord.jar",
     "stop": "end"
   },
   "environment": {
