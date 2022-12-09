@@ -66,7 +66,7 @@
       "desc": "Version of Forge to install with no spaces (may be located <a href='http://files.minecraftforge.net/'>here</a>",
       "display": "Version",
       "required": true,
-      "value": "1.17.1-37.0.45"
+      "value": ""
     }
   },
   "install": [
@@ -112,5 +112,9 @@
   "environment": {
     "type": "docker",
     "image": "eclipse-temurin:17"
+  },
+  "requirements": {
+    "os": "linux",
+    "arch": "amd64"
   }
 }
