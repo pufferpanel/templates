@@ -20,7 +20,8 @@
     {
       "type": "command",
       "commands": [
-        "tar xvjf *.tar.bz2"
+        "tar xvjf *.tar.bz2",
+        "chmod +x zandronum-server"
       ]
     },
     {

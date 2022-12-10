@@ -48,6 +48,12 @@
       "target": "ProjectZomboid32.json",
       "text": "{\n\t\"mainClass\": \"zombie/network/GameServer\",\n\t\"classpath\": [\n\t\t\"java/.\",\n\t\t\"java/istack-commons-runtime.jar\",\n\t\t\"java/jassimp.jar\",\n\t\t\"java/javacord-2.0.17-shaded.jar\",\n\t\t\"java/javax.activation-api.jar\",\n\t\t\"java/jaxb-api.jar\",\n\t\t\"java/jaxb-runtime.jar\",\n\t\t\"java/lwjgl.jar\",\n\t\t\"java/lwjgl-natives-linux.jar\",\n\t\t\"java/lwjgl-glfw.jar\",\n\t\t\"java/lwjgl-glfw-natives-linux.jar\",\n\t\t\"java/lwjgl-jemalloc.jar\",\n\t\t\"java/lwjgl-jemalloc-natives-linux.jar\",\n\t\t\"java/lwjgl-opengl.jar\",\n\t\t\"java/lwjgl-opengl-natives-linux.jar\",\n\t\t\"java/lwjgl_util.jar\",\n\t\t\"java/sqlite-jdbc-3.27.2.1.jar\",\n\t\t\"java/trove-3.0.3.jar\",\n\t\t\"java/uncommons-maths-1.2.3.jar\"\n\t],\n\t\"vmArgs\": [\n\t\t\"-Djava.awt.headless=true\",\n\t\t\"-Xms768m\",\n\t\t\"-Xmx768m\",\n\t\t\"-Dzomboid.steam=1\",\n\t\t\"-Dzomboid.znetlog=1\",\n\t\t\"-Djava.library.path=linux32/:natives/\",\n        \"-Duser.home=./\",\n\t\t\"-Djava.security.egd=file:/dev/urandom\",\n\t\t\"-XX:+UseG1GC\",\n\t\t\"-XX:-OmitStackTraceInFastThrow\"\n\t]\n}",
       "type": "writefile"
+    },
+    {
+      "type": "command",
+      "commands": [
+        "chmod +x start-server.sh"
+      ]
     }
   ],
   "run": {
