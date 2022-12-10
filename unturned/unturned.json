@@ -128,10 +128,13 @@
       "appId": "1110390"
     },
     {
+      "type": "mkdir",
+      "target": "Servers/${server}/Server"
+    },
+    {
       "type": "command",
       "commands": [
-        "mkdir Servers/${server}",
-        "mkdir Servers/${server}/Server/"
+        "chmod +x ServerHelper.sh"
       ]
     },
     {
