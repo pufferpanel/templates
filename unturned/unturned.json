@@ -128,12 +128,6 @@
       "appId": "1110390"
     },
     {
-      "commands": [
-        "steamcmd +login anonymous +force_install_dir ../ +app_update 1110390 validate +exit"
-      ],
-      "type": "command"
-    },
-    {
       "type": "command",
       "commands": [
         "mkdir Servers/${server}",

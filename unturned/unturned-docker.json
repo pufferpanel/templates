@@ -130,10 +130,8 @@
       ]
     },
     {
-      "type": "command",
-      "commands": [
-        "mkdir -p Servers/${server}/Server/"
-      ]
+      "type": "mkdir",
+      "target": "Servers/${server}/Server"
     },
     {
       "type": "writefile",

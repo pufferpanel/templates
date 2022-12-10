@@ -39,6 +39,12 @@
     {
       "type": "steamgamedl",
       "appId": "896660"
+    },
+    {
+      "type": "command",
+      "commands": [
+        "chmod +x valheim_server.x86_64"
+      ]
     }
   ],
   "run": {
