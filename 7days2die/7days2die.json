@@ -8,6 +8,12 @@
     {
       "appId": "294420",
       "type": "steamgamedl"
+    },
+    {
+      "type": "command",
+      "commands": [
+        "chmod +x 7DaysToDieServer.x86_64"
+      ]
     }
   ],
   "run": {
