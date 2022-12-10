@@ -98,5 +98,5 @@
   "environment": {
     "type": "docker",
     "image": "steamcmd/steamcmd"
-  },
+  }
 }
