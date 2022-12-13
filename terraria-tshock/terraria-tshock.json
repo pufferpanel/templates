@@ -26,7 +26,7 @@
   ],
   "run": {
     "stop": "exit",
-    "command": "./TShock.Server -ip ${ip} -port ${port} -worldselectpath ${wpath} ${secure}",
+    "command": "./TShock.Server -ip ${ip} -port ${port} -config ${cpath} -world ${wpath} ${secure}",
     "workingDirectory": "",
     "pre": [],
     "post": [],
@@ -70,12 +70,19 @@
       "required": true,
       "value": "6.0.10"
     },
+    "cpath": {
+      "type": "string",
+      "desc": "Path of the config file",
+      "display": "Config Path",
+      "required": true,
+      "value": "tshock/config.json"
+    },
     "wpath": {
       "type": "string",
-      "desc": "Name of the worlds folder",
-      "display": "Worlds Path",
+      "desc": "Path of the world to load",
+      "display": "World Path",
       "required": true,
-      "value": "worlds"
+      "value": "worlds/world.wld"
     },
     "secure": {
       "desc": "Enable cheat protection ?",
