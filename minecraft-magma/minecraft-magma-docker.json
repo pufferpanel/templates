@@ -1,7 +1,7 @@
 {
   "type": "minecraft-java",
   "display": "Magma - Minecraft (Docker)",
-    "data": {
+  "data": {
     "eula": {
       "type": "boolean",
       "desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
