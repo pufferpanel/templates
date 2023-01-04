@@ -1,0 +1,94 @@
+{
+  "type": "minecraft-java",
+  "display": "Magma - Minecraft",
+    "data": {
+    "eula": {
+      "type": "boolean",
+      "desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
+      "display": "EULA Agreement (true/false)",
+      "required": true,
+      "value": "false",
+      "userEdit": true
+    },
+    "ip": {
+      "type": "string",
+      "desc": "What IP to bind the server to",
+      "display": "IP",
+      "required": true,
+      "value": "0.0.0.0",
+      "userEdit": true
+    },
+    "memory": {
+      "type": "integer",
+      "desc": "How much memory in MB to allocate to the Java Heap",
+      "display": "Memory (MB)",
+      "required": true,
+      "value": "1024"
+    },
+    "minecraftversion": {
+      "type": "string",
+      "desc": "Version of Minecraft to use with Magma",
+      "display": "Minecraft Version",
+      "required": true,
+      "value": "1.18.2"
+    },
+    "motd": {
+      "type": "string",
+      "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
+      "display": "MOTD message of the day",
+      "required": true,
+      "value": "A Minecraft Server\\n\\u00A79 hosted on PufferPanel",
+      "userEdit": true
+    },
+    "port": {
+      "type": "integer",
+      "desc": "What port to bind the server to",
+      "display": "Port",
+      "required": true,
+      "value": "25565",
+      "userEdit": true
+    },
+    "tag": {
+      "type": "string",
+      "desc": "The alphanumeric commit ID for the build (See https://git.magmafoundation.org/magmafoundation/Magma-1-18-x/-/releases for the commit ID's for each release))",
+      "display": "Tag",
+      "required": true,
+      "value": "68e21495",
+      "userEdit": true
+    }
+  },
+  "install": [
+    {
+      "type": "javadl",
+      "version": "17"
+    },
+    {
+      "files": [
+        "https://api.magmafoundation.org/api/v2/${minecraftversion}/latest/${tag}/download"
+      ],
+      "type": "download"
+    },
+    {
+      "source": "Magma-*.jar",
+      "target": "server.jar",
+      "type": "move"
+    },
+    {
+      "target": "server.properties",
+      "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}",
+      "type": "writefile"
+    },
+    {
+      "target": "eula.txt",
+      "text": "eula=${eula}",
+      "type": "writefile"
+    }
+  ],
+  "run": {
+    "command": "java17 -Xmx${memory}M -Dlog4j2.formatMsgNoLookups=true -jar server.jar nogui",
+    "stop": "stop",
+  },
+  "environment": {
+      "type": "standard"
+  }
+}
