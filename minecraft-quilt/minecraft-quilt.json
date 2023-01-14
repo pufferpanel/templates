@@ -1,62 +1,6 @@
 {
-  "name": "minecraft-quilt",
-  "display": "Quilt - Minecraft",
   "type": "minecraft-java",
-  "install": [
-    {
-      "files": [
-        "https://maven.quiltmc.org/repository/release/org/quiltmc/quilt-installer/latest/quilt-installer-latest.jar"
-      ],
-      "type": "download"
-    },
-    {
-      "source": "quilt-installer-*.jar",
-      "target": "quilt-installer.jar",
-      "type": "move"
-    },
-    {
-      "commands": [
-        "${java} -jar quilt-installer.jar install server ${game-version} --download-server --install-dir=."
-      ],
-      "type": "command"
-    },
-    {
-      "target": "server.properties",
-      "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}",
-      "type": "writefile"
-    },
-    {
-      "target": "eula.txt",
-      "text": "eula=${eula}",
-      "type": "writefile"
-    },
-    {
-      "source": "quilt-server-launch.jar",
-      "target": "quilt-server.jar",
-      "type": "move"
-    },
-    {
-      "target": "mods",
-      "type": "mkdir"
-    },
-    {
-      "target": "installer",
-      "type": "mkdir"
-    },
-    {
-      "source": "quilt-installer.jar",
-      "target": "installer/quilt-installer.jar",
-      "type": "move"
-    }
-  ],
-  "run": {
-    "stop": "stop",
-    "command": "${java} -Xmx${memory}M -Dlog4j2.formatMsgNoLookups=true -jar quilt-server.jar nogui",
-    "workingDirectory": "",
-    "pre": [],
-    "post": [],
-    "environmentVars": {}
-  },
+  "display": "Quilt - Minecraft",
   "data": {
     "eula": {
       "type": "boolean",
@@ -109,18 +53,63 @@
       "value": "25565"
     }
   },
+  "install": [
+    {
+      "files": [
+        "https://maven.quiltmc.org/repository/release/org/quiltmc/quilt-installer/latest/quilt-installer-latest.jar"
+      ],
+      "type": "download"
+    },
+    {
+      "source": "quilt-installer-*.jar",
+      "target": "quilt-installer.jar",
+      "type": "move"
+    },
+    {
+      "commands": [
+        "${java} -jar quilt-installer.jar install server ${game-version} --download-server --install-dir=."
+      ],
+      "type": "command"
+    },
+    {
+      "target": "server.properties",
+      "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}",
+      "type": "writefile"
+    },
+    {
+      "target": "eula.txt",
+      "text": "eula=${eula}",
+      "type": "writefile"
+    },
+    {
+      "source": "quilt-server-launch.jar",
+      "target": "quilt-server.jar",
+      "type": "move"
+    },
+    {
+      "target": "mods",
+      "type": "mkdir"
+    },
+    {
+      "target": "installer",
+      "type": "mkdir"
+    },
+    {
+      "source": "quilt-installer.jar",
+      "target": "installer/quilt-installer.jar",
+      "type": "move"
+    }
+  ],
+  "run": {
+    "command": "${java} -Xmx${memory}M -Dlog4j2.formatMsgNoLookups=true -jar quilt-server.jar nogui",
+    "stop": "stop"
+  },
+  "environment": {
+    "type": "standard"
+  },
   "supportedEnvironments": [
     {
       "type": "standard"
-    },
-    {
-      "image": "openjdk:16",
-      "type": "docker"
     }
-  ],
-  "requirements": {
-    "binaries": [
-      "${java}"
-    ]
-  }
+  ]
 }
