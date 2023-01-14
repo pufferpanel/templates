@@ -1,0 +1,44 @@
+{
+  "type": "srcds",
+  "display": "Satisfactory (Docker)",
+  "data": {
+    "multihome": {
+      "type": "string",
+      "desc": "Ip address to bind the server to",
+      "display": "Multihome",
+      "value": "0.0.0.0",
+      "userEdit": true
+    },
+    "port": {
+      "type": "integer",
+      "desc": "Port to bind the server to",
+      "display": "ServerQueryPort",
+      "value": "15777",
+      "userEdit": true
+    }
+  },
+  "install": [
+    {
+      "type": "command",
+      "commands": [
+        "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 1690800 +quit",
+        "chmod +x Engine/Binaries/Linux/UE4Server-Linux-Shipping",
+        "mkdir -p ./FactoryGame/Saved/Config/LinuxServer/"
+      ]
+    }
+  ],
+  "run": {
+    "stopCode": 2,
+    "command": "./Engine/Binaries/Linux/UE4Server-Linux-Shipping FactoryGame ?listen -multihome=${multihome} -ServerQueryPort=${port}",
+    "environmentVars": {
+      "LD_LIBRARY_PATH": "./linux64:$LD_LIBRARY_PATH"
+    }
+  },
+  "environment": {
+    "type": "docker",
+    "image": "steamcmd/steamcmd"
+  },
+  "requirements": {
+    "arch": "amd64"
+  }
+}

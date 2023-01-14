@@ -1,80 +1,64 @@
 {
-    "type": "valheim",
-    "data": {
-        "name": {
-            "type": "string",
-            "desc": "Choose your servername.",
-            "display": "Name",
-            "required": true,
-            "value": "Valheim Server",
-            "userEdit": true
-        },
-        "password": {
-            "type": "string",
-            "desc": "Set the server password.",
-            "display": "Password",
-            "required": true,
-            "value": "valheim",
-            "userEdit": true
-        },
-        "port": {
-            "type": "integer",
-            "desc": "What port to bind the server to.",
-            "display": "Port",
-            "required": true,
-            "value": "2456",
-            "userEdit": true
-        },
-        "world": {
-            "type": "string",
-            "desc": "What worldmap name to use.",
-            "display": "World",
-            "required": true,
-            "value": "VHWorld",
-            "userEdit": true
-        }
+  "type": "valheim",
+  "display": "Valheim Dedicated Server",
+  "data": {
+    "name": {
+      "type": "string",
+      "desc": "Choose your servername.",
+      "display": "Name",
+      "required": true,
+      "value": "Valheim Server",
+      "userEdit": true
     },
-    "display": "Valheim Dedicated Server",
-    "environment": {
-        "type": "tty"
+    "password": {
+      "type": "string",
+      "desc": "Set the server password.",
+      "display": "Password",
+      "required": true,
+      "value": "valheim",
+      "userEdit": true
     },
-    "install": [{
-            "files": [
-                "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"
-            ],
-            "type": "download"
-        },
-        {
-            "target": "steamcmd",
-            "type": "mkdir"
-        },
-        {
-            "commands": [
-                "tar --no-same-owner -xzvf steamcmd_linux.tar.gz -C steamcmd",
-                "steamcmd/steamcmd.sh +login anonymous +force_install_dir .. +app_update 896660 +quit",
-                "mkdir -p .steam/sdk32",
-                "cp steamcmd/linux32/steamclient.so .steam/sdk32/steamclient.so"
-            ],
-            "type": "command"
-        }
-    ],
-    "run": {
-        "command": "./valheim_server.x86_64 -name ${name} -port ${port} -world ${world} -password ${password} -public 1 > /dev/null &",
-        "stopCode": 2,
-        "environmentVars": {
-            "LD_LIBRARY_PATH": "./linux64:$LD_LIBRARY_PATH",
-            "SteamAppId": "892970",
-            "templdpath": "$LD_LIBRARY_PATH"
-        },
-        "pre": [],
-        "post": []
+    "port": {
+      "type": "integer",
+      "desc": "What port to bind the server to.",
+      "display": "Port",
+      "required": true,
+      "value": "2456",
+      "userEdit": true
     },
-    "supportedEnvironments": [{
-        "type": "tty"
-    }],
-    "name": "Valheim",
-    "requirements": {
-        "os": "linux",
-        "arch": "amd64"
+    "world": {
+      "type": "string",
+      "desc": "What worldmap name to use.",
+      "display": "World",
+      "required": true,
+      "value": "VHWorld",
+      "userEdit": true
     }
+  },
+  "install": [
+    {
+      "type": "steamgamedl",
+      "appId": "896660"
+    },
+    {
+      "type": "command",
+      "commands": [
+        "chmod +x valheim_server.x86_64"
+      ]
+    }
+  ],
+  "run": {
+    "command": "./valheim_server.x86_64 -name ${name} -port ${port} -world ${world} -password ${password} -public 1 > /dev/null &",
+    "stopCode": 2,
+    "environmentVars": {
+      "LD_LIBRARY_PATH": "./linux64:$LD_LIBRARY_PATH"
+    }
+  },
+  "environment": {
+    "type": "tty"
+  },
+  "requirements": {
+    "os": "linux",
+    "arch": "amd64"
+  }
 }

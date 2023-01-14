@@ -1,36 +1,6 @@
 {
-  "name": "minecraft-mohist",
-  "display": "Mohist - Minecraft",
   "type": "minecraft-java",
-  "install": [{
-      "files": [
-        "https://mohistmc.com/api/${mc-version}/${mohist-version}/download/"
-      ],
-      "type": "download"
-    },
-    {
-      "source": "mohist-*-server.jar",
-      "target": "server.jar",
-      "type": "move"
-    },
-    {
-      "target": "server.properties",
-      "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}",
-      "type": "writefile"
-    },
-    {
-      "target": "eula.txt",
-      "text": "eula=${eula}",
-      "type": "writefile"
-    }
-  ],
-  "run": {
-    "stop": "stop",
-    "command": "${java} -Xmx${memory}M -Dlog4j2.formatMsgNoLookups=true -jar server.jar nogui",
-    "pre": [],
-    "post": [],
-    "environmentVars": {}
-  },
+  "display": "Mohist - Minecraft",
   "data": {
     "eula": {
       "type": "boolean",
@@ -46,14 +16,6 @@
       "display": "IP",
       "required": true,
       "value": "0.0.0.0",
-      "userEdit": true
-    },
-    "java": {
-      "type": "string",
-      "desc": "\"java\" for system standard, else direct path to java",
-      "display": "path to java executable",
-      "required": true,
-      "value": "java",
       "userEdit": true
     },
     "mc-version": {
@@ -96,10 +58,38 @@
       "userEdit": true
     }
   },
-  "supportedEnvironments": [{
+  "install": [
+    {
+      "type": "javadl",
+      "version": "17"
+    },
+    {
+      "files": [
+        "https://mohistmc.com/api/${mc-version}/${mohist-version}/download/"
+      ],
+      "type": "download"
+    },
+    {
+      "source": "mohist-*-server.jar",
+      "target": "server.jar",
+      "type": "move"
+    },
+    {
+      "target": "server.properties",
+      "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}",
+      "type": "writefile"
+    },
+    {
+      "target": "eula.txt",
+      "text": "eula=${eula}",
+      "type": "writefile"
+    }
+  ],
+  "run": {
+    "command": "java17 -Xmx${memory}M -Dlog4j2.formatMsgNoLookups=true -jar server.jar nogui",
+    "stop": "stop"
+  },
+  "environment": {
     "type": "standard"
-  }],
-  "requirements": {
-    "binaries": ["${java}"]
   }
 }

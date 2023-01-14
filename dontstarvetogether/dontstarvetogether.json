@@ -1,168 +1,164 @@
 {
-    "data": {
-        "ip": {
-            "desc": "What IP to bind the server to",
-            "display": "IP",
-            "required": true,
-            "value": "0.0.0.0",
-            "userEdit": true,
-            "type": "string"
-        },
-        "port": {
-            "desc": "What port to bind the server to",
-            "display": "Port",
-            "required": true,
-            "value": "10889",
-            "userEdit": true,
-            "type": "integer"
-        },
-        "servertoken": {
-            "desc": "Dont Starve Together Server Token (may find here <a href=\"https://accounts.klei.com/account/game/servers?game=DontStarveTogether\" target=\"_blank\">here</a>)",
-            "display": "Server Token",
-            "required": true,
-            "value": "",
-            "userEdit": true,
-            "type": "string"
-        },
-        "servername": {
-            "desc": "Display Name for the Server",
-            "display": "ServerName",
-            "required": true,
-            "value": "DDTServer",
-            "userEdit": true,
-            "type": "string"
-        },
-        "description": {
-            "desc": "Description for the Server",
-            "display": "Server Description",
-            "required": true,
-            "value": "Dont Starve Together Server",
-            "userEdit": true,
-            "type": "string"
-        },
-        "password": {
-            "desc": "(optional) The password, needed to connect to your Server",
-            "display": "Password",
-            "value": "",
-            "userEdit": true,
-            "type": "string"
-        },
-        "maxplayers": {
-            "desc": "How much Players can connect to your Server",
-            "display": "Max Players",
-            "required": true,
-            "value": "5",
-            "userEdit": true,
-            "type": "integer"
-        },
+  "display": "Dont Starve Together",
+  "type": "srcds",
+  "data": {
+    "ip": {
+      "desc": "What IP to bind the server to",
+      "display": "IP",
+      "required": true,
+      "value": "0.0.0.0",
+      "userEdit": true,
+      "type": "string"
+    },
+    "port": {
+      "desc": "What port to bind the server to",
+      "display": "Port",
+      "required": true,
+      "value": "10889",
+      "userEdit": true,
+      "type": "integer"
+    },
+    "servertoken": {
+      "desc": "Dont Starve Together Server Token (may find here <a href=\"https://accounts.klei.com/account/game/servers?game=DontStarveTogether\" target=\"_blank\">here</a>)",
+      "display": "Server Token",
+      "required": true,
+      "value": "",
+      "userEdit": true,
+      "type": "string"
+    },
+    "servername": {
+      "desc": "Display Name for the Server",
+      "display": "ServerName",
+      "required": true,
+      "value": "DDTServer",
+      "userEdit": true,
+      "type": "string"
+    },
+    "description": {
+      "desc": "Description for the Server",
+      "display": "Server Description",
+      "required": true,
+      "value": "Dont Starve Together Server",
+      "userEdit": true,
+      "type": "string"
+    },
+    "password": {
+      "desc": "(optional) The password, needed to connect to your Server",
+      "display": "Password",
+      "value": "",
+      "userEdit": true,
+      "type": "string"
+    },
+    "maxplayers": {
+      "desc": "How much Players can connect to your Server",
+      "display": "Max Players",
+      "required": true,
+      "value": "5",
+      "userEdit": true,
+      "type": "integer"
+    },
 
-        "pvp": {
-            "desc": "Should PvP activated on the Server?",
-            "display": "PvP",
-            "required": true,
-            "value": "false",
-            "userEdit": true,
-            "type": "boolean"
-        },
-        "gamemode": {
-            "desc": "The Gamemode you want to play in",
-            "display": "Gamemode",
-            "required": true,
-            "value": "",
-            "userEdit": true,
-            "type": "option",
-            "options": [{
-                    "value": "survival",
-                    "display": "Survival"
-                },
-                {
-                    "value": "wilderness",
-                    "display": "Wilderness"
-                },
-                {
-                    "value": "endless",
-                    "display": "Endless"
-                }
-            ]
-        },
-        "gamestyle": {
-            "desc": "How do you want to play on your Server?",
-            "display": "Gamestyle",
-            "required": true,
-            "value": "",
-            "userEdit": true,
-            "type": "option",
-            "options": [{
-                    "value": "social",
-                    "display": "Social"
-                },
-                {
-                    "value": "cooperative",
-                    "display": "Cooperative"
-                },
-                {
-                    "value": "competetive",
-                    "display": "Competetive"
-                },
-                {
-                    "value": "madness",
-                    "display": "Madness"
-                }
-            ]
-        }
+    "pvp": {
+      "desc": "Should PvP activated on the Server?",
+      "display": "PvP",
+      "required": true,
+      "value": "false",
+      "userEdit": true,
+      "type": "boolean"
     },
-    "display": "Dont Starve Together",
-    "install": [{
-            "files": [
-                "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"
-            ],
-            "type": "download"
+    "gamemode": {
+      "desc": "The Gamemode you want to play in",
+      "display": "Gamemode",
+      "required": true,
+      "value": "",
+      "userEdit": true,
+      "type": "option",
+      "options": [
+        {
+          "value": "survival",
+          "display": "Survival"
         },
         {
-            "target": "steamcmd",
-            "type": "mkdir"
+          "value": "wilderness",
+          "display": "Wilderness"
         },
         {
-            "commands": [
-                "tar --no-same-owner -xzvf steamcmd_linux.tar.gz -C steamcmd",
-                "steamcmd/steamcmd.sh +login anonymous +force_install_dir .. +app_update 343050 +quit",
-                "mkdir -p .steam/sdk32",
-                "cp steamcmd/linux32/steamclient.so .steam/sdk32/steamclient.so",
-                "mkdir DoNotStarveTogether",
-                "mkdir DoNotStarveTogether/DontStarveTogetherServer"
-            ],
-            "type": "command"
-        },
-        {
-            "target": "DoNotStarveTogether/DontStarveTogetherServer/cluster_token.txt",
-            "text": "${servertoken}",
-            "type": "writefile"
-        },
-        {
-            "target": "DoNotStarveTogether/DontStarveTogetherServer/cluster.ini",
-            "text": "[GAMEPLAY]\ngame_mode = ${gamemode}\nmax_players = ${maxplayers}\npvp = ${pvp}\npause_when_empty = true\n\n[NETWORK]\ncluster_description = ${description}\ncluster_name = ${servername}\ncluster_intention = ${gamestyle}\ncluster_password = ${password}\n\n[MISC]\nconsole_enabled = true\n\n[SHARD]\nshard_enabled = true\nbind_ip = ${ip}\nmaster_ip = ${ip}\nmaster_port = ${port}\ncluster_key = ${servertoken}",
-            "type": "writefile"
-        },
-        {
-            "target": "start.sh",
-            "text": "#!/bin/bash\n\ninstall_dir=\"${rootDir}\"\ncluster_name=\"DontStarveTogetherServer\"\ndontstarve_dir=\"${rootDir}\"\n\ncd \"$install_dir/bin\"\n\n./dontstarve_dedicated_server_nullrenderer -persistent_storage_root \"${rootDir}\" -console -cluster \"$cluster_name\" -monitor_parent_process $$",
-            "type": "writefile"
+          "value": "endless",
+          "display": "Endless"
         }
-    ],
-    "type": "dontstarvetogether",
-    "run": {
-        "command": "sh start.sh",
-        "stop": "c_shutdown()",
-        "environmentVars": {},
-        "pre": [],
-        "post": []
+      ]
     },
-    "supportedEnvironments": [{
-        "type": "standard"
-    }],
-    "name": "dontstarvetogether",
-    "requirements": {
-        "os": "linux",
-        "arch": "amd64"
+    "gamestyle": {
+      "desc": "How do you want to play on your Server?",
+      "display": "Gamestyle",
+      "required": true,
+      "value": "",
+      "userEdit": true,
+      "type": "option",
+      "options": [
+        {
+          "value": "social",
+          "display": "Social"
+        },
+        {
+          "value": "cooperative",
+          "display": "Cooperative"
+        },
+        {
+          "value": "competetive",
+          "display": "Competetive"
+        },
+        {
+          "value": "madness",
+          "display": "Madness"
+        }
+      ]
     }
+  },
+  "install": [
+    {
+      "type": "steamgamedl",
+      "appId": "343050"
+    },
+    {
+      "type": "mkdir",
+      "target": "DoNotStarveTogether"
+    },
+    {
+      "type": "mkdir",
+      "target": "DoNotStarveTogether/DontStarveTogetherServer"
+    },
+    {
+      "type": "writefile",
+      "target": "DoNotStarveTogether/DontStarveTogetherServer/cluster_token.txt",
+      "text": "${servertoken}"
+    },
+    {
+      "type": "writefile",
+      "target": "DoNotStarveTogether/DontStarveTogetherServer/cluster.ini",
+      "text": "[GAMEPLAY]\ngame_mode = ${gamemode}\nmax_players = ${maxplayers}\npvp = ${pvp}\npause_when_empty = true\n\n[NETWORK]\ncluster_description = ${description}\ncluster_name = ${servername}\ncluster_intention = ${gamestyle}\ncluster_password = ${password}\n\n[MISC]\nconsole_enabled = true\n\n[SHARD]\nshard_enabled = true\nbind_ip = ${ip}\nmaster_ip = ${ip}\nmaster_port = ${port}\ncluster_key = ${servertoken}"
+    },
+    {
+      "type": "writefile",
+      "target": "start.sh",
+      "text": "#!/bin/bash\n\ninstall_dir=\"${rootDir}\"\ncluster_name=\"DontStarveTogetherServer\"\ndontstarve_dir=\"${rootDir}\"\n\ncd \"$install_dir/bin\"\n\n./dontstarve_dedicated_server_nullrenderer -persistent_storage_root \"${rootDir}\" -console -cluster \"$cluster_name\" -monitor_parent_process $$"
+    },
+    {
+      "type": "command",
+      "commands": [
+        "chmod +x start.sh dontstarve_dedicated_server_nullrenderer"
+      ]
+    }
+  ],
+  "run": {
+    "command": "./start.sh",
+    "stop": "c_shutdown()"
+  },
+  "environment": {
+    "type": "standard"
+  },
+  "requirements": {
+    "os": "linux",
+    "arch": "amd64"
+  }
 }

@@ -1,0 +1,61 @@
+{
+  "type": "valheim",
+  "display": "Valheim Dedicated Server (Docker)",
+  "data": {
+    "name": {
+      "type": "string",
+      "desc": "Choose your servername.",
+      "display": "Name",
+      "required": true,
+      "value": "Valheim Server",
+      "userEdit": true
+    },
+    "password": {
+      "type": "string",
+      "desc": "Set the server password.",
+      "display": "Password",
+      "required": true,
+      "value": "valheim",
+      "userEdit": true
+    },
+    "port": {
+      "type": "integer",
+      "desc": "What port to bind the server to.",
+      "display": "Port",
+      "required": true,
+      "value": "2456",
+      "userEdit": true
+    },
+    "world": {
+      "type": "string",
+      "desc": "What worldmap name to use.",
+      "display": "World",
+      "required": true,
+      "value": "VHWorld",
+      "userEdit": true
+    }
+  },
+  "install": [
+    {
+      "type": "command",
+      "commands": [
+        "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 896660 +quit"
+      ]
+    }
+  ],
+  "run": {
+    "command": "./valheim_server.x86_64 -name ${name} -port ${port} -world ${world} -password ${password} -public 1 > /dev/null &",
+    "stopCode": 2,
+    "environmentVars": {
+      "LD_LIBRARY_PATH": "./linux64:$LD_LIBRARY_PATH"
+    }
+  },
+  "environment": {
+    "type": "docker",
+    "image": "steamcmd/steamcmd"
+  },
+  "requirements": {
+    "os": "linux",
+    "arch": "amd64"
+  }
+}

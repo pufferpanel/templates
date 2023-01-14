@@ -1,41 +1,6 @@
 {
   "type": "srcds",
   "display": "Team Fortress 2",
-  "install": [{
-      "type": "download",
-      "files": "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"
-    },
-    {
-      "type": "mkdir",
-      "target": "steamcmd"
-    },
-    {
-      "type": "command",
-      "commands": [
-        "tar --no-same-owner -xzvf steamcmd_linux.tar.gz -C steamcmd",
-        "steamcmd/steamcmd.sh +login anonymous +force_install_dir ${rootDir} +app_update 232250 +quit",
-        "mkdir -p .steam/sdk32",
-        "cp steamcmd/linux32/steamclient.so .steam/sdk32/steamclient.so"
-      ]
-    }
-  ],
-  "run": {
-    "stop": "exit",
-    "pre": [],
-    "post": [],
-    "command": "./srcds_run +ip ${ip} +port ${port} -game tf -console +map ${map} -norestart"
-  },
-  "environment": {
-    "type": "tty"
-  },
-  "supportedEnvironments": [{
-      "type": "tty"
-    },
-    {
-      "type": "docker",
-      "image": "pufferpanel/srcds"
-    }
-  ],
   "data": {
     "map": {
       "value": "ctf_2fort",
@@ -59,6 +24,19 @@
       "internal": false,
       "type": "integer"
     }
+  },
+  "install": [
+    {
+      "type": "steamgamedl",
+      "appId": "232250"
+    }
+  ],
+  "run": {
+    "command": "./srcds_run +ip ${ip} +port ${port} -game tf -console +map ${map} -norestart",
+    "stop": "exit"
+  },
+  "environment": {
+    "type": "tty"
   },
   "requirements": {
     "os": "linux",

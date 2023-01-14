@@ -1,42 +1,6 @@
 {
   "type": "srcds",
   "display": "Garry's Mod",
-  "install": [{
-      "type": "download",
-      "files": "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"
-    },
-    {
-      "type": "mkdir",
-      "target": "steamcmd"
-    },
-    {
-      "type": "command",
-      "commands": [
-        "tar --no-same-owner -xzvf steamcmd_linux.tar.gz -C steamcmd",
-        "steamcmd/steamcmd.sh +login anonymous +force_install_dir .. +app_update 4020 +quit",
-        "mkdir -p .steam/sdk32",
-        "cp steamcmd/linux32/steamclient.so .steam/sdk32/steamclient.so",
-        "rm steamcmd_linux.tar.gz"
-      ]
-    }
-  ],
-  "run": {
-    "stop": "exit",
-    "pre": [],
-    "post": [],
-    "command": "./srcds_run +port ${port} -game garrysmod -console +gamemode ${gamemode} +map ${map} +maxplayers ${maxplayers} +host_workshop_collection ${wscollection} +sv_setsteamaccount ${steamaccounttoken} -norestart"
-  },
-  "environment": {
-    "type": "tty"
-  },
-  "supportedEnvironments": [{
-      "type": "tty"
-    },
-    {
-      "type": "docker",
-      "image": "pufferpanel/srcds"
-    }
-  ],
   "data": {
     "gamemode": {
       "value": "sandbox",
@@ -82,6 +46,25 @@
       "display": "Steam Game Server Account Token",
       "internal": false
     }
+  },
+  "install": [
+    {
+      "type": "steamgamedl",
+      "appId": "4020"
+    },
+    {
+      "type": "command",
+      "commands": [
+        "chmod +x srcds_run"
+      ]
+    }
+  ],
+  "run": {
+    "command": "./srcds_run +port ${port} -game garrysmod -console +gamemode ${gamemode} +map ${map} +maxplayers ${maxplayers} +host_workshop_collection ${wscollection} +sv_setsteamaccount ${steamaccounttoken} -norestart",
+    "stop": "exit"
+  },
+  "environment": {
+    "type": "tty"
   },
   "requirements": {
     "os": "linux",

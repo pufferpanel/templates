@@ -1,43 +1,7 @@
 {
   "type": "minecraft-java",
   "display": "Bungeecord - Minecraft",
-  "install": [{
-      "files": "http://ci.md-5.net/job/BungeeCord/lastSuccessfulBuild/artifact/bootstrap/target/BungeeCord.jar",
-      "type": "download"
-    },
-    {
-      "type": "writefile",
-      "text": "listeners:\n- query_port: ${port}\n  host: ${ip}:${port}\n  motd: '${motd}'\n",
-      "target": "config.yml"
-    }
-  ],
-  "run": {
-    "stop": "end",
-    "pre": [],
-    "post": [],
-    "command": "${java} -Xmx${memory}M -Xms${memory}M -Dlog4j2.formatMsgNoLookups=true -jar BungeeCord.jar"
-  },
-  "environment": {
-    "type": "standard"
-  },
-  "supportedEnvironments": [{
-      "type": "standard"
-    },
-    {
-      "type": "docker",
-      "image": "openjdk:8-alpine"
-    }
-  ],
   "data": {
-    "java": {
-      "value": "java",
-      "required": true,
-      "desc": "\"java\" for system standard, else direct path to java",
-      "display": "path to java executable",
-      "internal": false,
-      "type": "string",
-      "userEdit": true
-    },
     "memory": {
       "value": "512",
       "required": true,
@@ -69,7 +33,26 @@
       "internal": false
     }
   },
-  "requirements": {
-    "binaries": ["${java}"]
+  "install": [
+    {
+      "type": "javadl",
+      "version": "17"
+    },
+    {
+      "files": "http://ci.md-5.net/job/BungeeCord/lastSuccessfulBuild/artifact/bootstrap/target/BungeeCord.jar",
+      "type": "download"
+    },
+    {
+      "type": "writefile",
+      "text": "listeners:\n- query_port: ${port}\n  host: ${ip}:${port}\n  motd: '${motd}'\n",
+      "target": "config.yml"
+    }
+  ],
+  "run": {
+    "command": "java17 -Xmx${memory}M -Xms${memory}M -Dlog4j2.formatMsgNoLookups=true -jar BungeeCord.jar",
+    "stop": "end"
+  },
+  "environment": {
+    "type": "standard"
   }
 }

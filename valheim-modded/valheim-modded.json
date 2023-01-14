@@ -1,103 +1,87 @@
 {
-    "name": "valheim-modded",
-    "display": "Valheim Dedicated Server (Modded w. BepInEx)",
-    "type": "valheim",
-    "install": [
-        {
-            "target": "steamcmd",
-            "type": "mkdir"
-        },
-        {
-            "target": "bepin_temp",
-            "type": "mkdir"
-        },
-        {
-            "files": [
-                "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz",
-                "${modpack}"
-            ],
-            "type": "download"
-        },
-        {
-            "commands": [
-                "tar --no-same-owner -xzvf steamcmd_linux.tar.gz -C steamcmd",
-                "steamcmd/steamcmd.sh +login anonymous +force_install_dir .. +app_update 896660 +quit",
-                "mkdir -p .steam/sdk64",
-                "cp steamcmd/linux64/steamclient.so .steam/sdk64/steamclient.so",
-                "unzip ./denikson-BepInExPack_Valheim*.zip -d ./bepin_temp/",
-                "cp -r ./bepin_temp/BepInExPack_Valheim/. ./",
-                "rm -r ./bepin_temp"
-            ],
-            "type": "command"
-        }
-    ],
-    "run": {
-        "stopCode": 2,
-        "command": "./valheim_server.x86_64 -name ${name} -port ${port} -world ${world} -password ${password} -public 0 > /dev/null &",
-        "workingDirectory": "",
-        "pre": [],
-        "post": [],
-        "environmentVars": {
-            "DOORSTOP_CORLIB_OVERRIDE_PATH": "./unstripped_corlib",
-            "DOORSTOP_ENABLE": "TRUE",
-            "DOORSTOP_INVOKE_DLL_PATH": "./BepInEx/core/BepInEx.Preloader.dll",
-            "LD_LIBRARY_PATH": "./doorstop_libs:$LD_LIBRARY_PATH",
-            "LD_PRELOAD": "libdoorstop_x64.so:$LD_PRELOAD",
-            "SteamAppId": "892970",
-            "templdpath": "$LD_LIBRARY_PATH"
-        }
+  "type": "valheim",
+  "display": "Valheim Dedicated Server (Modded w. BepInEx)",
+  "data": {
+    "modpack": {
+      "type": "string",
+      "desc": "Open https://valheim.thunderstore.io/package/denikson/BepInExPack_Valheim/ in new tab and right 'manual download' click > copy link. Paste it in here.",
+      "display": "BepInExPack Valheim link",
+      "required": true,
+      "value": ""
     },
-    "data": {
-        "modpack": {
-            "type": "string",
-            "desc": "Open https://valheim.thunderstore.io/package/denikson/BepInExPack_Valheim/ in new tab and right 'manual download' click > copy link. Paste it in here.",
-            "display": "BepInExPack Valheim link",
-            "required": true,
-            "value": ""
-        },
-        "name": {
-            "type": "string",
-            "desc": "Choose your servername.",
-            "display": "Name",
-            "required": true,
-            "value": "Valheim Server",
-            "userEdit": true
-        },
-        "password": {
-            "type": "string",
-            "desc": "Set the server password. DO NOT USE SPACES.",
-            "display": "Password",
-            "required": true,
-            "value": "valheim",
-            "userEdit": true
-        },
-        "port": {
-            "type": "integer",
-            "desc": "What port to bind the server to.",
-            "display": "Port",
-            "required": true,
-            "value": "2456",
-            "userEdit": true
-        },
-        "world": {
-            "type": "string",
-            "desc": "What worldmap name to use. DO NOT USE SPACES.",
-            "display": "World",
-            "required": true,
-            "value": "VHWorld",
-            "userEdit": true
-        }
+    "name": {
+      "type": "string",
+      "desc": "Choose your servername.",
+      "display": "Name",
+      "required": true,
+      "value": "Valheim Server",
+      "userEdit": true
     },
-    "environment": {
-        "type": "tty"
+    "password": {
+      "type": "string",
+      "desc": "Set the server password. DO NOT USE SPACES.",
+      "display": "Password",
+      "required": true,
+      "value": "valheim",
+      "userEdit": true
     },
-    "supportedEnvironments": [
-        {
-            "type": "tty"
-        }
-    ],
-    "requirements": {
-        "os": "linux",
-        "arch": "amd64"
+    "port": {
+      "type": "integer",
+      "desc": "What port to bind the server to.",
+      "display": "Port",
+      "required": true,
+      "value": "2456",
+      "userEdit": true
+    },
+    "world": {
+      "type": "string",
+      "desc": "What worldmap name to use. DO NOT USE SPACES.",
+      "display": "World",
+      "required": true,
+      "value": "VHWorld",
+      "userEdit": true
     }
+  },
+  "install": [
+    {
+      "type": "mkdir",
+      "target": "bepin_temp"
+    },
+    {
+      "type": "download",
+      "files": [
+        "${modpack}"
+      ]
+    },
+    {
+      "type": "steamgamedl",
+      "appId": "896660"
+    },
+    {
+      "type": "command",
+      "commands": [
+        "unzip ./denikson-BepInExPack_Valheim*.zip -d ./bepin_temp/",
+        "cp -r ./bepin_temp/BepInExPack_Valheim/. ./",
+        "rm -r ./bepin_temp"
+      ]
+    }
+  ],
+  "run": {
+    "command": "./valheim_server.x86_64 -name ${name} -port ${port} -world ${world} -password ${password} -public 0 > /dev/null &",
+    "stopCode": 2,
+    "environmentVars": {
+      "DOORSTOP_CORLIB_OVERRIDE_PATH": "./unstripped_corlib",
+      "DOORSTOP_ENABLE": "TRUE",
+      "DOORSTOP_INVOKE_DLL_PATH": "./BepInEx/core/BepInEx.Preloader.dll",
+      "LD_LIBRARY_PATH": "./doorstop_libs:$LD_LIBRARY_PATH",
+      "LD_PRELOAD": "libdoorstop_x64.so:$LD_PRELOAD"
+    }
+  },
+  "environment": {
+    "type": "tty"
+  },
+  "requirements": {
+    "os": "linux",
+    "arch": "amd64"
+  }
 }

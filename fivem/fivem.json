@@ -1,38 +1,6 @@
 {
-  "name": "FiveM",
   "display": "FiveM",
   "type": "gta",
-  "install": [{
-      "target": "install.sh",
-      "text": "#!/bin/bash\n\n# artifacts installer\nwget ${artifacts}\ntar xf fx.tar.xz\n\n#cfx server data setup\nmkdir -p server-data\ngit clone --quiet https://github.com/citizenfx/cfx-server-data.git ./server-data\n\nchmod +x ./run.sh\n\n#cleanup\nrm -f fx.tar.xz\nrm -f .wget-hsts",
-      "type": "writefile"
-    },
-    {
-      "commands": [
-        "bash install.sh",
-        "rm -f install.sh"
-      ],
-      "type": "command"
-    },
-    {
-      "target": "start_no_edit.sh",
-      "text": "#!/bin/bash\n\ncd server-data\n../run.sh $* >&1 | tee -a server_log.txt",
-      "type": "writefile"
-    },
-    {
-      "target": "server-data/server.cfg",
-      "text": "# Only change the IP if you're using a server with multiple network interfaces, otherwise change the port only.\nendpoint_add_tcp \"0.0.0.0:${port}\"\nendpoint_add_udp \"0.0.0.0:${port}\"\n\nset mysql_connection_string \"server=localhost;database=vrp;userid=root;password=\"\n\n# These resources will start by default.\nensure mapmanager\nensure chat\nensure spawnmanager\nensure sessionmanager\nensure fivem\nensure hardcap\nensure rconlog\nensure scoreboard\n\n# This allows players to use scripthook-based plugins such as the legacy Lambda Menu.\n# Set this to 1 to allow scripthook. Do note that this does _not_ guarantee players won't be able to use external plugins.\nsv_scriptHookAllowed 0\n\n# Uncomment this and set a password to enable RCON. Make sure to change the password - it should look like rcon_password \"YOURPASSWORD\"\n#rcon_password \"\"\n\n# A comma-separated list of tags for your server.\n# For example:\n# - sets tags \"drifting, cars, racing\"\n# Or:\n# - sets tags \"roleplay, military, tanks\"\nsets tags \"default\"\n\n# A valid locale identifier for your server's primary language.\n# For example \"en-US\", \"fr-CA\", \"nl-NL\", \"de-DE\", \"en-GB\", \"pt-BR\"\nsets locale \"root-AQ\"\n# please DO replace root-AQ on the line ABOVE with a real language! :)\n\n# Set an optional server info and connecting banner image url.\n# Size doesn't matter, any banner sized image will be fine.\n#sets banner_detail \"https://url.to/image.png\"\n#sets banner_connecting \"https://url.to/image.png\"\n\n# Set your server's hostname\nsv_hostname \"${servername}\"\n\nsets sv_projectName \"${servername}\"\nsets sv_projectDesc \"${description}\"\n\n# Nested configs!\n#exec server_internal.cfg\n\n# Loading a server icon (96x96 PNG file)\n#load_server_icon myLogo.png\n\n# convars which can be used in scripts\nset temp_convar \"hey world!\"\n\n# Uncomment this line if you do not want your server to be listed in the server browser.\n# Do not edit it if you *do* want your server listed.\n#sv_master1 \"\"\n\n# Add system admins\nadd_ace group.admin command allow # allow all commands\nadd_ace group.admin command.quit deny # but don't allow quit\nadd_principal identifier.fivem:1 group.admin # add the admin to the group\n\n# Hide player endpoints in external log output.\nsv_endpointprivacy true\n\n# Server player slot limit (must be between 1 and 32, unless using OneSync)\nsv_maxclients ${maxplayers}\n\n# Steam Web API key, if you want to use Steam authentication (https://steamcommunity.com/dev/apikey)\n# -> replace \"\" with the key\nset steam_webApiKey \"none\"\n\n# License key for your server (https://keymaster.fivem.net)\nsv_licenseKey \"${license}\"",
-      "type": "writefile"
-    }
-  ],
-  "run": {
-    "stopCode": 6,
-    "command": "bash start_no_edit.sh +exec server.cfg",
-    "workingDirectory": "",
-    "pre": [],
-    "post": [],
-    "environmentVars": {}
-  },
   "data": {
     "artifacts": {
       "type": "string",
@@ -83,14 +51,50 @@
       "userEdit": true
     }
   },
+  "install": [
+    {
+      "type": "download",
+      "files": [
+        "${artifacts}"
+      ]
+    },
+    {
+      "type": "command",
+      "commands": [
+        "tar xf fx.tar.xz",
+        "mkdir -p server-data",
+        "git clone --quiet https://github.com/citizenfx/cfx-server-data.git ./server-data",
+        "chmod +x ./run.sh",
+        "rm -f fx.tar.xz .wget-hsts"
+      ]
+    },
+    {
+      "type": "writefile",
+      "target": "start_no_edit.sh",
+      "text": "#!/bin/bash\n\ncd server-data\n../run.sh $* >&1 | tee -a server_log.txt"
+    },
+    {
+      "type": "writefile",
+      "target": "server-data/server.cfg",
+      "text": "# Only change the IP if you're using a server with multiple network interfaces, otherwise change the port only.\nendpoint_add_tcp \"0.0.0.0:${port}\"\nendpoint_add_udp \"0.0.0.0:${port}\"\n\nset mysql_connection_string \"server=localhost;database=vrp;userid=root;password=\"\n\n# These resources will start by default.\nensure mapmanager\nensure chat\nensure spawnmanager\nensure sessionmanager\nensure fivem\nensure hardcap\nensure rconlog\nensure scoreboard\n\n# This allows players to use scripthook-based plugins such as the legacy Lambda Menu.\n# Set this to 1 to allow scripthook. Do note that this does _not_ guarantee players won't be able to use external plugins.\nsv_scriptHookAllowed 0\n\n# Uncomment this and set a password to enable RCON. Make sure to change the password - it should look like rcon_password \"YOURPASSWORD\"\n#rcon_password \"\"\n\n# A comma-separated list of tags for your server.\n# For example:\n# - sets tags \"drifting, cars, racing\"\n# Or:\n# - sets tags \"roleplay, military, tanks\"\nsets tags \"default\"\n\n# A valid locale identifier for your server's primary language.\n# For example \"en-US\", \"fr-CA\", \"nl-NL\", \"de-DE\", \"en-GB\", \"pt-BR\"\nsets locale \"root-AQ\"\n# please DO replace root-AQ on the line ABOVE with a real language! :)\n\n# Set an optional server info and connecting banner image url.\n# Size doesn't matter, any banner sized image will be fine.\n#sets banner_detail \"https://url.to/image.png\"\n#sets banner_connecting \"https://url.to/image.png\"\n\n# Set your server's hostname\nsv_hostname \"${servername}\"\n\nsets sv_projectName \"${servername}\"\nsets sv_projectDesc \"${description}\"\n\n# Nested configs!\n#exec server_internal.cfg\n\n# Loading a server icon (96x96 PNG file)\n#load_server_icon myLogo.png\n\n# convars which can be used in scripts\nset temp_convar \"hey world!\"\n\n# Uncomment this line if you do not want your server to be listed in the server browser.\n# Do not edit it if you *do* want your server listed.\n#sv_master1 \"\"\n\n# Add system admins\nadd_ace group.admin command allow # allow all commands\nadd_ace group.admin command.quit deny # but don't allow quit\nadd_principal identifier.fivem:1 group.admin # add the admin to the group\n\n# Hide player endpoints in external log output.\nsv_endpointprivacy true\n\n# Server player slot limit (must be between 1 and 32, unless using OneSync)\nsv_maxclients ${maxplayers}\n\n# Steam Web API key, if you want to use Steam authentication (https://steamcommunity.com/dev/apikey)\n# -> replace \"\" with the key\nset steam_webApiKey \"none\"\n\n# License key for your server (https://keymaster.fivem.net)\nsv_licenseKey \"${license}\""
+    },
+    {
+      "type": "command",
+      "commands": [
+        "chmod +x start_no_edit.sh"
+      ]
+    }    
+  ],
+  "run": {
+    "command": "./start_no_edit.sh +exec server.cfg",
+    "stopCode": 6
+  },
   "environment": {
     "type": "standard"
   },
-  "supportedEnvironments": [{
-    "type": "standard"
-  }],
   "requirements": {
-    "binaries": ["bash", "git"],
-    "os": "linux"
+    "binaries": [ "bash", "git", "wget" ],
+    "os": "linux",
+    "arch": "amd64"
   }
 }

@@ -1,49 +1,7 @@
 {
   "type": "minecraft-java",
   "display": "Vanilla - Minecraft",
-  "install": [{
-      "type": "mojangdl",
-      "version": "${version}",
-      "target": "server.jar"
-    },
-    {
-      "type": "writefile",
-      "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}\n",
-      "target": "server.properties"
-    },
-    {
-      "type": "writefile",
-      "text": "eula=${eula}",
-      "target": "eula.txt"
-    }
-  ],
-  "run": {
-    "stop": "stop",
-    "pre": [],
-    "post": [],
-    "command": "${java} -Xmx${memory}M -Dlog4j2.formatMsgNoLookups=true -jar server.jar nogui"
-  },
-  "environment": {
-    "type": "standard"
-  },
-  "supportedEnvironments": [{
-      "type": "standard"
-    },
-    {
-      "type": "docker",
-      "image": "openjdk:17-alpine"
-    }
-  ],
   "data": {
-    "java": {
-      "value": "java",
-      "required": true,
-      "desc": "\"java\" for system standard, else direct path to java",
-      "display": "path to java executable",
-      "internal": false,
-      "type": "string",
-      "userEdit": true
-    },
     "version": {
       "value": "latest",
       "required": true,
@@ -90,7 +48,32 @@
       "internal": false
     }
   },
-  "requirements": {
-    "binaries": ["${java}"]
+  "install": [
+    {
+      "type": "javadl",
+      "version": "17"
+    },
+    {
+      "type": "mojangdl",
+      "version": "${version}",
+      "target": "server.jar"
+    },
+    {
+      "type": "writefile",
+      "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}\n",
+      "target": "server.properties"
+    },
+    {
+      "type": "writefile",
+      "text": "eula=${eula}",
+      "target": "eula.txt"
+    }
+  ],
+  "run": {
+    "command": "java17 -Xmx${memory}M -Dlog4j2.formatMsgNoLookups=true -jar server.jar nogui",
+    "stop": "stop"
+  },
+  "environment": {
+    "type": "standard"
   }
 }

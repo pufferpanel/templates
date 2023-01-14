@@ -1,42 +1,9 @@
 {
   "type": "minecraft-bedrock",
   "display": "Minecraft Bedrock",
-  "install": [{
-      "type": "download",
-      "files": "https://minecraft.azureedge.net/bin-linux/bedrock-server-${version}.zip"
-    },
-    {
-      "type": "command",
-      "commands": [
-        "unzip -o bedrock-server-${version}.zip",
-        "chmod +x bedrock_server",
-        "rm server.properties"
-      ]
-    },
-    {
-      "type": "writefile",
-      "target": "server.properties",
-      "text": "server-name=${server-name}\ngamemode=${gamemode}\ndifficulty=${difficulty}\nallow-cheats=${allow-cheats}\nmax-players=${max-players}\nonline-mode=${online-mode}\nwhite-list=${white-list}\nserver-port=${server-port}\nserver-portv6=${server-portv6}\nview-distance=${view-distance}\ntick-distance=${tick-distance}\nplayer-idle-timeout=${player-idle-timeout}\nmax-threads=${max-threads}\nlevel-name=${level-name}\nlevel-seed=${level-seed}\ndefault-player-permission-level=${default-player-permission-level}\ntexturepack-required=${texturepack-required}\n"
-    }
-  ],
-  "run": {
-    "stop": "stop",
-    "pre": [],
-    "post": [],
-    "environmentVars": {
-      "LD_LIBRARY_PATH": "."
-    },
-    "command": "./bedrock_server"
-  },
-  "environment": {
-    "type": "standard"
-  },
-  "supportedEnvironments": [{
-    "type": "standard"
-  }],
   "data": {
     "version": {
-      "value": "1.17.11.01",
+      "value": "1.19.50.02",
       "required": true,
       "desc": "Version of the Minecraft Bedrock Server to use",
       "display": "Bedrock Version",
@@ -136,7 +103,7 @@
       "type": "integer"
     },
     "max-threads": {
-      "value": "8",
+      "value": "0",
       "required": true,
       "desc": "Maximum number of threads the server will try to use. If set to 0 or removed then it will use as many as possible.",
       "display": "Max Threads",
@@ -173,7 +140,37 @@
       "type": "boolean"
     }
   },
+  "install": [
+    {
+      "type": "download",
+      "files": "https://minecraft.azureedge.net/bin-linux/bedrock-server-${version}.zip"
+    },
+    {
+      "type": "command",
+      "commands": [
+        "unzip -o bedrock-server-${version}.zip",
+        "chmod +x bedrock_server",
+        "rm server.properties"
+      ]
+    },
+    {
+      "type": "writefile",
+      "target": "server.properties",
+      "text": "server-name=${server-name}\ngamemode=${gamemode}\ndifficulty=${difficulty}\nallow-cheats=${allow-cheats}\nmax-players=${max-players}\nonline-mode=${online-mode}\nwhite-list=${white-list}\nserver-port=${server-port}\nserver-portv6=${server-portv6}\nview-distance=${view-distance}\ntick-distance=${tick-distance}\nplayer-idle-timeout=${player-idle-timeout}\nmax-threads=${max-threads}\nlevel-name=${level-name}\nlevel-seed=${level-seed}\ndefault-player-permission-level=${default-player-permission-level}\ntexturepack-required=${texturepack-required}\n"
+    }
+  ],
+  "run": {
+    "command": "./bedrock_server",
+    "stop": "stop",
+    "environmentVars": {
+      "LD_LIBRARY_PATH": "."
+    }
+  },
+  "environment": {
+    "type": "standard"
+  },
   "requirements": {
+    "binaries": [ "unzip" ],
     "os": "linux",
     "arch": "amd64"
   }

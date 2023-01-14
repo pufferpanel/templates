@@ -1,39 +1,6 @@
 {
-  "type": "ark",
+  "type": "srcds",
   "display": "ARK: Survival Evolved",
-  "install": [{
-      "type": "download",
-      "files": "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"
-    },
-    {
-      "type": "command",
-      "commands": [
-        "mkdir steamcmd",
-        "tar --no-same-owner -xzvf steamcmd_linux.tar.gz -C steamcmd",
-        "steamcmd/steamcmd.sh +force_install_dir .. +login anonymous +app_update 376030 +quit",
-        "mkdir -p .steam/sdk32",
-        "cp steamcmd/linux32/steamclient.so .steam/sdk32/steamclient.so"
-      ]
-    }
-  ],
-  "run": {
-    "stopCode": 2,
-    "pre": [],
-    "post": [],
-    "command": "./ShooterGame/Binaries/Linux/ShooterGameServer ${mapname}?listen?SessionName=${sessionname}?ServerAdminPassword=${serveradminpassword}?MultiHome=${ip}?Port=${port}?QueryPort=${queryport}?MaxPlayers=${maxplayers} -server -log ${exclusive}",
-    "program": ""
-  },
-  "environment": {
-    "type": "tty"
-  },
-  "supportedEnvironments": [{
-      "type": "tty"
-    },
-    {
-      "type": "docker",
-      "image": "pufferpanel/srcds"
-    }
-  ],
   "data": {
     "sessionname": {
       "value": "My ARK Server",
@@ -94,7 +61,8 @@
       "required": false,
       "value": "",
       "type": "option",
-      "options": [{
+      "options": [
+        {
           "value": "",
           "display": "No"
         },
@@ -104,6 +72,19 @@
         }
       ]
     }
+  },
+  "install": [
+    {
+      "type": "steamgamedl",
+      "appId": "376030"
+    }
+  ],
+  "run": {
+    "command": "./ShooterGame/Binaries/Linux/ShooterGameServer ${mapname}?listen?SessionName=${sessionname}?ServerAdminPassword=${serveradminpassword}?MultiHome=${ip}?Port=${port}?QueryPort=${queryport}?MaxPlayers=${maxplayers} -server -log ${exclusive}",
+    "stopCode": 2
+  },
+  "environment": {
+    "type": "tty"
   },
   "requirements": {
     "os": "linux",
