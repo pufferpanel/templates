@@ -1,7 +1,51 @@
 {
-  "name": "undefined",
-  "display": "Quilt - Minecraft pr",
+  "name": "Quilt - Minecraft",
   "type": "minecraft-java",
+  "display": "Quilt - Minecraft",
+  "data": {
+    "eula": {
+      "type": "boolean",
+      "desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
+      "display": "EULA Agreement (true/false)",
+      "required": true,
+      "value": "false"
+    },
+    "game-version": {
+      "type": "string",
+      "desc": "Version of Minecraft to install (Oldest quilt version is 1.14)",
+      "display": "GAME VERSION",
+      "required": true,
+      "value": "1.19.3"
+    },
+    "ip": {
+      "type": "string",
+      "desc": "What IP to bind server to",
+      "display": "IP",
+      "required": true,
+      "value": "0.0.0.0"
+    },
+    "memory": {
+      "type": "integer",
+      "desc": "How much memory in MB to allocate to the Java Heap",
+      "display": "MEMORY (MB)",
+      "required": true,
+      "value": "1024"
+    },
+    "motd": {
+      "type": "string",
+      "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
+      "display": "MOTD message of the day",
+      "required": true,
+      "value": "A Minecraft Server\\n\\u00A79 hosted on PufferPanel"
+    },
+    "port": {
+      "type": "string",
+      "desc": "What port to bind server to",
+      "display": "PORT",
+      "required": true,
+      "value": "25565"
+    }
+  },
   "install": [
     {
       "type": "javadl",
@@ -55,56 +99,11 @@
     }
   ],
   "run": {
-    "stop": "stop",
     "command": "java17 -Xmx${memory}M -Dlog4j2.formatMsgNoLookups=true -jar quilt-server.jar nogui",
-    "workingDirectory": "",
+    "stop": "stop",
+    "environmentVars": {},
     "pre": [],
-    "post": [],
-    "environmentVars": {}
-  },
-  "data": {
-    "eula": {
-      "type": "boolean",
-      "desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
-      "display": "EULA Agreement (true/false)",
-      "required": true,
-      "value": "false"
-    },
-    "game-version": {
-      "type": "string",
-      "desc": "Version of Minecraft to install (Oldest quilt version is 1.14)",
-      "display": "GAME VERSION",
-      "required": true,
-      "value": "1.19.3"
-    },
-    "ip": {
-      "type": "string",
-      "desc": "What IP to bind server to",
-      "display": "IP",
-      "required": true,
-      "value": "0.0.0.0"
-    },
-    "memory": {
-      "type": "integer",
-      "desc": "How much memory in MB to allocate to the Java Heap",
-      "display": "MEMORY (MB)",
-      "required": true,
-      "value": "1024"
-    },
-    "motd": {
-      "type": "string",
-      "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
-      "display": "MOTD message of the day",
-      "required": true,
-      "value": "A Minecraft Server\\n\\u00A79 hosted on PufferPanel"
-    },
-    "port": {
-      "type": "string",
-      "desc": "What port to bind server to",
-      "display": "PORT",
-      "required": true,
-      "value": "25565"
-    }
+    "post": []
   },
   "environment": {
     "type": "standard"
