@@ -23,14 +23,6 @@
       "required": true,
       "value": "0.0.0.0"
     },
-    "java": {
-      "type": "string",
-      "desc": "\"java\" for system standard, else direct path to java",
-      "display": "path to java executable",
-      "required": true,
-      "value": "java",
-      "userEdit": true
-    },
     "memory": {
       "type": "integer",
       "desc": "How much memory in MB to allocate to the Java Heap",
@@ -54,6 +46,10 @@
     }
   },
   "install": [
+    {
+      "type": "javadl",
+      "version": "17"
+    },
     {
       "files": [
         "https://maven.quiltmc.org/repository/release/org/quiltmc/quilt-installer/latest/quilt-installer-latest.jar"
@@ -95,9 +91,10 @@
       "type": "mkdir"
     },
     {
-      "source": "quilt-installer.jar",
-      "target": "installer/quilt-installer.jar",
-      "type": "move"
+      "commands": [
+        "rm quilt-installer.jar"
+      ],
+      "type": "command"
     }
   ],
   "run": {
