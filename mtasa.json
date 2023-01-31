@@ -1,0 +1,50 @@
+{
+  "name": "multi-theft-auto-latest-arm",
+  "display": "Multi Theft Auto - ARM (Szablon Puffer Panel)",
+  "type": "mta",
+  "install": [
+    {
+      "commands": [
+        "wget https://linux.multitheftauto.com/dl/multitheftauto_linux_arm64.tar.gz",
+        "wget http://linux.mtasa.com/dl/baseconfig.tar.gz",
+        "tar -xf multitheftauto_linux_arm64.tar.gz",
+        "tar -xf baseconfig.tar.gz",
+        "mv ${rootDir}/baseconfig/ ${rootDir}/deathmatch/",
+        "mv ${rootDir}/deathmatch/ ${rootDir}/multitheftauto_linux_arm64/mods/",
+        "mkdir ${rootDir}/multitheftauto_linux_arm64/mods/deathmatch/resources",
+        "wget http://mirror.mtasa.com/mtasa/resources/mtasa-resources-latest.zip -P ${rootDir}/multitheftauto_linux_arm64/mods/deathmatch/resources",
+        "unzip ${rootDir}/multitheftauto_linux_arm64/mods/deathmatch/resources/mtasa-resources-latest.zip -d ${rootDir}/multitheftauto_linux_arm64/mods/deathmatch/resources/",
+        "rm -f multitheftauto_linux_arm64.tar.gz",
+        "rm -f baseconfig.tar.gz",
+        "rm -f ${rootDir}/multitheftauto_linux_arm64/mods/deathmatch/resources/mtasa-resources-latest.zip"
+      ],
+      "type": "command"
+    }
+  ],
+  "run": {
+    "stop": "shutdown",
+    "command": "./multitheftauto_linux_arm64/mta-server-arm64",
+    "workingDirectory": "",
+    "pre": [],
+    "post": [],
+    "environmentVars": {}
+  },
+  "data": {
+    "port": {
+      "type": "string",
+      "desc": "Server Port",
+      "display": "Port",
+      "required": true,
+      "value": "22003"
+    }
+  },
+  "environment": {
+    "type": "standard"
+  },
+  "supportedEnvironments": [
+    {
+      "type": "standard"
+    }
+  ],
+  "requirements": {}
+}
