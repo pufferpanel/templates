@@ -1,6 +1,6 @@
 {
   "type": "discord",
-  "display": "discord.js (Discord)",
+  "display": "discord.js (Docker)",
   "data": {
     "bot-js-file": {
       "type": "string",
