@@ -1,0 +1,109 @@
+{
+    "name": "multi-theft-auto",
+    "display": "Multi Theft Auto",
+    "type": "mta",
+    "install": [
+      {
+        "target": "mta-server.sh",
+        "text": "#!/bin/bash\n\nif [[ -f \"mta-server64\" ]]; then\n\texec ./mta-server64 $@\nelse\n\texec ./mta-server-arm64 $@\nfi",
+        "type": "writefile"
+      },
+      {
+        "commands": [
+          "wget -q https://linux.multitheftauto.com/dl/multitheftauto_linux_${arch}.tar.gz",
+          "wget -q http://linux.mtasa.com/dl/baseconfig.tar.gz",
+          "tar -xf multitheftauto_linux_arm64.tar.gz --strip-components 1",
+          "tar -xf baseconfig.tar.gz -C mods/deathmatch --strip-components 1",
+          "wget -q https://mirror.mtasa.com/mtasa/resources/mtasa-resources-latest.zip",
+          "mkdir mods/deathmatch/resources",
+          "unzip -q mtasa-resources-latest.zip -d mods/deathmatch/resources",
+          "rm -f multitheftauto_linux_${arch}.tar.gz baseconfig.tar.gz mtasa-resources-latest.zip",
+          "chmod 755 mta-server.sh"
+        ],
+        "type": "command"
+      }
+    ],
+    "run": {
+      "stop": "shutdown",
+      "command": "./mta-server.sh -n --ip ${ip} --port ${port} --maxplayers ${maxplayers} ${voice}",
+      "workingDirectory": "",
+      "pre": [],
+      "post": [],
+      "environmentVars": {}
+    },
+    "data": {
+      "arch": {
+        "type": "option",
+        "desc": "Architecture your machine",
+        "display": "Architecture",
+        "required": true,
+        "value": "x64",
+        "options": [
+          {
+            "value": "arm64",
+            "display": "arm64"
+          },
+          {
+            "value": "x64",
+            "display": "x64"
+          }
+        ]
+      },
+      "ip": {
+        "type": "string",
+        "desc": "What IP to bind the server to",
+        "display": "IP",
+        "required": true,
+        "value": "0.0.0.0"
+      },
+      "maxplayers": {
+        "type": "integer",
+        "desc": "Max players allowed on server",
+        "display": "Max Players",
+        "required": true,
+        "value": "32"
+      },
+      "port": {
+        "type": "integer",
+        "desc": "What port to bind the server to",
+        "display": "Port",
+        "required": true,
+        "value": "22003"
+      },
+      "voice": {
+        "type": "option",
+        "desc": "Disable voice communication ?",
+        "display": "Voice status",
+        "required": true,
+        "value": "",
+        "options": [
+          {
+            "value": "--novoice",
+            "display": "Disable"
+          },
+          {
+            "value": "",
+            "display": "Enable"
+          }
+        ]
+      }
+    },
+    "environment": {
+      "type": "standard"
+    },
+    "supportedEnvironments": [
+      {
+        "type": "standard"
+      }
+    ],
+    "requirements": {
+      "binaries": [
+        "bash",
+        "unzip",
+        "tar",
+        "gzip",
+        "wget"
+      ],
+      "os": "linux"
+    }
+  }
