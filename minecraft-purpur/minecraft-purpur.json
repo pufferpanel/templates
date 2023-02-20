@@ -8,9 +8,8 @@
       "version": "17"
     },
     {
-      "files": [ 
+      "files": [
         "https://api.purpurmc.org/v2/purpur/${version}/${build}/download"
-        
       ],
       "type": "download"
     },
@@ -32,7 +31,7 @@
   ],
   "run": {
     "stop": "stop",
-    "command": "java17 -Xmx${memory}M --add-modules=jdk.incubator.vector -Dterminal.jline=false -Dterminal.ansi=true -Djline.terminal=jline.UnsupportedTerminal -Dlog4j2.formatMsgNoLookups=true -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -jar purpur.jar nogui",
+    "command": "java17 -Xmx${memory}M ${incubator} -Dterminal.jline=false -Dterminal.ansi=true -Djline.terminal=jline.UnsupportedTerminal -Dlog4j2.formatMsgNoLookups=true -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -Dpaper.useLegacyPluginLoading=${legacy} -jar purpur.jar nogui",
     "workingDirectory": "",
     "pre": [],
     "post": [],
@@ -53,12 +52,38 @@
       "required": true,
       "value": "false"
     },
+    "incubator": {
+      "type": "option",
+      "desc": "Adding \"--add-modules=jdk.incubator.vector\" to enable JDK Incubator Vector",
+      "display": "JDK Incubator Vector",
+      "required": true,
+      "value": "false",
+      "userEdit": true,
+      "options": [
+        {
+          "value": "--add-modules=jdk.incubator.vector",
+          "display": "Yes"
+        },
+        {
+          "value": "",
+          "display": "No"
+        }
+      ]
+    },
     "ip": {
       "type": "string",
       "desc": "What IP to bind the server to",
       "display": "IP",
       "required": true,
       "value": "0.0.0.0"
+    },
+    "legacy": {
+      "type": "boolean",
+      "desc": "if you have a plugin that is depending on a plugin which refers back to that plugin.",
+      "display": "Legacy / Ignore Circular dependencies.",
+      "required": true,
+      "value": "false",
+      "userEdit": true
     },
     "memory": {
       "type": "integer",
