@@ -167,7 +167,7 @@
     }
   },
   "environment": {
-    "type": "standard"
+    "type": "host"
   },
   "requirements": {
     "binaries": [ "unzip" ],

@@ -62,7 +62,8 @@
       "commands": [
         "unzip ./denikson-BepInExPack_Valheim*.zip -d ./bepin_temp/",
         "cp -r ./bepin_temp/BepInExPack_Valheim/. ./",
-        "rm -r ./bepin_temp"
+        "rm -r ./bepin_temp",
+        "chmod +x valheim_server.x86_64"
       ]
     }
   ],
@@ -78,7 +79,7 @@
     }
   },
   "environment": {
-    "type": "tty"
+    "type": "host"
   },
   "requirements": {
     "os": "linux",

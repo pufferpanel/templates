@@ -53,6 +53,6 @@
     "stop": "end"
   },
   "environment": {
-    "type": "standard"
+    "type": "host"
   }
 }

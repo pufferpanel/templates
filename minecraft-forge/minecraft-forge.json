@@ -122,6 +122,6 @@
     "stop": "stop"
   },
   "environment": {
-    "type": "standard"
+    "type": "host"
   }
 }

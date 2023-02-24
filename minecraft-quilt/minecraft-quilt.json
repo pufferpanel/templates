@@ -106,11 +106,11 @@
     "post": []
   },
   "environment": {
-    "type": "standard"
+    "type": "host"
   },
   "supportedEnvironments": [
     {
-      "type": "standard"
+      "type": "host"
     }
   ],
   "requirements": {}

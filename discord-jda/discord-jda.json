@@ -15,7 +15,7 @@
     "command": "java -jar ${jar}"
   },
   "environment": {
-    "type": "standard"
+    "type": "host"
   },
   "requirements": {
     "binaries": [ "java" ]

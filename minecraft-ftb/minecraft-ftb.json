@@ -101,7 +101,7 @@
     "stop": "stop"
   },
   "environment": {
-    "type": "standard"
+    "type": "host"
   },
   "requirements": {
     "os": "linux",

@@ -90,7 +90,7 @@
     "stopCode": 6
   },
   "environment": {
-    "type": "standard"
+    "type": "host"
   },
   "requirements": {
     "binaries": [ "bash", "git", "wget" ],

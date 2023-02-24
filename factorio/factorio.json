@@ -49,7 +49,7 @@
     "stop": "/quit"
   },
   "environment": {
-    "type": "tty"
+    "type": "host"
   },
   "requirements": {
     "binaries": [ "curl", "tar", "xz" ],

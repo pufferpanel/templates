@@ -94,6 +94,6 @@
     "stopCode": 2
   },
   "environment": {
-    "type": "tty"
+    "type": "host"
   }
 }

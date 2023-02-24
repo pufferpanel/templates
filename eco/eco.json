@@ -65,7 +65,7 @@
     "stopCode": 9
   },
   "environment": {
-    "type": "standard"
+    "type": "host"
   },
   "requirements": {
     "binaries": [ "unzip", "mono" ],

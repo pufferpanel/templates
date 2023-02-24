@@ -2,7 +2,7 @@
   "type": "srcds",
   "display": "7 Days to Die",
   "environment": {
-    "type": "tty"
+    "type": "host"
   },
   "install": [
     {
@@ -25,7 +25,7 @@
   },
   "supportedEnvironments": [
     {
-      "type": "tty"
+      "type": "host"
     }
   ],
   "requirements": {

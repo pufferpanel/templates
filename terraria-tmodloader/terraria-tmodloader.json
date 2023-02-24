@@ -208,7 +208,7 @@
     ]
   },
   "environment": {
-    "type": "tty"
+    "type": "host"
   },
   "requirements": {
     "binaries": [ "tar" ],

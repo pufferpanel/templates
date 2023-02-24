@@ -155,7 +155,7 @@
     "stop": "c_shutdown()"
   },
   "environment": {
-    "type": "standard"
+    "type": "host"
   },
   "requirements": {
     "os": "linux",

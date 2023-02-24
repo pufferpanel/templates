@@ -29,6 +29,12 @@
     {
       "type": "steamgamedl",
       "appId": "232250"
+    },
+    {
+      "type": "command",
+      "commands": [
+        "chmod +x srcds_run"
+      ]
     }
   ],
   "run": {
@@ -36,7 +42,7 @@
     "stop": "exit"
   },
   "environment": {
-    "type": "tty"
+    "type": "host"
   },
   "requirements": {
     "os": "linux",

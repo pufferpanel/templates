@@ -68,7 +68,7 @@
     "stop": "exit"
   },
   "environment": {
-    "type": "tty"
+    "type": "host"
   },
   "requirements": {
     "os": "linux",

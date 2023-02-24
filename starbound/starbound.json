@@ -65,7 +65,7 @@
     "command": "./starbound_server"
   },
   "environment": {
-    "type": "tty"
+    "type": "host"
   },
   "requirements": {
     "os": "linux",

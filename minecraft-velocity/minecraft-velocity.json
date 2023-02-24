@@ -69,6 +69,6 @@
     "stop": "shutdown"
   },
   "environment": {
-    "type": "standard"
+    "type": "host"
   }
 }

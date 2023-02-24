@@ -124,7 +124,7 @@
     "stop": "exit"
   },
   "environment": {
-    "type": "standard"
+    "type": "host"
   },
   "requirements": {
     "os": "windows",
