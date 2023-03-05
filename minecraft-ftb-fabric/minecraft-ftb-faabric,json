@@ -1,0 +1,133 @@
+{
+  "name": "minecraft-ftb-fabric",
+  "display": "FTB - Fabric",
+  "type": "minecraft-java",
+  "install": [
+    {
+      "type": "javadl",
+      "version": "${javaversion}"
+    },
+    {
+      "files": [
+        "https://api.modpacks.ch/public/modpack/${modpack_id}/${modpack_version}/server/linux"
+      ],
+      "type": "download"
+    },
+    {
+      "commands": [
+        "chmod u+x linux",
+        "./linux ${modpack_id} ${modpack_version} --auto --noscript"
+      ],
+      "type": "command"
+    },
+    {
+      "source": "fabric-*.jar",
+      "target": "FabricServer.jar",
+      "type": "move"
+    },
+    {
+      "target": "eula.txt",
+      "text": "eula=${eula}",
+      "type": "writefile"
+    },
+    {
+      "target": "server.properties",
+      "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}\n",
+      "type": "writefile"
+    }
+  ],
+  "run": {
+    "stop": "stop",
+    "command": "java${javaversion} -server ${args} -Dlog4j2.formatMsgNoLookups=true -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true -jar FabricServer.jar nogui",
+    "workingDirectory": "",
+    "pre": [],
+    "post": [],
+    "environmentVars": {}
+  },
+  "data": {
+    "args": {
+      "type": "option",
+      "display": "Java Arguments",
+      "required": true,
+      "options": [
+        {
+          "value": "-XX:+UnlockExperimentalVMOptions -XX:+UseShenandoahGC -XX:+AlwaysPreTouch",
+          "display": "ShenandoahGC"
+        },
+        {
+          "value": "-XX:+UnlockExperimentalVMOptions -XX:+UseG1GC",
+          "display": "G1GC"
+        }
+      ]
+    },
+    "eula": {
+      "type": "boolean",
+      "desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
+      "display": "EULA Agreement",
+      "required": true,
+      "value": "false"
+    },
+    "ip": {
+      "type": "string",
+      "desc": "What IP to bind the server to",
+      "display": "IP",
+      "required": true,
+      "value": "0.0.0.0"
+    },
+    "javaversion": {
+      "type": "integer",
+      "desc": "Version of Java to use",
+      "display": "Java Version",
+      "value": "8"
+    },
+    "memory": {
+      "type": "integer",
+      "desc": "How much memory in MB to allocate to the Java Heap",
+      "display": "Memory (MB)",
+      "required": true,
+      "value": "4096"
+    },
+    "modpack_id": {
+      "type": "integer",
+      "desc": "Get the modpack ID for your preffered modpack in the <a href='https://www.feed-the-beast.com/modpack' target='_blank'>Modpacklist</a>.",
+      "display": "Modpack ID",
+      "required": true,
+      "value": "",
+      "userEdit": true
+    },
+    "modpack_version": {
+      "type": "integer",
+      "desc": "Version ID from the versions tab of the selected modpack in the <a href='https://www.feed-the-beast.com/modpack' target='_blank'>Modpacklist</a>.",
+      "display": "Modpack version ID",
+      "required": true,
+      "value": "",
+      "userEdit": true
+    },
+    "motd": {
+      "type": "string",
+      "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
+      "display": "MOTD message of the day",
+      "required": true,
+      "value": "A Minecraft Server hosted on PufferPanel"
+    },
+    "port": {
+      "type": "integer",
+      "desc": "What port to bind the server to",
+      "display": "Port",
+      "required": true,
+      "value": "25565"
+    }
+  },
+  "environment": {
+    "type": "standard"
+  },
+  "supportedEnvironments": [
+    {
+      "type": "standard"
+    }
+  ],
+  "requirements": {
+    "os": "linux",
+    "arch": "amd64"
+  }
+}
