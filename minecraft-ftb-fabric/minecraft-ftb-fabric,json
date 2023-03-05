@@ -45,6 +45,21 @@
     "environmentVars": {}
   },
   "data": {
+    "args": {
+      "type": "option",
+      "display": "Java Arguments",
+      "required": true,
+      "options": [
+        {
+          "value": "-XX:+UnlockExperimentalVMOptions -XX:+UseShenandoahGC -XX:+AlwaysPreTouch",
+          "display": "ShenandoahGC"
+        },
+        {
+          "value": "-XX:+UnlockExperimentalVMOptions -XX:+UseG1GC",
+          "display": "G1GC"
+        }
+      ]
+    },
     "eula": {
       "type": "boolean",
       "desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
@@ -64,21 +79,6 @@
       "desc": "Version of Java to use",
       "display": "Java Version",
       "value": "8"
-    },
-    "args": {
-      "type": "option",
-      "display": "Java Arguments",
-      "required": true,
-      "options": [
-        {
-          "value": "-XX:+UnlockExperimentalVMOptions -XX:+UseShenandoahGC -XX:+AlwaysPreTouch",
-          "display": "ShenandoahGC"
-        },
-        {
-          "value": "-XX:+UnlockExperimentalVMOptions -XX:+UseG1GC",
-          "display": "G1GC"
-        }
-      ]
     },
     "memory": {
       "type": "integer",
