@@ -38,28 +38,13 @@
   ],
   "run": {
     "stop": "stop",
-    "command": "java${javaversion} -server ${args} -Dlog4j2.formatMsgNoLookups=true -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true -jar FabricServer.jar nogui",
+    "command": "java${javaversion} -Xmx${memory}M -Xms${memory}M -XX:+UseG1GC -XX:MaxGCPauseMillis=130 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=28 -XX:G1HeapRegionSize=16M -XX:G1ReservePercent=20 -XX:G1MixedGCCountTarget=3 -XX:InitiatingHeapOccupancyPercent=10 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=0 -XX:SurvivorRatio=32 -XX:MaxTenuringThreshold=1 -XX:G1SATBBufferEnqueueingThresholdPercent=30 -XX:G1ConcMarkStepDurationMillis=5 -XX:G1ConcRSHotCardLimit=16 -XX:G1ConcRefinementServiceIntervalMillis=150 -Dlog4j2.formatMsgNoLookups=true -Dterminal.jline=false -Dterminal.ansi=true -jar FabricServer.jar nogui",
     "workingDirectory": "",
     "pre": [],
     "post": [],
     "environmentVars": {}
   },
   "data": {
-    "args": {
-      "type": "option",
-      "display": "Java Arguments",
-      "required": true,
-      "options": [
-        {
-          "value": "-XX:+UnlockExperimentalVMOptions -XX:+UseShenandoahGC -XX:+AlwaysPreTouch",
-          "display": "ShenandoahGC"
-        },
-        {
-          "value": "-XX:+UnlockExperimentalVMOptions -XX:+UseG1GC",
-          "display": "G1GC"
-        }
-      ]
-    },
     "eula": {
       "type": "boolean",
       "desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
@@ -78,7 +63,8 @@
       "type": "integer",
       "desc": "Version of Java to use",
       "display": "Java Version",
-      "value": "17"
+      "value": "17",
+      "required": true
     },
     "memory": {
       "type": "integer",
@@ -93,7 +79,7 @@
       "display": "Modpack ID",
       "required": true,
       "value": "",
-      "userEdit": true
+      "userEdit": false
     },
     "modpack_version": {
       "type": "integer",
@@ -101,7 +87,7 @@
       "display": "Modpack version ID",
       "required": true,
       "value": "",
-      "userEdit": true
+      "userEdit": false
     },
     "motd": {
       "type": "string",
