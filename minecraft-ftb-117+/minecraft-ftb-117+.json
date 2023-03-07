@@ -110,13 +110,13 @@
     },
     {
       "commands": [
-        "javajavaversion -jar forge-1.1*.*-installer.jar --installServer"
+        "java${javaversion} -jar forge-1.1*.*-installer.jar --installServer"
       ],
       "type": "command"
     }
   ],
   "run": {
-    "command": "javajavaversion -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -Dlog4j2.formatMsgNoLookups=true -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true @libraries/net/minecraftforge/forge/${version}/unix_args.txt nogui",
+    "command": "java${javaversion} -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -Dlog4j2.formatMsgNoLookups=true -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true @libraries/net/minecraftforge/forge/${version}/unix_args.txt nogui",
     "stop": "stop"
   },
   "environment": {
