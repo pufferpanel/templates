@@ -40,6 +40,12 @@
       "display": "Version",
       "internal": false
     },
+    "javaversion": {
+      "value": "17",
+      "required": true,
+      "desc": "Version of Java to use",
+      "display": "Java Version"
+    },
     "motd": {
       "value": "A Minecraft Server\\n\\u00A79 hosted on PufferPanel",
       "required": true,
@@ -51,7 +57,7 @@
   "install": [
     {
       "type": "javadl",
-      "version": "17"
+      "version": "${javaversion}"
     },
     {
       "type": "forgedl",
@@ -60,7 +66,7 @@
     },
     {
       "commands": [
-        "java17 -jar installer.jar --installServer"
+        "java${javaversion} -jar installer.jar --installServer"
       ],
       "type": "command"
     },
@@ -76,7 +82,7 @@
     }
   ],
   "run": {
-    "command": "java17 -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/minecraftforge/forge/${version}/unix_args.txt nogui",
+    "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/minecraftforge/forge/${version}/unix_args.txt nogui",
     "stop": "stop"
   },
   "environment": {
