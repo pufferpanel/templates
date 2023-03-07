@@ -44,7 +44,7 @@
     },
     {
       "type": "writefile",
-      "text": "listeners:\n- query_port: ${port}\n  host: ${ip}:${port}\n  motd: '${motd}'\n",
+      "text": "listeners:\n- query_port: ${port}\n  host: ${ip}:${port}\n  motd: '${motd}'\n hide-online-players=true\n white-list=true \n",
       "target": "config.yml"
     }
   ],
