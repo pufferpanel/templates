@@ -16,7 +16,7 @@
     {
       "commands": [
         "chmod u+x linux",
-        "./linux ${modpack_id} ${modpack_version} --auto --noscript"
+        "./linux ${modpack_id} ${modpack_version} --auto --noscript --nojava"
       ],
       "type": "command"
     },

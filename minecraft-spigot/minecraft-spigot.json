@@ -46,12 +46,19 @@
       "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
       "display": "MOTD message of the day",
       "internal": false
+    },
+    "javaversion": {
+      "type": "integer",
+      "desc": "Version of Java to use",
+      "display": "Java Version",
+      "value": "17",
+      "required": true
     }
   },
   "install": [
     {
       "type": "javadl",
-      "version": "17"
+      "version": "${javaversion}"
     },
     {
       "type": "download",
@@ -80,7 +87,7 @@
     }
   ],
   "run": {
-    "command": "java17 -Xmx${memory}M -Djline.terminal=jline.UnsupportedTerminal -Dlog4j2.formatMsgNoLookups=true -jar server.jar nogui",
+    "command": "java${javaversion} -Xmx${memory}M -Djline.terminal=jline.UnsupportedTerminal -Dlog4j2.formatMsgNoLookups=true -jar server.jar nogui",
     "stop": "stop"
   },
   "environment": {

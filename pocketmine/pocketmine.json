@@ -21,7 +21,7 @@
   "install": [
     {
       "type": "download",
-      "files": "https://raw.githubusercontent.com/pmmp/php-build-scripts/master/installer.sh"
+      "files": "https://get.pmmp.io"
     },
     {
       "type": "command",

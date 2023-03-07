@@ -40,6 +40,12 @@
       "display": "Version",
       "internal": false
     },
+    "javaversion": {
+      "value": "8",
+      "required": true,
+      "desc": "Version of Java to use",
+      "display": "Java Version"
+    },
     "mc-version": {
       "type": "option",
       "desc": "On which Minecraft Version should forge be installed",
@@ -88,7 +94,7 @@
   "install": [
     {
       "type": "javadl",
-      "version": "8"
+      "version": "${javaversion}"
     },
     {
       "type": "forgedl",
@@ -97,7 +103,7 @@
     },
     {
       "commands": [
-        "java8 -jar installer.jar --installServer"
+        "java${javaversion} -jar installer.jar --installServer"
       ],
       "type": "command"
     },
@@ -118,7 +124,7 @@
     }
   ],
   "run": {
-    "command": "java8 -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar server.jar nogui",
+    "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar server.jar nogui",
     "stop": "stop"
   },
   "environment": {
