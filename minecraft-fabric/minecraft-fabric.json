@@ -61,7 +61,7 @@
     },
     {
       "target": "server.properties",
-      "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}\nhide-online-players=true\nwhite-list=true",
+      "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}\nhide-online-players=true\nwhite-list=true\n",
       "type": "writefile"
     },
     {
