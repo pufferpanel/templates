@@ -43,19 +43,26 @@
       "display": "PORT",
       "required": true,
       "value": "25565"
+    },
+    "javaversion": {
+      "type": "integer",
+      "desc": "Version of Java to use",
+      "display": "Java Version",
+      "value": "17",
+      "required": true
     }
   },
   "install": [
     {
       "type": "javadl",
-      "version": "17"
+      "version": "${javaversion}"
     },
     {
       "type": "fabricdl"
     },
     {
       "commands": [
-        "java17 -jar fabric-installer.jar server -mcversion ${game-version} -downloadMinecraft -noprofile"
+        "java${javaversion} -jar fabric-installer.jar server -mcversion ${game-version} -downloadMinecraft -noprofile"
       ],
       "type": "command"
     },
@@ -89,7 +96,7 @@
     }
   ],
   "run": {
-    "command": "java17 -Xmx${memory}M -Dlog4j2.formatMsgNoLookups=true -jar fabric-server.jar nogui",
+    "command": "java${javaversion} -Xmx${memory}M -Dlog4j2.formatMsgNoLookups=true -jar fabric-server.jar nogui",
     "stop": "stop"
   },
   "environment": {

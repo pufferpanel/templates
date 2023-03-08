@@ -67,12 +67,18 @@
       "display": "Version",
       "required": true,
       "value": ""
+    },
+    "javaversion": {
+      "value": "17",
+      "required": true,
+      "desc": "Version of Java to use",
+      "display": "Java Version"
     }
   },
   "install": [
     {
       "type": "javadl",
-      "version": "17"
+      "version": "${javaversion}"
     },
     {
       "files": [
@@ -83,7 +89,7 @@
     {
       "commands": [
         "chmod u+x linux",
-        "./linux ${modpack_id} ${modpack_version} --auto --noscript"
+        "./linux ${modpack_id} ${modpack_version} --auto --noscript --nojava"
       ],
       "type": "command"
     },
@@ -104,13 +110,13 @@
     },
     {
       "commands": [
-        "java17 -jar forge-1.1*.*-installer.jar --installServer"
+        "java${javaversion} -jar forge-1.1*.*-installer.jar --installServer"
       ],
       "type": "command"
     }
   ],
   "run": {
-    "command": "java17 -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -Dlog4j2.formatMsgNoLookups=true -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true @libraries/net/minecraftforge/forge/${version}/unix_args.txt nogui",
+    "command": "java${javaversion} -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -Dlog4j2.formatMsgNoLookups=true -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true @libraries/net/minecraftforge/forge/${version}/unix_args.txt nogui",
     "stop": "stop"
   },
   "environment": {
