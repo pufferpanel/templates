@@ -1,4 +1,4 @@
-# Minecraft Modpac: GT New Horizons
+# Minecraft Modpack: GT New Horizons
 
 
 Uses official modpack server install and [recommended](https://gtnh.miraheze.org/wiki/Installing_and_Migrating#Installing) settings (by default, 6GB of RAM).    
@@ -7,8 +7,9 @@ To update, FIRST MAKE AN EXTERNAL BACKUP, then follow this steps ([based on the 
  - Stop the server  
  - Check your backup again  
  - Delete the `config` , `mods` , `scripts` , and `resources (only in old versions)` folders 
- - Change GTNH version on the server config tab
- - Click 
+ - Change `GTNH version` on the server config tab
+ - Click `SAVE` and `INSTALL`
+ - Check console since it might require manual input, such as `/fml confirm` after some mods' changes.
 
 
 
