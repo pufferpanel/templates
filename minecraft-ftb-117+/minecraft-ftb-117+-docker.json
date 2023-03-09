@@ -1,6 +1,51 @@
 {
-  "type": "minecraft-java",
+  "name": "minecraft-ftb-117+-docker",
   "display": "FTB - Forge 1.17+ (Docker)",
+  "type": "minecraft-java",
+  "install": [
+    {
+      "files": [
+        "https://api.modpacks.ch/public/modpack/${modpack_id}/${modpack_version}/server/linux"
+      ],
+      "type": "download"
+    },
+    {
+      "commands": [
+        "chmod u+x linux",
+        "./linux ${modpack_id} ${modpack_version} --auto --noscript --nojava"
+      ],
+      "type": "command"
+    },
+    {
+      "source": "forge-*.jar",
+      "target": "ForgeServer.jar",
+      "type": "move"
+    },
+    {
+      "target": "eula.txt",
+      "text": "eula=${eula}",
+      "type": "writefile"
+    },
+    {
+      "target": "server.properties",
+      "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}\n",
+      "type": "writefile"
+    },
+    {
+      "commands": [
+        "java -jar forge-*-installer.jar --installServer"
+      ],
+      "type": "command"
+    }
+  ],
+  "run": {
+    "stop": "stop",
+    "command": "java -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -Dlog4j2.formatMsgNoLookups=true -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true @libraries/net/minecraftforge/forge/${version}/unix_args.txt nogui",
+    "workingDirectory": "",
+    "pre": [],
+    "post": [],
+    "environmentVars": {}
+  },
   "data": {
     "eula": {
       "type": "boolean",
@@ -69,50 +114,16 @@
       "value": ""
     }
   },
-  "install": [
+  "environment": {
+    "image": "eclipse-temurin:17",
+    "type": "docker"
+  },
+  "supportedEnvironments": [
     {
-      "files": [
-        "https://api.modpacks.ch/public/modpack/${modpack_id}/${modpack_version}/server/linux"
-      ],
-      "type": "download"
-    },
-    {
-      "commands": [
-        "chmod u+x linux",
-        "./linux ${modpack_id} ${modpack_version} --auto --noscript --nojava"
-      ],
-      "type": "command"
-    },
-    {
-      "source": "forge-*.jar",
-      "target": "ForgeServer.jar",
-      "type": "move"
-    },
-    {
-      "target": "eula.txt",
-      "text": "eula=${eula}",
-      "type": "writefile"
-    },
-    {
-      "target": "server.properties",
-      "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}\n",
-      "type": "writefile"
-    },
-    {
-      "commands": [
-        "java -jar forge-*-installer.jar --installServer"
-      ],
-      "type": "command"
+      "image": "eclipse-temurin:17",
+      "type": "docker"
     }
   ],
-  "run": {
-    "command": "java -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -Dlog4j2.formatMsgNoLookups=true -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true @libraries/net/minecraftforge/forge/${version}/unix_args.txt nogui",
-    "stop": "stop"
-  },
-  "environment": {
-    "type": "docker",
-    "image": "eclipse-temurin:17"
-  },
   "requirements": {
     "os": "linux",
     "arch": "amd64"
