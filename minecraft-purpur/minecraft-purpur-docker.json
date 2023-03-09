@@ -1,18 +1,18 @@
 {
   "type": "minecraft-java",
-  "display": "Paper - Minecraft",
+  "display": "Purpur - Minecraft (Docker)",
   "data": {
     "version": {
-      "value": "1.19.3",
+      "value": "1.19.2",
       "required": true,
-      "desc": "Version of Minecraft to install (<a href='https://papermc.io/downloads'>Paper maintained versions</a>). Must be specified as a release number, e.g. 1.16.5",
+      "desc": "Version of Minecraft to install (<a href='https://purpurmc.org/downloads'>Purpur maintained versions</a>). Must be specified as a release number, e.g. 1.16.5",
       "display": "Version",
       "internal": false
     },
     "build": {
-      "value": "443",
+      "value": "307",
       "required": true,
-      "desc": "Build of Paper to install (<a href='https://papermc.io/downloads'>Paper version build</a>). Must be specified as a build number, e.g. 484",
+      "desc": "Build of Purpur to install (<a href='https://purpurmc.org/downloads'>Purpur version build</a>). Must be specified as a build number, e.g. 484",
       "display": "build",
       "internal": false
     },
@@ -53,28 +53,17 @@
       "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
       "display": "MOTD message of the day",
       "internal": false
-    },
-    "javaversion": {
-      "type": "integer",
-      "desc": "Version of Java to use",
-      "display": "Java Version",
-      "value": "17",
-      "required": true
     }
   },
   "install": [
     {
-      "type": "javadl",
-      "version": "${javaversion}"
-    },
-    {
       "type": "download",
-      "files": "https://api.papermc.io/v2/projects/paper/versions/${version}/builds/${build}/downloads/paper-${version}-${build}.jar"
+      "files": "https://api.purpurmc.org/v2/purpur/${version}/${build}/download"
     },
     {
       "type": "move",
-      "source": "paper-*.jar",
-      "target": "paper.jar"
+      "source": "purpur-*.jar",
+      "target": "purpur.jar"
     },
     {
       "type": "writefile",
@@ -88,10 +77,11 @@
     }
   ],
   "run": {
-    "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Djline.terminal=jline.UnsupportedTerminal -Dlog4j2.formatMsgNoLookups=true -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -jar paper.jar nogui",
+    "command": "java -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Djline.terminal=jline.UnsupportedTerminal -Dlog4j2.formatMsgNoLookups=true -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -jar purpur.jar nogui",
     "stop": "stop"
   },
   "environment": {
-    "type": "standard"
+    "type": "docker",
+    "image": "eclipse-temurin:17"
   }
 }
