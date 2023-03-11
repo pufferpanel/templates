@@ -77,6 +77,12 @@
     {
       "type": "steamgamedl",
       "appId": "376030"
+    },
+    {
+      "type": "command",
+      "commands": [
+        "chmod +x ShooterGame/Binaries/Linux/ShooterGameServer"
+      ]
     }
   ],
   "run": {
