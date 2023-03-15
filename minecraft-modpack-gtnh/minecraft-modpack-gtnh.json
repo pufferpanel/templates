@@ -5,7 +5,7 @@
   "install": [
     {
       "files": [
-        "http://downloads.gtnewhorizons.com/ServerPacks/GT_New_Horizons_${gtnh-ver}_SERVER_JAVA9.zip"
+        "http://downloads.gtnewhorizons.com/ServerPacks/GT_New_Horizons_${gtnh-ver}_Server_Java_17-19.zip"
       ],
       "type": "download"
     },
@@ -17,7 +17,7 @@
     },
     {
       "commands": [
-        "unzip -o *_${gtnh-ver}_SERVER_JAVA9.zip"
+        "unzip -o *_${gtnh-ver}_Server_Java_17-19.zip"
       ],
       "type": "command"
     },
@@ -33,7 +33,7 @@
     },
     {
       "commands": [
-        "rm GT_New_Horizons_${gtnh-ver}_SERVER_JAVA9.zip"
+        "rm GT_New_Horizons_${gtnh-ver}_Server_Java_17-19.zip"
       ],
       "type": "command"
     },
@@ -63,7 +63,7 @@
       "desc": "May be located <a href='http://downloads.gtnewhorizons.com/ServerPacks/'>here</a>. E.g. \"2.2.9\" or \"2.3.0-RC-3\".",
       "display": "GT: New Horizons version",
       "required": true,
-      "value": "2.2.9"
+      "value": "2.3.0"
     },
     "ip": {
       "type": "string",
