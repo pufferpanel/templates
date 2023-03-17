@@ -46,6 +46,12 @@
       "appId": "1502300"
     },
     {
+      "type": "command",
+      "commands": [
+        "chmod +x "Server_Linux_x64"
+      ]
+    },
+    {
       "type": "mkdir",
       "target": "Config"
     },
