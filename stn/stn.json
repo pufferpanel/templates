@@ -48,7 +48,7 @@
     {
       "type": "command",
       "commands": [
-        "chmod +x "Server_Linux_x64"
+        "chmod +x Server_Linux_x64"
       ]
     },
     {
