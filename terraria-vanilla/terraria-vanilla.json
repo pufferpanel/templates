@@ -164,13 +164,12 @@
     },
     {
       "commands": [
-        "rm -r ./server",
         "unzip terraria-server-${version}.zip",
-        "mkdir ./server",
+        "mkdir -p ./server",
         "cp -r ./${version}/Linux/. ./server",
         "chmod +x ./server/TerrariaServer",
         "chmod +x ./server/TerrariaServer.bin.x86_64",
-        "mkdir ./${wp}",
+        "mkdir -p ./${wp}",
         "rm terraria-server-${version}.zip",
         "rm -r ${version}"
       ],
