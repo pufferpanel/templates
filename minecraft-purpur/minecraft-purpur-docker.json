@@ -12,7 +12,7 @@
     "build": {
       "value": "1927",
       "required": true,
-      "desc": "Build of Purpur to install (<a href='https://purpurmc.org/downloads'>Purpur version build</a>). Must be specified as a build number, e.g. 484",
+      "desc": "Build of Purpur to install (<a href='https://purpurmc.org/downloads'>Purpur version build</a>). Must be specified as a build number, e.g. 1927",
       "display": "build",
       "internal": false
     },
