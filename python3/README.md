@@ -1,5 +1,5 @@
-# Discord.py pufferpanel template
-### Allows you to easly host your discord bots
+# Python3 pufferpanel template
+### Allows you to easly host your python projects
  - Made by @CristianEduardMihai
 
 # Troubleshooting
@@ -27,11 +27,10 @@ Could not open requirements file
 - Read [this](https://learnpython.com/blog/python-requirements-file/) and create a requirements.txt file
 ---
 ```
-can't open file '/var/lib/pufferpanel/servers/xxxxxxxx/bot.py'
+can't open file '/var/lib/pufferpanel/servers/xxxxxxxx/main.py'
 ```
-- Is your file named `bot.py` ? If not, edit the server settings
+- Is your file named `main.py` ? If not, edit the server settings
 
-![image](https://i.imgur.com/0kAliVV.png)
+![image](https://i.imgur.com/vbaWQuy.png)
 
 ### If you did everything above(and only then), and it's still not working, ask for support on discord
-![image](https://i.imgur.com/Po12CF7.png)

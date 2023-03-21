@@ -1,0 +1,42 @@
+{
+  "name": "js-docker",
+  "display": "Javascript (Docker)",
+  "type": "Programming",
+  "install": [
+    {
+      "commands": [
+        "npm i"
+      ],
+      "type": "command"
+    }
+  ],
+  "run": {
+    "stopCode": 9,
+    "command": "node ./${js-file}",
+    "workingDirectory": "",
+    "pre": [],
+    "post": [],
+    "environmentVars": {}
+  },
+  "data": {
+    "js-file": {
+      "type": "string",
+      "desc": "The main javascript file.",
+      "display": "Main js file",
+      "required": true,
+      "value": "index.js",
+      "userEdit": true
+    }
+  },
+  "environment": {
+    "image": "node",
+    "type": "docker"
+  },
+  "supportedEnvironments": [
+    {
+      "image": "node",
+      "type": "docker"
+    }
+  ],
+  "requirements": {}
+}

@@ -1,0 +1,45 @@
+{
+  "name": "js",
+  "display": "Javascript",
+  "type": "Programming",
+  "install": [
+    {
+      "commands": [
+        "npm i"
+      ],
+      "type": "command"
+    }
+  ],
+  "run": {
+    "stopCode": 9,
+    "command": "node ./${js-file}",
+    "workingDirectory": "",
+    "pre": [],
+    "post": [],
+    "environmentVars": {}
+  },
+  "data": {
+    "js-file": {
+      "type": "string",
+      "desc": "The main javascript file.",
+      "display": "Main js file",
+      "required": true,
+      "value": "index.js",
+      "userEdit": true
+    }
+  },
+  "environment": {
+    "type": "standard"
+  },
+  "supportedEnvironments": [
+    {
+      "type": "standard"
+    }
+  ],
+  "requirements": {
+    "binaries": [
+      "node",
+      "npm"
+    ]
+  }
+}

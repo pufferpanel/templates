@@ -1,0 +1,49 @@
+{
+  "name": "py3-docker",
+  "display": "Python3 (Docker)",
+  "type": "Programming",
+  "install": [
+    {
+      "commands": [
+        "python3 -m pip install -r ${req-txt-file}"
+      ],
+      "type": "command"
+    }
+  ],
+  "run": {
+    "stopCode": 9,
+    "command": "python3 ${py-file}",
+    "workingDirectory": "",
+    "pre": [],
+    "post": [],
+    "environmentVars": {}
+  },
+  "data": {
+    "py-file": {
+      "type": "string",
+      "desc": "The main python file.",
+      "display": "Main py file",
+      "required": true,
+      "value": "main.py",
+      "userEdit": true
+    },
+    "req-txt-file": {
+      "type": "string",
+      "desc": "The file used to install the python libs.",
+      "display": "Requirements txt file",
+      "required": true,
+      "value": "requirements.txt"
+    }
+  },
+  "environment": {
+    "image": "python",
+    "type": "docker"
+  },
+  "supportedEnvironments": [
+    {
+      "image": "python",
+      "type": "docker"
+    }
+  ],
+  "requirements": {}
+}

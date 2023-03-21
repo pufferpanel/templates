@@ -1,12 +1,12 @@
 {
-  "type": "discord",
-  "display": "JDA Bot (Docker)",
+  "type": "Programming",
+  "display": "Java (Docker)",
   "data": {
     "jar": {
       "type": "string",
-      "display": "Bot Jar file",
+      "display": "Jar file",
       "required": true,
-      "value": "bot.jar",
+      "value": "main.jar",
       "userEdit": true,
       "desc": "The .jar file to execute"
     }
