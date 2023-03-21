@@ -11,7 +11,7 @@
     }
   ],
   "run": {
-    "stopCode": 9,
+    "stopCode": 2,
     "command": "node ./${js-file}",
     "workingDirectory": "",
     "pre": [],

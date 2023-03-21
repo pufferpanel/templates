@@ -1,23 +1,37 @@
 {
-  "type": "Programming",
+  "name": "java",
   "display": "Java",
+  "type": "Programming",
+  "install": [],
+  "run": {
+    "stopCode": 2,
+    "command": "java -jar ${jar}",
+    "workingDirectory": "",
+    "pre": [],
+    "post": [],
+    "environmentVars": {}
+  },
   "data": {
     "jar": {
       "type": "string",
+      "desc": "The .jar file to execute",
       "display": "Jar file",
       "required": true,
       "value": "main.jar",
-      "userEdit": true,
-      "desc": "The .jar file to execute"
+      "userEdit": true
     }
-  },
-  "run": {
-    "command": "java -jar ${jar}"
   },
   "environment": {
     "type": "standard"
   },
+  "supportedEnvironments": [
+    {
+      "type": "standard"
+    }
+  ],
   "requirements": {
-    "binaries": [ "java" ]
+    "binaries": [
+      "java"
+    ]
   }
 }

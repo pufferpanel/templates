@@ -11,7 +11,7 @@
     }
   ],
   "run": {
-    "stopCode": 9,
+    "stopCode": 2,
     "command": "python3 ${py-file}",
     "workingDirectory": "",
     "pre": [],
