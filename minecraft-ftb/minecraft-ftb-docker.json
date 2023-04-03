@@ -1,97 +1,117 @@
 {
   "type": "minecraft-java",
-  "display": "FTB - Minecraft (Legacy) (Docker)",
+  "display": "FTB - Forge 1.17+ (Docker)",
   "data": {
     "eula": {
-      "value": "false",
-      "required": true,
+      "type": "boolean",
       "desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
       "display": "EULA Agreement",
-      "internal": false,
-      "type": "boolean"
+      "required": true,
+      "value": "false"
     },
     "ip": {
-      "value": "0.0.0.0",
-      "required": true,
+      "type": "string",
       "desc": "What IP to bind the server to",
       "display": "IP",
-      "internal": false
-    },
-    "port": {
-      "value": "25565",
       "required": true,
-      "desc": "What port to bind the server to",
-      "display": "Port",
-      "internal": false,
-      "type": "integer"
+      "value": "0.0.0.0"
     },
-    "motd": {
-      "value": "A Minecraft Server hosted on PufferPanel",
+    "java": {
+      "type": "string",
+      "desc": "\"java\" for system standard, else direct path to java",
+      "display": "path to java executable",
       "required": true,
-      "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
-      "display": "MOTD message of the day",
-      "internal": false
+      "value": "java",
+      "userEdit": true
+    },
+    "memory": {
+      "type": "integer",
+      "desc": "How much memory in MB to allocate to the Java Heap",
+      "display": "Memory (MB)",
+      "required": true,
+      "value": "3072"
     },
     "modpack_id": {
+      "type": "integer",
       "desc": "Get the modpack ID for your preffered modpack in the <a href='https://www.feed-the-beast.com/modpack' target='_blank'>Modpacklist</a>.",
       "display": "Modpack ID",
       "required": true,
       "value": "",
-      "userEdit": true,
-      "type": "integer"
+      "userEdit": true
     },
     "modpack_version": {
+      "type": "integer",
       "desc": "Version ID from the versions tab of the selected modpack in the <a href='https://www.feed-the-beast.com/modpack' target='_blank'>Modpacklist</a>.",
       "display": "Modpack version ID",
       "required": true,
       "value": "",
-      "userEdit": true,
-      "type": "integer"
+      "userEdit": true
     },
-    "memory": {
-      "value": "4096",
+    "motd": {
+      "type": "string",
+      "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
+      "display": "MOTD message of the day",
       "required": true,
-      "desc": "How much memory in MB to allocate to the Java Heap",
-      "display": "Memory (MB)",
-      "internal": false,
-      "type": "integer"
+      "value": "A Minecraft Server hosted on PufferPanel"
+    },
+    "port": {
+      "type": "integer",
+      "desc": "What port to bind the server to",
+      "display": "Port",
+      "required": true,
+      "value": "25565"
+    },
+    "version": {
+      "type": "string",
+      "desc": "Version of Forge to install with no spaces (may be located <a href='http://files.minecraftforge.net/'>here</a>",
+      "display": "Version",
+      "required": true,
+      "value": ""
     }
   },
   "install": [
     {
-      "type": "download",
-      "files": "https://api.modpacks.ch/public/modpack/${modpack_id}/${modpack_version}/server/linux"
+      "files": [
+        "https://api.modpacks.ch/public/modpack/${modpack_id}/${modpack_version}/server/linux"
+      ],
+      "type": "download"
     },
     {
-      "type": "command",
       "commands": [
         "chmod u+x linux",
         "./linux ${modpack_id} ${modpack_version} --auto --noscript --nojava"
-      ]
+      ],
+      "type": "command"
     },
     {
-      "type": "move",
       "source": "forge-*.jar",
-      "target": "ForgeServer.jar"
+      "target": "ForgeServer.jar",
+      "type": "move"
     },
     {
-      "type": "writefile",
+      "target": "eula.txt",
       "text": "eula=${eula}",
-      "target": "eula.txt"
+      "type": "writefile"
     },
     {
-      "type": "writefile",
+      "target": "server.properties",
       "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}\n",
-      "target": "server.properties"
+      "type": "writefile"
+    },
+    {
+      "commands": [
+        "java -jar forge-*-installer.jar --installServer"
+      ],
+      "type": "command"
     }
   ],
   "run": {
-    "command": "java -server -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -Dlog4j2.formatMsgNoLookups=true -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true -jar ForgeServer.jar nogui",
+    "command": "java -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -Dlog4j2.formatMsgNoLookups=true -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true @libraries/net/minecraftforge/forge/${version}/unix_args.txt nogui",
     "stop": "stop"
   },
   "environment": {
     "type": "docker",
-    "image": "eclipse-temurin:8"
+    "image": "eclipse-temurin:17"
   },
   "requirements": {
     "os": "linux",

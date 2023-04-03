@@ -1,0 +1,1 @@
+This template is only for MinecraftForge 1.17 and newer.

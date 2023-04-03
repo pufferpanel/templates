@@ -1,6 +1,6 @@
 {
   "type": "minecraft-java",
-  "display": "MinecraftForge 1.17+ - Minecraft (Docker)",
+  "display": "MinecraftForge 1.16 or older - Minecraft",
   "data": {
     "memory": {
       "value": "1024",
@@ -34,11 +34,54 @@
       "type": "boolean"
     },
     "version": {
-      "value": "1.19.3-44.0.1",
+      "value": "1.16.5-36.2.39",
       "required": true,
-      "desc": "Version of Forge to install with no spaces (may be located <a href='http://files.minecraftforge.net/'>here</a>",
+      "desc": "Version of Forge to install (may be located <a href='http://files.minecraftforge.net/#Downloads'>here</a>",
       "display": "Version",
       "internal": false
+    },
+    "javaversion": {
+      "value": "8",
+      "required": true,
+      "desc": "Version of Java to use",
+      "display": "Java Version"
+    },
+    "mc-version": {
+      "type": "option",
+      "desc": "On which Minecraft Version should forge be installed",
+      "display": "Minecraft Version",
+      "required": true,
+      "value": "",
+      "options": [
+        {
+          "value": "",
+          "display": "Any other version"
+        },
+        {
+          "value": "-mc172",
+          "display": "Minecraft 1.7.2"
+        },
+        {
+          "value": "-1.7.10",
+          "display": "Minecraft 1.7.10"
+        },
+        {
+          "value": "-prerelease",
+          "display": "Minecraft 1.7.10_pre4"
+        },
+        {
+          "value": "-1.8.9",
+          "display": "Minecraft 1.8.9"
+        },
+        {
+          "value": "-1.9.0",
+          "display": "Minecraft 1.9"
+        },
+        {
+          "value": "-1.9.4",
+          "display": "Minecraft 1.9.4"
+        }
+      ]
     },
     "motd": {
       "value": "A Minecraft Server\\n\\u00A79 hosted on PufferPanel",
@@ -50,13 +93,17 @@
   },
   "install": [
     {
+      "type": "javadl",
+      "version": "${javaversion}"
+    },
+    {
       "type": "forgedl",
-      "version": "${version}",
+      "version": "${version}${mc-version}",
       "target": "installer.jar"
     },
     {
       "commands": [
-        "java -jar installer.jar --installServer"
+        "java${javaversion} -jar installer.jar --installServer"
       ],
       "type": "command"
     },
@@ -69,14 +116,18 @@
       "type": "writefile",
       "text": "eula=${eula}",
       "target": "eula.txt"
+    },
+    {
+      "source": "forge-*.jar",
+      "target": "server.jar",
+      "type": "move"
     }
   ],
   "run": {
-    "command": "java -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/minecraftforge/forge/${version}/unix_args.txt nogui",
+    "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar server.jar nogui",
     "stop": "stop"
   },
   "environment": {
-    "type": "docker",
-    "image": "eclipse-temurin:17"
+    "type": "standard"
   }
 }

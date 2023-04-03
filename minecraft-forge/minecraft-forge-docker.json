@@ -1,6 +1,6 @@
 {
   "type": "minecraft-java",
-  "display": "MinecraftForge 1.16 or older - Minecraft (Docker)",
+  "display": "MinecraftForge 1.17+ - Minecraft (Docker)",
   "data": {
     "memory": {
       "value": "1024",
@@ -34,48 +34,11 @@
       "type": "boolean"
     },
     "version": {
-      "value": "1.16.5-36.2.39",
+      "value": "1.19.3-44.0.1",
       "required": true,
-      "desc": "Version of Forge to install (may be located <a href='http://files.minecraftforge.net/#Downloads'>here</a>",
+      "desc": "Version of Forge to install with no spaces (may be located <a href='http://files.minecraftforge.net/'>here</a>",
       "display": "Version",
       "internal": false
-    },
-    "mc-version": {
-      "type": "option",
-      "desc": "On which Minecraft Version should forge be installed",
-      "display": "Minecraft Version",
-      "required": true,
-      "value": "",
-      "options": [
-        {
-          "value": "",
-          "display": "Any other version"
-        },
-        {
-          "value": "-mc172",
-          "display": "Minecraft 1.7.2"
-        },
-        {
-          "value": "-1.7.10",
-          "display": "Minecraft 1.7.10"
-        },
-        {
-          "value": "-prerelease",
-          "display": "Minecraft 1.7.10_pre4"
-        },
-        {
-          "value": "-1.8.9",
-          "display": "Minecraft 1.8.9"
-        },
-        {
-          "value": "-1.9.0",
-          "display": "Minecraft 1.9"
-        },
-        {
-          "value": "-1.9.4",
-          "display": "Minecraft 1.9.4"
-        }
-      ]
     },
     "motd": {
       "value": "A Minecraft Server\\n\\u00A79 hosted on PufferPanel",
@@ -88,7 +51,7 @@
   "install": [
     {
       "type": "forgedl",
-      "version": "${version}${mc-version}",
+      "version": "${version}",
       "target": "installer.jar"
     },
     {
@@ -106,19 +69,14 @@
       "type": "writefile",
       "text": "eula=${eula}",
       "target": "eula.txt"
-    },
-    {
-      "source": "forge-*.jar",
-      "target": "server.jar",
-      "type": "move"
     }
   ],
   "run": {
-    "command": "java -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar server.jar nogui",
+    "command": "java -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/minecraftforge/forge/${version}/unix_args.txt nogui",
     "stop": "stop"
   },
   "environment": {
     "type": "docker",
-    "image": "eclipse-temurin:8"
+    "image": "eclipse-temurin:17"
   }
 }
