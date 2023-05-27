@@ -61,8 +61,8 @@
     },
     "tvport": {
       "type": "integer",
-      "desc": "What port to bind the SourceTV to",
-      "display": "SourceTV Port",
+      "desc": "What port to bind the HLTV to",
+      "display": "HLTV Port",
       "required": true,
       "value": "27020"
     }
