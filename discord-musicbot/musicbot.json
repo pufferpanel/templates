@@ -1,0 +1,193 @@
+{
+  "name": "musicbot",
+  "display": "Jagrosh's MusicBot (v0.3.9)",
+  "type": "discord",
+  "install": [
+    {
+      "files": [
+        "https://github.com/jagrosh/MusicBot/releases/download/0.3.9/JMusicBot-0.3.9.jar"
+      ],
+      "type": "download"
+    },
+    {
+      "target": "config.txt",
+      "text": "token = ${token}\nowner = ${owner}\nprefix = \"${prefix}\"\ngame = \"${game}\"\nstatus = ${status}\nsonginstatus = ${songinstatus}\nhelp = ${help}\nnpimages = ${npimages}\nstayinchannel = ${stayinchannel}\nmaxtime = ${maxtime}\nalonetimeuntilstop = ${alonetimeuntilstop}\nlyrics.default = \"${lyrics}\"",
+      "type": "writefile"
+    },
+    {
+      "type": "javadl",
+      "version": "17"
+    }
+  ],
+  "run": {
+    "stop": "stop",
+    "command": "java -Dnogui=true -jar JMusicBot-0.3.9.jar",
+    "workingDirectory": "",
+    "pre": [],
+    "post": [],
+    "environmentVars": {}
+  },
+  "data": {
+    "eval": {
+      "type": "option",
+      "desc": "If you set this to true, it will enable the eval command for the bot owner. This command allows the bot owner to run arbitrary code from the bot's account. (Use with caution, as this command has the potential of causing major problems if misused. Only enable if you know what you are doing.)",
+      "display": "Eval command",
+      "options": [
+        {
+          "value": "false",
+          "display": "Off (Recommended)"
+        },
+        {
+          "value": "true",
+          "display": "On (Use with caution)"
+        }
+      ]
+    },
+    "game": {
+      "type": "string",
+      "desc": "The game to be displayed in your bot's status (type NONE for none)",
+      "display": "Status Text",
+      "required": true,
+      "value": "DEFAULT",
+      "userEdit": true
+    },
+    "help": {
+      "type": "string",
+      "desc": "Change the help command string",
+      "display": "Help Command",
+      "required": true,
+      "value": "help",
+      "userEdit": true
+    },
+    "lyrics": {
+      "type": "option",
+      "desc": "Change the lyrics provider (Currently available providers: \"A-Z Lyrics\", \"Genius\", \"MusicMatch\", \"LyricsFreak\")",
+      "display": "Lyrics provier",
+      "options": [
+        {
+          "value": "A-Z Lyrics",
+          "display": "A-Z Lyrics"
+        },
+        {
+          "value": "Genius",
+          "display": "Genius"
+        },
+        {
+          "value": "MusicMatch",
+          "display": "MusicMatch"
+        },
+        {
+          "value": "LyricsFreak",
+          "display": "LyricsFreak"
+        }
+      ]
+    },
+    "maxtime": {
+      "type": "string",
+      "desc": "This sets the maximum amount of seconds any track loaded can be. Set to 0 for no limit.",
+      "display": "Maximum track time",
+      "required": true,
+      "value": "0",
+      "userEdit": true
+    },
+    "npimages": {
+      "type": "option",
+      "desc": "If you set this to on, the \"nowplaying\" command will show youtube thumbnails",
+      "display": "Images in Now Playing",
+      "options": [
+        {
+          "value": "true",
+          "display": "On"
+        },
+        {
+          "value": "false",
+          "display": "Off"
+        }
+      ]
+    },
+    "owner": {
+      "type": "string",
+      "desc": "Your Discord ID (used for accessing owner-only commands)",
+      "display": "Owner ID",
+      "required": true,
+      "value": "",
+      "userEdit": true
+    },
+    "prefix": {
+      "type": "string",
+      "desc": "The prefix you want your bot to respond to",
+      "display": "Prefix",
+      "required": true,
+      "value": "!",
+      "userEdit": true
+    },
+    "songinstatus": {
+      "type": "option",
+      "desc": "If you set this to true, the bot will list the title of the song it is currently playing in its \"Playing\" status. (ONLY work if your bot is playing in just one server)",
+      "display": "Song In Status",
+      "options": [
+        {
+          "value": "true",
+          "display": "On"
+        },
+        {
+          "value": "false",
+          "display": "Off"
+        }
+      ]
+    },
+    "status": {
+      "type": "option",
+      "desc": "What status your bot should have",
+      "display": "Status",
+      "required": true,
+      "userEdit": true,
+      "options": [
+        {
+          "value": "ONLINE",
+          "display": "Online"
+        },
+        {
+          "value": "IDLE",
+          "display": "Idle"
+        },
+        {
+          "value": "DND",
+          "display": "Do Not Disturb"
+        },
+        {
+          "value": "INVISIBLE",
+          "display": "Invisible (fake offline)"
+        }
+      ]
+    },
+    "stayinchannel": {
+      "type": "option",
+      "desc": "If you set this to on, the bot will not leave a voice channel after it finishes a queue.",
+      "display": "Stay in Channel",
+      "options": [
+        {
+          "value": "true",
+          "display": "On"
+        },
+        {
+          "value": "false",
+          "display": "Off"
+        }
+      ]
+    },
+    "token": {
+      "type": "string",
+      "desc": "The Discord Bot token you want to run the bot on",
+      "display": "Bot Token",
+      "required": true,
+      "userEdit": true
+    }
+  },
+  "supportedEnvironments": [
+    {
+      "type": "standard"
+    }
+  ],
+  "requirements": {}
+}
