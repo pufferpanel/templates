@@ -1,0 +1,70 @@
+{
+  "type": "minecraft-java",
+  "display": "NanoLimbo - Minecraft",
+  "data": {
+    "version": {
+      "value": "1.5.2",
+      "required": true,
+      "desc": "Version of NanoLimbo to install (<a href="https://github.com/Nan1t/NanoLimbo/releases/">NanoLimbo releases</a>)",
+      "display": "Version",
+      "internal": false
+    },
+    "memory": {
+      "value": "512",
+      "required": true,
+      "desc": "How much memory in MB to allocate to the Java Heap",
+      "display": "Memory (MB)",
+      "internal": false,
+      "type": "integer"
+    },
+    "ip": {
+      "value": "0.0.0.0",
+      "required": true,
+      "desc": "What IP to bind the server to",
+      "display": "IP",
+      "internal": false
+    },
+    "port": {
+      "value": "25565",
+      "required": true,
+      "desc": "What port to bind the server to",
+      "display": "Port",
+      "internal": false,
+      "type": "integer"
+    },
+    "javaversion": {
+      "type": "integer",
+      "desc": "Version of Java to use",
+      "display": "Java Version",
+      "value": "17",
+      "required": true
+    }
+  },
+  "install": [
+    {
+      "type": "javadl",
+      "version": "${javaversion}"
+    },
+    {
+      "type": "download",
+      "files": "https://github.com/Nan1t/NanoLimbo/releases/download/v${version}/NanoLimbo-${version}-all.jar"
+    },
+    {
+      "type": "move",
+      "source": "NanoLimbo-*-all.jar",
+      "target": "nanolimbo.jar"
+    },
+    {
+      "type": "writefile",
+      "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}\n",
+      "target": "#\n# NanoLimbo configuration\n#\n\n# Server's host address and port. Set ip empty to use public address\nbind:\n  ip: '${ip}'\n  port: ${port}\n\n# Max amount of players can join to server\n# Set -1 to make it infinite\nmaxPlayers: 100\n\n# Server's data in servers list\nping:\n  description: '{"text": "&9NanoLimbo"}'\n  version: 'NanoLimbo'\n  # Return static protocol version number in ping result\n  # By default, its -1 to return the client version, if it supported\n  # https://wiki.vg/Protocol_version_numbers\n  protocol: -1\n\n# Available dimensions: OVERWORLD, NETHER, THE_END\ndimension: THE_END\n\n# Whether to display the player in the player list\n# For 1.16.5 clients, player list will be sent even if disabled, to avoid crash\nplayerList:\n  enable: false\n  username: 'NanoLimbo'\n\n# Whether to display header and footer in player list\n# For 1.8+ clients\nheaderAndFooter:\n  enable: false\n  header: '{"text": "&eWelcome!"}'\n  footer: '{"text": "&9NanoLimbo"}'\n\n# Setup player's game mode\n# 0 - Survival\n# 1 - Creative (hide HP and food bar)\n# 2 - Adventure\n# 3 - Spectator (hide all UI bars)\n# Spectator works on 1.8+ clients\ngameMode: 3\n\n# Server name which is shown under F3\n# For 1.13+ clients\nbrandName:\n  enable: true\n  content: 'NanoLimbo'\n\n# Message sends when player join to server\njoinMessage:\n  enable: true\n  text: '{"text": "&eWelcome to the Limbo!"}'\n\n# BossBar displays when player join to server\n# For 1.9+ clients\nbossBar:\n  enable: true\n  text: '{"text": "Welcome to the Limbo!"}'\n  health: 1.0\n  # Available colors: PINK, BLUE, RED, GREEN, YELLOW, PURPLE, WHITE\n  color: PINK\n  # Available divisions: SOLID, DASHES_6, DASHES_10, DASHES_12, DASHES_20\n  division: SOLID\n\n# Display title and subtitle\n# For 1.8+ clients\ntitle:\n  enable: true\n  # Set title text value empty, if you need only subtitle\n  title: '{"text": "&9&lWelcome!"}'\n  # Set subtitle text value empty, if you need only title\n  subtitle: '{"text": "&6NanoLimbo"}'\n  # Fade in time in ticks (1 sec = 20 ticks)\n  fadeIn: 10\n  # Stay time in ticks\n  stay: 100\n  # Fade out time in ticks\n  fadeOut: 10\n\n# Player info forwarding support.\n# Available types:\n#  - NONE\n#  - LEGACY\n#  - MODERN\n#  - BUNGEE_GUARD\n# Don't use secret if you not use MODERN type\ninfoForwarding:\n  type: NONE\n  secret: '<YOUR_SECRET_HERE>'\n  tokens:\n    - '<BUNGEE_GUARD_TOKEN>'\n\n# Read timeout for connections in milliseconds\nreadTimeout: 30000\n\n# Define log level. For production, I'd recommend to use level 2\n# Log levels:\n# 0 - Display only errors\n# 1 - Display errors, warnings\n# 2 - Display errors, warnings, info\n# 3 - Display errors, warnings, info, debug\ndebugLevel: 2\n\n# Warning! Do not touch params of this block, if you not completely sure what is this!\nnetty:\n  # Use Linux native transport type, if it possible\n  useEpoll: true\n  # EventLoopGroup threads count\n  threads:\n    bossGroup: 1\n    workerGroup: 4"
+    }
+  ],
+  "run": {
+    "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Djline.terminal=jline.UnsupportedTerminal -Dlog4j2.formatMsgNoLookups=true -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -jar nanolimbo.jar nogui",
+    "stop": "stop"
+  },
+  "environment": {
+    "type": "standard"
+  }
+}
