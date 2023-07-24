@@ -1,0 +1,338 @@
+{
+  "type": "minecraft-java",
+  "display": "Minecraft: Java Edition",
+  "data": {
+    "memory": {
+      "value": "1024",
+      "required": true,
+      "desc": "How much memory in MB to allocate to the Java Heap",
+      "display": "Memory (MB)",
+      "type": "integer"
+    },
+    "ip": {
+      "value": "0.0.0.0",
+      "required": true,
+      "desc": "What IP to bind the server to",
+      "display": "IP"
+    },
+    "port": {
+      "value": "25565",
+      "required": true,
+      "desc": "What port to bind the server to",
+      "display": "Port",
+      "type": "integer"
+    },
+    "eula": {
+      "value": "false",
+      "required": true,
+      "desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
+      "display": "EULA Agreement (true/false)",
+      "type": "boolean"
+    },
+    "version": {
+      "value": "latest",
+      "required": true,
+      "desc": "Version of Minecraft you wish to install (not all software may respect this value",
+      "display": "Version"
+    },
+    "motd": {
+      "value": "A Minecraft Server\\n\\u00A79 hosted on PufferPanel",
+      "required": true,
+      "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
+      "display": "MOTD message of the day"
+    },
+    "javaversion": {
+      "value": "17",
+      "required": true,
+      "desc": "Version of Java to use",
+      "display": "Java Version"
+    },
+    "modlauncher": {
+      "display": "Mod/Plugin Launcher",
+      "desc": "What mod or plugin launcher should be installed with Minecraft",
+      "value": "",
+      "options": [
+        {
+          "value": "",
+          "display": ""
+        },
+        {
+          "value": "fabric",
+          "display": "Fabric"
+        },
+        {
+          "value": "forge",
+          "display": "MinecraftForge"
+        },
+        {
+          "value": "magma",
+          "display": "Magma"
+        },
+        {
+          "value": "mohist",
+          "display": "Mohist"
+        },
+        {
+          "value": "paper",
+          "display": "Paper"
+        },
+        {
+          "value": "pufferfish",
+          "display": "Pufferfish"
+        },
+        {
+          "value": "purpur",
+          "display": "Purpur"
+        },
+        {
+          "value": "quilt",
+          "display": "Quilt"
+        },
+        {
+          "value": "spigot",
+          "display": "Spigot"
+        },
+        {
+          "value": "ftb",
+          "display": "Feed The Beast Modpack"
+        },
+        {
+          "value": "curseforge",
+          "display": "CurseForge Modpack"
+        }
+      ]
+    },
+    "forgebuild": {
+      "value": "",
+      "required": false,
+      "desc": "Version of Forge to install (may be located <a href='http://files.minecraftforge.net/#Downloads'>here</a>",
+      "display": "Forge Version"
+    },
+    "magmatag": {
+      "type": "string",
+      "desc": "The alphanumeric commit ID for the build (See https://git.magmafoundation.org/magmafoundation/Magma-1-18-x/-/releases for the commit ID's for each release))",
+      "display": "Tag",
+      "required": false,
+      "value": "68e21495",
+      "userEdit": true
+    },
+    "mohistversion": {
+      "type": "string",
+      "desc": "Mohist version to install (may be located <a href='https://mohistmc.com/download/' target='_blank'>here</a>).",
+      "display": "Mohist Version",
+      "required": false,
+      "value": "latest",
+      "userEdit": true
+    },
+    "paperbuild": {
+      "value": "96",
+      "required": false,
+      "desc": "Build of Paper to install (<a href='https://papermc.io/downloads'>Paper version build</a>). Must be specified as a build number, e.g. 484",
+      "display": "build",
+      "internal": false
+    }
+  },
+  "groups": [
+    {
+      "variables": [
+        "eula",
+        "memory",
+        "ip",
+        "port",
+        "motd",
+        "version",
+        "javaversion",
+        "modlauncher"
+      ],
+      "display": "General",
+      "description": "General settings for all servers",
+      "order": 1
+    },
+    {
+      "variables": [
+        "forgebuild"
+      ],
+      "display": "Forge",
+      "description": "Settings if using MinecraftForge",
+      "order": 2
+    },
+    {
+      "variables": [
+        "magmatag"
+      ],
+      "display": "Magma",
+      "description": "Settings specific if using Magma",
+      "order": 3
+    },
+    {
+      "variables": [
+        "mohistversion"
+      ],
+      "display": "Mohist",
+      "description": "Settings specific if using Mohist",
+      "order": 4
+    },
+    {
+      "variables": [
+        "paperbuild"
+      ],
+      "display": "Paper",
+      "description": "Settings specific if using Paper",
+      "order": 5
+    }
+  ],
+  "install": [
+    {
+      "if": "javaversion != \"\"",
+      "type": "javadl",
+      "version": "${javaversion}"
+    },
+    {
+      "if": "modlauncher == \"\"",
+      "type": "mojangdl",
+      "version": "${version}",
+      "target": "server.jar"
+    },
+    {
+      "if": "modlauncher == \"fabric\"",
+      "type": "fabricdl"
+    },
+    {
+      "if": "modlauncher == \"fabric\"",
+      "commands": [
+        "java${javaversion} -jar fabric-installer.jar server -mcversion ${version} -downloadMinecraft -noprofile"
+      ],
+      "type": "command"
+    },
+    {
+      "if": "modlauncher == \"fabric\"",
+      "source": "fabric-server-launch.jar",
+      "target": "server.jar",
+      "type": "move"
+    },
+    {
+      "if": "modlauncher == \"forge\"",
+      "type": "forgedl",
+      "version": "${version}",
+      "target": "installer.jar"
+    },
+    {
+      "if": "modlauncher == \"forge\"",
+      "type": "command",
+      "commands": [
+        "java${javaversion} -jar installer.jar --installServer"
+      ]
+    },
+    {
+      "if": "modlauncher == \"magma\"",
+      "type": "download",
+      "files": [
+        "https://api.magmafoundation.org/api/v2/${minecraftversion}/latest/${tag}/download"
+      ]
+    },
+    {
+      "if": "modlauncher == \"magma\"",
+      "type": "move",
+      "source": "Magma-*.jar",
+      "target": "server.jar"
+    },
+    {
+      "if": "modlauncher == \"mohist\"",
+      "type": "download",
+      "files": [
+        "https://mohistmc.com/api/${mc-version}/${mohistversion}/download/"
+      ]
+    },
+    {
+      "if": "modlauncher == \"mohist\"",
+      "type": "move",
+      "source": "mohist-*-server.jar",
+      "target": "server.jar"
+    },
+    {
+      "if": "modlauncher == \"paper\"",
+      "type": "download",
+      "files": "https://api.papermc.io/v2/projects/paper/versions/${version}/builds/${build}/downloads/paper-${version}-${paperbuild}.jar"
+    },
+    {
+      "if": "modlauncher == \"paper\"",
+      "type": "move",
+      "source": "paper-*.jar",
+      "target": "paper.jar"
+    },
+    {
+      "if": "modlauncher == \"quilt\"",
+      "type": "download",
+      "files": [
+        "https://maven.quiltmc.org/repository/release/org/quiltmc/quilt-installer/latest/quilt-installer-latest.jar"
+      ]
+    },
+    {
+      "if": "modlauncher == \"quilt\"",
+      "type": "move",
+      "source": "quilt-installer-*.jar",
+      "target": "quilt-installer.jar"
+    },
+    {
+      "if": "modlauncher == \"quilt\"",
+      "type": "command",
+      "commands": [
+        "java${javaversion} -jar quilt-installer.jar install server ${version} --download-server --install-dir=."
+      ]
+    },
+    {
+      "if": "modlauncher == \"quilt\"",
+      "type": "move",
+      "source": "quilt-server-launch.jar",
+      "target": "server.jar"
+    },
+    {
+      "if": "modlauncher == \"spigot\"",
+      "type": "download",
+      "files": "https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar"
+    },
+    {
+      "if": "modlauncher == \"spigot\"",
+      "type": "command",
+      "commands": [
+        "java${javaversion} -jar BuildTools.jar --rev ${version}"
+      ]
+    },
+    {
+      "if": "modlauncher == \"spigot\"",
+      "type": "move",
+      "source": "spigot-*.jar",
+      "target": "server.jar"
+    },
+    {
+      "type": "writefile",
+      "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}\n",
+      "target": "server.properties",
+      "if": "!file_exists(\"server.properties\")"
+    },
+    {
+      "type": "writefile",
+      "text": "eula=${eula}",
+      "target": "eula.txt"
+    }
+  ],
+  "run": {
+    "command": [
+      {
+        "if": "modlauncher == \"forge\" && os == \"windows\" && file_exists(\"libraries/net/minecraftforge/forge/\" + version+ \"/win_args.txt\")",
+        "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/minecraftforge/forge/${version}/win_args.txt nogui"
+      },
+      {
+        "if": "modlauncher == \"forge\" && file_exists(\"libraries/net/minecraftforge/forge/\" + version+ \"/unix_args.txt\")",
+        "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/minecraftforge/forge/${version}/unix_args.txt nogui"
+      },
+      {
+        "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar server.jar"
+      }
+    ],
+    "stop": "stop"
+  },
+  "environment": {
+    "type": "standard"
+  }
+}
