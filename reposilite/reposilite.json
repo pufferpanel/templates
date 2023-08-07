@@ -1,8 +1,12 @@
 {
   "name": "reposilite",
   "display": "Reposilite",
-  "type": "Other",
+  "type": "other",
   "install": [
+    {
+      "type": "javadl",
+      "version": "${javaversion}"
+    },
     {
       "files": [
         "https://maven.reposilite.com/releases/com/reposilite/reposilite/${version}/reposilite-${version}-all.jar"
@@ -11,7 +15,7 @@
     }
   ],
   "run": {
-    "stop": "",
+    "stop": "stop",
     "command": "java -Xmx${memory}M -jar reposilite-${version}-all.jar --port ${port} --token ${token_name}:${secret}",
     "workingDirectory": "",
     "pre": [],
@@ -40,7 +44,7 @@
       "desc": "Secret/Password for webgui",
       "display": "Secret",
       "required": true,
-      "value": "foo",
+      "value": "",
       "userEdit": true
     },
     "token_name": {
@@ -48,7 +52,7 @@
       "desc": "Name of token",
       "display": "Token Name",
       "required": true,
-      "value": "foo",
+      "value": "",
       "userEdit": true
     },
     "version": {
@@ -58,6 +62,14 @@
       "required": true,
       "value": "3.4.4",
       "userEdit": true
+    },
+    "javaversion": {
+      "userEdit": true,
+      "required": true,
+      "display": "Java Version",
+      "desc": "Version of Java to use",
+      "type": "integer",
+      "value": "8"
     }
   },
   "environment": {
