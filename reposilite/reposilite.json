@@ -16,7 +16,7 @@
   ],
   "run": {
     "stop": "stop",
-    "command": "java -Xmx${memory}M -jar reposilite-${version}-all.jar --port ${port} --token ${token_name}:${secret}",
+    "command": "java${javaversion} -Xmx${memory}M -jar reposilite-${version}-all.jar --port ${port} --token ${token_name}:${secret}",
     "workingDirectory": "",
     "pre": [],
     "post": [],
