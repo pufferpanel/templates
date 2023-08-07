@@ -1,0 +1,84 @@
+{
+  "name": "reposilite",
+  "display": "Reposilite",
+  "type": "other",
+  "install": [
+    {
+      "type": "javadl",
+      "version": "${javaversion}"
+    },
+    {
+      "files": [
+        "https://maven.reposilite.com/releases/com/reposilite/reposilite/${version}/reposilite-${version}-all.jar"
+      ],
+      "type": "download"
+    }
+  ],
+  "run": {
+    "stop": "stop",
+    "command": "java${javaversion} -Xmx${memory}M -jar reposilite-${version}-all.jar --port ${port} --token ${token_name}:${secret}",
+    "workingDirectory": "",
+    "pre": [],
+    "post": [],
+    "environmentVars": {}
+  },
+  "data": {
+    "memory": {
+      "type": "integer",
+      "desc": "20MB: Minimal requirements for basic setup; 32MB: Repository for personal projects + CI + Proxy; 64MB: General use public repository; 128MB+: Huge repositories with high traffic & throughput",
+      "display": "Memory",
+      "required": true,
+      "value": "64",
+      "userEdit": true
+    },
+    "port": {
+      "type": "integer",
+      "desc": "Port for webgui",
+      "display": "Port",
+      "required": true,
+      "value": "8080",
+      "userEdit": true
+    },
+    "secret": {
+      "type": "string",
+      "desc": "Secret/Password for webgui",
+      "display": "Secret",
+      "required": true,
+      "value": "",
+      "userEdit": true
+    },
+    "token_name": {
+      "type": "string",
+      "desc": "Name of token",
+      "display": "Token Name",
+      "required": true,
+      "value": "",
+      "userEdit": true
+    },
+    "version": {
+      "type": "string",
+      "desc": "Version of Reposilite",
+      "display": "Version",
+      "required": true,
+      "value": "3.4.4",
+      "userEdit": true
+    },
+    "javaversion": {
+      "userEdit": true,
+      "required": true,
+      "display": "Java Version",
+      "desc": "Version of Java to use",
+      "type": "integer",
+      "value": "8"
+    }
+  },
+  "environment": {
+    "type": "standard"
+  },
+  "supportedEnvironments": [
+    {
+      "type": "standard"
+    }
+  ],
+  "requirements": {}
+}
