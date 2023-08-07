@@ -1,0 +1,77 @@
+{
+    "name": "Mindustry",
+    "display": "Mindustry",
+    "type": "mindustry",
+    "install": [
+      {
+        "type": "javadl",
+        "version": "${javaversion}"
+      },
+      {
+        "files": [
+          "https://github.com/Anuken/Mindustry/releases/download/v${version}/server-release.jar"
+        ],
+        "type": "download"
+      }
+    ],
+    "run": {
+      "stop": "exit",
+      "command": "java${javaversion} -Xmx${memory}M -jar server-release.jar config port ${port},config name ${name},host ${mapname}",
+      "workingDirectory": "",
+      "pre": [],
+      "post": [],
+      "environmentVars": {}
+    },
+    "data": {
+      "javaversion": {
+        "type": "integer",
+        "desc": "Version of Java to use",
+        "display": "Java Version",
+        "required": true,
+        "value": "17"
+      },
+      "mapname": {
+        "type": "string",
+        "desc": "Default Maps Available: Ancient Caldera, Fork, Fortress, Glacier, Islands, Labyrinth, Maze, Shattered, Tendrils, Triad, Veins, Wasteland",
+        "display": "Map Name",
+        "required": true,
+        "value": "Tendrils"
+      },
+      "memory": {
+        "type": "integer",
+        "desc": "How much memory in MB to allocate to the Java Heap",
+        "display": "Memory (MB)",
+        "required": true,
+        "value": "1024"
+      },
+      "name": {
+        "type": "string",
+        "desc": "The server name that shows up in the server list",
+        "display": "Name server",
+        "required": true,
+        "value": "PufferPanel"
+      },
+      "port": {
+        "type": "integer",
+        "desc": "What port to bind the server to",
+        "display": "Port",
+        "required": true,
+        "value": "6567"
+      },
+      "version": {
+        "type": "string",
+        "desc": "Server version (<a href='https://github.com/Anuken/Mindustry/releases'>Mindustry version</a>)",
+        "display": "Version",
+        "required": true,
+        "value": "145"
+      }
+    },
+    "environment": {
+      "type": "standard"
+    },
+    "supportedEnvironments": [
+      {
+        "type": "standard"
+      }
+    ]
+  }
