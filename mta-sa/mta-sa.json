@@ -12,7 +12,7 @@
         "commands": [
           "wget -q https://linux.multitheftauto.com/dl/multitheftauto_linux_${arch}.tar.gz",
           "wget -q http://linux.mtasa.com/dl/baseconfig.tar.gz",
-          "tar -xf multitheftauto_linux_arm64.tar.gz --strip-components 1",
+          "tar -xf multitheftauto_linux_${arch}.tar.gz --strip-components 1",
           "tar -xf baseconfig.tar.gz -C mods/deathmatch --strip-components 1",
           "wget -q https://mirror.mtasa.com/mtasa/resources/mtasa-resources-latest.zip",
           "mkdir mods/deathmatch/resources",
