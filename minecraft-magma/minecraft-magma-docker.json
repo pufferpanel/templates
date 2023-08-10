@@ -30,7 +30,7 @@
       "desc": "Version of Minecraft to use with Magma",
       "display": "Minecraft Version",
       "required": true,
-      "value": "1.18.2"
+      "value": "1.19.3"
     },
     "motd": {
       "type": "string",
@@ -53,7 +53,7 @@
       "desc": "The alphanumeric commit ID for the build (See https://git.magmafoundation.org/magmafoundation/Magma-1-18-x/-/releases for the commit ID's for each release))",
       "display": "Tag",
       "required": true,
-      "value": "68e21495",
+      "value": "6e6ce905",
       "userEdit": true
     }
   },
