@@ -53,7 +53,7 @@
     },
     "javaversion": {
       "type": "integer",
-      "desc": "Version of Java to use",
+      "desc": "Version of Java to use (If you play 1.16.5 or lower use 8)",
       "display": "Java Version",
       "value": "17",
       "required": true
