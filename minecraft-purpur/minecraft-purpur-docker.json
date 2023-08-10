@@ -10,7 +10,7 @@
       "internal": false
     },
     "build": {
-      "value": "2023",
+      "value": "2028",
       "required": true,
       "desc": "Build of Purpur to install (<a href='https://purpurmc.org/downloads'>Purpur version build</a>). Must be specified as a build number, e.g. 484",
       "display": "build",
