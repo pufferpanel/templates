@@ -7,7 +7,7 @@
       "desc": "Version of Velocity to install.",
       "display": "Velocity Version",
       "required": true,
-      "value": "3.1.2-SNAPSHOT",
+      "value": "3.2.0-SNAPSHOT",
       "userEdit": true
     },
     "build": {
@@ -15,7 +15,7 @@
       "desc": "Build of the Velocity Version to use",
       "display": "Velocity Build",
       "required": true,
-      "value": "195",
+      "value": "261",
       "userEdit": true
     },
     "ip": {

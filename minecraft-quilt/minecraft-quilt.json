@@ -15,7 +15,7 @@
       "desc": "Version of Minecraft to install (Oldest quilt version is 1.14)",
       "display": "GAME VERSION",
       "required": true,
-      "value": "1.19.3"
+      "value": "1.20.1"
     },
     "ip": {
       "type": "string",

@@ -14,7 +14,14 @@
       "desc": "Version of Minecraft to install (Oldest fabric version is 1.14)",
       "display": "GAME VERSION",
       "required": true,
-      "value": "1.16.5"
+      "value": "1.20.1"
+    },
+    "loader-version": {
+      "type": "string",
+      "desc": "Version of Fabric Loader to install",
+      "display": "LOADER VERSION",
+      "required": true,
+      "value": "latest"
     },
     "ip": {
       "type": "string",
@@ -46,7 +53,7 @@
     },
     "javaversion": {
       "type": "integer",
-      "desc": "Version of Java to use",
+      "desc": "Version of Java to use (If you play 1.16.5 or lower use 8)",
       "display": "Java Version",
       "value": "17",
       "required": true
@@ -62,7 +69,7 @@
     },
     {
       "commands": [
-        "java${javaversion} -jar fabric-installer.jar server -mcversion ${game-version} -downloadMinecraft -noprofile"
+        "java${javaversion} -jar fabric-installer.jar server -mcversion ${game-version} -loader ${loader-version} -downloadMinecraft -noprofile"
       ],
       "type": "command"
     },
