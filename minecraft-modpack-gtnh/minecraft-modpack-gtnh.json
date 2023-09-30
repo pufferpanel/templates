@@ -81,7 +81,7 @@
     },
     "motd": {
       "type": "string",
-      "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
+      "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.wiki/w/Formatting_codes' target='_blank'>color and formatting codes</a>.",
       "display": "MOTD message of the day",
       "required": true,
       "value": "A \\u00a7eGTNH \\u00a7rServer hosted on \\u00a7bPufferPanel"
