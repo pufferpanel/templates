@@ -59,7 +59,7 @@
       "desc": "How much memory in MB to allocate to the Java Heap for the AutoPlug client, set memory in arguments of AutoPlug to allocate the correct amount of memory to the final Minecraft instance",
       "display": "Memory (MB)",
       "required": true,
-      "value": "1024"
+      "value": "256"
     },
     "motd": {
       "type": "string",
