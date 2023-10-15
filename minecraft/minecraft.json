@@ -27,25 +27,29 @@
       "required": true,
       "desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
       "display": "EULA Agreement (true/false)",
-      "type": "boolean"
+      "type": "boolean",
+      "userEdit": true
     },
     "version": {
       "value": "latest",
       "required": true,
       "desc": "Version of Minecraft you wish to install (not all software may respect this value",
-      "display": "Version"
+      "display": "Version",
+      "userEdit": true
     },
     "motd": {
       "value": "A Minecraft Server\\n\\u00A79 hosted on PufferPanel",
       "required": true,
       "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
-      "display": "MOTD message of the day"
+      "display": "MOTD message of the day",
+      "userEdit": true
     },
     "javaversion": {
       "value": "17",
       "required": true,
       "desc": "Version of Java to use",
-      "display": "Java Version"
+      "display": "Java Version",
+      "userEdit": true
     },
     "modlauncher": {
       "display": "Mod/Plugin Launcher",
@@ -100,13 +104,15 @@
           "value": "curseforge",
           "display": "CurseForge Modpack"
         }
-      ]
+      ],
+      "userEdit": true
     },
     "forgebuild": {
       "value": "",
       "required": false,
       "desc": "Version of Forge to install (may be located <a href='http://files.minecraftforge.net/#Downloads'>here</a>",
-      "display": "Forge Version"
+      "display": "Forge Version",
+      "userEdit": true
     },
     "magmatag": {
       "type": "string",
@@ -129,7 +135,7 @@
       "required": false,
       "desc": "Build of Paper to install (<a href='https://papermc.io/downloads'>Paper version build</a>). Must be specified as a build number, e.g. 484",
       "display": "build",
-      "internal": false
+      "userEdit": true
     }
   },
   "groups": [
@@ -333,6 +339,6 @@
     "stop": "stop"
   },
   "environment": {
-    "type": "standard"
+    "type": "host"
   }
 }
