@@ -60,7 +60,7 @@
     },
     {
       "files": [
-        "https://maven.quiltmc.org/repository/release/org/quiltmc/quilt-installer/latest/quilt-installer-latest.jar"
+        "https://quiltmc.org/api/v1/download-latest-installer/java-universal"
       ],
       "type": "download"
     },
