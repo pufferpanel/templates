@@ -1,0 +1,85 @@
+{
+  "name": "openttd",
+  "display": "OpenTTD",
+  "type": "other",
+  "install": [
+    {
+      "target": "./download",
+      "type": "mkdir"
+    },
+    {
+      "target": "./.local/share/openttd",
+      "type": "mkdir"
+    },
+    {
+      "files": [
+        "https://cdn.openttd.org/openttd-releases/${Game_Version}/openttd-${Game_Version}-linux-generic-amd64.tar.xz",
+        "https://cdn.openttd.org/opengfx-releases/${GFX_Version}/opengfx-${GFX_Version}-all.zip"
+      ],
+      "type": "download"
+    },
+    {
+      "source": "./openttd-${Game_Version}-linux-generic-amd64.tar.xz",
+      "target": "./download/",
+      "type": "move"
+    },
+    {
+      "source": "./opengfx-${GFX_Version}-all.zip",
+      "target": "./download/",
+      "type": "move"
+    },
+    {
+      "commands": [
+        "tar -xf ./download/openttd-${Game_Version}-linux-generic-amd64.tar.xz -C ./download/",
+        "unzip ./download/opengfx-${GFX_Version}-all.zip -d ./download/",
+        "tar -xf ./download/opengfx-${GFX_Version}.tar -C ./download/"
+      ],
+      "type": "command"
+    },
+    {
+      "commands": [
+        "mv ./download/openttd-${Game_Version}-linux-generic-amd64 ./download/openttd",
+        "mv ./download/opengfx-${GFX_Version} ./download/baseset",
+        "cp -ar ./download/baseset ./.local/share/openttd",
+        "cp -ar ./download/openttd ./",
+        "rm -rf ./download/openttd ./download/baseset ./download/opengfx-${GFX_Version}.tar"
+      ],
+      "type": "command"
+    }
+  ],
+  "run": {
+    "stop": "exit",
+    "command": "./openttd -D",
+    "workingDirectory": "./openttd",
+    "pre": [],
+    "post": [],
+    "environmentVars": {}
+  },
+  "data": {
+    "GFX_Version": {
+      "type": "string",
+      "display": "OpenGFX Version",
+      "required": true,
+      "value": "7.1",
+      "userEdit": true,
+      "desc": "As per the available release on https://www.openttd.org/downloads/opengfx-releases/latest"
+    },
+    "Game_Version": {
+      "type": "string",
+      "display": "Game Version",
+      "required": true,
+      "value": "13.4",
+      "userEdit": true,
+      "desc": "As per the available release on https://www.openttd.org/downloads/openttd-releases/latest"
+    }
+  },
+  "environment": {
+    "type": "tty"
+  },
+  "supportedEnvironments": [
+    {
+      "type": "tty"
+    }
+  ],
+  "requirements": {}
+}
