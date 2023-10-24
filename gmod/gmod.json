@@ -7,14 +7,16 @@
       "required": true,
       "desc": "Gamemode to load",
       "display": "Gamemode",
-      "internal": false
+      "internal": false,
+      "userEdit": true
     },
     "map": {
       "value": "gm_construct",
       "required": true,
       "desc": "Map to load by default",
       "display": "Map",
-      "internal": false
+      "internal": false,
+      "userEdit": true
     },
     "maxplayers": {
       "value": "20",
@@ -37,20 +39,30 @@
       "required": false,
       "desc": "Specify a ws collection the server should load. *optional*",
       "display": "Workshop Collection ID",
-      "internal": false
+      "internal": false,
+      "userEdit": true
     },
     "steamaccounttoken": {
       "value": "",
       "required": false,
       "desc": "Token for a game server account. *optional* (Get one here: https://steamcommunity.com/dev/managegameservers)",
       "display": "Steam Game Server Account Token",
-      "internal": false
+      "internal": false,
+      "userEdit": true
     }
   },
   "install": [
     {
       "type": "steamgamedl",
-      "appId": "4020"
+      "appId": "4020",
+      "if": "env == 'host'"
+    },
+    {
+      "type": "command",
+      "commands": [
+        "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 4020 +quit"
+      ],
+      "if": "env == 'docker'"
     },
     {
       "type": "command",
@@ -66,6 +78,15 @@
   "environment": {
     "type": "host"
   },
+  "supportedEnvironments": [
+    {
+      "type": "host"
+    },
+    {
+      "type": "docker",
+      "image": "steamcmd/steamcmd"
+    }
+  ],
   "requirements": {
     "os": "linux",
     "arch": "amd64"

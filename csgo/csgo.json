@@ -7,7 +7,8 @@
       "required": true,
       "desc": "Map to load by default",
       "display": "Map",
-      "internal": false
+      "internal": false,
+      "userEdit": true
     },
     "maxplayers": {
       "value": "20",
@@ -15,14 +16,16 @@
       "desc": "Max players allowed on server",
       "display": "Max Players",
       "internal": false,
-      "type": "integer"
+      "type": "integer",
+      "userEdit": true
     },
     "gslt": {
       "value": "GSLTTOKEN",
       "required": true,
       "desc": "It is required to register your server, otherwise it can only be played on LAN. Visit http://steamcommunity.com/dev/managegameservers to get a token",
       "display": "GSLT Token",
-      "internal": false
+      "internal": false,
+      "userEdit": true
     },
     "ip": {
       "value": "0.0.0.0",
@@ -61,7 +64,8 @@
       "desc": "Server tick rate",
       "display": "Tickrate",
       "internal": false,
-      "type": "integer"
+      "type": "integer",
+      "userEdit": true
     },
     "mapgroup": {
       "value": "mg_active",
@@ -69,7 +73,8 @@
       "desc": "(Advanced) Map group",
       "display": "Map group",
       "internal": false,
-      "type": "integer"
+      "type": "integer",
+      "userEdit": true
     },
     "gamemode": {
       "value": "0",
@@ -77,7 +82,8 @@
       "desc": "(Advanced) Gamemode",
       "display": "Gamemode",
       "internal": false,
-      "type": "integer"
+      "type": "integer",
+      "userEdit": true
     },
     "gametype": {
       "value": "0",
@@ -85,13 +91,22 @@
       "desc": "(Advanced) Gametype",
       "display": "Gametype",
       "internal": false,
-      "type": "integer"
+      "type": "integer",
+      "userEdit": true
     }
   },
   "install": [
     {
       "type": "steamgamedl",
-      "appId": "740"
+      "appId": "740",
+      "if": "env == 'host'"
+    },
+    {
+      "type": "command",
+      "commands": [
+        "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 740 +quit"
+      ],
+      "if": "env == 'docker'"
     }
   ],
   "run": {
@@ -101,6 +116,15 @@
   "environment": {
     "type": "host"
   },
+  "supportedEnvironments": [
+    {
+      "type": "host"
+    },
+    {
+      "type": "docker",
+      "image": "steamcmd/steamcmd"
+    }
+  ],
   "requirements": {
     "os": "linux",
     "arch": "amd64"

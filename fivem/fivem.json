@@ -1,6 +1,6 @@
 {
-  "display": "FiveM",
   "type": "gta",
+  "display": "FiveM",
   "data": {
     "artifacts": {
       "type": "string",
@@ -83,7 +83,7 @@
       "commands": [
         "chmod +x start_no_edit.sh"
       ]
-    }    
+    }
   ],
   "run": {
     "command": "./start_no_edit.sh +exec server.cfg",
@@ -93,7 +93,11 @@
     "type": "host"
   },
   "requirements": {
-    "binaries": [ "bash", "git", "wget" ],
+    "binaries": [
+      "bash",
+      "git",
+      "wget"
+    ],
     "os": "linux",
     "arch": "amd64"
   }

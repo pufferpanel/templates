@@ -57,7 +57,6 @@
       "userEdit": true,
       "type": "integer"
     },
-
     "pvp": {
       "desc": "Should PvP activated on the Server?",
       "display": "PvP",
@@ -118,7 +117,15 @@
   "install": [
     {
       "type": "steamgamedl",
-      "appId": "343050"
+      "appId": "343050",
+      "if": "env == 'host'"
+    },
+    {
+      "type": "command",
+      "commands": [
+        "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 343050 +quit"
+      ],
+      "if": "env == 'docker'"
     },
     {
       "type": "mkdir",
@@ -157,6 +164,15 @@
   "environment": {
     "type": "host"
   },
+  "supportEvnrionments": [
+    {
+      "type": "host"
+    },
+    {
+      "type": "docker",
+      "image": "steamcmd/steamcmd"
+    }
+  ],
   "requirements": {
     "os": "linux",
     "arch": "amd64"

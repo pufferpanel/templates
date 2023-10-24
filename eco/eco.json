@@ -30,14 +30,16 @@
       "required": false,
       "desc": "Password for the Eco Game Server, which will be required for login.",
       "display": "Password",
-      "internal": false
+      "internal": false,
+      "userEdit": true
     },
     "serverVersion": {
       "value": "0.7.7.2-beta",
       "required": true,
       "desc": "Version of Eco server to install.",
       "display": "Server Version",
-      "internal": false
+      "internal": false,
+      "userEdit": true
     }
   },
   "install": [
@@ -68,7 +70,10 @@
     "type": "host"
   },
   "requirements": {
-    "binaries": [ "unzip", "mono" ],
+    "binaries": [
+      "unzip",
+      "mono"
+    ],
     "arch": "amd64",
     "os": "linux"
   }

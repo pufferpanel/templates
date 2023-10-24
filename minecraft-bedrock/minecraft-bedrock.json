@@ -7,28 +7,32 @@
       "required": true,
       "desc": "Version of the Minecraft Bedrock Server to use",
       "display": "Bedrock Version",
-      "internal": false
+      "internal": false,
+      "userEdit": true
     },
     "server-name": {
       "value": "Dedicated Server",
       "required": true,
       "desc": "Used as the server name",
       "display": "Server Name",
-      "internal": false
+      "internal": false,
+      "userEdit": true
     },
     "gamemode": {
       "value": "survival",
       "required": true,
       "desc": "Sets the game mode for new players.",
       "display": "Gamemode",
-      "internal": false
+      "internal": false,
+      "userEdit": true
     },
     "difficulty": {
       "value": "easy",
       "required": true,
       "desc": "Sets the difficulty of the world.",
       "display": "Difficulty",
-      "internal": false
+      "internal": false,
+      "userEdit": true
     },
     "allow-cheats": {
       "value": "false",
@@ -36,7 +40,8 @@
       "desc": "If true then cheats like commands can be used.",
       "display": "Allow Cheats",
       "internal": false,
-      "type": "boolean"
+      "type": "boolean",
+      "userEdit": true
     },
     "max-players": {
       "value": "10",
@@ -44,7 +49,8 @@
       "desc": "The maximum number of players that can play on the server.",
       "display": "Max Players",
       "internal": false,
-      "type": "integer"
+      "type": "integer",
+      "userEdit": true
     },
     "online-mode": {
       "value": "true",
@@ -52,7 +58,8 @@
       "desc": "Whether a player is required to be authenticated to XBox Live",
       "display": "Online Mode",
       "internal": false,
-      "type": "boolean"
+      "type": "boolean",
+      "userEdit": true
     },
     "white-list": {
       "value": "false",
@@ -60,7 +67,8 @@
       "desc": "If true then all connected players must be listed in the separate whitelist.json file.",
       "display": "Whitelist",
       "internal": false,
-      "type": "boolean"
+      "type": "boolean",
+      "userEdit": true
     },
     "server-port": {
       "value": "19132",
@@ -84,7 +92,8 @@
       "desc": "The maximum allowed view distance in number of chunks.",
       "display": "View Distance",
       "internal": false,
-      "type": "integer"
+      "type": "integer",
+      "userEdit": true
     },
     "tick-distance": {
       "value": "4",
@@ -92,7 +101,8 @@
       "desc": "The world will be ticked this many chunks away from any player.",
       "display": "Tick Distance",
       "internal": false,
-      "type": "integer"
+      "type": "integer",
+      "userEdit": true
     },
     "player-idle-timeout": {
       "value": "30",
@@ -100,7 +110,8 @@
       "desc": "After a player has idled for this many minutes they will be kicked. If set to 0 then players can idle indefinitely.",
       "display": "Player Idle Timeout",
       "internal": false,
-      "type": "integer"
+      "type": "integer",
+      "userEdit": true
     },
     "max-threads": {
       "value": "0",
@@ -108,28 +119,32 @@
       "desc": "Maximum number of threads the server will try to use. If set to 0 or removed then it will use as many as possible.",
       "display": "Max Threads",
       "internal": false,
-      "type": "integer"
+      "type": "integer",
+      "userEdit": true
     },
     "level-name": {
       "value": "Bedrock level",
       "required": true,
       "desc": "Name of the World Folder",
       "display": "Level Name",
-      "internal": false
+      "internal": false,
+      "userEdit": true
     },
     "level-seed": {
       "value": "",
       "required": false,
       "desc": "Use to randomize the world",
       "display": "Level Seed",
-      "internal": false
+      "internal": false,
+      "userEdit": true
     },
     "default-player-permission-level": {
       "value": "member",
       "required": true,
       "desc": "Permission level for new players joining for the first time.",
       "display": "Default Permission Level",
-      "internal": false
+      "internal": false,
+      "userEdit": true
     },
     "texturepack-required": {
       "value": "false",
@@ -137,7 +152,8 @@
       "desc": "Force clients to use texture packs in the current world",
       "display": "Force Server Texturepack",
       "internal": false,
-      "type": "boolean"
+      "type": "boolean",
+      "userEdit": true
     }
   },
   "install": [
@@ -170,7 +186,9 @@
     "type": "host"
   },
   "requirements": {
-    "binaries": [ "unzip" ],
+    "binaries": [
+      "unzip"
+    ],
     "os": "linux",
     "arch": "amd64"
   }

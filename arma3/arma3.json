@@ -1,5 +1,4 @@
 {
-  "name": "arma3",
   "type": "srcds",
   "display": "ARMA3",
   "data": {
@@ -8,7 +7,8 @@
       "required": true,
       "desc": "Username for Steam login",
       "display": "Steam User",
-      "internal": false
+      "internal": false,
+      "userEdit": true
     },
     "ip": {
       "value": "0.0.0.0",
@@ -30,14 +30,23 @@
       "required": false,
       "desc": "The Config file you want to use. NOTE: config.cfg is created on server installation!",
       "display": "Config File",
-      "internal": false
+      "internal": false,
+      "userEdit": true
     }
   },
   "install": [
     {
       "type": "steamgamedl",
       "appId": "233780",
-      "username": "${steam_user}"
+      "username": "${steam_user}",
+      "if": "env == 'host'"
+    },
+    {
+      "type": "command",
+      "commands": [
+        "steamcmd +force_install_dir /pufferpanel +login ${steam_user} +app_update 233780 +quit"
+      ],
+      "if": "env == 'docker'"
     },
     {
       "type": "command",
@@ -54,6 +63,15 @@
   "environment": {
     "type": "host"
   },
+  "supportedEnvironments": [
+    {
+      "type": "host"
+    },
+    {
+      "type": "docker",
+      "image": "steamcmd/steamcmd"
+    }
+  ],
   "requirements": {
     "os": "linux",
     "arch": "amd64"

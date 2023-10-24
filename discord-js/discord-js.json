@@ -25,7 +25,19 @@
   "environment": {
     "type": "host"
   },
+  "supportedEnvironments": [
+    {
+      "type": "host"
+    },
+    {
+      "type": "docker",
+      "image": "node"
+    }
+  ],
   "requirements": {
-    "binaries": [ "node", "npm" ]
+    "binaries": [
+      "node",
+      "npm"
+    ]
   }
 }

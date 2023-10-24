@@ -1,0 +1,103 @@
+[
+  {
+    "name": "vanilla",
+    "variables": {
+      "memory": "2048",
+      "ip": "0.0.0.0",
+      "port": "25565",
+      "eula": true,
+      "version": "latest",
+      "motd": "None",
+      "javaversion": "17",
+      "modlauncher": ""
+    },
+    "environment": {
+      "type": "host"
+    }
+  },
+  {
+    "name": "fabric",
+    "variables": {
+      "memory": "2048",
+      "ip": "0.0.0.0",
+      "port": "25565",
+      "eula": true,
+      "version": "1.20.1",
+      "motd": "None",
+      "javaversion": "17",
+      "modlauncher": "fabric"
+    },
+    "environment": {
+      "type": "host"
+    }
+  },
+  {
+    "name": "minecraftforge",
+    "variables": {
+      "memory": "2048",
+      "ip": "0.0.0.0",
+      "port": "25565",
+      "eula": true,
+      "version": "1.20.1",
+      "motd": "None",
+      "javaversion": "17",
+      "modlauncher": "forge",
+      "forgebuild": "latest"
+    },
+    "environment": {
+      "type": "host"
+    }
+  },
+  {
+    "name": "vanilla-docker",
+    "variables": {
+      "memory": "2048",
+      "ip": "0.0.0.0",
+      "port": "25565",
+      "eula": true,
+      "version": "latest",
+      "motd": "None",
+      "javaversion": "17",
+      "modlauncher": ""
+    },
+    "environment": {
+      "type": "docker",
+      "image": "eclipse-temurin:${javaversion}"
+    }
+  },
+  {
+    "name": "fabric-docker",
+    "variables": {
+      "memory": "2048",
+      "ip": "0.0.0.0",
+      "port": "25565",
+      "eula": true,
+      "version": "1.20.1",
+      "motd": "None",
+      "javaversion": "17",
+      "modlauncher": "fabric"
+    },
+    "environment": {
+      "type": "docker",
+      "image": "eclipse-temurin:${javaversion}"
+    }
+  },
+  {
+    "name": "minecraftforge-docker",
+    "variables": {
+      "memory": "2048",
+      "ip": "0.0.0.0",
+      "port": "25565",
+      "eula": true,
+      "version": "1.20.1",
+      "motd": "None",
+      "javaversion": "17",
+      "modlauncher": "forge",
+      "forgebuild": "latest"
+    },
+    "environment": {
+      "type": "docker",
+      "image": "eclipse-temurin:${javaversion}"
+    }
+  }
+]

@@ -17,7 +17,18 @@
   "environment": {
     "type": "host"
   },
+  "supportedEnvironments": [
+    {
+      "type": "host"
+    },
+    {
+      "image": "openjdk",
+      "type": "docker"
+    }
+  ],
   "requirements": {
-    "binaries": [ "java" ]
+    "binaries": [
+      "java"
+    ]
   }
 }

@@ -7,14 +7,16 @@
       "desc": "The main bot file.",
       "display": "Main bot file",
       "required": true,
-      "value": "bot.py"
+      "value": "bot.py",
+      "userEdit": true
     },
     "req-txt-file": {
       "type": "string",
       "desc": "The file used to install the python libs.",
       "display": "Requirements txt file",
       "required": true,
-      "value": "requirements.txt"
+      "value": "requirements.txt",
+      "userEdit": true
     }
   },
   "install": [
@@ -32,7 +34,8 @@
   "environment": {
     "type": "host"
   },
-  "supportedEnvironments": [ {
+  "supportedEnvironments": [
+    {
       "type": "host"
     },
     {
@@ -42,6 +45,8 @@
     }
   ],
   "requirements": {
-    "binaries": [ "python3" ]
+    "binaries": [
+      "python3"
+    ]
   }
 }

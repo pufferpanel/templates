@@ -56,7 +56,15 @@
   "install": [
     {
       "type": "steamgamedl",
-      "appId": "739590"
+      "appId": "739590",
+      "if": "env == 'host'"
+    },
+    {
+      "type": "command",
+      "commands": [
+        "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 739590 -beta default validate +quit"
+      ],
+      "if": "env == 'docker'"
     },
     {
       "type": "writefile",
@@ -77,6 +85,15 @@
   "environment": {
     "type": "host"
   },
+  "supportedEnvironments": [
+    {
+      "type": "host"
+    },
+    {
+      "type": "docker",
+      "image": "steamcmd/steamcmd"
+    }
+  ],
   "requirements": {
     "os": "linux",
     "arch": "amd64"

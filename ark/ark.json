@@ -7,21 +7,24 @@
       "required": true,
       "desc": "Name of server",
       "display": "Session Name",
-      "internal": false
+      "internal": false,
+      "userEdit": true
     },
     "serveradminpassword": {
       "value": "password",
       "required": true,
       "desc": "Password for server admin",
       "display": "Server Admin Password",
-      "internal": false
+      "internal": false,
+      "userEdit": true
     },
     "ip": {
       "value": "0.0.0.0",
       "required": true,
       "desc": "What IP to bind the server to",
       "display": "IP",
-      "internal": false
+      "internal": false,
+      "userEdit": true
     },
     "port": {
       "value": "7777",
@@ -29,7 +32,8 @@
       "desc": "What port to bind the server to",
       "display": "Port",
       "internal": false,
-      "type": "integer"
+      "type": "integer",
+      "userEdit": true
     },
     "queryport": {
       "value": "27015",
@@ -37,7 +41,8 @@
       "desc": "What port to listen for queries on",
       "display": "Query Port",
       "internal": false,
-      "type": "integer"
+      "type": "integer",
+      "userEdit": true
     },
     "maxplayers": {
       "value": "20",
@@ -45,14 +50,16 @@
       "desc": "Maximum number of players",
       "display": "Max Players",
       "internal": false,
-      "type": "integer"
+      "type": "integer",
+      "userEdit": true
     },
     "mapname": {
       "desc": "Name of the map",
       "display": "Map Name",
       "internal": false,
       "required": true,
-      "value": "TheIsland"
+      "value": "TheIsland",
+      "userEdit": true
     },
     "exclusive": {
       "desc": "Set to yes to only permit friends, leave no for public",
@@ -70,13 +77,22 @@
           "value": "-exclusivejoin",
           "display": "Yes"
         }
-      ]
+      ],
+      "userEdit": true
     }
   },
   "install": [
     {
       "type": "steamgamedl",
-      "appId": "376030"
+      "appId": "376030",
+      "if": "env == 'host'"
+    },
+    {
+      "type": "command",
+      "commands": [
+        "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 376030 +quit"
+      ],
+      "if": "env == 'docker'"
     },
     {
       "type": "command",
@@ -92,6 +108,15 @@
   "environment": {
     "type": "host"
   },
+  "supportedEnvironments": [
+    {
+      "type": "host"
+    },
+    {
+      "type": "docker",
+      "image": "steamcmd/steamcmd"
+    }
+  ],
   "requirements": {
     "os": "linux",
     "arch": "amd64"

@@ -7,7 +7,8 @@
       "required": true,
       "desc": "Save File to Use",
       "display": "Save File to Use",
-      "internal": false
+      "internal": false,
+      "userEdit": true
     },
     "ip": {
       "value": "0.0.0.0",
@@ -29,7 +30,8 @@
       "required": true,
       "desc": "Server Settings File Location",
       "display": "Server Settings JSON",
-      "internal": false
+      "internal": false,
+      "userEdit": true
     }
   },
   "install": [
@@ -52,7 +54,11 @@
     "type": "host"
   },
   "requirements": {
-    "binaries": [ "curl", "tar", "xz" ],
+    "binaries": [
+      "curl",
+      "tar",
+      "xz"
+    ],
     "os": "linux",
     "arch": "amd64"
   }

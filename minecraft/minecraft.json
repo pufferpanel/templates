@@ -189,132 +189,132 @@
   ],
   "install": [
     {
-      "if": "javaversion != \"\"",
+      "if": "javaversion != ''",
       "type": "javadl",
       "version": "${javaversion}"
     },
     {
-      "if": "modlauncher == \"\"",
+      "if": "modlauncher == ''",
       "type": "mojangdl",
       "version": "${version}",
       "target": "server.jar"
     },
     {
-      "if": "modlauncher == \"fabric\"",
+      "if": "modlauncher == 'fabric'",
       "type": "fabricdl"
     },
     {
-      "if": "modlauncher == \"fabric\"",
+      "if": "modlauncher == 'fabric'",
+      "type": "command",
       "commands": [
         "java${javaversion} -jar fabric-installer.jar server -mcversion ${version} -downloadMinecraft -noprofile"
-      ],
-      "type": "command"
+      ]
     },
     {
-      "if": "modlauncher == \"fabric\"",
+      "if": "modlauncher == 'fabric'",
+      "type": "move",
       "source": "fabric-server-launch.jar",
-      "target": "server.jar",
-      "type": "move"
+      "target": "server.jar"
     },
     {
-      "if": "modlauncher == \"forge\"",
+      "if": "modlauncher == 'forge'",
       "type": "forgedl",
       "version": "${version}",
       "target": "installer.jar"
     },
     {
-      "if": "modlauncher == \"forge\"",
+      "if": "modlauncher == 'forge'",
       "type": "command",
       "commands": [
         "java${javaversion} -jar installer.jar --installServer"
       ]
     },
     {
-      "if": "modlauncher == \"magma\"",
+      "if": "modlauncher == 'magma'",
       "type": "download",
       "files": [
         "https://api.magmafoundation.org/api/v2/${minecraftversion}/latest/${tag}/download"
       ]
     },
     {
-      "if": "modlauncher == \"magma\"",
+      "if": "modlauncher == 'magma'",
       "type": "move",
       "source": "Magma-*.jar",
       "target": "server.jar"
     },
     {
-      "if": "modlauncher == \"mohist\"",
+      "if": "modlauncher == 'mohist'",
       "type": "download",
       "files": [
         "https://mohistmc.com/api/${mc-version}/${mohistversion}/download/"
       ]
     },
     {
-      "if": "modlauncher == \"mohist\"",
+      "if": "modlauncher == 'mohist'",
       "type": "move",
       "source": "mohist-*-server.jar",
       "target": "server.jar"
     },
     {
-      "if": "modlauncher == \"paper\"",
+      "if": "modlauncher == 'paper'",
       "type": "download",
       "files": "https://api.papermc.io/v2/projects/paper/versions/${version}/builds/${build}/downloads/paper-${version}-${paperbuild}.jar"
     },
     {
-      "if": "modlauncher == \"paper\"",
+      "if": "modlauncher == 'paper'",
       "type": "move",
       "source": "paper-*.jar",
       "target": "paper.jar"
     },
     {
-      "if": "modlauncher == \"quilt\"",
+      "if": "modlauncher == 'quilt'",
       "type": "download",
       "files": [
         "https://maven.quiltmc.org/repository/release/org/quiltmc/quilt-installer/latest/quilt-installer-latest.jar"
       ]
     },
     {
-      "if": "modlauncher == \"quilt\"",
+      "if": "modlauncher == 'quilt'",
       "type": "move",
       "source": "quilt-installer-*.jar",
       "target": "quilt-installer.jar"
     },
     {
-      "if": "modlauncher == \"quilt\"",
+      "if": "modlauncher == 'quilt'",
       "type": "command",
       "commands": [
         "java${javaversion} -jar quilt-installer.jar install server ${version} --download-server --install-dir=."
       ]
     },
     {
-      "if": "modlauncher == \"quilt\"",
+      "if": "modlauncher == 'quilt'",
       "type": "move",
       "source": "quilt-server-launch.jar",
       "target": "server.jar"
     },
     {
-      "if": "modlauncher == \"spigot\"",
+      "if": "modlauncher == 'spigot'",
       "type": "download",
       "files": "https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar"
     },
     {
-      "if": "modlauncher == \"spigot\"",
+      "if": "modlauncher == 'spigot'",
       "type": "command",
       "commands": [
         "java${javaversion} -jar BuildTools.jar --rev ${version}"
       ]
     },
     {
-      "if": "modlauncher == \"spigot\"",
+      "if": "modlauncher == 'spigot'",
       "type": "move",
       "source": "spigot-*.jar",
       "target": "server.jar"
     },
     {
+      "if": "!file_exists(\"server.properties\")",
       "type": "writefile",
       "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}\n",
-      "target": "server.properties",
-      "if": "!file_exists(\"server.properties\")"
+      "target": "server.properties"
     },
     {
       "type": "writefile",
@@ -325,20 +325,33 @@
   "run": {
     "command": [
       {
-        "if": "modlauncher == \"forge\" && os == \"windows\" && file_exists(\"libraries/net/minecraftforge/forge/\" + version+ \"/win_args.txt\")",
+        "if": "modlauncher == 'forge' && os == 'windows' && file_exists('libraries/net/minecraftforge/forge/' + version + '/win_args.txt')",
         "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/minecraftforge/forge/${version}/win_args.txt nogui"
       },
       {
-        "if": "modlauncher == \"forge\" && file_exists(\"libraries/net/minecraftforge/forge/\" + version+ \"/unix_args.txt\")",
+        "if": "modlauncher == 'forge' && file_exists('libraries/net/minecraftforge/forge/' + version+ '/unix_args.txt')",
         "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/minecraftforge/forge/${version}/unix_args.txt nogui"
       },
       {
-        "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar server.jar"
+        "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar server.jar",
+        "if": "env == 'host'"
+      },
+      {
+        "command": "java -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar server.jar"
       }
     ],
     "stop": "stop"
   },
   "environment": {
     "type": "host"
-  }
+  },
+  "supportedEnvironments": [
+    {
+      "type": "host"
+    },
+    {
+      "type": "docker",
+      "image": "eclipse-temurin:${javaversion}"
+    }
+  ]
 }

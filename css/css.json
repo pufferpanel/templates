@@ -7,7 +7,8 @@
       "required": true,
       "desc": "Map to load by default",
       "display": "Map",
-      "internal": false
+      "internal": false,
+      "userEdit": true
     },
     "maxplayers": {
       "value": "20",
@@ -15,7 +16,8 @@
       "desc": "Max players allowed on server",
       "display": "Max Players",
       "internal": false,
-      "type": "integer"
+      "type": "integer",
+      "userEdit": true
     },
     "ip": {
       "value": "0.0.0.0",
@@ -54,13 +56,22 @@
       "desc": "Server tick speed, to use this value you need to download this addon: https://github.com/daemon32/tickrate_enabler/releases/tag/0.5",
       "display": "Tickrate",
       "internal": false,
-      "type": "integer"
+      "type": "integer",
+      "userEdit": true
     }
   },
   "install": [
     {
       "type": "steamgamedl",
-      "appId": "232330"
+      "appId": "232330",
+      "if": "env == 'host'"
+    },
+    {
+      "type": "command",
+      "commands": [
+        "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 232330 +quit"
+      ],
+      "if": "env == 'docker'"
     }
   ],
   "run": {
@@ -70,6 +81,15 @@
   "environment": {
     "type": "host"
   },
+  "supportedEnvironments": [
+    {
+      "type": "host"
+    },
+    {
+      "type": "docker",
+      "image": "steamcmd/steamcmd"
+    }
+  ],
   "requirements": {
     "os": "linux",
     "arch": "amd64"
