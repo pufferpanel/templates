@@ -1,0 +1,15 @@
+[
+    {
+        "name": "7days2die",
+        "environment": {
+            "type": "host"
+        }
+    },
+    {
+        "name": "7days2die-docker",
+        "environment": {
+            "type": "docker",
+            "image": "steamcmd/steamcmd"
+        }
+    }
+]

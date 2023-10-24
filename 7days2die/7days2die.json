@@ -6,30 +6,55 @@
   },
   "install": [
     {
-      "appId": "294420",
-      "type": "steamgamedl"
+      "type": "steamgamedl",
+      "appId": "294420",      
+      "if": "env == \"host\""
+    },
+    {
+      "type": "command",
+      "commands": [
+        "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 294420 +quit"
+      ],
+      "if": "env == \"docker\""
     },
     {
       "type": "command",
       "commands": [
         "chmod +x 7DaysToDieServer.x86_64"
-      ]
+      ],
+      "if": "os != \"windows\""
     }
   ],
   "run": {
-    "command": "./7DaysToDieServer.x86_64 -quit -batchmode -nographics -dedicated -configfile=serverconfig.xml",
-    "stopCode": 2,
+    "command": [
+      {
+        "command": "./7DaysToDieServer.exe -quit -batchmode -nographics -dedicated -configfile=serverconfig.xml",
+        "if": "os == \"windows\""
+      },
+      {
+        "command": "./7DaysToDieServer.x86_64 -quit -batchmode -nographics -dedicated -configfile=serverconfig.xml",
+        "if": "os != \"windows\""
+      }
+    ],
+    "stop": "shutdown",
     "environmentVars": {
       "LD_LIBRARY_PATH": "./linux64:$LD_LIBRARY_PATH"
+    },
+    "stdin": {
+      "type": "telnet",
+      "port": "8081"
     }
   },
   "supportedEnvironments": [
     {
       "type": "host"
+    },
+    {
+      "type": "docker",
+      "image": "steamcmd/steamcmd"      
     }
   ],
   "requirements": {
-    "os": "linux",
     "arch": "amd64"
   }
 }
