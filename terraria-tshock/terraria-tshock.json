@@ -2,73 +2,38 @@
   "name": "terraria-tshock",
   "display": "Terraria - TShock",
   "type": "terraria",
+  "install": [
+    {
+      "commands": [
+        "wget https://github.com/Pryaxis/TShock/releases/download/v${tshockversion}/TShock-${tshockversion2}-for-Terraria-${version}-linux-${arch}-Release.zip",
+        "unzip TShock-${tshockversion2}-for-Terraria-${version}-linux-${arch}-Release.zip",
+        "tar xf TShock-Beta-linux-${arch}-Release.tar",
+        "mkdir ${wpath}",
+        "rm -rf TShock-${tshockversion2}-for-Terraria-${version}-linux-${arch}-Release.zip",
+        "rm -rf TShock-Beta-linux-${arch}-Release.tar",
+        "./TShock.Installer Server -ip ${ip} -port ${port} -worldselectpath ${wpath} ${secure}",
+        "\"rm -rf dotnet-runtime-${dotnetversion}-linux-${arch}.tar.gz\""
+      ],
+      "type": "command"
+    }
+  ],
+  "run": {
+    "stop": "exit",
+    "command": "./TShock.Server -ip ${ip} -port ${port} -worldselectpath ${wpath} ${secure}",
+    "workingDirectory": "",
+    "pre": [],
+    "post": [],
+    "environmentVars": {
+      "DOTNET_ROOT": "${rootDir}/dotnet"
+    }
+  },
   "data": {
-    "ip": {
-      "type": "string",
-      "desc": "Sets the IP address for the server to listen on - 0.0.0.0 means every possible IP",
-      "display": "IP",
-      "required": true,
-      "value": "0.0.0.0"
-    },
-    "port": {
-      "type": "integer",
-      "desc": "What port to bind the server to",
-      "display": "Port",
-      "required": true,
-      "value": "7777"
-    },
-    "tshockversion": {
-      "type": "string",
-      "desc": "TShock Version",
-      "display": "TShock Version (Set this to the latest server version - see here https://github.com/Pryaxis/TShock/releases/latest)",
-      "required": true,
-      "value": "5.0.0"
-    },
-    "version": {
-      "type": "string",
-      "desc": "Server Version (Set this to the latest server version)",
-      "display": "Server Version",
-      "required": true,
-      "value": "1.4.4.7"
-    },
-    "dotnetversion": {
-      "type": "string",
-      "desc": ".NET Runtime Version",
-      "display": ".NET Runtime Version",
-      "required": true,
-      "value": "6.0.10"
-    },
-    "wpath": {
-      "type": "string",
-      "desc": "Name of the worlds folder",
-      "display": "Worlds Path",
-      "required": true,
-      "value": "worlds"
-    },
-    "secure": {
-      "desc": "Enable cheat protection ?",
-      "display": "secure",
-      "required": true,
-      "value": "",
-      "type": "option",
-      "options": [
-        {
-          "value": "-secure",
-          "display": "Yes"
-        },
-        {
-          "value": "",
-          "display": "No"
-        }
-      ]
-    },
     "arch": {
-      "value": "x64",
-      "required": true,
+      "type": "option",
       "desc": "Architecture your machine",
       "display": "Architecture",
-      "internal": false,
-      "type": "option",
+      "required": true,
+      "value": "arm64",
       "options": [
         {
           "value": "arm",
@@ -83,45 +48,86 @@
           "display": "amd64"
         }
       ]
-    }
-  },
-  "install": [
-    {
-      "type": "download",
-      "files": [
-        "https://github.com/Pryaxis/TShock/releases/download/v${tshockversion}/TShock-${tshockversion}-for-Terraria-${version}-linux-${arch}-Release.zip",
-        "https://dotnetcli.azureedge.net/dotnet/Runtime/${dotnetversion}/dotnet-runtime-${dotnetversion}-linux-${arch}.tar.gz"
+    },
+    "dotnetversion": {
+      "type": "string",
+      "desc": ".NET Runtime Version",
+      "display": ".NET Runtime Version",
+      "required": true,
+      "value": "6.0.11"
+    },
+    "ip": {
+      "type": "string",
+      "desc": "Sets the IP address for the server to listen on - 0.0.0.0 means every possible IP",
+      "display": "IP",
+      "required": true,
+      "value": "0.0.0.0"
+    },
+    "port": {
+      "type": "integer",
+      "desc": "What port to bind the server to",
+      "display": "Port",
+      "required": true,
+      "value": "7777"
+    },
+    "secure": {
+      "type": "option",
+      "desc": "Enable cheat protection ?",
+      "display": "secure",
+      "required": true,
+      "value": "",
+      "options": [
+        {
+          "value": "-secure",
+          "display": "Yes"
+        },
+        {
+          "value": "",
+          "display": "No"
+        }
       ]
     },
-    {
-      "type": "command",
-      "commands": [
-        "unzip TShock-${tshockversion}-for-Terraria-${version}-linux-${arch}-Release.zip",
-        "tar xf TShock-Beta-linux-${arch}-Release.tar",
-        "mkdir ${wpath}",
-        "mkdir dotnet",
-        "tar xzf dotnet-runtime-${dotnetversion}-linux-${arch}.tar.gz -C dotnet",
-        "rm -rf TShock-${tshockversion}-for-Terraria-${version}-linux-${arch}-Release.zip",
-        "rm -rf TShock-Beta-linux-${arch}-Release.tar",
-        "rm -rf dotnet-runtime-linux-${arch}.tar.gz"
-      ]
-    }
-  ],
-  "run": {
-    "command": "./TShock.Server -ip ${ip} -port ${port} -worldselectpath ${wpath} ${secure}",
-    "stop": "exit",
-    "environmentVars": {
-      "DOTNET_ROOT": "${rootDir}/dotnet"
+    "tshockversion": {
+      "type": "string",
+      "desc": "Set this to the latest server version - see here https://github.com/Pryaxis/TShock/releases/latest)",
+      "display": "TShock Long Version",
+      "required": true,
+      "value": "5.2.0"
+    },
+    "tshockversion2": {
+      "type": "string",
+      "desc": "Set this to the latest server version - see here https://github.com/Pryaxis/TShock/releases/latest)",
+      "display": "TShock Min Version",
+      "required": true,
+      "value": "5.2"
+    },
+    "version": {
+      "type": "string",
+      "desc": "Server Version (Set this to the latest server version)",
+      "display": "Server Version",
+      "required": true,
+      "value": "1.4.4.9"
+    },
+    "wpath": {
+      "type": "string",
+      "desc": "Name of the worlds folder",
+      "display": "Worlds Path",
+      "required": true,
+      "value": "worlds"
     }
   },
-
   "environment": {
     "type": "tty"
   },
+  "supportedEnvironments": [
+    {
+      "type": "tty"
+    }
+  ],
   "requirements": {
-    "os": "linux",
     "binaries": [
       "unzip"
-    ]
+    ],
+    "os": "linux"
   }
 }
