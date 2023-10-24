@@ -26,7 +26,7 @@
     "command": [
       {
         "command": "./7DaysToDieServer.exe -quit -batchmode -nographics -dedicated -configfile=serverconfig.xml",
-        "if": "os == 'windows"
+        "if": "os == 'windows'"
       },
       {
         "command": "./7DaysToDieServer.x86_64 -quit -batchmode -nographics -dedicated -configfile=serverconfig.xml"
