@@ -160,7 +160,8 @@
       ],
       "display": "Forge",
       "description": "Settings if using MinecraftForge",
-      "order": 2
+      "order": 2,
+      "if": "modlauncher == 'forge'"
     },
     {
       "variables": [
@@ -168,7 +169,8 @@
       ],
       "display": "Magma",
       "description": "Settings specific if using Magma",
-      "order": 3
+      "order": 3,
+      "if": "modlauncher == 'magma'"
     },
     {
       "variables": [
@@ -176,7 +178,8 @@
       ],
       "display": "Mohist",
       "description": "Settings specific if using Mohist",
-      "order": 4
+      "order": 4,
+      "if": "modlauncher == 'mohist'"
     },
     {
       "variables": [
@@ -184,7 +187,8 @@
       ],
       "display": "Paper",
       "description": "Settings specific if using Paper",
-      "order": 5
+      "order": 5,
+      "if": "modlauncher == 'paper'"
     }
   ],
   "install": [
