@@ -44,8 +44,16 @@
   },
   "install": [
     {
+      "if": "!in_path('steamcmd')",
       "type": "steamgamedl",
       "appId": "380870"
+    },
+    {
+      "if": "in_path('steamcmd')",
+      "type": "command",
+      "commands": [
+        "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 380870 +quit"
+      ]
     },
     {
       "target": "ProjectZomboid64.json",
@@ -66,6 +74,15 @@
   "environment": {
     "type": "host"
   },
+  "supportedEnvironments": [
+    {
+      "type": "host"
+    },
+    {
+      "type": "docker",
+      "image": "steamcmd/steamcmd"
+    }
+  ],
   "requirements": {
     "os": "linux",
     "arch": "amd64"
