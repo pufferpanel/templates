@@ -103,7 +103,7 @@
   ],
   "run": {
     "command": "./ShooterGame/Binaries/Linux/ShooterGameServer ${mapname}?listen?SessionName=${sessionname}?ServerAdminPassword=${serveradminpassword}?MultiHome=${ip}?Port=${port}?QueryPort=${queryport}?MaxPlayers=${maxplayers} -server ${exclusive}",
-    "stop": "doexit"
+    "stopCode": "2"
   },
   "environment": {
     "type": "host"
