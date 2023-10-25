@@ -62,20 +62,20 @@
   },
   "install": [
     {
+      "if": "env == 'host'",
       "type": "steamgamedl",
-      "appId": "232330",
-      "if": "env == 'host'"
+      "appId": "232330"
     },
     {
+      "if": "env == 'docker'",
       "type": "command",
       "commands": [
         "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 232330 +quit"
-      ],
-      "if": "env == 'docker'"
+      ]
     }
   ],
   "run": {
-    "command": "./srcds_run -game cstrike -ip ${ip} -port  ${port} +clientport ${clientport} +tv_port ${tvport} +map ${map} -maxplayers ${maxplayers} -tickrate ${tickrate} -norestart",
+    "command": "./srcds_run -game cstrike -ip ${ip} -port ${port} +clientport ${clientport} +tv_port ${tvport} +map ${map} -maxplayers ${maxplayers} -tickrate ${tickrate} -norestart",
     "stop": "exit"
   },
   "environment": {

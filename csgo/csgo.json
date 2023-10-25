@@ -20,7 +20,7 @@
       "userEdit": true
     },
     "gslt": {
-      "value": "GSLTTOKEN",
+      "value": "",
       "required": true,
       "desc": "It is required to register your server, otherwise it can only be played on LAN. Visit http://steamcommunity.com/dev/managegameservers to get a token",
       "display": "GSLT Token",
