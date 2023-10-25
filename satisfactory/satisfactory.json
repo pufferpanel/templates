@@ -2,42 +2,31 @@
   "type": "srcds",
   "display": "Satisfactory",
   "data": {
-    "game_type": {
-      "type": "option",
-      "desc": "Gameserver branch",
-      "display": "GameType",
-      "required": true,
-      "userEdit": true,
-      "options": [
-        {
-          "value": "public",
-          "display": "Public branch"
-        },
-        {
-          "value": "experimental",
-          "display": "Experimental branch"
-        }
-      ]
-    },
     "multihome": {
       "type": "string",
       "desc": "Ip address to bind the server to",
       "display": "Multihome",
-      "value": "0.0.0.0",
-      "userEdit": true
+      "value": "0.0.0.0"
     },
     "port": {
       "type": "integer",
       "desc": "Port to bind the server to",
       "display": "ServerQueryPort",
-      "value": "15777",
-      "userEdit": true
+      "value": "15777"
     }
   },
   "install": [
     {
+      "if": "env == 'host'",
       "type": "steamgamedl",
       "appId": "1690800"
+    },
+    {
+      "if": "env == 'docker'",
+      "type": "command",
+      "commands": [
+        "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 1690800 +quit"
+      ]
     },
     {
       "type": "command",
@@ -48,8 +37,8 @@
     }
   ],
   "run": {
-    "stopCode": 2,
     "command": "./Engine/Binaries/Linux/UE4Server-Linux-Shipping FactoryGame ?listen -multihome=${multihome} -ServerQueryPort=${port}",
+    "stopCode": 2,
     "environmentVars": {
       "LD_LIBRARY_PATH": "./linux64:$LD_LIBRARY_PATH"
     }

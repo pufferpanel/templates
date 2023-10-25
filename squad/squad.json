@@ -47,8 +47,16 @@
   },
   "install": [
     {
+      "if": "env == 'host'",
       "type": "steamgamedl",
       "appId": "403240"
+    },
+    {
+      "if": "env == 'docker'",
+      "type": "command",
+      "commands": [
+        "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 403240 +quit"
+      ]
     }
   ],
   "run": {
@@ -57,11 +65,21 @@
     "workingDirectory": "",
     "pre": [
       {
+        "if": "env == 'host'",
         "type": "steamgamedl",
         "appId": "403240"
       },
       {
-        "commands": [ "chmod +x ./SquadGameServer.sh" ],
+        "if": "env == 'docker'",
+        "type": "command",
+        "commands": [
+          "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 403240 +quit"
+        ]
+      },
+      {
+        "commands": [
+          "chmod +x ./SquadGameServer.sh"
+        ],
         "type": "command"
       }
     ]

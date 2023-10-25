@@ -23,8 +23,7 @@
       "desc": "What port to bind the server to.",
       "display": "Port",
       "required": true,
-      "value": "2456",
-      "userEdit": true
+      "value": "2456"
     },
     "world": {
       "type": "string",
@@ -33,16 +32,42 @@
       "required": true,
       "value": "VHWorld",
       "userEdit": true
+    },
+    "modpack": {
+      "type": "string",
+      "desc": "Open https://valheim.thunderstore.io/package/denikson/BepInExPack_Valheim/ in new tab and right 'manual download' click > copy link. Paste it here if you wish to use this modpack.",
+      "display": "",
+      "required": false,
+      "value": "Modpack to run with",
+      "userEdit": true
     }
   },
   "install": [
     {
+      "if": "env == 'host'",
       "type": "steamgamedl",
       "appId": "896660"
     },
     {
+      "if": "env == 'docker'",
       "type": "command",
       "commands": [
+        "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 896660 +quit"
+      ]
+    },
+    {
+      "type": "command",
+      "commands": [
+        "chmod +x valheim_server.x86_64"
+      ]
+    },
+    {
+      "if": "modpack != ''",
+      "type": "command",
+      "commands": [
+        "unzip ./denikson-BepInExPack_Valheim*.zip -d ./bepin_temp/",
+        "cp -r ./bepin_temp/BepInExPack_Valheim/. ./",
+        "rm -r ./bepin_temp",
         "chmod +x valheim_server.x86_64"
       ]
     }
@@ -57,6 +82,15 @@
   "environment": {
     "type": "host"
   },
+  "suppportedEnvironments": [
+    {
+      "type": "host"
+    },
+    {
+      "type": "docker",
+      "image": "steamcmd/steamcmd"
+    }
+  ],
   "requirements": {
     "os": "linux",
     "arch": "amd64"

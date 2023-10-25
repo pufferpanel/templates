@@ -44,12 +44,12 @@
   },
   "install": [
     {
-      "if": "!in_path('steamcmd')",
+      "if": "env == 'host'",
       "type": "steamgamedl",
       "appId": "380870"
     },
     {
-      "if": "in_path('steamcmd')",
+      "if": "env == 'docker'",
       "type": "command",
       "commands": [
         "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 380870 +quit"

@@ -22,14 +22,16 @@
       "required": true,
       "desc": "What map name do you want? If unsure, leave as default.",
       "display": "Server Level",
-      "internal": false
+      "internal": false,
+      "userEdit": true
     },
     "ServerSeed": {
       "value": "1234",
       "required": true,
       "desc": "Server seed to use. Default should be fine.",
       "display": "Server Seed",
-      "internal": false
+      "internal": false,
+      "userEdit": true
     },
     "WorldSize": {
       "value": "3000",
@@ -37,7 +39,8 @@
       "desc": "World size (number)",
       "display": "World Size",
       "internal": false,
-      "type": "integer"
+      "type": "integer",
+      "userEdit": true
     },
     "MaxPlayers": {
       "value": "10",
@@ -52,28 +55,32 @@
       "required": true,
       "desc": "Name of the server to use",
       "display": "Server Name",
-      "internal": false
+      "internal": false,
+      "userEdit": true
     },
     "Description": {
       "value": "RUST Public Server Description",
       "required": true,
       "desc": "Server description shown on server browser",
       "display": "Server Description",
-      "internal": false
+      "internal": false,
+      "userEdit": true
     },
     "ServerImage": {
       "value": "http://",
       "required": true,
       "desc": "URL For the server image banner",
       "display": "Server Header Image",
-      "internal": false
+      "internal": false,
+      "userEdit": true
     },
     "URL": {
       "value": "http://",
       "required": true,
       "desc": "URL for the website dedicated to this server.",
       "display": "Server Website",
-      "internal": false
+      "internal": false,
+      "userEdit": true
     },
     "ServerIdentity": {
       "value": "server1",
@@ -95,13 +102,22 @@
       "required": true,
       "desc": "Password to use on RCON. CHANGE THIS",
       "display": "RCON Password",
-      "internal": false
+      "internal": false,
+      "userEdit": true
     }
   },
   "install": [
     {
+      "if": "env == 'host'",
       "type": "steamgamedl",
       "appId": "258550"
+    },
+    {
+      "if": "env == 'docker'",
+      "type": "command",
+      "commands": [
+        "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 258550 +quit"
+      ]
     }
   ],
   "run": {
@@ -109,23 +125,20 @@
     "stopCode": 2,
     "environmentVars": {
       "LD_LIBRARY_PATH": "./RustDedicated_Data/Plugins/x86_64"
-    },
-    "pre": [
-      {
-        "type": "steamgamedl",
-        "appId": "258550"
-      },
-      {
-        "type": "command",
-        "commands": [
-          "chmod +x RustDedicated"
-        ]
-      }
-    ]
+    }
   },
   "environment": {
     "type": "host"
   },
+  "supportedEnvironments": [
+    {
+      "type": "host"
+    },
+    {
+      "type": "docker",
+      "image": "steamcmd/steamcmd"
+    }
+  ],
   "requirements": {
     "os": "linux",
     "arch": "amd64"

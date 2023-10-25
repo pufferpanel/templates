@@ -2,19 +2,21 @@
   "type": "starbound",
   "display": "Starbound",
   "data": {
-    "steam_user": {
+    "steamUser": {
       "value": "",
       "required": true,
       "desc": "Steam Username (required for install)",
       "display": "Steam Username",
-      "internal": false
+      "internal": false,
+      "userEdit": true
     },
     "serverName": {
       "value": "A Starbound Server",
       "required": true,
       "desc": "Server Name",
       "display": "Server Name",
-      "internal": false
+      "internal": false,
+      "userEdit": true
     },
     "gameServerPort": {
       "value": "21025",
@@ -30,7 +32,8 @@
       "desc": "Maximum Players",
       "display": "Maximum Players",
       "internal": false,
-      "type": "integer"
+      "type": "integer",
+      "userEdit": true
     }
   },
   "install": [
@@ -39,9 +42,17 @@
       "target": "storage"
     },
     {
+      "if": "env == 'host'",
       "type": "steamgamedl",
       "appId": "533830",
-      "username": "${steam_user}"
+      "username": "${steamUser}"
+    },
+    {
+      "if": "env == 'docker'",
+      "type": "command",
+      "commands": [
+        "steamcmd +force_install_dir /pufferpanel +login ${steamUser} +app_update 533830 +quit"
+      ]
     },
     {
       "type": "writefile",
@@ -61,12 +72,21 @@
     }
   ],
   "run": {
-    "stopCode": 2,
-    "command": "./starbound_server"
+    "command": "./starbound_server",
+    "stopCode": 2
   },
   "environment": {
     "type": "host"
   },
+  "supportedEnvironments": [
+    {
+      "type": "host"
+    },
+    {
+      "type": "docker",
+      "image": "steamcmd/steamcmd"
+    }
+  ],
   "requirements": {
     "os": "linux",
     "arch": "amd64"

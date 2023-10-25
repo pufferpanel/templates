@@ -7,7 +7,8 @@
       "required": true,
       "desc": "TF2 Map",
       "display": "Team Fortess 2 Map to load",
-      "internal": false
+      "internal": false,
+      "userEdit": true
     },
     "ip": {
       "value": "0.0.0.0",
@@ -27,8 +28,16 @@
   },
   "install": [
     {
+      "if": "env == 'host'",
       "type": "steamgamedl",
       "appId": "232250"
+    },
+    {
+      "if": "env == 'docker'",
+      "type": "command",
+      "commands": [
+        "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 232250 +quit"
+      ]
     },
     {
       "type": "command",
@@ -44,6 +53,15 @@
   "environment": {
     "type": "host"
   },
+  "supportedEnvironments": [
+    {
+      "type": "host"
+    },
+    {
+      "type": "docker",
+      "image": "steamcmd/steamcmd"
+    }
+  ],
   "requirements": {
     "os": "linux",
     "arch": "amd64"

@@ -2,39 +2,79 @@
   "type": "terraria",
   "display": "Terraria - tModLoader",
   "data": {
+    "tversion": {
+      "type": "string",
+      "desc": "tModLoader Version",
+      "display": "tModLoader Version (Set this to the latest tModLoader version to enable support - see https://github.com/tModLoader/tModLoader/releases/latest)",
+      "required": false,
+      "value": ""
+    },
     "abr": {
       "type": "string",
       "desc": "Sets the announcementbox text messaging range in pixels, -1 for serverwide announcements.",
       "display": "announcementbox-range",
       "required": true,
-      "value": "-1"
+      "value": "-1",
+      "userEdit": true
     },
     "backups": {
       "type": "string",
       "desc": "Sets the number of rolling world backups to keep",
       "display": "Backups",
       "required": true,
-      "value": "2"
+      "value": "2",
+      "userEdit": true
     },
     "ban": {
       "type": "string",
       "desc": "Name of the banlist file",
       "display": "Banlist",
       "required": true,
-      "value": "banlist.txt"
+      "value": "banlist.txt",
+      "userEdit": true
     },
     "difficulty": {
       "type": "string",
-      "desc": "This can not be changed after the world was generated - Options: 0 - (normal), 1 - (expert), 2 - (master), 3 - (journey)",
+      "desc": "This can not be changed after the world was generated",
       "display": "Difficulty",
       "required": true,
-      "value": "0"
+      "value": "0",
+      "userEdit": true,
+      "options": [
+        {
+          "value": "0",
+          "display": "Normal"
+        },
+        {
+          "value": "1",
+          "display": "Expert"
+        },
+        {
+          "value": "2",
+          "display": "Master"
+        },
+        {
+          "value": "3",
+          "display": "Journey"
+        }
+      ]
     },
     "disableannouncementbox": {
       "type": "string",
-      "desc": "Disables the text announcements Announcement Box makes when pulsed from wire. - leave blank to let them enabled - or set it to `-disableannouncementbox` to disable it",
-      "display": "announcementbox",
-      "value": ""
+      "desc": "Decides if the text announcements the Announcement Box makes when pulsed from wire.",
+      "display": "Announcement Box",
+      "value": "",
+      "userEdit": true,
+      "options": [
+        {
+          "value": "",
+          "display": "Enable"
+        },
+        {
+          "value": "-disableannouncementbox",
+          "display": "Disable"
+        }
+      ]
     },
     "ip": {
       "type": "string",
@@ -45,45 +85,81 @@
     },
     "lang": {
       "type": "string",
-      "desc": "Please use the short lang code - English=en-US, German=de-DE, Italian=it-IT, French=fr-FR, Spanish=es-ES, Russian=ru-RU, Chinese=zh-Hans, Portuguese=pt-BR, Polish=pl-PL",
+      "desc": "Language for the server",
       "display": "Language",
       "required": true,
-      "value": "en-US"
+      "value": "en-US",
+      "userEdit": true,
+      "options": [
+        {
+          "value": "en-US",
+          "display": "English"
+        },
+        {
+          "value": "de-DE",
+          "display": "German"
+        },
+        {
+          "value": "it-IT",
+          "display": "Italian"
+        },
+        {
+          "value": "fr-FR",
+          "display": "French"
+        },
+        {
+          "value": "es-ES",
+          "display": "Spanish"
+        },
+        {
+          "value": "ru-RU",
+          "display": "Russian"
+        },
+        {
+          "value": "zh-Hans",
+          "display": "Chinese"
+        },
+        {
+          "value": "pt-PR",
+          "display": "Portuguese"
+        },
+        {
+          "value": "pl-PL",
+          "display": "Polish"
+        }
+      ]
     },
     "motd": {
       "type": "string",
       "desc": "Set the message of the day",
       "display": "motd",
       "required": true,
-      "value": "Hello!"
-    },
-    "mp": {
-      "type": "string",
-      "desc": "Name of the mods folder",
-      "display": "Mods-path",
-      "required": true,
-      "value": "mods"
+      "value": "Hello!",
+      "userEdit": true
     },
     "npcs": {
       "type": "string",
       "desc": "Reduces enemy skipping but increases bandwidth usage. The lower the number the less skipping will happen, but more data is sent. 0 is off.",
       "display": "npcstream",
       "required": true,
-      "value": "60"
+      "value": "60",
+      "userEdit": true
     },
     "password": {
       "type": "string",
       "desc": "Server Password - leave blank for none",
       "display": "Password",
       "required": true,
-      "value": ""
+      "value": "",
+      "userEdit": true
     },
     "players": {
       "type": "string",
       "desc": "Max Players",
       "display": "Players",
       "required": true,
-      "value": "4"
+      "value": "4",
+      "userEdit": true
     },
     "port": {
       "type": "string",
@@ -92,68 +168,80 @@
       "required": true,
       "value": "7777"
     },
-    "priority": {
-      "type": "string",
-      "desc": "Set priority 0:Realtime, 1:High, 2:Above-Normal, 3:Normal, 4:Below-Normal, 5:Idle",
-      "display": "priority",
-      "required": true,
-      "value": "1"
-    },
     "secure": {
       "type": "string",
       "desc": "Enable cheat protection = 1 and disable = 0",
       "display": "secure",
       "required": true,
-      "value": "1"
+      "value": "1",
+      "userEdit": true,
+      "options": [
+        {
+          "value": "1",
+          "display": "Enable"
+        },
+        {
+          "value": "0",
+          "display": "Disable"
+        }
+      ]
     },
     "seed": {
       "type": "string",
       "desc": "This can not be changed after the world was generated - Seed of the World",
       "display": "Seed",
       "required": true,
-      "value": "VeryGoodStartingSeed"
+      "value": "VeryGoodStartingSeed",
+      "userEdit": true
     },
     "size": {
       "type": "string",
       "desc": "This can not be changed after the world was generated - World Size (1-3 - 3 is biggest)",
       "display": "World-Size",
       "required": true,
-      "value": "3"
+      "value": "3",
+      "userEdit": true
     },
     "sl": {
       "type": "string",
       "desc": "Reduces maximum liquids moving at the same time. If enabled may reduce lags but liquids may take longer to settle.",
       "display": "maximum liquids moving",
       "required": true,
-      "value": "1"
+      "value": "1",
+      "userEdit": true
     },
-    "tversion": {
+    "steam": {
       "type": "string",
-      "desc": "tModLoader Version",
-      "display": "tModLoader Version (Set this to the latest tModLoader version - see https://github.com/tModLoader/tModLoader/releases/latest)",
-      "required": true,
-      "value": "0.11.8.6"
-    },
-    "upnp": {
-      "type": "string",
-      "desc": "Enable upnp = 1 and disable = 0",
-      "display": "upnp",
-      "required": true,
-      "value": "1"
+      "desc": "Enables Steam Support",
+      "display": "Steam",
+      "value": "-steam",
+      "userEdit": true,
+      "options": [
+        {
+          "value": "-steam",
+          "display": "Enable"
+        },
+        {
+          "value": "",
+          "display": "Disable"
+        }
+      ]
     },
     "world": {
       "type": "string",
       "desc": "Name of your World",
       "display": "World-Name",
       "required": true,
-      "value": "Terraria-World-1"
+      "value": "Terraria-World-1",
+      "userEdit": true
     },
     "wp": {
       "type": "string",
       "desc": "Name of the world folder",
       "display": "Worldpath",
       "required": true,
-      "value": "worlds"
+      "value": "worlds",
+      "userEdit": true
     }
   },
   "install": [
@@ -179,11 +267,6 @@
       "type": "command"
     },
     {
-      "target": "serverconfig.txt",
-      "text": "world=../${wp}/${world}.wld\nautocreate=${size}\nseed=${seed}\nworldname=${world}\ndifficulty=${difficulty}\nmaxplayers=${players}\nport=${port}\npassword=${password}\nmotd=${motd}\nworldpath=../${wp}\nbanlist=../${ban}\nsecure=${secure}\nlanguage=${lang}\nupnp=${upnp}\nnpcstream=${npcs}\npriority=${priority}\nslowliquids=${sl}\nworldrollbackstokeep=${backups}",
-      "type": "writefile"
-    },
-    {
       "target": "enabled.jsonn",
       "text": "[\n    \"Mod1\",\n    \"Mod2\",\n    \"Mod3\"\n]",
       "type": "writefile"
@@ -202,7 +285,7 @@
     "pre": [
       {
         "target": "serverconfig.txt",
-        "text": "world=../${wp}/${world}.wld\nautocreate=${size}\nseed=${seed}\nworldname=${world}\ndifficulty=${difficulty}\nmaxplayers=${players}\nport=${port}\npassword=${password}\nmotd=${motd}\nworldpath=../${wp}\nbanlist=../${ban}\nsecure=${secure}\nlanguage=${lang}\nupnp=${upnp}\nnpcstream=${npcs}\npriority=${priority}\nslowliquids=${sl}\nworldrollbackstokeep=${backups}",
+        "text": "world=../${wp}/${world}.wld\nautocreate=${size}\nseed=${seed}\nworldname=${world}\ndifficulty=${difficulty}\nmaxplayers=${players}\nport=${port}\npassword=${password}\nmotd=${motd}\nworldpath=../${wp}\nbanlist=../${ban}\nsecure=${secure}\nlanguage=${lang}\nupnp=1\nnpcstream=${npcs}\npriority=3\nslowliquids=${sl}\nworldrollbackstokeep=${backups}",
         "type": "writefile"
       }
     ]
@@ -211,7 +294,9 @@
     "type": "host"
   },
   "requirements": {
-    "binaries": [ "tar" ],
+    "binaries": [
+      "tar"
+    ],
     "os": "linux",
     "arch": "amd64"
   }

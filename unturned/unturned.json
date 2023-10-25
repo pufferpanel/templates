@@ -28,7 +28,8 @@
           "value": "Yukon",
           "display": "Yukon"
         }
-      ]
+      ],
+      "userEdit": true
     },
     "maxplayers": {
       "desc": "Slots",
@@ -55,20 +56,23 @@
           "value": "hard",
           "display": "Hard"
         }
-      ]
+      ],
+      "userEdit": true
     },
     "name": {
       "desc": "Server name",
       "display": "Name",
       "required": true,
       "value": "Unturned Server",
-      "type": "string"
+      "type": "string",
+      "userEdit": true
     },
     "password": {
       "desc": "Password users enter to join server",
       "display": "Server password",
       "value": "",
-      "type": "string"
+      "type": "string",
+      "userEdit": true
     },
     "perspective": {
       "desc": "Perspective of the server",
@@ -92,7 +96,8 @@
           "value": "Vehicle",
           "display": "Vehicle"
         }
-      ]
+      ],
+      "userEdit": true
     },
     "port": {
       "desc": "Server port.",
@@ -105,37 +110,48 @@
       "desc": "Server name under Servers folder",
       "display": "Server",
       "value": "Default",
-      "type": "string"
+      "type": "string",
+      "userEdit": true
     },
     "steam_id": {
       "desc": "Server owner STEAMID_64",
       "display": "STEAMID_64",
       "required": true,
       "value": "",
-      "type": "string"
+      "type": "string",
+      "userEdit": true
     },
     "welcome": {
       "desc": "Welcome",
       "display": "Server welcome message",
       "required": true,
       "value": "Welcome to the server!",
-      "type": "string"
+      "type": "string",
+      "userEdit": true
     }
   },
   "install": [
     {
+      "if": "env == 'host'",
       "type": "steamgamedl",
       "appId": "1110390"
     },
     {
-      "type": "mkdir",
-      "target": "Servers/${server}/Server"
+      "if": "env == 'docker'",
+      "type": "command",
+      "commands": [
+        "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 1110390 validate +exit"
+      ]
     },
     {
       "type": "command",
       "commands": [
         "chmod +x ServerHelper.sh"
       ]
+    },
+    {
+      "type": "mkdir",
+      "target": "Servers/${server}/Server"
     },
     {
       "type": "writefile",
@@ -150,6 +166,15 @@
   "environment": {
     "type": "host"
   },
+  "supportedEnvironments": [
+    {
+      "type": "host"
+    },
+    {
+      "type": "docker",
+      "image": "steamcmd/steamcmd"
+    }
+  ],
   "requirements": {
     "os": "linux",
     "arch": "amd64"

@@ -37,14 +37,16 @@
       "required": false,
       "desc": "The absolute path to your license file.",
       "display": "License Path",
-      "internal": false
+      "internal": false,
+      "userEdit": true
     },
     "version": {
-      "value": "3.13.6",
+      "value": "3.13.7",
       "required": true,
       "desc": "What version of Teamspeak do you want to use?",
       "display": "Version",
-      "internal": false
+      "internal": false,
+      "userEdit": true
     },
     "eula": {
       "value": "0",
@@ -86,7 +88,9 @@
     "type": "host"
   },
   "requirements": {
-    "binaries": [ "tar" ],
+    "binaries": [
+      "tar"
+    ],
     "os": "linux",
     "arch": "amd64"
   }
