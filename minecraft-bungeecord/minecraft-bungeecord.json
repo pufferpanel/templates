@@ -36,7 +36,7 @@
   },
   "install": [
     {
-      "if": "!in_path('java')",
+      "if": "env == 'host'",
       "type": "javadl",
       "version": "17"
     },
@@ -53,8 +53,8 @@
   "run": {
     "command": [
       {
-        "command": "java17 -Xmx${memory}M -Xms${memory}M -Dlog4j2.formatMsgNoLookups=true -jar BungeeCord.jar",
-        "if": "in_path('java17')"
+        "if": "env == 'host'",
+        "command": "java17 -Xmx${memory}M -Xms${memory}M -Dlog4j2.formatMsgNoLookups=true -jar BungeeCord.jar"
       },
       {
         "command": "java -Xmx${memory}M -Xms${memory}M -Dlog4j2.formatMsgNoLookups=true -jar BungeeCord.jar"

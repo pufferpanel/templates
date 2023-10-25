@@ -37,7 +37,8 @@
       "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
       "display": "MOTD message of the day",
       "required": true,
-      "value": "A Velocity proxy &9hosted on PufferPanel"
+      "value": "A Velocity proxy &9hosted on PufferPanel",
+      "userEdit": true
     },
     "port": {
       "type": "integer",
@@ -49,6 +50,7 @@
   },
   "install": [
     {
+      "if": "env == 'host'",
       "type": "javadl",
       "version": "17"
     },
@@ -65,10 +67,27 @@
     }
   ],
   "run": {
-    "command": "java17 -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar velocity.jar",
+    "command": [
+      {
+        "if": "env == 'host'",
+        "command": "java17 -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar velocity.jar"
+      },
+      {
+        "command": "java -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar velocity.jar"
+      }
+    ],
     "stop": "shutdown"
   },
   "environment": {
     "type": "host"
-  }
+  },
+  "supportedEnvironments": [
+    {
+      "type": "host"
+    },
+    {
+      "type": "docker",
+      "image": "eclipse-temurin:17"
+    }
+  ]
 }

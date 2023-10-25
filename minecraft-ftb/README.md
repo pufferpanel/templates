@@ -6,4 +6,3 @@ A modpack id and version id is needed to download the installer. It can be found
 
 E.g. FTB Revelation 3.3.0 has the modpack id 35 and version id 143 
 
-Please see the [original forum post](https://community.pufferpanel.com/topic/671/mooded-minecraft-feed-the-beast) contributed by themaxaut and descention for more information (regarding the older version of the template and install process).

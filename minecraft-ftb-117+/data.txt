@@ -1,3 +1,0 @@
-modpack_id=100
-modpack_version=2298
-version=1.18.2-40.1.84
