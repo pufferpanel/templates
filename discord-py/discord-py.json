@@ -1,21 +1,21 @@
 {
-  "display": "discord.py Bot",
   "type": "discord",
+  "display": "discord.py Bot",
   "data": {
     "bot-py-file": {
       "type": "string",
-      "desc": "The main bot file.",
-      "display": "Main bot file",
-      "required": true,
       "value": "bot.py",
+      "display": "Main bot file",
+      "desc": "The main bot file.",
+      "required": true,
       "userEdit": true
     },
     "req-txt-file": {
       "type": "string",
-      "desc": "The file used to install the python libs.",
-      "display": "Requirements txt file",
-      "required": true,
       "value": "requirements.txt",
+      "display": "Requirements txt file",
+      "desc": "The file used to install the python libs.",
+      "required": true,
       "userEdit": true
     }
   },
@@ -29,7 +29,9 @@
   ],
   "run": {
     "command": "python3 ${bot-py-file}",
-    "stop": "stop"
+    "stop": "stop",
+    "stdin": {},
+    "stdout": {}
   },
   "environment": {
     "type": "host"
@@ -39,9 +41,9 @@
       "type": "host"
     },
     {
+      "type": "docker",
       "image": "python",
-      "networkMode": "host",
-      "type": "docker"
+      "networkMode": "host"
     }
   ],
   "requirements": {

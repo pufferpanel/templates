@@ -2,116 +2,110 @@
   "type": "srcds",
   "display": "Counter Strike: Global Offensive",
   "data": {
-    "map": {
-      "value": "de_dust2",
-      "required": true,
-      "desc": "Map to load by default",
-      "display": "Map",
-      "internal": false,
-      "userEdit": true
-    },
-    "maxplayers": {
-      "value": "20",
-      "required": true,
-      "desc": "Max players allowed on server",
-      "display": "Max Players",
-      "internal": false,
-      "type": "integer",
-      "userEdit": true
-    },
-    "gslt": {
-      "value": "",
-      "required": true,
-      "desc": "It is required to register your server, otherwise it can only be played on LAN. Visit http://steamcommunity.com/dev/managegameservers to get a token",
-      "display": "GSLT Token",
-      "internal": false,
-      "userEdit": true
-    },
-    "ip": {
-      "value": "0.0.0.0",
-      "required": true,
-      "desc": "What IP to bind the server to",
-      "display": "IP",
-      "internal": false
-    },
-    "port": {
-      "value": "27015",
-      "required": true,
-      "desc": "What port to bind the server to",
-      "display": "Port",
-      "internal": false,
-      "type": "integer"
-    },
     "clientport": {
+      "type": "integer",
       "value": "27016",
-      "required": true,
-      "desc": "What port to bind the clientport to",
       "display": "Client Port",
-      "internal": false,
-      "type": "integer"
-    },
-    "tvport": {
-      "value": "27017",
-      "required": true,
-      "desc": "What port to bind the GOTV to",
-      "display": "GOTV Port",
-      "internal": false,
-      "type": "integer"
-    },
-    "tickrate": {
-      "value": "64",
-      "required": true,
-      "desc": "Server tick rate",
-      "display": "Tickrate",
-      "internal": false,
-      "type": "integer",
-      "userEdit": true
-    },
-    "mapgroup": {
-      "value": "mg_active",
-      "required": true,
-      "desc": "(Advanced) Map group",
-      "display": "Map group",
-      "internal": false,
-      "type": "integer",
-      "userEdit": true
+      "desc": "What port to bind the clientport to",
+      "required": true
     },
     "gamemode": {
-      "value": "0",
-      "required": true,
-      "desc": "(Advanced) Gamemode",
-      "display": "Gamemode",
-      "internal": false,
       "type": "integer",
+      "value": "0",
+      "display": "Gamemode",
+      "desc": "(Advanced) Gamemode",
+      "required": true,
       "userEdit": true
     },
     "gametype": {
-      "value": "0",
-      "required": true,
-      "desc": "(Advanced) Gametype",
-      "display": "Gametype",
-      "internal": false,
       "type": "integer",
+      "value": "0",
+      "display": "Gametype",
+      "desc": "(Advanced) Gametype",
+      "required": true,
       "userEdit": true
+    },
+    "gslt": {
+      "type": "",
+      "value": "",
+      "display": "GSLT Token",
+      "desc": "It is required to register your server, otherwise it can only be played on LAN. Visit http://steamcommunity.com/dev/managegameservers to get a token",
+      "required": true,
+      "userEdit": true
+    },
+    "ip": {
+      "type": "",
+      "value": "0.0.0.0",
+      "display": "IP",
+      "desc": "What IP to bind the server to",
+      "required": true
+    },
+    "map": {
+      "type": "",
+      "value": "de_dust2",
+      "display": "Map",
+      "desc": "Map to load by default",
+      "required": true,
+      "userEdit": true
+    },
+    "mapgroup": {
+      "type": "integer",
+      "value": "mg_active",
+      "display": "Map group",
+      "desc": "(Advanced) Map group",
+      "required": true,
+      "userEdit": true
+    },
+    "maxplayers": {
+      "type": "integer",
+      "value": "20",
+      "display": "Max Players",
+      "desc": "Max players allowed on server",
+      "required": true,
+      "userEdit": true
+    },
+    "port": {
+      "type": "integer",
+      "value": "27015",
+      "display": "Port",
+      "desc": "What port to bind the server to",
+      "required": true
+    },
+    "tickrate": {
+      "type": "integer",
+      "value": "64",
+      "display": "Tickrate",
+      "desc": "Server tick rate",
+      "required": true,
+      "userEdit": true
+    },
+    "tvport": {
+      "type": "integer",
+      "value": "27017",
+      "display": "GOTV Port",
+      "desc": "What port to bind the GOTV to",
+      "required": true
     }
   },
   "install": [
     {
+      "if": "env == 'host'",
       "type": "steamgamedl",
-      "appId": "740",
-      "if": "env == 'host'"
+      "appId": "740"
     },
     {
+      "if": "env == 'docker'",
       "type": "command",
       "commands": [
         "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 740 +quit"
-      ],
-      "if": "env == 'docker'"
+      ]
     }
   ],
   "run": {
     "command": "./srcds_run -game csgo -usercon -strictportbind -ip ${ip} -port ${port} +clientport ${clientport} +tv_port ${tvport} +map ${map} -maxplayers_override ${maxplayers} +sv_setsteamaccount ${gslt} -tickrate ${tickrate} +mapgroup ${mapgroup} +game_mode ${gamemode} +game_type ${gametype} -net_port_try 1 -norestart",
-    "stop": "exit"
+    "stop": "exit",
+    "stdin": {},
+    "stdout": {}
   },
   "environment": {
     "type": "host"

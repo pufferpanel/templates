@@ -2,72 +2,12 @@
   "type": "srcds",
   "display": "ARK: Survival Evolved",
   "data": {
-    "sessionname": {
-      "value": "My ARK Server",
-      "required": true,
-      "desc": "Name of server",
-      "display": "Session Name",
-      "internal": false,
-      "userEdit": true
-    },
-    "serveradminpassword": {
-      "value": "password",
-      "required": true,
-      "desc": "Password for server admin",
-      "display": "Server Admin Password",
-      "internal": false,
-      "userEdit": true
-    },
-    "ip": {
-      "value": "0.0.0.0",
-      "required": true,
-      "desc": "What IP to bind the server to",
-      "display": "IP",
-      "internal": false,
-      "userEdit": true
-    },
-    "port": {
-      "value": "7777",
-      "required": true,
-      "desc": "What port to bind the server to",
-      "display": "Port",
-      "internal": false,
-      "type": "integer",
-      "userEdit": true
-    },
-    "queryport": {
-      "value": "27015",
-      "required": true,
-      "desc": "What port to listen for queries on",
-      "display": "Query Port",
-      "internal": false,
-      "type": "integer",
-      "userEdit": true
-    },
-    "maxplayers": {
-      "value": "20",
-      "required": true,
-      "desc": "Maximum number of players",
-      "display": "Max Players",
-      "internal": false,
-      "type": "integer",
-      "userEdit": true
-    },
-    "mapname": {
-      "desc": "Name of the map",
-      "display": "Map Name",
-      "internal": false,
-      "required": true,
-      "value": "TheIsland",
-      "userEdit": true
-    },
     "exclusive": {
-      "desc": "Set to yes to only permit friends, leave no for public",
-      "display": "Exclusive?",
-      "internal": false,
-      "required": false,
-      "value": "",
       "type": "option",
+      "value": "",
+      "display": "Exclusive?",
+      "desc": "Set to yes to only permit friends, leave no for public",
+      "userEdit": true,
       "options": [
         {
           "value": "",
@@ -77,22 +17,77 @@
           "value": "-exclusivejoin",
           "display": "Yes"
         }
-      ],
+      ]
+    },
+    "ip": {
+      "type": "",
+      "value": "0.0.0.0",
+      "display": "IP",
+      "desc": "What IP to bind the server to",
+      "required": true,
+      "userEdit": true
+    },
+    "mapname": {
+      "type": "",
+      "value": "TheIsland",
+      "display": "Map Name",
+      "desc": "Name of the map",
+      "required": true,
+      "userEdit": true
+    },
+    "maxplayers": {
+      "type": "integer",
+      "value": "20",
+      "display": "Max Players",
+      "desc": "Maximum number of players",
+      "required": true,
+      "userEdit": true
+    },
+    "port": {
+      "type": "integer",
+      "value": "7777",
+      "display": "Port",
+      "desc": "What port to bind the server to",
+      "required": true,
+      "userEdit": true
+    },
+    "queryport": {
+      "type": "integer",
+      "value": "27015",
+      "display": "Query Port",
+      "desc": "What port to listen for queries on",
+      "required": true,
+      "userEdit": true
+    },
+    "serveradminpassword": {
+      "type": "",
+      "value": "password",
+      "display": "Server Admin Password",
+      "desc": "Password for server admin",
+      "required": true,
+      "userEdit": true
+    },
+    "sessionname": {
+      "type": "",
+      "value": "My ARK Server",
+      "display": "Session Name",
+      "desc": "Name of server",
+      "required": true,
       "userEdit": true
     }
   },
   "install": [
     {
+      "if": "env == 'host'",
       "type": "steamgamedl",
-      "appId": "376030",
-      "if": "env == 'host'"
+      "appId": "376030"
     },
     {
+      "if": "env == 'docker'",
       "type": "command",
       "commands": [
         "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 376030 +quit"
-      ],
-      "if": "env == 'docker'"
+      ]
     },
     {
       "type": "command",
@@ -103,7 +98,9 @@
   ],
   "run": {
     "command": "./ShooterGame/Binaries/Linux/ShooterGameServer ${mapname}?listen?SessionName=${sessionname}?ServerAdminPassword=${serveradminpassword}?MultiHome=${ip}?Port=${port}?QueryPort=${queryport}?MaxPlayers=${maxplayers} -server ${exclusive}",
-    "stopCode": 2
+    "stopCode": 2,
+    "stdin": {},
+    "stdout": {}
   },
   "environment": {
     "type": "host"

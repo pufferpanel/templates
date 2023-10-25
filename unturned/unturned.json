@@ -3,10 +3,11 @@
   "display": "Unturned",
   "data": {
     "map": {
-      "desc": "Server map.",
-      "display": "Map",
-      "value": "PEI",
       "type": "option",
+      "value": "PEI",
+      "display": "Map",
+      "desc": "Server map.",
+      "userEdit": true,
       "options": [
         {
           "value": "PEI",
@@ -28,21 +29,21 @@
           "value": "Yukon",
           "display": "Yukon"
         }
-      ],
-      "userEdit": true
+      ]
     },
     "maxplayers": {
-      "desc": "Slots",
-      "display": "Server slots",
+      "type": "integer",
       "value": "24",
-      "type": "integer"
+      "display": "Server slots",
+      "desc": "Slots"
     },
     "mode": {
-      "desc": "Game difficulty",
-      "display": "Mode",
-      "required": true,
-      "value": "normal",
       "type": "option",
+      "value": "normal",
+      "display": "Mode",
+      "desc": "Game difficulty",
+      "required": true,
+      "userEdit": true,
       "options": [
         {
           "value": "easy",
@@ -56,29 +57,29 @@
           "value": "hard",
           "display": "Hard"
         }
-      ],
-      "userEdit": true
+      ]
     },
     "name": {
-      "desc": "Server name",
-      "display": "Name",
-      "required": true,
-      "value": "Unturned Server",
       "type": "string",
+      "value": "Unturned Server",
+      "display": "Name",
+      "desc": "Server name",
+      "required": true,
       "userEdit": true
     },
     "password": {
-      "desc": "Password users enter to join server",
-      "display": "Server password",
-      "value": "",
       "type": "string",
+      "value": "",
+      "display": "Server password",
+      "desc": "Password users enter to join server",
       "userEdit": true
     },
     "perspective": {
-      "desc": "Perspective of the server",
-      "display": "Perspective",
-      "value": "",
       "type": "option",
+      "value": "",
+      "display": "Perspective",
+      "desc": "Perspective of the server",
+      "userEdit": true,
       "options": [
         {
           "value": "First",
@@ -96,37 +97,36 @@
           "value": "Vehicle",
           "display": "Vehicle"
         }
-      ],
-      "userEdit": true
+      ]
     },
     "port": {
-      "desc": "Server port.",
-      "display": "Port",
-      "required": true,
+      "type": "integer",
       "value": "27015",
-      "type": "integer"
+      "display": "Port",
+      "desc": "Server port.",
+      "required": true
     },
     "server": {
-      "desc": "Server name under Servers folder",
-      "display": "Server",
-      "value": "Default",
       "type": "string",
+      "value": "Default",
+      "display": "Server",
+      "desc": "Server name under Servers folder",
       "userEdit": true
     },
     "steam_id": {
-      "desc": "Server owner STEAMID_64",
-      "display": "STEAMID_64",
-      "required": true,
-      "value": "",
       "type": "string",
+      "value": "",
+      "display": "STEAMID_64",
+      "desc": "Server owner STEAMID_64",
+      "required": true,
       "userEdit": true
     },
     "welcome": {
-      "desc": "Welcome",
-      "display": "Server welcome message",
-      "required": true,
-      "value": "Welcome to the server!",
       "type": "string",
+      "value": "Welcome to the server!",
+      "display": "Server welcome message",
+      "desc": "Welcome",
+      "required": true,
       "userEdit": true
     }
   },
@@ -155,13 +155,15 @@
     },
     {
       "type": "writefile",
-      "target": "/Servers/${server}/Server/Commands.dat",
-      "text": "Name ${name}\nMap ${map}\nPort ${port}\nMaxPlayers ${maxplayers}\nMode ${mode}\nOwner ${steam_id}\nWelcome ${welcome}\nPassword ${password}\nPerspective ${perspective}"
+      "text": "Name ${name}\nMap ${map}\nPort ${port}\nMaxPlayers ${maxplayers}\nMode ${mode}\nOwner ${steam_id}\nWelcome ${welcome}\nPassword ${password}\nPerspective ${perspective}",
+      "target": "/Servers/${server}/Server/Commands.dat"
     }
   ],
   "run": {
     "command": "./ServerHelper.sh",
-    "stop": "shutdown"
+    "stop": "shutdown",
+    "stdin": {},
+    "stdout": {}
   },
   "environment": {
     "type": "host"

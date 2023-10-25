@@ -3,137 +3,137 @@
   "display": "SA-MP",
   "data": {
     "Language": {
-      "desc": "language",
-      "display": "language",
+      "type": "string",
       "value": "English",
-      "userEdit": true,
-      "type": "string"
+      "display": "language",
+      "desc": "language",
+      "userEdit": true
     },
     "announce": {
-      "desc": "announce",
-      "display": "announce",
+      "type": "string",
       "value": "0",
-      "userEdit": true,
-      "type": "string"
+      "display": "announce",
+      "desc": "announce",
+      "userEdit": true
     },
     "chatlogging": {
-      "desc": "chatogging",
-      "display": "chatlogging",
+      "type": "string",
       "value": "0",
-      "userEdit": true,
-      "type": "string"
+      "display": "chatlogging",
+      "desc": "chatogging",
+      "userEdit": true
     },
     "filterscripts": {
-      "desc": "filterscripts",
-      "display": "filterscripts",
+      "type": "string",
       "value": "base gl_actions gl_property gl_realtime",
-      "userEdit": true,
-      "type": "string"
+      "display": "filterscripts",
+      "desc": "filterscripts",
+      "userEdit": true
     },
     "gamemode0": {
-      "desc": "gamemode0",
-      "display": "gamemode0",
+      "type": "string",
       "value": "grandlarc 1",
-      "userEdit": true,
-      "type": "string"
+      "display": "gamemode0",
+      "desc": "gamemode0",
+      "userEdit": true
     },
     "hostname": {
-      "desc": "hostname",
-      "display": "hostname",
+      "type": "string",
       "value": "SA-MP 0.3 Server",
-      "userEdit": true,
-      "type": "string"
+      "display": "hostname",
+      "desc": "hostname",
+      "userEdit": true
     },
     "incar_rate": {
-      "desc": "incar_rate",
-      "display": "incar_rate",
+      "type": "string",
       "value": "40",
-      "userEdit": true,
-      "type": "string"
+      "display": "incar_rate",
+      "desc": "incar_rate",
+      "userEdit": true
     },
     "lanmode": {
-      "desc": "lanmode",
-      "display": "lanmode",
+      "type": "integer",
       "value": "0",
-      "userEdit": true,
-      "type": "integer"
+      "display": "lanmode",
+      "desc": "lanmode",
+      "userEdit": true
     },
     "maxnpc": {
-      "desc": "maxpnc",
-      "display": "maxnpc",
+      "type": "string",
       "value": "0",
-      "userEdit": true,
-      "type": "string"
+      "display": "maxnpc",
+      "desc": "maxpnc",
+      "userEdit": true
     },
     "maxplayers": {
-      "desc": "maxplayers",
-      "display": "maxplayers",
+      "type": "string",
       "value": "50",
-      "userEdit": true,
-      "type": "string"
+      "display": "maxplayers",
+      "desc": "maxplayers",
+      "userEdit": true
     },
     "onfoot_rate": {
-      "desc": "onfoot_rate",
-      "display": "onfoot_rate",
+      "type": "string",
       "value": "40",
-      "userEdit": true,
-      "type": "string"
+      "display": "onfoot_rate",
+      "desc": "onfoot_rate",
+      "userEdit": true
     },
     "plugins": {
-      "desc": "plugins",
-      "display": "plugins",
+      "type": "string",
       "value": "",
-      "userEdit": true,
-      "type": "string"
+      "display": "plugins",
+      "desc": "plugins",
+      "userEdit": true
     },
     "port": {
-      "desc": "port",
-      "display": "port",
+      "type": "string",
       "value": "7777",
-      "userEdit": true,
-      "type": "string"
+      "display": "port",
+      "desc": "port",
+      "userEdit": true
     },
     "query": {
-      "desc": "query",
-      "display": "query",
+      "type": "string",
       "value": "1",
-      "userEdit": true,
-      "type": "string"
+      "display": "query",
+      "desc": "query",
+      "userEdit": true
     },
     "rcon_password": {
-      "desc": "rcon_password",
-      "display": "rcon_password",
+      "type": "string",
       "value": "changeme",
-      "userEdit": true,
-      "type": "string"
+      "display": "rcon_password",
+      "desc": "rcon_password",
+      "userEdit": true
     },
     "stream_distance": {
-      "desc": "stream_distance",
-      "display": "stream_distance",
+      "type": "string",
       "value": "300.0",
-      "userEdit": true,
-      "type": "string"
+      "display": "stream_distance",
+      "desc": "stream_distance",
+      "userEdit": true
     },
     "stream_rate": {
-      "desc": "stream_rate",
-      "display": "stream_rate",
+      "type": "string",
       "value": "100.0",
-      "userEdit": true,
-      "type": "string"
+      "display": "stream_rate",
+      "desc": "stream_rate",
+      "userEdit": true
     },
     "weapon_rate": {
-      "desc": "weapon_rate",
-      "display": "weapon_rate",
+      "type": "string",
       "value": "40",
-      "userEdit": true,
-      "type": "string"
+      "display": "weapon_rate",
+      "desc": "weapon_rate",
+      "userEdit": true
     },
     "weburl": {
-      "desc": "weburl",
-      "display": "weburl",
+      "type": "string",
       "value": "www.sa-mp.com",
-      "userEdit": true,
-      "type": "string"
+      "display": "weburl",
+      "desc": "weburl",
+      "userEdit": true
     }
   },
   "install": [
@@ -158,7 +158,9 @@
   ],
   "run": {
     "command": "./samp03svr",
-    "stopCode": 2
+    "stopCode": 2,
+    "stdin": {},
+    "stdout": {}
   },
   "environment": {
     "type": "host"

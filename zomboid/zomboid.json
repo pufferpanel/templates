@@ -4,41 +4,41 @@
   "data": {
     "adminPassword": {
       "type": "string",
-      "desc": "Password for admin account",
-      "display": "Admin Password",
-      "required": true,
       "value": "password",
-      "userEdit": true
-    },
-    "port": {
-      "type": "integer",
-      "desc": "Base port (UDP) for server. Additional ports (TCP) beyond this will need to be opened. 1 per user.",
-      "display": "port",
+      "display": "Admin Password",
+      "desc": "Password for admin account",
       "required": true,
-      "value": "16261",
-      "userEdit": true
-    },
-    "serverName": {
-      "type": "string",
-      "desc": "Name of the PZ server",
-      "display": "serverName",
-      "value": "pufferserver",
-      "userEdit": true
-    },
-    "steamVAC": {
-      "type": "boolean",
-      "desc": "Enable or disable Steam VAC",
-      "display": "steamVAC",
-      "required": true,
-      "value": "true",
       "userEdit": true
     },
     "memory": {
       "type": "integer",
-      "desc": "Memory to allocate",
-      "display": "Memory (MB)",
-      "required": true,
       "value": "4096",
+      "display": "Memory (MB)",
+      "desc": "Memory to allocate",
+      "required": true,
+      "userEdit": true
+    },
+    "port": {
+      "type": "integer",
+      "value": "16261",
+      "display": "port",
+      "desc": "Base port (UDP) for server. Additional ports (TCP) beyond this will need to be opened. 1 per user.",
+      "required": true,
+      "userEdit": true
+    },
+    "serverName": {
+      "type": "string",
+      "value": "pufferserver",
+      "display": "serverName",
+      "desc": "Name of the PZ server",
+      "userEdit": true
+    },
+    "steamVAC": {
+      "type": "boolean",
+      "value": "true",
+      "display": "steamVAC",
+      "desc": "Enable or disable Steam VAC",
+      "required": true,
       "userEdit": true
     }
   },
@@ -56,9 +56,9 @@
       ]
     },
     {
+      "type": "writefile",
       "target": "ProjectZomboid64.json",
-      "text": "{\n\t\"mainClass\": \"zombie/network/GameServer\",\n\t\"classpath\": [\n\t\t\"java/.\",\n\t\t\"java/istack-commons-runtime.jar\",\n\t\t\"java/jassimp.jar\",\n\t\t\"java/javacord-2.0.17-shaded.jar\",\n\t\t\"java/javax.activation-api.jar\",\n\t\t\"java/jaxb-api.jar\",\n\t\t\"java/jaxb-runtime.jar\",\n\t\t\"java/lwjgl.jar\",\n\t\t\"java/lwjgl-natives-linux.jar\",\n\t\t\"java/lwjgl-glfw.jar\",\n\t\t\"java/lwjgl-glfw-natives-linux.jar\",\n\t\t\"java/lwjgl-jemalloc.jar\",\n\t\t\"java/lwjgl-jemalloc-natives-linux.jar\",\n\t\t\"java/lwjgl-opengl.jar\",\n\t\t\"java/lwjgl-opengl-natives-linux.jar\",\n\t\t\"java/lwjgl_util.jar\",\n\t\t\"java/sqlite-jdbc-3.27.2.1.jar\",\n\t\t\"java/trove-3.0.3.jar\",\n\t\t\"java/commons-compress-1.18.jar\",\n\t\t\"java/uncommons-maths-1.2.3.jar\"\n\t],\n\t\"vmArgs\": [\n\t\t\"-Djava.awt.headless=true\",\n\t\t\"-Xmx${memory}M\",\n\t\t\"-Dzomboid.steam=1\",\n\t\t\"-Dzomboid.znetlog=1\",\n\t\t\"-Djava.library.path=linux64/:natives/\",\n        \"-Duser.home=./\",\n\t\t\"-Djava.security.egd=file:/dev/urandom\",\n\t\t\"-XX:+UseZGC\",\n\t\t\"-XX:-OmitStackTraceInFastThrow\"\n\t]\n}",
-      "type": "writefile"
+      "text": "{\n\t\"mainClass\": \"zombie/network/GameServer\",\n\t\"classpath\": [\n\t\t\"java/.\",\n\t\t\"java/istack-commons-runtime.jar\",\n\t\t\"java/jassimp.jar\",\n\t\t\"java/javacord-2.0.17-shaded.jar\",\n\t\t\"java/javax.activation-api.jar\",\n\t\t\"java/jaxb-api.jar\",\n\t\t\"java/jaxb-runtime.jar\",\n\t\t\"java/lwjgl.jar\",\n\t\t\"java/lwjgl-natives-linux.jar\",\n\t\t\"java/lwjgl-glfw.jar\",\n\t\t\"java/lwjgl-glfw-natives-linux.jar\",\n\t\t\"java/lwjgl-jemalloc.jar\",\n\t\t\"java/lwjgl-jemalloc-natives-linux.jar\",\n\t\t\"java/lwjgl-opengl.jar\",\n\t\t\"java/lwjgl-opengl-natives-linux.jar\",\n\t\t\"java/lwjgl_util.jar\",\n\t\t\"java/sqlite-jdbc-3.27.2.1.jar\",\n\t\t\"java/trove-3.0.3.jar\",\n\t\t\"java/commons-compress-1.18.jar\",\n\t\t\"java/uncommons-maths-1.2.3.jar\"\n\t],\n\t\"vmArgs\": [\n\t\t\"-Djava.awt.headless=true\",\n\t\t\"-Xmx${memory}M\",\n\t\t\"-Dzomboid.steam=1\",\n\t\t\"-Dzomboid.znetlog=1\",\n\t\t\"-Djava.library.path=linux64/:natives/\",\n        \"-Duser.home=./\",\n\t\t\"-Djava.security.egd=file:/dev/urandom\",\n\t\t\"-XX:+UseZGC\",\n\t\t\"-XX:-OmitStackTraceInFastThrow\"\n\t]\n}"
     },
     {
       "type": "command",
@@ -69,7 +69,9 @@
   ],
   "run": {
     "command": "./start-server.sh -servername ${serverName} -adminpassword ${adminPassword} -steamvac ${steamVAC} -port ${port}",
-    "stop": "quit"
+    "stop": "quit",
+    "stdin": {},
+    "stdout": {}
   },
   "environment": {
     "type": "host"

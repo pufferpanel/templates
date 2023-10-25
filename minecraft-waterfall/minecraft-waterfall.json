@@ -4,45 +4,45 @@
   "data": {
     "build": {
       "type": "string",
-      "desc": "Build number",
+      "value": "510",
       "display": "build",
-      "required": true,
-      "value": "510"
+      "desc": "Build number",
+      "required": true
     },
     "ip": {
       "type": "string",
-      "desc": "What IP to bind the server to",
+      "value": "0.0.0.0",
       "display": "IP",
-      "required": true,
-      "value": "0.0.0.0"
+      "desc": "What IP to bind the server to",
+      "required": true
     },
     "memory": {
       "type": "integer",
-      "desc": "How much memory in MB to allocate to the Waterfall server. It is generally recommended to allocated 512MB RAM for every 500 players. Please keep in mind that additional plugins may impact the amount needed in your case.",
+      "value": "512",
       "display": "Memory (MB)",
-      "required": true,
-      "value": "512"
+      "desc": "How much memory in MB to allocate to the Waterfall server. It is generally recommended to allocated 512MB RAM for every 500 players. Please keep in mind that additional plugins may impact the amount needed in your case.",
+      "required": true
     },
     "motd": {
       "type": "string",
-      "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
+      "value": "A Waterfall Server \u00269hosted on PufferPanel",
       "display": "MOTD message of the day",
-      "required": true,
-      "value": "A Waterfall Server &9hosted on PufferPanel"
+      "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support \u003ca href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'\u003ecolor and formatting codes\u003c/a\u003e.",
+      "required": true
     },
     "port": {
       "type": "integer",
-      "desc": "What port to bind the server to",
+      "value": "25577",
       "display": "Port",
-      "required": true,
-      "value": "25577"
+      "desc": "What port to bind the server to",
+      "required": true
     },
     "version": {
       "type": "string",
-      "desc": "Version of Minecraft to install. Must be specified as a <strong>minor release number</strong>, e.g. 1.16",
+      "value": "1.19",
       "display": "Version",
-      "required": true,
-      "value": "1.19"
+      "desc": "Version of Minecraft to install. Must be specified as a \u003cstrong\u003eminor release number\u003c/strong\u003e, e.g. 1.16",
+      "required": true
     }
   },
   "install": [
@@ -52,35 +52,38 @@
       "version": "17"
     },
     {
+      "type": "download",
       "files": [
         "https://api.papermc.io/v2/projects/waterfall/versions/${version}/builds/${build}/downloads/waterfall-${version}-${build}.jar"
-      ],
-      "type": "download"
+      ]
     },
     {
+      "type": "move",
       "source": "waterfall-*.jar",
-      "target": "Waterfall.jar",
-      "type": "move"
+      "target": "Waterfall.jar"
     },
     {
+      "type": "writefile",
       "target": "config.yml",
-      "text": "listeners:\n- query_port: ${port}\n  host: ${ip}:${port}\n  motd: '${motd}'\n",
-      "type": "writefile"
+      "text": "listeners:\n- query_port: ${port}\n  host: ${ip}:${port}\n  motd: '${motd}'\n"
     }
   ],
   "run": {
     "command": [
       {
-        "if": "env == 'host'",
-        "command": "java17 -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar Waterfall.jar"
+        "command": "java17 -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar Waterfall.jar",
+        "if": "env == 'host'"
       },
       {
         "command": "java -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar Waterfall.jar"
       }
     ],
-    "stop": "end"
+    "stop": "end",
+    "stdin": {},
+    "stdout": {}
   },
   "environment": {
     "type": "host"
-  }
+  },
+  "requirements": {}
 }

@@ -2,59 +2,56 @@
   "type": "minecraft-java",
   "display": "Minecraft: Java Edition",
   "data": {
-    "memory": {
-      "value": "1024",
+    "eula": {
+      "type": "boolean",
+      "value": "false",
+      "display": "EULA Agreement (true/false)",
+      "desc": "Do you (or the server owner) agree to the \u003ca href='https://account.mojang.com/documents/minecraft_eula'\u003eMinecraft EULA?\u003c/a\u003e",
       "required": true,
-      "desc": "How much memory in MB to allocate to the Java Heap",
-      "display": "Memory (MB)",
-      "type": "integer"
+      "userEdit": true
+    },
+    "forgebuild": {
+      "type": "",
+      "value": "",
+      "display": "Forge Version",
+      "desc": "Version of Forge to install (may be located \u003ca href='http://files.minecraftforge.net/#Downloads'\u003ehere\u003c/a\u003e",
+      "userEdit": true
     },
     "ip": {
+      "type": "",
       "value": "0.0.0.0",
-      "required": true,
+      "display": "IP",
       "desc": "What IP to bind the server to",
-      "display": "IP"
-    },
-    "port": {
-      "value": "25565",
-      "required": true,
-      "desc": "What port to bind the server to",
-      "display": "Port",
-      "type": "integer"
-    },
-    "eula": {
-      "value": "false",
-      "required": true,
-      "desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
-      "display": "EULA Agreement (true/false)",
-      "type": "boolean",
-      "userEdit": true
-    },
-    "version": {
-      "value": "latest",
-      "required": true,
-      "desc": "Version of Minecraft you wish to install (not all software may respect this value",
-      "display": "Version",
-      "userEdit": true
-    },
-    "motd": {
-      "value": "A Minecraft Server\\n\\u00A79 hosted on PufferPanel",
-      "required": true,
-      "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
-      "display": "MOTD message of the day",
-      "userEdit": true
+      "required": true
     },
     "javaversion": {
+      "type": "",
       "value": "17",
-      "required": true,
-      "desc": "Version of Java to use",
       "display": "Java Version",
+      "desc": "Version of Java to use",
+      "required": true,
       "userEdit": true
     },
+    "magmatag": {
+      "type": "string",
+      "value": "68e21495",
+      "display": "Tag",
+      "desc": "The alphanumeric commit ID for the build (See https://git.magmafoundation.org/magmafoundation/Magma-1-18-x/-/releases for the commit ID's for each release))",
+      "userEdit": true
+    },
+    "memory": {
+      "type": "integer",
+      "value": "1024",
+      "display": "Memory (MB)",
+      "desc": "How much memory in MB to allocate to the Java Heap",
+      "required": true
+    },
     "modlauncher": {
+      "type": "",
+      "value": "",
       "display": "Mod/Plugin Launcher",
       "desc": "What mod or plugin launcher should be installed with Minecraft",
-      "value": "",
+      "userEdit": true,
       "options": [
         {
           "value": "",
@@ -104,42 +101,50 @@
           "value": "curseforge",
           "display": "CurseForge Modpack"
         }
-      ],
-      "userEdit": true
-    },
-    "forgebuild": {
-      "value": "",
-      "required": false,
-      "desc": "Version of Forge to install (may be located <a href='http://files.minecraftforge.net/#Downloads'>here</a>",
-      "display": "Forge Version",
-      "userEdit": true
-    },
-    "magmatag": {
-      "type": "string",
-      "desc": "The alphanumeric commit ID for the build (See https://git.magmafoundation.org/magmafoundation/Magma-1-18-x/-/releases for the commit ID's for each release))",
-      "display": "Tag",
-      "required": false,
-      "value": "68e21495",
-      "userEdit": true
+      ]
     },
     "mohistversion": {
       "type": "string",
-      "desc": "Mohist version to install (may be located <a href='https://mohistmc.com/download/' target='_blank'>here</a>).",
-      "display": "Mohist Version",
-      "required": false,
       "value": "latest",
+      "display": "Mohist Version",
+      "desc": "Mohist version to install (may be located \u003ca href='https://mohistmc.com/download/' target='_blank'\u003ehere\u003c/a\u003e).",
+      "userEdit": true
+    },
+    "motd": {
+      "type": "",
+      "value": "A Minecraft Server\\n\\u00A79 hosted on PufferPanel",
+      "display": "MOTD message of the day",
+      "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support \u003ca href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'\u003ecolor and formatting codes\u003c/a\u003e.",
+      "required": true,
       "userEdit": true
     },
     "paperbuild": {
+      "type": "",
       "value": "96",
-      "required": false,
-      "desc": "Build of Paper to install (<a href='https://papermc.io/downloads'>Paper version build</a>). Must be specified as a build number, e.g. 484",
       "display": "build",
+      "desc": "Build of Paper to install (\u003ca href='https://papermc.io/downloads'\u003ePaper version build\u003c/a\u003e). Must be specified as a build number, e.g. 484",
+      "userEdit": true
+    },
+    "port": {
+      "type": "integer",
+      "value": "25565",
+      "display": "Port",
+      "desc": "What port to bind the server to",
+      "required": true
+    },
+    "version": {
+      "type": "",
+      "value": "latest",
+      "display": "Version",
+      "desc": "Version of Minecraft you wish to install (not all software may respect this value",
+      "required": true,
       "userEdit": true
     }
   },
   "groups": [
     {
+      "display": "General",
+      "description": "General settings for all servers",
       "variables": [
         "eula",
         "memory",
@@ -150,45 +155,43 @@
         "javaversion",
         "modlauncher"
       ],
-      "display": "General",
-      "description": "General settings for all servers",
       "order": 1
     },
     {
+      "if": "modlauncher == 'forge'",
+      "display": "Forge",
+      "description": "Settings if using MinecraftForge",
       "variables": [
         "forgebuild"
       ],
-      "display": "Forge",
-      "description": "Settings if using MinecraftForge",
-      "order": 2,
-      "if": "modlauncher == 'forge'"
+      "order": 2
     },
     {
+      "if": "modlauncher == 'magma'",
+      "display": "Magma",
+      "description": "Settings specific if using Magma",
       "variables": [
         "magmatag"
       ],
-      "display": "Magma",
-      "description": "Settings specific if using Magma",
-      "order": 3,
-      "if": "modlauncher == 'magma'"
+      "order": 3
     },
     {
+      "if": "modlauncher == 'mohist'",
+      "display": "Mohist",
+      "description": "Settings specific if using Mohist",
       "variables": [
         "mohistversion"
       ],
-      "display": "Mohist",
-      "description": "Settings specific if using Mohist",
-      "order": 4,
-      "if": "modlauncher == 'mohist'"
+      "order": 4
     },
     {
+      "if": "modlauncher == 'paper'",
+      "display": "Paper",
+      "description": "Settings specific if using Paper",
       "variables": [
         "paperbuild"
       ],
-      "display": "Paper",
-      "description": "Settings specific if using Paper",
-      "order": 5,
-      "if": "modlauncher == 'paper'"
+      "order": 5
     }
   ],
   "install": [
@@ -243,8 +246,8 @@
     {
       "if": "modlauncher == 'magma'",
       "type": "move",
-      "source": "Magma-*.jar",
-      "target": "server.jar"
+      "target": "server.jar",
+      "source": "Magma-*.jar"
     },
     {
       "if": "modlauncher == 'mohist'",
@@ -293,8 +296,8 @@
     {
       "if": "modlauncher == 'quilt'",
       "type": "move",
-      "source": "quilt-server-launch.jar",
-      "target": "server.jar"
+      "target": "server.jar",
+      "source": "quilt-server-launch.jar"
     },
     {
       "if": "modlauncher == 'spigot'",
@@ -311,8 +314,8 @@
     {
       "if": "modlauncher == 'spigot'",
       "type": "move",
-      "source": "spigot-*.jar",
-      "target": "server.jar"
+      "target": "server.jar",
+      "source": "spigot-*.jar"
     },
     {
       "if": "!file_exists(\"server.properties\")",
@@ -322,29 +325,31 @@
     },
     {
       "type": "writefile",
-      "text": "eula=${eula}",
-      "target": "eula.txt"
+      "target": "eula.txt",
+      "text": "eula=${eula}"
     }
   ],
   "run": {
     "command": [
       {
-        "if": "modlauncher == 'forge' && os == 'windows' && file_exists('libraries/net/minecraftforge/forge/' + version + '/win_args.txt')",
-        "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/minecraftforge/forge/${version}/win_args.txt nogui"
+        "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/minecraftforge/forge/${version}/win_args.txt nogui",
+        "if": "modlauncher == 'forge' \u0026\u0026 os == 'windows' \u0026\u0026 file_exists('libraries/net/minecraftforge/forge/' + version + '/win_args.txt')"
       },
       {
-        "if": "modlauncher == 'forge' && file_exists('libraries/net/minecraftforge/forge/' + version+ '/unix_args.txt')",
-        "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/minecraftforge/forge/${version}/unix_args.txt nogui"
+        "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/minecraftforge/forge/${version}/unix_args.txt nogui",
+        "if": "modlauncher == 'forge' \u0026\u0026 file_exists('libraries/net/minecraftforge/forge/' + version+ '/unix_args.txt')"
       },
       {
-        "if": "env == 'host'",
-        "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar server.jar"
+        "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar server.jar",
+        "if": "env == 'host'"
       },
       {
         "command": "java -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar server.jar"
       }
     ],
-    "stop": "stop"
+    "stop": "stop",
+    "stdin": {},
+    "stdout": {}
   },
   "environment": {
     "type": "host"
@@ -357,5 +362,6 @@
       "type": "docker",
       "image": "eclipse-temurin:${javaversion}"
     }
-  ]
+  ],
+  "requirements": {}
 }

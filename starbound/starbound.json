@@ -2,37 +2,35 @@
   "type": "starbound",
   "display": "Starbound",
   "data": {
-    "steamUser": {
-      "value": "",
+    "gameServerPort": {
+      "type": "integer",
+      "value": "21025",
+      "display": "Server Port",
+      "desc": "Server Port",
+      "required": true
+    },
+    "maxPlayers": {
+      "type": "integer",
+      "value": "8",
+      "display": "Maximum Players",
+      "desc": "Maximum Players",
       "required": true,
-      "desc": "Steam Username (required for install)",
-      "display": "Steam Username",
-      "internal": false,
       "userEdit": true
     },
     "serverName": {
+      "type": "",
       "value": "A Starbound Server",
-      "required": true,
-      "desc": "Server Name",
       "display": "Server Name",
-      "internal": false,
+      "desc": "Server Name",
+      "required": true,
       "userEdit": true
     },
-    "gameServerPort": {
-      "value": "21025",
+    "steamUser": {
+      "type": "",
+      "value": "",
+      "display": "Steam Username",
+      "desc": "Steam Username (required for install)",
       "required": true,
-      "desc": "Server Port",
-      "display": "Server Port",
-      "internal": false,
-      "type": "integer"
-    },
-    "maxPlayers": {
-      "value": "8",
-      "required": true,
-      "desc": "Maximum Players",
-      "display": "Maximum Players",
-      "internal": false,
-      "type": "integer",
       "userEdit": true
     }
   },
@@ -56,8 +54,8 @@
     },
     {
       "type": "writefile",
-      "text": "{\n\t\"assetDirectories\" : [\n\t\t\"assets/\",\n\t\t\"mods/\"\n\t],\n\t\"storageDirectory\" : \"storage/\"\n}\n",
-      "target": "sbinit.config"
+      "target": "sbinit.config",
+      "text": "{\n\t\"assetDirectories\" : [\n\t\t\"assets/\",\n\t\t\"mods/\"\n\t],\n\t\"storageDirectory\" : \"storage/\"\n}\n"
     },
     {
       "type": "writefile",
@@ -73,7 +71,9 @@
   ],
   "run": {
     "command": "./starbound_server",
-    "stopCode": 2
+    "stopCode": 2,
+    "stdin": {},
+    "stdout": {}
   },
   "environment": {
     "type": "host"

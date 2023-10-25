@@ -3,19 +3,18 @@
   "display": "PocketMine-MP",
   "data": {
     "ip": {
+      "type": "",
       "value": "0.0.0.0",
-      "required": true,
-      "desc": "What IP to bind the server to",
       "display": "IP",
-      "internal": false
+      "desc": "What IP to bind the server to",
+      "required": true
     },
     "port": {
+      "type": "integer",
       "value": "19132",
-      "required": true,
-      "desc": "What port to bind the server to",
       "display": "Port",
-      "internal": false,
-      "type": "integer"
+      "desc": "What port to bind the server to",
+      "required": true
     }
   },
   "install": [
@@ -32,13 +31,15 @@
     },
     {
       "type": "writefile",
-      "text": "server-ip=${ip}\nserver-port=${port}\n",
-      "target": "server.properties"
+      "target": "server.properties",
+      "text": "server-ip=${ip}\nserver-port=${port}\n"
     }
   ],
   "run": {
     "command": "./start.sh --no-wizard",
-    "stop": "stop"
+    "stop": "stop",
+    "stdin": {},
+    "stdout": {}
   },
   "environment": {
     "type": "host"

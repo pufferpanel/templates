@@ -4,31 +4,31 @@
   "data": {
     "fixed_max_players": {
       "type": "integer",
-      "desc": "Player count cannot go higher than this",
+      "value": "80",
       "display": "Fixed Max Players",
-      "required": true,
-      "value": "80"
+      "desc": "Player count cannot go higher than this",
+      "required": true
     },
     "port": {
       "type": "integer",
-      "desc": "Game server port",
+      "value": "7787",
       "display": "Port",
-      "required": true,
-      "value": "7787"
+      "desc": "Game server port",
+      "required": true
     },
     "query_port": {
       "type": "integer",
-      "desc": "Steam query port",
+      "value": "27165",
       "display": "Steam Query Port",
-      "required": true,
-      "value": "27165"
+      "desc": "Steam query port",
+      "required": true
     },
     "random": {
-      "desc": "Randomize map rotation",
-      "display": "Random",
-      "required": true,
-      "value": "NONE",
       "type": "option",
+      "value": "NONE",
+      "display": "Random",
+      "desc": "Randomize map rotation",
+      "required": true,
       "options": [
         {
           "value": "NONE",
@@ -62,7 +62,6 @@
   "run": {
     "command": "./SquadGameServer.sh Port=${port} QueryPort=${query_port} FIXEDMAXPLAYERS=${fixed_max_players} RANDOM=${random}",
     "stop": "exit",
-    "workingDirectory": "",
     "pre": [
       {
         "if": "env == 'host'",
@@ -77,12 +76,14 @@
         ]
       },
       {
+        "type": "command",
         "commands": [
           "chmod +x ./SquadGameServer.sh"
-        ],
-        "type": "command"
+        ]
       }
-    ]
+    ],
+    "stdin": {},
+    "stdout": {}
   },
   "environment": {
     "type": "host"

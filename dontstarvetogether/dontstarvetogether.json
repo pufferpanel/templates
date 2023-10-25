@@ -1,77 +1,22 @@
 {
-  "display": "Dont Starve Together",
   "type": "srcds",
+  "display": "Dont Starve Together",
   "data": {
-    "ip": {
-      "desc": "What IP to bind the server to",
-      "display": "IP",
-      "required": true,
-      "value": "0.0.0.0",
-      "userEdit": true,
-      "type": "string"
-    },
-    "port": {
-      "desc": "What port to bind the server to",
-      "display": "Port",
-      "required": true,
-      "value": "10889",
-      "userEdit": true,
-      "type": "integer"
-    },
-    "servertoken": {
-      "desc": "Dont Starve Together Server Token (may find here <a href=\"https://accounts.klei.com/account/game/servers?game=DontStarveTogether\" target=\"_blank\">here</a>)",
-      "display": "Server Token",
-      "required": true,
-      "value": "",
-      "userEdit": true,
-      "type": "string"
-    },
-    "servername": {
-      "desc": "Display Name for the Server",
-      "display": "ServerName",
-      "required": true,
-      "value": "DDTServer",
-      "userEdit": true,
-      "type": "string"
-    },
     "description": {
-      "desc": "Description for the Server",
-      "display": "Server Description",
-      "required": true,
+      "type": "string",
       "value": "Dont Starve Together Server",
-      "userEdit": true,
-      "type": "string"
-    },
-    "password": {
-      "desc": "(optional) The password, needed to connect to your Server",
-      "display": "Password",
-      "value": "",
-      "userEdit": true,
-      "type": "string"
-    },
-    "maxplayers": {
-      "desc": "How much Players can connect to your Server",
-      "display": "Max Players",
+      "display": "Server Description",
+      "desc": "Description for the Server",
       "required": true,
-      "value": "5",
-      "userEdit": true,
-      "type": "integer"
-    },
-    "pvp": {
-      "desc": "Should PvP activated on the Server?",
-      "display": "PvP",
-      "required": true,
-      "value": "false",
-      "userEdit": true,
-      "type": "boolean"
+      "userEdit": true
     },
     "gamemode": {
-      "desc": "The Gamemode you want to play in",
-      "display": "Gamemode",
-      "required": true,
-      "value": "",
-      "userEdit": true,
       "type": "option",
+      "value": "",
+      "display": "Gamemode",
+      "desc": "The Gamemode you want to play in",
+      "required": true,
+      "userEdit": true,
       "options": [
         {
           "value": "survival",
@@ -88,12 +33,12 @@
       ]
     },
     "gamestyle": {
-      "desc": "How do you want to play on your Server?",
-      "display": "Gamestyle",
-      "required": true,
-      "value": "",
-      "userEdit": true,
       "type": "option",
+      "value": "",
+      "display": "Gamestyle",
+      "desc": "How do you want to play on your Server?",
+      "required": true,
+      "userEdit": true,
       "options": [
         {
           "value": "social",
@@ -112,20 +57,75 @@
           "display": "Madness"
         }
       ]
+    },
+    "ip": {
+      "type": "string",
+      "value": "0.0.0.0",
+      "display": "IP",
+      "desc": "What IP to bind the server to",
+      "required": true,
+      "userEdit": true
+    },
+    "maxplayers": {
+      "type": "integer",
+      "value": "5",
+      "display": "Max Players",
+      "desc": "How much Players can connect to your Server",
+      "required": true,
+      "userEdit": true
+    },
+    "password": {
+      "type": "string",
+      "value": "",
+      "display": "Password",
+      "desc": "(optional) The password, needed to connect to your Server",
+      "userEdit": true
+    },
+    "port": {
+      "type": "integer",
+      "value": "10889",
+      "display": "Port",
+      "desc": "What port to bind the server to",
+      "required": true,
+      "userEdit": true
+    },
+    "pvp": {
+      "type": "boolean",
+      "value": "false",
+      "display": "PvP",
+      "desc": "Should PvP activated on the Server?",
+      "required": true,
+      "userEdit": true
+    },
+    "servername": {
+      "type": "string",
+      "value": "DDTServer",
+      "display": "ServerName",
+      "desc": "Display Name for the Server",
+      "required": true,
+      "userEdit": true
+    },
+    "servertoken": {
+      "type": "string",
+      "value": "",
+      "display": "Server Token",
+      "desc": "Dont Starve Together Server Token (may find here \u003ca href=\"https://accounts.klei.com/account/game/servers?game=DontStarveTogether\" target=\"_blank\"\u003ehere\u003c/a\u003e)",
+      "required": true,
+      "userEdit": true
     }
   },
   "install": [
     {
+      "if": "env == 'host'",
       "type": "steamgamedl",
-      "appId": "343050",
-      "if": "env == 'host'"
+      "appId": "343050"
     },
     {
+      "if": "env == 'docker'",
       "type": "command",
       "commands": [
         "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 343050 +quit"
-      ],
-      "if": "env == 'docker'"
+      ]
     },
     {
       "type": "mkdir",
@@ -137,8 +137,8 @@
     },
     {
       "type": "writefile",
-      "target": "DoNotStarveTogether/DontStarveTogetherServer/cluster_token.txt",
-      "text": "${servertoken}"
+      "text": "${servertoken}",
+      "target": "DoNotStarveTogether/DontStarveTogetherServer/cluster_token.txt"
     },
     {
       "type": "writefile",
@@ -159,20 +159,13 @@
   ],
   "run": {
     "command": "./start.sh",
-    "stop": "c_shutdown()"
+    "stop": "c_shutdown()",
+    "stdin": {},
+    "stdout": {}
   },
   "environment": {
     "type": "host"
   },
-  "supportEvnrionments": [
-    {
-      "type": "host"
-    },
-    {
-      "type": "docker",
-      "image": "steamcmd/steamcmd"
-    }
-  ],
   "requirements": {
     "os": "linux",
     "arch": "amd64"

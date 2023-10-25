@@ -2,62 +2,57 @@
   "type": "srcds",
   "display": "Counter Strike: Source",
   "data": {
+    "clientport": {
+      "type": "integer",
+      "value": "27005",
+      "display": "Client Port",
+      "desc": "What port to bind the clientport to",
+      "required": true
+    },
+    "ip": {
+      "type": "",
+      "value": "0.0.0.0",
+      "display": "IP",
+      "desc": "What IP to bind the server to",
+      "required": true
+    },
     "map": {
+      "type": "",
       "value": "de_dust2",
-      "required": true,
-      "desc": "Map to load by default",
       "display": "Map",
-      "internal": false,
+      "desc": "Map to load by default",
+      "required": true,
       "userEdit": true
     },
     "maxplayers": {
-      "value": "20",
-      "required": true,
-      "desc": "Max players allowed on server",
-      "display": "Max Players",
-      "internal": false,
       "type": "integer",
-      "userEdit": true
-    },
-    "ip": {
-      "value": "0.0.0.0",
+      "value": "20",
+      "display": "Max Players",
+      "desc": "Max players allowed on server",
       "required": true,
-      "desc": "What IP to bind the server to",
-      "display": "IP",
-      "internal": false
+      "userEdit": true
     },
     "port": {
+      "type": "integer",
       "value": "27015",
-      "required": true,
-      "desc": "What port to bind the server to",
       "display": "Port",
-      "internal": false,
-      "type": "integer"
-    },
-    "clientport": {
-      "value": "27005",
-      "required": true,
-      "desc": "What port to bind the clientport to",
-      "display": "Client Port",
-      "internal": false,
-      "type": "integer"
-    },
-    "tvport": {
-      "value": "27020",
-      "required": true,
-      "desc": "What port to bind the SourceTV to",
-      "display": "SourceTV Port",
-      "internal": false,
-      "type": "integer"
+      "desc": "What port to bind the server to",
+      "required": true
     },
     "tickrate": {
-      "value": "66",
-      "required": true,
-      "desc": "Server tick speed, to use this value you need to download this addon: https://github.com/daemon32/tickrate_enabler/releases/tag/0.5",
-      "display": "Tickrate",
-      "internal": false,
       "type": "integer",
+      "value": "66",
+      "display": "Tickrate",
+      "desc": "Server tick speed, to use this value you need to download this addon: https://github.com/daemon32/tickrate_enabler/releases/tag/0.5",
+      "required": true,
       "userEdit": true
+    },
+    "tvport": {
+      "type": "integer",
+      "value": "27020",
+      "display": "SourceTV Port",
+      "desc": "What port to bind the SourceTV to",
+      "required": true
     }
   },
   "install": [
@@ -76,7 +71,9 @@
   ],
   "run": {
     "command": "./srcds_run -game cstrike -ip ${ip} -port ${port} +clientport ${clientport} +tv_port ${tvport} +map ${map} -maxplayers ${maxplayers} -tickrate ${tickrate} -norestart",
-    "stop": "exit"
+    "stop": "exit",
+    "stdin": {},
+    "stdout": {}
   },
   "environment": {
     "type": "host"

@@ -3,23 +3,23 @@
   "display": "7 Days to Die",
   "install": [
     {
+      "if": "env == 'host'",
       "type": "steamgamedl",
-      "appId": "294420",
-      "if": "env == 'host'"
+      "appId": "294420"
     },
     {
+      "if": "env == 'docker'",
       "type": "command",
       "commands": [
         "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 294420 +quit"
-      ],
-      "if": "env == 'docker'"
+      ]
     },
     {
+      "if": "os != 'windows'",
       "type": "command",
       "commands": [
         "chmod +x 7DaysToDieServer.x86_64"
-      ],
-      "if": "os != 'windows'"
+      ]
     }
   ],
   "run": {
@@ -39,7 +39,8 @@
     "stdin": {
       "type": "telnet",
       "port": "8081"
-    }
+    },
+    "stdout": {}
   },
   "environment": {
     "type": "host"

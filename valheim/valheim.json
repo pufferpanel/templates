@@ -2,43 +2,41 @@
   "type": "valheim",
   "display": "Valheim Dedicated Server",
   "data": {
+    "modpack": {
+      "type": "string",
+      "value": "Modpack to run with",
+      "desc": "Open https://valheim.thunderstore.io/package/denikson/BepInExPack_Valheim/ in new tab and right 'manual download' click \u003e copy link. Paste it here if you wish to use this modpack.",
+      "userEdit": true
+    },
     "name": {
       "type": "string",
-      "desc": "Choose your servername.",
-      "display": "Name",
-      "required": true,
       "value": "Valheim Server",
+      "display": "Name",
+      "desc": "Choose your servername.",
+      "required": true,
       "userEdit": true
     },
     "password": {
       "type": "string",
-      "desc": "Set the server password.",
-      "display": "Password",
-      "required": true,
       "value": "valheim",
+      "display": "Password",
+      "desc": "Set the server password.",
+      "required": true,
       "userEdit": true
     },
     "port": {
       "type": "integer",
-      "desc": "What port to bind the server to.",
+      "value": "2456",
       "display": "Port",
-      "required": true,
-      "value": "2456"
+      "desc": "What port to bind the server to.",
+      "required": true
     },
     "world": {
       "type": "string",
-      "desc": "What worldmap name to use.",
-      "display": "World",
-      "required": true,
       "value": "VHWorld",
-      "userEdit": true
-    },
-    "modpack": {
-      "type": "string",
-      "desc": "Open https://valheim.thunderstore.io/package/denikson/BepInExPack_Valheim/ in new tab and right 'manual download' click > copy link. Paste it here if you wish to use this modpack.",
-      "display": "",
-      "required": false,
-      "value": "Modpack to run with",
+      "display": "World",
+      "desc": "What worldmap name to use.",
+      "required": true,
       "userEdit": true
     }
   },
@@ -73,24 +71,17 @@
     }
   ],
   "run": {
-    "command": "./valheim_server.x86_64 -name ${name} -port ${port} -world ${world} -password ${password} -public 1 > /dev/null &",
+    "command": "./valheim_server.x86_64 -name ${name} -port ${port} -world ${world} -password ${password} -public 1 \u003e /dev/null \u0026",
     "stopCode": 2,
     "environmentVars": {
       "LD_LIBRARY_PATH": "./linux64:$LD_LIBRARY_PATH"
-    }
+    },
+    "stdin": {},
+    "stdout": {}
   },
   "environment": {
     "type": "host"
   },
-  "suppportedEnvironments": [
-    {
-      "type": "host"
-    },
-    {
-      "type": "docker",
-      "image": "steamcmd/steamcmd"
-    }
-  ],
   "requirements": {
     "os": "linux",
     "arch": "amd64"

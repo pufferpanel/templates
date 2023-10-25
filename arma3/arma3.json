@@ -2,51 +2,49 @@
   "type": "srcds",
   "display": "ARMA3",
   "data": {
-    "steam_user": {
-      "value": "anonymous",
-      "required": true,
-      "desc": "Username for Steam login",
-      "display": "Steam User",
-      "internal": false,
+    "config": {
+      "type": "",
+      "value": "config.cfg",
+      "display": "Config File",
+      "desc": "The Config file you want to use. NOTE: config.cfg is created on server installation!",
       "userEdit": true
     },
     "ip": {
+      "type": "",
       "value": "0.0.0.0",
-      "required": true,
-      "desc": "What IP to bind the server to",
       "display": "IP",
-      "internal": false
+      "desc": "What IP to bind the server to",
+      "required": true
     },
     "port": {
+      "type": "integer",
       "value": "2302",
-      "required": true,
-      "desc": "What port to bind the server to",
       "display": "Port",
-      "internal": false,
-      "type": "integer"
+      "desc": "What port to bind the server to",
+      "required": true
     },
-    "config": {
-      "value": "config.cfg",
-      "required": false,
-      "desc": "The Config file you want to use. NOTE: config.cfg is created on server installation!",
-      "display": "Config File",
-      "internal": false,
+    "steam_user": {
+      "type": "",
+      "value": "anonymous",
+      "display": "Steam User",
+      "desc": "Username for Steam login",
+      "required": true,
       "userEdit": true
     }
   },
   "install": [
     {
+      "if": "env == 'host'",
       "type": "steamgamedl",
       "appId": "233780",
-      "username": "${steam_user}",
-      "if": "env == 'host'"
+      "username": "${steam_user}"
     },
     {
+      "if": "env == 'docker'",
       "type": "command",
       "commands": [
         "steamcmd +force_install_dir /pufferpanel +login ${steam_user} +app_update 233780 +quit"
-      ],
-      "if": "env == 'docker'"
+      ]
     },
     {
       "type": "command",
@@ -58,7 +56,9 @@
   ],
   "run": {
     "command": "./arma3server -ip=${ip} -port=${port} -config=${config} -par=parameters.txt",
-    "stopCode": 2
+    "stopCode": 2,
+    "stdin": {},
+    "stdout": {}
   },
   "environment": {
     "type": "host"

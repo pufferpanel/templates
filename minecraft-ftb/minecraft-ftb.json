@@ -3,72 +3,68 @@
   "display": "Minecraft - FTB Modpack",
   "data": {
     "eula": {
+      "type": "boolean",
       "value": "false",
-      "required": true,
-      "desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
       "display": "EULA Agreement",
-      "internal": false,
-      "type": "boolean"
+      "desc": "Do you (or the server owner) agree to the \u003ca href='https://account.mojang.com/documents/minecraft_eula'\u003eMinecraft EULA?\u003c/a\u003e",
+      "required": true
     },
     "ip": {
+      "type": "",
       "value": "0.0.0.0",
-      "required": true,
-      "desc": "What IP to bind the server to",
       "display": "IP",
-      "internal": false
-    },
-    "port": {
-      "value": "25565",
-      "required": true,
-      "desc": "What port to bind the server to",
-      "display": "Port",
-      "internal": false,
-      "type": "integer"
-    },
-    "motd": {
-      "value": "A Minecraft Server hosted on PufferPanel",
-      "required": true,
-      "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
-      "display": "MOTD message of the day",
-      "internal": false
-    },
-    "modpack_id": {
-      "desc": "Get the modpack ID for your preffered modpack in the <a href='https://www.feed-the-beast.com/modpack' target='_blank'>Modpacklist</a>.",
-      "display": "Modpack ID",
-      "required": true,
-      "value": "",
-      "userEdit": true,
-      "type": "integer"
-    },
-    "modpack_version": {
-      "desc": "Version ID from the versions tab of the selected modpack in the <a href='https://www.feed-the-beast.com/modpack' target='_blank'>Modpacklist</a>.",
-      "display": "Modpack version ID",
-      "required": true,
-      "value": "",
-      "userEdit": true,
-      "type": "integer"
-    },
-    "memory": {
-      "value": "4096",
-      "required": true,
-      "desc": "How much memory in MB to allocate to the Java Heap",
-      "display": "Memory (MB)",
-      "internal": false,
-      "type": "integer"
+      "desc": "What IP to bind the server to",
+      "required": true
     },
     "javaversion": {
+      "type": "integer",
       "value": "8",
-      "required": false,
       "display": "Java Version",
-      "desc": "Version of Java to use",
-      "type": "integer"
+      "desc": "Version of Java to use"
+    },
+    "memory": {
+      "type": "integer",
+      "value": "4096",
+      "display": "Memory (MB)",
+      "desc": "How much memory in MB to allocate to the Java Heap",
+      "required": true
+    },
+    "modpack_id": {
+      "type": "integer",
+      "value": "",
+      "display": "Modpack ID",
+      "desc": "Get the modpack ID for your preffered modpack in the \u003ca href='https://www.feed-the-beast.com/modpack' target='_blank'\u003eModpacklist\u003c/a\u003e.",
+      "required": true,
+      "userEdit": true
+    },
+    "modpack_version": {
+      "type": "integer",
+      "value": "",
+      "display": "Modpack version ID",
+      "desc": "Version ID from the versions tab of the selected modpack in the \u003ca href='https://www.feed-the-beast.com/modpack' target='_blank'\u003eModpacklist\u003c/a\u003e.",
+      "required": true,
+      "userEdit": true
+    },
+    "motd": {
+      "type": "",
+      "value": "A Minecraft Server hosted on PufferPanel",
+      "display": "MOTD message of the day",
+      "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support \u003ca href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'\u003ecolor and formatting codes\u003c/a\u003e.",
+      "required": true
+    },
+    "port": {
+      "type": "integer",
+      "value": "25565",
+      "display": "Port",
+      "desc": "What port to bind the server to",
+      "required": true
     },
     "version": {
       "type": "string",
-      "desc": "Version of Forge that is shipped with the modpack with no spaces (may be located <a href='http://files.minecraftforge.net/'>here</a>",
+      "value": "",
       "display": "Version",
-      "required": true,
-      "value": ""
+      "desc": "Version of Forge that is shipped with the modpack with no spaces (may be located \u003ca href='http://files.minecraftforge.net/'\u003ehere\u003c/a\u003e",
+      "required": true
     }
   },
   "install": [
@@ -108,22 +104,24 @@
   "run": {
     "command": [
       {
-        "if": "os == 'windows' && file_exists('libraries/net/minecraftforge/forge/' + version + '/win_args.txt')",
-        "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/minecraftforge/forge/${version}/win_args.txt nogui"
+        "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/minecraftforge/forge/${version}/win_args.txt nogui",
+        "if": "os == 'windows' \u0026\u0026 file_exists('libraries/net/minecraftforge/forge/' + version + '/win_args.txt')"
       },
       {
-        "if": "file_exists('libraries/net/minecraftforge/forge/' + version + '/unix_args.txt')",
-        "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/minecraftforge/forge/${version}/unix_args.txt nogui"
+        "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/minecraftforge/forge/${version}/unix_args.txt nogui",
+        "if": "file_exists('libraries/net/minecraftforge/forge/' + version + '/unix_args.txt')"
       },
       {
-        "if": "env == 'host'",
-        "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar server.jar"
+        "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar server.jar",
+        "if": "env == 'host'"
       },
       {
         "command": "java -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar server.jar"
       }
     ],
-    "stop": "stop"
+    "stop": "stop",
+    "stdin": {},
+    "stdout": {}
   },
   "environment": {
     "type": "host"

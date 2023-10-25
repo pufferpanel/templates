@@ -2,157 +2,145 @@
   "type": "minecraft-bedrock",
   "display": "Minecraft Bedrock",
   "data": {
-    "version": {
-      "value": "1.19.50.02",
-      "required": true,
-      "desc": "Version of the Minecraft Bedrock Server to use",
-      "display": "Bedrock Version",
-      "internal": false,
-      "userEdit": true
-    },
-    "server-name": {
-      "value": "Dedicated Server",
-      "required": true,
-      "desc": "Used as the server name",
-      "display": "Server Name",
-      "internal": false,
-      "userEdit": true
-    },
-    "gamemode": {
-      "value": "survival",
-      "required": true,
-      "desc": "Sets the game mode for new players.",
-      "display": "Gamemode",
-      "internal": false,
-      "userEdit": true
-    },
-    "difficulty": {
-      "value": "easy",
-      "required": true,
-      "desc": "Sets the difficulty of the world.",
-      "display": "Difficulty",
-      "internal": false,
-      "userEdit": true
-    },
     "allow-cheats": {
+      "type": "boolean",
       "value": "false",
-      "required": true,
-      "desc": "If true then cheats like commands can be used.",
       "display": "Allow Cheats",
-      "internal": false,
-      "type": "boolean",
-      "userEdit": true
-    },
-    "max-players": {
-      "value": "10",
+      "desc": "If true then cheats like commands can be used.",
       "required": true,
-      "desc": "The maximum number of players that can play on the server.",
-      "display": "Max Players",
-      "internal": false,
-      "type": "integer",
-      "userEdit": true
-    },
-    "online-mode": {
-      "value": "true",
-      "required": true,
-      "desc": "Whether a player is required to be authenticated to XBox Live",
-      "display": "Online Mode",
-      "internal": false,
-      "type": "boolean",
-      "userEdit": true
-    },
-    "white-list": {
-      "value": "false",
-      "required": true,
-      "desc": "If true then all connected players must be listed in the separate whitelist.json file.",
-      "display": "Whitelist",
-      "internal": false,
-      "type": "boolean",
-      "userEdit": true
-    },
-    "server-port": {
-      "value": "19132",
-      "required": true,
-      "desc": "Which IPv4 port the server should listen to.",
-      "display": "Server Port",
-      "internal": false,
-      "type": "integer"
-    },
-    "server-portv6": {
-      "value": "19133",
-      "required": true,
-      "desc": "Which IPv6 port the server should listen to.",
-      "display": "Server Port (IPv6)",
-      "internal": false,
-      "type": "integer"
-    },
-    "view-distance": {
-      "value": "32",
-      "required": true,
-      "desc": "The maximum allowed view distance in number of chunks.",
-      "display": "View Distance",
-      "internal": false,
-      "type": "integer",
-      "userEdit": true
-    },
-    "tick-distance": {
-      "value": "4",
-      "required": true,
-      "desc": "The world will be ticked this many chunks away from any player.",
-      "display": "Tick Distance",
-      "internal": false,
-      "type": "integer",
-      "userEdit": true
-    },
-    "player-idle-timeout": {
-      "value": "30",
-      "required": true,
-      "desc": "After a player has idled for this many minutes they will be kicked. If set to 0 then players can idle indefinitely.",
-      "display": "Player Idle Timeout",
-      "internal": false,
-      "type": "integer",
-      "userEdit": true
-    },
-    "max-threads": {
-      "value": "0",
-      "required": true,
-      "desc": "Maximum number of threads the server will try to use. If set to 0 or removed then it will use as many as possible.",
-      "display": "Max Threads",
-      "internal": false,
-      "type": "integer",
-      "userEdit": true
-    },
-    "level-name": {
-      "value": "Bedrock level",
-      "required": true,
-      "desc": "Name of the World Folder",
-      "display": "Level Name",
-      "internal": false,
-      "userEdit": true
-    },
-    "level-seed": {
-      "value": "",
-      "required": false,
-      "desc": "Use to randomize the world",
-      "display": "Level Seed",
-      "internal": false,
       "userEdit": true
     },
     "default-player-permission-level": {
+      "type": "",
       "value": "member",
-      "required": true,
-      "desc": "Permission level for new players joining for the first time.",
       "display": "Default Permission Level",
-      "internal": false,
+      "desc": "Permission level for new players joining for the first time.",
+      "required": true,
       "userEdit": true
     },
-    "texturepack-required": {
-      "value": "false",
+    "difficulty": {
+      "type": "",
+      "value": "easy",
+      "display": "Difficulty",
+      "desc": "Sets the difficulty of the world.",
       "required": true,
-      "desc": "Force clients to use texture packs in the current world",
-      "display": "Force Server Texturepack",
-      "internal": false,
+      "userEdit": true
+    },
+    "gamemode": {
+      "type": "",
+      "value": "survival",
+      "display": "Gamemode",
+      "desc": "Sets the game mode for new players.",
+      "required": true,
+      "userEdit": true
+    },
+    "level-name": {
+      "type": "",
+      "value": "Bedrock level",
+      "display": "Level Name",
+      "desc": "Name of the World Folder",
+      "required": true,
+      "userEdit": true
+    },
+    "level-seed": {
+      "type": "",
+      "value": "",
+      "display": "Level Seed",
+      "desc": "Use to randomize the world",
+      "userEdit": true
+    },
+    "max-players": {
+      "type": "integer",
+      "value": "10",
+      "display": "Max Players",
+      "desc": "The maximum number of players that can play on the server.",
+      "required": true,
+      "userEdit": true
+    },
+    "max-threads": {
+      "type": "integer",
+      "value": "0",
+      "display": "Max Threads",
+      "desc": "Maximum number of threads the server will try to use. If set to 0 or removed then it will use as many as possible.",
+      "required": true,
+      "userEdit": true
+    },
+    "online-mode": {
       "type": "boolean",
+      "value": "true",
+      "display": "Online Mode",
+      "desc": "Whether a player is required to be authenticated to XBox Live",
+      "required": true,
+      "userEdit": true
+    },
+    "player-idle-timeout": {
+      "type": "integer",
+      "value": "30",
+      "display": "Player Idle Timeout",
+      "desc": "After a player has idled for this many minutes they will be kicked. If set to 0 then players can idle indefinitely.",
+      "required": true,
+      "userEdit": true
+    },
+    "server-name": {
+      "type": "",
+      "value": "Dedicated Server",
+      "display": "Server Name",
+      "desc": "Used as the server name",
+      "required": true,
+      "userEdit": true
+    },
+    "server-port": {
+      "type": "integer",
+      "value": "19132",
+      "display": "Server Port",
+      "desc": "Which IPv4 port the server should listen to.",
+      "required": true
+    },
+    "server-portv6": {
+      "type": "integer",
+      "value": "19133",
+      "display": "Server Port (IPv6)",
+      "desc": "Which IPv6 port the server should listen to.",
+      "required": true
+    },
+    "texturepack-required": {
+      "type": "boolean",
+      "value": "false",
+      "display": "Force Server Texturepack",
+      "desc": "Force clients to use texture packs in the current world",
+      "required": true,
+      "userEdit": true
+    },
+    "tick-distance": {
+      "type": "integer",
+      "value": "4",
+      "display": "Tick Distance",
+      "desc": "The world will be ticked this many chunks away from any player.",
+      "required": true,
+      "userEdit": true
+    },
+    "version": {
+      "type": "",
+      "value": "1.19.50.02",
+      "display": "Bedrock Version",
+      "desc": "Version of the Minecraft Bedrock Server to use",
+      "required": true,
+      "userEdit": true
+    },
+    "view-distance": {
+      "type": "integer",
+      "value": "32",
+      "display": "View Distance",
+      "desc": "The maximum allowed view distance in number of chunks.",
+      "required": true,
+      "userEdit": true
+    },
+    "white-list": {
+      "type": "boolean",
+      "value": "false",
+      "display": "Whitelist",
+      "desc": "If true then all connected players must be listed in the separate whitelist.json file.",
+      "required": true,
       "userEdit": true
     }
   },
@@ -180,16 +168,18 @@
     "stop": "stop",
     "environmentVars": {
       "LD_LIBRARY_PATH": "."
-    }
+    },
+    "stdin": {},
+    "stdout": {}
   },
   "environment": {
     "type": "host"
   },
   "requirements": {
+    "os": "linux",
+    "arch": "amd64",
     "binaries": [
       "unzip"
-    ],
-    "os": "linux",
-    "arch": "amd64"
+    ]
   }
 }

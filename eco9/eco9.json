@@ -3,68 +3,68 @@
   "display": "Eco 9 Beta Version",
   "data": {
     "ServerName": {
-      "desc": "Server Name",
-      "display": "Name the Server",
-      "required": true,
+      "type": "string",
       "value": "",
-      "userEdit": true,
-      "type": "string"
+      "display": "Name the Server",
+      "desc": "Server Name",
+      "required": true,
+      "userEdit": true
     },
     "ip": {
-      "desc": "What IP to bind the Eco game server to.",
-      "display": "IP",
-      "required": true,
+      "type": "string",
       "value": "0.0.0.0",
-      "type": "string"
+      "display": "IP",
+      "desc": "What IP to bind the Eco game server to.",
+      "required": true
     },
     "maxcon": {
-      "desc": "Maximum Connections to Server (Player Limit, -1 is unlimited)",
-      "display": "Max Connections",
-      "required": true,
+      "type": "integer",
       "value": "-1",
-      "userEdit": true,
-      "type": "integer"
+      "display": "Max Connections",
+      "desc": "Maximum Connections to Server (Player Limit, -1 is unlimited)",
+      "required": true,
+      "userEdit": true
     },
     "password": {
-      "desc": "Password for the Eco Game Server, which will be required for login.",
-      "display": "Password",
+      "type": "string",
       "value": "",
-      "type": "string"
+      "display": "Password",
+      "desc": "Password for the Eco Game Server, which will be required for login."
     },
     "port": {
-      "desc": "What port to bind the server to",
-      "display": "Game-Server Port, port forward for external access",
-      "required": true,
+      "type": "integer",
       "value": "3000",
-      "type": "integer"
+      "display": "Game-Server Port, port forward for external access",
+      "desc": "What port to bind the server to",
+      "required": true
     },
     "upnp": {
-      "desc": "Enable pnp?",
-      "display": "Do you wish to Enable uPnP?",
-      "required": true,
+      "type": "boolean",
       "value": "false",
-      "type": "boolean"
+      "display": "Do you wish to Enable uPnP?",
+      "desc": "Enable pnp?",
+      "required": true
     },
     "webServerPort": {
-      "desc": "What port to bind the Eco web server to.",
-      "display": "Web-Server Port",
-      "required": true,
+      "type": "integer",
       "value": "3001",
-      "type": "integer"
+      "display": "Web-Server Port",
+      "desc": "What port to bind the Eco web server to.",
+      "required": true
     }
   },
   "install": [
     {
+      "if": "env == 'host'",
       "type": "steamgamedl",
-      "appId": "739590",
-      "if": "env == 'host'"
+      "appId": "739590"
     },
     {
+      "if": "env == 'docker'",
       "type": "command",
       "commands": [
         "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 739590 -beta default validate +quit"
-      ],
-      "if": "env == 'docker'"
+      ]
     },
     {
       "type": "writefile",
@@ -80,7 +80,9 @@
   ],
   "run": {
     "command": "./EcoServer",
-    "stopCode": 2
+    "stopCode": 2,
+    "stdin": {},
+    "stdout": {}
   },
   "environment": {
     "type": "host"

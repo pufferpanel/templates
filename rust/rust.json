@@ -2,108 +2,104 @@
   "type": "srcds",
   "display": "Rust",
   "data": {
-    "ip": {
-      "value": "0.0.0.0",
+    "Description": {
+      "type": "",
+      "value": "RUST Public Server Description",
+      "display": "Server Description",
+      "desc": "Server description shown on server browser",
       "required": true,
-      "desc": "What IP to bind the server to",
-      "display": "IP",
-      "internal": false
-    },
-    "port": {
-      "value": "27015",
-      "required": true,
-      "desc": "What port to bind the server to",
-      "display": "Port",
-      "internal": false,
-      "type": "integer"
-    },
-    "ServerLevel": {
-      "value": "Procedural Map",
-      "required": true,
-      "desc": "What map name do you want? If unsure, leave as default.",
-      "display": "Server Level",
-      "internal": false,
-      "userEdit": true
-    },
-    "ServerSeed": {
-      "value": "1234",
-      "required": true,
-      "desc": "Server seed to use. Default should be fine.",
-      "display": "Server Seed",
-      "internal": false,
-      "userEdit": true
-    },
-    "WorldSize": {
-      "value": "3000",
-      "required": true,
-      "desc": "World size (number)",
-      "display": "World Size",
-      "internal": false,
-      "type": "integer",
       "userEdit": true
     },
     "MaxPlayers": {
+      "type": "integer",
       "value": "10",
-      "required": true,
-      "desc": "Maximum number of players to support",
       "display": "Max Players",
-      "internal": false,
-      "type": "integer"
+      "desc": "Maximum number of players to support",
+      "required": true
     },
-    "ServerName": {
-      "value": "RUST Public Server",
+    "RConPassword": {
+      "type": "",
+      "value": "",
+      "display": "RCON Password",
+      "desc": "Password to use on RCON. CHANGE THIS",
       "required": true,
-      "desc": "Name of the server to use",
-      "display": "Server Name",
-      "internal": false,
       "userEdit": true
     },
-    "Description": {
-      "value": "RUST Public Server Description",
-      "required": true,
-      "desc": "Server description shown on server browser",
-      "display": "Server Description",
-      "internal": false,
-      "userEdit": true
+    "RConPort": {
+      "type": "integer",
+      "value": "28016",
+      "display": "RCON Port",
+      "desc": "Port to use for RCON",
+      "required": true
+    },
+    "ServerIdentity": {
+      "type": "",
+      "value": "server1",
+      "display": "Server identity",
+      "desc": "Server identity to use, leave as default unless you know what you're doing",
+      "required": true
     },
     "ServerImage": {
+      "type": "",
       "value": "http://",
-      "required": true,
-      "desc": "URL For the server image banner",
       "display": "Server Header Image",
-      "internal": false,
+      "desc": "URL For the server image banner",
+      "required": true,
+      "userEdit": true
+    },
+    "ServerLevel": {
+      "type": "",
+      "value": "Procedural Map",
+      "display": "Server Level",
+      "desc": "What map name do you want? If unsure, leave as default.",
+      "required": true,
+      "userEdit": true
+    },
+    "ServerName": {
+      "type": "",
+      "value": "RUST Public Server",
+      "display": "Server Name",
+      "desc": "Name of the server to use",
+      "required": true,
+      "userEdit": true
+    },
+    "ServerSeed": {
+      "type": "",
+      "value": "1234",
+      "display": "Server Seed",
+      "desc": "Server seed to use. Default should be fine.",
+      "required": true,
       "userEdit": true
     },
     "URL": {
+      "type": "",
       "value": "http://",
-      "required": true,
-      "desc": "URL for the website dedicated to this server.",
       "display": "Server Website",
-      "internal": false,
+      "desc": "URL for the website dedicated to this server.",
+      "required": true,
       "userEdit": true
     },
-    "ServerIdentity": {
-      "value": "server1",
+    "WorldSize": {
+      "type": "integer",
+      "value": "3000",
+      "display": "World Size",
+      "desc": "World size (number)",
       "required": true,
-      "desc": "Server identity to use, leave as default unless you know what you're doing",
-      "display": "Server identity",
-      "internal": false
-    },
-    "RConPort": {
-      "value": "28016",
-      "required": true,
-      "desc": "Port to use for RCON",
-      "display": "RCON Port",
-      "internal": false,
-      "type": "integer"
-    },
-    "RConPassword": {
-      "value": "",
-      "required": true,
-      "desc": "Password to use on RCON. CHANGE THIS",
-      "display": "RCON Password",
-      "internal": false,
       "userEdit": true
+    },
+    "ip": {
+      "type": "",
+      "value": "0.0.0.0",
+      "display": "IP",
+      "desc": "What IP to bind the server to",
+      "required": true
+    },
+    "port": {
+      "type": "integer",
+      "value": "27015",
+      "display": "Port",
+      "desc": "What port to bind the server to",
+      "required": true
     }
   },
   "install": [
@@ -121,11 +117,13 @@
     }
   ],
   "run": {
-    "command": "./RustDedicated -nographics -batchmode +server.port ${port} +server.level \"${ServerLevel}\" +server.seed ${ServerSeed} +server.worldsize ${WorldSize} +server.maxplayers ${MaxPlayers} +server.hostname \"${ServerName}\" +server.description \"${Description}\" +server.headerimage \"${ServerImage}\" +server.url \"${URL}\" +server.identity \"${ServerIdentity}\" +rcon.port ${RConPort} +rcon.password ${RConPassword} +rcon.web 1 -logfile 2>&1",
+    "command": "./RustDedicated -nographics -batchmode +server.port ${port} +server.level \"${ServerLevel}\" +server.seed ${ServerSeed} +server.worldsize ${WorldSize} +server.maxplayers ${MaxPlayers} +server.hostname \"${ServerName}\" +server.description \"${Description}\" +server.headerimage \"${ServerImage}\" +server.url \"${URL}\" +server.identity \"${ServerIdentity}\" +rcon.port ${RConPort} +rcon.password ${RConPassword} +rcon.web 1 -logfile 2\u003e\u00261",
     "stopCode": 2,
     "environmentVars": {
       "LD_LIBRARY_PATH": "./RustDedicated_Data/Plugins/x86_64"
-    }
+    },
+    "stdin": {},
+    "stdout": {}
   },
   "environment": {
     "type": "host"

@@ -3,66 +3,62 @@
   "display": "Garry's Mod",
   "data": {
     "gamemode": {
+      "type": "",
       "value": "sandbox",
-      "required": true,
-      "desc": "Gamemode to load",
       "display": "Gamemode",
-      "internal": false,
+      "desc": "Gamemode to load",
+      "required": true,
       "userEdit": true
     },
     "map": {
+      "type": "",
       "value": "gm_construct",
-      "required": true,
-      "desc": "Map to load by default",
       "display": "Map",
-      "internal": false,
+      "desc": "Map to load by default",
+      "required": true,
       "userEdit": true
     },
     "maxplayers": {
+      "type": "integer",
       "value": "20",
-      "required": true,
-      "desc": "Max players allowed on server",
       "display": "Max Players",
-      "internal": false,
-      "type": "integer"
+      "desc": "Max players allowed on server",
+      "required": true
     },
     "port": {
+      "type": "integer",
       "value": "27015",
-      "required": true,
-      "desc": "What port to bind the server to",
       "display": "Port",
-      "internal": false,
-      "type": "integer"
-    },
-    "wscollection": {
-      "value": "",
-      "required": false,
-      "desc": "Specify a ws collection the server should load. *optional*",
-      "display": "Workshop Collection ID",
-      "internal": false,
-      "userEdit": true
+      "desc": "What port to bind the server to",
+      "required": true
     },
     "steamaccounttoken": {
+      "type": "",
       "value": "",
-      "required": false,
-      "desc": "Token for a game server account. *optional* (Get one here: https://steamcommunity.com/dev/managegameservers)",
       "display": "Steam Game Server Account Token",
-      "internal": false,
+      "desc": "Token for a game server account. *optional* (Get one here: https://steamcommunity.com/dev/managegameservers)",
+      "userEdit": true
+    },
+    "wscollection": {
+      "type": "",
+      "value": "",
+      "display": "Workshop Collection ID",
+      "desc": "Specify a ws collection the server should load. *optional*",
       "userEdit": true
     }
   },
   "install": [
     {
+      "if": "env == 'host'",
       "type": "steamgamedl",
-      "appId": "4020",
-      "if": "env == 'host'"
+      "appId": "4020"
     },
     {
+      "if": "env == 'docker'",
       "type": "command",
       "commands": [
         "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 4020 +quit"
-      ],
-      "if": "env == 'docker'"
+      ]
     },
     {
       "type": "command",
@@ -73,7 +69,9 @@
   ],
   "run": {
     "command": "./srcds_run +port ${port} -game garrysmod -console +gamemode ${gamemode} +map ${map} +maxplayers ${maxplayers} +host_workshop_collection ${wscollection} +sv_setsteamaccount ${steamaccounttoken} -norestart",
-    "stop": "exit"
+    "stop": "exit",
+    "stdin": {},
+    "stdout": {}
   },
   "environment": {
     "type": "host"

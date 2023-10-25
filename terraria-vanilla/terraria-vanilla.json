@@ -4,34 +4,34 @@
   "data": {
     "abr": {
       "type": "string",
-      "desc": "Sets the announcementbox text messaging range in pixels, -1 for serverwide announcements.",
-      "display": "announcementbox-range",
-      "required": true,
       "value": "-1",
+      "display": "announcementbox-range",
+      "desc": "Sets the announcementbox text messaging range in pixels, -1 for serverwide announcements.",
+      "required": true,
       "userEdit": true
     },
     "backups": {
       "type": "string",
-      "desc": "Sets the number of rolling world backups to keep",
-      "display": "Backups",
-      "required": true,
       "value": "2",
+      "display": "Backups",
+      "desc": "Sets the number of rolling world backups to keep",
+      "required": true,
       "userEdit": true
     },
     "ban": {
       "type": "string",
-      "desc": "Name of the banlist file",
-      "display": "Banlist",
-      "required": true,
       "value": "banlist.txt",
+      "display": "Banlist",
+      "desc": "Name of the banlist file",
+      "required": true,
       "userEdit": true
     },
     "difficulty": {
       "type": "string",
-      "desc": "This can not be changed after the world was generated",
-      "display": "Difficulty",
-      "required": true,
       "value": "0",
+      "display": "Difficulty",
+      "desc": "This can not be changed after the world was generated",
+      "required": true,
       "userEdit": true,
       "options": [
         {
@@ -54,9 +54,9 @@
     },
     "disableannouncementbox": {
       "type": "string",
-      "desc": "Decides if the text announcements the Announcement Box makes when pulsed from wire.",
-      "display": "Announcement Box",
       "value": "",
+      "display": "Announcement Box",
+      "desc": "Decides if the text announcements the Announcement Box makes when pulsed from wire.",
       "userEdit": true,
       "options": [
         {
@@ -71,17 +71,17 @@
     },
     "ip": {
       "type": "string",
-      "desc": "Sets the IP address for the server to listen on - 0.0.0.0 means every possible IP",
+      "value": "0.0.0.0",
       "display": "IP",
-      "required": true,
-      "value": "0.0.0.0"
+      "desc": "Sets the IP address for the server to listen on - 0.0.0.0 means every possible IP",
+      "required": true
     },
     "lang": {
       "type": "string",
-      "desc": "Language for the server",
-      "display": "Language",
-      "required": true,
       "value": "en-US",
+      "display": "Language",
+      "desc": "Language for the server",
+      "required": true,
       "userEdit": true,
       "options": [
         {
@@ -124,49 +124,49 @@
     },
     "motd": {
       "type": "string",
-      "desc": "Set the message of the day",
-      "display": "motd",
-      "required": true,
       "value": "Hello!",
+      "display": "motd",
+      "desc": "Set the message of the day",
+      "required": true,
       "userEdit": true
     },
     "npcs": {
       "type": "string",
-      "desc": "Reduces enemy skipping but increases bandwidth usage. The lower the number the less skipping will happen, but more data is sent. 0 is off.",
-      "display": "npcstream",
-      "required": true,
       "value": "60",
+      "display": "npcstream",
+      "desc": "Reduces enemy skipping but increases bandwidth usage. The lower the number the less skipping will happen, but more data is sent. 0 is off.",
+      "required": true,
       "userEdit": true
     },
     "password": {
       "type": "string",
-      "desc": "Server Password - leave blank for none",
-      "display": "Password",
-      "required": true,
       "value": "",
+      "display": "Password",
+      "desc": "Server Password - leave blank for none",
+      "required": true,
       "userEdit": true
     },
     "players": {
       "type": "string",
-      "desc": "Max Players",
-      "display": "Players",
-      "required": true,
       "value": "4",
+      "display": "Players",
+      "desc": "Max Players",
+      "required": true,
       "userEdit": true
     },
     "port": {
       "type": "string",
-      "desc": "What port to bind the server to",
+      "value": "7777",
       "display": "Port",
-      "required": true,
-      "value": "7777"
+      "desc": "What port to bind the server to",
+      "required": true
     },
     "secure": {
       "type": "string",
-      "desc": "Enable cheat protection = 1 and disable = 0",
-      "display": "secure",
-      "required": true,
       "value": "1",
+      "display": "secure",
+      "desc": "Enable cheat protection = 1 and disable = 0",
+      "required": true,
       "userEdit": true,
       "options": [
         {
@@ -181,33 +181,33 @@
     },
     "seed": {
       "type": "string",
-      "desc": "This can not be changed after the world was generated - Seed of the World",
-      "display": "Seed",
-      "required": true,
       "value": "VeryGoodStartingSeed",
+      "display": "Seed",
+      "desc": "This can not be changed after the world was generated - Seed of the World",
+      "required": true,
       "userEdit": true
     },
     "size": {
       "type": "string",
-      "desc": "This can not be changed after the world was generated - World Size (1-3 - 3 is biggest)",
-      "display": "World-Size",
-      "required": true,
       "value": "3",
+      "display": "World-Size",
+      "desc": "This can not be changed after the world was generated - World Size (1-3 - 3 is biggest)",
+      "required": true,
       "userEdit": true
     },
     "sl": {
       "type": "string",
-      "desc": "Reduces maximum liquids moving at the same time. If enabled may reduce lags but liquids may take longer to settle.",
-      "display": "maximum liquids moving",
-      "required": true,
       "value": "1",
+      "display": "maximum liquids moving",
+      "desc": "Reduces maximum liquids moving at the same time. If enabled may reduce lags but liquids may take longer to settle.",
+      "required": true,
       "userEdit": true
     },
     "steam": {
       "type": "string",
-      "desc": "Enables Steam Support",
-      "display": "Steam",
       "value": "-steam",
+      "display": "Steam",
+      "desc": "Enables Steam Support",
       "userEdit": true,
       "options": [
         {
@@ -222,26 +222,26 @@
     },
     "version": {
       "type": "string",
-      "desc": "Server Version",
-      "display": "Server Version (Set this to the latest server version) - It is the current terraria Version without the Points (Client Version: 1.4.3.2 -> Server Version: 1432)",
-      "required": true,
       "value": "1449",
+      "display": "Server Version (Set this to the latest server version) - It is the current terraria Version without the Points (Client Version: 1.4.3.2 -\u003e Server Version: 1432)",
+      "desc": "Server Version",
+      "required": true,
       "userEdit": true
     },
     "world": {
       "type": "string",
-      "desc": "Name of your World",
-      "display": "World-Name",
-      "required": true,
       "value": "Terraria-World-1",
+      "display": "World-Name",
+      "desc": "Name of your World",
+      "required": true,
       "userEdit": true
     },
     "wp": {
       "type": "string",
-      "desc": "Name of the world folder",
-      "display": "Worldpath",
-      "required": true,
       "value": "worlds",
+      "display": "Worldpath",
+      "desc": "Name of the world folder",
+      "required": true,
       "userEdit": true
     }
   },
@@ -272,20 +272,22 @@
     "stop": "exit",
     "pre": [
       {
-        "target": "serverconfig.txt",
+        "type": "writefile",
         "text": "world=../${wp}/${world}.wld\nautocreate=${size}\nseed=${seed}\nworldname=${world}\ndifficulty=${difficulty}\nmaxplayers=${players}\nport=${port}\npassword=${password}\nmotd=${motd}\nworldpath=../${wp}\nbanlist=../${ban}\nsecure=${secure}\nlanguage=${lang}\nupnp=1\nnpcstream=${npcs}\npriority=3\nslowliquids=${sl}\nworldrollbackstokeep=${backups}",
-        "type": "writefile"
+        "target": "serverconfig.txt"
       }
-    ]
+    ],
+    "stdin": {},
+    "stdout": {}
   },
   "environment": {
     "type": "host"
   },
   "requirements": {
+    "os": "linux",
+    "arch": "amd64",
     "binaries": [
       "unzip"
-    ],
-    "os": "linux",
-    "arch": "amd64"
+    ]
   }
 }

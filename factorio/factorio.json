@@ -2,35 +2,34 @@
   "type": "factorio",
   "display": "Factorio",
   "data": {
-    "save": {
-      "value": "saves/default.zip",
-      "required": true,
-      "desc": "Save File to Use",
-      "display": "Save File to Use",
-      "internal": false,
-      "userEdit": true
-    },
     "ip": {
+      "type": "",
       "value": "0.0.0.0",
-      "required": true,
-      "desc": "What IP to bind the server to",
       "display": "IP",
-      "internal": false
+      "desc": "What IP to bind the server to",
+      "required": true
     },
     "port": {
+      "type": "integer",
       "value": "34197",
-      "required": true,
-      "desc": "What port to bind the server to",
       "display": "Port",
-      "internal": false,
-      "type": "integer"
+      "desc": "What port to bind the server to",
+      "required": true
+    },
+    "save": {
+      "type": "",
+      "value": "saves/default.zip",
+      "display": "Save File to Use",
+      "desc": "Save File to Use",
+      "required": true,
+      "userEdit": true
     },
     "server-settings": {
+      "type": "",
       "value": "factorio/data/server-settings.json",
-      "required": true,
-      "desc": "Server Settings File Location",
       "display": "Server Settings JSON",
-      "internal": false,
+      "desc": "Server Settings File Location",
+      "required": true,
       "userEdit": true
     }
   },
@@ -48,18 +47,20 @@
   ],
   "run": {
     "command": "./factorio/bin/x64/factorio --port ${port} --bind ${ip} --start-server ${save} --server-settings ${server-settings}",
-    "stop": "/quit"
+    "stop": "/quit",
+    "stdin": {},
+    "stdout": {}
   },
   "environment": {
     "type": "host"
   },
   "requirements": {
+    "os": "linux",
+    "arch": "amd64",
     "binaries": [
       "curl",
       "tar",
       "xz"
-    ],
-    "os": "linux",
-    "arch": "amd64"
+    ]
   }
 }

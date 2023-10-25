@@ -4,15 +4,17 @@
   "data": {
     "jar": {
       "type": "string",
-      "display": "Bot Jar file",
-      "required": true,
       "value": "bot.jar",
-      "userEdit": true,
-      "desc": "The .jar file to execute"
+      "display": "Bot Jar file",
+      "desc": "The .jar file to execute",
+      "required": true,
+      "userEdit": true
     }
   },
   "run": {
-    "command": "java -jar ${jar}"
+    "command": "java -jar ${jar}",
+    "stdin": {},
+    "stdout": {}
   },
   "environment": {
     "type": "host"
@@ -22,8 +24,8 @@
       "type": "host"
     },
     {
-      "image": "openjdk",
-      "type": "docker"
+      "type": "docker",
+      "image": "openjdk"
     }
   ],
   "requirements": {

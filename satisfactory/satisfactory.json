@@ -4,15 +4,15 @@
   "data": {
     "multihome": {
       "type": "string",
-      "desc": "Ip address to bind the server to",
+      "value": "0.0.0.0",
       "display": "Multihome",
-      "value": "0.0.0.0"
+      "desc": "Ip address to bind the server to"
     },
     "port": {
       "type": "integer",
-      "desc": "Port to bind the server to",
+      "value": "15777",
       "display": "ServerQueryPort",
-      "value": "15777"
+      "desc": "Port to bind the server to"
     }
   },
   "install": [
@@ -41,7 +41,9 @@
     "stopCode": 2,
     "environmentVars": {
       "LD_LIBRARY_PATH": "./linux64:$LD_LIBRARY_PATH"
-    }
+    },
+    "stdin": {},
+    "stdout": {}
   },
   "environment": {
     "type": "host"
