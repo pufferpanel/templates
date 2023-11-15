@@ -10,7 +10,7 @@
       "required": true,
       "userEdit": true
     },
-    "map": {
+    "mapname": {
       "type": "",
       "value": "gm_construct",
       "display": "Map",
@@ -68,7 +68,7 @@
     }
   ],
   "run": {
-    "command": "./srcds_run +port ${port} -game garrysmod -console +gamemode ${gamemode} +map ${map} +maxplayers ${maxplayers} +host_workshop_collection ${wscollection} +sv_setsteamaccount ${steamaccounttoken} -norestart",
+    "command": "./srcds_run +port ${port} -game garrysmod -console +gamemode ${gamemode} +map ${mapname} +maxplayers ${maxplayers} +host_workshop_collection ${wscollection} +sv_setsteamaccount ${steamaccounttoken} -norestart",
     "stop": "exit",
     "stdin": {},
     "stdout": {}

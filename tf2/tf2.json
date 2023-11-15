@@ -9,7 +9,7 @@
       "desc": "What IP to bind the server to",
       "required": true
     },
-    "map": {
+    "mapname": {
       "type": "",
       "value": "ctf_2fort",
       "display": "Team Fortess 2 Map to load",
@@ -46,7 +46,7 @@
     }
   ],
   "run": {
-    "command": "./srcds_run +ip ${ip} +port ${port} -game tf -console +map ${map} -norestart",
+    "command": "./srcds_run +ip ${ip} +port ${port} -game tf -console +map ${mapname} -norestart",
     "stop": "exit",
     "stdin": {},
     "stdout": {}

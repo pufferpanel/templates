@@ -2,7 +2,7 @@
   "type": "srcds",
   "display": "Unturned",
   "data": {
-    "map": {
+    "mapname": {
       "type": "option",
       "value": "PEI",
       "display": "Map",
@@ -155,7 +155,7 @@
     },
     {
       "type": "writefile",
-      "text": "Name ${name}\nMap ${map}\nPort ${port}\nMaxPlayers ${maxplayers}\nMode ${mode}\nOwner ${steam_id}\nWelcome ${welcome}\nPassword ${password}\nPerspective ${perspective}",
+      "text": "Name ${name}\nMap ${mapname}\nPort ${port}\nMaxPlayers ${maxplayers}\nMode ${mode}\nOwner ${steam_id}\nWelcome ${welcome}\nPassword ${password}\nPerspective ${perspective}",
       "target": "/Servers/${server}/Server/Commands.dat"
     }
   ],
