@@ -16,7 +16,7 @@
       "desc": "What IP to bind the server to",
       "required": true
     },
-    "map": {
+    "mapName": {
       "type": "",
       "value": "de_dust2",
       "display": "Map",
@@ -70,7 +70,7 @@
     }
   ],
   "run": {
-    "command": "./srcds_run -game cstrike -ip ${ip} -port ${port} +clientport ${clientport} +tv_port ${tvport} +map ${map} -maxplayers ${maxplayers} -tickrate ${tickrate} -norestart",
+    "command": "./srcds_run -game cstrike -ip ${ip} -port ${port} +clientport ${clientport} +tv_port ${tvport} +map ${mapName} -maxplayers ${maxplayers} -tickrate ${tickrate} -norestart",
     "stop": "exit",
     "stdin": {},
     "stdout": {}
