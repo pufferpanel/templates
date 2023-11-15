@@ -116,7 +116,7 @@
     },
     {
       "type": "docker",
-      "image": "steamcmd/steamcmd"
+      "image": "steamcmd/steamcmd:ubuntu-20"
     }
   ],
   "requirements": {
