@@ -1,6 +1,6 @@
 [
   {
-    "name": "vanilla",
+    "name": "minecraft-vanilla",
     "variables": {
       "memory": "2048",
       "ip": "0.0.0.0",
@@ -16,7 +16,7 @@
     }
   },
   {
-    "name": "fabric",
+    "name": "minecraft-fabric",
     "variables": {
       "memory": "2048",
       "ip": "0.0.0.0",
@@ -32,7 +32,7 @@
     }
   },
   {
-    "name": "minecraftforge",
+    "name": "minecraft-minecraftforge",
     "variables": {
       "memory": "2048",
       "ip": "0.0.0.0",
@@ -49,7 +49,7 @@
     }
   },
   {
-    "name": "vanilla-docker",
+    "name": "minecraft-vanilla-docker",
     "variables": {
       "memory": "2048",
       "ip": "0.0.0.0",
@@ -66,7 +66,7 @@
     }
   },
   {
-    "name": "fabric-docker",
+    "name": "minecraft-fabric-docker",
     "variables": {
       "memory": "2048",
       "ip": "0.0.0.0",
@@ -83,7 +83,7 @@
     }
   },
   {
-    "name": "minecraftforge-docker",
+    "name": "minecraft-minecraftforge-docker",
     "variables": {
       "memory": "2048",
       "ip": "0.0.0.0",
