@@ -42,7 +42,7 @@
       "motd": "None",
       "javaversion": "17",
       "modlauncher": "forge",
-      "forgebuild": "latest"
+      "forgebuild": " 1.20.1-47.2.0"
     },
     "environment": {
       "type": "host"
@@ -93,7 +93,7 @@
       "motd": "None",
       "javaversion": "17",
       "modlauncher": "forge",
-      "forgebuild": "latest"
+      "forgebuild": " 1.20.1-47.2.0"
     },
     "environment": {
       "type": "docker",
