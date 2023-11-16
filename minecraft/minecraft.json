@@ -218,12 +218,6 @@
       ]
     },
     {
-      "if": "modlauncher == 'fabric'",
-      "type": "move",
-      "source": "fabric-server-launch.jar",
-      "target": "server.jar"
-    },
-    {
       "if": "modlauncher == 'forge'",
       "type": "forgedl",
       "version": "${version}",
@@ -333,12 +327,28 @@
     "command": [
       {
         "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/minecraftforge/forge/${version}/win_args.txt nogui",
-        "if": "modlauncher == 'forge' \u0026\u0026 os == 'windows' \u0026\u0026 file_exists('libraries/net/minecraftforge/forge/' + version + '/win_args.txt')"
+        "if": "env == 'host' && modlauncher == 'forge' && os == 'windows' && file_exists('libraries/net/minecraftforge/forge/' + version + '/win_args.txt')"
       },
       {
         "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/minecraftforge/forge/${version}/unix_args.txt nogui",
-        "if": "modlauncher == 'forge' \u0026\u0026 file_exists('libraries/net/minecraftforge/forge/' + version+ '/unix_args.txt')"
+        "if": "env == 'host' && modlauncher == 'forge' && file_exists('libraries/net/minecraftforge/forge/' + version+ '/unix_args.txt')"
       },
+      {
+        "command": "java -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/minecraftforge/forge/${version}/win_args.txt nogui",
+        "if": "env != 'host' && modlauncher == 'forge' && os == 'windows' && file_exists('libraries/net/minecraftforge/forge/' + version + '/win_args.txt')"
+      },
+      {
+        "command": "java -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/minecraftforge/forge/${version}/unix_args.txt nogui",
+        "if": "env != 'host' && modlauncher == 'forge' && file_exists('libraries/net/minecraftforge/forge/' + version+ '/unix_args.txt')"
+      },
+      {
+        "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar fabric-server-launch.jar",
+        "if": "env == 'host' && modlauncher == 'fabric'"
+      },
+      {
+        "command": "java -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar server.jar",
+        "if": "env != 'host' && modlauncher == 'fabric'"
+      },      
       {
         "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar server.jar",
         "if": "env == 'host'"
