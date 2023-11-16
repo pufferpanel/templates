@@ -211,10 +211,17 @@
       "type": "fabricdl"
     },
     {
-      "if": "modlauncher == 'fabric'",
+      "if": "modlauncher == 'fabric' && env == 'host'",
       "type": "command",
       "commands": [
         "java${javaversion} -jar fabric-installer.jar server -mcversion ${version} -downloadMinecraft -noprofile"
+      ]
+    },
+    {
+      "if": "modlauncher == 'fabric' && env != 'host'",
+      "type": "command",
+      "commands": [
+        "java -jar fabric-installer.jar server -mcversion ${version} -downloadMinecraft -noprofile"
       ]
     },
     {
@@ -224,7 +231,14 @@
       "target": "installer.jar"
     },
     {
-      "if": "modlauncher == 'forge'",
+      "if": "modlauncher == 'forge' && env == 'host'",
+      "type": "command",
+      "commands": [
+        "java${javaversion} -jar installer.jar --installServer"
+      ]
+    },
+    {
+      "if": "modlauncher == 'forge' && env != 'host'",
       "type": "command",
       "commands": [
         "java${javaversion} -jar installer.jar --installServer"
@@ -240,8 +254,8 @@
     {
       "if": "modlauncher == 'magma'",
       "type": "move",
-      "target": "server.jar",
-      "source": "Magma-*.jar"
+      "source": "Magma-*.jar",
+      "target": "server.jar"      
     },
     {
       "if": "modlauncher == 'mohist'",
@@ -281,10 +295,17 @@
       "target": "quilt-installer.jar"
     },
     {
-      "if": "modlauncher == 'quilt'",
+      "if": "modlauncher == 'quilt' && env == 'host'",
       "type": "command",
       "commands": [
         "java${javaversion} -jar quilt-installer.jar install server ${version} --download-server --install-dir=."
+      ]
+    },
+    {
+      "if": "modlauncher == 'quilt' && env != 'host'",
+      "type": "command",
+      "commands": [
+        "java$ -jar quilt-installer.jar install server ${version} --download-server --install-dir=."
       ]
     },
     {
@@ -299,10 +320,17 @@
       "files": "https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar"
     },
     {
-      "if": "modlauncher == 'spigot'",
+      "if": "modlauncher == 'spigot' && env == 'host'",
       "type": "command",
       "commands": [
         "java${javaversion} -jar BuildTools.jar --rev ${version}"
+      ]
+    },
+    {
+      "if": "modlauncher == 'spigot' && env != 'host'",
+      "type": "command",
+      "commands": [
+        "java -jar BuildTools.jar --rev ${version}"
       ]
     },
     {
