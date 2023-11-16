@@ -220,7 +220,7 @@
     {
       "if": "modlauncher == 'forge'",
       "type": "forgedl",
-      "version": "${version}",
+      "version": "${forgebuild}",
       "target": "installer.jar"
     },
     {
@@ -326,20 +326,20 @@
   "run": {
     "command": [
       {
-        "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/minecraftforge/forge/${version}/win_args.txt nogui",
-        "if": "env == 'host' && modlauncher == 'forge' && os == 'windows' && file_exists('libraries/net/minecraftforge/forge/' + version + '/win_args.txt')"
+        "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/minecraftforge/forge/${forgebuild}/win_args.txt nogui",
+        "if": "env == 'host' && modlauncher == 'forge' && os == 'windows' && file_exists('libraries/net/minecraftforge/forge/' + forgebuild + '/win_args.txt')"
       },
       {
-        "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/minecraftforge/forge/${version}/unix_args.txt nogui",
-        "if": "env == 'host' && modlauncher == 'forge' && file_exists('libraries/net/minecraftforge/forge/' + version+ '/unix_args.txt')"
+        "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/minecraftforge/forge/${forgebuild}/unix_args.txt nogui",
+        "if": "env == 'host' && modlauncher == 'forge' && file_exists('libraries/net/minecraftforge/forge/' + forgebuild + '/unix_args.txt')"
       },
       {
-        "command": "java -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/minecraftforge/forge/${version}/win_args.txt nogui",
-        "if": "env != 'host' && modlauncher == 'forge' && os == 'windows' && file_exists('libraries/net/minecraftforge/forge/' + version + '/win_args.txt')"
+        "command": "java -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/minecraftforge/forge/${forgebuild}/win_args.txt nogui",
+        "if": "env != 'host' && modlauncher == 'forge' && os == 'windows' && file_exists('libraries/net/minecraftforge/forge/' + forgebuild + '/win_args.txt')"
       },
       {
-        "command": "java -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/minecraftforge/forge/${version}/unix_args.txt nogui",
-        "if": "env != 'host' && modlauncher == 'forge' && file_exists('libraries/net/minecraftforge/forge/' + version+ '/unix_args.txt')"
+        "command": "java -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/minecraftforge/forge/${forgebuild}/unix_args.txt nogui",
+        "if": "env != 'host' && modlauncher == 'forge' && file_exists('libraries/net/minecraftforge/forge/' + forgebuild+ '/unix_args.txt')"
       },
       {
         "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar fabric-server-launch.jar",
