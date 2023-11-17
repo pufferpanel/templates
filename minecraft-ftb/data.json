@@ -1,0 +1,37 @@
+[
+  {
+    "name": "minecraft-ftb",
+    "variables": {
+      "memory": "2048",
+      "ip": "0.0.0.0",
+      "port": "25565",
+      "eula": true,      
+      "motd": "None",
+      "javaversion": "17",
+      "version": "1.19.2-43.2.21",
+      "modpack_id": "108",
+      "modpack_version": "6940"
+    },
+    "environment": {
+      "type": "host"
+    }
+  },
+  {
+    "name": "minecraft-ftb-docker",
+    "variables": {
+      "memory": "2048",
+      "ip": "0.0.0.0",
+      "port": "25565",
+      "eula": true,      
+      "motd": "None",
+      "javaversion": "17",
+      "version": "1.19.2-43.2.21",
+      "modpack_id": "108",
+      "modpack_version": "6940"
+    },
+    "environment": {
+      "type": "docker",
+      "image": "eclipse-temurin:${javaversion}"
+    }
+  }
+]

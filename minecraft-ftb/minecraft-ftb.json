@@ -74,10 +74,35 @@
       "version": "${javaversion}"
     },
     {
+      "if": "os == 'windows'",
       "type": "download",
-      "files": "https://api.modpacks.ch/public/modpack/${modpack_id}/${modpack_version}/server/linux"
+      "files": [
+        "https://api.modpacks.ch/public/modpack/${modpack_id}/${modpack_version}/server/windows"
+      ]
     },
     {
+      "if": "os == 'linux' && arch == 'amd64'",
+      "type": "download",
+      "files": [
+        "https://api.modpacks.ch/public/modpack/${modpack_id}/${modpack_version}/server/linux"
+      ]
+    },
+    {
+      "if": "os == 'linux' && arch == 'arm64'",
+      "type": "download",
+      "files": [
+        "https://api.modpacks.ch/public/modpack/${modpack_id}/${modpack_version}/server/arm/linux"
+      ]
+    },
+    {
+      "if": "os == 'windows'",
+      "type": "command",
+      "commands": [
+        "./windows ${modpack_id} ${modpack_version} --auto --noscript"
+      ]
+    },
+    {
+      "if": "os == 'linux'",
       "type": "command",
       "commands": [
         "chmod u+x linux",
@@ -105,11 +130,19 @@
     "command": [
       {
         "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/minecraftforge/forge/${version}/win_args.txt nogui",
-        "if": "os == 'windows' \u0026\u0026 file_exists('libraries/net/minecraftforge/forge/' + version + '/win_args.txt')"
+        "if": "env == 'host' && os == 'windows' && file_exists('libraries/net/minecraftforge/forge/' + version + '/win_args.txt')"
       },
       {
         "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/minecraftforge/forge/${version}/unix_args.txt nogui",
-        "if": "file_exists('libraries/net/minecraftforge/forge/' + version + '/unix_args.txt')"
+        "if": "env == 'host' && file_exists('libraries/net/minecraftforge/forge/' + version + '/unix_args.txt')"
+      },
+      {
+        "command": "java -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/minecraftforge/forge/${version}/win_args.txt nogui",
+        "if": "env != 'host' && os == 'windows' && file_exists('libraries/net/minecraftforge/forge/' + version + '/win_args.txt')"
+      },
+      {
+        "command": "java -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/minecraftforge/forge/${version}/unix_args.txt nogui",
+        "if": "env != 'host' && file_exists('libraries/net/minecraftforge/forge/' + version + '/unix_args.txt')"
       },
       {
         "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar server.jar",

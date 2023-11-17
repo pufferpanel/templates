@@ -1,2 +1,0 @@
-modpack_id=91
-modpack_version=2245
