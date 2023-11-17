@@ -241,7 +241,7 @@
       "if": "modlauncher == 'forge' && env != 'host'",
       "type": "command",
       "commands": [
-        "java${javaversion} -jar installer.jar --installServer"
+        "java -jar installer.jar --installServer"
       ]
     },
     {
@@ -305,7 +305,7 @@
       "if": "modlauncher == 'quilt' && env != 'host'",
       "type": "command",
       "commands": [
-        "java$ -jar quilt-installer.jar install server ${version} --download-server --install-dir=."
+        "java -jar quilt-installer.jar install server ${version} --download-server --install-dir=."
       ]
     },
     {
