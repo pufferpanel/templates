@@ -22,7 +22,7 @@
         "desc": "TShock Version",
         "display": "TShock Version (Set this to the latest server version - see here https://github.com/Pryaxis/TShock/releases/latest)",
         "required": true,
-        "value": "5.2"
+        "value": "5.1.3"
       },
       "version": {
         "type": "string",
