@@ -14,7 +14,7 @@
       "desc": "Version of Minecraft to install (Oldest fabric version is 1.14)",
       "display": "GAME VERSION",
       "required": true,
-      "value": "1.20.1"
+      "value": "1.20.2"
     },
     "loader-version": {
       "type": "string",
