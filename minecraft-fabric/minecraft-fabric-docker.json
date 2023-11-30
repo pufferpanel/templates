@@ -21,7 +21,7 @@
       "desc": "Version of Fabric Loader to install",
       "display": "LOADER VERSION",
       "required": true,
-      "value": "latest"
+      "value": "0.15.0"
     },
     "ip": {
       "type": "string",
