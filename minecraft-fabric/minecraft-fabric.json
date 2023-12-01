@@ -16,13 +16,6 @@
       "required": true,
       "value": "1.20.1"
     },
-    "loader-version": {
-      "type": "string",
-      "desc": "Version of Fabric Loader to install",
-      "display": "LOADER VERSION",
-      "required": true,
-      "value": "latest"
-    },
     "ip": {
       "type": "string",
       "desc": "What IP to bind server to",
@@ -69,7 +62,7 @@
     },
     {
       "commands": [
-        "java${javaversion} -jar fabric-installer.jar server -mcversion ${game-version} -loader ${loader-version} -downloadMinecraft -noprofile"
+        "java${javaversion} -jar fabric-installer.jar server -mcversion ${game-version} -downloadMinecraft -noprofile"
       ],
       "type": "command"
     },
