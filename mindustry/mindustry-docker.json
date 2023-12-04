@@ -1,0 +1,56 @@
+{
+  "name": "mindustry-docker",
+  "display": "MindustryDocker",
+  "type": "mindustry-docker-java17",
+  "install": [
+    {
+      "files": [
+        "https://github.com/Anuken/Mindustry/releases/download/v${version}/server-release.jar"
+      ],
+      "type": "download"
+    }
+  ],
+  "run": {
+    "stop": "exit",
+    "command": "java -Xmx${memory}M -jar server-release.jar config port ${port},host",
+    "workingDirectory": "",
+    "pre": [],
+    "post": [],
+    "environmentVars": {}
+  },
+  "data": {
+    "PORT": {
+      "type": "integer",
+      "desc": "Port to host on",
+      "display": "Port",
+      "required": true,
+      "value": "6567",
+      "userEdit": true
+    },
+    "memory": {
+      "type": "integer",
+      "desc": "How much memory in MB to allocate to the Java Heap",
+      "display": "Memory (MB)",
+      "required": true,
+      "value": "1024"
+    },
+    "version": {
+      "type": "string",
+      "desc": "Server version (<a href='https://github.com/Anuken/Mindustry/releases'>Mindustry version</a>)",
+      "display": "Version",
+      "required": true,
+      "value": "145"
+    }
+  },
+  "supportedEnvironments": [
+    {
+      "bindings": {},
+      "image": "eclipse-temurin:17.0.9_9-jre-alpine",
+      "networkMode": "host",
+      "networkName": "",
+      "portBindings": [],
+      "type": "docker"
+    }
+  ],
+  "requirements": {}
+}
