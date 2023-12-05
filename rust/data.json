@@ -6,7 +6,8 @@
     },
     "environment": {
       "type": "host"
-    }
+    },
+    "runtimeRequirement": 10
   },
   {
     "name": "rust-docker",
@@ -16,6 +17,7 @@
     "environment": {
       "type": "docker",
       "image": "steamcmd/steamcmd"
-    }
+    },
+    "runtimeRequirement": 10
   }
 ]
