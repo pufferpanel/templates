@@ -26,7 +26,7 @@
       "type": "command",
       "commands": [
         "chmod +x ./installer.sh",
-        "./installer.sh"
+        "./installer.sh -r"
       ]
     },
     {
