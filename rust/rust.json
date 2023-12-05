@@ -123,7 +123,7 @@
       "LD_LIBRARY_PATH": "./RustDedicated_Data/Plugins/x86_64"
     },
     "stdin": {
-      "type": "telnet",
+      "type": "rcon",
       "port": "${RConPort}",
       "password": "${RConPassword}"
     },
