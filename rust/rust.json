@@ -117,7 +117,7 @@
     }
   ],
   "run": {
-    "command": "./RustDedicated -nographics -batchmode +server.port ${port} +server.level \"${ServerLevel}\" +server.seed ${ServerSeed} +server.worldsize ${WorldSize} +server.maxplayers ${MaxPlayers} +server.hostname \"${ServerName}\" +server.description \"${Description}\" +server.headerimage \"${ServerImage}\" +server.url \"${URL}\" +server.identity \"${ServerIdentity}\" +rcon.port ${RConPort} +rcon.password ${RConPassword} +rcon.web 0",
+    "command": "./RustDedicated -nographics -batchmode +server.port ${port} +server.level \"${ServerLevel}\" +server.seed ${ServerSeed} +server.worldsize ${WorldSize} +server.maxplayers ${MaxPlayers} +server.hostname \"${ServerName}\" +server.description \"${Description}\" +server.headerimage \"${ServerImage}\" +server.url \"${URL}\" +server.identity \"${ServerIdentity}\" +rcon.port ${RConPort} +rcon.password ${RConPassword} +rcon.web 1",
     "stop": "server.stop",
     "environmentVars": {
       "LD_LIBRARY_PATH": "./RustDedicated_Data/Plugins/x86_64"
