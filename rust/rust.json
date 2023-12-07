@@ -128,7 +128,7 @@
       "password": "${RConPassword}"
     },
     "stdout": {},
-    "expectedExitCode": 1
+    "expectedExitCode": -1
   },
   "environment": {
     "type": "host"
