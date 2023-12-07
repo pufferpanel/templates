@@ -127,7 +127,8 @@
       "port": "${RConPort}",
       "password": "${RConPassword}"
     },
-    "stdout": {}
+    "stdout": {},
+    "expectedExitCode": 1
   },
   "environment": {
     "type": "host"
