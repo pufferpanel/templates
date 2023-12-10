@@ -1,0 +1,179 @@
+{
+    "name": "minecraft-bedrock-docker",
+    "display": "Minecraft Bedrock (Docker)",
+    "type": "minecraft-bedrock",
+    "install": [
+      {
+        "files": [
+          "https://minecraft.azureedge.net/bin-linux/bedrock-server-${version}.zip"
+        ],
+        "type": "download"
+      },
+      {
+        "commands": [
+          "unzip -o bedrock-server-${version}.zip",
+          "rm bedrock-server-${version}.zip",
+          "chmod +x bedrock_server"
+        ],
+        "type": "command"
+      },
+      {
+        "target": "server.properties",
+        "text": "server-name=${server-name}\ngamemode=${gamemode}\ndifficulty=${difficulty}\nallow-cheats=${allow-cheats}\nmax-players=${max-players}\nonline-mode=${online-mode}\nwhite-list=${white-list}\nserver-port=${server-port}\nserver-portv6=${server-portv6}\nview-distance=${view-distance}\ntick-distance=${tick-distance}\nplayer-idle-timeout=${player-idle-timeout}\nmax-threads=${max-threads}\nlevel-name=${level-name}\nlevel-seed=${level-seed}\ndefault-player-permission-level=${default-player-permission-level}\ntexturepack-required=${texturepack-required}\n",
+        "type": "writefile"
+      }
+    ],
+    "run": {
+      "stop": "stop",
+      "command": "./bedrock_server",
+      "workingDirectory": "",
+      "pre": [],
+      "post": [],
+      "environmentVars": {
+        "LD_LIBRARY_PATH": "."
+      }
+    },
+    "data": {
+      "allow-cheats": {
+        "type": "boolean",
+        "desc": "If true then cheats like commands can be used.",
+        "display": "Allow Cheats",
+        "required": true,
+        "value": false
+      },
+      "default-player-permission-level": {
+        "type": "string",
+        "desc": "Permission level for new players joining for the first time.",
+        "display": "Default Permission Level",
+        "required": true,
+        "value": "member"
+      },
+      "difficulty": {
+        "type": "string",
+        "desc": "Sets the difficulty of the world.",
+        "display": "Difficulty",
+        "required": true,
+        "value": "easy"
+      },
+      "gamemode": {
+        "type": "string",
+        "desc": "Sets the game mode for new players.",
+        "display": "Gamemode",
+        "required": true,
+        "value": "survival"
+      },
+      "level-name": {
+        "type": "string",
+        "desc": "Name of the World Folder",
+        "display": "Level Name",
+        "required": true,
+        "value": "Bedrock level"
+      },
+      "level-seed": {
+        "type": "string",
+        "desc": "Use to randomize the world",
+        "display": "Level Seed",
+        "value": ""
+      },
+      "max-players": {
+        "type": "integer",
+        "desc": "The maximum number of players that can play on the server.",
+        "display": "Max Players",
+        "required": true,
+        "value": 100
+      },
+      "max-threads": {
+        "type": "integer",
+        "desc": "Maximum number of threads the server will try to use. If set to 0 or removed then it will use as many as possible.",
+        "display": "Max Threads",
+        "required": true,
+        "value": 0
+      },
+      "online-mode": {
+        "type": "boolean",
+        "desc": "Whether a player is required to be authenticated to XBox Live",
+        "display": "Online Mode",
+        "required": true,
+        "value": true
+      },
+      "player-idle-timeout": {
+        "type": "integer",
+        "desc": "After a player has idled for this many minutes they will be kicked. If set to 0 then players can idle indefinitely.",
+        "display": "Player Idle Timeout",
+        "required": true,
+        "value": 30
+      },
+      "server-name": {
+        "type": "string",
+        "desc": "Used as the server name",
+        "display": "Server Name",
+        "required": true,
+        "value": "Dedicated Server"
+      },
+      "server-port": {
+        "type": "integer",
+        "desc": "Which IPv4 port the server should listen to.",
+        "display": "Server Port",
+        "required": true,
+        "value": 19132
+      },
+      "server-portv6": {
+        "type": "integer",
+        "desc": "Which IPv6 port the server should listen to.",
+        "display": "Server Port (IPv6)",
+        "required": true,
+        "value": 19133
+      },
+      "texturepack-required": {
+        "type": "boolean",
+        "desc": "Force clients to use texture packs in the current world",
+        "display": "Force Server Texturepack",
+        "required": true,
+        "value": false
+      },
+      "tick-distance": {
+        "type": "integer",
+        "desc": "The world will be ticked this many chunks away from any player.",
+        "display": "Tick Distance",
+        "required": true,
+        "value": 4
+      },
+      "version": {
+        "type": "string",
+        "desc": "Version of the Minecraft Bedrock Server to use",
+        "display": "Bedrock Version",
+        "required": true,
+        "value": "1.20.50.03"
+      },
+      "view-distance": {
+        "type": "integer",
+        "desc": "The maximum allowed view distance in number of chunks.",
+        "display": "View Distance",
+        "required": true,
+        "value": 32
+      },
+      "white-list": {
+        "type": "boolean",
+        "desc": "If true then all connected players must be listed in the separate whitelist.json file.",
+        "display": "Whitelist",
+        "required": true,
+        "value": false
+      }
+    },
+    "environment": {
+      "bindings": {},
+      "image": "itzg/minecraft-bedrock-server",
+      "networkMode": "host",
+      "networkName": "",
+      "portBindings": [],
+      "type": "docker"
+    },
+    "supportedEnvironments": [],
+    "requirements": {
+      "binaries": [
+        "unzip"
+      ],
+      "os": "linux",
+      "arch": "amd64"
+    }
+  }
