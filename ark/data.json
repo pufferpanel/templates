@@ -3,13 +3,15 @@
     "name": "ark",
     "environment": {
       "type": "host"
-    }
+    },
+    "ignoreExitCode": true
   },
   {
     "name": "ark-docker",
     "environment": {
       "type": "docker",
       "image": "steamcmd/steamcmd"
-    }
+    },
+    "ignoreExitCode": true
   }
 ]

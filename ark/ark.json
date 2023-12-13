@@ -100,8 +100,7 @@
     "command": "./ShooterGame/Binaries/Linux/ShooterGameServer ${mapname}?listen?SessionName=${sessionname}?ServerAdminPassword=${serveradminpassword}?MultiHome=${ip}?Port=${port}?QueryPort=${queryport}?MaxPlayers=${maxplayers} -server ${exclusive}",
     "stopCode": 2,
     "stdin": {},
-    "stdout": {},
-    "expectedExitCode": -1
+    "stdout": {}
   },
   "environment": {
     "type": "host"
