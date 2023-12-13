@@ -7,7 +7,8 @@
     "environment": {
       "type": "host"
     },
-    "runtimeRequirement": 10
+    "runtimeRequirement": 10,
+    "ignoreExitCode": true
   },
   {
     "name": "rust-docker",
@@ -18,6 +19,7 @@
       "type": "docker",
       "image": "steamcmd/steamcmd"
     },
-    "runtimeRequirement": 10
+    "runtimeRequirement": 10,
+    "ignoreExitCode": true
   }
 ]

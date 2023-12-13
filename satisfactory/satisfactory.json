@@ -40,7 +40,7 @@
     "command": "./Engine/Binaries/Linux/UE4Server-Linux-Shipping FactoryGame ?listen -multihome=${multihome} -ServerQueryPort=${port}",
     "stopCode": 2,
     "environmentVars": {
-      "LD_LIBRARY_PATH": "./linux64:$LD_LIBRARY_PATH"
+      "LD_LIBRARY_PATH": "./linux64"
     },
     "stdin": {},
     "stdout": {}
@@ -48,6 +48,15 @@
   "environment": {
     "type": "host"
   },
+  "supportedEnvironments": [
+    {
+      "type": "host"
+    },
+    {
+      "type": "docker",
+      "image": "steamcmd/steamcmd"
+    }
+  ],
   "requirements": {
     "os": "linux",
     "arch": "amd64"
