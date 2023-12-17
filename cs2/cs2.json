@@ -1,0 +1,131 @@
+{
+    "name": "Counter Strike: 2",
+    "display": "Counter Strike: 2",
+    "type": "cs2",
+    "install": [
+      {
+        "files": [
+          "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"
+        ],
+        "type": "download"
+      },
+      {
+        "target": "steamcmd",
+        "type": "mkdir"
+      },
+      {
+        "commands": [
+          "tar --no-same-owner -xzvf steamcmd_linux.tar.gz -C steamcmd",
+          "steamcmd/steamcmd.sh +login anonymous +force_install_dir .. +app_update 730 +quit",
+          "mkdir -p .steam/sdk32",
+          "mkdir -p .steam/sdk64",
+          "cp steamcmd/linux32/steamclient.so .steam/sdk32/steamclient.so",
+          "cp steamcmd/linux64/steamclient.so .steam/sdk64/steamclient.so"
+        ],
+        "type": "command"
+      }
+    ],
+    "run": {
+      "stop": "quit",
+      "command": "./cs2 -dedicated -usercon -strictportbind -ip ${ip} -port ${port} +clientport ${clientport} +tv_port ${tvport} +map ${map} -maxplayers_override ${maxplayers} +sv_setsteamaccount ${gslt} -tickrate ${tickrate} +mapgroup ${mapgroup} +game_mode ${gamemode} +game_type ${gametype} -net_port_try 1 -norestart",
+      "workingDirectory": "/game/bin/linuxsteamrt64/",
+      "pre": [],
+      "post": [],
+      "environmentVars": {}
+    },
+    "data": {
+      "clientport": {
+        "type": "integer",
+        "desc": "What port to bind the clientport to",
+        "display": "Client Port",
+        "required": true,
+        "value": "27016"
+      },
+      "gamemode": {
+        "type": "integer",
+        "desc": "(Advanced) Gamemode",
+        "display": "Gamemode",
+        "required": true,
+        "value": "0"
+      },
+      "gametype": {
+        "type": "integer",
+        "desc": "(Advanced) Gametype",
+        "display": "Gametype",
+        "required": true,
+        "value": "0"
+      },
+      "gslt": {
+        "type": "string",
+        "desc": "It is required to register your server, otherwise it can only be played on LAN. Visit http://steamcommunity.com/dev/managegameservers to get a token",
+        "display": "GSLT Token",
+        "required": true,
+        "value": "GSLTTOKEN"
+      },
+      "ip": {
+        "type": "string",
+        "desc": "What IP to bind the server to",
+        "display": "IP",
+        "required": true,
+        "value": "0.0.0.0"
+      },
+      "map": {
+        "type": "string",
+        "desc": "Map to load by default",
+        "display": "Map",
+        "required": true,
+        "value": "de_dust2"
+      },
+      "mapgroup": {
+        "type": "integer",
+        "desc": "(Advanced) Map group",
+        "display": "Map group",
+        "required": true,
+        "value": "mg_active"
+      },
+      "maxplayers": {
+        "type": "integer",
+        "desc": "Max players allowed on server",
+        "display": "Max Players",
+        "required": true,
+        "value": "20"
+      },
+      "port": {
+        "type": "integer",
+        "desc": "What port to bind the server to",
+        "display": "Port",
+        "required": true,
+        "value": "27015"
+      },
+      "tickrate": {
+        "type": "integer",
+        "desc": "Server tick rate",
+        "display": "Tickrate",
+        "required": true,
+        "value": "128"
+      },
+      "tvport": {
+        "type": "integer",
+        "desc": "What port to bind the GOTV to",
+        "display": "GOTV Port",
+        "required": true,
+        "value": "27017"
+      }
+    },
+    "environment": {
+      "type": "tty"
+    },
+    "supportedEnvironments": [
+      {
+        "type": "tty"
+      },
+      {
+        "image": "pufferpanel/srcds",
+        "type": "docker"
+      }
+    ],
+    "requirements": {
+      "os": "linux",
+      "arch": "amd64"
+    }
+  }
