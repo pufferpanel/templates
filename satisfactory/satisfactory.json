@@ -31,13 +31,13 @@
     {
       "type": "command",
       "commands": [
-        "chmod +x Engine/Binaries/Linux/UE4Server-Linux-Shipping",
+        "chmod +x Engine/Binaries/Linux/UnrealServer-Linux-Shipping",
         "mkdir -p ./FactoryGame/Saved/Config/LinuxServer/"
       ]
     }
   ],
   "run": {
-    "command": "./Engine/Binaries/Linux/UE4Server-Linux-Shipping FactoryGame ?listen -multihome=${multihome} -ServerQueryPort=${port}",
+    "command": ".Engine/Binaries/Linux/UnrealServer-Linux-Shipping FactoryGame ?listen -multihome=${multihome} -ServerQueryPort=${port}",
     "stopCode": 2,
     "environmentVars": {
       "LD_LIBRARY_PATH": "./linux64"
