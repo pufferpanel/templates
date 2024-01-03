@@ -1,0 +1,973 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pufferpanel.com/template.schema.json",
+  "title": "Template",
+  "description": "Pufferpanel template schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "type": {
+      "type": "string"
+    },
+    "display": {
+      "type": "string"
+    },
+    "data": {
+      "patternProperties": {
+        "^[0-9A-Za-z_]+$": {
+          "$ref": "#/$defs/variable"
+        }
+      }
+    },
+    "environment": {
+      "type": "object",
+      "$ref": "#/$defs/environment"
+    },
+    "supportedEnvironments": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/environment"
+      },
+      "minItems": 1
+    },
+    "requirements": {
+      "type": "object",
+      "properties": {
+        "os": {
+          "type": "string"
+        },
+        "arch": {
+          "type": "string"
+        },
+        "binaries": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        }
+      }
+    },
+    "install": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/operation"
+      },
+      "minItems": 0
+    },
+    "uninstall": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/operation"
+      },
+      "minItems": 0
+    },
+    "run": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "command": {
+          "additionalProperties": false,
+          "type": [
+            "string",
+            "array"
+          ],
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "command": {
+                "type": "string"
+              },
+              "if": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "command"
+            ]
+          },
+          "minItems": 1
+        },
+        "pre": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/operation"
+          },
+          "minItems": 0
+        },
+        "post": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/operation"
+          },
+          "minItems": 0
+        },
+        "stop": {
+          "type": "string"
+        },
+        "stopCode": {
+          "type": "integer"
+        },
+        "stdin": {
+          "$ref": "#/$defs/stdinConfig"
+        },
+        "stdout": {
+          "$ref": "#/$defs/stdoutConfig"
+        },
+        "environmentVars": {
+          "patternProperties": {
+            "^[0-9A-Za-z_]+$": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "required": [
+        "command"
+      ],
+      "oneOf": [
+        {
+          "required": [
+            "stop"
+          ]
+        },
+        {
+          "required": [
+            "stopCode"
+          ]
+        }
+      ]
+    },
+    "groups": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "display": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "variables": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "order": {
+            "type": "integer"
+          },
+          "if": {
+            "type": "string"
+          }
+        }
+      },
+      "minItems": 1,
+      "required": [
+        "variables"
+      ]
+    }
+  },
+  "$defs": {
+    "variable": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "enum": [
+            "option",
+            "string",
+            "boolean",
+            "integer"
+          ],
+          "description": "Variable type"
+        },
+        "value": {
+          "type": [
+            "number",
+            "string",
+            "boolean"
+          ]
+        },
+        "display": {
+          "type": "string"
+        },
+        "desc": {
+          "type": "string"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "userEdit": {
+          "type": "boolean",
+          "description": "Whether a user can edit this value"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/option"
+          },
+          "minItems": 1
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "option"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "required": [
+              "options"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "integer"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        {
+          "required": [
+            "type"
+          ]
+        }
+      ]
+    },
+    "option": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": [
+            "number",
+            "string",
+            "boolean"
+          ],
+          "description": "Value to use"
+        },
+        "display": {
+          "type": "string",
+          "description": "Display name of option"
+        }
+      }
+    },
+    "operation": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "alterfile",
+            "archive",
+            "command",
+            "console",
+            "curseforge",
+            "dockerpull",
+            "download",
+            "extract",
+            "fabricdl",
+            "forgedl",
+            "javadl",
+            "mkdir",
+            "mojangdl",
+            "move",
+            "sleep",
+            "spongedl",
+            "steamgamedl",
+            "writefile"
+          ]
+        },
+        "if": {
+          "type": "string"
+        }
+      },
+      "unevaluatedProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "alterfile"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "file": {
+                "type": "string"
+              },
+              "search": {
+                "type": "string"
+              },
+              "replace": {
+                "type": "string"
+              },
+              "regex": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "file",
+              "replace",
+              "search"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "archive"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "source": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "destination": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "source",
+              "destination"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "command"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "commands": {
+                "type": [
+                  "string",
+                  "array"
+                ],
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "commands"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "console"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "message"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "curseforge"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "projectId": {
+                "type": "integer"
+              },
+              "fileId": {
+                "type": "integer"
+              },
+              "java": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "projectId"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "dockerpull"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "imageName": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "imageName"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "download"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "files": {
+                "type": [
+                  "array"
+                ],
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "files"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "extract"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "source": {
+                "type": "string"
+              },
+              "destination": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "source",
+              "destination"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "fabricdl"
+              }
+            }
+          },
+          "then": {}
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "forgedl"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "minecraftVersion": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string"
+              },
+              "target": {
+                "type": "string"
+              },
+              "outputVariable": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "target"
+            ],
+            "oneOf": [
+              {
+                "required": [
+                  "version"
+                ]
+              },
+              {
+                "required": [
+                  "minecraftVersion"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "javadl"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "version": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "version"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "mkdir"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "target": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "target"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "mojangdl"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "version": {
+                "type": "string"
+              },
+              "target": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "target",
+              "version"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "move"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "source": {
+                "type": "string"
+              },
+              "target": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "source",
+              "target"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "sleep"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "duration": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "duration"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "spongedl"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "recommended": {
+                "type": "boolean"
+              },
+              "spongeType": {
+                "enum": [
+                  "spongeforge",
+                  "spongevanilla"
+                ]
+              },
+              "spongeVersion": {
+                "type": "string"
+              },
+              "minecraftVersion": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "spongeType"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "steamgamedl"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "appId": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "appId"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "writefile"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "target": {
+                "type": "string"
+              },
+              "text": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "target",
+              "text"
+            ]
+          }
+        }
+      ]
+    },
+    "environment": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "docker",
+            "host"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "#/$defs/dockerEnv"
+        },
+        {
+          "$ref": "#/$defs/standardEnv"
+        }
+      ]
+    },
+    "dockerEnv": {
+      "type": "object",
+      "if": {
+        "properties": {
+          "type": {
+            "const": "docker"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "type": {
+            "const": "docker"
+          },
+          "image": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "image"
+        ]
+      }
+    },
+    "standardEnv": {
+      "type": "object",
+      "if": {
+        "properties": {
+          "type": {
+            "const": "host"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "type": {
+            "const": "host"
+          }
+        },
+        "unevaluatedProperties": false
+      }
+    },
+    "stdinConfig": {
+      "properties": {
+        "type": {
+          "enum": [
+            "telnet",
+            "rcon",
+            "rconws",
+            "stdin"
+          ]
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "telnet"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/telnetConfig"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "rcon"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/rconConfig"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "rconws"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/rconwsConfig"
+          }
+        }
+      ]
+    },
+    "stdoutConfig": {
+      "properties": {
+        "type": {
+          "enum": [
+            "telnet",
+            "rcon",
+            "rconws",
+            "file",
+            "stdout"
+          ]
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "telnet"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/telnetConfig"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "rcon"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/rconConfig"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "rconws"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/rconwsConfig"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "file"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/fileConfig"
+          }
+        }
+      ]
+    },
+    "telnetConfig": {
+      "properties": {
+        "ip": {
+          "type": "string"
+        },
+        "port": {
+          "type": [
+            "integer",
+            "string"
+          ]
+        }
+      },
+      "required": [
+        "port"
+      ]
+    },
+    "rconConfig": {
+      "properties": {
+        "ip": {
+          "type": "string"
+        },
+        "port": {
+          "type": [
+            "integer",
+            "string"
+          ]
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "port",
+        "password"
+      ]
+    },
+    "rconwsConfig": {
+      "properties": {
+        "ip": {
+          "type": "string"
+        },
+        "port": {
+          "type": [
+            "integer",
+            "string"
+          ]
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "port",
+        "password"
+      ]
+    },
+    "fileConfig": {
+      "properties": {
+        "file": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "file"
+      ]
+    }
+  }
+}
