@@ -5,7 +5,8 @@
     "modpack": {
       "type": "string",
       "value": "Modpack to run with",
-      "desc": "Open https://valheim.thunderstore.io/package/denikson/BepInExPack_Valheim/ in new tab and right 'manual download' click \u003e copy link. Paste it here if you wish to use this modpack.",
+      "desc": "Open https://valheim.thunderstore.io/package/denikson/BepInExPack_Valheim/ in new tab and right 'manual download' click > copy link. Paste it here if you wish to use this modpack.",
+      "required": false,
       "userEdit": true
     },
     "name": {
@@ -26,10 +27,11 @@
     },
     "port": {
       "type": "integer",
-      "value": "2456",
+      "value": 2456,
       "display": "Port",
       "desc": "What port to bind the server to.",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "world": {
       "type": "string",
@@ -71,13 +73,17 @@
     }
   ],
   "run": {
-    "command": "./valheim_server.x86_64 -name ${name} -port ${port} -world ${world} -password ${password} -public 1 \u003e /dev/null \u0026",
+    "command": "./valheim_server.x86_64 -name ${name} -port ${port} -world ${world} -password ${password} -public 1 > /dev/null &",
     "stopCode": 2,
     "environmentVars": {
       "LD_LIBRARY_PATH": "./linux64:$LD_LIBRARY_PATH"
     },
-    "stdin": {},
-    "stdout": {}
+    "stdin": {
+      "type": "stdin"
+    },
+    "autostart": false,
+    "autorecover": false,
+    "autorestart": false
   },
   "environment": {
     "type": "host"

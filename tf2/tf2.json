@@ -3,14 +3,15 @@
   "display": "Team Fortress 2",
   "data": {
     "ip": {
-      "type": "",
+      "type": "string",
       "value": "0.0.0.0",
       "display": "IP",
       "desc": "What IP to bind the server to",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "mapname": {
-      "type": "",
+      "type": "string",
       "value": "ctf_2fort",
       "display": "Team Fortess 2 Map to load",
       "desc": "TF2 Map",
@@ -19,10 +20,11 @@
     },
     "port": {
       "type": "integer",
-      "value": "27015",
+      "value": 27015,
       "display": "Port",
       "desc": "What port to bind the server to",
-      "required": true
+      "required": true,
+      "userEdit": false
     }
   },
   "install": [
@@ -48,8 +50,12 @@
   "run": {
     "command": "./srcds_run +ip ${ip} +port ${port} -game tf -console +map ${mapname} -norestart",
     "stop": "exit",
-    "stdin": {},
-    "stdout": {}
+    "stdin": {
+      "type": "stdin"
+    },
+    "autostart": false,
+    "autorecover": false,
+    "autorestart": false
   },
   "environment": {
     "type": "host"

@@ -57,6 +57,7 @@
       "value": "",
       "display": "Announcement Box",
       "desc": "Decides if the text announcements the Announcement Box makes when pulsed from wire.",
+      "required": false,
       "userEdit": true,
       "options": [
         {
@@ -74,7 +75,8 @@
       "value": "0.0.0.0",
       "display": "IP",
       "desc": "Sets the IP address for the server to listen on - 0.0.0.0 means every possible IP",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "lang": {
       "type": "string",
@@ -159,7 +161,8 @@
       "value": "7777",
       "display": "Port",
       "desc": "What port to bind the server to",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "secure": {
       "type": "string",
@@ -208,6 +211,7 @@
       "value": "-steam",
       "display": "Steam",
       "desc": "Enables Steam Support",
+      "required": false,
       "userEdit": true,
       "options": [
         {
@@ -224,7 +228,9 @@
       "type": "string",
       "value": "",
       "display": "tModLoader Version (Set this to the latest tModLoader version to enable support - see https://github.com/tModLoader/tModLoader/releases/latest)",
-      "desc": "tModLoader Version"
+      "desc": "tModLoader Version",
+      "required": false,
+      "userEdit": false
     },
     "world": {
       "type": "string",
@@ -284,12 +290,16 @@
     "pre": [
       {
         "type": "writefile",
-        "target": "serverconfig.txt",
-        "text": "world=../${wp}/${world}.wld\nautocreate=${size}\nseed=${seed}\nworldname=${world}\ndifficulty=${difficulty}\nmaxplayers=${players}\nport=${port}\npassword=${password}\nmotd=${motd}\nworldpath=../${wp}\nbanlist=../${ban}\nsecure=${secure}\nlanguage=${lang}\nupnp=1\nnpcstream=${npcs}\npriority=3\nslowliquids=${sl}\nworldrollbackstokeep=${backups}"
+        "text": "world=../${wp}/${world}.wld\nautocreate=${size}\nseed=${seed}\nworldname=${world}\ndifficulty=${difficulty}\nmaxplayers=${players}\nport=${port}\npassword=${password}\nmotd=${motd}\nworldpath=../${wp}\nbanlist=../${ban}\nsecure=${secure}\nlanguage=${lang}\nupnp=1\nnpcstream=${npcs}\npriority=3\nslowliquids=${sl}\nworldrollbackstokeep=${backups}",
+        "target": "serverconfig.txt"
       }
     ],
-    "stdin": {},
-    "stdout": {}
+    "stdin": {
+      "type": "stdin"
+    },
+    "autostart": false,
+    "autorecover": false,
+    "autorestart": false
   },
   "environment": {
     "type": "host"

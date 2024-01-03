@@ -6,6 +6,12 @@
   "type": "object",
   "additionalProperties": false,
   "properties": {
+    "id": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "string"
+    },
     "type": {
       "type": "string"
     },
@@ -120,6 +126,15 @@
               "type": "string"
             }
           }
+        },
+        "autostart": {
+          "type": "boolean"
+        },
+        "autorecover": {
+          "type": "boolean"
+        },
+        "autorestart": {
+          "type": "boolean"
         }
       },
       "required": [
@@ -203,6 +218,9 @@
         "userEdit": {
           "type": "boolean",
           "description": "Whether a user can edit this value"
+        },
+        "internal": {
+          "type": "boolean"
         },
         "options": {
           "type": "array",

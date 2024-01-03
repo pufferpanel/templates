@@ -15,11 +15,12 @@
       "value": "0.0.0.0",
       "display": "IP",
       "desc": "What IP to bind the Eco game server to.",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "maxcon": {
       "type": "integer",
-      "value": "-1",
+      "value": -1,
       "display": "Max Connections",
       "desc": "Maximum Connections to Server (Player Limit, -1 is unlimited)",
       "required": true,
@@ -29,28 +30,33 @@
       "type": "string",
       "value": "",
       "display": "Password",
-      "desc": "Password for the Eco Game Server, which will be required for login."
+      "desc": "Password for the Eco Game Server, which will be required for login.",
+      "required": false,
+      "userEdit": false
     },
     "port": {
       "type": "integer",
-      "value": "3000",
+      "value": 3000,
       "display": "Game-Server Port, port forward for external access",
       "desc": "What port to bind the server to",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "upnp": {
       "type": "boolean",
-      "value": "false",
+      "value": false,
       "display": "Do you wish to Enable uPnP?",
       "desc": "Enable pnp?",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "webServerPort": {
       "type": "integer",
-      "value": "3001",
+      "value": 3001,
       "display": "Web-Server Port",
       "desc": "What port to bind the Eco web server to.",
-      "required": true
+      "required": true,
+      "userEdit": false
     }
   },
   "install": [
@@ -81,8 +87,12 @@
   "run": {
     "command": "./EcoServer",
     "stopCode": 2,
-    "stdin": {},
-    "stdout": {}
+    "stdin": {
+      "type": "stdin"
+    },
+    "autostart": false,
+    "autorecover": false,
+    "autorestart": false
   },
   "environment": {
     "type": "host"

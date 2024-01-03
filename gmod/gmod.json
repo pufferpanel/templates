@@ -3,7 +3,7 @@
   "display": "Garry's Mod",
   "data": {
     "gamemode": {
-      "type": "",
+      "type": "string",
       "value": "sandbox",
       "display": "Gamemode",
       "desc": "Gamemode to load",
@@ -11,7 +11,7 @@
       "userEdit": true
     },
     "mapname": {
-      "type": "",
+      "type": "string",
       "value": "gm_construct",
       "display": "Map",
       "desc": "Map to load by default",
@@ -20,30 +20,34 @@
     },
     "maxplayers": {
       "type": "integer",
-      "value": "20",
+      "value": 20,
       "display": "Max Players",
       "desc": "Max players allowed on server",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "port": {
       "type": "integer",
-      "value": "27015",
+      "value": 27015,
       "display": "Port",
       "desc": "What port to bind the server to",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "steamaccounttoken": {
-      "type": "",
+      "type": "string",
       "value": "",
       "display": "Steam Game Server Account Token",
       "desc": "Token for a game server account. *optional* (Get one here: https://steamcommunity.com/dev/managegameservers)",
+      "required": false,
       "userEdit": true
     },
     "wscollection": {
-      "type": "",
+      "type": "string",
       "value": "",
       "display": "Workshop Collection ID",
       "desc": "Specify a ws collection the server should load. *optional*",
+      "required": false,
       "userEdit": true
     }
   },
@@ -70,8 +74,12 @@
   "run": {
     "command": "./srcds_run +port ${port} -game garrysmod -console +gamemode ${gamemode} +map ${mapname} +maxplayers ${maxplayers} +host_workshop_collection ${wscollection} +sv_setsteamaccount ${steamaccounttoken} -norestart",
     "stop": "exit",
-    "stdin": {},
-    "stdout": {}
+    "stdin": {
+      "type": "stdin"
+    },
+    "autostart": false,
+    "autorecover": false,
+    "autorestart": false
   },
   "environment": {
     "type": "host"

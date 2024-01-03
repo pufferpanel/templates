@@ -4,20 +4,22 @@
   "data": {
     "clientport": {
       "type": "integer",
-      "value": "27005",
+      "value": 27005,
       "display": "Client Port",
       "desc": "What port to bind the clientport to",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "ip": {
-      "type": "",
+      "type": "string",
       "value": "0.0.0.0",
       "display": "IP",
       "desc": "What IP to bind the server to",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "mapName": {
-      "type": "",
+      "type": "string",
       "value": "de_dust2",
       "display": "Map",
       "desc": "Map to load by default",
@@ -26,7 +28,7 @@
     },
     "maxplayers": {
       "type": "integer",
-      "value": "20",
+      "value": 20,
       "display": "Max Players",
       "desc": "Max players allowed on server",
       "required": true,
@@ -34,14 +36,15 @@
     },
     "port": {
       "type": "integer",
-      "value": "27015",
+      "value": 27015,
       "display": "Port",
       "desc": "What port to bind the server to",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "tickrate": {
       "type": "integer",
-      "value": "66",
+      "value": 66,
       "display": "Tickrate",
       "desc": "Server tick speed, to use this value you need to download this addon: https://github.com/daemon32/tickrate_enabler/releases/tag/0.5",
       "required": true,
@@ -49,10 +52,11 @@
     },
     "tvport": {
       "type": "integer",
-      "value": "27020",
+      "value": 27020,
       "display": "SourceTV Port",
       "desc": "What port to bind the SourceTV to",
-      "required": true
+      "required": true,
+      "userEdit": false
     }
   },
   "install": [
@@ -72,8 +76,12 @@
   "run": {
     "command": "./srcds_run -game cstrike -ip ${ip} -port ${port} +clientport ${clientport} +tv_port ${tvport} +map ${mapName} -maxplayers ${maxplayers} -tickrate ${tickrate} -norestart",
     "stop": "exit",
-    "stdin": {},
-    "stdout": {}
+    "stdin": {
+      "type": "stdin"
+    },
+    "autostart": false,
+    "autorecover": false,
+    "autorestart": false
   },
   "environment": {
     "type": "host"

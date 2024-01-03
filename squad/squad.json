@@ -4,24 +4,27 @@
   "data": {
     "fixed_max_players": {
       "type": "integer",
-      "value": "80",
+      "value": 80,
       "display": "Fixed Max Players",
       "desc": "Player count cannot go higher than this",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "port": {
       "type": "integer",
-      "value": "7787",
+      "value": 7787,
       "display": "Port",
       "desc": "Game server port",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "query_port": {
       "type": "integer",
-      "value": "27165",
+      "value": 27165,
       "display": "Steam Query Port",
       "desc": "Steam query port",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "random": {
       "type": "option",
@@ -29,6 +32,7 @@
       "display": "Random",
       "desc": "Randomize map rotation",
       "required": true,
+      "userEdit": false,
       "options": [
         {
           "value": "NONE",
@@ -82,8 +86,12 @@
         ]
       }
     ],
-    "stdin": {},
-    "stdout": {}
+    "stdin": {
+      "type": "stdin"
+    },
+    "autostart": false,
+    "autorecover": false,
+    "autorestart": false
   },
   "environment": {
     "type": "host"

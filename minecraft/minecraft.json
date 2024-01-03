@@ -4,53 +4,66 @@
   "data": {
     "eula": {
       "type": "boolean",
-      "value": "false",
+      "value": false,
       "display": "EULA Agreement (true/false)",
-      "desc": "Do you (or the server owner) agree to the \u003ca href='https://account.mojang.com/documents/minecraft_eula'\u003eMinecraft EULA?\u003c/a\u003e",
+      "desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
       "required": true,
       "userEdit": true
     },
     "forgebuild": {
-      "type": "",
+      "type": "string",
       "value": "",
       "display": "Forge Version",
-      "desc": "Version of Forge to install (may be located \u003ca href='http://files.minecraftforge.net/#Downloads'\u003ehere\u003c/a\u003e",
+      "desc": "Version of Forge to install (may be located <a href='http://files.minecraftforge.net/#Downloads'>here</a>",
+      "required": false,
       "userEdit": true
     },
     "ip": {
-      "type": "",
+      "type": "string",
       "value": "0.0.0.0",
       "display": "IP",
       "desc": "What IP to bind the server to",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "javaversion": {
-      "type": "",
+      "type": "string",
       "value": "17",
       "display": "Java Version",
       "desc": "Version of Java to use",
       "required": true,
       "userEdit": true
     },
+    "jvmArgs": {
+      "type": "string",
+      "value": "-Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true",
+      "display": "JVM Arguments",
+      "desc": "Extra JVM arguments to pass",
+      "required": false,
+      "userEdit": false
+    },
     "magmatag": {
       "type": "string",
       "value": "68e21495",
       "display": "Tag",
       "desc": "The alphanumeric commit ID for the build (See https://git.magmafoundation.org/magmafoundation/Magma-1-18-x/-/releases for the commit ID's for each release))",
+      "required": false,
       "userEdit": true
     },
     "memory": {
       "type": "integer",
-      "value": "1024",
+      "value": 1024,
       "display": "Memory (MB)",
       "desc": "How much memory in MB to allocate to the Java Heap",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "modlauncher": {
-      "type": "",
+      "type": "string",
       "value": "",
       "display": "Mod/Plugin Launcher",
       "desc": "What mod or plugin launcher should be installed with Minecraft",
+      "required": false,
       "userEdit": true,
       "options": [
         {
@@ -107,46 +120,41 @@
       "type": "string",
       "value": "latest",
       "display": "Mohist Version",
-      "desc": "Mohist version to install (may be located \u003ca href='https://mohistmc.com/download/' target='_blank'\u003ehere\u003c/a\u003e).",
+      "desc": "Mohist version to install (may be located <a href='https://mohistmc.com/download/' target='_blank'>here</a>).",
+      "required": false,
       "userEdit": true
     },
     "motd": {
-      "type": "",
+      "type": "string",
       "value": "A Minecraft Server\\n\\u00A79 hosted on PufferPanel",
       "display": "MOTD message of the day",
-      "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support \u003ca href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'\u003ecolor and formatting codes\u003c/a\u003e.",
+      "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
       "required": true,
       "userEdit": true
     },
     "paperbuild": {
-      "type": "",
+      "type": "string",
       "value": "96",
       "display": "build",
-      "desc": "Build of Paper to install (\u003ca href='https://papermc.io/downloads'\u003ePaper version build\u003c/a\u003e). Must be specified as a build number, e.g. 484",
+      "desc": "Build of Paper to install (<a href='https://papermc.io/downloads'>Paper version build</a>). Must be specified as a build number, e.g. 484",
+      "required": false,
       "userEdit": true
     },
     "port": {
       "type": "integer",
-      "value": "25565",
+      "value": 25565,
       "display": "Port",
       "desc": "What port to bind the server to",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "version": {
-      "type": "",
+      "type": "string",
       "value": "latest",
       "display": "Version",
       "desc": "Version of Minecraft you wish to install (not all software may respect this value",
       "required": true,
       "userEdit": true
-    },
-    "jvmArgs": {
-      "type": "string",
-      "value": "-Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true",
-      "display": "JVM Arguments",
-      "desc": "Extra JVM arguments to pass",
-      "required": false,
-      "userEdit": false
     }
   },
   "groups": [
@@ -211,22 +219,22 @@
     {
       "if": "modlauncher == ''",
       "type": "mojangdl",
-      "version": "${version}",
-      "target": "server.jar"
+      "target": "server.jar",
+      "version": "${version}"
     },
     {
       "if": "modlauncher == 'fabric'",
       "type": "fabricdl"
     },
     {
-      "if": "modlauncher == 'fabric' && env == 'host'",
+      "if": "modlauncher == 'fabric' \u0026\u0026 env == 'host'",
       "type": "command",
       "commands": [
         "java${javaversion} -jar fabric-installer.jar server -mcversion ${version} -downloadMinecraft -noprofile"
       ]
     },
     {
-      "if": "modlauncher == 'fabric' && env != 'host'",
+      "if": "modlauncher == 'fabric' \u0026\u0026 env != 'host'",
       "type": "command",
       "commands": [
         "java -jar fabric-installer.jar server -mcversion ${version} -downloadMinecraft -noprofile"
@@ -239,21 +247,21 @@
       "target": "installer.jar"
     },
     {
-      "if": "modlauncher == 'forge' && env == 'host'",
+      "if": "modlauncher == 'forge' \u0026\u0026 env == 'host'",
       "type": "command",
       "commands": [
         "java${javaversion} -jar installer.jar --installServer"
       ]
     },
     {
-      "if": "modlauncher == 'forge' && env != 'host'",
+      "if": "modlauncher == 'forge' \u0026\u0026 env != 'host'",
       "type": "command",
       "commands": [
         "java -jar installer.jar --installServer"
       ]
     },
     {
-      "if": "modlauncher == 'forge' && file_exists('forge-' + forgebuild + '-shim.jar')",
+      "if": "modlauncher == 'forge' \u0026\u0026 file_exists('forge-' + forgebuild + '-shim.jar')",
       "type": "move",
       "source": "forge-${forgebuild}-shim.jar",
       "target": "server.jar"
@@ -269,7 +277,7 @@
       "if": "modlauncher == 'magma'",
       "type": "move",
       "source": "Magma-*.jar",
-      "target": "server.jar"      
+      "target": "server.jar"
     },
     {
       "if": "modlauncher == 'mohist'",
@@ -281,13 +289,15 @@
     {
       "if": "modlauncher == 'mohist'",
       "type": "move",
-      "source": "mohist-*-server.jar",
-      "target": "server.jar"
+      "target": "server.jar",
+      "source": "mohist-*-server.jar"
     },
     {
       "if": "modlauncher == 'paper'",
       "type": "download",
-      "files": "https://api.papermc.io/v2/projects/paper/versions/${version}/builds/${build}/downloads/paper-${version}-${paperbuild}.jar"
+      "files": [
+        "https://api.papermc.io/v2/projects/paper/versions/${version}/builds/${build}/downloads/paper-${version}-${paperbuild}.jar"
+      ]
     },
     {
       "if": "modlauncher == 'paper'",
@@ -305,18 +315,18 @@
     {
       "if": "modlauncher == 'quilt'",
       "type": "move",
-      "source": "quilt-installer-*.jar",
-      "target": "quilt-installer.jar"
+      "target": "quilt-installer.jar",
+      "source": "quilt-installer-*.jar"
     },
     {
-      "if": "modlauncher == 'quilt' && env == 'host'",
+      "if": "modlauncher == 'quilt' \u0026\u0026 env == 'host'",
       "type": "command",
       "commands": [
         "java${javaversion} -jar quilt-installer.jar install server ${version} --download-server --install-dir=."
       ]
     },
     {
-      "if": "modlauncher == 'quilt' && env != 'host'",
+      "if": "modlauncher == 'quilt' \u0026\u0026 env != 'host'",
       "type": "command",
       "commands": [
         "java -jar quilt-installer.jar install server ${version} --download-server --install-dir=."
@@ -325,23 +335,25 @@
     {
       "if": "modlauncher == 'quilt'",
       "type": "move",
-      "target": "server.jar",
-      "source": "quilt-server-launch.jar"
+      "source": "quilt-server-launch.jar",
+      "target": "server.jar"
     },
     {
       "if": "modlauncher == 'spigot'",
       "type": "download",
-      "files": "https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar"
+      "files": [
+        "https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar"
+      ]
     },
     {
-      "if": "modlauncher == 'spigot' && env == 'host'",
+      "if": "modlauncher == 'spigot' \u0026\u0026 env == 'host'",
       "type": "command",
       "commands": [
         "java${javaversion} -jar BuildTools.jar --rev ${version}"
       ]
     },
     {
-      "if": "modlauncher == 'spigot' && env != 'host'",
+      "if": "modlauncher == 'spigot' \u0026\u0026 env != 'host'",
       "type": "command",
       "commands": [
         "java -jar BuildTools.jar --rev ${version}"
@@ -356,13 +368,13 @@
     {
       "if": "!file_exists(\"server.properties\")",
       "type": "writefile",
-      "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}\n",
-      "target": "server.properties"
+      "target": "server.properties",
+      "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}\n"
     },
     {
       "type": "writefile",
-      "target": "eula.txt",
-      "text": "eula=${eula}"
+      "text": "eula=${eula}",
+      "target": "eula.txt"
     }
   ],
   "run": {
@@ -390,7 +402,7 @@
       {
         "command": "java -Xmx${memory}M ${jvmArgs} -jar server.jar",
         "if": "env != 'host' && modlauncher == 'fabric'"
-      },      
+      },
       {
         "command": "java${javaversion} -Xmx${memory}M ${jvmArgs} -jar server.jar",
         "if": "env == 'host'"
@@ -400,8 +412,12 @@
       }
     ],
     "stop": "stop",
-    "stdin": {},
-    "stdout": {}
+    "stdin": {
+      "type": "stdin"
+    },
+    "autostart": false,
+    "autorecover": false,
+    "autorestart": false
   },
   "environment": {
     "type": "host"

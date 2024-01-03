@@ -7,6 +7,7 @@
       "value": "Welcome!",
       "display": "Server First Join Message",
       "desc": "The message displayed when someone joins the server for the first time",
+      "required": false,
       "userEdit": true
     },
     "password": {
@@ -14,20 +15,23 @@
       "value": "",
       "display": "Server Password",
       "desc": "Password for the server",
+      "required": false,
       "userEdit": true
     },
     "port": {
       "type": "integer",
-      "value": "9750",
+      "value": 9750,
       "display": "Server Port",
       "desc": "Port on which the server runs",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "returnjoinmessage": {
       "type": "string",
       "value": "Welcome Back",
       "display": "Returning Join Message",
       "desc": "The message displayed when a returning player joins the server",
+      "required": false,
       "userEdit": true
     },
     "servername": {
@@ -72,8 +76,8 @@
     },
     {
       "type": "writefile",
-      "text": "The ServerUsers.txt file stores all the players that have ever been on a server. Altering this file directly should not generally be required. \n\nThe main reason to edit this file would be to increase a players user group. The number directly after the long Steam ID. When in game players can promote other player to any rank that is lower than their own. To set a rank in-game. \n\n/setrank userName indexOfRank\nOr\n/setrank userName rankName\n\n\nExample user:  76561198004636696,3,false,false,Jayty",
-      "target": "Config/ServerUsers_README.txt"
+      "target": "Config/ServerUsers_README.txt",
+      "text": "The ServerUsers.txt file stores all the players that have ever been on a server. Altering this file directly should not generally be required. \n\nThe main reason to edit this file would be to increase a players user group. The number directly after the long Steam ID. When in game players can promote other player to any rank that is lower than their own. To set a rank in-game. \n\n/setrank userName indexOfRank\nOr\n/setrank userName rankName\n\n\nExample user:  76561198004636696,3,false,false,Jayty"
     },
     {
       "type": "writefile",
@@ -87,20 +91,24 @@
     },
     {
       "type": "writefile",
-      "target": "Config/UserPermissions.json",
-      "text": "{\n  \n\t\"SystemRanks\":[\n    {\n\t  \"Index_DontChange\":-2,\n      \"Name_DontChange\":\"Console\",\n      \"ChatPrefix\":\"[Console]\",\n      \"PrefixColour\":\"white\"\n    },\n\t{\n\t  \"Index_DontChange\":-1,\n      \"Name_DontChange\":\"Whisper\",\n      \"ChatPrefix\":\"[Whisper]\",\n      \"PrefixColour\":\"darkgrey\"\n    }\n\t],\n\t\"UserRanks\":[\n    {\n      \"Index\":0,\n      \"Rank\":\"User\",\n      \"ChatPrefix\":\"[User]\",\n      \"PrefixColour\":\"white\",\n      \"Permissions\":[\"Tell\", \"Reply\", \"ServerInfo\"]\n    },\n    {\n      \"Index\":1,\n      \"Rank\":\"Mod\",\n      \"ChatPrefix\":\"[Mod]\",\n      \"PrefixColour\":\"yellow\",\n      \"Permissions\":[\"Tell\", \"Reply\", \"Mute\", \"UnMute\", \"Kick\", \"GodSelf\", \"SuperSprint\", \"cmdGroup.TP\", \"DropAllSelf\", \"DropAllOthers\",  \"Up\" ,\"ServerInfo\"]\n    },\n    {\n      \"Index\":2,\n      \"Rank\":\"Admin\",\n      \"ChatPrefix\":\"[Admin]\",\n      \"PrefixColour\":\"darkred\",\n      \"Permissions\":[\"*\"]\n    },\n    {\n      \"Index\":3,\n      \"Rank\":\"Owner\",\n      \"ChatPrefix\":\"[Owner]\",\n      \"PrefixColour\":\"purple\",\n      \"Permissions\":[\"Tell\", \"Reply\", \"Mute\", \"UnMute\", \"Kick\", \"SetTime\", \"Ban\", \"UnBan\", \"ServerInfo\"]\n    }        \n  ], \n  \"CommandGroups\":[\n    {\n      \"GroupName\":\"TP\",\n      \"Permissions\":[\"TpToLocation\",\"TpToLocation\", \"TpToPlayer\", \"TpPlayerToMe\", \"TpPlayerToPlayer\"]\n    },\n    {\n      \"GroupName\":\"Weather\",\n      \"Permissions\":[\"SetTime\", \"SetMonth\", \"SetWeather\", \"WeatherOnOff\"]\n    },\n    {\n      \"GroupName\":\"ExampleGroupNinjaMod\",\n      \"Permissions\":[\"Kick\", \"Mute\", \"GodSelf\"]\n    }\n    ]\n}"
+      "text": "{\n  \n\t\"SystemRanks\":[\n    {\n\t  \"Index_DontChange\":-2,\n      \"Name_DontChange\":\"Console\",\n      \"ChatPrefix\":\"[Console]\",\n      \"PrefixColour\":\"white\"\n    },\n\t{\n\t  \"Index_DontChange\":-1,\n      \"Name_DontChange\":\"Whisper\",\n      \"ChatPrefix\":\"[Whisper]\",\n      \"PrefixColour\":\"darkgrey\"\n    }\n\t],\n\t\"UserRanks\":[\n    {\n      \"Index\":0,\n      \"Rank\":\"User\",\n      \"ChatPrefix\":\"[User]\",\n      \"PrefixColour\":\"white\",\n      \"Permissions\":[\"Tell\", \"Reply\", \"ServerInfo\"]\n    },\n    {\n      \"Index\":1,\n      \"Rank\":\"Mod\",\n      \"ChatPrefix\":\"[Mod]\",\n      \"PrefixColour\":\"yellow\",\n      \"Permissions\":[\"Tell\", \"Reply\", \"Mute\", \"UnMute\", \"Kick\", \"GodSelf\", \"SuperSprint\", \"cmdGroup.TP\", \"DropAllSelf\", \"DropAllOthers\",  \"Up\" ,\"ServerInfo\"]\n    },\n    {\n      \"Index\":2,\n      \"Rank\":\"Admin\",\n      \"ChatPrefix\":\"[Admin]\",\n      \"PrefixColour\":\"darkred\",\n      \"Permissions\":[\"*\"]\n    },\n    {\n      \"Index\":3,\n      \"Rank\":\"Owner\",\n      \"ChatPrefix\":\"[Owner]\",\n      \"PrefixColour\":\"purple\",\n      \"Permissions\":[\"Tell\", \"Reply\", \"Mute\", \"UnMute\", \"Kick\", \"SetTime\", \"Ban\", \"UnBan\", \"ServerInfo\"]\n    }        \n  ], \n  \"CommandGroups\":[\n    {\n      \"GroupName\":\"TP\",\n      \"Permissions\":[\"TpToLocation\",\"TpToLocation\", \"TpToPlayer\", \"TpPlayerToMe\", \"TpPlayerToPlayer\"]\n    },\n    {\n      \"GroupName\":\"Weather\",\n      \"Permissions\":[\"SetTime\", \"SetMonth\", \"SetWeather\", \"WeatherOnOff\"]\n    },\n    {\n      \"GroupName\":\"ExampleGroupNinjaMod\",\n      \"Permissions\":[\"Kick\", \"Mute\", \"GodSelf\"]\n    }\n    ]\n}",
+      "target": "Config/UserPermissions.json"
     },
     {
       "type": "writefile",
-      "target": "Config/UserPermissions_README.txt",
-      "text": "The UserPermissions.json file contains the base set of user groups and permissions. The UserPermissions.json can be changed while the server is offline in order to setup ranks and their perms. \n\nBy default base user groups such as 'User' (All general users) right through to 'Owner' status is setup. Any user group that has the permission '*' has access to ALL in game commands and this should be used sparingly.\n\nEditing: The most important thing when editing is to ensure that the json architecture is maintained.  Otherwise the server will fail to read the file and not run.\n\nList of all perms. Note that some may not work as expect or work at all.\n\n    BasicUser, \n    DropAllSelf,\n    DropAllOthers,\n    DeleteAllSelf,\n    DeleteAllOthers,\n    SpawnAI,\n    KillAI,\n    SetTime,\n    SetMonth,\n    SetWeather,\n    WeatherOnOff,\n    TpToLocation,\n    TpToPlayer,\n    TpPlayerToMe,\n    TpPlayerToPlayer,\n    TpPresets,\n    GodSelf,\n    SuperSprint,\n    ServerInfo,\n    Give,\n    Mute,\n    Kick,\n    Ban,\n    UnBan,\n    SetStatsSelf,\n    SetStatsOthers,\n    KillPlayer,\n    SetRank,\n    CleanUp,\n    Up,\n    AlwaysSafeLogOff,\n    StuckOthers,\n    ChatOff,\n    Video,\n    Restart"
+      "text": "The UserPermissions.json file contains the base set of user groups and permissions. The UserPermissions.json can be changed while the server is offline in order to setup ranks and their perms. \n\nBy default base user groups such as 'User' (All general users) right through to 'Owner' status is setup. Any user group that has the permission '*' has access to ALL in game commands and this should be used sparingly.\n\nEditing: The most important thing when editing is to ensure that the json architecture is maintained.  Otherwise the server will fail to read the file and not run.\n\nList of all perms. Note that some may not work as expect or work at all.\n\n    BasicUser, \n    DropAllSelf,\n    DropAllOthers,\n    DeleteAllSelf,\n    DeleteAllOthers,\n    SpawnAI,\n    KillAI,\n    SetTime,\n    SetMonth,\n    SetWeather,\n    WeatherOnOff,\n    TpToLocation,\n    TpToPlayer,\n    TpPlayerToMe,\n    TpPlayerToPlayer,\n    TpPresets,\n    GodSelf,\n    SuperSprint,\n    ServerInfo,\n    Give,\n    Mute,\n    Kick,\n    Ban,\n    UnBan,\n    SetStatsSelf,\n    SetStatsOthers,\n    KillPlayer,\n    SetRank,\n    CleanUp,\n    Up,\n    AlwaysSafeLogOff,\n    StuckOthers,\n    ChatOff,\n    Video,\n    Restart",
+      "target": "Config/UserPermissions_README.txt"
     }
   ],
   "run": {
     "command": "./Server_Linux_x64",
     "stopCode": 2,
-    "stdin": {},
-    "stdout": {}
+    "stdin": {
+      "type": "stdin"
+    },
+    "autostart": false,
+    "autorecover": false,
+    "autorestart": false
   },
   "environment": {
     "type": "host"

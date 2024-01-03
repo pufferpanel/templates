@@ -8,6 +8,7 @@
       "display": "EULA",
       "desc": "Do you accept the Teamspeak EULA? 1 = Yes, 0 = No.",
       "required": true,
+      "userEdit": false,
       "options": [
         {
           "value": "0",
@@ -21,31 +22,38 @@
     },
     "ftport": {
       "type": "integer",
-      "value": "30033",
+      "value": 30033,
       "display": "Port Number",
-      "desc": "What Port do you want your file transfer server to run on?"
+      "desc": "What Port do you want your file transfer server to run on?",
+      "required": false,
+      "userEdit": false
     },
     "ip": {
-      "type": "",
+      "type": "string",
       "value": "0.0.0.0",
       "display": "IP Address",
-      "desc": "What IP do you want your voice server to run on?"
+      "desc": "What IP do you want your voice server to run on?",
+      "required": false,
+      "userEdit": false
     },
     "license": {
-      "type": "",
+      "type": "string",
       "value": "",
       "display": "License Path",
       "desc": "The absolute path to your license file.",
+      "required": false,
       "userEdit": true
     },
     "qport": {
-      "type": "",
+      "type": "string",
       "value": "10011",
       "display": "Port Number",
-      "desc": "What Port do you want your query server to run on?"
+      "desc": "What Port do you want your query server to run on?",
+      "required": false,
+      "userEdit": false
     },
     "version": {
-      "type": "",
+      "type": "string",
       "value": "3.13.7",
       "display": "Version",
       "desc": "What version of Teamspeak do you want to use?",
@@ -54,9 +62,11 @@
     },
     "vport": {
       "type": "integer",
-      "value": "9987",
+      "value": 9987,
       "display": "Port Number",
-      "desc": "What Port do you want your voice server to run on?"
+      "desc": "What Port do you want your voice server to run on?",
+      "required": false,
+      "userEdit": false
     }
   },
   "install": [
@@ -75,8 +85,12 @@
   "run": {
     "command": "./ts3server_minimal_runscript.sh default_voice_port=${vport} query_port=${qport} filetransfer_port=${ftport} voice_ip=${ip} licensepath=${license} license_accepted=${eula}",
     "stopCode": 2,
-    "stdin": {},
-    "stdout": {}
+    "stdin": {
+      "type": "stdin"
+    },
+    "autostart": false,
+    "autorecover": false,
+    "autorestart": false
   },
   "environment": {
     "type": "host"

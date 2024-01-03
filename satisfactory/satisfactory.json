@@ -6,13 +6,17 @@
       "type": "string",
       "value": "0.0.0.0",
       "display": "Multihome",
-      "desc": "Ip address to bind the server to"
+      "desc": "Ip address to bind the server to",
+      "required": false,
+      "userEdit": false
     },
     "port": {
       "type": "integer",
-      "value": "15777",
+      "value": 15777,
       "display": "ServerQueryPort",
-      "desc": "Port to bind the server to"
+      "desc": "Port to bind the server to",
+      "required": false,
+      "userEdit": false
     }
   },
   "install": [
@@ -42,8 +46,12 @@
     "environmentVars": {
       "LD_LIBRARY_PATH": "./linux64"
     },
-    "stdin": {},
-    "stdout": {}
+    "stdin": {
+      "type": "stdin"
+    },
+    "autostart": false,
+    "autorecover": false,
+    "autorestart": false
   },
   "environment": {
     "type": "host"

@@ -12,7 +12,7 @@
     },
     "memory": {
       "type": "integer",
-      "value": "4096",
+      "value": 4096,
       "display": "Memory (MB)",
       "desc": "Memory to allocate",
       "required": true,
@@ -20,7 +20,7 @@
     },
     "port": {
       "type": "integer",
-      "value": "16261",
+      "value": 16261,
       "display": "port",
       "desc": "Base port (UDP) for server. Additional ports (TCP) beyond this will need to be opened. 1 per user.",
       "required": true,
@@ -31,11 +31,12 @@
       "value": "pufferserver",
       "display": "serverName",
       "desc": "Name of the PZ server",
+      "required": false,
       "userEdit": true
     },
     "steamVAC": {
       "type": "boolean",
-      "value": "true",
+      "value": true,
       "display": "steamVAC",
       "desc": "Enable or disable Steam VAC",
       "required": true,
@@ -70,8 +71,12 @@
   "run": {
     "command": "./start-server.sh -servername ${serverName} -adminpassword ${adminPassword} -steamvac ${steamVAC} -port ${port}",
     "stop": "quit",
-    "stdin": {},
-    "stdout": {}
+    "stdin": {
+      "type": "stdin"
+    },
+    "autostart": false,
+    "autorecover": false,
+    "autorestart": false
   },
   "environment": {
     "type": "host"

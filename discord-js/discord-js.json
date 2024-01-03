@@ -7,7 +7,8 @@
       "value": "bot.js",
       "display": "Main bot file",
       "desc": "The main bot file.",
-      "required": true
+      "required": true,
+      "userEdit": false
     }
   },
   "install": [
@@ -21,8 +22,12 @@
   "run": {
     "command": "node ./${bot-js-file}",
     "stop": "stop",
-    "stdin": {},
-    "stdout": {}
+    "stdin": {
+      "type": "stdin"
+    },
+    "autostart": false,
+    "autorecover": false,
+    "autorestart": false
   },
   "environment": {
     "type": "host"

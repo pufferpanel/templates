@@ -4,21 +4,22 @@
   "data": {
     "gameServerPort": {
       "type": "integer",
-      "value": "21025",
+      "value": 21025,
       "display": "Server Port",
       "desc": "Server Port",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "maxPlayers": {
       "type": "integer",
-      "value": "8",
+      "value": 8,
       "display": "Maximum Players",
       "desc": "Maximum Players",
       "required": true,
       "userEdit": true
     },
     "serverName": {
-      "type": "",
+      "type": "string",
       "value": "A Starbound Server",
       "display": "Server Name",
       "desc": "Server Name",
@@ -26,7 +27,7 @@
       "userEdit": true
     },
     "steamUser": {
-      "type": "",
+      "type": "string",
       "value": "",
       "display": "Steam Username",
       "desc": "Steam Username (required for install)",
@@ -42,8 +43,8 @@
     {
       "if": "env == 'host'",
       "type": "steamgamedl",
-      "appId": "533830",
-      "username": "${steamUser}"
+      "username": "${steamUser}",
+      "appId": "533830"
     },
     {
       "if": "env == 'docker'",
@@ -54,8 +55,8 @@
     },
     {
       "type": "writefile",
-      "target": "sbinit.config",
-      "text": "{\n\t\"assetDirectories\" : [\n\t\t\"assets/\",\n\t\t\"mods/\"\n\t],\n\t\"storageDirectory\" : \"storage/\"\n}\n"
+      "text": "{\n\t\"assetDirectories\" : [\n\t\t\"assets/\",\n\t\t\"mods/\"\n\t],\n\t\"storageDirectory\" : \"storage/\"\n}\n",
+      "target": "sbinit.config"
     },
     {
       "type": "writefile",
@@ -72,8 +73,12 @@
   "run": {
     "command": "./starbound_server",
     "stopCode": 2,
-    "stdin": {},
-    "stdout": {}
+    "stdin": {
+      "type": "stdin"
+    },
+    "autostart": false,
+    "autorecover": false,
+    "autorestart": false
   },
   "environment": {
     "type": "host"

@@ -30,8 +30,12 @@
   "run": {
     "command": "python3 ${bot-py-file}",
     "stop": "stop",
-    "stdin": {},
-    "stdout": {}
+    "stdin": {
+      "type": "stdin"
+    },
+    "autostart": false,
+    "autorecover": false,
+    "autorestart": false
   },
   "environment": {
     "type": "host"

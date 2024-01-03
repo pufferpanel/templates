@@ -6,7 +6,7 @@
       "type": "string",
       "value": "https://runtime.fivem.net/artifacts/fivem/build_proot_linux/master/4324-8b15f90861500a459afe7690869f7c7335df5c48/fx.tar.xz",
       "display": "Artifacts",
-      "desc": "The artifacts link which you want to install (You can find them \u003ca href='https://runtime.fivem.net/artifacts/fivem/build_proot_linux/master/'\u003ehere\u003c/a\u003e)",
+      "desc": "The artifacts link which you want to install (You can find them <a href='https://runtime.fivem.net/artifacts/fivem/build_proot_linux/master/'>here</a>)",
       "required": true,
       "userEdit": true
     },
@@ -22,13 +22,13 @@
       "type": "string",
       "value": "LICENTA",
       "display": "KEYMASTER license",
-      "desc": "Your FiveM License Key (You can get from \u003ca href='https://keymaster.fivem.net'\u003ehere\u003c/a\u003e)",
+      "desc": "Your FiveM License Key (You can get from <a href='https://keymaster.fivem.net'>here</a>)",
       "required": true,
       "userEdit": true
     },
     "maxplayers": {
       "type": "integer",
-      "value": "32",
+      "value": 32,
       "display": "Slots",
       "desc": "The maximum number of players",
       "required": true,
@@ -36,7 +36,7 @@
     },
     "port": {
       "type": "integer",
-      "value": "30120",
+      "value": 30120,
       "display": "Port",
       "desc": "The port which server will be allocated",
       "required": true,
@@ -88,8 +88,12 @@
   "run": {
     "command": "./start_no_edit.sh +exec server.cfg",
     "stopCode": 6,
-    "stdin": {},
-    "stdout": {}
+    "stdin": {
+      "type": "stdin"
+    },
+    "autostart": false,
+    "autorecover": false,
+    "autorestart": false
   },
   "environment": {
     "type": "host"

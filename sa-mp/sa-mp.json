@@ -7,6 +7,7 @@
       "value": "English",
       "display": "language",
       "desc": "language",
+      "required": false,
       "userEdit": true
     },
     "announce": {
@@ -14,6 +15,7 @@
       "value": "0",
       "display": "announce",
       "desc": "announce",
+      "required": false,
       "userEdit": true
     },
     "chatlogging": {
@@ -21,6 +23,7 @@
       "value": "0",
       "display": "chatlogging",
       "desc": "chatogging",
+      "required": false,
       "userEdit": true
     },
     "filterscripts": {
@@ -28,6 +31,7 @@
       "value": "base gl_actions gl_property gl_realtime",
       "display": "filterscripts",
       "desc": "filterscripts",
+      "required": false,
       "userEdit": true
     },
     "gamemode0": {
@@ -35,6 +39,7 @@
       "value": "grandlarc 1",
       "display": "gamemode0",
       "desc": "gamemode0",
+      "required": false,
       "userEdit": true
     },
     "hostname": {
@@ -42,6 +47,7 @@
       "value": "SA-MP 0.3 Server",
       "display": "hostname",
       "desc": "hostname",
+      "required": false,
       "userEdit": true
     },
     "incar_rate": {
@@ -49,13 +55,15 @@
       "value": "40",
       "display": "incar_rate",
       "desc": "incar_rate",
+      "required": false,
       "userEdit": true
     },
     "lanmode": {
       "type": "integer",
-      "value": "0",
+      "value": 0,
       "display": "lanmode",
       "desc": "lanmode",
+      "required": false,
       "userEdit": true
     },
     "maxnpc": {
@@ -63,6 +71,7 @@
       "value": "0",
       "display": "maxnpc",
       "desc": "maxpnc",
+      "required": false,
       "userEdit": true
     },
     "maxplayers": {
@@ -70,6 +79,7 @@
       "value": "50",
       "display": "maxplayers",
       "desc": "maxplayers",
+      "required": false,
       "userEdit": true
     },
     "onfoot_rate": {
@@ -77,6 +87,7 @@
       "value": "40",
       "display": "onfoot_rate",
       "desc": "onfoot_rate",
+      "required": false,
       "userEdit": true
     },
     "plugins": {
@@ -84,6 +95,7 @@
       "value": "",
       "display": "plugins",
       "desc": "plugins",
+      "required": false,
       "userEdit": true
     },
     "port": {
@@ -91,6 +103,7 @@
       "value": "7777",
       "display": "port",
       "desc": "port",
+      "required": false,
       "userEdit": true
     },
     "query": {
@@ -98,6 +111,7 @@
       "value": "1",
       "display": "query",
       "desc": "query",
+      "required": false,
       "userEdit": true
     },
     "rcon_password": {
@@ -105,6 +119,7 @@
       "value": "changeme",
       "display": "rcon_password",
       "desc": "rcon_password",
+      "required": false,
       "userEdit": true
     },
     "stream_distance": {
@@ -112,6 +127,7 @@
       "value": "300.0",
       "display": "stream_distance",
       "desc": "stream_distance",
+      "required": false,
       "userEdit": true
     },
     "stream_rate": {
@@ -119,6 +135,7 @@
       "value": "100.0",
       "display": "stream_rate",
       "desc": "stream_rate",
+      "required": false,
       "userEdit": true
     },
     "weapon_rate": {
@@ -126,6 +143,7 @@
       "value": "40",
       "display": "weapon_rate",
       "desc": "weapon_rate",
+      "required": false,
       "userEdit": true
     },
     "weburl": {
@@ -133,6 +151,7 @@
       "value": "www.sa-mp.com",
       "display": "weburl",
       "desc": "weburl",
+      "required": false,
       "userEdit": true
     }
   },
@@ -159,8 +178,12 @@
   "run": {
     "command": "./samp03svr",
     "stopCode": 2,
-    "stdin": {},
-    "stdout": {}
+    "stdin": {
+      "type": "stdin"
+    },
+    "autostart": false,
+    "autorecover": false,
+    "autorestart": false
   },
   "environment": {
     "type": "host"

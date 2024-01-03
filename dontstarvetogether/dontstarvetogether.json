@@ -68,7 +68,7 @@
     },
     "maxplayers": {
       "type": "integer",
-      "value": "5",
+      "value": 5,
       "display": "Max Players",
       "desc": "How much Players can connect to your Server",
       "required": true,
@@ -79,11 +79,12 @@
       "value": "",
       "display": "Password",
       "desc": "(optional) The password, needed to connect to your Server",
+      "required": false,
       "userEdit": true
     },
     "port": {
       "type": "integer",
-      "value": "10889",
+      "value": 10889,
       "display": "Port",
       "desc": "What port to bind the server to",
       "required": true,
@@ -91,7 +92,7 @@
     },
     "pvp": {
       "type": "boolean",
-      "value": "false",
+      "value": false,
       "display": "PvP",
       "desc": "Should PvP activated on the Server?",
       "required": true,
@@ -109,7 +110,7 @@
       "type": "string",
       "value": "",
       "display": "Server Token",
-      "desc": "Dont Starve Together Server Token (may find here \u003ca href=\"https://accounts.klei.com/account/game/servers?game=DontStarveTogether\" target=\"_blank\"\u003ehere\u003c/a\u003e)",
+      "desc": "Dont Starve Together Server Token (may find here <a href=\"https://accounts.klei.com/account/game/servers?game=DontStarveTogether\" target=\"_blank\">here</a>)",
       "required": true,
       "userEdit": true
     }
@@ -147,8 +148,8 @@
     },
     {
       "type": "writefile",
-      "target": "start.sh",
-      "text": "#!/bin/bash\n\ninstall_dir=\"${rootDir}\"\ncluster_name=\"DontStarveTogetherServer\"\ndontstarve_dir=\"${rootDir}\"\n\ncd \"$install_dir/bin\"\n\n./dontstarve_dedicated_server_nullrenderer -persistent_storage_root \"${rootDir}\" -console -cluster \"$cluster_name\" -monitor_parent_process $$"
+      "text": "#!/bin/bash\n\ninstall_dir=\"${rootDir}\"\ncluster_name=\"DontStarveTogetherServer\"\ndontstarve_dir=\"${rootDir}\"\n\ncd \"$install_dir/bin\"\n\n./dontstarve_dedicated_server_nullrenderer -persistent_storage_root \"${rootDir}\" -console -cluster \"$cluster_name\" -monitor_parent_process $$",
+      "target": "start.sh"
     },
     {
       "type": "command",
@@ -160,8 +161,12 @@
   "run": {
     "command": "./start.sh",
     "stop": "c_shutdown()",
-    "stdin": {},
-    "stdout": {}
+    "stdin": {
+      "type": "stdin"
+    },
+    "autostart": false,
+    "autorecover": false,
+    "autorestart": false
   },
   "environment": {
     "type": "host"

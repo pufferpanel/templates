@@ -4,7 +4,7 @@
   "data": {
     "build": {
       "type": "integer",
-      "value": "195",
+      "value": 195,
       "display": "Velocity Build",
       "desc": "Build of the Velocity Version to use",
       "required": true,
@@ -15,29 +15,32 @@
       "value": "0.0.0.0",
       "display": "IP",
       "desc": "What IP to bind the server to",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "memory": {
       "type": "integer",
       "value": 512,
       "display": "Memory (MB)",
       "desc": "How much memory in MB to allocate to the Waterfall server. It is generally recommended to allocated 512MB RAM for every 500 players. Please keep in mind that additional plugins may impact the amount needed in your case.",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "motd": {
       "type": "string",
-      "value": "A Velocity proxy \u00269hosted on PufferPanel",
+      "value": "A Velocity proxy &9hosted on PufferPanel",
       "display": "MOTD message of the day",
-      "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support \u003ca href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'\u003ecolor and formatting codes\u003c/a\u003e.",
+      "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
       "required": true,
       "userEdit": true
     },
     "port": {
       "type": "integer",
-      "value": "25565",
+      "value": 25565,
       "display": "Port",
       "desc": "What port to bind the server to",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "version": {
       "type": "string",
@@ -77,8 +80,12 @@
       }
     ],
     "stop": "shutdown",
-    "stdin": {},
-    "stdout": {}
+    "stdin": {
+      "type": "stdin"
+    },
+    "autostart": false,
+    "autorecover": false,
+    "autorestart": false
   },
   "environment": {
     "type": "host"

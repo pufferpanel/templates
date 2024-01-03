@@ -3,28 +3,31 @@
   "display": "ARMA3",
   "data": {
     "config": {
-      "type": "",
+      "type": "string",
       "value": "config.cfg",
       "display": "Config File",
       "desc": "The Config file you want to use. NOTE: config.cfg is created on server installation!",
+      "required": false,
       "userEdit": true
     },
     "ip": {
-      "type": "",
+      "type": "string",
       "value": "0.0.0.0",
       "display": "IP",
       "desc": "What IP to bind the server to",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "port": {
       "type": "integer",
-      "value": "2302",
+      "value": 2302,
       "display": "Port",
       "desc": "What port to bind the server to",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "steam_user": {
-      "type": "",
+      "type": "string",
       "value": "anonymous",
       "display": "Steam User",
       "desc": "Username for Steam login",
@@ -36,8 +39,8 @@
     {
       "if": "env == 'host'",
       "type": "steamgamedl",
-      "appId": "233780",
-      "username": "${steam_user}"
+      "username": "${steam_user}",
+      "appId": "233780"
     },
     {
       "if": "env == 'docker'",
@@ -57,8 +60,12 @@
   "run": {
     "command": "./arma3server -ip=${ip} -port=${port} -config=${config} -par=parameters.txt",
     "stopCode": 2,
-    "stdin": {},
-    "stdout": {}
+    "stdin": {
+      "type": "stdin"
+    },
+    "autostart": false,
+    "autorecover": false,
+    "autorestart": false
   },
   "environment": {
     "type": "host"

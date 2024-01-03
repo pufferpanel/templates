@@ -3,33 +3,36 @@
   "display": "Bungeecord - Minecraft",
   "data": {
     "ip": {
-      "type": "",
+      "type": "string",
       "value": "0.0.0.0",
       "display": "IP",
       "desc": "What IP to bind the server to",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "memory": {
       "type": "integer",
-      "value": "512",
+      "value": 512,
       "display": "Memory (MB)",
       "desc": "How much memory in MB to allocate to the BungeeCord server. It is generally recommended to allocated 512MB RAM for every 500 players. Please keep in mind that additional plugins may impact the amount needed in your case.",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "motd": {
-      "type": "",
-      "value": "A BungeeCord Server \u00269hosted on PufferPanel",
+      "type": "string",
+      "value": "A BungeeCord Server &9hosted on PufferPanel",
       "display": "MOTD message of the day",
-      "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support \u003ca href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'\u003ecolor and formatting codes\u003c/a\u003e.",
+      "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
       "required": true,
       "userEdit": true
     },
     "port": {
       "type": "integer",
-      "value": "25577",
+      "value": 25577,
       "display": "Port",
       "desc": "What port to bind the server to",
-      "required": true
+      "required": true,
+      "userEdit": false
     }
   },
   "install": [
@@ -44,8 +47,8 @@
     },
     {
       "type": "writefile",
-      "target": "config.yml",
-      "text": "listeners:\n- query_port: ${port}\n  host: ${ip}:${port}\n  motd: '${motd}'\n"
+      "text": "listeners:\n- query_port: ${port}\n  host: ${ip}:${port}\n  motd: '${motd}'\n",
+      "target": "config.yml"
     }
   ],
   "run": {
@@ -59,8 +62,12 @@
       }
     ],
     "stop": "end",
-    "stdin": {},
-    "stdout": {}
+    "stdin": {
+      "type": "stdin"
+    },
+    "autostart": false,
+    "autorecover": false,
+    "autorestart": false
   },
   "environment": {
     "type": "host"

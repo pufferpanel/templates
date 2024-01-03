@@ -3,28 +3,31 @@
   "display": "ECO - Global Survival",
   "data": {
     "ip": {
-      "type": "",
+      "type": "string",
       "value": "0.0.0.0",
       "display": "IP",
       "desc": "What IP to bind the Eco game server to.",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "password": {
-      "type": "",
+      "type": "string",
       "value": "",
       "display": "Password",
       "desc": "Password for the Eco Game Server, which will be required for login.",
+      "required": false,
       "userEdit": true
     },
     "port": {
       "type": "integer",
-      "value": "3000",
+      "value": 3000,
       "display": "Game-Server Port",
       "desc": "What port to bind the server to",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "serverVersion": {
-      "type": "",
+      "type": "string",
       "value": "0.7.7.2-beta",
       "display": "Server Version",
       "desc": "Version of Eco server to install.",
@@ -33,10 +36,11 @@
     },
     "webServerPort": {
       "type": "integer",
-      "value": "3001",
+      "value": 3001,
       "display": "Web-Server Port",
       "desc": "What port to bind the Eco web server to.",
-      "required": true
+      "required": true,
+      "userEdit": false
     }
   },
   "install": [
@@ -55,15 +59,19 @@
     },
     {
       "type": "writefile",
-      "target": "Configs/Network.eco",
-      "text": "{\n  \"PublicServer\": false,\n  \"Password\": \"${password}\",\n  \"Description\": \"\",\n  \"IPAddress\": \"${ip}\",\n  \"GameServerPort\": ${port},\n  \"WebServerPort\": ${webServerPort},\n  \"Rate\": 10,\n  \"MaxConnections\": -1\n}"
+      "text": "{\n  \"PublicServer\": false,\n  \"Password\": \"${password}\",\n  \"Description\": \"\",\n  \"IPAddress\": \"${ip}\",\n  \"GameServerPort\": ${port},\n  \"WebServerPort\": ${webServerPort},\n  \"Rate\": 10,\n  \"MaxConnections\": -1\n}",
+      "target": "Configs/Network.eco"
     }
   ],
   "run": {
     "command": "mono EcoServer.exe -nogui",
     "stopCode": 9,
-    "stdin": {},
-    "stdout": {}
+    "stdin": {
+      "type": "stdin"
+    },
+    "autostart": false,
+    "autorecover": false,
+    "autorestart": false
   },
   "environment": {
     "type": "host"

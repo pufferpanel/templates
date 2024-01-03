@@ -3,21 +3,23 @@
   "display": "Factorio",
   "data": {
     "ip": {
-      "type": "",
+      "type": "string",
       "value": "0.0.0.0",
       "display": "IP",
       "desc": "What IP to bind the server to",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "port": {
       "type": "integer",
-      "value": "34197",
+      "value": 34197,
       "display": "Port",
       "desc": "What port to bind the server to",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "save": {
-      "type": "",
+      "type": "string",
       "value": "saves/default.zip",
       "display": "Save File to Use",
       "desc": "Save File to Use",
@@ -25,7 +27,7 @@
       "userEdit": true
     },
     "server-settings": {
-      "type": "",
+      "type": "string",
       "value": "factorio/data/server-settings.json",
       "display": "Server Settings JSON",
       "desc": "Server Settings File Location",
@@ -48,8 +50,12 @@
   "run": {
     "command": "./factorio/bin/x64/factorio --port ${port} --bind ${ip} --start-server ${save} --server-settings ${server-settings}",
     "stop": "/quit",
-    "stdin": {},
-    "stdout": {}
+    "stdin": {
+      "type": "stdin"
+    },
+    "autostart": false,
+    "autorecover": false,
+    "autorestart": false
   },
   "environment": {
     "type": "host"

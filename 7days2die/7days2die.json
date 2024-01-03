@@ -40,7 +40,9 @@
       "type": "telnet",
       "port": "8081"
     },
-    "stdout": {}
+    "autostart": false,
+    "autorecover": false,
+    "autorestart": false
   },
   "environment": {
     "type": "host"

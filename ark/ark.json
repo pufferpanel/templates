@@ -7,6 +7,7 @@
       "value": "",
       "display": "Exclusive?",
       "desc": "Set to yes to only permit friends, leave no for public",
+      "required": false,
       "userEdit": true,
       "options": [
         {
@@ -20,7 +21,7 @@
       ]
     },
     "ip": {
-      "type": "",
+      "type": "string",
       "value": "0.0.0.0",
       "display": "IP",
       "desc": "What IP to bind the server to",
@@ -28,7 +29,7 @@
       "userEdit": true
     },
     "mapname": {
-      "type": "",
+      "type": "string",
       "value": "TheIsland",
       "display": "Map Name",
       "desc": "Name of the map",
@@ -37,7 +38,7 @@
     },
     "maxplayers": {
       "type": "integer",
-      "value": "20",
+      "value": 20,
       "display": "Max Players",
       "desc": "Maximum number of players",
       "required": true,
@@ -45,7 +46,7 @@
     },
     "port": {
       "type": "integer",
-      "value": "7777",
+      "value": 7777,
       "display": "Port",
       "desc": "What port to bind the server to",
       "required": true,
@@ -53,14 +54,14 @@
     },
     "queryport": {
       "type": "integer",
-      "value": "27015",
+      "value": 27015,
       "display": "Query Port",
       "desc": "What port to listen for queries on",
       "required": true,
       "userEdit": true
     },
     "serveradminpassword": {
-      "type": "",
+      "type": "string",
       "value": "password",
       "display": "Server Admin Password",
       "desc": "Password for server admin",
@@ -68,7 +69,7 @@
       "userEdit": true
     },
     "sessionname": {
-      "type": "",
+      "type": "string",
       "value": "My ARK Server",
       "display": "Session Name",
       "desc": "Name of server",
@@ -99,8 +100,12 @@
   "run": {
     "command": "./ShooterGame/Binaries/Linux/ShooterGameServer ${mapname}?listen?SessionName=${sessionname}?ServerAdminPassword=${serveradminpassword}?MultiHome=${ip}?Port=${port}?QueryPort=${queryport}?MaxPlayers=${maxplayers} -server ${exclusive}",
     "stopCode": 2,
-    "stdin": {},
-    "stdout": {}
+    "stdin": {
+      "type": "stdin"
+    },
+    "autostart": false,
+    "autorecover": false,
+    "autorestart": false
   },
   "environment": {
     "type": "host"

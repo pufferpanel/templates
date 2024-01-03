@@ -3,7 +3,7 @@
   "display": "Rust",
   "data": {
     "Description": {
-      "type": "",
+      "type": "string",
       "value": "RUST Public Server Description",
       "display": "Server Description",
       "desc": "Server description shown on server browser",
@@ -12,13 +12,14 @@
     },
     "MaxPlayers": {
       "type": "integer",
-      "value": "10",
+      "value": 10,
       "display": "Max Players",
       "desc": "Maximum number of players to support",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "RConPassword": {
-      "type": "",
+      "type": "string",
       "value": "",
       "display": "RCON Password",
       "desc": "Password to use on RCON. CHANGE THIS",
@@ -27,20 +28,22 @@
     },
     "RConPort": {
       "type": "integer",
-      "value": "28016",
+      "value": 28016,
       "display": "RCON Port",
       "desc": "Port to use for RCON",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "ServerIdentity": {
-      "type": "",
+      "type": "string",
       "value": "server1",
       "display": "Server identity",
       "desc": "Server identity to use, leave as default unless you know what you're doing",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "ServerImage": {
-      "type": "",
+      "type": "string",
       "value": "http://",
       "display": "Server Header Image",
       "desc": "URL For the server image banner",
@@ -48,7 +51,7 @@
       "userEdit": true
     },
     "ServerLevel": {
-      "type": "",
+      "type": "string",
       "value": "Procedural Map",
       "display": "Server Level",
       "desc": "What map name do you want? If unsure, leave as default.",
@@ -56,7 +59,7 @@
       "userEdit": true
     },
     "ServerName": {
-      "type": "",
+      "type": "string",
       "value": "RUST Public Server",
       "display": "Server Name",
       "desc": "Name of the server to use",
@@ -64,7 +67,7 @@
       "userEdit": true
     },
     "ServerSeed": {
-      "type": "",
+      "type": "string",
       "value": "1234",
       "display": "Server Seed",
       "desc": "Server seed to use. Default should be fine.",
@@ -72,7 +75,7 @@
       "userEdit": true
     },
     "URL": {
-      "type": "",
+      "type": "string",
       "value": "http://",
       "display": "Server Website",
       "desc": "URL for the website dedicated to this server.",
@@ -81,25 +84,27 @@
     },
     "WorldSize": {
       "type": "integer",
-      "value": "3000",
+      "value": 3000,
       "display": "World Size",
       "desc": "World size (number)",
       "required": true,
       "userEdit": true
     },
     "ip": {
-      "type": "",
+      "type": "string",
       "value": "0.0.0.0",
       "display": "IP",
       "desc": "What IP to bind the server to",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "port": {
       "type": "integer",
-      "value": "27015",
+      "value": 27015,
       "display": "Port",
       "desc": "What port to bind the server to",
-      "required": true
+      "required": true,
+      "userEdit": false
     }
   },
   "install": [
@@ -127,7 +132,9 @@
       "port": "${RConPort}",
       "password": "${RConPassword}"
     },
-    "stdout": {}
+    "autostart": false,
+    "autorecover": false,
+    "autorestart": false
   },
   "environment": {
     "type": "host"
