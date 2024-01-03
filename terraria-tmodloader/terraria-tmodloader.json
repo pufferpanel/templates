@@ -290,8 +290,8 @@
     "pre": [
       {
         "type": "writefile",
-        "text": "world=../${wp}/${world}.wld\nautocreate=${size}\nseed=${seed}\nworldname=${world}\ndifficulty=${difficulty}\nmaxplayers=${players}\nport=${port}\npassword=${password}\nmotd=${motd}\nworldpath=../${wp}\nbanlist=../${ban}\nsecure=${secure}\nlanguage=${lang}\nupnp=1\nnpcstream=${npcs}\npriority=3\nslowliquids=${sl}\nworldrollbackstokeep=${backups}",
-        "target": "serverconfig.txt"
+        "target": "serverconfig.txt",
+        "text": "world=../${wp}/${world}.wld\nautocreate=${size}\nseed=${seed}\nworldname=${world}\ndifficulty=${difficulty}\nmaxplayers=${players}\nport=${port}\npassword=${password}\nmotd=${motd}\nworldpath=../${wp}\nbanlist=../${ban}\nsecure=${secure}\nlanguage=${lang}\nupnp=1\nnpcstream=${npcs}\npriority=3\nslowliquids=${sl}\nworldrollbackstokeep=${backups}"
       }
     ],
     "stdin": {

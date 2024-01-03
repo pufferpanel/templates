@@ -4,14 +4,23 @@
   "data": {
     "clientport": {
       "type": "integer",
-      "value": "27016",
+      "value": 27016,
       "display": "Client Port",
       "desc": "What port to bind the clientport to",
-      "required": true
+      "required": true,
+      "userEdit": false
+    },
+    "gamemap": {
+      "type": "string",
+      "value": "de_dust2",
+      "display": "Map",
+      "desc": "Map to load by default",
+      "required": true,
+      "userEdit": true
     },
     "gamemode": {
       "type": "integer",
-      "value": "0",
+      "value": 0,
       "display": "Gamemode",
       "desc": "(Advanced) Gamemode",
       "required": true,
@@ -19,14 +28,14 @@
     },
     "gametype": {
       "type": "integer",
-      "value": "0",
+      "value": 0,
       "display": "Gametype",
       "desc": "(Advanced) Gametype",
       "required": true,
       "userEdit": true
     },
     "gslt": {
-      "type": "",
+      "type": "string",
       "value": "",
       "display": "GSLT Token",
       "desc": "It is required to register your server, otherwise it can only be played on LAN. Visit http://steamcommunity.com/dev/managegameservers to get a token",
@@ -34,22 +43,15 @@
       "userEdit": true
     },
     "ip": {
-      "type": "",
+      "type": "string",
       "value": "0.0.0.0",
       "display": "IP",
       "desc": "What IP to bind the server to",
-      "required": true
-    },
-    "gamemap": {
-      "type": "",
-      "value": "de_dust2",
-      "display": "Map",
-      "desc": "Map to load by default",
       "required": true,
-      "userEdit": true
+      "userEdit": false
     },
     "mapgroup": {
-      "type": "integer",
+      "type": "string",
       "value": "mg_active",
       "display": "Map group",
       "desc": "(Advanced) Map group",
@@ -58,7 +60,7 @@
     },
     "maxplayers": {
       "type": "integer",
-      "value": "20",
+      "value": 20,
       "display": "Max Players",
       "desc": "Max players allowed on server",
       "required": true,
@@ -66,14 +68,15 @@
     },
     "port": {
       "type": "integer",
-      "value": "27015",
+      "value": 27015,
       "display": "Port",
       "desc": "What port to bind the server to",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "tickrate": {
       "type": "integer",
-      "value": "64",
+      "value": 64,
       "display": "Tickrate",
       "desc": "Server tick rate",
       "required": true,
@@ -81,10 +84,11 @@
     },
     "tvport": {
       "type": "integer",
-      "value": "27017",
+      "value": 27017,
       "display": "GOTV Port",
       "desc": "What port to bind the GOTV to",
-      "required": true
+      "required": true,
+      "userEdit": false
     }
   },
   "install": [
@@ -104,8 +108,12 @@
   "run": {
     "command": "./srcds_run -game csgo -usercon -strictportbind -ip ${ip} -port ${port} +clientport ${clientport} +tv_port ${tvport} +map ${gamemap} -maxplayers_override ${maxplayers} +sv_setsteamaccount ${gslt} -tickrate ${tickrate} +mapgroup ${mapgroup} +game_mode ${gamemode} +game_type ${gametype} -net_port_try 1 -norestart",
     "stop": "exit",
-    "stdin": {},
-    "stdout": {}
+    "stdin": {
+      "type": "stdin"
+    },
+    "autostart": false,
+    "autorecover": false,
+    "autorestart": false
   },
   "environment": {
     "type": "host"

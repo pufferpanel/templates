@@ -243,8 +243,8 @@
     {
       "if": "modlauncher == 'forge'",
       "type": "forgedl",
-      "version": "${forgebuild}",
-      "target": "installer.jar"
+      "target": "installer.jar",
+      "version": "${forgebuild}"
     },
     {
       "if": "modlauncher == 'forge' \u0026\u0026 env == 'host'",
@@ -276,8 +276,8 @@
     {
       "if": "modlauncher == 'magma'",
       "type": "move",
-      "source": "Magma-*.jar",
-      "target": "server.jar"
+      "target": "server.jar",
+      "source": "Magma-*.jar"
     },
     {
       "if": "modlauncher == 'mohist'",
@@ -335,8 +335,8 @@
     {
       "if": "modlauncher == 'quilt'",
       "type": "move",
-      "source": "quilt-server-launch.jar",
-      "target": "server.jar"
+      "target": "server.jar",
+      "source": "quilt-server-launch.jar"
     },
     {
       "if": "modlauncher == 'spigot'",
@@ -362,8 +362,8 @@
     {
       "if": "modlauncher == 'spigot'",
       "type": "move",
-      "target": "server.jar",
-      "source": "spigot-*.jar"
+      "source": "spigot-*.jar",
+      "target": "server.jar"
     },
     {
       "if": "!file_exists(\"server.properties\")",

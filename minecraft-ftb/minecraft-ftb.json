@@ -4,67 +4,75 @@
   "data": {
     "eula": {
       "type": "boolean",
-      "value": "false",
+      "value": false,
       "display": "EULA Agreement",
-      "desc": "Do you (or the server owner) agree to the \u003ca href='https://account.mojang.com/documents/minecraft_eula'\u003eMinecraft EULA?\u003c/a\u003e",
-      "required": true
+      "desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
+      "required": true,
+      "userEdit": false
     },
     "ip": {
-      "type": "",
+      "type": "string",
       "value": "0.0.0.0",
       "display": "IP",
       "desc": "What IP to bind the server to",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "javaversion": {
       "type": "integer",
-      "value": "8",
+      "value": 8,
       "display": "Java Version",
-      "desc": "Version of Java to use"
+      "desc": "Version of Java to use",
+      "required": false,
+      "userEdit": false
     },
     "memory": {
       "type": "integer",
-      "value": "4096",
+      "value": 4096,
       "display": "Memory (MB)",
       "desc": "How much memory in MB to allocate to the Java Heap",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "modpack_id": {
       "type": "integer",
-      "value": "",
+      "value": 0,
       "display": "Modpack ID",
-      "desc": "Get the modpack ID for your preffered modpack in the \u003ca href='https://www.feed-the-beast.com/modpack' target='_blank'\u003eModpacklist\u003c/a\u003e.",
+      "desc": "Get the modpack ID for your preffered modpack in the <a href='https://www.feed-the-beast.com/modpack' target='_blank'>Modpacklist</a>.",
       "required": true,
       "userEdit": true
     },
     "modpack_version": {
       "type": "integer",
-      "value": "",
+      "value": 0,
       "display": "Modpack version ID",
-      "desc": "Version ID from the versions tab of the selected modpack in the \u003ca href='https://www.feed-the-beast.com/modpack' target='_blank'\u003eModpacklist\u003c/a\u003e.",
+      "desc": "Version ID from the versions tab of the selected modpack in the <a href='https://www.feed-the-beast.com/modpack' target='_blank'>Modpacklist</a>.",
       "required": true,
       "userEdit": true
     },
     "motd": {
-      "type": "",
+      "type": "string",
       "value": "A Minecraft Server hosted on PufferPanel",
       "display": "MOTD message of the day",
-      "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support \u003ca href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'\u003ecolor and formatting codes\u003c/a\u003e.",
-      "required": true
+      "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
+      "required": true,
+      "userEdit": false
     },
     "port": {
       "type": "integer",
-      "value": "25565",
+      "value": 25565,
       "display": "Port",
       "desc": "What port to bind the server to",
-      "required": true
+      "required": true,
+      "userEdit": false
     },
     "version": {
       "type": "string",
       "value": "",
       "display": "Version",
-      "desc": "Version of Forge that is shipped with the modpack with no spaces (may be located \u003ca href='http://files.minecraftforge.net/'\u003ehere\u003c/a\u003e",
-      "required": true
+      "desc": "Version of Forge that is shipped with the modpack with no spaces (may be located <a href='http://files.minecraftforge.net/'>here</a>",
+      "required": true,
+      "userEdit": false
     }
   },
   "install": [
@@ -81,14 +89,14 @@
       ]
     },
     {
-      "if": "os == 'linux' && arch == 'amd64'",
+      "if": "os == 'linux' \u0026\u0026 arch == 'amd64'",
       "type": "download",
       "files": [
         "https://api.modpacks.ch/public/modpack/${modpack_id}/${modpack_version}/server/linux"
       ]
     },
     {
-      "if": "os == 'linux' && arch == 'arm64'",
+      "if": "os == 'linux' \u0026\u0026 arch == 'arm64'",
       "type": "download",
       "files": [
         "https://api.modpacks.ch/public/modpack/${modpack_id}/${modpack_version}/server/arm/linux"
@@ -153,8 +161,12 @@
       }
     ],
     "stop": "stop",
-    "stdin": {},
-    "stdout": {}
+    "stdin": {
+      "type": "stdin"
+    },
+    "autostart": false,
+    "autorecover": false,
+    "autorestart": false
   },
   "environment": {
     "type": "host"

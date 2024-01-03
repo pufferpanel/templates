@@ -46,8 +46,8 @@
     },
     {
       "type": "docker",
-      "image": "python",
-      "networkMode": "host"
+      "networkMode": "host",
+      "image": "python"
     }
   ],
   "requirements": {

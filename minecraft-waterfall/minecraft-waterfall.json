@@ -70,8 +70,8 @@
     },
     {
       "type": "writefile",
-      "target": "config.yml",
-      "text": "listeners:\n- query_port: ${port}\n  host: ${ip}:${port}\n  motd: '${motd}'\n"
+      "text": "listeners:\n- query_port: ${port}\n  host: ${ip}:${port}\n  motd: '${motd}'\n",
+      "target": "config.yml"
     }
   ],
   "run": {
