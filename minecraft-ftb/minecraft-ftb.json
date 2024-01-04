@@ -89,14 +89,14 @@
       ]
     },
     {
-      "if": "os == 'linux' \u0026\u0026 arch == 'amd64'",
+      "if": "os == 'linux' && arch == 'amd64'",
       "type": "download",
       "files": [
         "https://api.modpacks.ch/public/modpack/${modpack_id}/${modpack_version}/server/linux"
       ]
     },
     {
-      "if": "os == 'linux' \u0026\u0026 arch == 'arm64'",
+      "if": "os == 'linux' && arch == 'arm64'",
       "type": "download",
       "files": [
         "https://api.modpacks.ch/public/modpack/${modpack_id}/${modpack_version}/server/arm/linux"
@@ -120,8 +120,8 @@
     {
       "if": "version == ''",
       "type": "move",
-      "source": "forge-*.jar",
-      "target": "server.jar"
+      "target": "server.jar",
+      "source": "forge-*.jar"
     },
     {
       "type": "writefile",

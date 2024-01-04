@@ -219,22 +219,22 @@
     {
       "if": "modlauncher == ''",
       "type": "mojangdl",
-      "target": "server.jar",
-      "version": "${version}"
+      "version": "${version}",
+      "target": "server.jar"
     },
     {
       "if": "modlauncher == 'fabric'",
       "type": "fabricdl"
     },
     {
-      "if": "modlauncher == 'fabric' \u0026\u0026 env == 'host'",
+      "if": "modlauncher == 'fabric' && env == 'host'",
       "type": "command",
       "commands": [
         "java${javaversion} -jar fabric-installer.jar server -mcversion ${version} -downloadMinecraft -noprofile"
       ]
     },
     {
-      "if": "modlauncher == 'fabric' \u0026\u0026 env != 'host'",
+      "if": "modlauncher == 'fabric' && env != 'host'",
       "type": "command",
       "commands": [
         "java -jar fabric-installer.jar server -mcversion ${version} -downloadMinecraft -noprofile"
@@ -247,21 +247,21 @@
       "version": "${forgebuild}"
     },
     {
-      "if": "modlauncher == 'forge' \u0026\u0026 env == 'host'",
+      "if": "modlauncher == 'forge' && env == 'host'",
       "type": "command",
       "commands": [
         "java${javaversion} -jar installer.jar --installServer"
       ]
     },
     {
-      "if": "modlauncher == 'forge' \u0026\u0026 env != 'host'",
+      "if": "modlauncher == 'forge' && env != 'host'",
       "type": "command",
       "commands": [
         "java -jar installer.jar --installServer"
       ]
     },
     {
-      "if": "modlauncher == 'forge' \u0026\u0026 file_exists('forge-' + forgebuild + '-shim.jar')",
+      "if": "modlauncher == 'forge' && file_exists('forge-' + forgebuild + '-shim.jar')",
       "type": "move",
       "source": "forge-${forgebuild}-shim.jar",
       "target": "server.jar"
@@ -302,8 +302,8 @@
     {
       "if": "modlauncher == 'paper'",
       "type": "move",
-      "source": "paper-*.jar",
-      "target": "paper.jar"
+      "target": "paper.jar",
+      "source": "paper-*.jar"
     },
     {
       "if": "modlauncher == 'quilt'",
@@ -319,14 +319,14 @@
       "source": "quilt-installer-*.jar"
     },
     {
-      "if": "modlauncher == 'quilt' \u0026\u0026 env == 'host'",
+      "if": "modlauncher == 'quilt' && env == 'host'",
       "type": "command",
       "commands": [
         "java${javaversion} -jar quilt-installer.jar install server ${version} --download-server --install-dir=."
       ]
     },
     {
-      "if": "modlauncher == 'quilt' \u0026\u0026 env != 'host'",
+      "if": "modlauncher == 'quilt' && env != 'host'",
       "type": "command",
       "commands": [
         "java -jar quilt-installer.jar install server ${version} --download-server --install-dir=."
@@ -346,14 +346,14 @@
       ]
     },
     {
-      "if": "modlauncher == 'spigot' \u0026\u0026 env == 'host'",
+      "if": "modlauncher == 'spigot' && env == 'host'",
       "type": "command",
       "commands": [
         "java${javaversion} -jar BuildTools.jar --rev ${version}"
       ]
     },
     {
-      "if": "modlauncher == 'spigot' \u0026\u0026 env != 'host'",
+      "if": "modlauncher == 'spigot' && env != 'host'",
       "type": "command",
       "commands": [
         "java -jar BuildTools.jar --rev ${version}"
@@ -368,8 +368,8 @@
     {
       "if": "!file_exists(\"server.properties\")",
       "type": "writefile",
-      "target": "server.properties",
-      "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}\n"
+      "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}\n",
+      "target": "server.properties"
     },
     {
       "type": "writefile",

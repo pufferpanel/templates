@@ -39,8 +39,8 @@
     {
       "if": "env == 'host'",
       "type": "steamgamedl",
-      "username": "${steam_user}",
-      "appId": "233780"
+      "appId": "233780",
+      "username": "${steam_user}"
     },
     {
       "if": "env == 'docker'",

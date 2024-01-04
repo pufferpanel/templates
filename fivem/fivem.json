@@ -70,7 +70,7 @@
     },
     {
       "type": "writefile",
-      "text": "#!/bin/bash\n\ncd server-data\n../run.sh $* \u003e\u00261 | tee -a server_log.txt",
+      "text": "#!/bin/bash\n\ncd server-data\n../run.sh $* >&1| tee -a server_log.txt",
       "target": "start_no_edit.sh"
     },
     {

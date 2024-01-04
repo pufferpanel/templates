@@ -710,6 +710,15 @@
             "properties": {
               "appId": {
                 "type": "string"
+              },
+              "username": {
+                "type": "string"
+              },
+              "password": {
+                "type": "string"
+              },
+              "extraArgs": {
+                "type": "string"
               }
             },
             "required": [

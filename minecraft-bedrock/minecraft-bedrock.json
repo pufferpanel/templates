@@ -162,8 +162,8 @@
     },
     {
       "type": "writefile",
-      "target": "server.properties",
-      "text": "server-name=${server-name}\ngamemode=${gamemode}\ndifficulty=${difficulty}\nallow-cheats=${allow-cheats}\nmax-players=${max-players}\nonline-mode=${online-mode}\nwhite-list=${white-list}\nserver-port=${server-port}\nserver-portv6=${server-portv6}\nview-distance=${view-distance}\ntick-distance=${tick-distance}\nplayer-idle-timeout=${player-idle-timeout}\nmax-threads=${max-threads}\nlevel-name=${level-name}\nlevel-seed=${level-seed}\ndefault-player-permission-level=${default-player-permission-level}\ntexturepack-required=${texturepack-required}\n"
+      "text": "server-name=${server-name}\ngamemode=${gamemode}\ndifficulty=${difficulty}\nallow-cheats=${allow-cheats}\nmax-players=${max-players}\nonline-mode=${online-mode}\nwhite-list=${white-list}\nserver-port=${server-port}\nserver-portv6=${server-portv6}\nview-distance=${view-distance}\ntick-distance=${tick-distance}\nplayer-idle-timeout=${player-idle-timeout}\nmax-threads=${max-threads}\nlevel-name=${level-name}\nlevel-seed=${level-seed}\ndefault-player-permission-level=${default-player-permission-level}\ntexturepack-required=${texturepack-required}\n",
+      "target": "server.properties"
     }
   ],
   "run": {
