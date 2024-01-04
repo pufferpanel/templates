@@ -20,6 +20,6 @@ jobs:
         uses: GrantBirki/json-yaml-validate@v2.5.0
         with:
           json_schema: "spec.json"
-          json_exclude_regex: ".*/data\\.json$"
+          json_exclude_regex: ".*\\/data\\.json$"
           json_schema_version: "draft-2020-12"
           use_dot_match: false
