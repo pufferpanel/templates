@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://pufferpanel.com/template.schema.json",
+  "$id": "https://raw.githubusercontent.com/pufferpanel/templates/v3/spec.json",
   "title": "Template",
   "description": "Pufferpanel template schema",
   "type": "object",
