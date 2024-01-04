@@ -10,7 +10,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
       - name: json-syntax-check
         uses: limitusus/json-syntax-check@v1
         with:
           pattern: "\\.json$*"
+
+      - name: json-yaml-validate
+        uses: GrantBirki/json-yaml-validate@v2.5.0
+        with:
+          json_schema: "spec.json"
+          json_exclude_regex: ".*/data\\.json$"
+          json_schema_version: "draft-2020-12"
+          use_dot_match: false
