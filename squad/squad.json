@@ -61,11 +61,17 @@
       "commands": [
         "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 403240 +quit"
       ]
+    },
+    {
+      "type": "command",
+      "commands": [
+        "chmod +x SquadGame/Binaries/Linux/SquadGameServer"
+      ]
     }
   ],
   "run": {
-    "command": "./SquadGameServer.sh Port=${port} QueryPort=${query_port} FIXEDMAXPLAYERS=${fixed_max_players} RANDOM=${random}",
-    "stop": "exit",
+    "command": "SquadGame/Binaries/Linux/SquadGameServer Port=${port} QueryPort=${query_port} FIXEDMAXPLAYERS=${fixed_max_players} RANDOM=${random}",
+    "stopCode": 15,
     "pre": [
       {
         "if": "env == 'host'",
@@ -82,7 +88,7 @@
       {
         "type": "command",
         "commands": [
-          "chmod +x ./SquadGameServer.sh"
+          "chmod +x SquadGame/Binaries/Linux/SquadGameServer"
         ]
       }
     ],
