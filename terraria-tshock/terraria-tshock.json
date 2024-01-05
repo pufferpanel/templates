@@ -89,6 +89,28 @@
       "desc": "Name of the worlds folder",
       "required": true,
       "userEdit": false
+    },
+    "wsize": {
+      "type": "option",
+      "value": "3",
+      "display": "World Size",
+      "desc": "World Size to create",
+      "required": true,
+      "userEdit": false,
+      "options": [
+        {
+          "value": "1",
+          "display": "Small"
+        },
+        {
+          "value": "2",
+          "display": "Medium"
+        },
+        {
+          "value": "3",
+          "display": "Large"
+        }
+      ]
     }
   },
   "install": [
@@ -114,10 +136,10 @@
     }
   ],
   "run": {
-    "command": "./TShock.Server -ip ${ip} -port ${port} -worldselectpath ${wpath} ${secure}",
+    "command": "./TShock.Server -ip ${ip} -port ${port} -worldselectpath ${wpath} ${secure} -autocreate ${wsize}",
     "stop": "exit",
     "environmentVars": {
-      "DOTNET_ROOT": "${rootDir}/dotnet"
+      "DOTNET_ROOT": "./dotnet"
     },
     "stdin": {
       "type": "stdin"
@@ -127,7 +149,7 @@
     "autorestart": false
   },
   "environment": {
-    "type": "tty"
+    "type": "host"
   },
   "requirements": {
     "os": "linux",

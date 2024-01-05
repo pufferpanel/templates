@@ -1,0 +1,11 @@
+[
+  {
+    "name": "teamspeak",
+    "variables": {
+      "eula": "1"
+    },
+    "environment": {
+      "type": "host"
+    }
+  }
+]

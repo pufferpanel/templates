@@ -72,7 +72,9 @@
   "install": [
     {
       "type": "download",
-      "files": "https://files.teamspeak-services.com/releases/server/${version}/teamspeak3-server_linux_amd64-${version}.tar.bz2"
+      "files": [
+        "https://files.teamspeak-services.com/releases/server/${version}/teamspeak3-server_linux_amd64-${version}.tar.bz2"
+      ]
     },
     {
       "type": "command",

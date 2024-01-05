@@ -135,6 +135,9 @@
         },
         "autorestart": {
           "type": "boolean"
+        },
+        "expectedExitCode": {
+          "type": "integer"
         }
       },
       "required": [

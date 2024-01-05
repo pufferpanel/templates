@@ -226,7 +226,7 @@
     },
     "tversion": {
       "type": "string",
-      "value": "",
+      "value": "v2023.11.3.3",
       "display": "tModLoader Version (Set this to the latest tModLoader version to enable support - see https://github.com/tModLoader/tModLoader/releases/latest)",
       "desc": "tModLoader Version",
       "required": false,
@@ -253,34 +253,20 @@
     {
       "type": "download",
       "files": [
-        "https://github.com/tModLoader/tModLoader/releases/download/v${tversion}/tModLoader.Linux.v${tversion}.tar.gz"
+        "https://github.com/tModLoader/tModLoader/releases/download/v${tversion}/tModLoader.zip"
       ]
     },
     {
       "type": "command",
       "commands": [
-        "mv ./${mp}/enabled.json ./",
-        "rm -r ./server",
+        "rm -rf ./server",
         "mkdir ./server",
-        "tar -xf tModLoader.Linux.v${tversion}.tar.gz --directory ./server",
+        "unzip tModLoader.zip -d ./server",
         "chmod +x ./server/tModLoaderServer",
         "chmod +x ./server/tModLoaderServer.bin.x86",
         "chmod +x ./server/tModLoaderServer.bin.x86_64",
-        "mkdir ./${wp}",
-        "mkdir ./${mp}",
+        "mkdir -p ./${wp}",
         "rm tModLoader.Linux.v${tversion}.tar.gz"
-      ]
-    },
-    {
-      "type": "writefile",
-      "target": "enabled.jsonn",
-      "text": "[\n    \"Mod1\",\n    \"Mod2\",\n    \"Mod3\"\n]"
-    },
-    {
-      "type": "command",
-      "commands": [
-        "mv ./enabled.jsonn ./${mp}/enabled.json",
-        "mv ./enabled.json ./${mp}/enabled.json"
       ]
     }
   ],

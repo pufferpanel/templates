@@ -259,7 +259,7 @@
     {
       "type": "command",
       "commands": [
-        "rm -r ./server",
+        "rm -rf ./server",
         "unzip terraria-server-${version}.zip",
         "mkdir ./server",
         "cp -r ./${version}/Linux/. ./server",

@@ -72,6 +72,7 @@
   "run": {
     "command": "SquadGame/Binaries/Linux/SquadGameServer Port=${port} QueryPort=${query_port} FIXEDMAXPLAYERS=${fixed_max_players} RANDOM=${random}",
     "stopCode": 15,
+    "expectedExitCode": 143,
     "pre": [
       {
         "if": "env == 'host'",

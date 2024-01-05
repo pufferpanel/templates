@@ -4,7 +4,8 @@
   "data": {
     "modpack": {
       "type": "string",
-      "value": "Modpack to run with",
+      "value": "",
+      "display": "Modpack to run with",
       "desc": "Open https://valheim.thunderstore.io/package/denikson/BepInExPack_Valheim/ in new tab and right 'manual download' click > copy link. Paste it here if you wish to use this modpack.",
       "required": false,
       "userEdit": true
@@ -56,9 +57,10 @@
       ]
     },
     {
-      "type": "command",
-      "commands": [
-        "chmod +x valheim_server.x86_64"
+      "if": "modpack != ''",
+      "type": "download",
+      "files": [
+        "${modpack}"
       ]
     },
     {
@@ -67,7 +69,12 @@
       "commands": [
         "unzip ./denikson-BepInExPack_Valheim*.zip -d ./bepin_temp/",
         "cp -r ./bepin_temp/BepInExPack_Valheim/. ./",
-        "rm -r ./bepin_temp",
+        "rm -r ./bepin_temp"
+      ]
+    },
+    {
+      "type": "command",
+      "commands": [
         "chmod +x valheim_server.x86_64"
       ]
     }
