@@ -190,14 +190,6 @@
       "required": true,
       "userEdit": true
     },
-    "size": {
-      "type": "string",
-      "value": "3",
-      "display": "World-Size",
-      "desc": "This can not be changed after the world was generated - World Size (1-3 - 3 is biggest)",
-      "required": true,
-      "userEdit": true
-    },
     "sl": {
       "type": "string",
       "value": "1",
@@ -208,7 +200,7 @@
     },
     "steam": {
       "type": "string",
-      "value": "-steam",
+      "value": "",
       "display": "Steam",
       "desc": "Enables Steam Support",
       "required": false,
@@ -247,31 +239,83 @@
       "desc": "Name of the world folder",
       "required": true,
       "userEdit": true
+    },
+    "arch": {
+      "type": "option",
+      "value": "x64",
+      "display": "Architecture",
+      "desc": "Architecture your machine",
+      "required": true,
+      "userEdit": false,
+      "options": [
+        {
+          "value": "arm",
+          "display": "arm"
+        },
+        {
+          "value": "arm64",
+          "display": "arm64"
+        },
+        {
+          "value": "x64",
+          "display": "amd64"
+        }
+      ]
+    },
+    "dotnetversion": {
+      "type": "string",
+      "value": "6.0.14",
+      "display": ".NET Runtime Version",
+      "desc": ".NET Runtime Version",
+      "required": true,
+      "userEdit": false
+    },
+    "size": {
+      "type": "option",
+      "value": "3",
+      "display": "World Size",
+      "desc": "World Size to create",
+      "required": true,
+      "userEdit": false,
+      "options": [
+        {
+          "value": "1",
+          "display": "Small"
+        },
+        {
+          "value": "2",
+          "display": "Medium"
+        },
+        {
+          "value": "3",
+          "display": "Large"
+        }
+      ]
     }
   },
   "install": [
     {
       "type": "download",
       "files": [
-        "https://github.com/tModLoader/tModLoader/releases/download/${tversion}/tModLoader.zip"
+        "https://github.com/tModLoader/tModLoader/releases/download/${tversion}/tModLoader.zip",
+        "https://dotnetcli.azureedge.net/dotnet/Runtime/${dotnetversion}/dotnet-runtime-${dotnetversion}-linux-${arch}.tar.gz"
       ]
     },
     {
       "type": "command",
       "commands": [
-        "rm -rf ./server",
-        "mkdir ./server",
-        "unzip tModLoader.zip -d ./server",
-        "chmod +x ./server/tModLoaderServer",
-        "chmod +x ./server/tModLoaderServer.bin.x86",
-        "chmod +x ./server/tModLoaderServer.bin.x86_64",
-        "mkdir -p ./${wp}",
-        "rm tModLoader.Linux.v${tversion}.tar.gz"
+        "rm -rf dotnet",
+        "mkdir -p dotnet",
+        "tar -xzf dotnet-runtime-${dotnetversion}-linux-${arch}.tar.gz -C dotnet",
+        "rm -rf dotnet-runtime-linux-${arch}.tar.gz",
+        "unzip tModLoader.zip -d .",
+        "rm tModLoader.zip",
+        "mkdir -p ./${wp}"
       ]
     }
   ],
   "run": {
-    "command": "./server/tModLoaderServer -ip ${ip} ${disableannouncementbox} -announcementboxrange ${abr} -config ../serverconfig.txt",
+    "command": "dotnet/dotnet tModLoader.dll -server ${steam} -ip ${ip} ${disableannouncementbox} -announcementboxrange ${abr} -config ./serverconfig.txt -autocreate ${size}",
     "stop": "exit",
     "pre": [
       {

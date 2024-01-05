@@ -26,7 +26,7 @@
     },
     "dotnetversion": {
       "type": "string",
-      "value": "6.0.10",
+      "value": "6.0.14",
       "display": ".NET Runtime Version",
       "desc": ".NET Runtime Version",
       "required": true,
@@ -82,14 +82,6 @@
       "required": true,
       "userEdit": false
     },
-    "wpath": {
-      "type": "string",
-      "value": "worlds",
-      "display": "Worlds Path",
-      "desc": "Name of the worlds folder",
-      "required": true,
-      "userEdit": false
-    },
     "wsize": {
       "type": "option",
       "value": "3",
@@ -126,7 +118,7 @@
       "commands": [
         "unzip TShock-${tshockversion}-for-Terraria-${version}-linux-${arch}-Release.zip",
         "tar xf TShock-Beta-linux-${arch}-Release.tar",
-        "mkdir ${wpath}",
+        "mkdir worlds",
         "mkdir dotnet",
         "tar xzf dotnet-runtime-${dotnetversion}-linux-${arch}.tar.gz -C dotnet",
         "rm -rf TShock-${tshockversion}-for-Terraria-${version}-linux-${arch}-Release.zip",
@@ -136,7 +128,7 @@
     }
   ],
   "run": {
-    "command": "./TShock.Server -ip ${ip} -port ${port} -worldselectpath ${wpath} ${secure} -autocreate ${wsize}",
+    "command": "./TShock.Server -ip ${ip} -port ${port} -world ${rootDir}/worlds/world.wld -autocreate ${wsize} ${secure} --stats-optout",
     "stop": "exit",
     "environmentVars": {
       "DOTNET_ROOT": "./dotnet"
