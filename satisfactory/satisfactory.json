@@ -42,7 +42,7 @@
   ],
   "run": {
     "command": "./Engine/Binaries/Linux/UnrealServer-Linux-Shipping FactoryGame ?listen -multihome=${multihome} -ServerQueryPort=${port}",
-    "stopCode": 2,
+    "stopCode": 15,
     "environmentVars": {
       "LD_LIBRARY_PATH": "./linux64"
     },
