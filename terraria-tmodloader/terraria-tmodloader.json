@@ -253,7 +253,7 @@
     {
       "type": "download",
       "files": [
-        "https://github.com/tModLoader/tModLoader/releases/download/v${tversion}/tModLoader.zip"
+        "https://github.com/tModLoader/tModLoader/releases/download/${tversion}/tModLoader.zip"
       ]
     },
     {
