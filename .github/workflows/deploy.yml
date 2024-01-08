@@ -28,8 +28,8 @@ jobs:
 
     env:
       REGISTRY: ${{ vars.REGISTRY  }}
-      REGISTRY_USERNAME: ${{ vars.REGISTRY_USERNAME }}
-      REGISTRY_PASSWORD: ${{ vars.REGISTRY_PASSWORD }}
+      REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
+      REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
 
     steps:
       - name: Ensure mask
