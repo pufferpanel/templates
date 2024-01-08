@@ -1,6 +1,8 @@
 name: Build Custom Images
 on:
   push:
+    paths:
+      - '**/Dockerfile'
   schedule:
     - cron: '0 11 * * *'
  
