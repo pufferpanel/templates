@@ -55,10 +55,9 @@ jobs:
         with:
           images: |
             name=pufferpanel/${{ matrix.image }}
-          flavor: |
-            latest=true
           tags: |
-            type=schedule,pattern={{date 'YYYYMMDD-hhmmss'}}
+            type=raw,value={{date 'YYYYMMDD-hhmmss'}}
+            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'master') }}
 
       - name: Check out code
         uses: actions/checkout@v3
