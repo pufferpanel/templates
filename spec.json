@@ -553,18 +553,6 @@
             },
             "required": [
               "target"
-            ],
-            "oneOf": [
-              {
-                "required": [
-                  "version"
-                ]
-              },
-              {
-                "required": [
-                  "minecraftVersion"
-                ]
-              }
             ]
           }
         },
