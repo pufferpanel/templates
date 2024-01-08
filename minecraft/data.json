@@ -38,11 +38,10 @@
       "ip": "0.0.0.0",
       "port": "25565",
       "eula": true,
-      "version": "1.20.1",
+      "version": "1.20.4",
       "motd": "None",
-      "javaversion": "17",
-      "modlauncher": "forge",
-      "forgebuild": "1.20.1-47.2.0"
+      "javaversion": "",
+      "modlauncher": "forge"
     },
     "environment": {
       "type": "host"

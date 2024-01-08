@@ -244,7 +244,8 @@
       "if": "modlauncher == 'forge'",
       "type": "forgedl",
       "target": "installer.jar",
-      "version": "${forgebuild}"
+      "version": "${forgebuild}",
+      "minecraftVersion": "${version}"
     },
     {
       "if": "modlauncher == 'forge' && env == 'host'",
@@ -380,20 +381,20 @@
   "run": {
     "command": [
       {
-        "command": "java${javaversion} -Xmx${memory}M ${jvmArgs} @libraries/net/minecraftforge/forge/${forgebuild}/win_args.txt nogui",
-        "if": "env == 'host' && modlauncher == 'forge' && os == 'windows' && file_exists('libraries/net/minecraftforge/forge/' + forgebuild + '/win_args.txt')"
+        "command": "java${javaversion} -Xmx${memory}M ${jvmArgs} @libraries/net/minecraftforge/forge/${resolvedForgeVersion}/win_args.txt nogui",
+        "if": "env == 'host' && modlauncher == 'forge' && os == 'windows' && file_exists('libraries/net/minecraftforge/forge/' + resolvedForgeVersion + '/win_args.txt')"
       },
       {
-        "command": "java${javaversion} -Xmx${memory}M ${jvmArgs} @libraries/net/minecraftforge/forge/${forgebuild}/unix_args.txt nogui",
-        "if": "env == 'host' && modlauncher == 'forge' && file_exists('libraries/net/minecraftforge/forge/' + forgebuild + '/unix_args.txt')"
+        "command": "java${javaversion} -Xmx${memory}M ${jvmArgs} @libraries/net/minecraftforge/forge/${resolvedForgeVersion}/unix_args.txt nogui",
+        "if": "env == 'host' && modlauncher == 'forge' && file_exists('libraries/net/minecraftforge/forge/' + resolvedForgeVersion + '/unix_args.txt')"
       },
       {
-        "command": "java -Xmx${memory}M ${jvmArgs} @libraries/net/minecraftforge/forge/${forgebuild}/win_args.txt nogui",
-        "if": "env != 'host' && modlauncher == 'forge' && os == 'windows' && file_exists('libraries/net/minecraftforge/forge/' + forgebuild + '/win_args.txt')"
+        "command": "java -Xmx${memory}M ${jvmArgs} @libraries/net/minecraftforge/forge/${resolvedForgeVersion}/win_args.txt nogui",
+        "if": "env != 'host' && modlauncher == 'forge' && os == 'windows' && file_exists('libraries/net/minecraftforge/forge/' + resolvedForgeVersion + '/win_args.txt')"
       },
       {
-        "command": "java -Xmx${memory}M ${jvmArgs} @libraries/net/minecraftforge/forge/${forgebuild}/unix_args.txt nogui",
-        "if": "env != 'host' && modlauncher == 'forge' && file_exists('libraries/net/minecraftforge/forge/' + forgebuild+ '/unix_args.txt')"
+        "command": "java -Xmx${memory}M ${jvmArgs} @libraries/net/minecraftforge/forge/${resolvedForgeVersion}/unix_args.txt nogui",
+        "if": "env != 'host' && modlauncher == 'forge' && file_exists('libraries/net/minecraftforge/forge/' + resolvedForgeVersion+ '/unix_args.txt')"
       },
       {
         "command": "java${javaversion} -Xmx${memory}M ${jvmArgs} -jar fabric-server-launch.jar",
@@ -409,6 +410,15 @@
       },
       {
         "command": "java -Xmx${memory}M ${jvmArgs} -jar server.jar"
+      }
+    ],
+    "pre": [
+      {
+          "if": "modlauncher == 'forge'",
+          "type": "resolveforgeversion",
+          "minecraftVersion": "${version}",
+          "version": "${forgebuild}",
+          "outputVariable": "resolvedForgeVersion"
       }
     ],
     "stop": "stop",

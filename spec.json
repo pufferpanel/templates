@@ -317,7 +317,8 @@
             "sleep",
             "spongedl",
             "steamgamedl",
-            "writefile"
+            "writefile",
+            "resolveforgeversion"
           ]
         },
         "if": {
@@ -749,6 +750,31 @@
             "required": [
               "target",
               "text"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "resolveforgeversion"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "minecraftVersion": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string"
+              },
+              "outputVariable": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "outputVariable"
             ]
           }
         }
