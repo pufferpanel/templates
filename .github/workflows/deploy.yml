@@ -8,7 +8,6 @@ env:
   SWAG_VERSION: "1.16.2"
   GO_VERSION: "1.21"
   NODE_VERSION: "20"
-  REGISTRY: docker.com
   
 concurrency:
   group: ${{ github.event_name}}-${{ github.ref }}
@@ -30,7 +29,7 @@ jobs:
       contents: read
       packages: write
     
-    environment: ${{ startsWith(github.ref, 'refs/tags/') && 'Release' || 'Development' }}
+    environment: Release
 
     env:
       REGISTRY: ${{ vars.REGISTRY == 'docker.com' && '' || vars.REGISTRY }}
@@ -60,10 +59,10 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: |
-            name=${{ env.REGISTRY != '' && format('{0}/', env.REGISTRY) || '' }}pufferpanel/${{ matrix.image }},enable=${{ env.REGISTRY != '' }}
             name=pufferpanel/${{ matrix.image }},enable=${{ env.REGISTRY == '' }}
+          flavor: |
+            latest=true
           tags: |
-            type=ref,prefix=branch-,event=branch
             type=schedule,pattern={{date 'YYYYMMDD-hhmmss'}}
 
       - name: Check out code
