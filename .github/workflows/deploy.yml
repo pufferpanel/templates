@@ -3,12 +3,7 @@ on:
   push:
   schedule:
     - cron: '0 11 * * *'
-
-env:
-  SWAG_VERSION: "1.16.2"
-  GO_VERSION: "1.21"
-  NODE_VERSION: "20"
-  
+ 
 concurrency:
   group: ${{ github.event_name}}-${{ github.ref }}
   cancel-in-progress: true
@@ -32,9 +27,9 @@ jobs:
     environment: Release
 
     env:
-      REGISTRY: ${{ vars.REGISTRY == 'docker.com' && '' || vars.REGISTRY }}
-      REGISTRY_USERNAME: ${{ vars.REGISTRY == 'ghcr.io' && github.actor || vars.REGISTRY_USERNAME }}
-      REGISTRY_PASSWORD: ${{ vars.REGISTRY == 'ghcr.io' && secrets.GITHUB_TOKEN || vars.REGISTRY_PASSWORD }}
+      REGISTRY: ${{ vars.REGISTRY  }}
+      REGISTRY_USERNAME: ${{ vars.REGISTRY_USERNAME }}
+      REGISTRY_PASSWORD: ${{ vars.REGISTRY_PASSWORD }}
 
     steps:
       - name: Ensure mask
@@ -59,7 +54,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: |
-            name=pufferpanel/${{ matrix.image }},enable=${{ env.REGISTRY == '' }}
+            name=pufferpanel/${{ matrix.image }}
           flavor: |
             latest=true
           tags: |
