@@ -21,7 +21,7 @@
   ],
   "run": {
     "command": "node ./${bot-js-file}",
-    "stop": "stop",
+    "stopCode": 9,
     "stdin": {
       "type": "stdin"
     },

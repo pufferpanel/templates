@@ -13,6 +13,7 @@
   },
   "run": {
     "command": "java -jar ${jar}",
+    "stopCode": 9,
     "stdin": {
       "type": "stdin"
     },
@@ -29,7 +30,7 @@
     },
     {
       "type": "docker",
-      "image": "openjdk"
+      "image": "eclipse-temurin"
     }
   ],
   "requirements": {
