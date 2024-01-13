@@ -109,10 +109,6 @@
         {
           "value": "ftb",
           "display": "Feed The Beast Modpack"
-        },
-        {
-          "value": "curseforge",
-          "display": "CurseForge Modpack"
         }
       ]
     },

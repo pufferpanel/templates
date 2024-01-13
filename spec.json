@@ -438,14 +438,14 @@
           "then": {
             "properties": {
               "projectId": {
-                "type": "integer"
+                "type": "string"
               },
               "fileId": {
-                "type": "integer"
+                "type": "string"
               },
               "java": {
                 "type": "string"
-              }
+              },
             },
             "required": [
               "projectId"

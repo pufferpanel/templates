@@ -1,0 +1,155 @@
+{
+  "type": "minecraft-java",
+  "display": "Minecraft: Java Edition",
+  "data": {
+    "eula": {
+      "type": "boolean",
+      "value": false,
+      "display": "EULA Agreement (true/false)",
+      "desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
+      "required": true,
+      "userEdit": true
+    },
+    "ip": {
+      "type": "string",
+      "value": "0.0.0.0",
+      "display": "IP",
+      "desc": "What IP to bind the server to",
+      "required": true,
+      "userEdit": false
+    },
+    "javaversion": {
+      "type": "string",
+      "value": "17",
+      "display": "Java Version",
+      "desc": "Version of Java to use",
+      "required": true,
+      "userEdit": true
+    },
+    "jvmArgs": {
+      "type": "string",
+      "value": "-Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true",
+      "display": "JVM Arguments",
+      "desc": "Extra JVM arguments to pass",
+      "required": false,
+      "userEdit": false
+    },
+    "memory": {
+      "type": "integer",
+      "value": 1024,
+      "display": "Memory (MB)",
+      "desc": "How much memory in MB to allocate to the Java Heap",
+      "required": true,
+      "userEdit": false
+    },
+    "port": {
+      "type": "integer",
+      "value": 25565,
+      "display": "Port",
+      "desc": "What port to bind the server to",
+      "required": true,
+      "userEdit": false
+    },
+    "projectId": {
+      "type": "integer",
+      "value": 0,
+      "display": "Project Id",
+      "desc": "Project Id for the modpack desired. This is found on the modpack's webpage on the right side.",
+      "required": true,
+      "userEdit": false
+    },
+    "fileId": {
+      "type": "integer",
+      "value": 0,
+      "display": "File Id",
+      "desc": "File Id for the modpack desired. This is found at the end of the URL for the specific file desired.",
+      "required": true,
+      "userEdit": false
+    }
+  },
+  "install": [
+    {
+      "if": "javaversion != ''",
+      "type": "javadl",
+      "version": "${javaversion}"
+    },
+    {
+      "if": "env == 'host'",
+      "type": "curseforge",
+      "projectId": "${projectId}",
+      "fileId": "${fileId}",
+      "java": "java${javaversion}"
+    },
+    {
+      "if": "env != 'host'",
+      "type": "curseforge",
+      "projectId": "${projectId}",
+      "fileId": "${fileId}"
+    },
+    {
+      "if": "!file_exists(\"server.properties\")",
+      "type": "writefile",
+      "text": "server-ip=${ip}\nserver-port=${port}\n",
+      "target": "server.properties"
+    },
+    {
+      "type": "writefile",
+      "text": "eula=${eula}",
+      "target": "eula.txt"
+    }
+  ],
+  "run": {
+    "command": [
+      {
+        "command": "java${javaversion} -Xmx${memory}M ${jvmArgs} @libraries/net/minecraftforge/forge/${resolvedForgeVersion}/win_args.txt nogui",
+        "if": "env == 'host' && os == 'windows' && !file_exists('server.jar')"
+      },
+      {
+        "command": "java${javaversion} -Xmx${memory}M ${jvmArgs} @libraries/net/minecraftforge/forge/${resolvedForgeVersion}/unix_args.txt nogui",
+        "if": "env == 'host' && !file_exists('server.jar')"
+      },
+      {
+        "command": "java -Xmx${memory}M ${jvmArgs} @libraries/net/minecraftforge/forge/${resolvedForgeVersion}/win_args.txt nogui",
+        "if": "env != 'host' && os == 'windows' && !file_exists('server.jar')"
+      },
+      {
+        "command": "java -Xmx${memory}M ${jvmArgs} @libraries/net/minecraftforge/forge/${resolvedForgeVersion}/unix_args.txt nogui",
+        "if": "env == 'host' && !file_exists('server.jar')"
+      },
+      {
+        "command": "java${javaversion} -Xmx${memory}M ${jvmArgs} -jar server.jar nogui",
+        "if": "env == 'host'"
+      },
+      {
+        "command": "java -Xmx${memory}M ${jvmArgs} -jar server.jar nogui"
+      }
+    ],
+    "pre": [
+      {
+          "if": "!file_exists('server.jar')",
+          "type": "resolveforgeversion",
+          "outputVariable": "resolvedForgeVersion"
+      }
+    ],
+    "stop": "stop",
+    "stdin": {
+      "type": "stdin"
+    },
+    "autostart": false,
+    "autorecover": false,
+    "autorestart": false
+  },
+  "environment": {
+    "type": "host"
+  },
+  "supportedEnvironments": [
+    {
+      "type": "host"
+    },
+    {
+      "type": "docker",
+      "image": "eclipse-temurin:${javaversion}"
+    }
+  ],
+  "requirements": {}
+}
