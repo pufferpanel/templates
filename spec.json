@@ -445,7 +445,7 @@
               },
               "java": {
                 "type": "string"
-              },
+              }
             },
             "required": [
               "projectId"
