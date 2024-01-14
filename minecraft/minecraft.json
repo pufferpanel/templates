@@ -151,6 +151,15 @@
       "desc": "Version of Minecraft you wish to install (not all software may respect this value",
       "required": true,
       "userEdit": true
+    },
+    "resolvedForgeVersion": {
+      "type": "string",
+      "value": "",
+      "display": "Resolved Forge Version",
+      "desc": "Internal, resolved version of Forge",
+      "required": true,
+      "userEdit": true,
+      "internal": true
     }
   },
   "groups": [
@@ -241,7 +250,8 @@
       "type": "forgedl",
       "target": "installer.jar",
       "version": "${forgebuild}",
-      "minecraftVersion": "${version}"
+      "minecraftVersion": "${version}",
+      "outputVariable": "resolvedForgeVersion"
     },
     {
       "if": "modlauncher == 'forge' && env == 'host'",
