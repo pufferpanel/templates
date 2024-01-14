@@ -40,7 +40,7 @@
       "eula": true,
       "version": "1.20.4",
       "motd": "None",
-      "javaversion": "",
+      "javaversion": "17",
       "modlauncher": "forge"
     },
     "environment": {
