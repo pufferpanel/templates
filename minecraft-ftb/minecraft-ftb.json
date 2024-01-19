@@ -89,14 +89,9 @@
     {
       "commands": [
         "chmod u+x linux",
-        "./linux ${modpack_id} ${modpack_version} --auto --noscript --nojava"
+        "./linux ${modpack_id} ${modpack_version} --auto --noscript"
       ],
       "type": "command"
-    },
-    {
-      "source": "forge-*.jar",
-      "target": "ForgeServer.jar",
-      "type": "move"
     },
     {
       "target": "eula.txt",
@@ -107,12 +102,6 @@
       "target": "server.properties",
       "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}\n",
       "type": "writefile"
-    },
-    {
-      "commands": [
-        "java${javaversion} -jar forge-1.1*.*-installer.jar --installServer"
-      ],
-      "type": "command"
     }
   ],
   "run": {
