@@ -84,11 +84,6 @@
       "type": "command"
     },
     {
-      "source": "forge-*.jar",
-      "target": "ForgeServer.jar",
-      "type": "move"
-    },
-    {
       "target": "eula.txt",
       "text": "eula=${eula}",
       "type": "writefile"
@@ -97,12 +92,6 @@
       "target": "server.properties",
       "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}\n",
       "type": "writefile"
-    },
-    {
-      "commands": [
-        "java -jar forge-*-installer.jar --installServer"
-      ],
-      "type": "command"
     }
   ],
   "run": {
