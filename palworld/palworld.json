@@ -11,34 +11,85 @@
       "type": "steamgamedl"
     },
     {
-      "commands": [
-        "chmod +x PalServer.sh"
-      ],
+      "commands": ["chmod +x PalServer.sh"],
       "type": "command"
+    },
+    {
+      "type": "writefile",
+      "text": "[/Script/Pal.PalGameWorldSettings]\nOptionSettings=(Difficulty=None,DayTimeSpeedRate=1.000000,NightTimeSpeedRate=1.000000,ExpRate=1.000000,PalCaptureRate=1.000000,PalSpawnNumRate=1.000000,PalDamageRateAttack=1.000000,PalDamageRateDefense=1.000000,PlayerDamageRateAttack=1.000000,PlayerDamageRateDefense=1.000000,PlayerStomachDecreaceRate=1.000000,PlayerStaminaDecreaceRate=1.000000,PlayerAutoHPRegeneRate=1.000000,PlayerAutoHpRegeneRateInSleep=1.000000,PalStomachDecreaceRate=1.000000,PalStaminaDecreaceRate=1.000000,PalAutoHPRegeneRate=1.000000,PalAutoHpRegeneRateInSleep=1.000000,BuildObjectDamageRate=1.000000,BuildObjectDeteriorationDamageRate=1.000000,CollectionDropRate=1.000000,CollectionObjectHpRate=1.000000,CollectionObjectRespawnSpeedRate=1.000000,EnemyDropItemRate=1.000000,DeathPenalty=All,bEnablePlayerToPlayerDamage=False,bEnableFriendlyFire=False,bEnableInvaderEnemy=True,bActiveUNKO=False,bEnableAimAssistPad=True,bEnableAimAssistKeyboard=False,DropItemMaxNum=3000,DropItemMaxNum_UNKO=100,BaseCampMaxNum=128,BaseCampWorkerMaxNum=15,DropItemAliveMaxHours=1.000000,bAutoResetGuildNoOnlinePlayers=False,AutoResetGuildTimeNoOnlinePlayers=72.000000,GuildPlayerMaxNum=20,PalEggDefaultHatchingTime=72.000000,WorkSpeedRate=1.000000,bIsMultiplay=False,bIsPvP=False,bCanPickupOtherGuildDeathPenaltyDrop=False,bEnableNonLoginPenalty=True,bEnableFastTravel=True,bIsStartLocationSelectByMap=True,bExistPlayerAfterLogout=False,bEnableDefenseOtherGuildPlayer=False,CoopPlayerMaxNum=4,ServerPlayerMaxNum=${serverplayermaxnum},ServerName=\"${servername}\",ServerDescription=\"${serverdescription}\",AdminPassword=\"${adminpassword}\",ServerPassword=\"${serverpassword}\",PublicPort=${publicport},PublicIP=\"${publicip}\",RCONEnabled=False,RCONPort=25575,Region=\"\",bUseAuth=True,BanListURL=\"https://api.palworldgame.com/api/banlist.txt\")\n",
+      "target": "Pal/Saved/Config/LinuxServer/PalWorldSettings.ini"
     }
   ],
   "run": {
-    "stopCode": 9,
-    "command": "./PalServer.sh -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS players=${maxplayers} port=${port}",
+    "stopCode": 15,
+    "command": "./PalServer.sh -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS",
     "workingDirectory": "",
-    "pre": [],
+    "pre": [
+      {
+        "appId": "1007",
+        "type": "steamgamedl"
+      },
+      {
+        "type": "steamgamedl",
+        "appId": "2394010"
+      },
+      {
+        "commands": ["chmod +x PalServer.sh"],
+        "type": "command"
+      }
+    ],
     "post": [],
     "environmentVars": {}
   },
   "data": {
-    "maxplayers": {
+    "serverplayermaxnum": {
       "type": "integer",
       "desc": "Maximum number of players",
-      "display": "Max Players",
+      "display": "Server Player Max Num",
       "required": true,
       "value": 32
     },
-    "port": {
+    "publicport": {
       "type": "integer",
       "desc": "What port to bind the server to",
-      "display": "Port",
+      "display": "Public Port",
       "required": true,
       "value": 8211
+    },
+    "publicip": {
+      "type": "string",
+      "desc": "What address to bind the server to (leave blank for auto)",
+      "display": "Public IP",
+      "required": false,
+      "value": ""
+    },
+    "servername": {
+      "type": "string",
+      "desc": "You server name that will show on server list",
+      "display": "Server Name",
+      "required": true,
+      "value": "Default Palworld Server"
+    },
+    "serverdescription": {
+      "type": "string",
+      "desc": "What is shown when selecting the server in the list.",
+      "display": "Server Description",
+      "required": true,
+      "value": ""
+    },
+    "adminpassword": {
+      "type": "string",
+      "desc": "Sets a Admin Password to be able to use commands in game (use command /AdminPassword <password>)",
+      "display": "Admin Password",
+      "required": true,
+      "value": ""
+    },
+    "serverpassword": {
+      "type": "string",
+      "desc": "Sets a Server Password to make it private.",
+      "display": "Server Password",
+      "required": false,
+      "value": ""
     }
   },
   "environment": {
