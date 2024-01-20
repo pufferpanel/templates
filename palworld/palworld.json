@@ -1,0 +1,48 @@
+{
+  "id": "1c798222",
+  "display": "Palworld Dedicated Server",
+  "type": "srcds",
+  "install": [
+    {
+      "appId": "2394010",
+      "type": "steamgamedl"
+    },
+    {
+      "commands": [
+        "chmod +x PalServer.sh"
+      ],
+      "type": "command"
+    }
+  ],
+  "run": {
+    "stopCode": 9,
+    "command": "./PalServer.sh -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS players=${maxplayers} port=${port}",
+    "workingDirectory": "",
+    "pre": [],
+    "post": [],
+    "environmentVars": {}
+  },
+  "data": {
+    "maxplayers": {
+      "type": "integer",
+      "desc": "Maximum number of players",
+      "display": "Max Players",
+      "required": true,
+      "value": 32
+    },
+    "port": {
+      "type": "integer",
+      "desc": "What port to bind the server to",
+      "display": "Port",
+      "required": true,
+      "value": 8211
+    }
+  },
+  "environment": {
+    "type": "tty"
+  },
+  "requirements": {
+    "os": "linux",
+    "arch": "amd64"
+  }
+}
