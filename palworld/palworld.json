@@ -1,8 +1,11 @@
 {
-  "id": "1c798222",
   "display": "Palworld Dedicated Server",
   "type": "srcds",
   "install": [
+    {
+      "appId": "1007",
+      "type": "steamgamedl"
+    },
     {
       "appId": "2394010",
       "type": "steamgamedl"
