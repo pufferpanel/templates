@@ -20,7 +20,7 @@
   ],
   "run": {
     "command": "node ./${bot-js-file}",
-    "stop": "stop"
+    "stopCode": 2
   },
   "environment": {
     "type": "docker",
