@@ -1,6 +1,7 @@
 {
   "type": "minecraft-bedrock",
   "display": "PocketMine-MP",
+  "icon": "minecraft-bedrock",
   "data": {
     "ip": {
       "type": "string",

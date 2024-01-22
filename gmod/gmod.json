@@ -1,6 +1,7 @@
 {
   "type": "srcds",
   "display": "Garry's Mod",
+  "icon": "gmod",
   "data": {
     "gamemode": {
       "type": "string",

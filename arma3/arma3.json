@@ -1,6 +1,7 @@
 {
   "type": "srcds",
   "display": "ARMA3",
+  "icon": "arma3",
   "data": {
     "config": {
       "type": "string",

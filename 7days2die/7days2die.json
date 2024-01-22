@@ -1,6 +1,7 @@
 {
   "type": "srcds",
   "display": "7 Days to Die",
+  "icon": "7days2die",
   "install": [
     {
       "if": "env == 'host'",

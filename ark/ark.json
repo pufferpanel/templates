@@ -1,6 +1,7 @@
 {
   "type": "srcds",
   "display": "ARK: Survival Evolved",
+  "icon": "ark",
   "data": {
     "exclusive": {
       "type": "option",

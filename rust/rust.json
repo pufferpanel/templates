@@ -1,6 +1,7 @@
 {
   "type": "srcds",
   "display": "Rust",
+  "icon": "rust",
   "data": {
     "Description": {
       "type": "string",

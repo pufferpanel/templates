@@ -1,6 +1,7 @@
 {
   "type": "srcds",
   "display": "Counter Strike: Global Offensive",
+  "icon": "csgo",
   "data": {
     "clientport": {
       "type": "integer",

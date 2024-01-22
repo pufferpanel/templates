@@ -1,6 +1,7 @@
 {
   "type": "minecraft-java",
   "display": "Bungeecord - Minecraft",
+  "icon": "minecraft-java",
   "data": {
     "ip": {
       "type": "string",

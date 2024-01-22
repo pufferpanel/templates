@@ -1,6 +1,7 @@
 {
   "type": "terraria",
   "display": "Terraria - Vanila",
+  "icon": "terraria",
   "data": {
     "abr": {
       "type": "string",

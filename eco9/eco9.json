@@ -1,6 +1,7 @@
 {
   "type": "srcds",
   "display": "Eco 9 Beta Version",
+  "icon": "eco",
   "data": {
     "ServerName": {
       "type": "string",

@@ -1,6 +1,7 @@
 {
   "type": "minecraft-java",
   "display": "Minecraft - Waterfall",
+  "icon": "minecraft-java",
   "data": {
     "build": {
       "type": "string",

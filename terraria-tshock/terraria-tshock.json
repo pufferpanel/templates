@@ -1,6 +1,7 @@
 {
   "type": "terraria",
   "display": "Terraria - TShock",
+  "icon": "terraria",
   "data": {
     "arch": {
       "type": "option",

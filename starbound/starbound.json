@@ -1,6 +1,7 @@
 {
   "type": "starbound",
   "display": "Starbound",
+  "icon": "starbound",
   "data": {
     "gameServerPort": {
       "type": "integer",

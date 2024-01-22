@@ -1,6 +1,7 @@
 {
   "type": "srcds",
   "display": "Counter Strike: Source",
+  "icon": "css",
   "data": {
     "clientport": {
       "type": "integer",

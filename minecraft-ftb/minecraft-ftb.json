@@ -1,6 +1,7 @@
 {
   "type": "minecraft-java",
   "display": "Minecraft - FTB Modpack",
+  "icon": "minecraft-java",
   "data": {
     "eula": {
       "type": "boolean",

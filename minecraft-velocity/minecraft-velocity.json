@@ -1,6 +1,7 @@
 {
   "type": "minecraft-java",
   "display": "Velocity - Minecraft",
+  "icon": "minecraft-java",
   "data": {
     "build": {
       "type": "integer",

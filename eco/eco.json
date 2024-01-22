@@ -1,6 +1,7 @@
 {
   "type": "eco",
   "display": "ECO - Global Survival",
+  "icon": "eco",
   "data": {
     "ip": {
       "type": "string",

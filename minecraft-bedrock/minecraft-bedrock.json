@@ -1,6 +1,7 @@
 {
   "type": "minecraft-bedrock",
   "display": "Minecraft Bedrock",
+  "icon": "minecraft-bedrock",
   "data": {
     "allow-cheats": {
       "type": "boolean",

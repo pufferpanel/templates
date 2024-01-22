@@ -1,6 +1,7 @@
 {
   "type": "factorio",
   "display": "Factorio",
+  "icon": "factorio",
   "data": {
     "ip": {
       "type": "string",

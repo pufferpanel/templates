@@ -1,6 +1,7 @@
 {
   "type": "srcds",
   "display": "Dont Starve Together",
+  "icon": "dontstarvetogether",
   "data": {
     "description": {
       "type": "string",

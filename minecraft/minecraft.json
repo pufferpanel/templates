@@ -1,6 +1,7 @@
 {
   "type": "minecraft-java",
   "display": "Minecraft: Java Edition",
+  "icon": "minecraft-java",
   "data": {
     "eula": {
       "type": "boolean",

@@ -1,6 +1,7 @@
 {
   "type": "terraria",
   "display": "Terraria - tModLoader",
+  "icon": "terraria",
   "data": {
     "abr": {
       "type": "string",
