@@ -11,7 +11,7 @@
       "type": "steamgamedl"
     },
     {
-      "commands": ["chmod +x PalServer.sh"],
+      "commands": ["chmod +x PalServer.sh && mkdir -p Pal/Saved/Config/LinuxServer"],
       "type": "command"
     },
     {
