@@ -27,7 +27,7 @@
   ],
   "run": {
     "command": "python3 ${bot-py-file}",
-    "stop": "stop"
+    "stopCode": 2
   },
   "environment": {
     "type": "docker",

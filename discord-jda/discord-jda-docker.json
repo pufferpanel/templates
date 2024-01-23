@@ -12,7 +12,8 @@
     }
   },
   "run": {
-    "command": "java -jar ${jar}"
+    "command": "java -jar ${jar}",
+    "stopCode": 2
   },
   "environment": {
     "image": "openjdk",
