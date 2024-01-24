@@ -11,8 +11,12 @@
       "type": "steamgamedl"
     },
     {
-      "commands": ["chmod +x PalServer.sh && mkdir -p Pal/Saved/Config/LinuxServer"],
-      "type": "command"
+      "type": "command",
+      "commands": ["chmod +x Pal/Binaries/Linux/PalServer-Linux-Test"]
+    },
+    {
+      "type": "mkdir",
+      "target": "Pal/Saved/Config/LinuxServer"
     },
     {
       "type": "writefile",
@@ -22,20 +26,20 @@
   ],
   "run": {
     "stopCode": 15,
-    "command": "./PalServer.sh -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS",
+    "command": "./Pal/Binaries/Linux/PalServer-Linux-Test Pal -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS",
     "workingDirectory": "",
     "pre": [
       {
-        "appId": "1007",
-        "type": "steamgamedl"
+        "type": "steamgamedl",
+        "appId": "1007"
       },
       {
         "type": "steamgamedl",
         "appId": "2394010"
       },
       {
-        "commands": ["chmod +x PalServer.sh"],
-        "type": "command"
+        "type": "command",
+        "commands": ["chmod +x Pal/Binaries/Linux/PalServer-Linux-Test"]
       }
     ],
     "post": [],
