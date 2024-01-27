@@ -3,7 +3,7 @@
   "display": "Minecraft Bedrock",
   "data": {
     "version": {
-      "value": "1.20.12",
+      "value": "1.20.50.03",
       "required": true,
       "desc": "Version of the Minecraft Bedrock Server to use",
       "display": "Bedrock Version",
