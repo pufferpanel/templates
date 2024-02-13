@@ -1,0 +1,67 @@
+{
+  "name": "cs2",
+  "display": "Counter Strike 2",
+  "type": "srcds",
+  "install": [
+    {
+      "appId": "730",
+      "type": "steamgamedl"
+    },
+    {
+      "commands": [
+        "chmod +x ./game/bin/linuxsteamrt64/cs2"
+      ],
+      "type": "command"
+    }
+  ],
+  "run": {
+    "stop": "quit",
+    "command": "./game/bin/linuxsteamrt64/cs2 -dedicated +ip ${ip} -port ${port} +map ${map} -maxplayers ${maxplayers}",
+    "workingDirectory": "",
+    "pre": [],
+    "post": [],
+    "environmentVars": {}
+  },
+  "data": {
+    "ip": {
+      "type": "string",
+      "desc": "What IP to bind the server to",
+      "display": "IP",
+      "required": true,
+      "value": "0.0.0.0"
+    },
+    "map": {
+      "type": "string",
+      "desc": "Map to load by default",
+      "display": "Map",
+      "required": true,
+      "value": "de_mirage"
+    },
+    "maxplayers": {
+      "type": "integer",
+      "desc": "maxplayers",
+      "display": "maxplayers",
+      "required": true,
+      "value": "15"
+    },
+    "port": {
+      "type": "integer",
+      "desc": "What port to bind the server to",
+      "display": "Port",
+      "required": true,
+      "value": 27015
+    }
+  },
+  "environment": {
+    "type": "tty"
+  },
+  "supportedEnvironments": [
+    {
+      "type": "tty"
+    }
+  ],
+  "requirements": {
+    "os": "linux",
+    "arch": "amd64"
+  }
+}
