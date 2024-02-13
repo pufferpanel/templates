@@ -16,7 +16,7 @@
   ],
   "run": {
     "stop": "quit",
-    "command": "./game/bin/linuxsteamrt64/cs2 -dedicated +ip ${ip} -port ${port} +map ${map} -maxplayers ${maxplayers}",
+    "command": "./game/bin/linuxsteamrt64/cs2 -dedicated -ip ${ip} -port ${port} +map ${map} -maxplayers ${maxplayers}",
     "workingDirectory": "",
     "pre": [],
     "post": [],
@@ -39,10 +39,10 @@
     },
     "maxplayers": {
       "type": "integer",
-      "desc": "maxplayers",
-      "display": "maxplayers",
+      "desc": "Maximum number of players on the server",
+      "display": "Maxplayers",
       "required": true,
-      "value": "15"
+      "value": "32"
     },
     "port": {
       "type": "integer",
