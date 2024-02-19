@@ -144,7 +144,7 @@
       "desc": "What you drop on death. Dropping inventory, equipment, and pals (All) is default for dedicated servers, ItemAndEquipment (drop Inventory and Equipment, keep pals) is default for base game singleplayer and multiplayer so it is selected as default",
       "display": "Multiplayer Difficulty (Death Penalty)",
       "required": true,
-      "value": "ItemAndEquipment"
+      "value": "ItemAndEquipment",
       "options": [
         {
           "value": "None",
@@ -161,7 +161,7 @@
         {
           "value": "All",
           "display": "All (Drop Inventory, Equipment, and Pals)",
-        },
+        }
       ]
     },
     "Difficulty": {
