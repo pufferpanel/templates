@@ -140,11 +140,29 @@
       "value": "1.000000"
     },
     "DeathPenalty": {
-      "type": "string",
-      "desc": "What you drop on death. Valid options are None (keep inventory), Item (drop inventory, keep equipment), ItemAndEquipment (drop inventory and equipment), All (drop inventory, equipment, and pals. this is default for servers)",
+      "type": "option",
+      "desc": "What you drop on death. Dropping inventory, equipment, and pals (All) is default for dedicated servers, ItemAndEquipment (drop Inventory and Equipment, keep pals) is default for base game singleplayer and multiplayer so it is selected as default",
       "display": "Multiplayer Difficulty (Death Penalty)",
       "required": true,
       "value": "ItemAndEquipment"
+      "options": [
+        {
+          "value": "None",
+          "display": "None (Keep everything on death)"
+        },
+        {
+          "value": "Item",
+          "display": "None (Drop Items, Keep Equipment and Pals)"
+        },
+        {
+          "value": "ItemAndEquipment",
+          "display": "None (Drop Items and Equipment, keep Pals)"
+        },
+        {
+          "value": "All",
+          "display": "All (Drop Inventory, Equipment, and Pals)"
+        },
+      ]
     },
     "Difficulty": {
       "type": "string",
