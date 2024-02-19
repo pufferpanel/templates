@@ -148,19 +148,19 @@
       "options": [
         {
           "value": "None",
-          "display": "None (Keep everything on death)",
+          "display": "None (Keep everything on death)"
         },
         {
           "value": "Item",
-          "display": "None (Drop Items, Keep Equipment and Pals)",
+          "display": "None (Drop Items, Keep Equipment and Pals)"
         },
         {
           "value": "ItemAndEquipment",
-          "display": "None (Drop Items and Equipment, keep Pals)",
+          "display": "None (Drop Items and Equipment, keep Pals)"
         },
         {
           "value": "All",
-          "display": "All (Drop Inventory, Equipment, and Pals)",
+          "display": "All (Drop Inventory, Equipment, and Pals)"
         }
       ]
     },
