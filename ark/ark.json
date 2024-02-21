@@ -9,6 +9,12 @@
       "display": "Session Name",
       "internal": false
     },
+    "serverpassword": {
+      "type": "string",
+      "desc": "Password to join the server",
+      "display": "Server Password",
+      "value": ""
+    },
     "serveradminpassword": {
       "value": "password",
       "required": true,
@@ -48,11 +54,55 @@
       "type": "integer"
     },
     "mapname": {
+      "type": "option",
       "desc": "Name of the map",
       "display": "Map Name",
-      "internal": false,
       "required": true,
-      "value": "TheIsland"
+      "value": "TheIsland",
+      "options": [
+        {
+          "value": "TheIsland",
+          "display": "The Island"
+        },
+        {
+          "value": "TheCenter",
+          "display": "The Center"
+        },
+        {
+          "value": "ScorchedEarth_P",
+          "display": "Scorched Earth"
+        },
+        {
+          "value": "Ragnarok",
+          "display": "Ragnarok"
+        },
+        {
+          "value": "Aberration_P",
+          "display": "Aberration"
+        },
+        {
+          "value": "Extinction",
+          "display": "Extinction"
+        },
+        {
+          "value": "Crystalisles",
+          "display": "Crystal Isles"
+        }
+      ]
+    },
+    "battleye": {
+      "type": "option",
+      "display": "BattlEye Anti-Cheat",
+      "options": [
+        {
+          "value": "-NoBattlEye",
+          "display": "No"
+        },
+        {
+          "value": "",
+          "display": "Yes"
+        }
+      ]
     },
     "exclusive": {
       "desc": "Set to yes to only permit friends, leave no for public",
@@ -86,7 +136,7 @@
     }
   ],
   "run": {
-    "command": "./ShooterGame/Binaries/Linux/ShooterGameServer ${mapname}?listen?SessionName=${sessionname}?ServerAdminPassword=${serveradminpassword}?MultiHome=${ip}?Port=${port}?QueryPort=${queryport}?MaxPlayers=${maxplayers} -server -log ${exclusive}",
+    "command": "./ShooterGame/Binaries/Linux/ShooterGameServer ${mapname}?listen?SessionName=${sessionname}?ServerPassword=${serverpassword}?ServerAdminPassword=${serveradminpassword}?MultiHome=${ip}?Port=${port}?QueryPort=${queryport}?MaxPlayers=${maxplayers} -server -log ${exclusive} ${battleye}",
     "stopCode": 2
   },
   "environment": {
