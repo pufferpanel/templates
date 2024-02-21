@@ -1,0 +1,77 @@
+{
+  "name": "minecraft-autoplug",
+  "display": "AutoPlug - Minecraft",
+  "type": "minecraft-java",
+  "data": {
+    "memory": {
+      "type": "integer",
+      "desc": "How much memory in MB to allocate to the Java Heap for the AutoPlug client, set memory in arguments of AutoPlug to allocate the correct amount of memory to the final Minecraft instance",
+      "display": "Memory (MB)",
+      "required": true,
+      "value": "256"
+    },
+    "ip": {
+      "type": "string",
+      "desc": "What IP to bind the server to",
+      "display": "IP",
+      "required": true,
+      "value": "0.0.0.0"
+    },
+    "port": {
+      "type": "integer",
+      "desc": "What port to bind the server to",
+      "display": "Port",
+      "required": true,
+      "value": "25565"
+    },
+    "eula": {
+      "type": "boolean",
+      "desc": "Do you agree to the Minecraft EULA?",
+      "display": "EULA Agreement (true/false)",
+      "required": true,
+      "value": "false"
+    },
+    "motd": {
+      "type": "string",
+      "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.wiki/w/Formatting_codes' target='_blank'>color and formatting codes</a>.",
+      "display": "MOTD message of the day",
+      "required": true,
+      "value": "A Minecraft Server\\n\\u00A79 hosted on PufferPanel"
+    },
+    "javaversion": {
+      "type": "integer",
+      "desc": "Version of Java to use",
+      "display": "Java Version",
+      "required": true,
+      "value": "17"
+    },
+  "install": [
+    {
+      "type": "javadl",
+      "version": "${javaversion}"
+    },
+    {
+      "files": [
+        "https://github.com/Osiris-Team/AutoPlug-Releases/blob/master/stable-builds/AutoPlug-Client.jar"
+      ],
+      "type": "download"
+    },
+    {
+      "type" : "writefile",
+      "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}\n",
+      "target": "server.properties"
+    },
+    {
+      "type": "writefile",
+      "text": "eula=${eula}",
+      "target": "eula.txt"
+    }
+  ],
+  "run": {
+    "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Djline.terminal=jline.UnsupportedTerminal -Dlog4j2.formatMsgNoLookups=true -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -jar AutoPlug-Client.jar nogui",
+    "stop": "stop"
+  },
+  "environment": {
+    "type": "standard"
+  }
+}
