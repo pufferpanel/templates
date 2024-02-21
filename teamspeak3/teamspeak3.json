@@ -40,7 +40,7 @@
       "internal": false
     },
     "version": {
-      "value": "3.13.6",
+      "value": "3.13.7",
       "required": true,
       "desc": "What version of Teamspeak do you want to use?",
       "display": "Version",
