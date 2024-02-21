@@ -44,7 +44,8 @@
       "display": "Java Version",
       "required": true,
       "value": "17"
-    },
+    }
+  },
   "install": [
     {
       "type": "javadl",
