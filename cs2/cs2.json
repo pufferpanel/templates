@@ -16,7 +16,7 @@
   ],
   "run": {
     "stop": "quit",
-    "command": "./game/bin/linuxsteamrt64/cs2 -dedicated -ip ${ip} -port ${port} +map ${map} -maxplayers ${maxplayers}",
+    "command": "./game/bin/linuxsteamrt64/cs2 -dedicated -ip ${ip} -port ${port} -maxplayers ${maxplayers} +hostname \"${hostname}\" +game_alias ${game_mode} +map ${map}",
     "workingDirectory": "",
     "pre": [],
     "post": [],
@@ -30,9 +30,30 @@
       "required": true,
       "value": "0.0.0.0"
     },
+    "port": {
+      "type": "integer",
+      "desc": "What port to bind the server to",
+      "display": "Port",
+      "required": true,
+      "value": 27015
+    },
+    "hostname": {
+      "type": "string",
+      "desc": "Hostname for server.",
+      "display": "Hostname",
+      "required": true,
+      "value": "My CS2 Server"
+    },
+    "game_mode": {
+      "type": "string",
+      "desc": "More details about the game modes for the server you can see <a href=\"https://developer.valvesoftware.com/wiki/Counter-Strike_2/Dedicated_Servers#Game_Modes_.26_Types\" target=\"_blank\">here</a> (Competitive, Wingman, Casual, Deathmatch, Custom)",
+      "display": "Game Mode",
+      "required": true,
+      "value": "Competitive"
+    },
     "map": {
       "type": "string",
-      "desc": "Map to load by default",
+      "desc": "Map to load by default (The current and official list of maps is <a href=\"https://developer.valvesoftware.com/wiki/Counter-Strike_2/Maps#Current_Maps\" target=\"_blank\">here</a>)",
       "display": "Map",
       "required": true,
       "value": "de_mirage"
@@ -42,14 +63,7 @@
       "desc": "Maximum number of players on the server",
       "display": "Maxplayers",
       "required": true,
-      "value": "32"
-    },
-    "port": {
-      "type": "integer",
-      "desc": "What port to bind the server to",
-      "display": "Port",
-      "required": true,
-      "value": 27015
+      "value": "64"
     }
   },
   "environment": {
