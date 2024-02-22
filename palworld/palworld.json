@@ -1,0 +1,514 @@
+{
+  "name": "Palworld BETA",
+  "display": "Palworld Dedicated Server",
+  "type": "srcds",
+  "install": [
+    {
+      "appId": "1007",
+      "type": "steamgamedl"
+    },
+    {
+      "appId": "2394010",
+      "type": "steamgamedl"
+    },
+    {
+      "commands": [
+        "chmod +x Pal/Binaries/Linux/PalServer-Linux-Test"
+      ],
+      "type": "command"
+    },
+    {
+      "target": "Pal/Saved/Config/LinuxServer",
+      "type": "mkdir"
+    },
+    {
+      "target": "Pal/Saved/Config/LinuxServer/PalWorldSettings.ini",
+      "text": "[/Script/Pal.PalGameWorldSettings]\nOptionSettings=(Difficulty=${Difficulty},DayTimeSpeedRate=${DayTimeSpeedRate},NightTimeSpeedRate=${NightTimeSpeedRate},ExpRate=${ExpRate},PalCaptureRate=${PalCaptureRate},PalSpawnNumRate=${PalSpawnNumRate},PalDamageRateAttack=${PalDamageRateAttack},PalDamageRateDefense=${PalDamageRateDefense},PlayerDamageRateAttack=${PlayerDamageRateAttack},PlayerDamageRateDefense=${PlayerDamageRateDefense},PlayerStomachDecreaceRate=${PlayerStomachDecreaceRate},PlayerStaminaDecreaceRate=${PlayerStaminaDecreaceRate},PlayerAutoHPRegeneRate=${PlayerAutoHPRegeneRate},PlayerAutoHpRegeneRateInSleep=${PlayerAutoHpRegeneRateInSleep},PalStomachDecreaceRate=${PalStomachDecreaceRate},PalStaminaDecreaceRate=${PalStaminaDecreaceRate},PalAutoHPRegeneRate=${PalAutoHPRegeneRate},PalAutoHpRegeneRateInSleep=${PalAutoHpRegeneRateInSleep},BuildObjectDamageRate=${BuildObjectDamageRate},BuildObjectDeteriorationDamageRate=${BuildObjectDeteriorationDamageRate},CollectionDropRate=${CollectionDropRate},CollectionObjectHpRate=${CollectionObjectHpRate},CollectionObjectRespawnSpeedRate=${CollectionObjectRespawnSpeedRate},EnemyDropItemRate=${EnemyDropItemRate},DeathPenalty=${DeathPenalty},bEnablePlayerToPlayerDamage=${bEnablePlayerToPlayerDamage},bEnableFriendlyFire=${bEnableFriendlyFire},bEnableInvaderEnemy=${bEnableInvaderEnemy},bActiveUNKO=${bActiveUNKO},bEnableAimAssistPad=${bEnableAimAssistPad},bEnableAimAssistKeyboard=${bEnableAimAssistKeyboard},DropItemMaxNum=${DropItemMaxNum},DropItemMaxNum_UNKO=${DropItemMaxNum_UNKO},BaseCampMaxNum=${BaseCampMaxNum},BaseCampWorkerMaxNum=${BaseCampWorkerMaxNum},DropItemAliveMaxHours=${DropItemAliveMaxHours},bAutoResetGuildNoOnlinePlayers=${bAutoResetGuildNoOnlinePlayers},AutoResetGuildTimeNoOnlinePlayers=${AutoResetGuildTimeNoOnlinePlayers},GuildPlayerMaxNum=${GuildPlayerMaxNum},PalEggDefaultHatchingTime=${PalEggDefaultHatchingTime},WorkSpeedRate=${WorkSpeedRate},bIsMultiplay=${bIsMultiplay},bIsPvP=${bIsPvP},bCanPickupOtherGuildDeathPenaltyDrop=${bCanPickupOtherGuildDeathPenaltyDrop},bEnableNonLoginPenalty=${bEnableNonLoginPenalty},bEnableFastTravel=${bEnableFastTravel},bIsStartLocationSelectByMap=${bIsStartLocationSelectByMap},bExistPlayerAfterLogout=${bExistPlayerAfterLogout},bEnableDefenseOtherGuildPlayer=${bEnableDefenseOtherGuildPlayer},CoopPlayerMaxNum=${CoopPlayerMaxNum},ServerPlayerMaxNum=${ServerPlayerMaxNum},ServerName=\"${ServerName}\",ServerDescription=\"${ServerDescription}\",AdminPassword=\"${AdminPassword}\",ServerPassword=\"${ServerPassword}\",PublicPort=${PublicPort},PublicIP=\"${PublicIP}\",RCONEnabled=${RCONEnabled},RCONPort=${RCONPort},Region=${Region},bUseAuth=${bUseAuth},BanListURL=\"${BanListURL}\")",
+      "type": "writefile"
+    }
+  ],
+  "run": {
+    "stopCode": 15,
+    "command": "./Pal/Binaries/Linux/PalServer-Linux-Test Pal -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS",
+    "workingDirectory": "",
+    "pre": [
+      {
+        "appId": "1007",
+        "type": "steamgamedl"
+      },
+      {
+        "appId": "2394010",
+        "type": "steamgamedl"
+      },
+      {
+        "target": "Pal/Saved/Config/LinuxServer/PalWorldSettings.ini",
+        "text": "[/Script/Pal.PalGameWorldSettings]\nOptionSettings=(Difficulty=${Difficulty},DayTimeSpeedRate=${DayTimeSpeedRate},NightTimeSpeedRate=${NightTimeSpeedRate},ExpRate=${ExpRate},PalCaptureRate=${PalCaptureRate},PalSpawnNumRate=${PalSpawnNumRate},PalDamageRateAttack=${PalDamageRateAttack},PalDamageRateDefense=${PalDamageRateDefense},PlayerDamageRateAttack=${PlayerDamageRateAttack},PlayerDamageRateDefense=${PlayerDamageRateDefense},PlayerStomachDecreaceRate=${PlayerStomachDecreaceRate},PlayerStaminaDecreaceRate=${PlayerStaminaDecreaceRate},PlayerAutoHPRegeneRate=${PlayerAutoHPRegeneRate},PlayerAutoHpRegeneRateInSleep=${PlayerAutoHpRegeneRateInSleep},PalStomachDecreaceRate=${PalStomachDecreaceRate},PalStaminaDecreaceRate=${PalStaminaDecreaceRate},PalAutoHPRegeneRate=${PalAutoHPRegeneRate},PalAutoHpRegeneRateInSleep=${PalAutoHpRegeneRateInSleep},BuildObjectDamageRate=${BuildObjectDamageRate},BuildObjectDeteriorationDamageRate=${BuildObjectDeteriorationDamageRate},CollectionDropRate=${CollectionDropRate},CollectionObjectHpRate=${CollectionObjectHpRate},CollectionObjectRespawnSpeedRate=${CollectionObjectRespawnSpeedRate},EnemyDropItemRate=${EnemyDropItemRate},DeathPenalty=${DeathPenalty},bEnablePlayerToPlayerDamage=${bEnablePlayerToPlayerDamage},bEnableFriendlyFire=${bEnableFriendlyFire},bEnableInvaderEnemy=${bEnableInvaderEnemy},bActiveUNKO=${bActiveUNKO},bEnableAimAssistPad=${bEnableAimAssistPad},bEnableAimAssistKeyboard=${bEnableAimAssistKeyboard},DropItemMaxNum=${DropItemMaxNum},DropItemMaxNum_UNKO=${DropItemMaxNum_UNKO},BaseCampMaxNum=${BaseCampMaxNum},BaseCampWorkerMaxNum=${BaseCampWorkerMaxNum},DropItemAliveMaxHours=${DropItemAliveMaxHours},bAutoResetGuildNoOnlinePlayers=${bAutoResetGuildNoOnlinePlayers},AutoResetGuildTimeNoOnlinePlayers=${AutoResetGuildTimeNoOnlinePlayers},GuildPlayerMaxNum=${GuildPlayerMaxNum},PalEggDefaultHatchingTime=${PalEggDefaultHatchingTime},WorkSpeedRate=${WorkSpeedRate},bIsMultiplay=${bIsMultiplay},bIsPvP=${bIsPvP},bCanPickupOtherGuildDeathPenaltyDrop=${bCanPickupOtherGuildDeathPenaltyDrop},bEnableNonLoginPenalty=${bEnableNonLoginPenalty},bEnableFastTravel=${bEnableFastTravel},bIsStartLocationSelectByMap=${bIsStartLocationSelectByMap},bExistPlayerAfterLogout=${bExistPlayerAfterLogout},bEnableDefenseOtherGuildPlayer=${bEnableDefenseOtherGuildPlayer},CoopPlayerMaxNum=${CoopPlayerMaxNum},ServerPlayerMaxNum=${ServerPlayerMaxNum},ServerName=\"${ServerName}\",ServerDescription=\"${ServerDescription}\",AdminPassword=\"${AdminPassword}\",ServerPassword=\"${ServerPassword}\",PublicPort=${PublicPort},PublicIP=\"${PublicIP}\",RCONEnabled=${RCONEnabled},RCONPort=${RCONPort},Region=${Region},bUseAuth=${bUseAuth},BanListURL=\"${BanListURL}\")",
+        "type": "writefile"
+      },
+      {
+        "commands": [
+          "chmod +x Pal/Binaries/Linux/PalServer-Linux-Test"
+        ],
+        "type": "command"
+      }
+    ],
+    "post": [],
+    "environmentVars": {}
+  },
+  "data": {
+    "AdminPassword": {
+      "type": "string",
+      "desc": "Sets a Admin Password to be able to use commands in game (use command /AdminPassword yourpassword)",
+      "display": "Admin Password",
+      "required": true,
+      "value": "yourpassword"
+    },
+    "AutoResetGuildTimeNoOnlinePlayers": {
+      "type": "integer",
+      "desc": "If no players from a guild are online for this amount of time (in hours) the guild will be disbanded",
+      "display": "Empty Guild Deletion Time",
+      "required": true,
+      "value": "72"
+    },
+    "BanListURL": {
+      "type": "string",
+      "desc": "Palworld devs provide a list of globally blacklisted players, you can optionally substitute your own list.",
+      "display": "Banned Players List",
+      "value": "https://api.palworldgame.com/api/banlist.txt"
+    },
+    "BaseCampMaxNum": {
+      "type": "integer",
+      "desc": "Max number of total bases allowed in the world",
+      "display": "Max allowed bases in world",
+      "required": true,
+      "value": "128"
+    },
+    "BaseCampWorkerMaxNum": {
+      "type": "integer",
+      "desc": "Maximum Pals that can be assigned to each base. You still need to upgrade your base to unlock each slot.",
+      "display": "Max Worker Pals per base",
+      "required": true,
+      "value": "15"
+    },
+    "BuildObjectDamageRate": {
+      "type": "integer",
+      "desc": "Multiplier to affect incoming damage to buildings ",
+      "display": "Building Damage Multiplier",
+      "required": true,
+      "value": "1.000000"
+    },
+    "BuildObjectDeteriorationDamageRate": {
+      "type": "integer",
+      "desc": "Multiplier to affect how much damage built objects will take",
+      "display": "Building Deterioration Multiplier",
+      "required": true,
+      "value": "1.000000"
+    },
+    "CollectionDropRate": {
+      "type": "integer",
+      "desc": "Multiplier that affects how much items are dropped from nodes such as trees, rocks, and ores",
+      "display": "Node Farming Drop Rate",
+      "required": true,
+      "value": "1.000000"
+    },
+    "CollectionObjectHpRate": {
+      "type": "integer",
+      "desc": "Multiplier that affects how much health each node has before disappearing",
+      "display": "Node Health",
+      "required": true,
+      "value": "1.000000"
+    },
+    "CollectionObjectRespawnSpeedRate": {
+      "type": "integer",
+      "desc": "Multiplier that affects how quickly nodes respawn",
+      "display": "Node Respawn Time",
+      "required": true,
+      "value": "1.000000"
+    },
+    "CoopPlayerMaxNum": {
+      "type": "integer",
+      "desc": "The amount of players allowed to be in a co-op party",
+      "display": "Max Party Size",
+      "required": true,
+      "value": "4"
+    },
+    "DayTimeSpeedRate": {
+      "type": "integer",
+      "desc": "How long each day lasts",
+      "display": "Day Duration",
+      "required": true,
+      "value": "1.000000"
+    },
+    "DeathPenalty": {
+      "type": "option",
+      "desc": "What you drop on death. Dropping inventory, equipment, and pals (All) is default for dedicated servers, ItemAndEquipment (drop Inventory and Equipment, keep pals) is default for base game singleplayer and multiplayer so it is selected as default",
+      "display": "Multiplayer Difficulty (Death Penalty)",
+      "required": true,
+      "value": "ItemAndEquipment",
+      "options": [
+        {
+          "value": "None",
+          "display": "None (Keep everything on death)"
+        },
+        {
+          "value": "Item",
+          "display": "None (Drop Items, Keep Equipment and Pals)"
+        },
+        {
+          "value": "ItemAndEquipment",
+          "display": "None (Drop Items and Equipment, keep Pals)"
+        },
+        {
+          "value": "All",
+          "display": "All (Drop Inventory, Equipment, and Pals)"
+        }
+      ]
+    },
+    "Difficulty": {
+      "type": "string",
+      "desc": "Difficulty variable. Currently unused in dedicated servers, but this is included in case that changes, and for config completion. For Multiplayer difficulty see Death Penalty",
+      "display": "Singleplayer Difficulty",
+      "required": true,
+      "value": "None"
+    },
+    "DropItemAliveMaxHours": {
+      "type": "integer",
+      "desc": "How long (in hours) before dropped items will despawn",
+      "display": "Dropped items despawn time",
+      "required": true,
+      "value": "1.000000"
+    },
+    "DropItemMaxNum": {
+      "type": "integer",
+      "desc": "Number of dropped items allowed in the world",
+      "display": "Max Dropped Items",
+      "required": true,
+      "value": "3000"
+    },
+    "DropItemMaxNum_UNKO": {
+      "type": "integer",
+      "desc": "Not enabled (thankfully), but its in the config",
+      "display": "Max Poop in World",
+      "required": true,
+      "value": "100"
+    },
+    "EnemyDropItemRate": {
+      "type": "integer",
+      "desc": "Multiplier that affects chance of enemy drops",
+      "display": "Enemy Item Drop Rate",
+      "required": true,
+      "value": "1.000000"
+    },
+    "ExpRate": {
+      "type": "integer",
+      "desc": "How much experience is gained",
+      "display": "Experience Multiplier",
+      "required": true,
+      "value": "1.000000"
+    },
+    "GuildPlayerMaxNum": {
+      "type": "integer",
+      "desc": "How many players can be in each guild",
+      "display": "Guild Max Players",
+      "required": true,
+      "value": "20"
+    },
+    "NightTimeSpeedRate": {
+      "type": "integer",
+      "desc": "How long each night lasts",
+      "display": "Night Duration",
+      "required": true,
+      "value": "1.000000"
+    },
+    "PalAutoHPRegeneRate": {
+      "type": "integer",
+      "desc": "Multiplier to affect how quickly Pal HP will regen while awake",
+      "display": "Pal Health Regen Multiplier",
+      "required": true,
+      "value": "1.000000"
+    },
+    "PalAutoHpRegeneRateInSleep": {
+      "type": "integer",
+      "desc": "Multiplier to affect how quickly Pal HP will regen while sleeping",
+      "display": "Pal Health Regen Multiplier (Sleeping)",
+      "required": true,
+      "value": "1.000000"
+    },
+    "PalCaptureRate": {
+      "type": "integer",
+      "desc": "Capture difficulty multiplier, makes pals easier or harder to catch.",
+      "display": "Pal Capture Rate",
+      "required": true,
+      "value": "1.000000"
+    },
+    "PalDamageRateAttack": {
+      "type": "integer",
+      "desc": "Multiplier to scale friendly pal (outgoing) damage",
+      "display": "Pal Damage Multiplier",
+      "required": true,
+      "value": "1.000000"
+    },
+    "PalDamageRateDefense": {
+      "type": "integer",
+      "desc": "Multiplier to scale friendly pal (incoming) damage",
+      "display": "Pal Defence Multiplier",
+      "required": true,
+      "value": "1.000000"
+    },
+    "PalEggDefaultHatchingTime": {
+      "type": "integer",
+      "desc": "How long each egg takes to hatch (egg size and types are scaled)",
+      "display": "Egg Incubation Time",
+      "required": true,
+      "value": "72.000000"
+    },
+    "PalSpawnNumRate": {
+      "type": "integer",
+      "desc": "Multiplier for how many wild pals will spawn in the open world.",
+      "display": "Pal Spawn Rate",
+      "required": true,
+      "value": "1.000000"
+    },
+    "PalStaminaDecreaceRate": {
+      "type": "integer",
+      "desc": "Multiplier to affect how quickly stamina your Party's Pal's stamina will deplete",
+      "display": "Pal Stamina Multiplier",
+      "required": true,
+      "value": "1.000000"
+    },
+    "PalStomachDecreaceRate": {
+      "type": "integer",
+      "desc": "Multiplier to affect friendly Pal hunger (higher means stomach will decrease at a faster rate)",
+      "display": "Pal Hunger Multiplier",
+      "required": true,
+      "value": "1.000000"
+    },
+    "PlayerAutoHPRegeneRate": {
+      "type": "integer",
+      "desc": "Multiplier to affect how quickly player HP will regen while awake",
+      "display": "Player Health Regen Multiplier",
+      "required": true,
+      "value": "1.000000"
+    },
+    "PlayerAutoHpRegeneRateInSleep": {
+      "type": "integer",
+      "desc": "Multiplier to affect how quickly player HP will regen while sleeping",
+      "display": "Player Health Regen Multiplier (Sleeping)",
+      "required": true,
+      "value": "1.000000"
+    },
+    "PlayerDamageRateAttack": {
+      "type": "integer",
+      "desc": "Multiplier to scale player (outgoing) damage",
+      "display": "Player Damage Multiplier",
+      "required": true,
+      "value": "1.000000"
+    },
+    "PlayerDamageRateDefense": {
+      "type": "integer",
+      "desc": "Multiplier to scale player (incoming) damage",
+      "display": "Player Defence Multiplier",
+      "required": true,
+      "value": "1.000000"
+    },
+    "PlayerStaminaDecreaceRate": {
+      "type": "integer",
+      "desc": "Multiplier to affect how quickly stamina will deplete",
+      "display": "Player Stamina Multiplier",
+      "required": true,
+      "value": "1.000000"
+    },
+    "PlayerStomachDecreaceRate": {
+      "type": "integer",
+      "desc": "Multiplier to affect player hunger (higher means stomach will decrease at a faster rate)",
+      "display": "Player Hunger Multiplier",
+      "required": true,
+      "value": "1.000000"
+    },
+    "PublicIP": {
+      "type": "string",
+      "desc": "What address to bind the server to (leave blank for auto)",
+      "display": "Public IP",
+      "value": ""
+    },
+    "PublicPort": {
+      "type": "integer",
+      "desc": "What port to bind the server to",
+      "display": "Public Port",
+      "required": true,
+      "value": 8211
+    },
+    "RCONEnabled": {
+      "type": "boolean",
+      "desc": "Allows a terminal connection to adjust game settings. Would not recommend enabling, make PufferPanel public facing instead.",
+      "display": "Remote Connection (RCON)",
+      "required": true,
+      "value": "false"
+    },
+    "RCONPort": {
+      "type": "integer",
+      "desc": "The port to connect to the RCON server",
+      "display": "RCON Port",
+      "required": true,
+      "value": "25575"
+    },
+    "Region": {
+      "type": "string",
+      "desc": "Optionally declares a region for the server list. Leave blank if unsure",
+      "display": "Region"
+    },
+    "ServerDescription": {
+      "type": "string",
+      "desc": "The blurb when you click on the server in the list",
+      "display": "Server Description",
+      "value": "A self-hosted Palworld server"
+    },
+    "ServerName": {
+      "type": "string",
+      "desc": "The name that will show on the server list",
+      "display": "Server Name",
+      "required": true,
+      "value": "Your Palworld Server"
+    },
+    "ServerPassword": {
+      "type": "string",
+      "desc": "Make the game private by requiring this password to join. Leave blank to allow players to join without a password",
+      "display": "Server Password",
+      "value": ""
+    },
+    "ServerPlayerMaxNum": {
+      "type": "integer",
+      "desc": "The amount of players allow to be playing at one time (Default is 32, requires a really good system)",
+      "display": "Max Consecutive Players",
+      "required": true,
+      "value": "12"
+    },
+    "WorkSpeedRate": {
+      "type": "integer",
+      "desc": "Multiplier that affects how quickly Pals work",
+      "display": "Work Speed Multiplier",
+      "required": true,
+      "value": "1.000000"
+    },
+    "bActiveUNKO": {
+      "type": "boolean",
+      "desc": "ActiveUNKO. The devs are freaky",
+      "display": "Enable Poop",
+      "required": true,
+      "value": "false"
+    },
+    "bAutoResetGuildNoOnlinePlayers": {
+      "type": "boolean",
+      "display": "Disband Guild if no players online",
+      "required": true,
+      "value": "false"
+    },
+    "bCanPickupOtherGuildDeathPenaltyDrop": {
+      "type": "boolean",
+      "desc": "Allow picking up death bags from other guilds. Guild members can still pick up your death bag.",
+      "display": "Allow non-guild death pickup",
+      "required": true,
+      "value": "false"
+    },
+    "bEnableAimAssistKeyboard": {
+      "type": "boolean",
+      "display": "Enable Mouse Aim Assist",
+      "required": true,
+      "value": "false"
+    },
+    "bEnableAimAssistPad": {
+      "type": "boolean",
+      "display": "Enable Controller Aim Assist",
+      "required": true,
+      "value": "true"
+    },
+    "bEnableDefenseOtherGuildPlayer": {
+      "type": "boolean",
+      "desc": "my brain hurts trying to figure this out",
+      "display": "EnableDefenseOtherGuildPlayer",
+      "required": true,
+      "value": "false"
+    },
+    "bEnableFastTravel": {
+      "type": "boolean",
+      "display": "Enable Fast Travel",
+      "required": true,
+      "value": "true"
+    },
+    "bEnableFriendlyFire": {
+      "type": "boolean",
+      "desc": "Allows damage to friendlies",
+      "display": "Friendly Fire",
+      "required": true,
+      "value": "false"
+    },
+    "bEnableInvaderEnemy": {
+      "type": "boolean",
+      "desc": "Enables NPC raids on player bases",
+      "display": "Enable Raids",
+      "required": true,
+      "value": "true"
+    },
+    "bEnableNonLoginPenalty": {
+      "type": "boolean",
+      "desc": "Unsure what this means",
+      "display": "EnableNonLoginPenalty",
+      "required": true,
+      "value": "true"
+    },
+    "bEnablePlayerToPlayerDamage": {
+      "type": "boolean",
+      "desc": "Allow damage to other players",
+      "display": "Enable PvP",
+      "required": true,
+      "value": "false"
+    },
+    "bExistPlayerAfterLogout": {
+      "type": "boolean",
+      "desc": "Leaves players in the world even when they disconnect",
+      "display": "Dont despawn offline players",
+      "required": true,
+      "value": "false"
+    },
+    "bIsMultiplay": {
+      "type": "boolean",
+      "desc": "Unsure what this means, possibly future crossplay toggle, maybe a hosted singleplayer flag",
+      "display": "IsMultiplay",
+      "value": "false"
+    },
+    "bIsPvP": {
+      "type": "boolean",
+      "desc": "Unsure how this differs from the other player damage variable",
+      "display": "IsPvP",
+      "required": true,
+      "value": "false"
+    },
+    "bIsStartLocationSelectByMap": {
+      "type": "boolean",
+      "display": "Allow picking start location",
+      "required": true,
+      "value": "true"
+    },
+    "bUseAuth": {
+      "type": "boolean",
+      "display": "UseAuth",
+      "required": true,
+      "value": "true"
+    }
+  },
+  "environment": {
+    "type": "tty"
+  },
+  "supportedEnvironments": [
+    {
+      "type": "tty"
+    },
+    {
+      "type": "standard"
+    }
+  ],
+  "requirements": {
+    "os": "linux",
+    "arch": "amd64"
+  }
+}
