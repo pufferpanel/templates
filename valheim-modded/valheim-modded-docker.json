@@ -59,7 +59,8 @@
         "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 896660 +quit",
         "unzip ./denikson-BepInExPack_Valheim*.zip -d ./bepin_temp/",
         "cp -r ./bepin_temp/BepInExPack_Valheim/. ./",
-        "rm -r ./bepin_temp"
+        "rm -r ./bepin_temp",
+        "chmod +x valheim_server.x86_64"
       ]
     }
   ],

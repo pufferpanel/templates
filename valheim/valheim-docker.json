@@ -39,7 +39,8 @@
     {
       "type": "command",
       "commands": [
-        "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 896660 +quit"
+        "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 896660 +quit",
+        "chmod +x valheim_server.x86_64"
       ]
     }
   ],
