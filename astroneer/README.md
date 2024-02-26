@@ -1,5 +1,5 @@
 
-## Garry's Mod
+## ASTRONEER
 
 This was tested on debian, but should also work on ubuntu
 
