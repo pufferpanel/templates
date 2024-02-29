@@ -43,7 +43,7 @@
     }
   ],
   "run": {
-    "command": "./arma3server -ip=${ip} -port=${port} -config=${config} -par=parameters.txt",
+    "command": "./arma3server_x64 -ip=${ip} -port=${port} -config=${config} -par=parameters.txt",
     "stopCode": 2
   },
   "environment": {
