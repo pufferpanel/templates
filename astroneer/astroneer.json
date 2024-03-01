@@ -1,0 +1,103 @@
+{
+  "display": "ASTRONEER",
+  "type": "srcds",
+  "data": {
+    "port": {
+      "type": "integer",
+      "desc": "Port to bind the server to",
+      "display": "ServerPort",
+      "required": true,
+      "value": "7777",
+      "userEdit": true
+    },
+    "rconport": {
+      "type": "integer",
+      "desc": "Port to bind the RCON to",
+      "display": "RCONPort",
+      "required": true,
+      "value": "1234",
+      "userEdit": true
+    },
+    "owner": {
+      "type": "string",
+      "desc": "The name of the owners account (e.g. Steam Username)",
+      "display": "Owner Name",
+      "value": "",
+      "userEdit": true
+    },
+    "publicip": {
+      "type": "string",
+      "desc": "Public IP Address of the Server (autodetect if empty)",
+      "display": "Public IP",
+      "value": "",
+      "userEdit": true
+    },
+    "rconpass": {
+      "type": "string",
+      "desc": "The password of the RCON (random generate if empty)",
+      "display": "RCONPassword",
+      "value": "",
+      "userEdit": true
+    },
+    "encryption": {
+      "required": true,
+      "userEdit": false,
+      "type": "boolean",
+      "value": "False",
+      "display": "AllowEncryption",
+      "desc": "If network traffic shoud be encrypted (has to be disabled currently, wine support missing)"
+    }
+  },
+  "install": [
+    {
+      "appId": "728470",
+      "extraArgs": "-os windows",
+      "type": "steamgamedl"
+    },
+    {
+      "target": "./Astro/Saved/Config/WindowsServer",
+      "type": "mkdir"
+    },
+    {
+      "target": "./Astro/Saved/Config/WindowsServer/Engine.ini",
+      "text": "[URL]\nPort=${port}\n\n[SystemSettings]\nnet.AllowEncryption=${encryption}\n",
+      "type": "writefile"
+    },
+    {
+      "target": "./AstroServer.sh",
+      "text": "#!/bin/bash\n\nConsolePort=$(grep '^ConsolePort=' ./Astro/Saved/Config/WindowsServer/AstroServerSettings.ini | tr -d '\\r' | cut -d'=' -f2-)\nConsolePassword=$(grep '^ConsolePassword=' ./Astro/Saved/Config/WindowsServer/AstroServerSettings.ini | tr -d '\\r' | cut -d'=' -f2-)\n: ${ConsolePassword:?ConsolePassword missing} ${ConsolePort:=1234}\n\nsnore() {\n    local IFS\n    [[ -n \"${_snore_fd:-}\" ]] || { exec {_snore_fd}<> <(:) && read -r -t 0 -u $_snore_fd; } 2>/dev/null\n    read ${1:+-t \"$1\"} -u $_snore_fd || :\n}\ntrap stop SIGHUP SIGINT SIGQUIT SIGTERM\nstop() {\n    kill $WATCHERPID\n    connect\n    echo \"DSSaveGame\" >&3\n    echo \"DSServerShutdown\" >&3\n    wait $SERVERPID\n    kill -9 -$$\n}\nstart() {\n    echo \"Starting Server\"\n    wineconsole ./Astro/Binaries/Win64/AstroServer-Win64-Shipping.exe Astro &\n    SERVERPID=$!\n    while snore 1; do\n        kill -0 $$ 2>/dev/null || wineserver -k\n        grep '^State:[[:blank:]]Z' \"/proc/$SERVERPID/status\" >/dev/null 2>&1\n        [[ $? == 1 ]] || kill -9 -$$\n    done &\n    WATCHERPID=$!\n    echo \"ServerPid: $SERVERPID | WatcherPid: $WATCHERPID\"\n}\nconnect() {\n    disconnect\n    while ! exec 3<>/dev/tcp/127.0.0.1/$ConsolePort; do\n        snore 1\n    done\n    echo \"$ConsolePassword\" >&3\n    cat <&3 &\n    CATPID=$!\n}\ndisconnect() {\n    test \"$CATPID\" && kill -9 $CATPID\n    unset CATPID\n    exec 3>&-\n}\ncmd() {\n    while IFS= read -r line; do\n        connect\n        echo \"$line\" >&3\n        while IFS= read -t 60 -r line; do\n            echo \"$line\" >&3\n        done\n        disconnect\n    done\n}\n\nstart\nsnore 5\ncmd\n\nexit 0\n",
+      "type": "writefile"
+    },
+    {
+      "target": "./Astro/Saved/Config/WindowsServer/AstroServerSettings.sh",
+      "text": "#!/bin/bash\n\nPublicIP=\"${1/<nil>/}\"\ntest \"$PublicIP\" || PublicIP=$(host myip.opendns.com 208.67.220.222 | grep -oP '^myip\\.opendns\\.com.* \\K(\\d{1,3}\\.){3}(\\d{1,3})') #'\nOwnerName=\"${2/<nil>/}\"\nConsolePort=\"${3/<nil>/}\"\nConsolePort=\"${ConsolePort:?ConsolePort required}\"\nConsolePassword=\"${4/<nil>/}\"\ntest \"$ConsolePassword\" || ConsolePassword=$(cat /proc/sys/kernel/random/uuid)\n\ncd \"${0%/*}\"\n\nif [ -s AstroServerSettings.ini ]; then\nsed -i \"\ns/^PublicIP=.*$/PublicIP=$PublicIP/\ns/^OwnerName=.*$/OwnerName=$OwnerName/\ns/^ConsolePort=.*$/ConsolePort=$ConsolePort/\ns/^ConsolePassword=.*$/ConsolePassword=$ConsolePassword/\n\" AstroServerSettings.ini\nelse\ncat <<EOD >AstroServerSettings.ini\n[/Script/Astro.AstroServerSettings]\nPublicIP=$PublicIP\nOwnerName=$OwnerName\nConsolePort=$ConsolePort\nConsolePassword=$ConsolePassword\nEOD\nfi\n\nexit 0\n",
+      "type": "writefile"
+    },
+    {
+      "commands": [
+        "bash ./Astro/Saved/Config/WindowsServer/AstroServerSettings.sh ${publicip} ${owner} ${rconport} ${rconpass}"
+      ],
+      "type": "command"
+    }
+  ],
+  "run": {
+    "command": "bash ./AstroServer.sh",
+    "stopCode": 2,
+    "workingDirectory": "",
+    "environmentVars": {},
+    "pre": [],
+    "post": []
+  },
+  "environment": {
+    "type": "tty"
+  },
+  "supportedEnvironments": [
+    {
+      "type": "tty"
+    }
+  ],
+  "requirements": {
+    "os": "linux",
+    "arch": "amd64"
+  }
+}
