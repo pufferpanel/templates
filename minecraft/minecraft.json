@@ -305,7 +305,7 @@
       "if": "modlauncher == 'paper'",
       "type": "download",
       "files": [
-        "https://api.papermc.io/v2/projects/paper/versions/${version}/builds/${build}/downloads/paper-${version}-${paperbuild}.jar"
+        "https://api.papermc.io/v2/projects/paper/versions/${version}/builds/${paperbuild}/downloads/paper-${version}-${paperbuild}.jar"
       ]
     },
     {
