@@ -149,7 +149,7 @@
       "type": "string",
       "value": "latest",
       "display": "Version",
-      "desc": "Version of Minecraft you wish to install (not all software may respect this value",
+      "desc": "Version of Minecraft you wish to install. It is best to put a version in, as latest may not work with all server software.",
       "required": true,
       "userEdit": true
     },
