@@ -276,6 +276,12 @@
       "target": "server.jar"
     },
     {
+      "if": "modlauncher == 'forge' && file_exists('forge-' + forgebuild + '.jar')",
+      "type": "move",
+      "source": "forge-${forgebuild}.jar",
+      "target": "server.jar"
+    },
+    {
       "if": "modlauncher == 'magma'",
       "type": "download",
       "files": [
