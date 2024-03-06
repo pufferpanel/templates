@@ -279,7 +279,7 @@
       "if": "modlauncher == 'magma'",
       "type": "download",
       "files": [
-        "https://api.magmafoundation.org/api/v2/${minecraftversion}/latest/${tag}/download"
+        "https://api.magmafoundation.org/api/v2/${version}/latest/${tag}/download"
       ]
     },
     {
@@ -292,7 +292,7 @@
       "if": "modlauncher == 'mohist'",
       "type": "download",
       "files": [
-        "https://mohistmc.com/api/${mc-version}/${mohistversion}/download/"
+        "https://mohistmc.com/api/${version}/${mohistversion}/download/"
       ]
     },
     {
