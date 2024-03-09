@@ -1,0 +1,177 @@
+{
+    "name": "BeamMP",
+    "display": "BeamMP",
+    "type": "beammp",
+    "install": [
+      {
+        "files": [
+          "https://github.com/BeamMP/BeamMP-Server/releases/latest/download/BeamMP-Server-linux"
+        ],
+        "type": "download"
+      },
+      {
+        "commands": [
+          "chmod +x BeamMP-Server-linux",
+          "timeout -s 9 3 ./BeamMP-Server-linux"
+        ],
+        "type": "command"
+      }
+    ],
+    "run": {
+      "stop": "exit",
+      "command": "./BeamMP-Server-linux",
+      "workingDirectory": "",
+      "pre": [
+        {
+          "file": "ServerConfig.toml",
+          "regex": true,
+          "replace": "AuthKey = \"${authkey}\"",
+          "search": "AuthKey =.*",
+          "type": "alterfile"
+        },
+        {
+          "file": "ServerConfig.toml",
+          "regex": true,
+          "replace": "Debug = ${debug}",
+          "search": "Debug =.*",
+          "type": "alterfile"
+        },
+        {
+          "file": "ServerConfig.toml",
+          "regex": true,
+          "replace": "Description = \"${description}\"",
+          "search": "Description =.*",
+          "type": "alterfile"
+        },
+        {
+          "file": "ServerConfig.toml",
+          "regex": true,
+          "replace": "Map = \"${map}\"",
+          "search": "Map =.*",
+          "type": "alterfile"
+        },
+        {
+          "file": "ServerConfig.toml",
+          "regex": true,
+          "replace": "MaxCars = ${cars}",
+          "search": "MaxCars =.*",
+          "type": "alterfile"
+        },
+        {
+          "file": "ServerConfig.toml",
+          "regex": true,
+          "replace": "MaxPlayers = ${players}",
+          "search": "MaxPlayers =.*",
+          "type": "alterfile"
+        },
+        {
+          "file": "ServerConfig.toml",
+          "regex": true,
+          "replace": "Name = \"${name}\"",
+          "search": "Name =.*",
+          "type": "alterfile"
+        },
+        {
+          "file": "ServerConfig.toml",
+          "regex": true,
+          "replace": "Port = ${port}",
+          "search": "Port =.*",
+          "type": "alterfile"
+        },
+        {
+          "file": "ServerConfig.toml",
+          "regex": true,
+          "replace": "Private = ${private}",
+          "search": "Private =.*",
+          "type": "alterfile"
+        }
+      ],
+      "post": [],
+      "environmentVars": {}
+    },
+    "data": {
+      "authkey": {
+        "type": "string",
+        "desc": "Beam-MP's server authentication key. Go to <a href=\"https://wiki.beammp.com/en/home/server-installation#h-2-obtaining-an-authentication-key\">the docs</a> for help.",
+        "display": "Authentication Key",
+        "required": true,
+        "value": "",
+        "userEdit": true
+      },
+      "cars": {
+        "type": "integer",
+        "desc": "Maximum amount of cars per player. Can be either 1 or 2",
+        "display": "Cars",
+        "value": "1",
+        "userEdit": true,
+        "options": [
+          {
+            "value": "1",
+            "display": "1"
+          },
+          {
+            "value": "2",
+            "display": "2"
+          }
+        ]
+      },
+      "debug": {
+        "type": "boolean",
+        "desc": "Run the server in debug mode.",
+        "display": "Debug Mode",
+        "value": "false",
+        "userEdit": true
+      },
+      "description": {
+        "type": "string",
+        "desc": "The description for your server.",
+        "display": "Description",
+        "value": "Hosted using PufferPanel",
+        "userEdit": true
+      },
+      "map": {
+        "type": "string",
+        "desc": "The map to use.",
+        "display": "Map",
+        "value": "/levels/gridmap_v2/info.json",
+        "userEdit": true
+      },
+      "name": {
+        "type": "string",
+        "desc": "The name of your Beam-MP server",
+        "display": "Server Name",
+        "required": true,
+        "value": "Default PufferPanel Beam-MP Server"
+      },
+      "players": {
+        "type": "integer",
+        "desc": "Maximum amount of players that can join the server.",
+        "display": "Max Players",
+        "value": "6",
+        "userEdit": true
+      },
+      "port": {
+        "type": "integer",
+        "desc": "The port to run the server on.",
+        "display": "Port",
+        "value": "30814",
+        "userEdit": true
+      },
+      "private": {
+        "type": "boolean",
+        "desc": "Don't show server on server list",
+        "display": "Private Server",
+        "value": "false",
+        "userEdit": true
+      }
+    },
+    "environment": {
+      "type": "standard"
+    },
+    "supportedEnvironments": [
+      {
+        "type": "standard"
+      }
+    ],
+    "requirements": {}
+  }
