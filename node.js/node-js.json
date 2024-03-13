@@ -1,0 +1,54 @@
+{
+  "name": "undefined",
+  "display": "Node.js",
+  "type": "node",
+  "install": [
+    {
+      "commands": [
+        "npm init -y"
+      ],
+      "type": "command"
+    },
+    {
+      "target": "package.json",
+      "text": "{\n  \"name\": \"my node app\",\n  \"version\": \"1.0.0\",\n  \"description\": \"\",\n  \"main\": \"${main-js-file}\",\n  \"scripts\": {\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"\n  },\n  \"keywords\": [],\n  \"author\": \"\",\n  \"license\": \"ISC\"\n}\n",
+      "type": "writefile"
+    },
+    {
+      "target": "${main-js-file}",
+      "text": "console.log(\"hello world\")",
+      "type": "writefile"
+    }
+  ],
+  "run": {
+    "stopCode": 2,
+    "command": "node ./${main-js-file}",
+    "workingDirectory": "",
+    "pre": [],
+    "post": [],
+    "environmentVars": {}
+  },
+  "data": {
+    "main-js-file": {
+      "type": "string",
+      "desc": "The main JavaScript file of your Node.js application.",
+      "display": "Main JavaScript file",
+      "required": true,
+      "value": "app.js"
+    }
+  },
+  "environment": {
+    "type": "standard"
+  },
+  "supportedEnvironments": [
+    {
+      "type": "standard"
+    }
+  ],
+  "requirements": {
+    "binaries": [
+      "node",
+      "npm"
+    ]
+  }
+}
