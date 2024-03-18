@@ -317,7 +317,7 @@
     {
       "if": "modlauncher == 'paper'",
       "type": "move",
-      "target": "paper.jar",
+      "target": "server.jar",
       "source": "paper-*.jar"
     },
     {
