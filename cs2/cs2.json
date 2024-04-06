@@ -46,7 +46,7 @@
     },
     "game_mode": {
       "type": "string",
-      "desc": "More details about the game modes for the server you can see <a href=\"https://developer.valvesoftware.com/wiki/Counter-Strike_2/Dedicated_Servers#Game_Modes_.26_Types\" target=\"_blank\">here</a> (Competitive, Wingman, Casual, Deathmatch, Custom)",
+      "desc": "More details about the game modes for the server you can see <a href=\"https://developer.valvesoftware.com/wiki/Counter-Strike_2/Dedicated_Servers#Game_Modes_.26_Types\" target=\"_blank\">here</a> (competitive, wingman, casual, deathmatch, custom)",
       "display": "Game Mode",
       "required": true,
       "value": "Competitive"
