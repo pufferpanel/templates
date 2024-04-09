@@ -43,14 +43,6 @@
       "required": false,
       "userEdit": false
     },
-    "magmatag": {
-      "type": "string",
-      "value": "68e21495",
-      "display": "Tag",
-      "desc": "The alphanumeric commit ID for the build (See https://git.magmafoundation.org/magmafoundation/Magma-1-18-x/-/releases for the commit ID's for each release))",
-      "required": false,
-      "userEdit": true
-    },
     "memory": {
       "type": "integer",
       "value": 1024,
@@ -80,46 +72,14 @@
           "display": "MinecraftForge"
         },
         {
-          "value": "magma",
-          "display": "Magma"
-        },
-        {
-          "value": "mohist",
-          "display": "Mohist"
-        },
-        {
           "value": "paper",
           "display": "Paper"
         },
         {
-          "value": "pufferfish",
-          "display": "Pufferfish"
-        },
-        {
-          "value": "purpur",
-          "display": "Purpur"
-        },
-        {
-          "value": "quilt",
-          "display": "Quilt"
-        },
-        {
           "value": "spigot",
           "display": "Spigot"
-        },
-        {
-          "value": "ftb",
-          "display": "Feed The Beast Modpack"
         }
       ]
-    },
-    "mohistversion": {
-      "type": "string",
-      "value": "latest",
-      "display": "Mohist Version",
-      "desc": "Mohist version to install (may be located <a href='https://mohistmc.com/download/' target='_blank'>here</a>).",
-      "required": false,
-      "userEdit": true
     },
     "motd": {
       "type": "string",
@@ -131,7 +91,7 @@
     },
     "paperbuild": {
       "type": "string",
-      "value": "96",
+      "value": "478",
       "display": "build",
       "desc": "Build of Paper to install (<a href='https://papermc.io/downloads'>Paper version build</a>). Must be specified as a build number, e.g. 484",
       "required": false,
@@ -190,31 +150,13 @@
       "order": 2
     },
     {
-      "if": "modlauncher == 'magma'",
-      "display": "Magma",
-      "description": "Settings specific if using Magma",
-      "variables": [
-        "magmatag"
-      ],
-      "order": 3
-    },
-    {
-      "if": "modlauncher == 'mohist'",
-      "display": "Mohist",
-      "description": "Settings specific if using Mohist",
-      "variables": [
-        "mohistversion"
-      ],
-      "order": 4
-    },
-    {
       "if": "modlauncher == 'paper'",
       "display": "Paper",
       "description": "Settings specific if using Paper",
       "variables": [
         "paperbuild"
       ],
-      "order": 5
+      "order": 3
     }
   ],
   "install": [
@@ -282,32 +224,6 @@
       "target": "server.jar"
     },
     {
-      "if": "modlauncher == 'magma'",
-      "type": "download",
-      "files": [
-        "https://api.magmafoundation.org/api/v2/${version}/latest/${tag}/download"
-      ]
-    },
-    {
-      "if": "modlauncher == 'magma'",
-      "type": "move",
-      "target": "server.jar",
-      "source": "Magma-*.jar"
-    },
-    {
-      "if": "modlauncher == 'mohist'",
-      "type": "download",
-      "files": [
-        "https://mohistmc.com/api/${version}/${mohistversion}/download/"
-      ]
-    },
-    {
-      "if": "modlauncher == 'mohist'",
-      "type": "move",
-      "target": "server.jar",
-      "source": "mohist-*-server.jar"
-    },
-    {
       "if": "modlauncher == 'paper'",
       "type": "download",
       "files": [
@@ -319,39 +235,6 @@
       "type": "move",
       "target": "server.jar",
       "source": "paper-*.jar"
-    },
-    {
-      "if": "modlauncher == 'quilt'",
-      "type": "download",
-      "files": [
-        "https://maven.quiltmc.org/repository/release/org/quiltmc/quilt-installer/latest/quilt-installer-latest.jar"
-      ]
-    },
-    {
-      "if": "modlauncher == 'quilt'",
-      "type": "move",
-      "target": "quilt-installer.jar",
-      "source": "quilt-installer-*.jar"
-    },
-    {
-      "if": "modlauncher == 'quilt' && env == 'host'",
-      "type": "command",
-      "commands": [
-        "java${javaversion} -jar quilt-installer.jar install server ${version} --download-server --install-dir=."
-      ]
-    },
-    {
-      "if": "modlauncher == 'quilt' && env != 'host'",
-      "type": "command",
-      "commands": [
-        "java -jar quilt-installer.jar install server ${version} --download-server --install-dir=."
-      ]
-    },
-    {
-      "if": "modlauncher == 'quilt'",
-      "type": "move",
-      "target": "server.jar",
-      "source": "quilt-server-launch.jar"
     },
     {
       "if": "modlauncher == 'spigot'",

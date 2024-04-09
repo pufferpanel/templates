@@ -48,6 +48,42 @@
     }
   },
   {
+    "name": "minecraft-paper",
+    "variables": {
+      "memory": "2048",
+      "ip": "0.0.0.0",
+      "port": "25565",
+      "eula": true,
+      "version": "1.20.4",
+      "motd": "None",
+      "javaversion": "17",
+      "modlauncher": "paper",
+      "paperbuild": "478"
+    },
+    "environment": {
+      "type": "host"
+    }
+  },
+  {
+    "name": "minecraft-spigot",
+    "variables": {
+      "memory": "2048",
+      "ip": "0.0.0.0",
+      "port": "25565",
+      "eula": true,
+      "version": "1.20.4",
+      "motd": "None",
+      "javaversion": "17",
+      "modlauncher": "spigot"
+    },
+    "environment": {
+      "type": "host"
+    }
+  },
+
+
+
+  {
     "name": "minecraft-vanilla-docker",
     "variables": {
       "memory": "2048",
@@ -93,6 +129,41 @@
       "javaversion": "17",
       "modlauncher": "forge",
       "forgebuild": "1.20.1-47.2.0"
+    },
+    "environment": {
+      "type": "docker",
+      "image": "eclipse-temurin:${javaversion}"
+    }
+  },
+  {
+    "name": "minecraft-paper-docker",
+    "variables": {
+      "memory": "2048",
+      "ip": "0.0.0.0",
+      "port": "25565",
+      "eula": true,
+      "version": "1.20.4",
+      "motd": "None",
+      "javaversion": "17",
+      "modlauncher": "paper",
+      "paperbuild": "478"
+    },
+    "environment": {
+      "type": "docker",
+      "image": "eclipse-temurin:${javaversion}"
+    }
+  },
+  {
+    "name": "minecraft-spigot-docker",
+    "variables": {
+      "memory": "2048",
+      "ip": "0.0.0.0",
+      "port": "25565",
+      "eula": true,
+      "version": "1.20.4",
+      "motd": "None",
+      "javaversion": "17",
+      "modlauncher": "spigot"
     },
     "environment": {
       "type": "docker",
