@@ -167,7 +167,7 @@
     },
     "environment": {
       "type": "docker",
-      "image": "eclipse-temurin:${javaversion}"
+      "image": "pufferpanel/eclipse-temurin:${javaversion}"
     }
   }
 ]
