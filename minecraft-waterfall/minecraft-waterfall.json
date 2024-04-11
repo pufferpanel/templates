@@ -96,5 +96,14 @@
   "environment": {
     "type": "host"
   },
+  "supportedEnvironments": [
+    {
+      "type": "host"
+    },
+    {
+      "type": "docker",
+      "image": "eclipse-temurin:17"
+    }
+  ],
   "requirements": {}
 }

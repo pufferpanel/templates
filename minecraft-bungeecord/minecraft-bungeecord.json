@@ -44,7 +44,9 @@
     },
     {
       "type": "download",
-      "files": "http://ci.md-5.net/job/BungeeCord/lastSuccessfulBuild/artifact/bootstrap/target/BungeeCord.jar"
+      "files": [
+        "http://ci.md-5.net/job/BungeeCord/lastSuccessfulBuild/artifact/bootstrap/target/BungeeCord.jar"
+      ]
     },
     {
       "type": "writefile",

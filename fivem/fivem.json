@@ -98,6 +98,15 @@
   "environment": {
     "type": "host"
   },
+  "supportedEnvironments": [
+    {
+      "type": "host"
+    },
+    {
+      "type": "docker",
+      "image": "pufferpanel/ubuntu"
+    }
+  ],
   "requirements": {
     "os": "linux",
     "arch": "amd64",

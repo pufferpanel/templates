@@ -151,7 +151,9 @@
   "install": [
     {
       "type": "download",
-      "files": "https://minecraft.azureedge.net/bin-linux/bedrock-server-${version}.zip"
+      "files": [
+        "https://minecraft.azureedge.net/bin-linux/bedrock-server-${version}.zip"
+      ]
     },
     {
       "type": "command",
@@ -183,6 +185,15 @@
   "environment": {
     "type": "host"
   },
+  "supportedEnvironments": [
+    {
+      "type": "host"
+    },
+    {
+      "type": "docker",
+      "image": "pufferpanel/ubuntu"
+    }
+  ],
   "requirements": {
     "os": "linux",
     "arch": "amd64",

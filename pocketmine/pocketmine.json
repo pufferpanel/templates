@@ -23,7 +23,9 @@
   "install": [
     {
       "type": "download",
-      "files": "https://raw.githubusercontent.com/pmmp/get.pmmp.io/stable/installer.sh"
+      "files": [
+        "https://raw.githubusercontent.com/pmmp/get.pmmp.io/stable/installer.sh"
+      ]
     },
     {
       "type": "command",
@@ -51,6 +53,15 @@
   "environment": {
     "type": "host"
   },
+  "supportedEnvironments": [
+    {
+      "type": "host"
+    },
+    {
+      "type": "docker",
+      "image": "ubuntu"
+    }
+  ],
   "requirements": {
     "os": "linux",
     "arch": "amd64"

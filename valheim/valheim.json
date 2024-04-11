@@ -95,8 +95,20 @@
   "environment": {
     "type": "host"
   },
+  "supportedEnvironments": [
+    {
+      "type": "host"
+    },
+    {
+      "type": "docker",
+      "image": "steamcmd/steamcmd"
+    }
+  ],
   "requirements": {
     "os": "linux",
-    "arch": "amd64"
+    "arch": "amd64",
+    "binaries": [
+      "unzip"
+    ]
   }
 }
