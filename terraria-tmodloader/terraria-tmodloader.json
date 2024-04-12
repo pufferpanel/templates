@@ -331,10 +331,10 @@
     "command": [
       {
         "if": "env == 'docker'",
-        "command": "dotnet tModLoader.dll -server ${steam} -ip ${ip} ${disableannouncementbox} -announcementboxrange ${abr} -config ./serverconfig.txt -autocreate ${size}",
+        "command": "dotnet tModLoader.dll -server ${steam} -ip ${ip} ${disableannouncementbox} -announcementboxrange ${abr} -config ./serverconfig.txt -autocreate ${size}"
       },
       {
-        "command": "dotnet/dotnet tModLoader.dll -server ${steam} -ip ${ip} ${disableannouncementbox} -announcementboxrange ${abr} -config ./serverconfig.txt -autocreate ${size}",
+        "command": "dotnet/dotnet tModLoader.dll -server ${steam} -ip ${ip} ${disableannouncementbox} -announcementboxrange ${abr} -config ./serverconfig.txt -autocreate ${size}"
       }
     ],
     "stop": "exit",
