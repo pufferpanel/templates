@@ -59,11 +59,14 @@
     },
     {
       "type": "docker",
-      "image": "ubuntu"
+      "image": "pufferpanel/ubuntu"
     }
   ],
   "requirements": {
     "os": "linux",
-    "arch": "amd64"
+    "arch": "amd64",
+    "binaries": [
+      "curl"
+    ]
   }
 }

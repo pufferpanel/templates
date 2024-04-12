@@ -108,10 +108,26 @@
   },
   "install": [
     {
+      "if": "env == 'host'",
       "type": "download",
       "files": [
-        "https://github.com/Pryaxis/TShock/releases/download/v${tshockversion}/TShock-${tshockversion}-for-Terraria-${version}-linux-${arch}-Release.zip",
         "https://dotnetcli.azureedge.net/dotnet/Runtime/${dotnetversion}/dotnet-runtime-${dotnetversion}-linux-${arch}.tar.gz"
+      ]
+    },
+    {
+      "if": "env == 'host'",
+      "type": "command",
+      "commands": [
+        "rm -rf dotnet",
+        "mkdir -p dotnet",
+        "tar -xzf dotnet-runtime-${dotnetversion}-linux-${arch}.tar.gz -C dotnet",
+        "rm -rf dotnet-runtime-linux-${arch}.tar.gz"
+      ]
+    },
+    {
+      "type": "download",
+      "files": [
+        "https://github.com/Pryaxis/TShock/releases/download/v${tshockversion}/TShock-${tshockversion}-for-Terraria-${version}-linux-${arch}-Release.zip"
       ]
     },
     {
@@ -120,11 +136,8 @@
         "unzip TShock-${tshockversion}-for-Terraria-${version}-linux-${arch}-Release.zip",
         "tar xf TShock-Beta-linux-${arch}-Release.tar",
         "mkdir worlds",
-        "mkdir dotnet",
-        "tar xzf dotnet-runtime-${dotnetversion}-linux-${arch}.tar.gz -C dotnet",
         "rm -rf TShock-${tshockversion}-for-Terraria-${version}-linux-${arch}-Release.zip",
-        "rm -rf TShock-Beta-linux-${arch}-Release.tar",
-        "rm -rf dotnet-runtime-linux-${arch}.tar.gz"
+        "rm -rf TShock-Beta-linux-${arch}-Release.tar"
       ]
     }
   ],
@@ -150,7 +163,7 @@
     },
     {
       "type": "docker",
-      "image": "pufferpanel/ubuntu"
+      "image": "mcr.microsoft.com/dotnet/runtime:${dotnetversion}"
     }
   ],
   "requirements": {

@@ -296,19 +296,31 @@
   },
   "install": [
     {
+      "if": "env == 'host'",
       "type": "download",
       "files": [
-        "https://github.com/tModLoader/tModLoader/releases/download/${tversion}/tModLoader.zip",
         "https://dotnetcli.azureedge.net/dotnet/Runtime/${dotnetversion}/dotnet-runtime-${dotnetversion}-linux-${arch}.tar.gz"
       ]
     },
     {
+      "if": "env == 'host'",
       "type": "command",
       "commands": [
         "rm -rf dotnet",
         "mkdir -p dotnet",
         "tar -xzf dotnet-runtime-${dotnetversion}-linux-${arch}.tar.gz -C dotnet",
-        "rm -rf dotnet-runtime-linux-${arch}.tar.gz",
+        "rm -rf dotnet-runtime-linux-${arch}.tar.gz"
+      ]
+    },
+    {
+      "type": "download",
+      "files": [
+        "https://github.com/tModLoader/tModLoader/releases/download/${tversion}/tModLoader.zip"
+      ]
+    },
+    {
+      "type": "command",
+      "commands": [
         "unzip tModLoader.zip -d .",
         "rm tModLoader.zip",
         "mkdir -p ./${wp}"
@@ -316,7 +328,15 @@
     }
   ],
   "run": {
-    "command": "dotnet/dotnet tModLoader.dll -server ${steam} -ip ${ip} ${disableannouncementbox} -announcementboxrange ${abr} -config ./serverconfig.txt -autocreate ${size}",
+    "command": [
+      {
+        "if": "env == 'docker'",
+        "command": "dotnet tModLoader.dll -server ${steam} -ip ${ip} ${disableannouncementbox} -announcementboxrange ${abr} -config ./serverconfig.txt -autocreate ${size}",
+      },
+      {
+        "command": "dotnet/dotnet tModLoader.dll -server ${steam} -ip ${ip} ${disableannouncementbox} -announcementboxrange ${abr} -config ./serverconfig.txt -autocreate ${size}",
+      }
+    ],
     "stop": "exit",
     "pre": [
       {
@@ -341,7 +361,7 @@
     },
     {
       "type": "docker",
-      "image": "pufferpanel/ubuntu"
+      "image": "mcr.microsoft.com/dotnet/runtime:${dotnetversion}"
     }
   ],
   "requirements": {
