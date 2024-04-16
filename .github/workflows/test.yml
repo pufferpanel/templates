@@ -66,4 +66,4 @@ jobs:
           sudo rm -rf /tmp/pufferpanel-tester 
           mkdir -p /tmp/pufferpanel-tester
           sudo chown -R 1000:$(getent group docker | cut -f3 -d:) /tmp/pufferpanel-tester
-          docker run --rm --name templatetester-${{ env.TEMPLATE }} --network host -v /tmp/pufferpanel-tester:/tmp/pufferpanel-tester -v /var/run/docker.sock:/var/run/docker.sock -u "1000:$(getent group docker | cut -f3 -d:)" ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.TAG }} --workDir=/tmp/pufferpanel-tester --gitRef=${{ github.ref }} --files=${{ env.FILENAME }}
+          docker run --rm --name templatetester-${{ env.TEMPLATE }} --network host -v /tmp/pufferpanel-tester:/tmp/pufferpanel-tester -v /var/run/docker.sock:/var/run/docker.sock -u "1000:$(getent group docker | cut -f3 -d:)" ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.TAG }} --workDir=/tmp/pufferpanel-tester --gitRef=${{ github.head_ref }} --files=${{ env.FILENAME }}
