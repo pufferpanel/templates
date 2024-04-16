@@ -16,6 +16,9 @@
   },
   "supportedEnvironments": [
     {
+      "type": "host"
+    },
+    {
       "type": "docker"
     }
   ]
