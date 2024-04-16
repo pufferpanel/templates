@@ -12,7 +12,7 @@
   ],
   "run": {
     "stopCode": 9,
-    "command": "echo This is a test",
+    "command": "echo This is a test"
   },
   "supportedEnvironments": [
     {
