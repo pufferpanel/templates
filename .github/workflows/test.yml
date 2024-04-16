@@ -5,7 +5,7 @@ on:
 env:
   TAG: templatetester
   REGISTRY: ghcr.io
-  IMAGE_NAME: ghcr.io
+  IMAGE_NAME: pufferpanel/pufferpanel
 
 jobs:
   get-files:
