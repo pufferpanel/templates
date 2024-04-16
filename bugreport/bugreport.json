@@ -4,10 +4,10 @@
   "type": "test",
   "install": [
     {
+      "type": "download",
       "files": [
         "https://github.com/evilfactory/LuaCsForBarotrauma/releases/download/latest/luacsforbarotrauma_build_linux_server.tar.gz"
-      ],
-      "type": "download"
+      ]
     }
   ],
   "run": {
