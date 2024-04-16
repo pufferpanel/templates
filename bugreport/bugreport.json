@@ -1,0 +1,22 @@
+{
+  "name": "bugreport",
+  "display": "Github.com download bug",
+  "type": "test",
+  "install": [
+    {
+      "files": [
+        "https://github.com/evilfactory/LuaCsForBarotrauma/releases/download/latest/luacsforbarotrauma_build_linux_server.tar.gz"
+      ],
+      "type": "download"
+    }
+  ],
+  "run": {
+    "stopCode": 9,
+    "command": "echo This is a test",
+  },
+  "supportedEnvironments": [
+    {
+      "type": "docker"
+    }
+  ]
+}
