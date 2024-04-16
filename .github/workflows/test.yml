@@ -1,0 +1,69 @@
+name: Run Tool - Tester PR
+on:
+  pull_request:
+
+env:
+  TAG: templatetester
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ghcr.io
+
+jobs:
+  get-files:
+    name: Determine Changes
+    runs-on: ubuntu-20.04
+
+    outputs:
+      files: ${{ steps.changed-files.outputs.all_changed_files }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v44
+        with:
+          matrix: true
+          files: |
+            **.json
+            !spec.json
+
+  run-tester:
+    name: Run Tester
+    runs-on: ubuntu-20.04
+    needs: get-files
+
+    permissions:
+      packages: read
+
+    strategy:
+      matrix:
+        template: ${{ fromJson(needs.get-files.outputs.files) }}
+      fail-fast: false
+      max-parallel: 2
+
+    steps:
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Set ENV
+        run: |
+          export FILENAME=$(basename ${{ matrix.template }})
+          export TEMPLATE=${FILENAME%.*}
+          echo "FILENAME=$FILENAME" >> $GITHUB_ENV
+          echo "TEMPLATE=$TEMPLATE" >> $GITHUB_ENV
+
+      - name: Prepare
+        run: |
+          docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
+          docker rm -f templatetester-${{ env.TEMPLATE }} || true
+
+      - name: Run
+        run: |
+          sudo rm -rf /tmp/pufferpanel-tester 
+          mkdir -p /tmp/pufferpanel-tester
+          sudo chown -R 1000:$(getent group docker | cut -f3 -d:) /tmp/pufferpanel-tester
+          docker run --rm --name templatetester-${{ env.TEMPLATE }} --network host -v /tmp/pufferpanel-tester:/tmp/pufferpanel-tester -v /var/run/docker.sock:/var/run/docker.sock -u "1000:$(getent group docker | cut -f3 -d:)" ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.TAG }} --workDir=/tmp/pufferpanel-tester --gitRef=${{ github.ref }} --files=${{ env.FILENAME }}
