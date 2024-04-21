@@ -1,0 +1,139 @@
+{
+  "name": "CS 2",
+  "display": "Counter Strike 2",
+  "type": "srcds",
+  "install": [
+    {
+      "appId": "730",
+      "type": "steamgamedl"
+    }
+  ],
+  "run": {
+    "stop": "quit",
+    "command": "./game/bin/linuxsteamrt64/cs2 -dedicated ${vac}-ip ${ip} -port ${port} -maxplayers ${player} +sv_setsteamaccount ${steamid} +map ${map} +hostname ${hostname} +game_alias ${gamemode} ${workshop_enable} ${workshopid}",
+    "workingDirectory": "",
+    "pre": [
+      {
+        "commands": [
+          "chmod +x bin/linuxsteamrt64/cs2"
+        ],
+        "type": "command"
+      }
+    ],
+    "post": [],
+    "environmentVars": {}
+  },
+  "data": {
+    "gamemode": {
+      "type": "option",
+      "display": "Game mode ",
+      "value": "deathmatch",
+      "userEdit": true,
+      "options": [
+        {
+          "value": "deathmatch",
+          "display": "DeathMath"
+        },
+        {
+          "value": "competitive",
+          "display": "Competitive"
+        },
+        {
+          "value": "wingman",
+          "display": "Wingman"
+        },
+        {
+          "value": "casual",
+          "display": "Casual"
+        },
+        {
+          "value": "custom",
+          "display": "Custom"
+        }
+      ]
+    },
+    "hostname": {
+      "type": "string",
+      "display": "Host name server",
+      "value": "Counter Strike 2 server",
+      "userEdit": true
+    },
+    "ip": {
+      "type": "string",
+      "display": "Ip",
+      "value": "192.168.0.1",
+      "userEdit": true
+    },
+    "map": {
+      "type": "string",
+      "display": "Map",
+      "value": "de_dust2",
+      "userEdit": true
+    },
+    "player": {
+      "type": "integer",
+      "display": "Max players",
+      "value": "20",
+      "userEdit": true
+    },
+    "port": {
+      "type": "integer",
+      "display": "Port",
+      "value": "27015",
+      "userEdit": true
+    },
+    "steamid": {
+      "type": "string",
+      "display": "Tokken",
+      "required": true,
+      "userEdit": true
+    },
+    "vac": {
+      "type": "option",
+      "display": "Vac system",
+      "required": true,
+      "value": "false",
+      "userEdit": true,
+      "options": [
+        {
+          "value": "-insecure ",
+          "display": "Vac False"
+        },
+        {
+          "value": "",
+          "display": "Vac True"
+        }
+      ]
+    },
+    "workshop_enable": {
+      "type": "option",
+      "display": "Workshop enable",
+      "required": true,
+      "userEdit": true,
+      "options": [
+        {
+          "value": "+host_workshop_map",
+          "display": "True"
+        },
+        {
+          "value": "",
+          "display": "False"
+        }
+      ]
+    },
+    "workshopid": {
+      "type": "integer",
+      "display": "Workshop Map ID",
+      "userEdit": true
+    }
+  },
+  "environment": {
+    "type": "tty"
+  },
+  "supportedEnvironments": [
+    {
+      "type": "tty"
+    }
+  ],
+  "requirements": {}
+}
