@@ -16,7 +16,7 @@
   ],
   "run": {
     "stop": "quit",
-    "command": "./game/bin/linuxsteamrt64/cs2 -dedicated -ip ${ip} -port ${port} -maxplayers ${maxplayers} +hostname \"${hostname}\" +game_alias ${game_mode} +map ${map}",
+    "command": "./game/bin/linuxsteamrt64/cs2 -dedicated -ip ${ip} -port ${port} -maxplayers ${maxplayers} +hostname \"${hostname}\" +game_alias ${game_alias} +map ${map}",
     "workingDirectory": "",
     "pre": [],
     "post": [],
@@ -44,7 +44,7 @@
       "required": true,
       "value": "My CS2 Server"
     },
-    "game_mode": {
+    "game_alias": {
       "type": "string",
       "desc": "More details about the game modes for the server you can see <a href=\"https://developer.valvesoftware.com/wiki/Counter-Strike_2/Dedicated_Servers#Game_Modes_.26_Types\" target=\"_blank\">here</a> (competitive, wingman, casual, deathmatch, custom)",
       "display": "Game Mode",
