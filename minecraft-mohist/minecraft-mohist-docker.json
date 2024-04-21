@@ -35,7 +35,7 @@
     },
     "mohist-version": {
       "type": "string",
-      "desc": "Mohist version to install (may be located <a href='https://mohistmc.com/download/' target='_blank'>here</a>).",
+      "desc": "Mohist version to install (may be located <a href='https://mohistmc.com/downloadSoftware?project=mohist' target='_blank'>here</a>).",
       "display": "Mohist Version",
       "required": true,
       "value": "latest",
