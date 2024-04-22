@@ -120,7 +120,19 @@
       "commands": [
         "rm -rf dotnet",
         "mkdir -p dotnet",
-        "tar -xzf dotnet-runtime-${dotnetversion}-linux-${arch}.tar.gz -C dotnet",
+        "rm -rf dotnet-runtime-linux-${arch}.tar.gz"
+      ]
+    },
+    {
+      "if": "env == 'host'",
+      "type": "extract",
+      "source": "dotnet-runtime-${dotnetversion}-linux-${arch}.tar.gz",
+      "destination": "dotnet"
+    },
+    {
+      "if": "env == 'host'",
+      "type": "command",
+      "commands": [
         "rm -rf dotnet-runtime-linux-${arch}.tar.gz"
       ]
     },
@@ -131,10 +143,18 @@
       ]
     },
     {
+      "type": "extract",
+      "source": "TShock-${tshockversion}-for-Terraria-${version}-linux-${arch}-Release.zip",
+      "destination": "."
+    },
+    {
+      "type": "extract",
+      "source": "TShock-Beta-linux-${arch}-Release.tar",
+      "destination": "."
+    },
+    {
       "type": "command",
       "commands": [
-        "unzip TShock-${tshockversion}-for-Terraria-${version}-linux-${arch}-Release.zip",
-        "tar xf TShock-Beta-linux-${arch}-Release.tar",
         "mkdir worlds",
         "rm -rf TShock-${tshockversion}-for-Terraria-${version}-linux-${arch}-Release.zip",
         "rm -rf TShock-Beta-linux-${arch}-Release.tar"

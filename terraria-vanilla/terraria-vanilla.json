@@ -258,10 +258,14 @@
       ]
     },
     {
+      "type": "extract",
+      "source": "terraria-server-${version}.zip",
+      "destination": "."
+    },
+    {
       "type": "command",
       "commands": [
         "rm -rf ./server",
-        "unzip terraria-server-${version}.zip",
         "mkdir ./server",
         "cp -r ./${version}/Linux/. ./server",
         "chmod +x ./server/TerrariaServer",

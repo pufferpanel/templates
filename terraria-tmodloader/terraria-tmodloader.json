@@ -308,7 +308,19 @@
       "commands": [
         "rm -rf dotnet",
         "mkdir -p dotnet",
-        "tar -xzf dotnet-runtime-${dotnetversion}-linux-${arch}.tar.gz -C dotnet",
+        "rm -rf dotnet-runtime-linux-${arch}.tar.gz"
+      ]
+    },
+    {
+      "if": "env == 'host'",
+      "type": "extract",
+      "source": "dotnet-runtime-${dotnetversion}-linux-${arch}.tar.gz",
+      "destination": "dotnet"
+    },
+    {
+      "if": "env == 'host'",
+      "type": "command",
+      "commands": [
         "rm -rf dotnet-runtime-linux-${arch}.tar.gz"
       ]
     },
@@ -319,9 +331,12 @@
       ]
     },
     {
+      "type": "extract",
+      "source": "tModLoader.zip"
+    },
+    {
       "type": "command",
       "commands": [
-        "unzip tModLoader.zip -d .",
         "rm tModLoader.zip",
         "mkdir -p ./${wp}"
       ]
