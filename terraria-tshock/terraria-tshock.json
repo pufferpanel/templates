@@ -119,8 +119,7 @@
       "type": "command",
       "commands": [
         "rm -rf dotnet",
-        "mkdir -p dotnet",
-        "rm -rf dotnet-runtime-linux-${arch}.tar.gz"
+        "mkdir -p dotnet"
       ]
     },
     {
