@@ -1,0 +1,80 @@
+{
+    "name": "minetest",
+    "display": "Minetest",
+    "type": "game",
+    "install": [
+        {
+            "type": "download",
+            "files": [
+                "https://github.com/minetest/minetest/archive/refs/tags/${version}.tar.gz"
+            ]
+        },
+        {
+            "type": "command",
+            "commands": [
+                "tar -xzf minetest-${version}.tar.gz",
+                "rm minetest-${version}.tar.gz",
+                "mv minetest-${version} minetest",
+                "cmake -S minetest -B minetest -DRUN_IN_PLACE=TRUE -DBUILD_SERVER=TRUE -DBUILD_CLIENT=FALSE -DCMAKE_BUILD_TYPE=Release",
+                "make -C minetest -j${cores}"
+            ]
+        },
+        {
+            "type": "writefile",
+            "target": "INFO.txt",
+            "text": "Minetest Version ${version}"
+        }
+    ],
+    "run": {
+        "stopCode": 2,
+        "command": "./bin/minetestserver --worldname ${worldname} --port ${port}",
+        "workingDirectory": "minetest",
+        "pre": [],
+        "post": [],
+        "environmentVars": {}
+    },
+    "data": {
+        "worldname": {
+            "type": "string",
+            "desc": "Name of the world",
+            "display": "World name",
+            "required": true,
+            "userEdit": true,
+            "value": "world"
+        },
+        "port": {
+            "type": "integer",
+            "desc": "Server port",
+            "display": "Port",
+            "required": true,
+            "userEdit": true,
+            "value": "30000"
+        },
+        "version": {
+            "type": "string",
+            "desc": "Minetest version, e.g. 5.4.1",
+            "display": "Version",
+            "required": true,
+            "userEdit": true
+        },
+        "cores": {
+            "type": "integer",
+            "desc": "Available CPU cores",
+            "display": "Cores",
+            "required": true,
+            "userEdit": true,
+            "value": "1"
+        }
+    },
+    "environment": {
+        "type": "standard"
+    },
+    "supportedEnvironments": [
+        {
+            "type": "standard"
+        }
+    ],
+    "requirements": {
+        "os": "linux"
+    }
+}
