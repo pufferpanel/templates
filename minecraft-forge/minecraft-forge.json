@@ -1,6 +1,6 @@
 {
   "type": "minecraft-java",
-  "display": "MinecraftForge 1.21+ - Minecraft",
+  "display": "MinecraftForge 1.17+ - Minecraft",
   "data": {
     "memory": {
       "value": "1024",

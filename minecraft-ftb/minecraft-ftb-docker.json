@@ -1,6 +1,6 @@
 {
   "type": "minecraft-java",
-  "display": "FTB - Forge 1.21+ (Docker)",
+  "display": "FTB - Forge 1.17+ (Docker)",
   "data": {
     "eula": {
       "type": "boolean",
