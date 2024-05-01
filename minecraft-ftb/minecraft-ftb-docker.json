@@ -1,6 +1,6 @@
 {
   "type": "minecraft-java",
-  "display": "FTB - Forge 1.17+ (Docker)",
+  "display": "FTB - Forge 1.21+ (Docker)",
   "data": {
     "eula": {
       "type": "boolean",
@@ -100,7 +100,7 @@
   },
   "environment": {
     "type": "docker",
-    "image": "eclipse-temurin:17"
+    "image": "eclipse-temurin:21"
   },
   "requirements": {
     "os": "linux",

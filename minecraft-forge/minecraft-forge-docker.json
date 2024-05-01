@@ -1,6 +1,6 @@
 {
   "type": "minecraft-java",
-  "display": "MinecraftForge 1.17+ - Minecraft (Docker)",
+  "display": "MinecraftForge 1.21+ - Minecraft (Docker)",
   "data": {
     "memory": {
       "value": "1024",
@@ -77,6 +77,6 @@
   },
   "environment": {
     "type": "docker",
-    "image": "eclipse-temurin:17"
+    "image": "eclipse-temurin:21"
   }
 }

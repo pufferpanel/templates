@@ -63,7 +63,7 @@
       "type": "integer",
       "desc": "Version of Java to use",
       "display": "Java Version",
-      "value": "17",
+      "value": "21",
       "required": true
     },
     "memory": {
