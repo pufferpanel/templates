@@ -6,27 +6,26 @@
     {
       "appId": "730",
       "type": "steamgamedl"
+    },
+    {
+      "type": "command",
+      "commands": [
+        "chmod +x bin/linuxsteamrt64/cs2"
+      ]
     }
   ],
   "run": {
     "stop": "quit",
     "command": "./game/bin/linuxsteamrt64/cs2 -dedicated ${vac}-ip ${ip} -port ${port} -maxplayers ${player} +sv_setsteamaccount ${steamid} +map ${map} +hostname ${hostname} +game_alias ${gamemode} ${workshop_enable} ${workshopid}",
     "workingDirectory": "",
-    "pre": [
-      {
-        "commands": [
-          "chmod +x bin/linuxsteamrt64/cs2"
-        ],
-        "type": "command"
-      }
-    ],
+    "pre": [],
     "post": [],
     "environmentVars": {}
   },
   "data": {
     "gamemode": {
       "type": "option",
-      "display": "Game mode ",
+      "display": "Game mode",
       "value": "deathmatch",
       "userEdit": true,
       "options": [
@@ -56,13 +55,13 @@
       "type": "string",
       "display": "Host name server",
       "value": "Counter Strike 2 server",
-      "userEdit": true
+      "userEdit": false
     },
     "ip": {
       "type": "string",
       "display": "Ip",
-      "value": "192.168.0.1",
-      "userEdit": true
+      "value": "0.0.0.0",
+      "userEdit": false
     },
     "map": {
       "type": "string",
@@ -80,7 +79,7 @@
       "type": "integer",
       "display": "Port",
       "value": "27015",
-      "userEdit": true
+      "userEdit": false
     },
     "steamid": {
       "type": "string",
@@ -97,11 +96,11 @@
       "options": [
         {
           "value": "-insecure ",
-          "display": "Vac False"
+          "display": "Vac Disable"
         },
         {
           "value": "",
-          "display": "Vac True"
+          "display": "Vac Enable"
         }
       ]
     },
