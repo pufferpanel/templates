@@ -85,7 +85,7 @@
       "type": "string",
       "display": "Tokken",
       "required": true,
-      "userEdit": true
+      "userEdit": false
     },
     "vac": {
       "type": "option",
