@@ -16,7 +16,7 @@
   ],
   "run": {
     "stop": "quit",
-    "command": "./game/bin/linuxsteamrt64/cs2 -dedicated ${vac}-ip ${ip} -port ${port} -maxplayers ${player} +sv_setsteamaccount ${steamid} +map ${map} +hostname ${hostname} +game_alias ${gamemode} ${workshop_enable} ${workshopid}",
+    "command": "./game/bin/linuxsteamrt64/cs2 -dedicated ${vac}-ip ${ip} -port ${port} -maxplayers ${player} +sv_setsteamaccount ${steamid} +map ${map} +hostname ${hostname} +game_alias ${gamemode} ${workshopenable} ${workshopid}",
     "workingDirectory": "",
     "pre": [],
     "post": [],
@@ -104,7 +104,7 @@
         }
       ]
     },
-    "workshop_enable": {
+    "workshopenable": {
       "type": "option",
       "display": "Workshop enable",
       "required": true,
