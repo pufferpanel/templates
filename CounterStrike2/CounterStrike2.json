@@ -106,23 +106,23 @@
     },
     "workshopenable": {
       "type": "option",
-      "display": "Workshop enable",
+      "display": "Workshop map",
       "required": true,
       "userEdit": true,
       "options": [
         {
           "value": "+host_workshop_map",
-          "display": "True"
+          "display": "Enable"
         },
         {
           "value": "",
-          "display": "False"
+          "display": "Disable"
         }
       ]
     },
     "workshopid": {
       "type": "integer",
-      "display": "Workshop Map ID",
+      "display": "Workshop Map ID (Need to clear if workshop map disable.)",
       "userEdit": true
     }
   },
