@@ -22,14 +22,21 @@
       "desc": "TShock Version",
       "display": "TShock Version (Set this to the latest server version - see here https://github.com/Pryaxis/TShock/releases/latest)",
       "required": true,
-      "value": "5.0.0"
+      "value": "5.2"
+    },
+	 "tshockgitversion": {
+      "type": "string",
+      "desc": "TShock Git Version",
+      "display": "TShock Git Version (look for release version not tshock version - see here https://github.com/Pryaxis/TShock/releases/latest)",
+      "required": true,
+      "value": "5.2.0"
     },
     "version": {
       "type": "string",
       "desc": "Server Version (Set this to the latest server version)",
       "display": "Server Version",
       "required": true,
-      "value": "1.4.4.7"
+      "value": "1.4.4.9"
     },
     "dotnetversion": {
       "type": "string",
@@ -89,7 +96,7 @@
     {
       "type": "download",
       "files": [
-        "https://github.com/Pryaxis/TShock/releases/download/v${tshockversion}/TShock-${tshockversion}-for-Terraria-${version}-linux-${arch}-Release.zip",
+        "https://github.com/Pryaxis/TShock/releases/download/v${tshockgitversion}/TShock-${tshockversion}-for-Terraria-${version}-linux-${arch}-Release.zip",
         "https://dotnetcli.azureedge.net/dotnet/Runtime/${dotnetversion}/dotnet-runtime-${dotnetversion}-linux-${arch}.tar.gz"
       ]
     },
