@@ -76,10 +76,6 @@
   },
   "install": [
     {
-      "appId": "1007",
-      "type": "steamgamedl"
-    },
-    {
       "appId": "1963720",
       "type": "steamgamedl"
     },
