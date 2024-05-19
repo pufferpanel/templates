@@ -55,6 +55,8 @@
     {
       "type": "command",
       "commands": [
+        "chmod +x jre64/bin/java",
+        "chmod +x ProjectZomboid64",
         "chmod +x start-server.sh"
       ]
     }
