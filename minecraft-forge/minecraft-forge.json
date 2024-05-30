@@ -41,7 +41,7 @@
       "internal": false
     },
     "javaversion": {
-      "value": "17",
+      "value": "21",
       "required": true,
       "desc": "Version of Java to use",
       "display": "Java Version"

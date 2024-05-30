@@ -5,7 +5,7 @@
   "install": [
     {
       "files": [
-        "http://downloads.gtnewhorizons.com/ServerPacks/GT_New_Horizons_${gtnh-ver}_Server_Java_17-19.zip"
+        "http://downloads.gtnewhorizons.com/ServerPacks/GT_New_Horizons_${gtnh-ver}_Server_Java_17-21.zip"
       ],
       "type": "download"
     },
@@ -17,7 +17,7 @@
     },
     {
       "commands": [
-        "unzip -o *_${gtnh-ver}_Server_Java_17-19.zip"
+        "unzip -o *_${gtnh-ver}_Server_Java_17-21.zip"
       ],
       "type": "command"
     },
@@ -33,18 +33,18 @@
     },
     {
       "commands": [
-        "rm GT_New_Horizons_${gtnh-ver}_Server_Java_17-19.zip"
+        "rm GT_New_Horizons_${gtnh-ver}_Server_Java_17-21.zip"
       ],
       "type": "command"
     },
     {
       "type": "javadl",
-      "version": "17"
+      "version": "21"
     }
   ],
   "run": {
     "stop": "stop",
-    "command": "java17 -Xms${memory}M -Xmx${memory}M -Dfml.readTimeout=180 -XX:+UnlockExperimentalVMOptions -XX:+UnlockDiagnosticVMOptions -XX:+AlwaysActAsServerClassMachine -XX:+AlwaysPreTouch -XX:+DisableExplicitGC -XX:+UseNUMA -XX:NmethodSweepActivity=1 -XX:ReservedCodeCacheSize=400M -XX:NonNMethodCodeHeapSize=12M -XX:ProfiledCodeHeapSize=194M -XX:NonProfiledCodeHeapSize=194M -XX:-DontCompileHugeMethods -XX:MaxNodeLimit=240000 -XX:NodeLimitFudgeFactor=8000 -XX:+UseVectorCmov -XX:+PerfDisableSharedMem -XX:+UseFastUnorderedTimeStamps -XX:+UseCriticalJavaThreadPriority -XX:ThreadPriorityPolicy=1 -XX:AllocatePrefetchStyle=3 -XX:+UseG1GC -XX:MaxGCPauseMillis=130 -XX:G1NewSizePercent=28 -XX:G1HeapRegionSize=16M -XX:G1ReservePercent=20 -XX:G1MixedGCCountTarget=3 -XX:InitiatingHeapOccupancyPercent=10 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=0 -XX:SurvivorRatio=32 -XX:MaxTenuringThreshold=1 -XX:G1SATBBufferEnqueueingThresholdPercent=30 -XX:G1ConcMarkStepDurationMillis=5 -XX:G1ConcRSHotCardLimit=16 -XX:G1ConcRefinementServiceIntervalMillis=150 @java9args.txt nogui",
+    "command": "java21 -Xms${memory}M -Xmx${memory}M -Dfml.readTimeout=180 -XX:+UnlockExperimentalVMOptions -XX:+UnlockDiagnosticVMOptions -XX:+AlwaysActAsServerClassMachine -XX:+AlwaysPreTouch -XX:+DisableExplicitGC -XX:+UseNUMA -XX:NmethodSweepActivity=1 -XX:ReservedCodeCacheSize=400M -XX:NonNMethodCodeHeapSize=12M -XX:ProfiledCodeHeapSize=194M -XX:NonProfiledCodeHeapSize=194M -XX:-DontCompileHugeMethods -XX:MaxNodeLimit=240000 -XX:NodeLimitFudgeFactor=8000 -XX:+UseVectorCmov -XX:+PerfDisableSharedMem -XX:+UseFastUnorderedTimeStamps -XX:+UseCriticalJavaThreadPriority -XX:ThreadPriorityPolicy=1 -XX:AllocatePrefetchStyle=3 -XX:+UseG1GC -XX:MaxGCPauseMillis=130 -XX:G1NewSizePercent=28 -XX:G1HeapRegionSize=16M -XX:G1ReservePercent=20 -XX:G1MixedGCCountTarget=3 -XX:InitiatingHeapOccupancyPercent=10 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=0 -XX:SurvivorRatio=32 -XX:MaxTenuringThreshold=1 -XX:G1SATBBufferEnqueueingThresholdPercent=30 -XX:G1ConcMarkStepDurationMillis=5 -XX:G1ConcRSHotCardLimit=16 -XX:G1ConcRefinementServiceIntervalMillis=150 @java9args.txt nogui",
     "workingDirectory": "",
     "pre": [],
     "post": [],
@@ -60,10 +60,10 @@
     },
     "gtnh-ver": {
       "type": "string",
-      "desc": "May be located <a href='http://downloads.gtnewhorizons.com/ServerPacks/'>here</a>. E.g. \"2.2.9\" or \"2.3.0-RC-3\".",
+      "desc": "May be located <a href='http://downloads.gtnewhorizons.com/ServerPacks/'>here</a>. E.g. \"2.4.0\" or \"2.5.0-RC-1\".",
       "display": "GT: New Horizons version",
       "required": true,
-      "value": "2.3.0"
+      "value": "2.4.0"
     },
     "ip": {
       "type": "string",

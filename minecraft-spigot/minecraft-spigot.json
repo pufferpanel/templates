@@ -51,7 +51,7 @@
       "type": "integer",
       "desc": "Version of Java to use",
       "display": "Java Version",
-      "value": "17",
+      "value": "21",
       "required": true
     }
   },
@@ -67,7 +67,7 @@
     {
       "type": "command",
       "commands": [
-        "java17 -jar BuildTools.jar --rev ${version}"
+        "java21 -jar BuildTools.jar --rev ${version}"
       ]
     },
     {

@@ -87,6 +87,6 @@
   },
   "environment": {
     "type": "docker",
-    "image": "eclipse-temurin:17"
+    "image": "eclipse-temurin:21"
   }
 }
