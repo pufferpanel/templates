@@ -54,7 +54,7 @@
     "projectId": {
       "type": "integer",
       "value": 0,
-      "display": "Project Id",
+      "display": "Project ID",
       "desc": "Project Id for the modpack desired. This is found on the modpack's webpage on the right side.",
       "required": true,
       "userEdit": false
@@ -62,7 +62,7 @@
     "fileId": {
       "type": "integer",
       "value": 0,
-      "display": "File Id",
+      "display": "File ID",
       "desc": "File Id for the modpack desired. This is found at the end of the URL for the specific file desired.",
       "required": true,
       "userEdit": false
