@@ -242,12 +242,6 @@
       ]
     },
     {
-      "if": "modlauncher == 'neoforge' && file_exists('neoforge-' + neoforgebuild + '-shim.jar')",
-      "type": "move",
-      "source": "neoforge-${neoforgebuild}-shim.jar",
-      "target": "server.jar"
-    },
-    {
       "if": "modlauncher == 'neoforge' && file_exists('neoforge-' + neoforgebuild + '.jar')",
       "type": "move",
       "source": "neoforge-${neoforgebuild}.jar",
