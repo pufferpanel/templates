@@ -22,7 +22,7 @@
     "run": {
       "stopCode": 2,
       "command": "yarn run server",
-      "workingDirectory": "./",
+      "workingDirectory": "",
       "pre": [],
       "post": [],
       "environmentVars": {}
