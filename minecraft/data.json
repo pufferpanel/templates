@@ -48,6 +48,22 @@
     }
   },
   {
+    "name": "minecraft-neoforge",
+    "variables": {
+      "memory": "2048",
+      "ip": "0.0.0.0",
+      "port": "25565",
+      "eula": true,
+      "version": "1.20.1",
+      "motd": "None",
+      "javaversion": "17",
+      "modlauncher": "forge"
+    },
+    "environment": {
+      "type": "host"
+    }
+  },
+  {
     "name": "minecraft-paper",
     "variables": {
       "memory": "2048",

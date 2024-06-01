@@ -21,7 +21,7 @@
     },
     "javaversion": {
       "type": "string",
-      "value": "21",
+      "value": "17",
       "display": "Java Version",
       "desc": "Version of Java to use",
       "required": true,
