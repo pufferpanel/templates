@@ -1,6 +1,6 @@
 [
   {
-    "name": "minecraft-curseforge-715572",
+    "name": "minecraft-curseforge-forge-715572",
     "variables": {
       "memory": "4096",
       "ip": "0.0.0.0",
@@ -15,7 +15,7 @@
     }
   },
   {
-    "name": "minecraft-curseforge-389615",
+    "name": "minecraft-curseforge-forge-389615",
     "variables": {
       "memory": "4096",
       "ip": "0.0.0.0",
@@ -30,7 +30,7 @@
     }
   },
   {
-    "name": "minecraft-curseforge-285109",
+    "name": "minecraft-curseforge-forge-285109",
     "variables": {
       "memory": "4096",
       "ip": "0.0.0.0",
@@ -45,7 +45,7 @@
     }
   },
   {
-    "name": "minecraft-curseforge-876781",
+    "name": "minecraft-curseforge-forge-876781",
     "variables": {
       "memory": "4096",
       "ip": "0.0.0.0",
@@ -60,7 +60,7 @@
     }
   },
   {
-    "name": "minecraft-curseforge-829758",
+    "name": "minecraft-curseforge-forge-829758",
     "variables": {
       "memory": "4096",
       "ip": "0.0.0.0",
@@ -75,7 +75,7 @@
     }
   },
   {
-    "name": "minecraft-curseforge-520914",
+    "name": "minecraft-curseforge-forge-520914",
     "variables": {
       "memory": "4096",
       "ip": "0.0.0.0",
@@ -90,7 +90,7 @@
     }
   },
   {
-    "name": "minecraft-curseforge-466901",
+    "name": "minecraft-curseforge-forge-466901",
     "variables": {
       "memory": "4096",
       "ip": "0.0.0.0",
@@ -105,7 +105,7 @@
     }
   },
   {
-    "name": "minecraft-curseforge-887839",
+    "name": "minecraft-curseforge-forge-887839",
     "variables": {
       "memory": "4096",
       "ip": "0.0.0.0",

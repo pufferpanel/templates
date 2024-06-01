@@ -54,16 +54,16 @@
     "projectId": {
       "type": "integer",
       "value": 0,
-      "display": "Project Id",
-      "desc": "Project Id for the modpack desired. This is found on the modpack's webpage on the right side.",
+      "display": "Project ID",
+      "desc": "Project ID for the modpack desired. This is found on the modpack's webpage on the right side.",
       "required": true,
       "userEdit": false
     },
     "fileId": {
       "type": "integer",
       "value": 0,
-      "display": "File Id",
-      "desc": "File Id for the modpack desired. This is found at the end of the URL for the specific file desired.",
+      "display": "File ID",
+      "desc": "File ID for the modpack desired. This is found at the end of the URL for the specific file desired.",
       "required": true,
       "userEdit": false
     }
@@ -102,19 +102,19 @@
   "run": {
     "command": [
       {
-        "command": "java${javaversion} -Xmx${memory}M ${jvmArgs} @libraries/net/minecraftforge/forge/${resolvedForgeVersion}/win_args.txt nogui",
+        "command": "java${javaversion} -Xmx${memory}M ${jvmArgs} @libraries/net/neoforged/neoforge/${resolvedNeoForgeVersion}/win_args.txt nogui",
         "if": "env == 'host' && os == 'windows' && !file_exists('server.jar')"
       },
       {
-        "command": "java${javaversion} -Xmx${memory}M ${jvmArgs} @libraries/net/minecraftforge/forge/${resolvedForgeVersion}/unix_args.txt nogui",
+        "command": "java${javaversion} -Xmx${memory}M ${jvmArgs} @libraries/net/neoforged/neoforge/${resolvedNeoForgeVersion}/unix_args.txt nogui",
         "if": "env == 'host' && !file_exists('server.jar')"
       },
       {
-        "command": "java -Xmx${memory}M ${jvmArgs} @libraries/net/minecraftforge/forge/${resolvedForgeVersion}/win_args.txt nogui",
+        "command": "java -Xmx${memory}M ${jvmArgs} @libraries/net/neoforged/neoforge/${resolvedNeoForgeVersion}/win_args.txt nogui",
         "if": "env != 'host' && os == 'windows' && !file_exists('server.jar')"
       },
       {
-        "command": "java -Xmx${memory}M ${jvmArgs} @libraries/net/minecraftforge/forge/${resolvedForgeVersion}/unix_args.txt nogui",
+        "command": "java -Xmx${memory}M ${jvmArgs} @libraries/net/neoforged/neoforge/${resolvedNeoForgeVersion}/unix_args.txt nogui",
         "if": "env == 'host' && !file_exists('server.jar')"
       },
       {
@@ -128,8 +128,8 @@
     "pre": [
       {
           "if": "!file_exists('server.jar')",
-          "type": "resolveforgeversion",
-          "outputVariable": "resolvedForgeVersion"
+          "type": "resolveneoforgeversion",
+          "outputVariable": "resolvedNeoForgeVersion"
       }
     ],
     "stop": "stop",

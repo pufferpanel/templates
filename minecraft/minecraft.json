@@ -19,6 +19,14 @@
       "required": false,
       "userEdit": true
     },
+    "neoforgebuild": {
+      "type": "string",
+      "value": "",
+      "display": "NeoForge Version",
+      "desc": "Version of NeoForge to install (may be located <a href='https://projects.neoforged.net/neoforged/neoforge'>here</a>",
+      "required": false,
+      "userEdit": true
+    },
     "ip": {
       "type": "string",
       "value": "0.0.0.0",
@@ -29,7 +37,7 @@
     },
     "javaversion": {
       "type": "string",
-      "value": "17",
+      "value": "21",
       "display": "Java Version",
       "desc": "Version of Java to use",
       "required": true,
@@ -64,12 +72,16 @@
           "display": "None/Vanilla"
         },
         {
-          "value": "fabric",
-          "display": "Fabric"
-        },
-        {
           "value": "forge",
           "display": "MinecraftForge"
+        },
+        {
+          "value": "neoforge",
+          "display": "NeoForge"
+        },
+        {
+          "value": "fabric",
+          "display": "Fabric"
         },
         {
           "value": "paper",
@@ -121,6 +133,15 @@
       "required": true,
       "userEdit": true,
       "internal": true
+    },
+    "resolvedNeoForgeVersion": {
+      "type": "string",
+      "value": "",
+      "display": "Resolved NeoForge Version",
+      "desc": "Internal, resolved version of NeoForge",
+      "required": true,
+      "userEdit": true,
+      "internal": true
     }
   },
   "groups": [
@@ -150,13 +171,22 @@
       "order": 2
     },
     {
+      "if": "modlauncher == 'neoforge'",
+      "display": "NeoForge",
+      "description": "Settings if using NeoForge",
+      "variables": [
+        "neoforgebuild"
+      ],
+      "order": 3
+    },
+    {
       "if": "modlauncher == 'paper'",
       "display": "Paper",
       "description": "Settings specific if using Paper",
       "variables": [
         "paperbuild"
       ],
-      "order": 3
+      "order": 4
     }
   ],
   "install": [
@@ -221,6 +251,34 @@
       "if": "modlauncher == 'forge' && file_exists('forge-' + forgebuild + '.jar')",
       "type": "move",
       "source": "forge-${forgebuild}.jar",
+      "target": "server.jar"
+    },
+    {
+      "if": "modlauncher == 'neoforge'",
+      "type": "neoforgedl",
+      "target": "installer.jar",
+      "version": "${neoforgebuild}",
+      "minecraftVersion": "${version}",
+      "outputVariable": "resolvedNeoForgeVersion"
+    },
+    {
+      "if": "modlauncher == 'neoforge' && env == 'host'",
+      "type": "command",
+      "commands": [
+        "java${javaversion} -jar installer.jar --installServer"
+      ]
+    },
+    {
+      "if": "modlauncher == 'neoforge' && env != 'host'",
+      "type": "command",
+      "commands": [
+        "java -jar installer.jar --installServer"
+      ]
+    },
+    {
+      "if": "modlauncher == 'neoforge' && file_exists('neoforge-' + neoforgebuild + '.jar')",
+      "type": "move",
+      "source": "neoforge-${neoforgebuild}.jar",
       "target": "server.jar"
     },
     {
@@ -294,6 +352,22 @@
         "if": "env != 'host' && modlauncher == 'forge' && file_exists('libraries/net/minecraftforge/forge/' + resolvedForgeVersion+ '/unix_args.txt')"
       },
       {
+        "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true ${jvmArgs} @libraries/net/neoforged/neoforge/${resolvedNeoForgeVersion}/win_args.txt nogui",
+        "if": "env == 'host' && modlauncher == 'neoforge' && os == 'windows' && file_exists('libraries/net/neoforged/neoforge/' + resolvedNeoForgeVersion + '/win_args.txt')"
+      },
+      {
+        "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true ${jvmArgs} @libraries/net/neoforged/neoforge/${resolvedNeoForgeVersion}/unix_args.txt nogui",
+        "if": "env == 'host' && modlauncher == 'neoforge' && file_exists('libraries/net/neoforged/neoforge/' + resolvedNeoForgeVersion + '/unix_args.txt')"
+      },
+      {
+        "command": "java -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true ${jvmArgs} @libraries/net/neoforged/neoforge/${resolvedNeoForgeVersion}/win_args.txt nogui",
+        "if": "env != 'host' && modlauncher == 'neoforge' && os == 'windows' && file_exists('libraries/net/neoforged/nepforge/' + resolvedNeoForgeVersion + '/win_args.txt')"
+      },
+      {
+        "command": "java -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true ${jvmArgs} @libraries/net/neoforged/neoforge/${resolvedNeoForgeVersion}/unix_args.txt nogui",
+        "if": "env != 'host' && modlauncher == 'neoforge' && file_exists('libraries/net/neoforged/neoforge/' + resolvedNeoForgeVersion+ '/unix_args.txt')"
+      },
+      {
         "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true ${jvmArgs} -jar fabric-server-launch.jar",
         "if": "env == 'host' && modlauncher == 'fabric'"
       },
@@ -316,6 +390,13 @@
           "minecraftVersion": "${version}",
           "version": "${forgebuild}",
           "outputVariable": "resolvedForgeVersion"
+      },
+      {
+        "if": "modlauncher == 'neoforge'",
+        "type": "resolveneoforgeversion",
+        "minecraftVersion": "${version}",
+        "version": "${neoforgebuild}",
+        "outputVariable": "resolvedNeoForgeVersion"
       }
     ],
     "stop": "stop",
