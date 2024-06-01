@@ -1,13 +1,28 @@
 [
   {
-    "name": "minecraft-curseforge-neoforge-715572",
+    "name": "minecraft-curseforge-neoforge-379757",
+    "variables": {
+      "memory": "4096",
+      "ip": "0.0.0.0",
+      "port": "25565",
+      "eula": true,
+      "javaversion": "21",
+      "projectId": "379757",
+      "fileId": "0"
+    },
+    "environment": {
+      "type": "host"
+    }
+  },
+  {
+    "name": "minecraft-curseforge-neoforge-574291",
     "variables": {
       "memory": "4096",
       "ip": "0.0.0.0",
       "port": "25565",
       "eula": true,
       "javaversion": "17",
-      "projectId": "715572",
+      "projectId": "574291",
       "fileId": "0"
     },
     "environment": {
@@ -15,44 +30,14 @@
     }
   },
   {
-    "name": "minecraft-curseforge-neoforge-389615",
-    "variables": {
-      "memory": "4096",
-      "ip": "0.0.0.0",
-      "port": "25565",
-      "eula": true,
-      "javaversion": "8",
-      "projectId": "389615",
-      "fileId": "0"
-    },
-    "environment": {
-      "type": "host"
-    }
-  },
-  {
-    "name": "minecraft-curseforge-neoforge-285109",
-    "variables": {
-      "memory": "4096",
-      "ip": "0.0.0.0",
-      "port": "25565",
-      "eula": true,
-      "javaversion": "8",
-      "projectId": "285109",
-      "fileId": "0"
-    },
-    "environment": {
-      "type": "host"
-    }
-  },
-  {
-    "name": "minecraft-curseforge-neoforge-876781",
+    "name": "minecraft-curseforge-neoforge-493082",
     "variables": {
       "memory": "4096",
       "ip": "0.0.0.0",
       "port": "25565",
       "eula": true,
       "javaversion": "17",
-      "projectId": "876781",
+      "projectId": "493082",
       "fileId": "0"
     },
     "environment": {
@@ -60,14 +45,14 @@
     }
   },
   {
-    "name": "minecraft-curseforge-neoforge-829758",
+    "name": "minecraft-curseforge-neoforge-447596",
     "variables": {
       "memory": "4096",
       "ip": "0.0.0.0",
       "port": "25565",
       "eula": true,
-      "javaversion": "17",
-      "projectId": "829758",
+      "javaversion": "21",
+      "projectId": "447596",
       "fileId": "0"
     },
     "environment": {
@@ -75,14 +60,14 @@
     }
   },
   {
-    "name": "minecraft-curseforge-neoforge-520914",
+    "name": "minecraft-curseforge-neoforge-491512",
     "variables": {
       "memory": "4096",
       "ip": "0.0.0.0",
       "port": "25565",
       "eula": true,
-      "javaversion": "17",
-      "projectId": "520914",
+      "javaversion": "21",
+      "projectId": "491512",
       "fileId": "0"
     },
     "environment": {
@@ -90,14 +75,29 @@
     }
   },
   {
-    "name": "minecraft-curseforge-neoforge-466901",
+    "name": "minecraft-curseforge-neoforge-572641",
+    "variables": {
+      "memory": "4096",
+      "ip": "0.0.0.0",
+      "port": "25565",
+      "eula": true,
+      "javaversion": "21",
+      "projectId": "572641",
+      "fileId": "0"
+    },
+    "environment": {
+      "type": "host"
+    }
+  },
+  {
+    "name": "minecraft-curseforge-neoforge-309625",
     "variables": {
       "memory": "4096",
       "ip": "0.0.0.0",
       "port": "25565",
       "eula": true,
       "javaversion": "17",
-      "projectId": "466901",
+      "projectId": "309625",
       "fileId": "5181988"
     },
     "environment": {
@@ -105,14 +105,14 @@
     }
   },
   {
-    "name": "minecraft-curseforge-neoforge-887839",
+    "name": "minecraft-curseforge-neoforge-854426",
     "variables": {
       "memory": "4096",
       "ip": "0.0.0.0",
       "port": "25565",
       "eula": true,
       "javaversion": "17",
-      "projectId": "887839",
+      "projectId": "854426",
       "fileId": "0"
     },
     "environment": {
