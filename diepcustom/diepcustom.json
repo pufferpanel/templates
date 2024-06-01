@@ -1,58 +1,53 @@
 {
-    "name": "Diepcustom",
-    "display": "Diep Custom",
-    "type": "node",
-    "install": [
-      {
-        "commands": [
-          "git clone https://github.com/ABCxFF/diepcustom.git .",
-          "npm install yarn",
-          "yarn install"
-        ],
-        "type": "command"
-      },
-      {
-        "file": "./src/config.ts",
-        "replace": "export const defaultAccessLevel: AccessLevel = AccessLevel.PublicAccess;",
-        "search": "export const defaultAccessLevel: AccessLevel = AccessLevel.BetaAccess;",
-        "type": "alterfile",
-        "regex": true
-      }
-    ],
-    "run": {
-      "stopCode": 2,
-      "command": "yarn run server",
-      "workingDirectory": "",
-      "pre": [],
-      "post": [],
-      "environmentVars": {}
+  "id": "39be014d",
+  "display": "Diep Custom",
+  "type": "node",
+  "install": [
+    {
+      "commands": [
+        "git clone https://github.com/ABCxFF/diepcustom.git .",
+        "npm install yarn",
+        "yarn install"
+      ],
+      "type": "command"
     },
-    "data": {
-      "DEV_PASSWORD_HASH": {
-        "type": "string",
-        "display": "Devpass (SHA-256)",
-        "desc": "The password to access developer tools."
-      },
-      "PORT": {
-        "required": true,
-        "display": "Port",
-        "type": "string",
-        "value": "8080",
-        "desc": "The port on which the process runs."
-      }
-    },
-    "environment": {
-      "type": "standard"
-    },
-    "supportedEnvironments": [
-      {
-        "type": "standard"
-      }
-    ],
-    "requirements": {
-      "binaries": [
-        "node",
-        "npm"
-      ]
+    {
+      "file": "./src/config.ts",
+      "replace": "export const defaultAccessLevel: AccessLevel = AccessLevel.PublicAccess;",
+      "search": "export const defaultAccessLevel: AccessLevel = AccessLevel.BetaAccess;",
+      "type": "alterfile"
     }
+  ],
+  "run": {
+    "stopCode": 2,
+    "command": "yarn run server",
+    "workingDirectory": "",
+    "pre": [],
+    "post": [],
+    "environmentVars": {
+      "DEV_PASSWORD_HASH": "${DEV_PASSWORD_HASH}",
+      "PORT": "${PORT}"
+    }
+  },
+  "data": {
+    "DEV_PASSWORD_HASH": {
+      "type": "string",
+      "display": "Devpass (SHA-256)"
+    },
+    "PORT": {
+      "type": "string",
+      "display": "Port",
+      "required": true,
+      "value": "8080"
+    }
+  },
+  "environment": {
+    "type": "standard"
+  },
+  "requirements": {
+    "binaries": [
+      "node",
+      "npm"
+    ]
   }
+}
