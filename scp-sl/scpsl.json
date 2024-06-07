@@ -1,0 +1,39 @@
+{
+  "name": "scpsl",
+  "display": "SCP:SL",
+  "type": "Standard",
+  "install": [
+    {
+      "appId": "996560",
+      "type": "steamgamedl"
+    },
+    {
+      "commands": [
+        "chmod +x LocalAdmin",
+        "chmod +x SCPSL.x86_64"
+      ],
+      "type": "command"
+    }
+  ],
+  "run": {
+    "stop": "stop",
+    "command": "./LocalAdmin ${port}",
+    "workingDirectory": "",
+    "pre": [],
+    "post": [],
+    "environmentVars": {}
+  },
+  "data": {
+    "port": {
+      "type": "integer",
+      "display": "Server Port",
+      "required": true,
+      "value": 7777
+    }
+  },
+  "environment": {
+    "type": "tty"
+  },
+  "supportedEnvironments": [],
+  "requirements": {}
+}
