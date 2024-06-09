@@ -1,7 +1,7 @@
 {
   "name": "scpsl",
   "display": "SCP:SL",
-  "type": "Standard",
+  "type": "scpsl",
   "install": [
     {
       "appId": "996560",
