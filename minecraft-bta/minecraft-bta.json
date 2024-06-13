@@ -1,0 +1,102 @@
+{
+  "name": "minecraft-better-than-adventure",
+  "display": "Better Than Adventure - Minecraft",
+  "type": "minecraft-java",
+  "install": [
+    {
+      "type": "javadl",
+      "version": "${javaversion}"
+    },
+    {
+      "files": [
+        "https://github.com/Better-than-Adventure/bta-download-repo/releases/download/${version}/${jarname}"
+      ],
+      "type": "download"
+    },
+    {
+      "target": "server.properties",
+      "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}\n",
+      "type": "writefile"
+    },
+    {
+      "target": "eula.txt",
+      "text": "eula=${eula}",
+      "type": "writefile"
+    }
+  ],
+  "run": {
+    "stop": "stop",
+    "command": "java${javaversion} -Xmx${memory}M -Dlog4j2.formatMsgNoLookups=true -jar server.jar nogui",
+    "workingDirectory": "",
+    "pre": [],
+    "post": [],
+    "environmentVars": {}
+  },
+  "data": {
+    "eula": {
+      "type": "boolean",
+      "desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
+      "display": "EULA Agreement",
+      "required": true,
+      "value": "false"
+    },
+    "ip": {
+      "type": "string",
+      "desc": "What IP to bind the server to",
+      "display": "IP",
+      "required": true,
+      "value": "0.0.0.0"
+    },
+    "jarname": {
+      "type": "string",
+      "desc": "Names of the Server JARs differ across releases (e.g., \"bta-7.1-server.jar\" vs. \"better-than-adventure-7.1.Prerelease.1-server.jar\"). Find the correct file name on GitHub and paste it here.",
+      "display": "Server JAR Name",
+      "required": true,
+      "value": "bta-7.1-server.jar"
+    },
+    "javaversion": {
+      "type": "integer",
+      "desc": "Version of Java to use",
+      "display": "Java Version",
+      "required": true,
+      "value": "8"
+    },
+    "memory": {
+      "type": "integer",
+      "desc": "How much memory in MB to allocate to the Java Heap",
+      "display": "Memory (MB)",
+      "required": true,
+      "value": "1024"
+    },
+    "motd": {
+      "type": "string",
+      "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.wiki/w/Formatting_codes' target='_blank'>color and formatting codes</a>.",
+      "display": "MOTD message of the day",
+      "required": true,
+      "value": "A Better Than Adventure Server\\n\\u00A79 hosted on PufferPanel"
+    },
+    "port": {
+      "type": "integer",
+      "desc": "What port to bind the server to",
+      "display": "Port",
+      "required": true,
+      "value": "25565"
+    },
+    "version": {
+      "type": "string",
+      "desc": "GitHub tag version of Better Than Adventure to install",
+      "display": "Version",
+      "required": true,
+      "value": "v7.1"
+    }
+  },
+  "environment": {
+    "type": "standard"
+  },
+  "supportedEnvironments": [
+    {
+      "type": "standard"
+    }
+  ],
+  "requirements": {}
+}
