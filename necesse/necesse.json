@@ -25,12 +25,6 @@
           "rm ./cfg/server.cfg"
         ],
         "type": "command"
-      },
-      {
-        "commands": [
-          "rm ./cfg/server.cfg"
-        ],
-        "type": "command"
       }
     ],
     "post": [],
