@@ -67,7 +67,7 @@
     {
       "type": "command",
       "commands": [
-        "java21 -jar BuildTools.jar --rev ${version}"
+        "java${javaversion} -jar BuildTools.jar --rev ${version}"
       ]
     },
     {
