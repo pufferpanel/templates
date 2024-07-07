@@ -13,7 +13,7 @@
     },
     {
       "commands": [
-        "chmod +x Pal/Binaries/Linux/PalServer-Linux-Test"
+        "chmod +x Pal/Binaries/Linux/PalServer-Linux-Shipping"
       ],
       "type": "command"
     },
@@ -29,7 +29,7 @@
   ],
   "run": {
     "stopCode": 15,
-    "command": "./Pal/Binaries/Linux/PalServer-Linux-Test Pal -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS",
+    "command": "./Pal/Binaries/Linux/PalServer-Linux-Shipping Pal -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS",
     "workingDirectory": "",
     "pre": [
       {
@@ -47,7 +47,7 @@
       },
       {
         "commands": [
-          "chmod +x Pal/Binaries/Linux/PalServer-Linux-Test"
+          "chmod +x Pal/Binaries/Linux/PalServer-Linux-Shipping"
         ],
         "type": "command"
       }
