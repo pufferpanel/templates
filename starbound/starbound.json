@@ -56,13 +56,13 @@
     {
       "type": "command",
       "commands": [
-        "chmod +x starbound_server"
+        "chmod +x ./linux/starbound_server"
       ]
     }
   ],
   "run": {
     "stopCode": 2,
-    "command": "./starbound_server"
+    "command": "./linux/starbound_server"
   },
   "environment": {
     "type": "tty"
