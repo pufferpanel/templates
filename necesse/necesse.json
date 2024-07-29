@@ -1,0 +1,122 @@
+{
+  "name": "necesse",
+  "display": "Necesse",
+  "type": "srcds",
+  "install": [
+    {
+      "appId": "1169370",
+      "type": "steamgamedl"
+    },
+    {
+      "commands": [
+        "chmod +x jre/bin/java",
+        "rm ./cfg/server.cfg"
+      ],
+      "type": "command"
+    }
+  ],
+  "run": {
+    "stop": "/stop",
+    "command": "./jre/bin/java ${jvmargs} -jar Server.jar -nogui -localdir -port ${port} -world ${world} -slots ${slots} -owner \"${owner}\" -motd \"${motd}\" -password \"${password}\" -pausewhenempty ${pausewhenempty} -giveclientspower ${giveclientspower} -logging ${logging} -zipsaves ${zipsaves}",
+    "workingDirectory": "",
+    "pre": [
+      {
+        "commands": [
+          "rm ./cfg/server.cfg"
+        ],
+        "type": "command"
+      }
+    ],
+    "post": [],
+    "environmentVars": {}
+  },
+  "data": {
+    "giveclientspower": {
+      "type": "string",
+      "desc": "If the server should check client actions, a kind of anti-cheat. When this setting is on it will give a much smoother experience for clients. (0 off, 1 on)",
+      "display": "Give Clients Power",
+      "value": "1",
+      "userEdit": true
+    },
+    "jvmargs": {
+      "type": "string",
+      "desc": "Any extra arguments to supply to the JVM",
+      "display": "JVM Args",
+      "value": "-Xms512m",
+      "userEdit": true
+    },
+    "logging": {
+      "type": "integer",
+      "desc": "Generate a log file for each session. (0 off, 1 on)",
+      "display": "Logging",
+      "value": "0",
+      "userEdit": true
+    },
+    "motd": {
+      "type": "string",
+      "desc": "Message to player when when connected to server",
+      "display": "MOTD",
+      "value": "Welcome to Necesse!",
+      "userEdit": true
+    },
+    "owner": {
+      "type": "string",
+      "desc": "Player's name to set owner permission. All players with this name will have owner permission!",
+      "display": "Owner",
+      "value": "",
+      "userEdit": true
+    },
+    "password": {
+      "type": "string",
+      "desc": "Password players must enter in order to connect to the server. Players can save this password directly in game, so this can be more complex.",
+      "display": "Server Password",
+      "value": "",
+      "userEdit": true
+    },
+    "pausewhenempty": {
+      "type": "integer",
+      "desc": "Pauses the world when there are no players in server. (0 off, 1 on)",
+      "display": "Pause When Empty",
+      "value": "1",
+      "userEdit": true
+    },
+    "port": {
+      "type": "integer",
+      "desc": "Port to host at",
+      "display": "Port",
+      "value": "14159",
+      "userEdit": true
+    },
+    "slots": {
+      "type": "integer",
+      "display": "Player Slots",
+      "required": true,
+      "value": "10",
+      "userEdit": true
+    },
+    "world": {
+      "type": "string",
+      "desc": "World name",
+      "display": "World",
+      "required": true,
+      "value": "world",
+      "userEdit": true
+    },
+    "zipsaves": {
+      "type": "integer",
+      "desc": "Whether saves should be compressed. (0 off, 1 on)",
+      "display": "Zip Saves",
+      "value": "1",
+      "userEdit": true
+    }
+  },
+  "environment": {
+    "type": "standard"
+  },
+  "supportedEnvironments": [
+    {
+      "type": "standard"
+    }
+  ],
+  "requirements": {}
+}
