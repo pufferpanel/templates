@@ -1,0 +1,111 @@
+{
+    "type": "minecraft-java",
+    "display": "Minecraft - Modrinth",
+    "install": [
+        {
+            "type": "javadl",
+            "version": "${javaversion}"
+        },
+        {
+            "files": [
+                "https://github.com/nothub/mrpack-install/releases/latest/download/mrpack-install-linux"
+            ],
+            "type": "download"
+        },
+        {
+            "commands": [
+                "chmod u+x ./mrpack-install-linux"
+            ],
+            "type": "command"
+        },
+        {
+            "target": "server.properties",
+            "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}",
+            "type": "writefile"
+        },
+        {
+            "target": "eula.txt",
+            "text": "eula=${eula}",
+            "type": "writefile"
+        },
+        {
+            "commands": [
+                "./mrpack-install-linux ${modpack-url} --server-file server.jar --server-dir ./"
+            ],
+            "type": "command"
+        },
+        {
+            "commands": [
+                "rm ./mrpack-install-linux"
+            ],
+            "type": "command"
+        }
+    ],
+    "run": {
+        "stop": "stop",
+        "command": "java${javaversion} -Xmx${memory}M -Dlog4j2.formatMsgNoLookups=true -jar server.jar nogui",
+        "workingDirectory": "",
+        "pre": [],
+        "post": [],
+        "environmentVars": {}
+    },
+    "data": {
+        "eula": {
+            "type": "boolean",
+            "desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
+            "display": "EULA Agreement (true/false)",
+            "required": true,
+            "value": true
+        },
+        "ip": {
+            "type": "string",
+            "desc": "What IP to bind server to",
+            "display": "IP",
+            "required": true,
+            "value": "0.0.0.0"
+        },
+        "javaversion": {
+            "type": "integer",
+            "desc": "Version of Java to use (If you play 1.16.5 or lower use 8)",
+            "display": "Java Version",
+            "required": true,
+            "value": 21
+        },
+        "memory": {
+            "type": "integer",
+            "desc": "How much memory in MB to allocate to the Java Heap",
+            "display": "MEMORY (MB)",
+            "required": true,
+            "value": 1024
+        },
+        "modpack-url": {
+            "type": "string",
+            "desc": "Link to a Modpack URL from <a href='https://modrinth.com/modpacks' target='_blank'>Modrinth</a>.",
+            "display": "Modrinth Pack URL (.mrpack file)",
+            "required": true,
+            "value": ""
+        },
+        "motd": {
+            "type": "string",
+            "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.wiki/w/Formatting_codes' target='_blank'>color and formatting codes</a>.",
+            "display": "MOTD message of the day",
+            "required": true,
+            "value": "A Minecraft Server\\n\\u00A79 hosted on PufferPanel"
+        },
+        "port": {
+            "type": "string",
+            "desc": "What port to bind server to",
+            "display": "PORT",
+            "required": true,
+            "value": "25565"
+        }
+    },
+    "environment": {
+        "type": "standard"
+    },
+    "supportedEnvironments": [
+        {
+            "type": "standard"
+        }
+    ]
+}
