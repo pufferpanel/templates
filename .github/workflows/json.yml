@@ -11,14 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: json-syntax-check
-        uses: limitusus/json-syntax-check@v1
-        with:
-          pattern: "\\.json$*"
-
       - name: json-yaml-validate
         uses: GrantBirki/json-yaml-validate@v3.0.0
         with:
           json_schema: ./spec.json
           json_schema_version: draft-2020-12
-          exclude_file: exclude.yxy
+          exclude_file: exclude.txt
