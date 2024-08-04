@@ -72,7 +72,8 @@
     },
     {
       "type": "writefile",
-      "target": "Config/ServerUsers.txt"
+      "target": "Config/ServerUsers.txt",
+      "text": ""
     },
     {
       "type": "writefile",

@@ -17,3 +17,4 @@ jobs:
           json_schema: ./spec.json
           json_schema_version: draft-2020-12
           exclude_file: exclude.txt
+          ajv_strict_mode: false

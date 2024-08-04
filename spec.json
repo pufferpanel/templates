@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/pufferpanel/templates/v3/spec.json",
-  "title": "Template",
-  "description": "Pufferpanel template schema",
+  "title": "PufferPanel Template",
+  "description": "Pufferpanel template and server schema",
   "type": "object",
   "additionalProperties": false,
   "properties": {
@@ -19,6 +19,7 @@
       "type": "string"
     },
     "data": {
+      "type": "object",
       "patternProperties": {
         "^[0-9A-Za-z_]+$": {
           "$ref": "#/$defs/variable"

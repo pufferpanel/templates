@@ -331,7 +331,8 @@
     },
     {
       "type": "extract",
-      "source": "tModLoader.zip"
+      "source": "tModLoader.zip",
+      "destination": "."
     },
     {
       "type": "command",
