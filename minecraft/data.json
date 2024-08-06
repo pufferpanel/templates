@@ -8,7 +8,7 @@
       "eula": true,
       "version": "latest",
       "motd": "None",
-      "javaversion": "17",
+      "javaversion": "21",
       "modlauncher": ""
     },
     "environment": {
@@ -92,7 +92,7 @@
       "eula": true,
       "version": "latest",
       "motd": "None",
-      "javaversion": "17",
+      "javaversion": "21",
       "modlauncher": ""
     },
     "environment": {
