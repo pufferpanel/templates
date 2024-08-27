@@ -152,5 +152,11 @@
       "image": "eclipse-temurin:${javaversion}"
     }
   ],
-  "requirements": {}
+  "requirements": {},
+  "stats": {
+    "type": "jcmd"
+  },
+  "query": {
+    "type": "minecraft"
+  }
 }

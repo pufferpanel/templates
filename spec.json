@@ -187,6 +187,14 @@
       "required": [
         "variables"
       ]
+    },
+    "stats": {
+      "type": "object",
+      "$ref": "#/$defs/statsConfig"
+    },
+    "query": {
+      "type": "object",
+      "$ref": "#/$defs/queryConfig"
     }
   },
   "$defs": {
@@ -1012,6 +1020,32 @@
       },
       "required": [
         "file"
+      ]
+    },
+    "statsConfig": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "jcmd"
+          ]
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    "queryConfig": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "minecraft"
+          ]
+        }
+      },
+      "required": [
+        "type"
       ]
     }
   }

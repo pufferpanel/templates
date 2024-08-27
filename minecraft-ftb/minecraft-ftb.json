@@ -184,5 +184,11 @@
   "requirements": {
     "os": "linux",
     "arch": "amd64"
+  },
+  "stats": {
+    "type": "jcmd"
+  },
+  "query": {
+    "type": "minecraft"
   }
 }

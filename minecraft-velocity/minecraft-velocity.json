@@ -100,5 +100,8 @@
       "image": "eclipse-temurin:17"
     }
   ],
-  "requirements": {}
+  "requirements": {},
+  "stats": {
+    "type": "jcmd"
+  }
 }
