@@ -29,7 +29,7 @@
     },
     "javaversion": {
       "type": "string",
-      "value": "17",
+      "value": "21",
       "display": "Java Version",
       "desc": "Version of Java to use",
       "required": true,
@@ -45,7 +45,7 @@
     },
     "memory": {
       "type": "integer",
-      "value": 1024,
+      "value": 2048,
       "display": "Memory (MB)",
       "desc": "How much memory in MB to allocate to the Java Heap",
       "required": true,
