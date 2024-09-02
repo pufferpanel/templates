@@ -1,0 +1,152 @@
+{
+    "name": "astroneer-astrotuxlauncher",
+    "display": "Astroneer (AstroTuxLauncher)",
+    "type": "astroneer",
+    "install": [
+        {
+            "files": [
+                "https://github.com/JoeJoeTV/AstroTuxLauncher/archive/refs/heads/master.tar.gz"
+            ],
+            "type": "download"
+        },
+        {
+            "commands": [
+                "tar -xzvf AstroTuxLauncher-master.tar.gz --strip-components=1",
+                "rm AstroTuxLauncher-master.tar.gz",
+                "mkdir -p AstroneerServer/Astro/Saved/Config/WindowsServer",
+                "pip3 install -r requirements.txt"
+            ],
+            "type": "command"
+        },
+        {
+            "target": "AstroneerServer/Astro/Saved/Config/WindowsServer/Engine.ini",
+            "text": "[URL]\nPort=${SERVER_PORT}\n\n[SystemSettings]\nnet.AllowEncryption=false\n",
+            "type": "writefile"
+        },
+        {
+            "target": "AstroneerServer/Astro/Saved/Config/WindowsServer/AstroServerSettings.ini",
+            "text": "[/Script/Astro.AstroServerSettings]\nServerName=${SERVER_NAME}\nOwnerName=${OWNER_NAME}\nServerPassword=${SERVER_PASSWORD}\nDenyUnlistedPlayers=${ENABLE_WHITELIST}\nAutoSaveGameInterval=${AUTO_SAVE_INTERVAL}\nConsolePort=${CONSOLE_PORT}",
+            "type": "writefile"
+        },
+        {
+            "target": "launcher.toml",
+            "text": "[launcher]\nAutoUpdateServer = ${AUTO_UPDATE_SERVER}\nLogDebugMessages = ${DEBUG_MESSAGES}\nDisableEncryption = ${DISABLE_ENCRYPTION}\n\n[launcher.notifications]\nmethod = \"${NOTIFICATION_METHOD}\"\nname = \"${SERVER_NAME}\"\n\n[launcher.notifications.discord]\nwebhookURL = \"${DISCORD_WEBHOOK}\"\n\n[launcher.notifications.ntfy]\ntopic = \"${NTFY_TOPIC}\"\nserverURL = \"${NTFY_URL}\"\n",
+            "type": "writefile"
+        },
+        {
+            "commands": [
+                "python3 AstroTuxLauncher.py install"
+            ],
+            "type": "command"
+        }
+    ],
+    "run": {
+        "stop": "shutdown",
+        "command": "python3 AstroTuxLauncher.py start",
+        "workingDirectory": "",
+        "pre": [],
+        "post": [],
+        "environmentVars": {
+            "TERM": "xterm-256coloronly"
+        }
+    },
+    "data": {
+        "AUTO_SAVE_INTERVAL": {
+            "type": "integer",
+            "display": "Auto Save Interval",
+            "value": "900"
+        },
+        "AUTO_UPDATE_SERVER": {
+            "type": "boolean",
+            "desc": "Wether to automaticall update the server on start",
+            "display": "Auto Update Server",
+            "value": "true"
+        },
+        "CONSOLE_PORT": {
+            "type": "integer",
+            "desc": "The port to use for internal communication with the Dedicated Server",
+            "display": "RCON Port",
+            "value": "1234"
+        },
+        "DEBUG_MESSAGES": {
+            "type": "boolean",
+            "desc": "Wether to also log debug messages",
+            "display": "Enable Debug Messages",
+            "value": "false",
+            "userEdit": true
+        },
+        "DISABLE_ENCRYPTION": {
+            "type": "boolean",
+            "desc": "Wether to disable Encryption for the Dedicated Server",
+            "display": "Disable Encryption",
+            "value": "true"
+        },
+        "DISCORD_WEBHOOK": {
+            "type": "string",
+            "display": "Discord Webhook URL"
+        },
+        "ENABLE_WHITELIST": {
+            "type": "boolean",
+            "display": "Enable Whitelist",
+            "value": "false"
+        },
+        "NOTIFICATION_METHOD": {
+            "type": "option",
+            "display": "Notification Method",
+            "options": [
+                {
+                    "value": "none",
+                    "display": "No external Notifications"
+                },
+                {
+                    "value": "discord",
+                    "display": "Notifications via Discord"
+                },
+                {
+                    "value": "ntfy",
+                    "display": "Notifications via ntfy"
+                }
+            ]
+        },
+        "NTFY_TOPIC": {
+            "type": "string",
+            "display": "ntfy Topic"
+        },
+        "NTFY_URL": {
+            "type": "string",
+            "desc": "URL of the ntfy Server to use",
+            "display": "ntfy Server URL",
+            "value": "https://ntfy.sh"
+        },
+        "OWNER_NAME": {
+            "type": "string",
+            "desc": "The name of the Player that should be the Owner of the Server",
+            "display": "Owner Name"
+        },
+        "SERVER_NAME": {
+            "type": "string",
+            "display": "Server Name",
+            "value": "Astroneer Dedicated Server"
+        },
+        "SERVER_PASSWORD": {
+            "type": "string",
+            "desc": "The Password for the Server. Leave empty for not password",
+            "display": "Server Password"
+        },
+        "SERVER_PORT": {
+            "type": "integer",
+            "desc": "The port where the server listens for connections",
+            "display": "Server Port",
+            "value": "7777"
+        }
+    },
+    "environment": {
+        "type": "standard"
+    },
+    "supportedEnvironments": [
+        {
+            "type": "standard"
+        }
+    ],
+    "requirements": {}
+}
