@@ -161,7 +161,7 @@
   ],
   "install": [
     {
-      "if": "javaversion != ''",
+      "if": "javaversion != '' && env == 'host'",
       "type": "javadl",
       "version": "${javaversion}"
     },
