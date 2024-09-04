@@ -1,79 +1,79 @@
 {
-  "type": "minecraft-java",
-  "display": "Neoforge 1.21+ - Minecraft (Docker)",
-  "data": {
-    "memory": {
-      "value": "1024",
-      "required": true,
-      "desc": "How much memory in MB to allocate to the Java Heap",
-      "display": "Memory (MB)",
-      "internal": false,
-      "type": "integer"
-    },
-    "ip": {
-      "value": "0.0.0.0",
-      "required": true,
-      "desc": "What IP to bind the server to",
-      "display": "IP",
-      "internal": false
-    },
-    "port": {
-      "value": "25565",
-      "required": true,
-      "desc": "What port to bind the server to",
-      "display": "Port",
-      "internal": false,
-      "type": "integer"
-    },
-    "eula": {
-      "value": "false",
-      "required": true,
-      "desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
-      "display": "EULA Agreement (true/false)",
-      "internal": false,
-      "type": "boolean"
-    },
-    "version": {
-      "value": "21.1.23",
-      "required": true,
-      "display": "Version",
-      "internal": false
-    },
-    "motd": {
-      "value": "A Minecraft Server\\n\\u00A79 hosted on PufferPanel",
-      "required": true,
-      "display": "MOTD message of the day",
-      "internal": false
-    }
-  },
-  "install": [
-    {
-      "type": "download",
-      "files": "https://maven.neoforged.net/releases/net/neoforged/neoforge/${version}/neoforge-${version}-installer.jar"
-    },
-    {
-      "commands": [
-        "java -jar neoforge-${version}-installer.jar --installServer"
-      ],
-      "type": "command"
-    },
-    {
-      "type": "writefile",
-      "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}\n",
-      "target": "server.properties"
-    },
-    {
-      "type": "writefile",
-      "text": "eula=${eula}",
-      "target": "eula.txt"
-    }
-  ],
-  "run": {
-    "command": "java -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/neoforged/neoforge/${version}/unix_args.txt nogui",
-    "stop": "stop"
-  },
-  "environment": {
-    "type": "docker",
-    "image": "eclipse-temurin:21"
-  }
+"type": "minecraft-java",
+"display": "Neoforge 1.21+ - Minecraft (Docker)",
+"data": {
+"memory": {
+"value": "1024",
+"required": true,
+"desc": "How much memory in MB to allocate to the Java Heap",
+"display": "Memory (MB)",
+"internal": false,
+"type": "integer"
+},
+"ip": {
+"value": "0.0.0.0",
+"required": true,
+"desc": "What IP to bind the server to",
+"display": "IP",
+"internal": false
+},
+"port": {
+"value": "25565",
+"required": true,
+"desc": "What port to bind the server to",
+"display": "Port",
+"internal": false,
+"type": "integer"
+},
+"eula": {
+"value": "false",
+"required": true,
+"desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
+"display": "EULA Agreement (true/false)",
+"internal": false,
+"type": "boolean"
+},
+"version": {
+"value": "21.1.23",
+"required": true,
+"display": "Version",
+"internal": false
+},
+"motd": {
+"value": "A Minecraft Server\\n\\u00A79 hosted on PufferPanel",
+"required": true,
+"display": "MOTD message of the day",
+"internal": false
+}
+},
+"install": [
+ {
+"type": "download",
+"files": "https://maven.neoforged.net/releases/net/neoforged/neoforge/${version}/neoforge-${version}-installer.jar"
+},
+{
+ "commands": [
+ "java -jar neoforge-${version}-installer.jar --installServer"
+],
+"type": "command"
+},
+{
+"type": "writefile",
+"text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}\n",
+"target": "server.properties"
+},
+{
+"type": "writefile",
+"text": "eula=${eula}",
+"target": "eula.txt"
+}
+],
+"run": {
+"command": "java -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/neoforged/neoforge/${version}/unix_args.txt nogui",
+"stop": "stop"
+},
+"environment": {
+"type": "docker",
+"image": "eclipse-temurin:21"
+}
 }
