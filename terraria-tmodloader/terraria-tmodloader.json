@@ -201,7 +201,7 @@
     {
       "type": "command",
       "commands": [
-        "unzip tModLoader.zip -d ./server",
+        "unzip -o tModLoader.zip -d ./server",
         "chmod +x ./server/LaunchUtils/ScriptCaller.sh",
         "rm tModLoader.zip",
         "chmod +x ./EnableAllMods.sh"
