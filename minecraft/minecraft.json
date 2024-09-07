@@ -76,6 +76,10 @@
           "display": "Paper"
         },
         {
+          "value": "paper-folia",
+          "display": "Paper Folia"
+        },
+        {
           "value": "spigot",
           "display": "Spigot"
         }
@@ -109,7 +113,7 @@
       "type": "string",
       "value": "latest",
       "display": "Version",
-      "desc": "Version of Minecraft you wish to install. It is best to put a version in, as latest may not work with all server software.",
+      "desc": "Version of Minecraft you wish to install. It is best to put a version in, as latest may not work with all server software. Ignored if Folia is being used.",
       "required": true,
       "userEdit": true
     },
@@ -264,6 +268,26 @@
       "target": "server.jar"
     },
     {
+      "if": "modlauncher == 'paper-folia'",
+      "type": "download",
+      "files": [
+        "https://nightly.link/Slackadays/FoliaToGo/workflows/folia/main/FoliaToGo.zip"
+      ]
+    },
+    {
+      "if": "modlauncher == 'paper-folia'",
+      "type": "command",
+      "commands": [
+        "unzip FoliaToGo.zip -d ."
+      ]
+    },
+    {
+      "if": "modlauncher == 'paper-folia'",
+      "type": "move",
+      "target": "server.jar",
+      "source": "folia-paperclip-*.jar"
+    },
+    {
       "if": "!file_exists(\"server.properties\")",
       "type": "writefile",
       "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}\n",
@@ -311,11 +335,11 @@
     ],
     "pre": [
       {
-          "if": "modlauncher == 'forge'",
-          "type": "resolveforgeversion",
-          "minecraftVersion": "${version}",
-          "version": "${forgebuild}",
-          "outputVariable": "resolvedForgeVersion"
+        "if": "modlauncher == 'forge'",
+        "type": "resolveforgeversion",
+        "minecraftVersion": "${version}",
+        "version": "${forgebuild}",
+        "outputVariable": "resolvedForgeVersion"
       }
     ],
     "stop": "stop",
