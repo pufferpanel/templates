@@ -149,7 +149,10 @@
     },
     {
       "type": "docker",
-      "image": "eclipse-temurin:${javaversion}"
+      "image": "eclipse-temurin:${javaversion}",
+      "portBindings": [
+        "${port}:${port}/tcp"
+      ]
     }
   ],
   "requirements": {},

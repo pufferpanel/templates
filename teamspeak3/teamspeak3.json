@@ -103,7 +103,12 @@
     },
     {
       "type": "docker",
-      "image": "ubuntu"
+      "image": "ubuntu",
+      "portBindings": [
+        "${ftport}:${ftport}/tcp",
+        "${vport}:${vport}/tcp",
+        "${qport}:${qport}/tcp"
+      ]
     }
   ],
   "requirements": {

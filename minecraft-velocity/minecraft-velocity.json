@@ -97,7 +97,10 @@
     },
     {
       "type": "docker",
-      "image": "eclipse-temurin:17"
+      "image": "eclipse-temurin:17",
+      "portBindings": [
+        "${port}:${port}/tcp"
+      ]
     }
   ],
   "requirements": {},

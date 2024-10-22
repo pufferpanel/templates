@@ -191,7 +191,10 @@
     },
     {
       "type": "docker",
-      "image": "pufferpanel/ubuntu"
+      "image": "pufferpanel/ubuntu",
+      "portBindings": [
+        "${server-port}:${server-port}/tcp"
+      ]
     }
   ],
   "requirements": {

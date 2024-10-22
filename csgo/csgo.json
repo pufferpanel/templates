@@ -125,7 +125,12 @@
     },
     {
       "type": "docker",
-      "image": "steamcmd/steamcmd:ubuntu-20"
+      "image": "steamcmd/steamcmd:ubuntu-20",
+      "portBindings": [
+        "${port}:${port}/tcp",
+        "${clientport}:${clientport}/tcp",
+        "${tvport}:${tvport}/tcp"
+      ]
     }
   ],
   "requirements": {

@@ -93,7 +93,12 @@
     },
     {
       "type": "docker",
-      "image": "steamcmd/steamcmd"
+      "image": "steamcmd/steamcmd",
+      "portBindings": [
+        "${port}:${port}/tcp",
+        "${clientport}:${clientport}/tcp",
+        "${tvport}:${tvport}/tcp"
+      ]
     }
   ],
   "requirements": {

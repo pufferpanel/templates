@@ -59,7 +59,10 @@
     },
     {
       "type": "docker",
-      "image": "pufferpanel/ubuntu"
+      "image": "pufferpanel/ubuntu",
+      "portBindings": [
+        "${port}:${port}/tcp"
+      ]
     }
   ],
   "requirements": {

@@ -182,7 +182,10 @@
     },
     {
       "type": "docker",
-      "image": "mcr.microsoft.com/dotnet/runtime:${dotnetversion}"
+      "image": "mcr.microsoft.com/dotnet/runtime:${dotnetversion}",
+      "portBindings": [
+        "${port}:${port}/tcp"
+      ]
     }
   ],
   "requirements": {
