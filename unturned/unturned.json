@@ -187,7 +187,7 @@
       "type": "docker",
       "image": "steamcmd/steamcmd",
       "portBindings": [
-        "${port}:${port}/tcp"
+        "0.0.0.0:${port}:${port}/tcp"
       ]
     }
   ],

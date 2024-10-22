@@ -378,7 +378,7 @@
       "type": "docker",
       "image": "mcr.microsoft.com/dotnet/runtime:${dotnetversion}",
       "portBindings": [
-        "${port}:${port}/tcp"
+        "0.0.0.0:${port}:${port}/tcp"
       ]
     }
   ],

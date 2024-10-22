@@ -92,7 +92,7 @@
       "type": "docker",
       "image": "steamcmd/steamcmd",
       "portBindings": [
-        "${gameServerPort}:${gameServerPort/tcp"
+        "0.0.0.0:${gameServerPort}:${gameServerPort}/tcp"
       ]
     }
   ],

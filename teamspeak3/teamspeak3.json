@@ -105,9 +105,9 @@
       "type": "docker",
       "image": "ubuntu",
       "portBindings": [
-        "${ftport}:${ftport}/tcp",
-        "${vport}:${vport}/tcp",
-        "${qport}:${qport}/tcp"
+        "0.0.0.0:${ftport}:${ftport}/tcp",
+        "0.0.0.0:${vport}:${vport}/tcp",
+        "0.0.0.0:${qport}:${qport}/tcp"
       ]
     }
   ],
