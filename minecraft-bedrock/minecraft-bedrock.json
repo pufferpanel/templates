@@ -143,7 +143,7 @@
   "install": [
     {
       "type": "download",
-      "files": "https://minecraft.azureedge.net/bin-linux/bedrock-server-${version}.zip"
+      "files": "https://www.minecraft.net/bedrockdedicatedserver/bin-linux/bedrock-server-${version}.zip"
     },
     {
       "type": "command",
