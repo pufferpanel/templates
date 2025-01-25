@@ -1,0 +1,84 @@
+{
+  "name": "necesse",
+  "display": "Necesse",
+  "type": "srcds",
+  "install": [
+    {
+      "appId": "1169370",
+      "type": "steamgamedl"
+    },
+    {
+      "commands": [
+        "chmod +x ./StartServer-nogui.sh"
+      ],
+      "type": "command"
+    },
+    {
+      "commands": [
+        "chmod +x ./jre/bin/java"
+      ],
+      "type": "command"
+    }
+  ],
+  "run": {
+    "stop": "exit",
+    "command": "./StartServer-nogui.sh -localdir -port ${port} -slots ${slots} -pausewhenempty ${pause} -password ${password} -world ${world_name}",
+    "workingDirectory": "./",
+    "pre": [],
+    "post": [],
+    "environmentVars": {}
+  },
+  "data": {
+    "password": {
+      "type": "string",
+      "display": "Password",
+      "required": true,
+      "value": " "
+    },
+    "pause": {
+      "type": "option",
+      "display": "Pause When Empty",
+      "value": "0",
+      "options": [
+        {
+          "value": "1",
+          "display": "Yes"
+        },
+        {
+          "value": "0",
+          "display": "No"
+        }
+      ]
+    },
+    "port": {
+      "type": "integer",
+      "display": "Port",
+      "required": true,
+      "value": "14159"
+    },
+    "slots": {
+      "type": "integer",
+      "display": "Slots",
+      "required": true,
+      "value": "10"
+    },
+    "world_name": {
+      "type": "string",
+      "display": "World Name",
+      "required": true,
+      "value": "necesse"
+    }
+  },
+  "environment": {
+    "type": "tty"
+  },
+  "supportedEnvironments": [
+    {
+      "type": "tty"
+    }
+  ],
+  "requirements": {
+    "os": "linux",
+    "arch": "amd64"
+  }
+}
