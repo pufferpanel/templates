@@ -58,7 +58,7 @@
         "mkdir factorio",
         "tar --no-same-owner -xvf factorio.tar.xz",
         "cp factorio/data/server-settings.example.json factorio/data/server-settings.json",
-        "./factorio/bin/x64/factorio --create saves/default.zip"
+        "./factorio/bin/x64/factorio --create ${save}"
       ]
     }
   ],
