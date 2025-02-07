@@ -27,6 +27,24 @@
       "display": "Save File to Use",
       "internal": false
     },
+    "use-latest": {
+      "desc": "Should the server always start the latest saved game?",
+      "display": "",
+      "internal": false,
+      "required": true,
+      "value": "",
+      "type": "option",
+      "options": [
+        {
+          "value": "--start-server",
+          "display": "No"
+        },
+        {
+          "value": "--start-server-load-latest",
+          "display": "Yes"
+        }
+      ]
+    },
     "ip": {
       "value": "0.0.0.0",
       "required": true,
@@ -48,6 +66,13 @@
       "desc": "Server Settings File Location",
       "display": "Server Settings JSON",
       "internal": false
+    },
+    "startup-options": {
+      "value": "",
+      "required": false,
+      "desc": "Additional startup options (reference at https://wiki.factorio.com/Command_line_parameters)",
+      "display": "Options separated by a space",
+      "internal": false
     }
   },
   "install": [
@@ -63,7 +88,7 @@
     }
   ],
   "run": {
-    "command": "./factorio/bin/x64/factorio --port ${port} --bind ${ip} --start-server ${save} --server-settings ${server-settings}",
+    "command": "./factorio/bin/x64/factorio --port ${port} --bind ${ip} ${use-latest} ${save} --server-settings ${server-settings} ${startup-options}",
     "stop": "/quit"
   },
   "environment": {
