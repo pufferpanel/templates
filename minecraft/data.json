@@ -34,13 +34,13 @@
   {
     "name": "minecraft-minecraftforge",
     "variables": {
-      "memory": "2048",
+      "memory": "4096",
       "ip": "0.0.0.0",
       "port": "25565",
       "eula": true,
-      "version": "1.20.4",
+      "version": "1.21.4",
       "motd": "None",
-      "javaversion": "17",
+      "javaversion": "21",
       "modlauncher": "forge"
     },
     "environment": {
@@ -54,9 +54,9 @@
       "ip": "0.0.0.0",
       "port": "25565",
       "eula": true,
-      "version": "1.20.4",
+      "version": "1.21.4",
       "motd": "None",
-      "javaversion": "17",
+      "javaversion": "21",
       "modlauncher": "paper",
       "paperbuild": "478"
     },
@@ -80,8 +80,6 @@
       "type": "host"
     }
   },
-
-
 
   {
     "name": "minecraft-vanilla-docker",
@@ -120,15 +118,15 @@
   {
     "name": "minecraft-minecraftforge-docker",
     "variables": {
-      "memory": "2048",
+      "memory": "4096",
       "ip": "0.0.0.0",
       "port": "25565",
       "eula": true,
-      "version": "1.20.1",
+      "version": "1.21.4",
       "motd": "None",
-      "javaversion": "17",
+      "javaversion": "21",
       "modlauncher": "forge",
-      "forgebuild": "1.20.1-47.2.0"
+      "forgebuild": "1.21.4-54.1.1"
     },
     "environment": {
       "type": "docker",
