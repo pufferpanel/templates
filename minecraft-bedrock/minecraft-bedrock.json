@@ -156,9 +156,13 @@
       ]
     },
     {
+      "type": "extract",
+      "source": "bedrock-server-${version}.zip",
+      "destination": ""
+    },
+    {
       "type": "command",
       "commands": [
-        "unzip -o bedrock-server-${version}.zip",
         "chmod +x bedrock_server",
         "rm server.properties"
       ]
