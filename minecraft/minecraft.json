@@ -91,7 +91,7 @@
     },
     "paperbuild": {
       "type": "string",
-      "value": "478",
+      "value": "203",
       "display": "build",
       "desc": "Build of Paper to install (<a href='https://papermc.io/downloads'>Paper version build</a>). Must be specified as a build number, e.g. 484",
       "required": false,

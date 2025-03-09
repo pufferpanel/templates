@@ -163,8 +163,7 @@
     {
       "type": "command",
       "commands": [
-        "chmod +x bedrock_server",
-        "rm server.properties"
+        "chmod +x bedrock_server"
       ]
     },
     {

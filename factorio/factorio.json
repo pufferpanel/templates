@@ -38,18 +38,32 @@
   },
   "install": [
     {
+      "type": "download",
+      "files": [
+        "https://www.factorio.com/get-download/latest/headless/linux64"
+      ]
+    },
+    {
+      "type": "move",
+      "source": "factorio-headless_*.tar.xz",
+      "target": "factorio-install.tar.xz"
+    },
+    {
+      "type": "extract",
+      "source": "factorio-install.tar.xz",
+      "destination": "."
+    },
+    {
       "type": "command",
       "commands": [
-        "curl -L -o factorio.tar.xz https://www.factorio.com/get-download/latest/headless/linux64",
-        "mkdir factorio",
-        "tar --no-same-owner -xvf factorio.tar.xz",
-        "cp factorio/data/server-settings.example.json factorio/data/server-settings.json",
-        "./factorio/bin/x64/factorio --create saves/default.zip"
+        "cp --update=none factorio/data/server-settings.example.json factorio/data/server-settings.json",
+        "chmod +x factorio/bin/x64/factorio",
+        "factorio/bin/x64/factorio --create saves/default.zip"
       ]
     }
   ],
   "run": {
-    "command": "./factorio/bin/x64/factorio --port ${port} --bind ${ip} --start-server ${save} --server-settings ${server-settings}",
+    "command": "factorio/bin/x64/factorio --port ${port} --bind ${ip} --start-server ${save} --server-settings ${server-settings}",
     "stop": "/quit",
     "stdin": {
       "type": "stdin"

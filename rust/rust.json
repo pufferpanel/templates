@@ -148,8 +148,7 @@
       "type": "docker",
       "image": "steamcmd/steamcmd",
       "portBindings": [
-        "0.0.0.0:${port}:${port}/tcp",
-        "127.0.0.1:${RConPort}:${RConPort}/tcp"
+        "0.0.0.0:${port}:${port}/tcp"
       ]
     }
   ],
