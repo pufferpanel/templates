@@ -56,7 +56,7 @@
     {
       "type": "command",
       "commands": [
-        "cp --update=none factorio/data/server-settings.example.json factorio/data/server-settings.json",
+        "cp -n factorio/data/server-settings.example.json factorio/data/server-settings.json",
         "chmod +x factorio/bin/x64/factorio",
         "factorio/bin/x64/factorio --create saves/default.zip"
       ]
