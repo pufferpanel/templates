@@ -1,90 +1,95 @@
 {
-    "display": "Counter Strike 1.6",
-    "type": "goldsrc",
-    "data": {
-      "clientport": {
-        "type": "integer",
-        "desc": "What port to bind the clientport to",
-        "display": "Client Port",
-        "required": true,
-        "value": 27005
-      },
-      "ip": {
-        "type": "string",
-        "desc": "What IP to bind the server to",
-        "display": "IP",
-        "required": true,
-        "value": "0.0.0.0"
-      },
-      "loadMap": {
-        "type": "string",
-        "desc": "Map to load by default",
-        "display": "Map",
-        "required": true,
-        "value": "de_dust2"
-      },
-      "maxplayers": {
-        "type": "integer",
-        "desc": "Max players allowed on server",
-        "display": "Max Players",
-        "required": true,
-        "value": 20
-      },
-      "port": {
-        "type": "integer",
-        "desc": "What port to bind the server to",
-        "display": "Port",
-        "required": true,
-        "value": 27015
-      },
-      "tickrate": {
-        "type": "integer",
-        "desc": "Server tick speed, to use this value you need to download this addon: https://github.com/daemon32/tickrate_enabler/releases/tag/0.5",
-        "display": "Tickrate",
-        "required": true,
-        "value": 66
-      },
-      "tvport": {
-        "type": "integer",
-        "desc": "What port to bind the HLTV to",
-        "display": "HLTV Port",
-        "required": true,
-        "value": 27020
-      }
+  "display": "Counter Strike 1.6",
+  "type": "goldsrc",
+  "data": {
+    "clientport": {
+      "type": "integer",
+      "desc": "What port to bind the clientport to",
+      "display": "Client Port",
+      "required": true,
+      "value": 27005
     },
-    "install": [
-      {
-        "appId": "90",
-        "type": "steamgamedl"
-      }
-    ],
-    "run": {
-      "stop": "exit",
-      "command": "./hlds_run -game cstrike -ip ${ip} -port ${port} +clientport ${clientport} +tv_port ${tvport} +map ${loadMap} -maxplayers ${maxplayers} -tickrate ${tickrate} -norestart",
-      "pre": [],
-      "post": [],
-      "environmentVars": {}
+    "ip": {
+      "type": "string",
+      "desc": "What IP to bind the server to",
+      "display": "IP",
+      "required": true,
+      "value": "0.0.0.0"
     },
-    "environment": {
+    "loadMap": {
+      "type": "string",
+      "desc": "Map to load by default",
+      "display": "Map",
+      "required": true,
+      "value": "de_dust2"
+    },
+    "maxplayers": {
+      "type": "integer",
+      "desc": "Max players allowed on server",
+      "display": "Max Players",
+      "required": true,
+      "value": 20
+    },
+    "port": {
+      "type": "integer",
+      "desc": "What port to bind the server to",
+      "display": "Port",
+      "required": true,
+      "value": 27015
+    },
+    "tickrate": {
+      "type": "integer",
+      "desc": "Server tick speed, to use this value you need to download this addon: https://github.com/daemon32/tickrate_enabler/releases/tag/0.5",
+      "display": "Tickrate",
+      "required": true,
+      "value": 66
+    },
+    "tvport": {
+      "type": "integer",
+      "desc": "What port to bind the HLTV to",
+      "display": "HLTV Port",
+      "required": true,
+      "value": 27020
+    }
+  },
+  "install": [
+    {
+      "appId": "90",
+      "type": "steamgamedl"
+    },
+    {
+      "type": "command",
+      "commands": [
+        "cp -r .steam/linux32 .steam/sdk32"
+      ]
+    }
+  ],
+  "run": {
+    "stop": "exit",
+    "command": "./hlds_run -game cstrike -ip ${ip} -port ${port} +clientport ${clientport} +tv_port ${tvport} +map ${loadMap} -maxplayers ${maxplayers} -tickrate ${tickrate} -norestart",
+    "pre": [],
+    "post": [],
+    "environmentVars": {}
+  },
+  "environment": {
+    "type": "host"
+  },
+  "supportedEnvironments": [
+    {
       "type": "host"
     },
-    "supportedEnvironments": [
-      {
-        "type": "host"
-      },
-      {
-        "type": "docker",
-        "image": "steamcmd/steamcmd",
-        "portBindings": [
-          "0.0.0.0:${port}:${port}/tcp",
-          "0.0.0.0:${clientport}:${clientport}/tcp",
-          "0.0.0.0:${tvport}:${tvport}/tcp"
-        ]
-      }
-    ],
-    "requirements": {
-      "os": "linux",
-      "arch": "amd64"
+    {
+      "type": "docker",
+      "image": "steamcmd/steamcmd",
+      "portBindings": [
+        "0.0.0.0:${port}:${port}/tcp",
+        "0.0.0.0:${clientport}:${clientport}/tcp",
+        "0.0.0.0:${tvport}:${tvport}/tcp"
+      ]
     }
+  ],
+  "requirements": {
+    "os": "linux",
+    "arch": "amd64"
   }
-  
+}

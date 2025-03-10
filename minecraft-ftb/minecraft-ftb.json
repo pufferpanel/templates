@@ -107,15 +107,15 @@
       "if": "os == 'windows'",
       "type": "command",
       "commands": [
-        "./windows ${modpack_id} ${modpack_version} --auto --noscript"
+        "./windows_${modpack_id}_${modpack_version} --auto"
       ]
     },
     {
       "if": "os == 'linux'",
       "type": "command",
       "commands": [
-        "chmod u+x linux",
-        "./linux ${modpack_id} ${modpack_version} --auto --noscript"
+        "chmod u+x serverinstall_${modpack_id}_${modpack_version}",
+        "./serverinstall_${modpack_id}_${modpack_version} --auto"
       ]
     },
     {
