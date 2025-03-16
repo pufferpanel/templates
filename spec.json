@@ -327,7 +327,9 @@
             "spongedl",
             "steamgamedl",
             "writefile",
-            "resolveforgeversion"
+            "resolveforgeversion",
+            "resolveneoforgeversion",
+            "stdin"
           ]
         },
         "if": {
@@ -772,6 +774,50 @@
             },
             "required": [
               "outputVariable"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "resolveneoforgeversion"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "minecraftVersion": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string"
+              },
+              "outputVariable": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "outputVariable"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "stdin"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "command": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "command"
             ]
           }
         }
