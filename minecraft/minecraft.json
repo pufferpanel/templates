@@ -179,14 +179,14 @@
       "if": "modlauncher == 'fabric' && env == 'host'",
       "type": "command",
       "commands": [
-        "java${javaversion} -jar fabric-installer.jar server -mcversion ${version} -downloadMinecraft -noprofile"
+        "java${javaversion} -jar fabric-installer.jar server -mcversion ${version} -downloadMinecraft -noprofile -loader default"
       ]
     },
     {
       "if": "modlauncher == 'fabric' && env != 'host'",
       "type": "command",
       "commands": [
-        "java -jar fabric-installer.jar server -mcversion ${version} -downloadMinecraft -noprofile"
+        "java -jar fabric-installer.jar server -mcversion ${version} -downloadMinecraft -noprofile -loader default"
       ]
     },
     {
