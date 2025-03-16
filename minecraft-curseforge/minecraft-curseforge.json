@@ -103,11 +103,11 @@
     "command": [
       {
         "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true ${jvmArgs} -jar fabric-server-launch.jar nogui",
-        "if": "env == 'host' && file_exists('fabric-server-launch.jar')"
+        "if": "javaversion != '' && file_exists('fabric-server-launch.jar')"
       },
       {
         "command": "java -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true ${jvmArgs} -jar fabric-server-launch.jar nogui",
-        "if": "env != 'host' && file_exists('fabric-server-launch.jar')"
+        "if": "javaversion == '' && file_exists('fabric-server-launch.jar')"
       },
       {
         "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true ${jvmArgs} -jar server.jar nogui",
