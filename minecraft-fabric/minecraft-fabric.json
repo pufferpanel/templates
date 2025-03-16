@@ -62,7 +62,7 @@
     },
     {
       "commands": [
-        "java${javaversion} -jar fabric-installer.jar server -mcversion ${game-version} -downloadMinecraft -noprofile"
+        "java${javaversion} -jar fabric-installer.jar server -mcversion ${game-version} -downloadMinecraft -noprofile -loader latest"
       ],
       "type": "command"
     },
