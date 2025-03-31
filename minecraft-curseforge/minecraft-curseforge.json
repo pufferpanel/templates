@@ -147,12 +147,10 @@
     ],
     "pre": [
       {
-          "if": "!file_exists('server.jar')",
           "type": "resolveforgeversion",
           "outputVariable": "resolvedForgeVersion"
       },
       {
-        "if": "!file_exists('server.jar') && resolvedForgeVersion == ''",
         "type": "resolveneoforgeversion",
         "outputVariable": "resolvedNeoForgeVersion"
       }
