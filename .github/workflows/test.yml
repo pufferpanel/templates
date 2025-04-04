@@ -18,14 +18,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Get changed files
-        id: changed-files
-        uses: tj-actions/changed-files@v44
+      - name: json-yaml-validate
+        uses: GrantBirki/json-yaml-validate@v3.0.0
         with:
-          matrix: true
-          files: |
-            **.json
-            !spec.json
+          json_schema: ./spec.json
+          json_schema_version: draft-2020-12
+          exclude_file: exclude.txt
+          ajv_strict_mode: false
 
   run-tester:
     name: Run Tester
