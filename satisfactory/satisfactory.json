@@ -1,75 +1,83 @@
 {
-  "type": "srcds",
-  "display": "Satisfactory",
-  "data": {
-    "multihome": {
-      "type": "string",
-      "value": "0.0.0.0",
-      "display": "Multihome",
-      "desc": "Ip address to bind the server to",
-      "required": false,
-      "userEdit": false
+    "type": "srcds",
+    "display": "Satisfactory",
+    "data": {
+        "multihome": {
+            "type": "string",
+            "value": "0.0.0.0",
+            "display": "Multihome",
+            "desc": "Ip address to bind the server to",
+            "required": false,
+            "userEdit": false
+        },
+        "port": {
+            "type": "integer",
+            "value": 15777,
+            "display": "ServerQueryPort",
+            "desc": "Port to bind the server to",
+            "required": false,
+            "userEdit": false
+        }
     },
-    "port": {
-      "type": "integer",
-      "value": 15777,
-      "display": "ServerQueryPort",
-      "desc": "Port to bind the server to",
-      "required": false,
-      "userEdit": false
-    }
-  },
-  "install": [
-    {
-      "if": "env == 'host'",
-      "type": "steamgamedl",
-      "appId": "1690800"
+    "install": [
+        {
+            "if": "env == 'host'",
+            "type": "steamgamedl",
+            "appId": "1690800"
+        },
+        {
+            "if": "env == 'docker'",
+            "type": "command",
+            "commands": [
+                "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 1690800 +quit"
+            ]
+        },
+        {
+            "type": "command",
+            "commands": [
+                "chmod +x Engine/Binaries/Linux/FactoryServer-Linux-Shipping",
+                "mkdir -p ./FactoryGame/Saved/Config/LinuxServer/"
+            ]
+        }
+    ],
+    "uninstall": null,
+    "run": {
+        "command": "./Engine/Binaries/Linux/FactoryServer-Linux-Shipping FactoryGame ?listen -multihome=${multihome} -ServerQueryPort=${port}",
+        "stopCode": 15,
+        "environmentVars": {
+            "LD_LIBRARY_PATH": "./linux64"
+        },
+        "stdin": {
+            "type": "stdin"
+        },
+        "autostart": false,
+        "autorecover": false,
+        "autorestart": false
     },
-    {
-      "if": "env == 'docker'",
-      "type": "command",
-      "commands": [
-        "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 1690800 +quit"
-      ]
+    "environment": {
+        "type": "host"
     },
-    {
-      "type": "command",
-      "commands": [
-        "chmod +x Engine/Binaries/Linux/UnrealServer-Linux-Shipping",
-        "mkdir -p ./FactoryGame/Saved/Config/LinuxServer/"
-      ]
-    }
-  ],
-  "run": {
-    "command": "./Engine/Binaries/Linux/UnrealServer-Linux-Shipping FactoryGame ?listen -multihome=${multihome} -ServerQueryPort=${port}",
-    "stopCode": 15,
-    "environmentVars": {
-      "LD_LIBRARY_PATH": "./linux64"
+    "supportedEnvironments": [
+        {
+            "type": "host"
+        },
+        {
+            "type": "docker",
+            "portBindings": [
+                "0.0.0.0:${port}:${port}/tcp"
+            ],
+            "image": "steamcmd/steamcmd"
+        }
+    ],
+    "requirements": {
+        "os": "linux",
+        "arch": "amd64"
     },
-    "stdin": {
-      "type": "stdin"
+    "stats": {
+        "type": ""
     },
-    "autostart": false,
-    "autorecover": false,
-    "autorestart": false
-  },
-  "environment": {
-    "type": "host"
-  },
-  "supportedEnvironments": [
-    {
-      "type": "host"
+    "query": {
+        "type": ""
     },
-    {
-      "type": "docker",
-      "image": "steamcmd/steamcmd",
-      "portBindings": [
-        "0.0.0.0:${port}:${port}/tcp"
-      ]
-    }
-  ],
-  "requirements": {
-    "os": "linux",
-    "arch": "amd64"
-  }
+    "name": "Satisfactory Fixed"
 }
