@@ -1,0 +1,98 @@
+{
+  "name": "Vintage Story",
+  "display": "Vintage Story Server",
+  "type": "custom",
+  "install": [
+    {
+      "files": [
+        "https://cdn.vintagestory.at/gamefiles/stable/vs_server_linux-x64_${version}.tar.gz"
+      ],
+      "type": "download"
+    },
+    {
+      "target": "data",
+      "type": "mkdir"
+    },
+    {
+      "commands": [
+        "tar -xzf vs_server_linux-x64_${version}.tar.gz"
+      ],
+      "type": "command"
+    },
+    {
+      "commands": [
+        "chmod +x VintagestoryServer"
+      ],
+      "type": "command"
+    },
+    {
+      "commands": [
+        "wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh",
+        "chmod +x dotnet-install.sh",
+        "./dotnet-install.sh --channel 8.0 --runtime dotnet --version 8.0.15 --install-dir ./dotnet"
+      ],
+      "type": "command"
+    },
+    {
+      "target": "VintagestoryServer.runtimeconfig.json",
+      "text": "{\n  \"runtimeOptions\": {\n    \"tfm\": \"net8.0\",\n    \"framework\": {\n      \"name\": \"Microsoft.NETCore.App\",\n      \"version\": \"8.0.15\"\n    },\n    \"configProperties\": {\n      \"System.Reflection.Metadata.MetadataUpdater.IsSupported\": false,\n      \"System.Runtime.TieredPGO\": true\n    }\n  }\n}",
+      "type": "writefile"
+    },
+    {
+      "commands": [
+        "rm -f vs_server_linux-x64_${version}.tar.gz",
+        "rm -f dotnet-install.sh"
+      ],
+      "type": "command"
+    }
+  ],
+  "run": {
+    "stop": "/stop",
+    "command": "./dotnet/dotnet VintagestoryServer.dll --dataPath ./data --port ${Port} --maxclients ${MaxClients}",
+    "workingDirectory": ".",
+    "pre": [
+      {
+        "commands": [
+          "chmod +x ./VintagestoryServer"
+        ],
+        "type": "command"
+      }
+    ],
+    "post": [],
+    "environmentVars": {
+      "DOTNET_ROOT": "./dotnet"
+    }
+  },
+  "data": {
+    "MaxClients": {
+      "type": "integer",
+      "desc": "Maximum number of clients that can join the server",
+      "display": "MaxClients",
+      "required": true,
+      "value": "16",
+      "userEdit": true
+    },
+    "Port": {
+      "type": "integer",
+      "desc": "You can edit the port to any value, make sure TCP and UDP is enabled on the port",
+      "display": "Port",
+      "required": true,
+      "value": "42420",
+      "userEdit": true
+    },
+    "version": {
+      "type": "string",
+      "desc": "Version of Vintage Story to install (e.g., 1.20.10), you can find the latest version here: https://account.vintagestory.at/downloads",
+      "display": "version",
+      "required": true,
+      "value": "1.20.10",
+      "userEdit": true
+    }
+  },
+  "supportedEnvironments": [
+    {
+      "type": "standard"
+    }
+  ],
+  "requirements": {}
+}
