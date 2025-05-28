@@ -1,0 +1,185 @@
+{
+  "name": "vintagestory-docker",
+  "display": "Vintage Story v1.18.15+ (Docker)",
+  "type": "vintagestory",
+  "install": [
+    {
+      "files": [
+        "https://cdn.vintagestory.at/gamefiles/stable/vs_server_${S_ARCHIVE_PLATFORM}-x64_${S_ARCHIVE_VER}.tar.gz"
+      ],
+      "type": "download"
+    },
+    {
+      "target": "${serverpath}",
+      "type": "mkdir"
+    },
+    {
+      "target": "${datapath}",
+      "type": "mkdir"
+    },
+    {
+      "commands": [
+        "tar -zxvf vs_server_${S_ARCHIVE_PLATFORM}-x64_${S_ARCHIVE_VER}.tar.gz -C ./${serverpath}"
+      ],
+      "type": "command"
+    },
+    {
+      "target": "${datapath}/serverconfig.json",
+      "text": "{\n  \"FileEditWarning\": \"\",\n  \"ConfigVersion\": \"1.7\",\n  \"ServerName\": \"${x001_ServerName}\",\n  \"ServerUrl\": null,\n  \"ServerDescription\": null,\n  \"WelcomeMessage\": \"${x002_WelcomeMessage}\",\n  \"Ip\": null,\n  \"Port\": ${x003_Port},\n  \"Upnp\": ${x004_Upnp},\n  \"CompressPackets\": true,\n  \"AdvertiseServer\": false,\n  \"MaxClients\": ${x005_MaxClients},\n  \"PassTimeWhenEmpty\": false,\n  \"MasterserverUrl\": \"http://masterserver.vintagestory.at/api/v1/servers/\",\n  \"ModDbUrl\": \"https://mods.vintagestory.at/\",\n  \"ClientConnectionTimeout\": 150,\n  \"EntityDebugMode\": false,\n  \"Password\": ${x006_Password},\n  \"MapSizeX\": ${x007_MapSizeX},\n  \"MapSizeY\": ${x008_MapSizeY},\n  \"MapSizeZ\": ${x009_MapSizeZ},\n  \"ServerLanguage\": \"${x010_ServerLanguage}\",\n  \"MaxChunkRadius\": 12,\n  \"TickTime\": 33.333332,\n  \"SpawnCapPlayerScaling\": 0.5,\n  \"BlockTickChunkRange\": 5,\n  \"MaxMainThreadBlockTicks\": 10000,\n  \"RandomBlockTicksPerChunk\": 16,\n  \"BlockTickInterval\": 300,\n  \"SkipEveryChunkRow\": 0,\n  \"SkipEveryChunkRowWidth\": 0,\n  \"Roles\": [\n    {\n      \"Code\": \"suvisitor\",\n      \"PrivilegeLevel\": -1,\n      \"Name\": \"Survival Visitor\",\n      \"Description\": \"Can only visit this world and chat but not use/place/break anything\",\n      \"DefaultSpawn\": null,\n      \"ForcedSpawn\": null,\n      \"Privileges\": [\n        \"chat\"\n      ],\n      \"RuntimePrivileges\": [],\n      \"DefaultGameMode\": 1,\n      \"Color\": \"Green\",\n      \"LandClaimAllowance\": 0,\n      \"LandClaimMinSize\": {\n        \"X\": 5,\n        \"Y\": 5,\n        \"Z\": 5\n      },\n      \"LandClaimMaxAreas\": 3,\n      \"AutoGrant\": false\n    },\n    {\n      \"Code\": \"crvisitor\",\n      \"PrivilegeLevel\": -1,\n      \"Name\": \"Creative Visitor\",\n      \"Description\": \"Can only visit this world, chat and fly but not use/place/break anything\",\n      \"DefaultSpawn\": null,\n      \"ForcedSpawn\": null,\n      \"Privileges\": [\n        \"chat\"\n      ],\n      \"RuntimePrivileges\": [],\n      \"DefaultGameMode\": 2,\n      \"Color\": \"DarkGray\",\n      \"LandClaimAllowance\": 0,\n      \"LandClaimMinSize\": {\n        \"X\": 5,\n        \"Y\": 5,\n        \"Z\": 5\n      },\n      \"LandClaimMaxAreas\": 3,\n      \"AutoGrant\": false\n    },\n    {\n      \"Code\": \"limitedsuplayer\",\n      \"PrivilegeLevel\": -1,\n      \"Name\": \"Limited Survival Player\",\n      \"Description\": \"Can use/place/break blocks only in permitted areas (priv level -1), create/manage player groups and chat\",\n      \"DefaultSpawn\": null,\n      \"ForcedSpawn\": null,\n      \"Privileges\": [\n        \"controlplayergroups\",\n        \"manageplayergroups\",\n        \"chat\",\n        \"build\",\n        \"useblock\",\n        \"attackcreatures\",\n        \"attackplayers\",\n        \"selfkill\"\n      ],\n      \"RuntimePrivileges\": [],\n      \"DefaultGameMode\": 1,\n      \"Color\": \"White\",\n      \"LandClaimAllowance\": 0,\n      \"LandClaimMinSize\": {\n        \"X\": 5,\n        \"Y\": 5,\n        \"Z\": 5\n      },\n      \"LandClaimMaxAreas\": 3,\n      \"AutoGrant\": false\n    },\n    {\n      \"Code\": \"limitedcrplayer\",\n      \"PrivilegeLevel\": -1,\n      \"Name\": \"Limited Creative Player\",\n      \"Description\": \"Can use/place/break blocks in only in permitted areas (priv level -1), create/manage player groups, chat, fly and set his own game mode (= allows fly and change of move speed)\",\n      \"DefaultSpawn\": null,\n      \"ForcedSpawn\": null,\n      \"Privileges\": [\n        \"controlplayergroups\",\n        \"manageplayergroups\",\n        \"chat\",\n        \"build\",\n        \"useblock\",\n        \"gamemode\",\n        \"freemove\",\n        \"attackcreatures\",\n        \"attackplayers\",\n        \"selfkill\"\n      ],\n      \"RuntimePrivileges\": [],\n      \"DefaultGameMode\": 2,\n      \"Color\": \"LightGreen\",\n      \"LandClaimAllowance\": 0,\n      \"LandClaimMinSize\": {\n        \"X\": 5,\n        \"Y\": 5,\n        \"Z\": 5\n      },\n      \"LandClaimMaxAreas\": 3,\n      \"AutoGrant\": false\n    },\n    {\n      \"Code\": \"suplayer\",\n      \"PrivilegeLevel\": 0,\n      \"Name\": \"Survival Player\",\n      \"Description\": \"Can use/place/break blocks in unprotected areas (priv level 0), create/manage player groups and chat. Can claim an area of up to 8 chunks.\",\n      \"DefaultSpawn\": null,\n      \"ForcedSpawn\": null,\n      \"Privileges\": [\n        \"controlplayergroups\",\n        \"manageplayergroups\",\n        \"chat\",\n        \"areamodify\",\n        \"build\",\n        \"useblock\",\n        \"attackcreatures\",\n        \"attackplayers\",\n        \"selfkill\"\n      ],\n      \"RuntimePrivileges\": [],\n      \"DefaultGameMode\": 1,\n      \"Color\": \"White\",\n      \"LandClaimAllowance\": 262144,\n      \"LandClaimMinSize\": {\n        \"X\": 5,\n        \"Y\": 5,\n        \"Z\": 5\n      },\n      \"LandClaimMaxAreas\": 3,\n      \"AutoGrant\": false\n    },\n    {\n      \"Code\": \"crplayer\",\n      \"PrivilegeLevel\": 100,\n      \"Name\": \"Creative Player\",\n      \"Description\": \"Can use/place/break blocks in all areas (priv level 100), create/manage player groups, chat, fly and set his own game mode (= allows fly and change of move speed). Can claim an area of up to 40 chunks.\",\n      \"DefaultSpawn\": null,\n      \"ForcedSpawn\": null,\n      \"Privileges\": [\n        \"controlplayergroups\",\n        \"manageplayergroups\",\n        \"chat\",\n        \"areamodify\",\n        \"build\",\n        \"useblock\",\n        \"gamemode\",\n        \"freemove\",\n        \"attackcreatures\",\n        \"attackplayers\",\n        \"selfkill\"\n      ],\n      \"RuntimePrivileges\": [],\n      \"DefaultGameMode\": 2,\n      \"Color\": \"LightGreen\",\n      \"LandClaimAllowance\": 1310720,\n      \"LandClaimMinSize\": {\n        \"X\": 5,\n        \"Y\": 5,\n        \"Z\": 5\n      },\n      \"LandClaimMaxAreas\": 6,\n      \"AutoGrant\": false\n    },\n    {\n      \"Code\": \"sumod\",\n      \"PrivilegeLevel\": 200,\n      \"Name\": \"Survival Moderator\",\n      \"Description\": \"Can use/place/break blocks everywhere (priv level 200), create/manage player groups, chat, kick/ban players and do serverwide announcements. Can claim an area of up to 4 chunks.\",\n      \"DefaultSpawn\": null,\n      \"ForcedSpawn\": null,\n      \"Privileges\": [\n        \"controlplayergroups\",\n        \"manageplayergroups\",\n        \"chat\",\n        \"areamodify\",\n        \"build\",\n        \"useblock\",\n        \"buildblockseverywhere\",\n        \"useblockseverywhere\",\n        \"kick\",\n        \"ban\",\n        \"announce\",\n        \"readlists\",\n        \"attackcreatures\",\n        \"attackplayers\",\n        \"selfkill\"\n      ],\n      \"RuntimePrivileges\": [],\n      \"DefaultGameMode\": 1,\n      \"Color\": \"Cyan\",\n      \"LandClaimAllowance\": 1310720,\n      \"LandClaimMinSize\": {\n        \"X\": 5,\n        \"Y\": 5,\n        \"Z\": 5\n      },\n      \"LandClaimMaxAreas\": 60,\n      \"AutoGrant\": false\n    },\n    {\n      \"Code\": \"crmod\",\n      \"PrivilegeLevel\": 500,\n      \"Name\": \"Creative Moderator\",\n      \"Description\": \"Can use/place/break blocks everywhere (priv level 500), create/manage player groups, chat, kick/ban players, fly and set his own or other players game modes (= allows fly and change of move speed). Can claim an area of up to 40 chunks.\",\n      \"DefaultSpawn\": null,\n      \"ForcedSpawn\": null,\n      \"Privileges\": [\n        \"controlplayergroups\",\n        \"manageplayergroups\",\n        \"chat\",\n        \"areamodify\",\n        \"build\",\n        \"useblock\",\n        \"buildblockseverywhere\",\n        \"useblockseverywhere\",\n        \"kick\",\n        \"ban\",\n        \"gamemode\",\n        \"freemove\",\n        \"commandplayer\",\n        \"announce\",\n        \"readlists\",\n        \"attackcreatures\",\n        \"attackplayers\",\n        \"selfkill\"\n      ],\n      \"RuntimePrivileges\": [],\n      \"DefaultGameMode\": 2,\n      \"Color\": \"Cyan\",\n      \"LandClaimAllowance\": 1310720,\n      \"LandClaimMinSize\": {\n        \"X\": 5,\n        \"Y\": 5,\n        \"Z\": 5\n      },\n      \"LandClaimMaxAreas\": 60,\n      \"AutoGrant\": false\n    },\n    {\n      \"Code\": \"admin\",\n      \"PrivilegeLevel\": 99999,\n      \"Name\": \"Admin\",\n      \"Description\": \"Has all privileges, including giving other players admin status.\",\n      \"DefaultSpawn\": null,\n      \"ForcedSpawn\": null,\n      \"Privileges\": [\n        \"build\",\n        \"useblock\",\n        \"buildblockseverywhere\",\n        \"useblockseverywhere\",\n        \"attackplayers\",\n        \"attackcreatures\",\n        \"freemove\",\n        \"gamemode\",\n        \"pickingrange\",\n        \"chat\",\n        \"kick\",\n        \"ban\",\n        \"whitelist\",\n        \"setwelcome\",\n        \"announce\",\n        \"readlists\",\n        \"give\",\n        \"areamodify\",\n        \"setspawn\",\n        \"controlserver\",\n        \"tp\",\n        \"time\",\n        \"grantrevoke\",\n        \"root\",\n        \"commandplayer\",\n        \"controlplayergroups\",\n        \"manageplayergroups\",\n        \"selfkill\"\n      ],\n      \"RuntimePrivileges\": [],\n      \"DefaultGameMode\": 1,\n      \"Color\": \"LightBlue\",\n      \"LandClaimAllowance\": 2147483647,\n      \"LandClaimMinSize\": {\n        \"X\": 5,\n        \"Y\": 5,\n        \"Z\": 5\n      },\n      \"LandClaimMaxAreas\": 99999,\n      \"AutoGrant\": true\n    }\n  ],\n  \"DefaultRoleCode\": \"suplayer\",\n  \"ModPaths\": [\n    \"Mods\",\n    \"./data/Mods\"\n  ],\n  \"AntiAbuse\": 0,\n  \"WorldConfig\": {\n    \"Seed\": null,\n    \"SaveFileLocation\": \"./data/Saves/default.vcdbs\",\n    \"WorldName\": \"A new world\",\n    \"AllowCreativeMode\": true,\n    \"PlayStyle\": \"surviveandbuild\",\n    \"PlayStyleLangCode\": \"surviveandbuild-bands\",\n    \"WorldType\": \"standard\",\n    \"WorldConfiguration\": null,\n    \"MapSizeY\": null,\n    \"CreatedByPlayerName\": null,\n    \"DisabledMods\": null,\n    \"RepairMode\": false\n  },\n  \"NextPlayerGroupUid\": 10,\n  \"GroupChatHistorySize\": 20,\n  \"MaxOwnedGroupChannelsPerUser\": 10,\n  \"OnlyWhitelisted\": false,\n  \"WhitelistMode\": ${x011_WhitelistMode},\n  \"VerifyPlayerAuth\": true,\n  \"DefaultSpawn\": null,\n  \"AllowPvP\": ${x012_AllowPvP},\n  \"AllowFireSpread\": true,\n  \"AllowFallingBlocks\": true,\n  \"HostedMode\": false,\n  \"HostedModeAllowMods\": false,\n  \"StartupCommands\": null,\n  \"RepairMode\": false,\n  \"AnalyzeMode\": false,\n  \"CorruptionProtection\": true,\n  \"RegenerateCorruptChunks\": false,\n  \"ChatRateLimitMs\": 1000,\n  \"DieBelowDiskSpaceMb\": 400,\n  \"ModIdBlackList\": null,\n  \"ServerIdentifier\": null,\n  \"LogBlockBreakPlace\": false,\n  \"LogFileSplitAfterLine\": 500000,\n  \"DieAboveErrorCount\": 100000,\n  \"DieAboveMemoryUsageMb\": 50000\n}",
+      "type": "writefile"
+    }
+  ],
+  "run": {
+    "stop": "/stop",
+    "command": "./${serverpath}/VintagestoryServer --dataPath ./${datapath}",
+    "workingDirectory": "",
+    "pre": [],
+    "post": [],
+    "environmentVars": {}
+  },
+  "data": {
+    "S_ARCHIVE_BASE": {
+      "type": "string",
+      "desc": "Server with Archives",
+      "display": "Vintage Story Archive Path",
+      "required": true,
+      "value": "https://cdn.vintagestory.at/gamefiles/stable/",
+      "userEdit": true
+    },
+    "S_ARCHIVE_PLATFORM": {
+      "type": "string",
+      "desc": "linux / win",
+      "display": "Windows / Linux",
+      "required": true,
+      "value": "linux",
+      "userEdit": true
+    },
+    "S_ARCHIVE_VER": {
+      "type": "string",
+      "desc": "Stable Version for server",
+      "display": "Vintage Story Stable Version",
+      "required": true,
+      "value": "1.20.10",
+      "userEdit": true
+    },
+    "datapath": {
+      "type": "string",
+      "desc": "Directory for world data and settings",
+      "display": "Data Directory (Path)",
+      "required": true,
+      "value": "data",
+      "userEdit": true
+    },
+    "serverpath": {
+      "type": "string",
+      "desc": "Directory for server data",
+      "display": "Server Directory (Path)",
+      "required": true,
+      "value": "server",
+      "userEdit": true
+    },
+    "x001_ServerName": {
+      "type": "string",
+      "desc": "ServerName in serverconfig.json",
+      "display": "Server name",
+      "required": true,
+      "value": "Vintage Story Server",
+      "userEdit": true
+    },
+    "x002_WelcomeMessage": {
+      "type": "string",
+      "desc": "WelcomeMessage in serverconfig.json",
+      "display": "Welcome Message",
+      "required": true,
+      "value": "Welcome {0}, may you survive well and prosper",
+      "userEdit": true
+    },
+    "x003_Port": {
+      "type": "string",
+      "desc": "Port in serverconfig.json",
+      "display": "Server comunication port",
+      "required": true,
+      "value": "42420",
+      "userEdit": true
+    },
+    "x004_Upnp": {
+      "type": "boolean",
+      "desc": "Upnp in serverconfig.json",
+      "display": "Upnp Function",
+      "value": "false"
+    },
+    "x005_MaxClients": {
+      "type": "integer",
+      "desc": "MaxClients in serverconfig.json",
+      "display": "Max. players on server",
+      "required": true,
+      "value": "16",
+      "userEdit": true
+    },
+    "x006_Password": {
+      "type": "string",
+      "desc": "Password in serverconfig.json",
+      "display": "Server password",
+      "required": true,
+      "value": "null",
+      "userEdit": true
+    },
+    "x007_MapSizeX": {
+      "type": "string",
+      "desc": "MapSizeX in serverconfig.json",
+      "display": "World Size (X)",
+      "required": true,
+      "value": "1024000",
+      "userEdit": true
+    },
+    "x008_MapSizeY": {
+      "type": "string",
+      "desc": "MapSizeY in serverconfig.json",
+      "display": "World high (Y)",
+      "required": true,
+      "value": "256",
+      "userEdit": true
+    },
+    "x009_MapSizeZ": {
+      "type": "string",
+      "desc": "MapSizeZ in serverconfig.json",
+      "display": "World Size (Z)",
+      "required": true,
+      "value": "1024000",
+      "userEdit": true
+    },
+    "x010_ServerLanguage": {
+      "type": "string",
+      "desc": "ServerLanguage in serverconfig.json",
+      "display": "Server Language",
+      "required": true,
+      "value": "en",
+      "userEdit": true
+    },
+    "x011_WhitelistMode": {
+      "type": "integer",
+      "desc": "WhitelistMode in serverconfig.json (0=default | 1=off | 2=on])",
+      "display": "Whitelist Mode",
+      "required": true,
+      "value": "0",
+      "userEdit": true
+    },
+    "x012_AllowPvP": {
+      "type": "boolean",
+      "desc": "AllowPvP in serverconfig.json",
+      "display": "Allow PvP",
+      "value": "true"
+    }
+  },
+  "supportedEnvironments": [
+    {
+      "bindings": {},
+      "image": "mcr.microsoft.com/dotnet/aspnet:7.0.9-jammy-amd64",
+      "networkMode": "host",
+      "networkName": "",
+      "portBindings": [],
+      "type": "docker"
+    }
+  ],
+  "requirements": {}
+}
