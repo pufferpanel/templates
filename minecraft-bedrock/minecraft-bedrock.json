@@ -125,7 +125,7 @@
     },
     "version": {
       "type": "string",
-      "value": "1.19.50.02",
+      "value": "1.21.84.1",
       "display": "Bedrock Version",
       "desc": "Version of the Minecraft Bedrock Server to use",
       "required": true,
