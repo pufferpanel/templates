@@ -858,6 +858,12 @@
           },
           "image": {
             "type": "string"
+          },
+          "portBindings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         },
         "required": [
@@ -878,6 +884,15 @@
         "properties": {
           "type": {
             "const": "host"
+          },
+          "disableUnshare": {
+            "type": "boolean"
+          },
+          "mounts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         },
         "unevaluatedProperties": false

@@ -126,5 +126,7 @@
       ]
     }
   ],
-  "requirements": {}
+  "requirements": {
+    "arch": "amd64"
+  }
 }

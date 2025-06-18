@@ -190,6 +190,7 @@
   ],
   "requirements": {
     "os": "linux",
+    "arch": "amd64",
     "binaries": [
       "unzip"
     ]

@@ -80,7 +80,7 @@
     }
   ],
   "run": {
-    "command": "./valheim_server.x86_64 -name ${name} -port ${port} -world ${world} -password ${password} -public 1 > /dev/null &",
+    "command": "./valheim_server.x86_64 -name ${name} -port ${port} -world ${world} -password ${password} -public 1",
     "stopCode": 2,
     "environmentVars": {
       "LD_LIBRARY_PATH": "./linux64:$LD_LIBRARY_PATH"

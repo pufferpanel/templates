@@ -45,21 +45,6 @@
     }
   },
   {
-    "name": "minecraft-curseforge-520914",
-    "variables": {
-      "memory": "4096",
-      "ip": "0.0.0.0",
-      "port": "25565",
-      "eula": true,
-      "javaversion": "17",
-      "projectId": "520914",
-      "fileId": "0"
-    },
-    "environment": {
-      "type": "host"
-    }
-  },
-  {
     "name": "minecraft-curseforge-466901",
     "variables": {
       "memory": "4096",
