@@ -71,7 +71,7 @@
       "ip": "0.0.0.0",
       "port": "25565",
       "eula": true,
-      "version": "1.20.4",
+      "version": "1.21.5",
       "motd": "None",
       "javaversion": "17",
       "modlauncher": "spigot"
@@ -158,7 +158,7 @@
       "ip": "0.0.0.0",
       "port": "25565",
       "eula": true,
-      "version": "1.20.4",
+      "version": "1.21.5",
       "motd": "None",
       "javaversion": "17",
       "modlauncher": "spigot"
