@@ -58,20 +58,5 @@
     "environment": {
       "type": "host"
     }
-  },
-  {
-    "name": "minecraft-curseforge-887839",
-    "variables": {
-      "memory": "4096",
-      "ip": "0.0.0.0",
-      "port": "25565",
-      "eula": true,
-      "javaversion": "17",
-      "projectId": "887839",
-      "fileId": "0"
-    },
-    "environment": {
-      "type": "host"
-    }
   }
 ]
