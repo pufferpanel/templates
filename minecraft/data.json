@@ -111,8 +111,7 @@
       "modlauncher": ""
     },
     "environment": {
-      "type": "docker",
-      "image": "eclipse-temurin:${javaversion}"
+      "type": "docker"
     }
   },
   {
@@ -128,8 +127,7 @@
       "modlauncher": "fabric"
     },
     "environment": {
-      "type": "docker",
-      "image": "eclipse-temurin:${javaversion}"
+      "type": "docker"
     }
   },
   {
@@ -146,8 +144,7 @@
       "forgebuild": "1.21.4-54.1.1"
     },
     "environment": {
-      "type": "docker",
-      "image": "eclipse-temurin:${javaversion}"
+      "type": "docker"
     }
   },
   {
@@ -164,8 +161,7 @@
       "paperbuild": "203"
     },
     "environment": {
-      "type": "docker",
-      "image": "eclipse-temurin:${javaversion}"
+      "type": "docker"
     }
   },
   {
@@ -181,8 +177,7 @@
       "modlauncher": "spigot"
     },
     "environment": {
-      "type": "docker",
-      "image": "eclipse-temurin:${javaversion}"
+      "type": "docker"
     }
   },
   {
@@ -199,8 +194,7 @@
       "paperbuild": "232"
     },
     "environment": {
-      "type": "docker",
-      "image": "eclipse-temurin:${javaversion}"
+      "type": "docker"
     }
   }
 ]
