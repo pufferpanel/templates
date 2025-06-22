@@ -115,7 +115,7 @@
       "type": "command",
       "commands": [
         "chmod u+x serverinstall_${modpack_id}_${modpack_version}",
-        "./serverinstall_${modpack_id}_${modpack_version} --auto"
+        "./serverinstall_${modpack_id}_${modpack_version} --auto --force"
       ]
     },
     {
