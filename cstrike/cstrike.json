@@ -2,13 +2,6 @@
   "display": "Counter Strike 1.6",
   "type": "goldsrc",
   "data": {
-    "clientport": {
-      "type": "integer",
-      "desc": "What port to bind the clientport to",
-      "display": "Client Port",
-      "required": true,
-      "value": 27005
-    },
     "ip": {
       "type": "string",
       "desc": "What IP to bind the server to",
@@ -29,13 +22,6 @@
       "display": "Max Players",
       "required": true,
       "value": 20
-    },
-    "port": {
-      "type": "integer",
-      "desc": "What port to bind the server to",
-      "display": "Port",
-      "required": true,
-      "value": 27015
     },
     "tickrate": {
       "type": "integer",
@@ -66,7 +52,7 @@
   ],
   "run": {
     "stop": "exit",
-    "command": "./hlds_run -game cstrike -ip ${ip} -port ${port} +clientport ${clientport} +tv_port ${tvport} +map ${loadMap} -maxplayers ${maxplayers} -tickrate ${tickrate} -norestart",
+    "command": "./hlds_run -game cstrike -ip ${ip} -port 27015 +clientport 27005 +tv_port 27020 +map ${loadMap} -maxplayers ${maxplayers} -tickrate ${tickrate} -norestart",
     "pre": [],
     "post": [],
     "environmentVars": {}
@@ -82,9 +68,9 @@
       "type": "docker",
       "image": "steamcmd/steamcmd",
       "portBindings": [
-        "0.0.0.0:${port}:${port}/tcp",
-        "0.0.0.0:${clientport}:${clientport}/tcp",
-        "0.0.0.0:${tvport}:${tvport}/tcp"
+        "0.0.0.0:27015:27015/tcp",
+        "0.0.0.0:27005:27005/tcp",
+        "0.0.0.0:27020:27020/tcp"
       ]
     }
   ],
