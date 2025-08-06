@@ -159,14 +159,14 @@
     {
       "type": "download",
       "files": [
-        "http://files.sa-mp.com/samp037svr_R2-1.tar.gz"
+        "https://gta-multiplayer.cz/downloads/samp037svr_R2-2-1.tar.gz"
       ]
     },
     {
       "type": "command",
       "commands": [
-        "tar -xvzf samp037svr_R2-1.tar.gz --strip=1 samp03",
-        "rm samp037svr_R2-1.tar.gz"
+        "tar -xvzf samp037svr_R2-2-1.tar.gz --strip=1 samp03",
+        "rm samp037svr_R2-2-1.tar.gz"
       ]
     },
     {
