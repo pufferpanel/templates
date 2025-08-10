@@ -2,17 +2,9 @@
   "type": "srcds",
   "display": "Satisfactory",
   "data": {
-    "multihome": {
-      "type": "string",
-      "value": "0.0.0.0",
-      "display": "Multihome",
-      "desc": "Ip address to bind the server to",
-      "required": false,
-      "userEdit": false
-    },
     "port": {
       "type": "integer",
-      "value": 15777,
+      "value": 7777,
       "display": "ServerQueryPort",
       "desc": "Port to bind the server to",
       "required": false,
@@ -35,13 +27,13 @@
     {
       "type": "command",
       "commands": [
-        "chmod +x Engine/Binaries/Linux/UnrealServer-Linux-Shipping",
+        "chmod +x Engine/Binaries/Linux/FactoryServer-Linux-Shipping",
         "mkdir -p ./FactoryGame/Saved/Config/LinuxServer/"
       ]
     }
   ],
   "run": {
-    "command": "./Engine/Binaries/Linux/UnrealServer-Linux-Shipping FactoryGame ?listen -multihome=${multihome} -ServerQueryPort=${port}",
+    "command": "./Engine/Binaries/Linux/FactoryServer-Linux-Shipping FactoryGame ?listen -ServerQueryPort=${port}",
     "stopCode": 15,
     "environmentVars": {
       "LD_LIBRARY_PATH": "./linux64"
