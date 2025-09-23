@@ -1,112 +1,97 @@
 {
-    "type": "custom",
-    "display": "Vintage Story Server",
-    "data": {
-        "MaxClients": {
-            "type": "integer",
-            "value": 16,
-            "display": "MaxClients",
-            "desc": "Maximum number of clients that can join the server",
-            "required": true,
-            "userEdit": true
-        },
-        "Port": {
-            "type": "integer",
-            "value": 42420,
-            "display": "Port",
-            "desc": "You can edit the port to any value, make sure TCP and UDP is enabled on the port",
-            "required": true,
-            "userEdit": true
-        },
-        "version": {
-            "type": "string",
-            "value": "1.20.10",
-            "display": "version",
-            "desc": "Version of Vintage Story to install (e.g., 1.20.10), you can find the latest version here: https://account.vintagestory.at/downloads",
-            "required": true,
-            "userEdit": true
-        }
+  "type": "custom",
+  "display": "Vintage Story Server",
+  "data": {
+    "maxPlayers": {
+      "type": "integer",
+      "value": 16,
+      "display": "Max Players",
+      "desc": "Maximum number of players that can join the server",
+      "required": true,
+      "userEdit": true
     },
-    "install": [
-        {
-            "type": "download",
-            "files": [
-                "https://cdn.vintagestory.at/gamefiles/stable/vs_server_linux-x64_${version}.tar.gz"
-            ]
-        },
-        {
-            "type": "mkdir",
-            "target": "data"
-        },
-        {
-            "type": "command",
-            "commands": [
-                "tar -xzf vs_server_linux-x64_${version}.tar.gz"
-            ]
-        },
-        {
-            "type": "command",
-            "commands": [
-                "chmod +x VintagestoryServer"
-            ]
-        },
-        {
-            "type": "command",
-            "commands": [
-                "wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh",
-                "chmod +x dotnet-install.sh",
-                "./dotnet-install.sh --channel 8.0 --runtime dotnet --version 8.0.15 --install-dir ./dotnet"
-            ]
-        },
-        {
-            "type": "writefile",
-            "target": "VintagestoryServer.runtimeconfig.json",
-            "text": "{\n  \"runtimeOptions\": {\n    \"tfm\": \"net8.0\",\n    \"framework\": {\n      \"name\": \"Microsoft.NETCore.App\",\n      \"version\": \"8.0.15\"\n    },\n    \"configProperties\": {\n      \"System.Reflection.Metadata.MetadataUpdater.IsSupported\": false,\n      \"System.Runtime.TieredPGO\": true\n    }\n  }\n}"
-        },
-        {
-            "type": "command",
-            "commands": [
-                "rm -f vs_server_linux-x64_${version}.tar.gz",
-                "rm -f dotnet-install.sh"
-            ]
-        }
+    "port": {
+      "type": "integer",
+      "value": 42420,
+      "display": "Port",
+      "desc": "Port used to connect to the server",
+      "required": true,
+      "userEdit": false
+    },
+    "version": {
+      "type": "string",
+      "value": "1.20.10",
+      "display": "version",
+      "desc": "Version of Vintage Story to install (e.g., 1.20.10), you can find the latest version here: https://account.vintagestory.at/downloads",
+      "required": true,
+      "userEdit": true
+    }
+  },
+  "install": [
+    {
+      "type": "download",
+      "files": [
+        "https://cdn.vintagestory.at/gamefiles/stable/vs_server_linux-x64_${version}.tar.gz"
+      ]
+    },
+    {
+      "type": "mkdir",
+      "target": "data"
+    },
+    {
+      "type": "command",
+      "commands": [
+        "tar -xzf vs_server_linux-x64_${version}.tar.gz"
+      ]
+    },
+    {
+      "type": "command",
+      "commands": [
+        "chmod +x VintagestoryServer"
+      ]
+    },
+    {
+      "type": "command",
+      "commands": [
+        "wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh",
+        "chmod +x dotnet-install.sh",
+        "./dotnet-install.sh --channel 8.0 --runtime dotnet --version 8.0.15 --install-dir ./dotnet"
+      ]
+    },
+    {
+      "type": "writefile",
+      "target": "VintagestoryServer.runtimeconfig.json",
+      "text": "{\n  \"runtimeOptions\": {\n    \"tfm\": \"net8.0\",\n    \"framework\": {\n      \"name\": \"Microsoft.NETCore.App\",\n      \"version\": \"8.0.15\"\n    },\n    \"configProperties\": {\n      \"System.Reflection.Metadata.MetadataUpdater.IsSupported\": false,\n      \"System.Runtime.TieredPGO\": true\n    }\n  }\n}"
+    },
+    {
+      "type": "command",
+      "commands": [
+        "rm -f vs_server_linux-x64_${version}.tar.gz",
+        "rm -f dotnet-install.sh"
+      ]
+    }
+  ],
+  "run": {
+    "command": "./dotnet/dotnet VintagestoryServer.dll --dataPath ./data --port ${port} --maxclients ${maxPlayers}",
+    "stop": "/stop",
+    "pre": [
+      {
+        "type": "command",
+        "commands": [
+          "chmod +x ./VintagestoryServer"
+        ]
+      }
     ],
-    "uninstall": null,
-    "run": {
-        "command": "./dotnet/dotnet VintagestoryServer.dll --dataPath ./data --port ${Port} --maxclients ${MaxClients}",
-        "stop": "/stop",
-        "pre": [
-            {
-                "type": "command",
-                "commands": [
-                    "chmod +x ./VintagestoryServer"
-                ]
-            }
-        ],
-        "environmentVars": {
-            "DOTNET_ROOT": "./dotnet"
-        },
-        "stdin": {
-            "type": "stdin"
-        },
-        "autostart": false,
-        "autorecover": false,
-        "autorestart": false
-    },
-    "environment": {
-        "type": ""
-    },
-    "supportedEnvironments": [
-        {
-            "type": "host"
-        }
-    ],
-    "requirements": {},
-    "stats": {
-        "type": ""
-    },
-    "query": {
-        "type": ""
-    },
-    "name": "Vintage Story"
+    "environmentVars": {
+      "DOTNET_ROOT": "./dotnet"
+    }
+  },
+  "environment": {
+    "type": "host"
+  },
+  "supportedEnvironments": [
+    {
+      "type": "host"
+    }
+  ]
 }

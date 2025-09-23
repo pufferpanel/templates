@@ -1,11 +1,15 @@
 {
-    "json.schemas": [
-        {
-            "fileMatch": [
-                "/*.json",
-                "!data.json"
-            ],
-            "url": "./spec.json"
-        }
-    ]
+  "json.schemas": [
+    {
+      "fileMatch": [
+        "/*.json",
+        "!data.json"
+      ],
+      "url": "./spec.json"
+    }
+  ],
+  "[json]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2
+  }
 }
