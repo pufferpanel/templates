@@ -15,7 +15,7 @@
       "type": "string",
       "value": "",
       "display": "Forge Version",
-      "desc": "Version of Forge to install (may be located <a href='http://files.minecraftforge.net/#Downloads'>here</a>",
+      "desc": "Version of Forge to install (may be located <a href='http://files.minecraftforge.net/#Downloads'>here</a>). Example: (1.21.8-58.1.0)",
       "required": false,
       "userEdit": true
     },
