@@ -323,13 +323,15 @@
             "mkdir",
             "mojangdl",
             "move",
-            "sleep",
-            "spongedl",
-            "steamgamedl",
-            "writefile",
+            "neoforgedl",
+            "paperdl",
             "resolveforgeversion",
             "resolveneoforgeversion",
-            "stdin"
+            "sleep",
+            "spongedl",
+            "stdin",
+            "steamgamedl",
+            "writefile"
           ]
         },
         "if": {
@@ -655,100 +657,54 @@
           "if": {
             "properties": {
               "type": {
-                "const": "sleep"
+                "const": "neoforgedl"
               }
             }
           },
           "then": {
             "properties": {
-              "duration": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "duration"
-            ]
-          }
-        },
-        {
-          "if": {
-            "properties": {
-              "type": {
-                "const": "spongedl"
-              }
-            }
-          },
-          "then": {
-            "properties": {
-              "recommended": {
-                "type": "boolean"
-              },
-              "spongeType": {
-                "enum": [
-                  "spongeforge",
-                  "spongevanilla"
-                ]
-              },
-              "spongeVersion": {
-                "type": "string"
-              },
               "minecraftVersion": {
                 "type": "string"
-              }
-            },
-            "required": [
-              "spongeType"
-            ]
-          }
-        },
-        {
-          "if": {
-            "properties": {
-              "type": {
-                "const": "steamgamedl"
-              }
-            }
-          },
-          "then": {
-            "properties": {
-              "appId": {
+              },
+              "version": {
                 "type": "string"
               },
-              "username": {
-                "type": "string"
-              },
-              "password": {
-                "type": "string"
-              },
-              "extraArgs": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "appId"
-            ]
-          }
-        },
-        {
-          "if": {
-            "properties": {
-              "type": {
-                "const": "writefile"
-              }
-            }
-          },
-          "then": {
-            "properties": {
               "target": {
                 "type": "string"
               },
-              "text": {
+              "outputVariable": {
                 "type": "string"
               }
             },
             "required": [
-              "target",
-              "text"
+              "target"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "paperdl"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "minecraftVersion": {
+                "type": "string"
+              },
+              "build": {
+                "type": "string"
+              },
+              "target": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "build",
+              "minecraftVersion",
+              "target"
             ]
           }
         },
@@ -806,6 +762,56 @@
           "if": {
             "properties": {
               "type": {
+                "const": "sleep"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "duration": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "duration"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "spongedl"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "recommended": {
+                "type": "boolean"
+              },
+              "spongeType": {
+                "enum": [
+                  "spongeforge",
+                  "spongevanilla"
+                ]
+              },
+              "spongeVersion": {
+                "type": "string"
+              },
+              "minecraftVersion": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "spongeType"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
                 "const": "stdin"
               }
             }
@@ -818,6 +824,57 @@
             },
             "required": [
               "command"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "steamgamedl"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "appId": {
+                "type": "string"
+              },
+              "username": {
+                "type": "string"
+              },
+              "password": {
+                "type": "string"
+              },
+              "extraArgs": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "appId"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "writefile"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "target": {
+                "type": "string"
+              },
+              "text": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "target",
+              "text"
             ]
           }
         }
