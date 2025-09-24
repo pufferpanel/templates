@@ -91,9 +91,9 @@
     },
     "paperbuild": {
       "type": "string",
-      "value": "203",
+      "value": "latest",
       "display": "build",
-      "desc": "Build of Paper to install (<a href='https://papermc.io/downloads'>Paper version build</a>). Must be specified as a build number, e.g. 484",
+      "desc": "Build of Paper to install (<a href='https://papermc.io/downloads'>Paper version build</a>). Must be specified as a build number, e.g. `484`, or `latest`",
       "required": false,
       "userEdit": true
     },
@@ -231,16 +231,10 @@
     },
     {
       "if": "modlauncher == 'paper'",
-      "type": "download",
-      "files": [
-        "https://api.papermc.io/v2/projects/paper/versions/${version}/builds/${paperbuild}/downloads/paper-${version}-${paperbuild}.jar"
-      ]
-    },
-    {
-      "if": "modlauncher == 'paper'",
-      "type": "move",
-      "target": "server.jar",
-      "source": "paper-*.jar"
+      "type": "paperdl",
+      "version": "${paperbuild}",
+      "minecraftVersion": "${version}",
+      "target": "server.jar"
     },
     {
       "if": "modlauncher == 'spigot'",
