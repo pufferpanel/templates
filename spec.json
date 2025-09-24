@@ -685,6 +685,25 @@
           "if": {
             "properties": {
               "type": {
+                "const": "nodejsdl"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "version": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "version"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
                 "const": "paperdl"
               }
             }
