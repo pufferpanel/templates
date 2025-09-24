@@ -324,6 +324,7 @@
             "mojangdl",
             "move",
             "neoforgedl",
+            "nodejsdl",
             "paperdl",
             "resolveforgeversion",
             "resolveneoforgeversion",
@@ -678,6 +679,25 @@
             },
             "required": [
               "target"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "nodejsdl"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "version": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "version"
             ]
           }
         },
