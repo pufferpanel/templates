@@ -694,9 +694,6 @@
               "minecraftVersion": {
                 "type": "string"
               },
-              "version": {
-                "type": "string"
-              },
               "build": {
                 "type": "string"
               },

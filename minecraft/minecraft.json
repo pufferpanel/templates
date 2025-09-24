@@ -232,7 +232,7 @@
     {
       "if": "modlauncher == 'paper'",
       "type": "paperdl",
-      "version": "${paperbuild}",
+      "build": "${paperbuild}",
       "minecraftVersion": "${version}",
       "target": "server.jar"
     },
