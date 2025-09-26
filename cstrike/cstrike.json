@@ -50,12 +50,6 @@
       "commands": [
         "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 90 +quit"
       ]
-    },
-    {
-      "type": "command",
-      "commands": [
-        "cp -r .steam/linux32 .steam/sdk32"
-      ]
     }
   ],
   "run": {
