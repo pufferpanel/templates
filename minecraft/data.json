@@ -24,7 +24,7 @@
       "eula": true,
       "version": "1.20.1",
       "motd": "None",
-      "javaversion": "17",
+      "javaversion": "21",
       "modlauncher": "fabric"
     },
     "environment": {
@@ -73,7 +73,7 @@
       "eula": true,
       "version": "1.21.5",
       "motd": "None",
-      "javaversion": "17",
+      "javaversion": "21",
       "modlauncher": "spigot"
     },
     "environment": {
@@ -89,7 +89,7 @@
       "eula": true,
       "version": "1.21.4",
       "motd": "None",
-      "javaversion": "17",
+      "javaversion": "21",
       "modlauncher": "paper",
       "paperbuild": "232"
     },
@@ -123,7 +123,7 @@
       "eula": true,
       "version": "1.20.1",
       "motd": "None",
-      "javaversion": "17",
+      "javaversion": "21",
       "modlauncher": "fabric"
     },
     "environment": {
@@ -173,7 +173,7 @@
       "eula": true,
       "version": "1.21.5",
       "motd": "None",
-      "javaversion": "17",
+      "javaversion": "21",
       "modlauncher": "spigot"
     },
     "environment": {
@@ -189,7 +189,7 @@
       "eula": true,
       "version": "1.21.4",
       "motd": "None",
-      "javaversion": "17",
+      "javaversion": "21",
       "modlauncher": "paper",
       "paperbuild": "232"
     },

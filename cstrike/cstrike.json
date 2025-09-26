@@ -40,8 +40,16 @@
   },
   "install": [
     {
-      "appId": "90",
-      "type": "steamgamedl"
+      "if": "env == 'host'",
+      "type": "steamgamedl",
+      "appId": "90"
+    },
+    {
+      "if": "env == 'docker'",
+      "type": "command",
+      "commands": [
+        "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 90 +quit"
+      ]
     },
     {
       "type": "command",

@@ -21,6 +21,12 @@
       "commands": [
         "chmod +x 7DaysToDieServer.x86_64"
       ]
+    },
+    {
+      "type": "command",
+      "commands": [
+        "cp -r .steam/linux32 .steam/sdk32"
+      ]
     }
   ],
   "run": {
