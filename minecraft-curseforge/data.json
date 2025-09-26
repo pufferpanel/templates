@@ -1,20 +1,5 @@
 [
   {
-    "name": "minecraft-curseforge-715572",
-    "variables": {
-      "memory": "4096",
-      "ip": "0.0.0.0",
-      "port": "25565",
-      "eula": true,
-      "javaversion": "17",
-      "projectId": "715572",
-      "fileId": "0"
-    },
-    "environment": {
-      "type": "host"
-    }
-  },
-  {
     "name": "minecraft-curseforge-876781",
     "variables": {
       "memory": "4096",
