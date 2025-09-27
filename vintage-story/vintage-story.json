@@ -25,9 +25,45 @@
       "desc": "Version of Vintage Story to install (e.g., 1.20.10), you can find the latest version here: https://account.vintagestory.at/downloads",
       "required": true,
       "userEdit": true
+    },
+    "dotnetversion": {
+      "type": "string",
+      "value": "8.0.15",
+      "display": ".NET Runtime Version",
+      "desc": ".NET Runtime Version",
+      "required": true,
+      "userEdit": false
     }
   },
   "install": [
+    {
+      "if": "env == 'host'",
+      "type": "download",
+      "files": [
+        "https://dotnetcli.azureedge.net/dotnet/Runtime/${dotnetversion}/dotnet-runtime-${dotnetversion}-linux-amd64.tar.gz"
+      ]
+    },
+    {
+      "if": "env == 'host'",
+      "type": "command",
+      "commands": [
+        "rm -rf dotnet",
+        "mkdir -p dotnet"
+      ]
+    },
+    {
+      "if": "env == 'host'",
+      "type": "extract",
+      "source": "dotnet-runtime-${dotnetversion}-linux-amd64.tar.gz",
+      "destination": "dotnet"
+    },
+    {
+      "if": "env == 'host'",
+      "type": "command",
+      "commands": [
+        "rm -rf dotnet-runtime-${dotnetversion}-linux-amd64.tar.gz"
+      ]
+    },
     {
       "type": "download",
       "files": [
@@ -45,43 +81,14 @@
       ]
     },
     {
-      "type": "command",
-      "commands": [
-        "chmod +x VintagestoryServer"
-      ]
-    },
-    {
-      "type": "command",
-      "commands": [
-        "wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh",
-        "chmod +x dotnet-install.sh",
-        "./dotnet-install.sh --channel 8.0 --runtime dotnet --version 8.0.15 --install-dir ./dotnet"
-      ]
-    },
-    {
       "type": "writefile",
       "target": "VintagestoryServer.runtimeconfig.json",
       "text": "{\n  \"runtimeOptions\": {\n    \"tfm\": \"net8.0\",\n    \"framework\": {\n      \"name\": \"Microsoft.NETCore.App\",\n      \"version\": \"8.0.15\"\n    },\n    \"configProperties\": {\n      \"System.Reflection.Metadata.MetadataUpdater.IsSupported\": false,\n      \"System.Runtime.TieredPGO\": true\n    }\n  }\n}"
-    },
-    {
-      "type": "command",
-      "commands": [
-        "rm -f vs_server_linux-x64_${version}.tar.gz",
-        "rm -f dotnet-install.sh"
-      ]
     }
   ],
   "run": {
     "command": "./dotnet/dotnet VintagestoryServer.dll --dataPath ./data --port ${port} --maxclients ${maxPlayers}",
     "stop": "/stop",
-    "pre": [
-      {
-        "type": "command",
-        "commands": [
-          "chmod +x ./VintagestoryServer"
-        ]
-      }
-    ],
     "environmentVars": {
       "DOTNET_ROOT": "./dotnet"
     }
@@ -92,6 +99,16 @@
   "supportedEnvironments": [
     {
       "type": "host"
+    },
+    {
+      "type": "docker",
+      "image": "mcr.microsoft.com/dotnet/runtime:${dotnetversion}",
+      "portBindings": [
+        "0.0.0.0:${port}:${port}/tcp"
+      ]
     }
-  ]
+  ],
+  "requirements": {
+    "arch": "amd64"
+  }
 }
