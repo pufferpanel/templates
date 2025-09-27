@@ -40,7 +40,7 @@
       "if": "env == 'host'",
       "type": "download",
       "files": [
-        "https://dotnetcli.azureedge.net/dotnet/Runtime/${dotnetversion}/dotnet-runtime-${dotnetversion}-linux-amd64.tar.gz"
+        "https://dotnetcli.azureedge.net/dotnet/Runtime/${dotnetversion}/dotnet-runtime-${dotnetversion}-linux-x64.tar.gz"
       ]
     },
     {
@@ -54,14 +54,14 @@
     {
       "if": "env == 'host'",
       "type": "extract",
-      "source": "dotnet-runtime-${dotnetversion}-linux-amd64.tar.gz",
+      "source": "dotnet-runtime-${dotnetversion}-linux-x64.tar.gz",
       "destination": "dotnet"
     },
     {
       "if": "env == 'host'",
       "type": "command",
       "commands": [
-        "rm -rf dotnet-runtime-${dotnetversion}-linux-amd64.tar.gz"
+        "rm -rf dotnet-runtime-${dotnetversion}-linux-x64.tar.gz"
       ]
     },
     {
