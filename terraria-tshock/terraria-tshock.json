@@ -7,7 +7,7 @@
             "type": "option",
             "value": "amd64",
             "display": "Architecture",
-            "desc": "Architecture your machine",
+            "desc": "Architecture of your machine",
             "required": true,
             "userEdit": false,
             "options": [
