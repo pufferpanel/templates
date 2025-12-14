@@ -72,6 +72,10 @@
           "display": "MinecraftForge"
         },
         {
+          "value": "neoforge",
+          "display": "NeoForge"
+        },
+        {
           "value": "paper",
           "display": "Paper"
         },
@@ -87,6 +91,14 @@
       "display": "MOTD message of the day",
       "desc": "This is the message that is displayed in the server list of the client, below the name. The MOTD does support <a href='https://minecraft.gamepedia.com/Formatting_codes' target='_blank'>color and formatting codes</a>.",
       "required": true,
+      "userEdit": true
+    },
+    "neobuild": {
+      "type": "string",
+      "value": "",
+      "display": "NeoForge Version",
+      "desc": "<a href='https://neoforged.net/'>Version of NeoForge</a> to install. Example: `21.10.64` or `22.11.6-beta`",
+      "required": false,
       "userEdit": true
     },
     "paperbuild": {
@@ -146,6 +158,15 @@
       "description": "Settings if using MinecraftForge",
       "variables": [
         "forgebuild"
+      ],
+      "order": 2
+    },
+    {
+      "if": "modlauncher == 'neoforge'",
+      "display": "NeoForge",
+      "description": "Settings if using NeoForge",
+      "variables": [
+        "neobuild"
       ],
       "order": 2
     },
@@ -230,6 +251,28 @@
       "target": "server.jar"
     },
     {
+      "if": "modlauncher == 'neoforge'",
+      "type": "neoforgedl",
+      "target": "installer.jar",
+      "version": "${neobuild}",
+      "minecraftVersion": "${version}",
+      "outputVariable": "resolvedNeoForgeVersion"
+    },
+    {
+      "if": "modlauncher == 'neoforge' && env == 'host'",
+      "type": "command",
+      "commands": [
+        "java${javaversion} -jar installer.jar --installServer"
+      ]
+    },
+    {
+      "if": "modlauncher == 'neoforge' && env != 'host'",
+      "type": "command",
+      "commands": [
+        "java -jar installer.jar --installServer"
+      ]
+    },    
+    {
       "if": "modlauncher == 'paper'",
       "type": "paperdl",
       "build": "${paperbuild}",
@@ -294,20 +337,16 @@
         "if": "env != 'host' && file_exists('server.jar')"
       },
       {
-        "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true ${jvmArgs} @libraries/net/minecraftforge/forge/${resolvedForgeVersion}/win_args.txt nogui",
-        "if": "env == 'host' && modlauncher == 'forge' && os == 'windows' && file_exists('libraries/net/minecraftforge/forge/' + resolvedForgeVersion + '/win_args.txt')"
-      },
-      {
         "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true ${jvmArgs} @libraries/net/minecraftforge/forge/${resolvedForgeVersion}/unix_args.txt nogui",
         "if": "env == 'host' && modlauncher == 'forge' && file_exists('libraries/net/minecraftforge/forge/' + resolvedForgeVersion + '/unix_args.txt')"
       },
       {
-        "command": "java -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true ${jvmArgs} @libraries/net/minecraftforge/forge/${resolvedForgeVersion}/win_args.txt nogui",
-        "if": "env != 'host' && modlauncher == 'forge' && os == 'windows' && file_exists('libraries/net/minecraftforge/forge/' + resolvedForgeVersion + '/win_args.txt')"
-      },
-      {
         "command": "java -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true ${jvmArgs} @libraries/net/minecraftforge/forge/${resolvedForgeVersion}/unix_args.txt nogui",
         "if": "env != 'host' && modlauncher == 'forge' && file_exists('libraries/net/minecraftforge/forge/' + resolvedForgeVersion+ '/unix_args.txt')"
+      },
+      {
+        "command": "java -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true ${jvmArgs} @libraries/net/neoforged/neoforge/${resolvedNeoForgeVersion}/unix_args.txt nogui",
+        "if": "env != 'host' && modlauncher == 'neoforge' && file_exists('libraries/net/neoforged/neoforge/' + resolvedNeoForgeVersion+ '/unix_args.txt')"
       },
       {
         "command": "java -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true ${jvmArgs} -jar server.jar nogui"
@@ -320,6 +359,13 @@
           "minecraftVersion": "${version}",
           "version": "${forgebuild}",
           "outputVariable": "resolvedForgeVersion"
+      },
+      {
+          "if": "modlauncher == 'neoforge'",
+          "type": "resolveneoforgeversion",
+          "minecraftVersion": "${version}",
+          "version": "${neobuild}",
+          "outputVariable": "resolvedNeoForgeVersion"
       }
     ],
     "stop": "stop",
