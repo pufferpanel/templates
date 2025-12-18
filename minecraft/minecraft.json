@@ -97,7 +97,7 @@
       "type": "string",
       "value": "",
       "display": "NeoForge Version",
-      "desc": "<a href='https://neoforged.net/'>Version of NeoForge</a> to install. Example: `21.10.64` or `22.11.6-beta`",
+      "desc": "<a href='https://neoforged.net/'>Version of NeoForge</a> to install. Example: `21.10.64` or `21.11.6-beta`",
       "required": false,
       "userEdit": true
     },
