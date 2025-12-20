@@ -1,0 +1,169 @@
+{
+    "type": "valheim",
+    "display": "ValheimPlus Dedicated Server",
+    "data": {
+        "bepinex_url": {
+            "type": "string",
+            "value": "https://thunderstore.io/package/download/denikson/BepInExPack_Valheim/5.4.2333/",
+            "display": "BepInEx Pack URL",
+            "desc": "BepInExPack_Valheim download URL (required dependency for ValheimPlus).",
+            "required": true,
+            "userEdit": true
+        },
+        "name": {
+            "type": "string",
+            "value": "Valheim Server",
+            "display": "Name",
+            "desc": "Choose your servername.",
+            "required": true,
+            "userEdit": true
+        },
+        "password": {
+            "type": "string",
+            "value": "valheim",
+            "display": "Password",
+            "desc": "Set the server password.",
+            "required": true,
+            "userEdit": true
+        },
+        "port": {
+            "type": "integer",
+            "value": 2456,
+            "display": "Port",
+            "desc": "What port to bind the server to.",
+            "required": true,
+            "userEdit": false
+        },
+        "valheimplus_config_url": {
+            "type": "string",
+            "value": "https://github.com/Grantapher/ValheimPlus/releases/download/0.9.16.2/valheim_plus.cfg",
+            "display": "ValheimPlus Config URL",
+            "desc": "ValheimPlus configuration file URL.",
+            "required": true,
+            "userEdit": true
+        },
+        "valheimplus_url": {
+            "type": "string",
+            "value": "https://thunderstore.io/package/download/Grantapher/ValheimPlus_Grantapher_Temporary/9.16.2/",
+            "display": "ValheimPlus URL",
+            "desc": "ValheimPlus modpack download URL.",
+            "required": true,
+            "userEdit": true
+        },
+        "world": {
+            "type": "string",
+            "value": "VHWorld",
+            "display": "World",
+            "desc": "What worldmap name to use.",
+            "required": true,
+            "userEdit": true
+        }
+    },
+    "install": [
+        {
+            "if": "env == 'host'",
+            "type": "steamgamedl",
+            "appId": "896660"
+        },
+        {
+            "if": "env == 'docker'",
+            "type": "command",
+            "commands": [
+                "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 896660 +quit"
+            ]
+        },
+        {
+            "type": "download",
+            "files": [
+                "${bepinex_url}"
+            ]
+        },
+        {
+            "type": "command",
+            "commands": [
+                "unzip ./denikson-BepInExPack_Valheim*.zip -d ./bepinex_temp/",
+                "cp -r ./bepinex_temp/BepInExPack_Valheim/. ./",
+                "rm -r ./bepinex_temp",
+                "rm -f ./denikson-BepInExPack_Valheim*.zip"
+            ]
+        },
+        {
+            "type": "download",
+            "files": [
+                "${valheimplus_url}"
+            ]
+        },
+        {
+            "type": "command",
+            "commands": [
+                "unzip ./Grantapher-ValheimPlus_Grantapher_Temporary*.zip -d ./valheimplus_temp/",
+                "cp -r ./valheimplus_temp/. ./",
+                "rm -r ./valheimplus_temp",
+                "rm -f ./Grantapher-ValheimPlus_Grantapher_Temporary*.zip"
+            ]
+        },
+        {
+            "type": "download",
+            "files": [
+                "${valheimplus_config_url}"
+            ]
+        },
+        {
+            "type": "command",
+            "commands": [
+                "mkdir -p ./BepInEx/config",
+                "mv ./valheim_plus.cfg ./BepInEx/config/valheim_plus.cfg"
+            ]
+        },
+        {
+            "type": "command",
+            "commands": [
+                "chmod +x valheim_server.x86_64",
+            ]
+        }
+    ],
+    "uninstall": null,
+    "run": {
+        "command": "./valheim_server.x86_64 -name ${name} -port ${port} -world ${world} -password ${password} -public 1",
+        "stopCode": 2,
+        "environmentVars": {
+            "DOORSTOP_ENABLED": "1",
+            "DOORSTOP_TARGET_ASSEMBLY": "./BepInEx/core/BepInEx.Preloader.dll",
+            "LD_LIBRARY_PATH": "./doorstop_libs:./linux64:$LD_LIBRARY_PATH",
+            "LD_PRELOAD": "libdoorstop_x64.so:$LD_PRELOAD",
+            "SteamAppId": "892970"
+        },
+        "stdin": {
+            "type": "stdin"
+        },
+        "autostart": false,
+        "autorecover": false,
+        "autorestart": false
+    },
+    "environment": {
+        "type": "host"
+    },
+    "supportedEnvironments": [
+        {
+            "type": "host"
+        }
+    ],
+    "requirements": {
+        "os": "linux",
+        "arch": "amd64",
+        "binaries": [
+            "unzip"
+        ]
+    },
+    "stats": {
+        "type": ""
+    },
+    "query": {
+        "type": ""
+    },
+    "keepAlive": {
+        "frequency": "",
+        "command": ""
+    },
+    "name": "ValheimPlus"
+}
