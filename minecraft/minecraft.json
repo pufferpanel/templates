@@ -133,6 +133,15 @@
       "required": true,
       "userEdit": true,
       "internal": true
+    },
+    "resolvedNeoForgeVersion": {
+      "type": "string",
+      "value": "",
+      "display": "Resolved NeoForge Version",
+      "desc": "Internal, resolved version of NeoForge",
+      "required": true,
+      "userEdit": true,
+      "internal": true
     }
   },
   "groups": [
