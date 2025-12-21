@@ -95,7 +95,7 @@
       {
         "command": "dotnet VintagestoryServer.dll --dataPath ./data --port ${port} --maxclients ${maxPlayers}"
       }
-    ]
+    ],
     "stop": "/stop",
     "environmentVars": {
       "DOTNET_ROOT": "./dotnet"
