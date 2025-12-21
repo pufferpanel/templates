@@ -12,10 +12,6 @@
       "userEdit": false,
       "options": [
         {
-          "value": "arm",
-          "display": "arm"
-        },
-        {
           "value": "arm64",
           "display": "arm64"
         },
@@ -161,7 +157,15 @@
     }
   ],
   "run": {
-    "command": "./TShock.Server -ip ${ip} -port ${port} -world ${rootDir}/worlds/world.wld -autocreate ${wsize} ${secure} --stats-optout",
+    "command": [
+      {
+        "command": "./TShock.Server -ip ${ip} -port ${port} -world /pufferpanel/worlds/world.wld -autocreate ${wsize} ${secure} --stats-optout"
+        "if": "env == 'docker'"
+      },
+      {
+        "command": "./TShock.Server -ip ${ip} -port ${port} -world ${rootDir}/worlds/world.wld -autocreate ${wsize} ${secure} --stats-optout"
+      }
+    ],
     "stop": "exit",
     "environmentVars": {
       "DOTNET_ROOT": "./dotnet"
