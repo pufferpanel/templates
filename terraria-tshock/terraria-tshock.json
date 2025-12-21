@@ -159,7 +159,7 @@
   "run": {
     "command": [
       {
-        "command": "./TShock.Server -ip ${ip} -port ${port} -world /pufferpanel/worlds/world.wld -autocreate ${wsize} ${secure} --stats-optout"
+        "command": "./TShock.Server -ip ${ip} -port ${port} -world /pufferpanel/worlds/world.wld -autocreate ${wsize} ${secure} --stats-optout",
         "if": "env == 'docker'"
       },
       {
