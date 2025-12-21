@@ -87,7 +87,15 @@
     }
   ],
   "run": {
-    "command": "./dotnet/dotnet VintagestoryServer.dll --dataPath ./data --port ${port} --maxclients ${maxPlayers}",
+    "command": [
+      {
+        "command": "./dotnet/dotnet VintagestoryServer.dll --dataPath ./data --port ${port} --maxclients ${maxPlayers}",
+        "if": "env == 'host'"
+      },
+      {
+        "command": "dotnet VintagestoryServer.dll --dataPath ./data --port ${port} --maxclients ${maxPlayers}",
+      }
+    ]
     "stop": "/stop",
     "environmentVars": {
       "DOTNET_ROOT": "./dotnet"
