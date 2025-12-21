@@ -93,7 +93,7 @@
         "if": "env == 'host'"
       },
       {
-        "command": "dotnet VintagestoryServer.dll --dataPath ./data --port ${port} --maxclients ${maxPlayers}",
+        "command": "dotnet VintagestoryServer.dll --dataPath ./data --port ${port} --maxclients ${maxPlayers}"
       }
     ]
     "stop": "/stop",
