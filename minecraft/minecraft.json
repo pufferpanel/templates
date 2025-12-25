@@ -78,10 +78,6 @@
         {
           "value": "paper",
           "display": "Paper"
-        },
-        {
-          "value": "spigot",
-          "display": "Spigot"
         }
       ]
     },
