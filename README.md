@@ -6,7 +6,7 @@ Make sure to include a `README.md` file in your template's directory to document
 
 Please see [this documentation](https://docs.pufferpanel.com/en/latest/templates/templates.html) for instructions on how to create your own template.
 
-# Formattng rules
+# Formatting rules
 
 Order of fields:
 - Type (required)
