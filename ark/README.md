@@ -12,7 +12,7 @@ This template makes it possible to run [ARK: Survival Evolved](http://playark.co
   echo "* hard nofile 1000000" >> /etc/security/limits.conf
   echo "session required pam_limits.so" >> /etc/pam.d/common-session
   ```
-* For more information about prerequisites for ARK server follow this link. https://ark.gamepedia.com/Dedicated_Server_Setup#Prerequisites_2
+* For more information about prerequisites for ARK server follow this link. https://ark.wiki.gg/Dedicated_Server_Setup#Prerequisites_2
 
 
 Current map values available are:
