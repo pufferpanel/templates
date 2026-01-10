@@ -1,14 +1,13 @@
 [
   {
-    "name": "minecraft-ftb",
+    "name": "minecraft-ftb-108",
     "variables": {
-      "memory": "2048",
+      "memory": "4096",
       "ip": "0.0.0.0",
       "port": "25565",
       "eula": true,      
       "motd": "None",
       "javaversion": "17",
-      "version": "1.19.2-43.2.21",
       "modpack_id": "108",
       "modpack_version": "6940"
     },
@@ -17,17 +16,49 @@
     }
   },
   {
-    "name": "minecraft-ftb-docker",
+    "name": "minecraft-ftb-docker-108",
     "variables": {
-      "memory": "2048",
+      "memory": "4096",
       "ip": "0.0.0.0",
       "port": "25565",
       "eula": true,      
       "motd": "None",
       "javaversion": "17",
-      "version": "1.19.2-43.2.21",
       "modpack_id": "108",
       "modpack_version": "6940"
+    },
+    "environment": {
+      "type": "docker",
+      "image": "eclipse-temurin:${javaversion}"
+    }
+  },
+  {
+    "name": "minecraft-ftb-130",
+    "variables": {
+      "memory": "4096",
+      "ip": "0.0.0.0",
+      "port": "25565",
+      "eula": true,      
+      "motd": "None",
+      "javaversion": "21",
+      "modpack_id": "130",
+      "modpack_version": "100171"
+    },
+    "environment": {
+      "type": "host"
+    }
+  },
+  {
+    "name": "minecraft-ftb-docker-130",
+    "variables": {
+      "memory": "4096",
+      "ip": "0.0.0.0",
+      "port": "25565",
+      "eula": true,      
+      "motd": "None",
+      "javaversion": "21",
+      "modpack_id": "130",
+      "modpack_version": "100171"
     },
     "environment": {
       "type": "docker",

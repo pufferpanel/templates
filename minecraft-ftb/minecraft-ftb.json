@@ -71,8 +71,8 @@
       "type": "string",
       "value": "",
       "display": "Version",
-      "desc": "Version of Forge that is shipped with the modpack with no spaces (may be located <a href='http://files.minecraftforge.net/'>here</a>",
-      "required": true,
+      "desc": "Version of Forge or NeoForge that is shipped with the modpack with no spaces (optional)",
+      "required": false,
       "userEdit": false
     }
   },
@@ -119,10 +119,16 @@
       ]
     },
     {
-      "if": "version == ''",
       "type": "move",
       "target": "server.jar",
       "source": "forge-*.jar"
+    },
+    {
+      "if": "!file_exists('server.jar')",
+      "type": "download",
+      "files": [
+        "https://github.com/neoforged/ServerStarterJar/releases/download/0.1.34/server.jar"
+      ]
     },
     {
       "type": "writefile",
@@ -137,14 +143,6 @@
   ],
   "run": {
     "command": [
-      {
-        "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/minecraftforge/forge/${version}/unix_args.txt nogui",
-        "if": "env == 'host' && file_exists('libraries/net/minecraftforge/forge/' + version + '/unix_args.txt')"
-      },
-      {
-        "command": "java -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true @libraries/net/minecraftforge/forge/${version}/unix_args.txt nogui",
-        "if": "env != 'host' && file_exists('libraries/net/minecraftforge/forge/' + version + '/unix_args.txt')"
-      },
       {
         "command": "java${javaversion} -Xmx${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar server.jar",
         "if": "env == 'host'"
