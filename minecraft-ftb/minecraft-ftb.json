@@ -66,14 +66,6 @@
       "desc": "What port to bind the server to",
       "required": true,
       "userEdit": false
-    },
-    "version": {
-      "type": "string",
-      "value": "",
-      "display": "Version",
-      "desc": "Version of Forge or NeoForge that is shipped with the modpack with no spaces (optional)",
-      "required": false,
-      "userEdit": false
     }
   },
   "install": [
