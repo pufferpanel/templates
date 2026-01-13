@@ -1,0 +1,72 @@
+{
+  "name": "Hytale",
+  "display": "Hytale Server",
+  "type": "none",
+  "install": [
+    {
+      "commands": [
+        "echo '--- MANUAL INSTALL START ---'",
+        "echo '1. Downloading Hytale Downloader...'",
+        "curl -L -o hytale-downloader.zip https://downloader.hytale.com/hytale-downloader.zip",
+        "python3 -m zipfile -e hytale-downloader.zip .",
+        "chmod +x hytale-downloader-linux-amd64",
+        "mv hytale-downloader-linux-amd64 hytale-downloader",
+        "rm hytale-downloader.zip",
+        "echo '2. Downloading Game Files...'",
+        "./hytale-downloader -skip-update-check -download-path game.zip",
+        "python3 -m zipfile -e game.zip .",
+        "echo '3. Downloading Java 25 Manually...'",
+        "curl -L -o java25.tar.gz https://api.adoptium.net/v3/binary/latest/25/ga/linux/x64/jdk/hotspot/normal/eclipse",
+        "mkdir -p local_java",
+        "tar -xzf java25.tar.gz -C local_java --strip-components=1",
+        "chmod +x local_java/bin/java",
+        "rm java25.tar.gz",
+        "echo '--- INSTALL COMPLETE ---'"
+      ],
+      "type": "command"
+    },
+    {
+      "target": "start.sh",
+      "text": "#!/bin/bash\n\n# 1. Force use of our local Java\nJAVA_BIN=\"./local_java/bin/java\"\n\necho \"--- LAUNCHING WITH LOCAL JAVA ---\"\n\n# 2. Verify it exists\nif [ -f \"$JAVA_BIN\" ]; then\n    echo \"Local Java found!\"\n    $JAVA_BIN -version\nelse\n    echo \"CRITICAL ERROR: ./local_java/bin/java does not exist.\"\n    echo \"Installation failed. Check install logs.\"\n    exit 1\nfi\n\n# 3. Enter Server folder and start\ncd Server\necho \"Starting HytaleServer.jar...\"\n\n# Note: We use ../local_java because we are inside the Server folder now\n../$JAVA_BIN -Xms1G -Xmx${ram}G -jar HytaleServer.jar --assets ../Assets.zip --disable-sentry --auth-mode authenticated --bind 0.0.0.0:${port}",
+      "type": "writefile"
+    },
+    {
+      "commands": [
+        "chmod +x start.sh"
+      ],
+      "type": "command"
+    }
+  ],
+  "run": {
+    "stop": "/stop",
+    "command": "./start.sh",
+    "workingDirectory": "",
+    "pre": [],
+    "post": [],
+    "environmentVars": {
+      "port": "${port}",
+      "ram": "${ram}"
+    }
+  },
+  "data": {
+    "port": {
+      "type": "integer",
+      "display": "Port",
+      "value": 5520
+    },
+    "ram": {
+      "type": "integer",
+      "display": "RAM (GB)",
+      "value": 4
+    }
+  },
+  "environment": {
+    "type": "standard"
+  },
+  "supportedEnvironments": [
+    {
+      "type": "standard"
+    }
+  ],
+  "requirements": {}
+}
