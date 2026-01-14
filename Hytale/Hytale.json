@@ -39,7 +39,7 @@
   ],
   "run": {
     "stop": "/stop",
-    "command": "./start.sh",
+    "command": "../local_java/bin/java -Xms1G -Xmx${ram}G -jar HytaleServer.jar --assets ../Assets.zip --disable-sentry --auth-mode authenticated --bind 0.0.0.0:${port} --backup --backup-dir ../Backups --backup-frequency 30",
     "workingDirectory": "",
     "pre": [],
     "post": [],
