@@ -5,7 +5,7 @@
   "install": [
     {
       "commands": [
-        "echo '--- MANUAL INSTALL START ---'",
+        "echo '--- INSTALL START ---'",
         "echo '1. Downloading Hytale Downloader...'",
         "curl -L -o hytale-downloader.zip https://downloader.hytale.com/hytale-downloader.zip",
         "unzip -o hytale-downloader.zip",
@@ -25,22 +25,11 @@
       ],
       "type": "command"
     }
-
-      "target": "start.sh",
-      "text": "#!/bin/bash\n\nJAVA_BIN=\"./local_java/bin/java\"\n\necho \"--- LAUNCHING WITH LOCAL JAVA ---\"\n\nif [ ! -f \"$JAVA_BIN\" ]; then\n  echo \"CRITICAL ERROR: local Java missing!\"\n  exit 1\nfi\n\n$JAVA_BIN -version\n\ncd Server\n\n../$JAVA_BIN -Xms1G -Xmx${ram}G -jar HytaleServer.jar --assets ../Assets.zip --disable-sentry --auth-mode authenticated --bind 0.0.0.0:${port} --backup --backup-dir ../Backups --backup-frequency 30",
-
-    },
-    {
-      "commands": [
-        "chmod +x start.sh"
-      ],
-
-    }
   ],
   "run": {
     "stop": "/stop",
     "command": "../local_java/bin/java -Xms1G -Xmx${ram}G -jar HytaleServer.jar --assets ../Assets.zip --disable-sentry --auth-mode authenticated --bind 0.0.0.0:${port} --backup --backup-dir ../Backups --backup-frequency 30",
-    "workingDirectory": "",
+    "workingDirectory": "Server",
     "pre": [],
     "post": [],
     "environmentVars": {
@@ -77,4 +66,4 @@
     "os": "linux",
     "arch": "amd64"
   }
-}
+} 
