@@ -265,7 +265,7 @@
     },
     "dotnetversion": {
       "type": "string",
-      "value": "6.0.14",
+      "value": "8.0.0",
       "display": ".NET Runtime Version",
       "desc": ".NET Runtime Version",
       "required": true,
