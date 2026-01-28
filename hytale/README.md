@@ -1,46 +1,423 @@
-# Hytale Server Template for PufferPanel
-
-Unofficial template for running Hytale Server (Early Access) on PufferPanel.
-
-## Features
-- Automatic official server download
-- Docker and Host support
-- Panel-based configuration
-- Optional backup system
-- Configurable UDP port
-- Auth mode support (authenticated / offline)
-
-## Requirements
-- PufferPanel >= 2.x
-- Linux amd64
-- Docker (optional)
-
-## Notes
-- This template does not include proprietary files
-- Server downloads directly from official Hypixel source
-- Template is experimental (Early Access)
-
-## Legal Notice
-Hytale is a registered trademark of Hypixel Studios.
-This template is not officially affiliated with Hypixel Studios.
-
-## Configurable Settings
-
-### Server Configuration
-- **Max Players**: Set the maximum number of concurrent players
-- **Game Mode**: Choose your game mode
-- **Memory**: Allocate RAM for the server (in MB)
-- **MOTD**: Set your server's Message of the Day
-- **Extra Arguments**: Add additional startup arguments
-
-### Security & Access
-- **Authentication Mode**: Choose between authenticated or offline mode
-- **Allow OP**: Enable/disable operator permissions
-- **Password**: Server password (if required)
-
-### Backup
-- **Enable Backups**: Automatic world backups
-- **Backup Directory**: Custom backup location
-- **Backup Frequency**: Interval in minutes
-
----
+{
+    "type": "hytale",
+    "display": "Hytale Server (Early Access)",
+    "icon": "gamepad",
+    "data": {
+        "allow_op": {
+            "type": "boolean",
+            "value": false,
+            "display": "Allow OP",
+            "required": true,
+            "userEdit": true
+        },
+        "auth_mode": {
+            "type": "option",
+            "value": "authenticated",
+            "display": "Authentication Mode",
+            "required": true,
+            "userEdit": true,
+            "options": [
+                {
+                    "value": "authenticated",
+                    "display": "Authenticated"
+                },
+                {
+                    "value": "offline",
+                    "display": "Offline"
+                }
+            ]
+        },
+        "backup": {
+            "type": "boolean",
+            "value": true,
+            "display": "Enable Backup",
+            "required": true,
+            "userEdit": true
+        },
+        "backup_dir": {
+            "type": "string",
+            "value": "../backup/",
+            "display": "Backup Folder",
+            "required": false,
+            "userEdit": true
+        },
+        "backup_frequency": {
+            "type": "integer",
+            "value": 15,
+            "display": "Backup Frequency",
+            "desc": "Time in minutes",
+            "required": false,
+            "userEdit": true
+        },
+        "extra_args": {
+            "type": "string",
+            "value": "",
+            "display": "Extra Arguments",
+            "required": false,
+            "userEdit": true
+        },
+        "gamemode": {
+            "type": "option",
+            "value": "Adventure",
+            "display": "Game Mode",
+            "required": true,
+            "userEdit": true,
+            "desc": "",
+            "internal": false,
+            "options": [
+                {
+                    "value": "ADVENTURE",
+                    "display": "Adventure"
+                },
+                {
+                    "value": "CREATIVE",
+                    "display": "Creative"
+                }
+            ]
+        },
+        "max_players": {
+            "type": "integer",
+            "value": 100,
+            "display": "Maximum Players",
+            "required": true,
+            "userEdit": true
+        },
+        "memory": {
+            "type": "integer",
+            "value": 4096,
+            "display": "Maximum Memory (MB)",
+            "required": true,
+            "userEdit": true
+        },
+        "motd": {
+            "type": "string",
+            "value": "",
+            "display": "MOTD",
+            "required": false,
+            "userEdit": true
+        },
+        "pass": {
+            "type": "string",
+            "value": "",
+            "display": "Password",
+            "required": false,
+            "userEdit": false
+        },
+        "patchline": {
+            "type": "string",
+            "value": "release",
+            "display": "Patchline",
+            "required": true,
+            "userEdit": true
+        },
+        "port": {
+            "type": "integer",
+            "value": 5520,
+            "display": "Server Port (UDP)",
+            "required": true,
+            "userEdit": true
+        },
+        "server_name": {
+            "type": "string",
+            "value": "Hytale Server Begin",
+            "display": "Server Name",
+            "required": true,
+            "userEdit": true
+        },
+        "view_radius": {
+            "type": "integer",
+            "value": 32,
+            "display": "View Radius",
+            "required": true,
+            "userEdit": true
+        },
+        "Seed": {
+            "display": "World Seed",
+            "desc": "Seed of the world",
+            "type": "string",
+            "value": "",
+            "internal": false,
+            "required": false,
+            "userEdit": true
+        },
+        "IsFallDamageEnabled": {
+            "display": "Fall Damage",
+            "desc": "Enable fall damage",
+            "type": "boolean",
+            "value": true,
+            "internal": false,
+            "required": true,
+            "userEdit": true
+        },
+        "IsPvpEnabled": {
+            "display": "PvP Enabled",
+            "desc": "Enable Player vs Player",
+            "type": "boolean",
+            "value": true,
+            "internal": false,
+            "required": true,
+            "userEdit": true
+        },
+        "IsSpawningNPC": {
+            "display": "NPC Spawning",
+            "desc": "Enable NPC spawning",
+            "type": "boolean",
+            "value": true,
+            "internal": false,
+            "required": true,
+            "userEdit": true
+        },
+        "DeathRespawnType": {
+            "display": "Death Respawn Type",
+            "desc": "Type of respawn on death",
+            "type": "option",
+            "value": "HomeOrSpawnPoint",
+            "internal": false,
+            "required": true,
+            "userEdit": true,
+            "options": [
+                {
+                    "value": "HomeOrSpawnPoint",
+                    "display": "Home or Spawn Point"
+                },
+                {
+                    "value": "SpawnPointOnly",
+                    "display": "Spawn Point Only"
+                }
+            ]
+        },
+        "ItemsLossMode": {
+            "display": "Items Loss Mode",
+            "desc": "Mode of item loss on death",
+            "type": "option",
+            "value": "Configured",
+            "internal": false,
+            "required": true,
+            "userEdit": true,
+            "options": [
+                {
+                    "value": "Configured",
+                    "display": "Configured"
+                },
+                {
+                    "value": "All",
+                    "display": "All"
+                },
+                {
+                    "value": "None",
+                    "display": "None"
+                }
+            ]
+        },
+        "ItemsAmountLossPercentage": {
+            "display": "Items Amount Loss %",
+            "desc": "Percentage of items lost on death",
+            "type": "integer",
+            "value": 50,
+            "internal": false,
+            "required": true,
+            "userEdit": true
+        },
+        "ItemsDurabilityLossPercentage": {
+            "display": "Items Durability Loss %",
+            "desc": "Percentage of durability lost on death",
+            "type": "integer",
+            "value": 10,
+            "internal": false,
+            "required": true,
+            "userEdit": true
+        },
+        "DaytimeDurationSeconds": {
+            "display": "Daytime Duration (s)",
+            "desc": "Duration of the day in seconds",
+            "type": "integer",
+            "value": 1728,
+            "internal": false,
+            "required": true,
+            "userEdit": true
+        },
+        "NighttimeDurationSeconds": {
+            "display": "Nighttime Duration (s)",
+            "desc": "Duration of the night in seconds",
+            "type": "integer",
+            "value": 1152,
+            "internal": false,
+            "required": true,
+            "userEdit": true
+        }
+    },
+    "groups": [
+        {
+            "display": "Gameplay",
+            "description": "",
+            "variables": [
+                "allow_op",
+                "auth_mode",
+                "server_name",
+                "motd",
+                "max_players",
+                "view_radius",
+                "gamemode",
+                "pass",
+                "IsFallDamageEnabled",
+                "IsPvpEnabled",
+                "IsSpawningNPC",
+                "Seed",
+                "DeathRespawnType",
+                "ItemsLossMode",
+                "ItemsAmountLossPercentage",
+                "ItemsDurabilityLossPercentage",
+                "DaytimeDurationSeconds",
+                "NighttimeDurationSeconds"
+            ],
+            "order": 1
+        },
+        {
+            "display": "General",
+            "description": "",
+            "variables": [
+                "extra_args",
+                "memory",
+                "patchline",
+                "port",
+                "backup"
+            ],
+            "order": 2
+        },
+        {
+            "if": "backup",
+            "display": "Backup",
+            "description": "",
+            "variables": [
+                "backup_frequency",
+                "backup_dir"
+            ],
+            "order": 3
+        }
+    ],
+    "install": [
+        {
+            "type": "javadl",
+            "if": "",
+            "version": "25"
+        },
+        {
+            "type": "mkdir",
+            "target": "Download"
+        },
+        {
+            "type": "mkdir",
+            "target": "Server"
+        },
+        {
+            "type": "mkdir",
+            "target": "Server/universe/worlds/default/"
+        },
+        {
+            "type": "download",
+            "files": [
+                "https://downloader.hytale.com/hytale-downloader.zip"
+            ]
+        },
+        {
+            "type": "command",
+            "commands": [
+                "mv ./hytale-downloader.zip ./Download/hytale-downloader.zip"
+            ]
+        },
+        {
+            "type": "extract",
+            "source": "./Download/hytale-downloader.zip",
+            "destination": "./Download"
+        },
+        {
+            "type": "command",
+            "commands": [
+                "rm -rf ./Download/hytale-downloader.zip"
+            ]
+        },
+        {
+            "type": "command",
+            "commands": [
+                "find . -maxdepth 1 -type f -name \"*.zip\" -delete"
+            ]
+        },
+        {
+            "type": "command",
+            "commands": [
+                "chmod +x ./Download/hytale-downloader-linux-amd64"
+            ]
+        },
+        {
+            "type": "command",
+            "commands": [
+                "./Download/hytale-downloader-linux-amd64"
+            ]
+        },
+        {
+            "type": "command",
+            "commands": [
+                "sh -c \"ZIP=\\$(find . -type f -name '*.zip' | head -n 1) && [ -n \\\"\\$ZIP\\\" ] && mv \\\"\\$ZIP\\\" update.zip\""
+            ]
+        },
+        {
+            "type": "extract",
+            "source": "./update.zip",
+            "destination": "./Server"
+        },
+        {
+            "type": "writefile",
+            "target": "./Server/config.json",
+            "text": "{\n  \"ServerName\": \"{{ .Data.server_name }}\",\n  \"MOTD\": \"{{ .Data.motd | default \\\"\\\" }}\",\n  \"Password\": \"{{ .Data.pass | default \\\"\\\" }}\",\n  \"MaxPlayers\": {{ .Data.max_players }},\n  \"MaxViewRadius\": {{ .Data.view_radius }},\n  \"Defaults\": {\n    \"World\": \"default\",\n    \"GameMode\": \"{{ .Data.gamemode }}\"\n  },\n  \"ConnectionTimeouts\": {},\n  \"RateLimit\": {},\n  \"Modules\": {},\n  \"LogLevels\": {},\n  \"Mods\": {},\n  \"Update\": {}\n}\n"
+        },
+        {
+            "type": "writefile",
+            "if": "",
+            "target": "./Server/universe/worlds/default/config.json",
+            "text": "{\n  \"Seed\": \"{{ .Data.Seed | default \\\"\\\" }}\",\n  \"IsFallDamageEnabled\": {{ .Data.IsFallDamageEnabled }},\n  \"IsPvpEnabled\": {{ .Data.IsPvpEnabled }},\n  \"IsSpawningNPC\": {{ .Data.IsSpawningNPC }},\n  \"GameMode\": \"{{ .Data.GameMode }}\",\n  \"Death\": {\n    \"RespawnController\": {\n      \"Type\": \"{{ .Data.DeathRespawnType | default \\\"HomeOrSpawnPoint\\\" }}\"\n    },\n    \"ItemsLossMode\": \"{{ .Data.ItemsLossMode | default \\\"Configured\\\" }}\",\n    \"ItemsAmountLossPercentage\": {{ .Data.ItemsAmountLossPercentage | default 50 }},\n    \"ItemsDurabilityLossPercentage\": {{ .Data.ItemsDurabilityLossPercentage | default 10 }}\n  },\n  \"DaytimeDurationSeconds\": {{ .Data.DaytimeDurationSeconds | default 1728 }},\n  \"NighttimeDurationSeconds\": {{ .Data.NighttimeDurationSeconds | default 1152 }}\n}\n"
+        },
+        {
+            "type": "writefile",
+            "target": "./start.sh",
+            "text": "#!/bin/bash\n# Hytale Server Launcher (Puffer-ready)\n\nSCRIPT_DIR=\"$(cd \"$(dirname \"$0\")\" && pwd)/Server\"\ncd \"$SCRIPT_DIR\"\n\n# -----------------------------\n# Defaults\n# -----------------------------\nJAVA_XMS=\"1024M\"\nJAVA_XMX=\"4096M\"\nSERVER_PORT=\"5520\"\nEXTRA_JAVA_ARGS=\"--enable-native-access=ALL-UNNAMED\"\nSERVER_ARGS=()\n\n# -----------------------------\n# Argument parsing\n# -----------------------------\nwhile [[ $# -gt 0 ]]; do\n    case \"$1\" in\n        --xms)\n            JAVA_XMS=\"$2\"\n            shift 2\n            ;;\n        --xmx)\n            JAVA_XMX=\"$2\"\n            shift 2\n            ;;\n        --port)\n            SERVER_PORT=\"$2\"\n            shift 2\n            ;;\n        --java-args)\n            EXTRA_JAVA_ARGS=\"$2\"\n            shift 2\n            ;;\n        --)\n            shift\n            # tudo depois de -- é EXCLUSIVO do Hytale\n            SERVER_ARGS+=(\"$@\")\n            break\n            ;;\n        *)\n            # segurança: qualquer coisa desconhecida vai pro Hytale\n            SERVER_ARGS+=(\"$1\")\n            shift\n            ;;\n    esac\ndone\n\n\nwhile true; do\n    APPLIED_UPDATE=false\n\n    # -----------------------------\n    # Apply staged update if present\n    # -----------------------------\n    if [ -f \"updater/staging/Server/HytaleServer.jar\" ]; then\n        echo \"[Launcher] Applying staged update...\"\n        cp -f updater/staging/Server/HytaleServer.jar Server/\n        [ -f \"updater/staging/Server/HytaleServer.aot\" ] && cp -f updater/staging/Server/HytaleServer.aot Server/\n        [ -d \"updater/staging/Server/Licenses\" ] && rm -rf Server/Licenses && cp -r updater/staging/Server/Licenses Server/\n        [ -f \"updater/staging/Assets.zip\" ] && cp -f updater/staging/Assets.zip ./\n        [ -f \"updater/staging/start.sh\" ] && cp -f updater/staging/start.sh ./\n        [ -f \"updater/staging/start.bat\" ] && cp -f updater/staging/start.bat ./\n        rm -rf updater/staging\n        APPLIED_UPDATE=true\n    fi\n\n    cd Server\n\n    # -----------------------------\n    # JVM arguments\n    # -----------------------------\n    JVM_ARGS=\"-Xms${JAVA_XMS} -Xmx${JAVA_XMX} ${EXTRA_JAVA_ARGS}\"\n\n    if [ -f \"HytaleServer.aot\" ]; then\n        echo \"[Launcher] AOT cache found but disabled for compatibility\"\n    fi\n\n    DEFAULT_ARGS=\"--assets ../Assets.zip --bind 0.0.0.0:${SERVER_PORT}\"\n\n    echo \"[Launcher] Port: ${SERVER_PORT}\"\n    echo \"[Launcher] JVM: $JVM_ARGS\"\n    echo \"[Launcher] Hytale args: ${SERVER_ARGS[*]}\"\n\n    START_TIME=$(date +%s)\n    \n    java $JVM_ARGS -jar HytaleServer.jar $DEFAULT_ARGS \"${SERVER_ARGS[@]}\"\n    \n    if command -v java >/dev/null 2>&1; then\n        JAVA_CMD=java\n    elif command -v java25 >/dev/null 2>&1; then\n        JAVA_CMD=java25\n    else\n        echo \"[Launcher] No Java found! Install Java 25.\"\n        exit 1\n    fi\n    \n    $JAVA_CMD $JVM_ARGS -jar HytaleServer.jar $DEFAULT_ARGS \"${SERVER_ARGS[@]}\"\n\n    EXIT_CODE=$?\n    ELAPSED=$(( $(date +%s) - START_TIME ))\n\n    cd \"$SCRIPT_DIR\"\n\n    if [ $EXIT_CODE -eq 8 ]; then\n        echo \"[Launcher] Restarting to apply update...\"\n        continue\n    fi\n\n    if [ $EXIT_CODE -ne 0 ] && [ \"$APPLIED_UPDATE\" = true ] && [ $ELAPSED -lt 30 ]; then\n        echo \"[Launcher] Update may have failed. Backup available.\"\n        [ -t 0 ] && read -p \"Press Enter to exit...\"\n    fi\n\n    exit $EXIT_CODE\ndone\n"
+        },
+        {
+            "type": "command",
+            "commands": [
+                "chmod +x ./start.sh"
+            ]
+        },
+        {
+            "type": "command",
+            "commands": [
+                " ./start.sh"
+            ]
+        }
+    ],
+    "run": {
+        "command": "bash -c \"./start.sh --xms 1024M --xmx ${memory}M --port ${port} -- --auth-mode ${auth_mode} \\$( [ \\\"${backup}\\\" = \\\"true\\\" ] && echo \\\"--backup\\\" ) --backup-frequency ${backup_frequency} --backup-dir ${backup_dir} ${extra_args}\"",
+        "stop": "stop",
+        "stdin": {
+            "type": "stdin"
+        },
+        "autostart": false,
+        "autorecover": false,
+        "autorestart": false
+    },
+    "supportedEnvironments": [
+        {
+            "type": "host"
+        },
+        {
+            "type": "docker",
+            "portBindings": [
+                "0.0.0.0:${port}:${port}/udp"
+            ],
+            "image": "eclipse-temurin:25"
+        }
+    ],
+    "requirements": {
+        "os": "linux",
+        "arch": "amd64"
+    }
+}

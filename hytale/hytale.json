@@ -57,11 +57,23 @@
             "userEdit": true
         },
         "gamemode": {
-            "type": "string",
+            "type": "option",
             "value": "Adventure",
             "display": "Game Mode",
             "required": true,
-            "userEdit": true
+            "userEdit": true,
+            "desc": "",
+            "internal": false,
+            "options": [
+                {
+                    "value": "ADVENTURE",
+                    "display": "Adventure"
+                },
+                {
+                    "value": "CREATIVE",
+                    "display": "Creative"
+                }
+            ]
         },
         "max_players": {
             "type": "integer",
@@ -298,6 +310,10 @@
             "target": "Server"
         },
         {
+            "type": "mkdir",
+            "target": "Server/universe/worlds/default/"
+        },
+        {
             "type": "download",
             "files": [
                 "https://downloader.hytale.com/hytale-downloader.zip"
@@ -323,7 +339,7 @@
         {
             "type": "command",
             "commands": [
-                "rm -rf *.zip"
+                "find . -maxdepth 1 -type f -name \"*.zip\" -delete"
             ]
         },
         {
@@ -341,18 +357,13 @@
         {
             "type": "command",
             "commands": [
-                "find . -type f -name '*.zip' -exec sh -c 'mv \"$1\" \"update.zip\"' sh {} \\;"
+                "sh -c \"ZIP=\\$(find . -type f -name '*.zip' | head -n 1) && [ -n \\\"\\$ZIP\\\" ] && mv \\\"\\$ZIP\\\" update.zip\""
             ]
         },
         {
             "type": "extract",
             "source": "./update.zip",
             "destination": "./Server"
-        },
-        {
-            "type": "writefile",
-            "target": "./start.sh",
-            "text": "#!/bin/bash\n# Hytale Server Launcher (Puffer-ready)\n\nSCRIPT_DIR=\"$(cd \"$(dirname \"$0\")\" && pwd)/Server\"\ncd \"$SCRIPT_DIR\"\n\n# -----------------------------\n# Defaults\n# -----------------------------\nJAVA_XMS=\"1024M\"\nJAVA_XMX=\"4096M\"\nSERVER_PORT=\"5520\"\nEXTRA_JAVA_ARGS=\"--enable-native-access=ALL-UNNAMED\"\nSERVER_ARGS=()\n\n# -----------------------------\n# Argument parsing\n# -----------------------------\nwhile [[ $# -gt 0 ]]; do\n    case \"$1\" in\n        --xms)\n            JAVA_XMS=\"$2\"\n            shift 2\n            ;;\n        --xmx)\n            JAVA_XMX=\"$2\"\n            shift 2\n            ;;\n        --port)\n            SERVER_PORT=\"$2\"\n            shift 2\n            ;;\n        --java-args)\n            EXTRA_JAVA_ARGS=\"$2\"\n            shift 2\n            ;;\n        --)\n            shift\n            # tudo depois de -- é EXCLUSIVO do Hytale\n            SERVER_ARGS+=(\"$@\")\n            break\n            ;;\n        *)\n            # segurança: qualquer coisa desconhecida vai pro Hytale\n            SERVER_ARGS+=(\"$1\")\n            shift\n            ;;\n    esac\ndone\n\n\nwhile true; do\n    APPLIED_UPDATE=false\n\n    # -----------------------------\n    # Apply staged update if present\n    # -----------------------------\n    if [ -f \"updater/staging/Server/HytaleServer.jar\" ]; then\n        echo \"[Launcher] Applying staged update...\"\n        cp -f updater/staging/Server/HytaleServer.jar Server/\n        [ -f \"updater/staging/Server/HytaleServer.aot\" ] && cp -f updater/staging/Server/HytaleServer.aot Server/\n        [ -d \"updater/staging/Server/Licenses\" ] && rm -rf Server/Licenses && cp -r updater/staging/Server/Licenses Server/\n        [ -f \"updater/staging/Assets.zip\" ] && cp -f updater/staging/Assets.zip ./\n        [ -f \"updater/staging/start.sh\" ] && cp -f updater/staging/start.sh ./\n        [ -f \"updater/staging/start.bat\" ] && cp -f updater/staging/start.bat ./\n        rm -rf updater/staging\n        APPLIED_UPDATE=true\n    fi\n\n    cd Server\n\n    # -----------------------------\n    # JVM arguments\n    # -----------------------------\n    JVM_ARGS=\"-Xms${JAVA_XMS} -Xmx${JAVA_XMX} ${EXTRA_JAVA_ARGS}\"\n\n    if [ -f \"HytaleServer.aot\" ]; then\n        echo \"[Launcher] AOT cache found but disabled for compatibility\"\n    fi\n\n    DEFAULT_ARGS=\"--assets ../Assets.zip --bind 0.0.0.0:${SERVER_PORT}\"\n\n    echo \"[Launcher] Port: ${SERVER_PORT}\"\n    echo \"[Launcher] JVM: $JVM_ARGS\"\n    echo \"[Launcher] Hytale args: ${SERVER_ARGS[*]}\"\n\n    START_TIME=$(date +%s)\n    java25 $JVM_ARGS -jar HytaleServer.jar $DEFAULT_ARGS \"${SERVER_ARGS[@]}\"\n    EXIT_CODE=$?\n    ELAPSED=$(( $(date +%s) - START_TIME ))\n\n    cd \"$SCRIPT_DIR\"\n\n    if [ $EXIT_CODE -eq 8 ]; then\n        echo \"[Launcher] Restarting to apply update...\"\n        continue\n    fi\n\n    if [ $EXIT_CODE -ne 0 ] && [ \"$APPLIED_UPDATE\" = true ] && [ $ELAPSED -lt 30 ]; then\n        echo \"[Launcher] Update may have failed. Backup available.\"\n        [ -t 0 ] && read -p \"Press Enter to exit...\"\n    fi\n\n    exit $EXIT_CODE\ndone\n"
         },
         {
             "type": "writefile",
@@ -364,6 +375,11 @@
             "if": "",
             "target": "./Server/universe/worlds/default/config.json",
             "text": "{\n  \"Seed\": \"{{ .Data.Seed | default \\\"\\\" }}\",\n  \"IsFallDamageEnabled\": {{ .Data.IsFallDamageEnabled }},\n  \"IsPvpEnabled\": {{ .Data.IsPvpEnabled }},\n  \"IsSpawningNPC\": {{ .Data.IsSpawningNPC }},\n  \"GameMode\": \"{{ .Data.GameMode }}\",\n  \"Death\": {\n    \"RespawnController\": {\n      \"Type\": \"{{ .Data.DeathRespawnType | default \\\"HomeOrSpawnPoint\\\" }}\"\n    },\n    \"ItemsLossMode\": \"{{ .Data.ItemsLossMode | default \\\"Configured\\\" }}\",\n    \"ItemsAmountLossPercentage\": {{ .Data.ItemsAmountLossPercentage | default 50 }},\n    \"ItemsDurabilityLossPercentage\": {{ .Data.ItemsDurabilityLossPercentage | default 10 }}\n  },\n  \"DaytimeDurationSeconds\": {{ .Data.DaytimeDurationSeconds | default 1728 }},\n  \"NighttimeDurationSeconds\": {{ .Data.NighttimeDurationSeconds | default 1152 }}\n}\n"
+        },
+        {
+            "type": "writefile",
+            "target": "./start.sh",
+            "text": "#!/bin/bash\n# Hytale Server Launcher (Puffer-ready)\n\nSCRIPT_DIR=\"$(cd \"$(dirname \"$0\")\" && pwd)/Server\"\ncd \"$SCRIPT_DIR\"\n\n# -----------------------------\n# Defaults\n# -----------------------------\nJAVA_XMS=\"1024M\"\nJAVA_XMX=\"4096M\"\nSERVER_PORT=\"5520\"\nEXTRA_JAVA_ARGS=\"--enable-native-access=ALL-UNNAMED\"\nSERVER_ARGS=()\n\n# -----------------------------\n# Argument parsing\n# -----------------------------\nwhile [[ $# -gt 0 ]]; do\n    case \"$1\" in\n        --xms)\n            JAVA_XMS=\"$2\"\n            shift 2\n            ;;\n        --xmx)\n            JAVA_XMX=\"$2\"\n            shift 2\n            ;;\n        --port)\n            SERVER_PORT=\"$2\"\n            shift 2\n            ;;\n        --java-args)\n            EXTRA_JAVA_ARGS=\"$2\"\n            shift 2\n            ;;\n        --)\n            shift\n            # tudo depois de -- é EXCLUSIVO do Hytale\n            SERVER_ARGS+=(\"$@\")\n            break\n            ;;\n        *)\n            # segurança: qualquer coisa desconhecida vai pro Hytale\n            SERVER_ARGS+=(\"$1\")\n            shift\n            ;;\n    esac\ndone\n\n\nwhile true; do\n    APPLIED_UPDATE=false\n\n    # -----------------------------\n    # Apply staged update if present\n    # -----------------------------\n    if [ -f \"updater/staging/Server/HytaleServer.jar\" ]; then\n        echo \"[Launcher] Applying staged update...\"\n        cp -f updater/staging/Server/HytaleServer.jar Server/\n        [ -f \"updater/staging/Server/HytaleServer.aot\" ] && cp -f updater/staging/Server/HytaleServer.aot Server/\n        [ -d \"updater/staging/Server/Licenses\" ] && rm -rf Server/Licenses && cp -r updater/staging/Server/Licenses Server/\n        [ -f \"updater/staging/Assets.zip\" ] && cp -f updater/staging/Assets.zip ./\n        [ -f \"updater/staging/start.sh\" ] && cp -f updater/staging/start.sh ./\n        [ -f \"updater/staging/start.bat\" ] && cp -f updater/staging/start.bat ./\n        rm -rf updater/staging\n        APPLIED_UPDATE=true\n    fi\n\n    cd Server\n\n    # -----------------------------\n    # JVM arguments\n    # -----------------------------\n    JVM_ARGS=\"-Xms${JAVA_XMS} -Xmx${JAVA_XMX} ${EXTRA_JAVA_ARGS}\"\n\n    if [ -f \"HytaleServer.aot\" ]; then\n        echo \"[Launcher] AOT cache found but disabled for compatibility\"\n    fi\n\n    DEFAULT_ARGS=\"--assets ../Assets.zip --bind 0.0.0.0:${SERVER_PORT}\"\n\n    echo \"[Launcher] Port: ${SERVER_PORT}\"\n    echo \"[Launcher] JVM: $JVM_ARGS\"\n    echo \"[Launcher] Hytale args: ${SERVER_ARGS[*]}\"\n\n    START_TIME=$(date +%s)\n    \n    java $JVM_ARGS -jar HytaleServer.jar $DEFAULT_ARGS \"${SERVER_ARGS[@]}\"\n    \n    if command -v java >/dev/null 2>&1; then\n        JAVA_CMD=java\n    elif command -v java25 >/dev/null 2>&1; then\n        JAVA_CMD=java25\n    else\n        echo \"[Launcher] No Java found! Install Java 25.\"\n        exit 1\n    fi\n    \n    $JAVA_CMD $JVM_ARGS -jar HytaleServer.jar $DEFAULT_ARGS \"${SERVER_ARGS[@]}\"\n\n    EXIT_CODE=$?\n    ELAPSED=$(( $(date +%s) - START_TIME ))\n\n    cd \"$SCRIPT_DIR\"\n\n    if [ $EXIT_CODE -eq 8 ]; then\n        echo \"[Launcher] Restarting to apply update...\"\n        continue\n    fi\n\n    if [ $EXIT_CODE -ne 0 ] && [ \"$APPLIED_UPDATE\" = true ] && [ $ELAPSED -lt 30 ]; then\n        echo \"[Launcher] Update may have failed. Backup available.\"\n        [ -t 0 ] && read -p \"Press Enter to exit...\"\n    fi\n\n    exit $EXIT_CODE\ndone\n"
         },
         {
             "type": "command",
@@ -379,7 +395,7 @@
         }
     ],
     "run": {
-        "command": "bash -c './start.sh --xms 1024M --xmx ${memory}M --port ${port} -- --auth-mode ${auth_mode} $( [ \"${backup}\" = \"true\" ] && echo \"--backup\" ) --backup-frequency ${backup_frequency} --backup-dir ${backup_dir} ${extra_args}'",
+        "command": "bash -c \"./start.sh --xms 1024M --xmx ${memory}M --port ${port} -- --auth-mode ${auth_mode} \\$( [ \\\"${backup}\\\" = \\\"true\\\" ] && echo \\\"--backup\\\" ) --backup-frequency ${backup_frequency} --backup-dir ${backup_dir} ${extra_args}\"",
         "stop": "stop",
         "stdin": {
             "type": "stdin"
@@ -397,14 +413,11 @@
             "portBindings": [
                 "0.0.0.0:${port}:${port}/udp"
             ],
-            "image": "pufferpanel/ubuntu"
+            "image": "eclipse-temurin:25"
         }
     ],
     "requirements": {
         "os": "linux",
         "arch": "amd64"
-    },
-    "stats": {
-        "type": "jcmd"
     }
 }
