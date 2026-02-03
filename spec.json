@@ -719,6 +719,9 @@
               },
               "target": {
                 "type": "string"
+              },
+              "project": {
+                "type": "string"
               }
             },
             "required": [

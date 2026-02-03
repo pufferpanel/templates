@@ -4,8 +4,8 @@
   "icon": "minecraft-java",
   "data": {
     "build": {
-      "type": "integer",
-      "value": 195,
+      "type": "string",
+      "value": "latest",
       "display": "Velocity Build",
       "desc": "Build of the Velocity Version to use",
       "required": true,
@@ -45,7 +45,7 @@
     },
     "version": {
       "type": "string",
-      "value": "3.1.2-SNAPSHOT",
+      "value": "latest",
       "display": "Velocity Version",
       "desc": "Version of Velocity to install.",
       "required": true,
@@ -56,24 +56,20 @@
     {
       "if": "env == 'host'",
       "type": "javadl",
-      "version": "17"
+      "version": "21"
     },
     {
-      "type": "download",
-      "files": [
-        "https://api.papermc.io/v2/projects/velocity/versions/${version}/builds/${build}/downloads/velocity-${version}-${build}.jar"
-      ]
-    },
-    {
-      "type": "move",
-      "source": "velocity-*.jar",
-      "target": "velocity.jar"
+      "type": "paperdl",
+      "build": "${build}",
+      "minecraftVersion": "${version}",
+      "target": "velocity.jar",
+      "project": "velocity"
     }
   ],
   "run": {
     "command": [
       {
-        "command": "java17 -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar velocity.jar",
+        "command": "java21 -Xmx${memory}M -Xms${memory}M -Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true -jar velocity.jar",
         "if": "env == 'host'"
       },
       {
@@ -97,7 +93,7 @@
     },
     {
       "type": "docker",
-      "image": "eclipse-temurin:17",
+      "image": "eclipse-temurin:21",
       "portBindings": [
         "0.0.0.0:${port}:${port}/tcp"
       ]
