@@ -49,6 +49,14 @@
             "required": false,
             "userEdit": true
         },
+        "backup_max_count": {
+            "type": "integer",
+            "value": 5,
+            "display": "Max Backups Kept",
+            "desc": "Maximum number of recent backups to keep. Older backups will be deleted automatically.",
+            "required": false,
+            "userEdit": true
+        },
         "extra_args": {
             "type": "string",
             "value": "",
@@ -58,7 +66,7 @@
         },
         "gamemode": {
             "type": "option",
-            "value": "Adventure",
+            "value": "ADVENTURE",
             "display": "Game Mode",
             "required": true,
             "userEdit": true,
@@ -290,7 +298,8 @@
             "description": "",
             "variables": [
                 "backup_frequency",
-                "backup_dir"
+                "backup_dir",
+                "backup_max_count"
             ],
             "order": 3
         }
@@ -318,12 +327,12 @@
             "files": [
                 "https://downloader.hytale.com/hytale-downloader.zip"
             ]
-        },
+        },        
         {
-            "type": "command",
-            "commands": [
-                "mv ./hytale-downloader.zip ./Download/hytale-downloader.zip"
-            ]
+            "type": "move",
+            "if": "",
+            "source": "./hytale-downloader.zip",
+            "target": " ./Download/hytale-downloader.zip"
         },
         {
             "type": "extract",
@@ -395,7 +404,7 @@
         }
     ],
     "run": {
-        "command": "bash -c \"./start.sh --xms 1024M --xmx ${memory}M --port ${port} -- --auth-mode ${auth_mode} \\$( [ \\\"${backup}\\\" = \\\"true\\\" ] && echo \\\"--backup\\\" ) --backup-frequency ${backup_frequency} --backup-dir ${backup_dir} ${extra_args}\"",
+        "command": "bash -c \"if [ \\\"${backup}\\\" = \\\"true\\\" ]; then BACKUP_DIR=\\\"${backup_dir}\\\"; MAX_BACKUPS=${backup_max_count}; if [ -d \\\"\\$BACKUP_DIR\\\" ] && [ \\$MAX_BACKUPS -gt 0 ]; then TOTAL=\\$(ls -1t \\\"\\$BACKUP_DIR\\\" 2>/dev/null | wc -l); if [ \\$TOTAL -gt \\$MAX_BACKUPS ]; then ls -1t \\\"\\$BACKUP_DIR\\\" | tail -n +\\$((MAX_BACKUPS + 1)) | while read f; do rm -rf \\\"\\$BACKUP_DIR/\\$f\\\"; done; echo \\\"[Backup] Cleaned old backups, kept \\$MAX_BACKUPS most recent.\\\"; fi; fi; fi; ./start.sh --xms 1024M --xmx ${memory}M --port ${port} -- --auth-mode ${auth_mode} \\$( [ \\\"${backup}\\\" = \\\"true\\\" ] && echo \\\"--backup\\\" ) --backup-frequency ${backup_frequency} --backup-dir ${backup_dir} ${extra_args}\"",
         "stop": "stop",
         "stdin": {
             "type": "stdin"
