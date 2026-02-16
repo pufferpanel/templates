@@ -332,7 +332,7 @@
             "type": "move",
             "if": "",
             "source": "./hytale-downloader.zip",
-            "target": " ./Download/hytale-downloader.zip"
+            "target": "./Download/hytale-downloader.zip"
         },
         {
             "type": "extract",
