@@ -331,13 +331,13 @@
         {
             "type": "move",
             "if": "",
-            "source": "./hytale-downloader.zip",
-            "target": "./Download/hytale-downloader.zip"
+            "source": "hytale-downloader.zip",
+            "target": "Download/hytale-downloader.zip"
         },
         {
             "type": "extract",
-            "source": "./Download/hytale-downloader.zip",
-            "destination": "./Download"
+            "source": "Download/hytale-downloader.zip",
+            "destination": "Download"
         },
         {
             "type": "command",
