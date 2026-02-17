@@ -869,6 +869,12 @@
               "password": {
                 "type": "string"
               },
+              "branch": {
+                "type": "string"
+              },
+              "branchPassword": {
+                "type": "string"
+              },
               "extraArgs": {
                 "type": "string"
               }
