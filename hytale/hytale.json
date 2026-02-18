@@ -139,7 +139,7 @@
             "required": true,
             "userEdit": true
         },
-        "Seed": {
+        "seed": {
             "display": "World Seed",
             "desc": "Seed of the world",
             "type": "string",
@@ -148,7 +148,7 @@
             "required": false,
             "userEdit": true
         },
-        "IsFallDamageEnabled": {
+        "is_fall_damage_enabled": {
             "display": "Fall Damage",
             "desc": "Enable fall damage",
             "type": "boolean",
@@ -157,7 +157,7 @@
             "required": true,
             "userEdit": true
         },
-        "IsPvpEnabled": {
+        "is_pvp_enabled": {
             "display": "PvP Enabled",
             "desc": "Enable Player vs Player",
             "type": "boolean",
@@ -166,7 +166,7 @@
             "required": true,
             "userEdit": true
         },
-        "IsSpawningNPC": {
+        "is_spawning_npc": {
             "display": "NPC Spawning",
             "desc": "Enable NPC spawning",
             "type": "boolean",
@@ -175,7 +175,7 @@
             "required": true,
             "userEdit": true
         },
-        "DeathRespawnType": {
+        "death_respawn_type": {
             "display": "Death Respawn Type",
             "desc": "Type of respawn on death",
             "type": "option",
@@ -194,7 +194,7 @@
                 }
             ]
         },
-        "ItemsLossMode": {
+        "items_loss_mode": {
             "display": "Items Loss Mode",
             "desc": "Mode of item loss on death",
             "type": "option",
@@ -217,7 +217,7 @@
                 }
             ]
         },
-        "ItemsAmountLossPercentage": {
+        "items_amount_loss_percentage": {
             "display": "Items Amount Loss %",
             "desc": "Percentage of items lost on death",
             "type": "integer",
@@ -226,7 +226,7 @@
             "required": true,
             "userEdit": true
         },
-        "ItemsDurabilityLossPercentage": {
+        "items_durability_loss_percentage": {
             "display": "Items Durability Loss %",
             "desc": "Percentage of durability lost on death",
             "type": "integer",
@@ -235,7 +235,7 @@
             "required": true,
             "userEdit": true
         },
-        "DaytimeDurationSeconds": {
+        "daytime_duration_seconds": {
             "display": "Daytime Duration (s)",
             "desc": "Duration of the day in seconds",
             "type": "integer",
@@ -244,7 +244,7 @@
             "required": true,
             "userEdit": true
         },
-        "NighttimeDurationSeconds": {
+        "nighttime_duration_seconds": {
             "display": "Nighttime Duration (s)",
             "desc": "Duration of the night in seconds",
             "type": "integer",
@@ -267,16 +267,16 @@
                 "view_radius",
                 "gamemode",
                 "pass",
-                "IsFallDamageEnabled",
-                "IsPvpEnabled",
-                "IsSpawningNPC",
-                "Seed",
-                "DeathRespawnType",
-                "ItemsLossMode",
-                "ItemsAmountLossPercentage",
-                "ItemsDurabilityLossPercentage",
-                "DaytimeDurationSeconds",
-                "NighttimeDurationSeconds"
+                "is_fall_damage_enabled",
+                "is_pvp_enabled",
+                "is_spawning_npc",
+                "seed",
+                "death_respawn_type",
+                "items_loss_mode",
+                "items_amount_loss_percentage",
+                "items_durability_loss_percentage",
+                "daytime_duration_seconds",
+                "nighttime_duration_seconds"
             ],
             "order": 1
         },
@@ -307,7 +307,6 @@
     "install": [
         {
             "type": "javadl",
-            "if": "",
             "version": "25"
         },
         {
@@ -330,7 +329,6 @@
         },        
         {
             "type": "move",
-            "if": "",
             "source": "hytale-downloader.zip",
             "target": "Download/hytale-downloader.zip"
         },
@@ -381,30 +379,27 @@
         },
         {
             "type": "writefile",
-            "if": "",
             "target": "./Server/universe/worlds/default/config.json",
-            "text": "{\n  \"Seed\": \"{{ .Data.Seed | default \\\"\\\" }}\",\n  \"IsFallDamageEnabled\": {{ .Data.IsFallDamageEnabled | default true }},\n  \"IsPvpEnabled\": {{ .Data.IsPvpEnabled | default false }},\n  \"IsSpawningNPC\": {{ .Data.IsSpawningNPC | default true }},\n  \"GameMode\": \"{{ .Data.GameMode | default \\\"ADVENTURE\\\" }}\",\n  \"Death\": {\n    \"RespawnController\": {\n      \"Type\": \"{{ .Data.DeathRespawnType | default \\\"HomeOrSpawnPoint\\\" }}\"\n    },\n    \"ItemsLossMode\": \"{{ .Data.ItemsLossMode | default \\\"Configured\\\" }}\",\n    \"ItemsAmountLossPercentage\": {{ .Data.ItemsAmountLossPercentage | default 50 }},\n    \"ItemsDurabilityLossPercentage\": {{ .Data.ItemsDurabilityLossPercentage | default 10 }}\n  },\n  \"DaytimeDurationSeconds\": {{ .Data.DaytimeDurationSeconds | default 1728 }},\n  \"NighttimeDurationSeconds\": {{ .Data.NighttimeDurationSeconds | default 1152 }}\n}\n"
-        },
-        {
-            "type": "writefile",
-            "target": "./start.sh",
-            "text": "#!/bin/bash\n# Hytale Server Launcher (Puffer-ready)\n\nSCRIPT_DIR=\"$(cd \"$(dirname \"$0\")\" && pwd)/Server\"\ncd \"$SCRIPT_DIR\"\n\n# -----------------------------\n# Defaults\n# -----------------------------\nJAVA_XMS=\"1024M\"\nJAVA_XMX=\"4096M\"\nSERVER_PORT=\"5520\"\nEXTRA_JAVA_ARGS=\"--enable-native-access=ALL-UNNAMED\"\nSERVER_ARGS=()\n\n# -----------------------------\n# Argument parsing\n# -----------------------------\nwhile [[ $# -gt 0 ]]; do\n    case \"$1\" in\n        --xms)\n            JAVA_XMS=\"$2\"\n            shift 2\n            ;;\n        --xmx)\n            JAVA_XMX=\"$2\"\n            shift 2\n            ;;\n        --port)\n            SERVER_PORT=\"$2\"\n            shift 2\n            ;;\n        --java-args)\n            EXTRA_JAVA_ARGS=\"$2\"\n            shift 2\n            ;;\n        --)\n            shift\n            SERVER_ARGS+=(\"$@\")\n            break\n            ;;\n        *)\n            SERVER_ARGS+=(\"$1\")\n            shift\n            ;;\n    esac\ndone\n\n\nwhile true; do\n    APPLIED_UPDATE=false\n\n    # -----------------------------\n    # Apply staged update if present\n    # -----------------------------\n    if [ -f \"updater/staging/Server/HytaleServer.jar\" ]; then\n        echo \"[Launcher] Applying staged update...\"\n        cp -f updater/staging/Server/HytaleServer.jar Server/\n        [ -f \"updater/staging/Server/HytaleServer.aot\" ] && cp -f updater/staging/Server/HytaleServer.aot Server/\n        [ -d \"updater/staging/Server/Licenses\" ] && rm -rf Server/Licenses && cp -r updater/staging/Server/Licenses Server/\n        [ -f \"updater/staging/Assets.zip\" ] && cp -f updater/staging/Assets.zip ./\n        [ -f \"updater/staging/start.sh\" ] && cp -f updater/staging/start.sh ./\n        [ -f \"updater/staging/start.bat\" ] && cp -f updater/staging/start.bat ./\n        rm -rf updater/staging\n        APPLIED_UPDATE=true\n    fi\n\n    cd Server\n\n    # -----------------------------\n    # JVM arguments\n    # -----------------------------\n    JVM_ARGS=\"-Xms${JAVA_XMS} -Xmx${JAVA_XMX} ${EXTRA_JAVA_ARGS}\"\n\n    if [ -f \"HytaleServer.aot\" ]; then\n        echo \"[Launcher] AOT cache found but disabled for compatibility\"\n    fi\n\n    DEFAULT_ARGS=\"--assets ../Assets.zip --bind 0.0.0.0:${SERVER_PORT}\"\n\n    echo \"[Launcher] Port: ${SERVER_PORT}\"\n    echo \"[Launcher] JVM: $JVM_ARGS\"\n    echo \"[Launcher] Hytale args: ${SERVER_ARGS[*]}\"\n\n    START_TIME=$(date +%s)\n    \n    if command -v java >/dev/null 2>&1; then\n        JAVA_CMD=java\n    elif command -v java25 >/dev/null 2>&1; then\n        JAVA_CMD=java25\n    else\n        echo \"[Launcher] No Java found! Install Java 25.\"\n        exit 1\n    fi\n    \n    $JAVA_CMD $JVM_ARGS -jar HytaleServer.jar $DEFAULT_ARGS \"${SERVER_ARGS[@]}\"\n\n    EXIT_CODE=$?\n    ELAPSED=$(( $(date +%s) - START_TIME ))\n\n    cd \"$SCRIPT_DIR\"\n\n    if [ $EXIT_CODE -eq 8 ]; then\n        echo \"[Launcher] Restarting to apply update...\"\n        continue\n    fi\n\n    if [ $EXIT_CODE -ne 0 ] && [ \"$APPLIED_UPDATE\" = true ] && [ $ELAPSED -lt 30 ]; then\n        echo \"[Launcher] Update may have failed. Backup available.\"\n        [ -t 0 ] && read -p \"Press Enter to exit...\"\n    fi\n\n    exit $EXIT_CODE\ndone\n"
-        },
-        {
-            "type": "command",
-            "commands": [
-                "chmod +x ./start.sh"
-            ]
-        },
-        {
-            "type": "command",
-            "commands": [
-                " ./start.sh"
-            ]
+            "text": "{\n  \"Seed\": \"{{ .Data.seed | default \\\"\\\" }}\",\n  \"IsFallDamageEnabled\": {{ .Data.is_fall_damage_enabled | default true }},\n  \"IsPvpEnabled\": {{ .Data.is_pvp_enabled | default false }},\n  \"IsSpawningNPC\": {{ .Data.is_spawning_npc | default true }},\n  \"GameMode\": \"{{ .Data.gamemode | default \\\"ADVENTURE\\\" }}\",\n  \"Death\": {\n    \"RespawnController\": {\n      \"Type\": \"{{ .Data.death_respawn_type | default \\\"HomeOrSpawnPoint\\\" }}\"\n    },\n    \"ItemsLossMode\": \"{{ .Data.items_loss_mode | default \\\"Configured\\\" }}\",\n    \"ItemsAmountLossPercentage\": {{ .Data.items_amount_loss_percentage | default 50 }},\n    \"ItemsDurabilityLossPercentage\": {{ .Data.items_durability_loss_percentage | default 10 }}\n  },\n  \"DaytimeDurationSeconds\": {{ .Data.daytime_duration_seconds | default 1728 }},\n  \"NighttimeDurationSeconds\": {{ .Data.nighttime_duration_seconds | default 1152 }}\n}\n"
         }
     ],
     "run": {
-        "command": "bash -c \"if [ \\\"${backup}\\\" = \\\"true\\\" ]; then BACKUP_DIR=\\\"${backup_dir}\\\"; MAX_BACKUPS=${backup_max_count}; if [ -d \\\"\\$BACKUP_DIR\\\" ] && [ \\$MAX_BACKUPS -gt 0 ]; then TOTAL=\\$(ls -1t \\\"\\$BACKUP_DIR\\\" 2>/dev/null | wc -l); if [ \\$TOTAL -gt \\$MAX_BACKUPS ]; then ls -1t \\\"\\$BACKUP_DIR\\\" | tail -n +\\$((MAX_BACKUPS + 1)) | while read f; do rm -rf \\\"\\$BACKUP_DIR/\\$f\\\"; done; echo \\\"[Backup] Cleaned old backups, kept \\$MAX_BACKUPS most recent.\\\"; fi; fi; fi; ./start.sh --xms 1024M --xmx ${memory}M --port ${port} -- --auth-mode ${auth_mode} \\$( [ \\\"${backup}\\\" = \\\"true\\\" ] && echo \\\"--backup\\\" ) --backup-frequency ${backup_frequency} --backup-dir ${backup_dir} ${extra_args}\"",
+        "pre": [
+            {
+                "type": "command",
+                "commands": [
+                    "bash -c \"if [ -f updater/staging/Server/HytaleServer.jar ]; then echo '[Launcher] Applying staged update...'; cp -f updater/staging/Server/HytaleServer.jar Server/; [ -f updater/staging/Server/HytaleServer.aot ] && cp -f updater/staging/Server/HytaleServer.aot Server/; [ -d updater/staging/Server/Licenses ] && rm -rf Server/Licenses && cp -r updater/staging/Server/Licenses Server/; [ -f updater/staging/Assets.zip ] && cp -f updater/staging/Assets.zip ./; [ -f updater/staging/start.sh ] && cp -f updater/staging/start.sh ./; [ -f updater/staging/start.bat ] && cp -f updater/staging/start.bat ./; rm -rf updater/staging; fi\""
+                ]
+            },
+            {
+                "type": "command",
+                "if": "backup",
+                "commands": [
+                    "bash -c \"BACKUP_DIR=\\\"${backup_dir}\\\"; MAX_BACKUPS=${backup_max_count}; if [ -d \\\"\\$BACKUP_DIR\\\" ] && [ \\$MAX_BACKUPS -gt 0 ]; then TOTAL=\\$(ls -1t \\\"\\$BACKUP_DIR\\\" 2>/dev/null | wc -l); if [ \\$TOTAL -gt \\$MAX_BACKUPS ]; then ls -1t \\\"\\$BACKUP_DIR\\\" | tail -n +\\$((MAX_BACKUPS + 1)) | while read f; do rm -rf \\\"\\$BACKUP_DIR/\\$f\\\"; done; echo \\\"[Backup] Cleaned old backups, kept \\$MAX_BACKUPS most recent.\\\"; fi; fi\""
+                ]
+            }
+        ],
+        "command": "bash -c 'cd Server && cd Server && if command -v java >/dev/null 2>&1; then JAVA_CMD=java; elif command -v java25 >/dev/null 2>&1; then JAVA_CMD=java25; elif [ -f /opt/java/openjdk/bin/java ]; then JAVA_CMD=/opt/java/openjdk/bin/java; elif [ -f ../java/bin/java ]; then JAVA_CMD=../java/bin/java; else echo \"[Launcher] No Java found! Install Java 25.\"; exit 1; fi && exec $JAVA_CMD -Xms1024M -Xmx${memory}M --enable-native-access=ALL-UNNAMED -jar HytaleServer.jar --assets ../Assets.zip --bind 0.0.0.0:${port} --auth-mode ${auth_mode} --backup --backup-frequency ${backup_frequency} --backup-dir ${backup_dir} ${extra_args}'",
         "stop": "stop",
         "stdin": {
             "type": "stdin"
