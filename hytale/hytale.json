@@ -384,6 +384,17 @@
         }
     ],
     "run": {
+        "command": [
+            {
+                "command": "bash -c \"cd ./Server/Server/ && exec java25 -Xms1024M -Xmx${memory}M --enable-native-access=ALL-UNNAMED -jar ./HytaleServer.jar --assets ../Assets.zip --bind 0.0.0.0:${port} --auth-mode ${auth_mode} --backup --backup-frequency ${backup_frequency} --backup-dir ${backup_dir} ${extra_args}\"",
+                "if": "env == 'host'"
+            },
+            {
+                "command": "bash -c \"cd ./Server/Server/ && exec java -Xms1024M -Xmx${memory}M --enable-native-access=ALL-UNNAMED -jar ./HytaleServer.jar --assets ../Assets.zip --bind 0.0.0.0:${port} --auth-mode ${auth_mode} --backup --backup-frequency ${backup_frequency} --backup-dir ${backup_dir} ${extra_args}\"",
+                "if": "env != 'host'"
+            }
+        ],
+        "stop": "stop",
         "pre": [
             {
                 "type": "command",
@@ -392,15 +403,13 @@
                 ]
             },
             {
-                "type": "command",
                 "if": "backup",
+                "type": "command",
                 "commands": [
                     "bash -c \"BACKUP_DIR=\\\"${backup_dir}\\\"; MAX_BACKUPS=${backup_max_count}; if [ -d \\\"\\$BACKUP_DIR\\\" ] && [ \\$MAX_BACKUPS -gt 0 ]; then TOTAL=\\$(ls -1t \\\"\\$BACKUP_DIR\\\" 2>/dev/null | wc -l); if [ \\$TOTAL -gt \\$MAX_BACKUPS ]; then ls -1t \\\"\\$BACKUP_DIR\\\" | tail -n +\\$((MAX_BACKUPS + 1)) | while read f; do rm -rf \\\"\\$BACKUP_DIR/\\$f\\\"; done; echo \\\"[Backup] Cleaned old backups, kept \\$MAX_BACKUPS most recent.\\\"; fi; fi\""
                 ]
             }
         ],
-        "command": "bash -c 'cd Server && cd Server && if command -v java >/dev/null 2>&1; then JAVA_CMD=java; elif command -v java25 >/dev/null 2>&1; then JAVA_CMD=java25; elif [ -f /opt/java/openjdk/bin/java ]; then JAVA_CMD=/opt/java/openjdk/bin/java; elif [ -f ../java/bin/java ]; then JAVA_CMD=../java/bin/java; else echo \"[Launcher] No Java found! Install Java 25.\"; exit 1; fi && exec $JAVA_CMD -Xms1024M -Xmx${memory}M --enable-native-access=ALL-UNNAMED -jar HytaleServer.jar --assets ../Assets.zip --bind 0.0.0.0:${port} --auth-mode ${auth_mode} --backup --backup-frequency ${backup_frequency} --backup-dir ${backup_dir} ${extra_args}'",
-        "stop": "stop",
         "stdin": {
             "type": "stdin"
         },
