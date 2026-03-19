@@ -1,7 +1,7 @@
 {
     "type": "srcds",
     "display": "Counter Strike 2",
-    "icon": "css",
+    "icon": "cs2",
     "data": {
         "clientport": {
             "type": "integer",
@@ -112,28 +112,20 @@
         },
         {
             "if": "env == 'docker'",
-            "type": "move",
-            "target": "./.steam/sdk64/",
-            "source": "/.steam/steamcmd/linux64/steamclient.so"
-        },
-        {
-            "if": "env == 'docker'",
             "type": "command",
             "commands": [
-                "ln -sf /pufferpanel/.steam/steamcmd/linux64/steamclient.so /pufferpanel/.steam/sdk64/steamclient.so"
-            ]
-        },
-        {
-            "if": "env == 'docker'",
-            "type": "command",
-            "commands": [
-                "ln -sf /pufferpanel/game/csgo/bin/linuxsteamrt64/libserver.so /pufferpanel/game/bin/linuxsteamrt64/libserver.so"
+                "ln -s /pufferpanel/.steam/steamcmd/linux64/steamclient.so /pufferpanel/.steam/sdk64/"
             ]
         }
     ],
     "uninstall": null,
     "run": {
-        "command": "./game/bin/linuxsteamrt64/cs2 -dedicated -usercon -strictportbind -ip ${ip} -port ${port} +clientport ${clientport} +tv_port ${tvport} +map ${mapName} -maxplayers_override ${maxplayers} +sv_setsteamaccount ${gslt} -tickrate ${tickrate} +mapgroup ${mapgroup} +game_mode ${gamemode} +game_type ${gametype} -net_port_try 1 -norestart",
+        "command": [
+            {
+                "command": "./game/cs2.sh -dedicated -usercon -strictportbind -ip ${ip} -port ${port} +clientport ${clientport} +tv_port ${tvport} +map ${mapName} -maxplayers_override ${maxplayers} +sv_setsteamaccount ${gslt} -tickrate ${tickrate} +mapgroup ${mapgroup} +game_mode ${gamemode} +game_type ${gametype} -net_port_try 1 -norestart",
+                "if": ""
+            }
+        ],
         "stop": "quit",
         "stdin": {
             "type": "stdin"
@@ -144,7 +136,15 @@
     },
     "environment": {
         "type": "docker",
-        "image": "steamcmd/steamcmd:ubuntu-20"
+        "portBindings": [
+            "0.0.0.0:${port}:${port}/tcp",
+            "0.0.0.0:${clientport}:${clientport}/tcp",
+            "0.0.0.0:${tvport}:${tvport}/tcp"
+        ],
+        "bindings": {},
+        "containerRoot": "",
+        "image": "steamcmd/steamcmd:ubuntu-20",
+        "networkName": "host"
     },
     "supportedEnvironments": [
         {
@@ -152,12 +152,12 @@
         },
         {
             "type": "docker",
+            "image": "steamcmd/steamcmd:ubuntu-20",
             "portBindings": [
                 "0.0.0.0:${port}:${port}/tcp",
                 "0.0.0.0:${clientport}:${clientport}/tcp",
                 "0.0.0.0:${tvport}:${tvport}/tcp"
-            ],
-            "image": "steamcmd/steamcmd:ubuntu-20"
+            ]
         }
     ],
     "requirements": {
