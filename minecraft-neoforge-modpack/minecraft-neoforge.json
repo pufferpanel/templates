@@ -87,7 +87,7 @@
                 "java -jar neoforge-installer.jar --installServer",
                 "rm -f neoforge-installer.jar",
                 "rm -f neoforge-installer.jar.log",
-                "rm - f .wget-hsts"
+                "rm -f .wget-hsts"
             ]
         },
         {
