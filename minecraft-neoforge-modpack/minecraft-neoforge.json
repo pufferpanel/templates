@@ -144,7 +144,7 @@
         ]
     },
     "stats": {
-        "type": ""
+        "type": "jcmd"
     },
     "query": {
         "type": "minecraft"
