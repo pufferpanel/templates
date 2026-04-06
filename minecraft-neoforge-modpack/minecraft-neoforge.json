@@ -146,7 +146,7 @@
         "type": ""
     },
     "query": {
-        "type": ""
+        "type": "minecraft"
     },
     "keepAlive": {
         "frequency": "",
