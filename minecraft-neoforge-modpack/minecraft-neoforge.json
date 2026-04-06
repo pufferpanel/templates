@@ -110,7 +110,7 @@
             "text": "-Xms${memory}M -Xmx${mmax}M"
         }
     ],
-    "uninstall": null,
+    "uninstall": [],
     "run": {
         "command": "/bin/sh run.sh",
         "stop": "stop",
