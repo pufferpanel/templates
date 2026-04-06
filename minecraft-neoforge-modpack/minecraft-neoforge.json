@@ -1,6 +1,7 @@
 {
     "type": "minecraft-java",
     "display": "Minecraft: NeoForge Modpack (CurseForge)",
+    "icon": "minecraft-java",
     "data": {
         "eula": {
             "type": "boolean",
