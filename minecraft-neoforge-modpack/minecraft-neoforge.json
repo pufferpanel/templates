@@ -13,7 +13,7 @@
         },
         "fileId": {
             "type": "integer",
-            "value": 6728718,
+            "value": 0,
             "display": "CurseForge File ID",
             "desc": "CurseForge File ID (found at the end of the download URL)",
             "required": true,
@@ -61,7 +61,7 @@
         },
         "projectId": {
             "type": "integer",
-            "value": 1237007,
+            "value": 0,
             "display": "CurseForge Project ID",
             "desc": "CurseForge Project ID (found on the right side of the modpack page)",
             "required": true,
