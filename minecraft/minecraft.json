@@ -29,7 +29,7 @@
     },
     "javaversion": {
       "type": "string",
-      "value": "21",
+      "value": "25",
       "display": "Java Version",
       "desc": "Version of Java to use",
       "required": true,

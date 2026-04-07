@@ -2,7 +2,7 @@
   {
     "name": "rust",
     "variables": {
-      "RConPassword": "12345"
+      "RConPassword": "123456789"
     },
     "environment": {
       "type": "host"
@@ -13,7 +13,7 @@
   {
     "name": "rust-docker",
     "variables": {
-      "RConPassword": "12345"
+      "RConPassword": "123456789"
     },
     "environment": {
       "type": "docker",

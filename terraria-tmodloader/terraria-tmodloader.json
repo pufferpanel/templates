@@ -219,7 +219,7 @@
     },
     "tversion": {
       "type": "string",
-      "value": "v2023.11.3.3",
+      "value": "v2026.02.3.0",
       "display": "tModLoader Version (Set this to the latest tModLoader version to enable support - see https://github.com/tModLoader/tModLoader/releases/latest)",
       "desc": "tModLoader Version",
       "required": false,

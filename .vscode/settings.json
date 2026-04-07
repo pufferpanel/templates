@@ -1,4 +1,5 @@
 {
+  "chat.disableAIFeatures": true,
   "json.schemas": [
     {
       "fileMatch": [
