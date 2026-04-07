@@ -1,0 +1,436 @@
+{
+    "type": "hytale",
+    "display": "Hytale Server (Early Access)",
+    "icon": "gamepad",
+    "data": {
+        "allow_op": {
+            "type": "boolean",
+            "value": false,
+            "display": "Allow OP",
+            "required": true,
+            "userEdit": true
+        },
+        "auth_mode": {
+            "type": "option",
+            "value": "authenticated",
+            "display": "Authentication Mode",
+            "required": true,
+            "userEdit": true,
+            "options": [
+                {
+                    "value": "authenticated",
+                    "display": "Authenticated"
+                },
+                {
+                    "value": "offline",
+                    "display": "Offline"
+                }
+            ]
+        },
+        "backup": {
+            "type": "boolean",
+            "value": true,
+            "display": "Enable Backup",
+            "required": true,
+            "userEdit": true
+        },
+        "backup_dir": {
+            "type": "string",
+            "value": "../backup/",
+            "display": "Backup Folder",
+            "required": false,
+            "userEdit": true
+        },
+        "backup_frequency": {
+            "type": "integer",
+            "value": 15,
+            "display": "Backup Frequency",
+            "desc": "Time in minutes",
+            "required": false,
+            "userEdit": true
+        },
+        "backup_max_count": {
+            "type": "integer",
+            "value": 5,
+            "display": "Max Backups Kept",
+            "desc": "Maximum number of recent backups to keep. Older backups will be deleted automatically.",
+            "required": false,
+            "userEdit": true
+        },
+        "extra_args": {
+            "type": "string",
+            "value": "",
+            "display": "Extra Arguments",
+            "required": false,
+            "userEdit": true
+        },
+        "gamemode": {
+            "type": "option",
+            "value": "ADVENTURE",
+            "display": "Game Mode",
+            "required": true,
+            "userEdit": true,
+            "desc": "",
+            "internal": false,
+            "options": [
+                {
+                    "value": "ADVENTURE",
+                    "display": "Adventure"
+                },
+                {
+                    "value": "CREATIVE",
+                    "display": "Creative"
+                }
+            ]
+        },
+        "max_players": {
+            "type": "integer",
+            "value": 100,
+            "display": "Maximum Players",
+            "required": true,
+            "userEdit": true
+        },
+        "memory": {
+            "type": "integer",
+            "value": 4096,
+            "display": "Maximum Memory (MB)",
+            "required": true,
+            "userEdit": true
+        },
+        "motd": {
+            "type": "string",
+            "value": "",
+            "display": "MOTD",
+            "required": false,
+            "userEdit": true
+        },
+        "pass": {
+            "type": "string",
+            "value": "",
+            "display": "Password",
+            "required": false,
+            "userEdit": false
+        },
+        "patchline": {
+            "type": "string",
+            "value": "release",
+            "display": "Patchline",
+            "required": true,
+            "userEdit": true
+        },
+        "port": {
+            "type": "integer",
+            "value": 5520,
+            "display": "Server Port (UDP)",
+            "required": true,
+            "userEdit": true
+        },
+        "server_name": {
+            "type": "string",
+            "value": "Hytale Server Begin",
+            "display": "Server Name",
+            "required": true,
+            "userEdit": true
+        },
+        "view_radius": {
+            "type": "integer",
+            "value": 32,
+            "display": "View Radius",
+            "required": true,
+            "userEdit": true
+        },
+        "seed": {
+            "display": "World Seed",
+            "desc": "Seed of the world",
+            "type": "string",
+            "value": "",
+            "internal": false,
+            "required": false,
+            "userEdit": true
+        },
+        "is_fall_damage_enabled": {
+            "display": "Fall Damage",
+            "desc": "Enable fall damage",
+            "type": "boolean",
+            "value": true,
+            "internal": false,
+            "required": true,
+            "userEdit": true
+        },
+        "is_pvp_enabled": {
+            "display": "PvP Enabled",
+            "desc": "Enable Player vs Player",
+            "type": "boolean",
+            "value": true,
+            "internal": false,
+            "required": true,
+            "userEdit": true
+        },
+        "is_spawning_npc": {
+            "display": "NPC Spawning",
+            "desc": "Enable NPC spawning",
+            "type": "boolean",
+            "value": true,
+            "internal": false,
+            "required": true,
+            "userEdit": true
+        },
+        "death_respawn_type": {
+            "display": "Death Respawn Type",
+            "desc": "Type of respawn on death",
+            "type": "option",
+            "value": "HomeOrSpawnPoint",
+            "internal": false,
+            "required": true,
+            "userEdit": true,
+            "options": [
+                {
+                    "value": "HomeOrSpawnPoint",
+                    "display": "Home or Spawn Point"
+                },
+                {
+                    "value": "SpawnPointOnly",
+                    "display": "Spawn Point Only"
+                }
+            ]
+        },
+        "items_loss_mode": {
+            "display": "Items Loss Mode",
+            "desc": "Mode of item loss on death",
+            "type": "option",
+            "value": "Configured",
+            "internal": false,
+            "required": true,
+            "userEdit": true,
+            "options": [
+                {
+                    "value": "Configured",
+                    "display": "Configured"
+                },
+                {
+                    "value": "All",
+                    "display": "All"
+                },
+                {
+                    "value": "None",
+                    "display": "None"
+                }
+            ]
+        },
+        "items_amount_loss_percentage": {
+            "display": "Items Amount Loss %",
+            "desc": "Percentage of items lost on death",
+            "type": "integer",
+            "value": 50,
+            "internal": false,
+            "required": true,
+            "userEdit": true
+        },
+        "items_durability_loss_percentage": {
+            "display": "Items Durability Loss %",
+            "desc": "Percentage of durability lost on death",
+            "type": "integer",
+            "value": 10,
+            "internal": false,
+            "required": true,
+            "userEdit": true
+        },
+        "daytime_duration_seconds": {
+            "display": "Daytime Duration (s)",
+            "desc": "Duration of the day in seconds",
+            "type": "integer",
+            "value": 1728,
+            "internal": false,
+            "required": true,
+            "userEdit": true
+        },
+        "nighttime_duration_seconds": {
+            "display": "Nighttime Duration (s)",
+            "desc": "Duration of the night in seconds",
+            "type": "integer",
+            "value": 1152,
+            "internal": false,
+            "required": true,
+            "userEdit": true
+        }
+    },
+    "groups": [
+        {
+            "display": "Gameplay",
+            "description": "",
+            "variables": [
+                "allow_op",
+                "auth_mode",
+                "server_name",
+                "motd",
+                "max_players",
+                "view_radius",
+                "gamemode",
+                "pass",
+                "is_fall_damage_enabled",
+                "is_pvp_enabled",
+                "is_spawning_npc",
+                "seed",
+                "death_respawn_type",
+                "items_loss_mode",
+                "items_amount_loss_percentage",
+                "items_durability_loss_percentage",
+                "daytime_duration_seconds",
+                "nighttime_duration_seconds"
+            ],
+            "order": 1
+        },
+        {
+            "display": "General",
+            "description": "",
+            "variables": [
+                "extra_args",
+                "memory",
+                "patchline",
+                "port",
+                "backup"
+            ],
+            "order": 2
+        },
+        {
+            "if": "backup",
+            "display": "Backup",
+            "description": "",
+            "variables": [
+                "backup_frequency",
+                "backup_dir",
+                "backup_max_count"
+            ],
+            "order": 3
+        }
+    ],
+    "install": [
+        {
+            "type": "javadl",
+            "version": "25"
+        },
+        {
+            "type": "mkdir",
+            "target": "Download"
+        },
+        {
+            "type": "mkdir",
+            "target": "Server"
+        },
+        {
+            "type": "mkdir",
+            "target": "Server/universe/worlds/default/"
+        },
+        {
+            "type": "download",
+            "files": [
+                "https://downloader.hytale.com/hytale-downloader.zip"
+            ]
+        },        
+        {
+            "type": "move",
+            "source": "hytale-downloader.zip",
+            "target": "Download/hytale-downloader.zip"
+        },
+        {
+            "type": "extract",
+            "source": "Download/hytale-downloader.zip",
+            "destination": "Download"
+        },
+        {
+            "type": "command",
+            "commands": [
+                "rm -rf ./Download/hytale-downloader.zip"
+            ]
+        },
+        {
+            "type": "command",
+            "commands": [
+                "find . -maxdepth 1 -type f -name \"*.zip\" -delete"
+            ]
+        },
+        {
+            "type": "command",
+            "commands": [
+                "chmod +x ./Download/hytale-downloader-linux-amd64"
+            ]
+        },
+        {
+            "type": "command",
+            "commands": [
+                "./Download/hytale-downloader-linux-amd64"
+            ]
+        },
+        {
+            "type": "command",
+            "commands": [
+                "sh -c \"ZIP=\\$(find . -type f -name '*.zip' | head -n 1) && [ -n \\\"\\$ZIP\\\" ] && mv \\\"\\$ZIP\\\" update.zip\""
+            ]
+        },
+        {
+            "type": "extract",
+            "source": "./update.zip",
+            "destination": "./Server"
+        },
+        {
+            "type": "writefile",
+            "target": "./Server/config.json",
+            "text": "{\n  \"ServerName\": \"{{ .Data.server_name | default \\\"Hytale Server (Early Access)\\\" }}\",\n  \"MOTD\": \"{{ .Data.motd | default \\\"Welcome to my server\\\" }}\",\n  \"Password\": \"{{ .Data.pass | default \\\"\\\" }}\",\n  \"MaxPlayers\": {{ .Data.max_players | default 10 }},\n  \"MaxViewRadius\": {{ .Data.view_radius | default 32 }},\n  \"Defaults\": {\n    \"World\": \"default\",\n    \"GameMode\": \"{{ .Data.gamemode | default \\\"\\\" }}\"\n  },\n  \"ConnectionTimeouts\": {},\n  \"RateLimit\": {},\n  \"Modules\": {},\n  \"LogLevels\": {},\n  \"Mods\": {},\n  \"Update\": {}\n}\n"
+        },
+        {
+            "type": "writefile",
+            "target": "./Server/universe/worlds/default/config.json",
+            "text": "{\n  \"Seed\": \"{{ .Data.seed | default \\\"\\\" }}\",\n  \"IsFallDamageEnabled\": {{ .Data.is_fall_damage_enabled | default true }},\n  \"IsPvpEnabled\": {{ .Data.is_pvp_enabled | default false }},\n  \"IsSpawningNPC\": {{ .Data.is_spawning_npc | default true }},\n  \"GameMode\": \"{{ .Data.gamemode | default \\\"ADVENTURE\\\" }}\",\n  \"Death\": {\n    \"RespawnController\": {\n      \"Type\": \"{{ .Data.death_respawn_type | default \\\"HomeOrSpawnPoint\\\" }}\"\n    },\n    \"ItemsLossMode\": \"{{ .Data.items_loss_mode | default \\\"Configured\\\" }}\",\n    \"ItemsAmountLossPercentage\": {{ .Data.items_amount_loss_percentage | default 50 }},\n    \"ItemsDurabilityLossPercentage\": {{ .Data.items_durability_loss_percentage | default 10 }}\n  },\n  \"DaytimeDurationSeconds\": {{ .Data.daytime_duration_seconds | default 1728 }},\n  \"NighttimeDurationSeconds\": {{ .Data.nighttime_duration_seconds | default 1152 }}\n}\n"
+        }
+    ],
+    "run": {
+        "command": [
+            {
+                "command": "bash -c \"cd ./Server/Server/ && exec java25 -Xms1024M -Xmx${memory}M --enable-native-access=ALL-UNNAMED -jar ./HytaleServer.jar --assets ../Assets.zip --bind 0.0.0.0:${port} --auth-mode ${auth_mode} --backup --backup-frequency ${backup_frequency} --backup-dir ${backup_dir} ${extra_args}\"",
+                "if": "env == 'host'"
+            },
+            {
+                "command": "bash -c \"cd ./Server/Server/ && exec java -Xms1024M -Xmx${memory}M --enable-native-access=ALL-UNNAMED -jar ./HytaleServer.jar --assets ../Assets.zip --bind 0.0.0.0:${port} --auth-mode ${auth_mode} --backup --backup-frequency ${backup_frequency} --backup-dir ${backup_dir} ${extra_args}\"",
+                "if": "env != 'host'"
+            }
+        ],
+        "stop": "stop",
+        "pre": [
+            {
+                "type": "command",
+                "commands": [
+                    "bash -c \"if [ -f updater/staging/Server/HytaleServer.jar ]; then echo '[Launcher] Applying staged update...'; cp -f updater/staging/Server/HytaleServer.jar Server/; [ -f updater/staging/Server/HytaleServer.aot ] && cp -f updater/staging/Server/HytaleServer.aot Server/; [ -d updater/staging/Server/Licenses ] && rm -rf Server/Licenses && cp -r updater/staging/Server/Licenses Server/; [ -f updater/staging/Assets.zip ] && cp -f updater/staging/Assets.zip ./; [ -f updater/staging/start.sh ] && cp -f updater/staging/start.sh ./; [ -f updater/staging/start.bat ] && cp -f updater/staging/start.bat ./; rm -rf updater/staging; fi\""
+                ]
+            },
+            {
+                "if": "backup",
+                "type": "command",
+                "commands": [
+                    "bash -c \"BACKUP_DIR=\\\"${backup_dir}\\\"; MAX_BACKUPS=${backup_max_count}; if [ -d \\\"\\$BACKUP_DIR\\\" ] && [ \\$MAX_BACKUPS -gt 0 ]; then TOTAL=\\$(ls -1t \\\"\\$BACKUP_DIR\\\" 2>/dev/null | wc -l); if [ \\$TOTAL -gt \\$MAX_BACKUPS ]; then ls -1t \\\"\\$BACKUP_DIR\\\" | tail -n +\\$((MAX_BACKUPS + 1)) | while read f; do rm -rf \\\"\\$BACKUP_DIR/\\$f\\\"; done; echo \\\"[Backup] Cleaned old backups, kept \\$MAX_BACKUPS most recent.\\\"; fi; fi\""
+                ]
+            }
+        ],
+        "stdin": {
+            "type": "stdin"
+        },
+        "autostart": false,
+        "autorecover": false,
+        "autorestart": false
+    },
+    "supportedEnvironments": [
+        {
+            "type": "host"
+        },
+        {
+            "type": "docker",
+            "portBindings": [
+                "0.0.0.0:${port}:${port}/udp"
+            ],
+            "image": "eclipse-temurin:25"
+        }
+    ],
+    "requirements": {
+        "os": "linux",
+        "arch": "amd64"
+    }
+}
