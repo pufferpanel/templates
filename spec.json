@@ -1194,6 +1194,17 @@
       "required": [
         "type"
       ]
+    },
+    "keepAliveConfig": {
+      "type": "object",
+      "properties": {
+        "frequency": {
+          "type": "string"
+        },
+        "command": {
+          "type": "string"
+        }
+      }
     }
   }
 }
