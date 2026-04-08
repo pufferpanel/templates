@@ -1,0 +1,157 @@
+{
+    "type": "minecraft-java",
+    "display": "Minecraft: NeoForge Modpack (CurseForge)",
+    "icon": "minecraft-java",
+    "data": {
+        "eula": {
+            "type": "boolean",
+            "value": false,
+            "display": "EULA Agreement",
+            "desc": "Do you (or the server owner) agree to the <a href='https://account.mojang.com/documents/minecraft_eula'>Minecraft EULA?</a>",
+            "required": true,
+            "userEdit": false
+        },
+        "fileId": {
+            "type": "integer",
+            "value": 0,
+            "display": "CurseForge File ID",
+            "desc": "CurseForge File ID (found at the end of the download URL)",
+            "required": true,
+            "userEdit": false
+        },
+        "ip": {
+            "type": "string",
+            "value": "0.0.0.0",
+            "display": "IP",
+            "desc": "What IP to bind the server to",
+            "required": true,
+            "userEdit": false
+        },
+        "memory": {
+            "type": "integer",
+            "value": 1536,
+            "display": "Memory (MB) minimum",
+            "desc": "How much memory at least in MB to allocate to the Java Heap",
+            "required": true,
+            "userEdit": false
+        },
+        "mmax": {
+            "type": "integer",
+            "value": 3000,
+            "display": "Memory Max (MB)",
+            "desc": "How many memory to let Java use",
+            "required": false,
+            "userEdit": false
+        },
+        "neoforgeVersion": {
+            "type": "string",
+            "value": "21.1.172",
+            "display": "NeoForge Version",
+            "desc": "NeoForge version to install (ex: 21.1.172)",
+            "required": true,
+            "userEdit": false
+        },
+        "port": {
+            "type": "integer",
+            "value": 25565,
+            "display": "Port",
+            "desc": "What port to bind the server to",
+            "required": true,
+            "userEdit": false
+        },
+        "projectId": {
+            "type": "integer",
+            "value": 0,
+            "display": "CurseForge Project ID",
+            "desc": "CurseForge Project ID (found on the right side of the modpack page)",
+            "required": true,
+            "userEdit": false
+        },
+        "render": {
+            "type": "integer",
+            "value": 10,
+            "display": "Render Distance",
+            "required": true,
+            "userEdit": false
+        }
+    },
+    "install": [
+        {
+            "type": "curseforge",
+            "projectId": "${projectId}",
+            "fileId": "${fileId}"
+        },
+        {
+            "type": "command",
+            "commands": [
+                "wget -q -O neoforge-installer.jar https://maven.neoforged.net/releases/net/neoforged/neoforge/${neoforgeVersion}/neoforge-${neoforgeVersion}-installer.jar",
+                "java -jar neoforge-installer.jar --installServer",
+                "rm -f neoforge-installer.jar",
+                "rm -f neoforge-installer.jar.log",
+                "rm -f .wget-hsts"
+            ]
+        },
+        {
+            "type": "writefile",
+            "text": "eula=${eula}",
+            "target": "eula.txt"
+        },
+        {
+            "type": "writefile",
+            "target": "server.properties",
+            "text": "server-ip=${ip}\nserver-port=${port}\nview-distance=${render}\nsimulation-distance=4\n"
+        },
+        {
+            "type": "javadl",
+            "version": "21"
+        },
+        {
+            "type": "writefile",
+            "target": "user_jvm_args.txt",
+            "text": "-Xms${memory}M -Xmx${mmax}M"
+        }
+    ],
+    "uninstall": [],
+    "run": {
+        "command": "/bin/sh run.sh",
+        "stop": "stop",
+        "stdin": {
+            "type": "stdin"
+        },
+        "autostart": false,
+        "autorecover": false,
+        "autorestart": false
+    },
+    "environment": {
+        "type": "standard"
+    },
+    "supportedEnvironments": [
+        {
+            "type": "standard"
+        },
+        {
+            "type": "host",
+            "mounts": [],
+            "disableUnshare": false
+        }
+    ],
+    "requirements": {
+        "os": "linux",
+        "arch": "amd64",
+        "binaries": [
+            "wget",
+            "java"
+        ]
+    },
+    "stats": {
+        "type": "jcmd"
+    },
+    "query": {
+        "type": "minecraft"
+    },
+    "keepAlive": {
+        "frequency": "",
+        "command": ""
+    },
+    "name": "minecraft-neoforge-curseforge"
+}
