@@ -3,7 +3,7 @@
   "display": "Rust",
   "icon": "rust",
   "data": {
-    "Description": {
+    "description": {
       "type": "string",
       "value": "RUST Public Server Description",
       "display": "Server Description",
@@ -11,7 +11,7 @@
       "required": true,
       "userEdit": true
     },
-    "MaxPlayers": {
+    "maxPlayers": {
       "type": "integer",
       "value": 10,
       "display": "Max Players",
@@ -19,7 +19,7 @@
       "required": true,
       "userEdit": false
     },
-    "RConPassword": {
+    "rconPassword": {
       "type": "string",
       "value": "",
       "display": "RCON Password",
@@ -27,7 +27,7 @@
       "required": true,
       "userEdit": true
     },
-    "RConPort": {
+    "rconPort": {
       "type": "integer",
       "value": 28016,
       "display": "RCON Port",
@@ -35,7 +35,7 @@
       "required": true,
       "userEdit": false
     },
-    "ServerIdentity": {
+    "serverIdentity": {
       "type": "string",
       "value": "server1",
       "display": "Server identity",
@@ -43,7 +43,7 @@
       "required": true,
       "userEdit": false
     },
-    "ServerImage": {
+    "serverImage": {
       "type": "string",
       "value": "http://",
       "display": "Server Header Image",
@@ -51,15 +51,7 @@
       "required": true,
       "userEdit": true
     },
-    "ServerLevel": {
-      "type": "string",
-      "value": "Procedural Map",
-      "display": "Server Level",
-      "desc": "What map name do you want? If unsure, leave as default.",
-      "required": true,
-      "userEdit": true
-    },
-    "ServerName": {
+    "serverName": {
       "type": "string",
       "value": "RUST Public Server",
       "display": "Server Name",
@@ -67,15 +59,15 @@
       "required": true,
       "userEdit": true
     },
-    "ServerSeed": {
-      "type": "string",
-      "value": "1234",
+    "seed": {
+      "type": "integer",
+      "value": 1234,
       "display": "Server Seed",
-      "desc": "Server seed to use. Default should be fine.",
+      "desc": "Server seed to use. It is suggested to set this to a random number so worlds are not the same.",
       "required": true,
       "userEdit": true
     },
-    "URL": {
+    "serverUrl": {
       "type": "string",
       "value": "http://",
       "display": "Server Website",
@@ -83,7 +75,7 @@
       "required": true,
       "userEdit": true
     },
-    "WorldSize": {
+    "worldSize": {
       "type": "integer",
       "value": 3000,
       "display": "World Size",
@@ -120,18 +112,24 @@
       "commands": [
         "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 258550 +quit"
       ]
+    },
+    {
+      "if": "!file_exists(\"server.cfg\")",
+      "type": "writefile",
+      "target": "server.cfg",
+      "text": "server.level \"${ServerLevel}\"\nserver.seed ${ServerSeed}\nserver.worldsize ${WorldSize}\nserver.hostname \"${ServerName}\"\nserver.description \"${Description}\"\nserver.headerimage \"${ServerImage}\"\nserver.url \"${URL}\"\nserver.identity \"${ServerIdentity}\""
     }
   ],
   "run": {
-    "command": "./RustDedicated -nographics -batchmode +server.port ${port} +server.level \"${ServerLevel}\" +server.seed ${ServerSeed} +server.worldsize ${WorldSize} +server.maxplayers ${MaxPlayers} +server.hostname \"${ServerName}\" +server.description \"${Description}\" +server.headerimage \"${ServerImage}\" +server.url \"${URL}\" +server.identity \"${ServerIdentity}\" +rcon.port ${RConPort} +rcon.password ${RConPassword} +rcon.web 1",
+    "command": "./RustDedicated -nographics -batchmode +server.port ${port} +server.maxplayers ${maxPlayers} +rcon.port ${rconPort} +rcon.password \"${rconPassword}\" +rcon.web 1",
     "stop": "quit",
     "environmentVars": {
       "LD_LIBRARY_PATH": "./RustDedicated_Data/Plugins/x86_64"
     },
     "stdin": {
       "type": "rconws",
-      "port": "${RConPort}",
-      "password": "${RConPassword}"
+      "port": "${rconPort}",
+      "password": "${rconPassword}"
     },
     "autostart": false,
     "autorecover": false,
