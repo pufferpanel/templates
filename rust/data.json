@@ -2,24 +2,22 @@
   {
     "name": "rust",
     "variables": {
-      "RConPassword": "123456789"
+      "rconPassword": "123456789"
     },
     "environment": {
       "type": "host"
     },
-    "runtimeRequirement": 10,
-    "ignoreExitCode": true
+    "runtimeRequirement": 10
   },
   {
     "name": "rust-docker",
     "variables": {
-      "RConPassword": "123456789"
+      "rconPassword": "123456789"
     },
     "environment": {
       "type": "docker",
       "image": "steamcmd/steamcmd"
     },
-    "runtimeRequirement": 10,
-    "ignoreExitCode": true
+    "runtimeRequirement": 10
   }
 ]
