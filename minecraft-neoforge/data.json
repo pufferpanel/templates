@@ -1,0 +1,36 @@
+[
+  {
+    "name": "minecraft-neoforge-1.21.11",
+    "variables": {
+      "memory": "4096",
+      "ip": "0.0.0.0",
+      "port": "25565",
+      "eula": true,
+      "version": "1.21.11",
+      "neobuild": "",
+      "javaversion": "21"
+    },
+    "environment": {
+      "type": "host"
+    }
+  },
+  {
+    "name": "minecraft-neoforge-1.21.11-docker",
+    "variables": {
+      "memory": "4096",
+      "ip": "0.0.0.0",
+      "port": "25565",
+      "eula": true,
+      "version": "1.21.11",
+      "neobuild": "",
+      "javaversion": "21"
+    },
+    "environment": {
+      "type": "docker",
+      "image": "eclipse-temurin:21",
+      "portBindings": [
+        "0.0.0.0:25565:25565/tcp"
+      ]
+    }
+  }
+]

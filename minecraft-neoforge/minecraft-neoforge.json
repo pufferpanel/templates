@@ -1,0 +1,224 @@
+{
+  "type": "minecraft-java",
+  "display": "Minecraft: Java Edition (NeoForge)",
+  "icon": "minecraft-java",
+  "data": {
+    "eula": {
+      "type": "boolean",
+      "value": false,
+      "display": "EULA Agreement (true/false)",
+      "desc": "Do you (or the server owner) agree to the <a href='https://www.minecraft.net/en-us/eula'>Minecraft EULA?</a>",
+      "required": true,
+      "userEdit": true
+    },
+    "version": {
+      "type": "string",
+      "value": "1.21.11",
+      "display": "Minecraft Version",
+      "desc": "Version of Minecraft you wish to install. It is recommended to use a specific version instead of latest.",
+      "required": true,
+      "userEdit": true
+    },
+    "neobuild": {
+      "type": "string",
+      "value": "",
+      "display": "NeoForge Version",
+      "desc": "Version of NeoForge to install. Example: 21.11.0-beta. Leave empty to automatically resolve the latest NeoForge build for the selected Minecraft version.",
+      "required": false,
+      "userEdit": true
+    },
+    "ip": {
+      "type": "string",
+      "value": "0.0.0.0",
+      "display": "IP",
+      "desc": "What IP to bind the server to",
+      "required": true,
+      "userEdit": false
+    },
+    "port": {
+      "type": "integer",
+      "value": 25565,
+      "display": "Port",
+      "desc": "What port to bind the server to",
+      "required": true,
+      "userEdit": false
+    },
+    "memory": {
+      "type": "integer",
+      "value": 4096,
+      "display": "Memory (MB)",
+      "desc": "How much memory in MB to allocate to the Java heap",
+      "required": true,
+      "userEdit": false
+    },
+    "javaversion": {
+      "type": "string",
+      "value": "21",
+      "display": "Java Version",
+      "desc": "Version of Java to use. Java 21 is recommended for Minecraft 1.21.x.",
+      "required": true,
+      "userEdit": true
+    },
+    "jvmArgs": {
+      "type": "string",
+      "value": "-Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true",
+      "display": "JVM Arguments",
+      "desc": "Extra JVM arguments to pass",
+      "required": false,
+      "userEdit": true
+    },
+    "motd": {
+      "type": "string",
+      "value": "A NeoForge Minecraft Server hosted on PufferPanel",
+      "display": "MOTD message of the day",
+      "desc": "This is the message that is displayed in the server list of the client, below the name.",
+      "required": true,
+      "userEdit": true
+    },
+    "resolvedNeoForgeVersion": {
+      "type": "string",
+      "value": "",
+      "display": "Resolved NeoForge Version",
+      "desc": "Internal, resolved version of NeoForge",
+      "required": false,
+      "userEdit": false,
+      "internal": true
+    }
+  },
+  "groups": [
+    {
+      "display": "General",
+      "description": "General settings for the Minecraft server",
+      "variables": [
+        "eula",
+        "memory",
+        "ip",
+        "port",
+        "motd",
+        "version",
+        "javaversion",
+        "jvmArgs"
+      ],
+      "order": 1
+    },
+    {
+      "display": "NeoForge",
+      "description": "NeoForge installation settings",
+      "variables": [
+        "neobuild"
+      ],
+      "order": 2
+    }
+  ],
+  "install": [
+    {
+      "type": "javadl",
+      "if": "env == 'host' && javaversion != ''",
+      "version": "${javaversion}"
+    },
+    {
+      "type": "neoforgedl",
+      "target": "installer.jar",
+      "version": "${neobuild}",
+      "minecraftVersion": "${version}",
+      "outputVariable": "resolvedNeoForgeVersion"
+    },
+    {
+      "type": "command",
+      "if": "env == 'host'",
+      "commands": [
+        "java${javaversion} -jar installer.jar --installServer"
+      ]
+    },
+    {
+      "type": "command",
+      "if": "env != 'host'",
+      "commands": [
+        "java -jar installer.jar --installServer"
+      ]
+    },
+    {
+      "type": "mkdir",
+      "target": "mods"
+    },
+    {
+      "type": "mkdir",
+      "target": "config"
+    },
+    {
+      "type": "writefile",
+      "if": "!file_exists(\"server.properties\")",
+      "text": "server-ip=${ip}\nserver-port=${port}\nmotd=${motd}\n",
+      "target": "server.properties"
+    },
+    {
+      "type": "writefile",
+      "text": "eula=${eula}\n",
+      "target": "eula.txt"
+    }
+  ],
+  "run": {
+    "command": [
+      {
+        "command": "java${javaversion} -Xmx${memory}M ${jvmArgs} @libraries/net/neoforged/neoforge/${resolvedNeoForgeVersion}/win_args.txt nogui",
+        "if": "env == 'host' && os == 'windows' && file_exists('libraries/net/neoforged/neoforge/' + resolvedNeoForgeVersion + '/win_args.txt')"
+      },
+      {
+        "command": "java${javaversion} -Xmx${memory}M ${jvmArgs} @libraries/net/neoforged/neoforge/${resolvedNeoForgeVersion}/unix_args.txt nogui",
+        "if": "env == 'host' && file_exists('libraries/net/neoforged/neoforge/' + resolvedNeoForgeVersion + '/unix_args.txt')"
+      },
+      {
+        "command": "java -Xmx${memory}M ${jvmArgs} @libraries/net/neoforged/neoforge/${resolvedNeoForgeVersion}/unix_args.txt nogui",
+        "if": "env != 'host' && file_exists('libraries/net/neoforged/neoforge/' + resolvedNeoForgeVersion + '/unix_args.txt')"
+      },
+      {
+        "command": "java${javaversion} -Xmx${memory}M ${jvmArgs} -jar server.jar nogui",
+        "if": "env == 'host' && file_exists('server.jar')"
+      },
+      {
+        "command": "java -Xmx${memory}M ${jvmArgs} -jar server.jar nogui",
+        "if": "env != 'host' && file_exists('server.jar')"
+      },
+      {
+        "command": "java -Xmx${memory}M ${jvmArgs} -jar server.jar nogui"
+      }
+    ],
+    "pre": [
+      {
+        "type": "resolveneoforgeversion",
+        "minecraftVersion": "${version}",
+        "version": "${neobuild}",
+        "outputVariable": "resolvedNeoForgeVersion"
+      }
+    ],
+    "stop": "stop",
+    "stdin": {
+      "type": "stdin"
+    },
+    "autostart": false,
+    "autorecover": false,
+    "autorestart": false
+  },
+  "environment": {
+    "type": "host"
+  },
+  "supportedEnvironments": [
+    {
+      "type": "host"
+    },
+    {
+      "type": "docker",
+      "image": "eclipse-temurin:${javaversion}",
+      "portBindings": [
+        "0.0.0.0:${port}:${port}/tcp"
+      ]
+    }
+  ],
+  "requirements": {},
+  "stats": {
+    "type": "jcmd"
+  },
+  "query": {
+    "type": "minecraft"
+  }
+}
