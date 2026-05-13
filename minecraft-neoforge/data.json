@@ -8,7 +8,8 @@
       "eula": true,
       "version": "1.21.11",
       "neobuild": "",
-      "javaversion": "21"
+      "javaversion": "21",
+      "serverArgs": "nogui"
     },
     "environment": {
       "type": "host"
@@ -23,7 +24,8 @@
       "eula": true,
       "version": "1.21.11",
       "neobuild": "",
-      "javaversion": "21"
+      "javaversion": "21",
+      "serverArgs": "nogui"
     },
     "environment": {
       "type": "docker",

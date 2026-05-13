@@ -23,7 +23,7 @@
       "type": "string",
       "value": "",
       "display": "NeoForge Version",
-      "desc": "Version of NeoForge to install. Example: 21.11.0-beta. Leave empty to automatically resolve the latest NeoForge build for the selected Minecraft version.",
+      "desc": "Version of NeoForge to install. Example: 21.11.42. Leave empty to automatically resolve the latest NeoForge build for the selected Minecraft version.",
       "required": false,
       "userEdit": true
     },
@@ -63,7 +63,15 @@
       "type": "string",
       "value": "-Dterminal.jline=false -Dterminal.ansi=true -Dlog4j2.formatMsgNoLookups=true",
       "display": "JVM Arguments",
-      "desc": "Extra JVM arguments to pass",
+      "desc": "Extra JVM arguments written to user_jvm_args.txt before the server starts.",
+      "required": false,
+      "userEdit": true
+    },
+    "serverArgs": {
+      "type": "string",
+      "value": "nogui",
+      "display": "Server Arguments",
+      "desc": "Program arguments passed after the NeoForge argument file. Keep 'nogui' for headless servers.",
       "required": false,
       "userEdit": true
     },
@@ -97,7 +105,8 @@
         "motd",
         "version",
         "javaversion",
-        "jvmArgs"
+        "jvmArgs",
+        "serverArgs"
       ],
       "order": 1
     },
@@ -138,6 +147,11 @@
       ]
     },
     {
+      "type": "writefile",
+      "text": "-Xmx${memory}M\n${jvmArgs}\n",
+      "target": "user_jvm_args.txt"
+    },
+    {
       "type": "mkdir",
       "target": "mods"
     },
@@ -160,41 +174,56 @@
   "run": {
     "command": [
       {
-        "command": "java${javaversion} -Xmx${memory}M ${jvmArgs} @libraries/net/neoforged/neoforge/${resolvedNeoForgeVersion}/win_args.txt nogui",
-        "if": "env == 'host' && os == 'windows' && file_exists('libraries/net/neoforged/neoforge/' + resolvedNeoForgeVersion + '/win_args.txt')"
+        "command": "java${javaversion} @user_jvm_args.txt @libraries/net/neoforged/neoforge/${resolvedNeoForgeVersion}/win_args.txt ${serverArgs}",
+        "if": "env == 'host' && os == 'windows' && resolvedNeoForgeVersion != ''"
       },
       {
-        "command": "java${javaversion} -Xmx${memory}M ${jvmArgs} @libraries/net/neoforged/neoforge/${resolvedNeoForgeVersion}/unix_args.txt nogui",
-        "if": "env == 'host' && file_exists('libraries/net/neoforged/neoforge/' + resolvedNeoForgeVersion + '/unix_args.txt')"
+        "command": "java${javaversion} @user_jvm_args.txt @libraries/net/neoforged/neoforge/${resolvedNeoForgeVersion}/unix_args.txt ${serverArgs}",
+        "if": "env == 'host' && os != 'windows' && resolvedNeoForgeVersion != ''"
       },
       {
-        "command": "java -Xmx${memory}M ${jvmArgs} @libraries/net/neoforged/neoforge/${resolvedNeoForgeVersion}/unix_args.txt nogui",
-        "if": "env != 'host' && file_exists('libraries/net/neoforged/neoforge/' + resolvedNeoForgeVersion + '/unix_args.txt')"
+        "command": "java @user_jvm_args.txt @libraries/net/neoforged/neoforge/${resolvedNeoForgeVersion}/unix_args.txt ${serverArgs}",
+        "if": "env != 'host' && resolvedNeoForgeVersion != ''"
       },
       {
-        "command": "java${javaversion} -Xmx${memory}M ${jvmArgs} -jar server.jar nogui",
-        "if": "env == 'host' && file_exists('server.jar')"
+        "command": "java${javaversion} @user_jvm_args.txt @libraries/net/neoforged/neoforge/${neobuild}/win_args.txt ${serverArgs}",
+        "if": "env == 'host' && os == 'windows' && resolvedNeoForgeVersion == '' && neobuild != ''"
       },
       {
-        "command": "java -Xmx${memory}M ${jvmArgs} -jar server.jar nogui",
-        "if": "env != 'host' && file_exists('server.jar')"
+        "command": "java${javaversion} @user_jvm_args.txt @libraries/net/neoforged/neoforge/${neobuild}/unix_args.txt ${serverArgs}",
+        "if": "env == 'host' && os != 'windows' && resolvedNeoForgeVersion == '' && neobuild != ''"
       },
       {
-        "command": "java -Xmx${memory}M ${jvmArgs} -jar server.jar nogui"
-      }
-    ],
-    "pre": [
+        "command": "java @user_jvm_args.txt @libraries/net/neoforged/neoforge/${neobuild}/unix_args.txt ${serverArgs}",
+        "if": "env != 'host' && resolvedNeoForgeVersion == '' && neobuild != ''"
+      },
       {
-        "type": "resolveneoforgeversion",
-        "minecraftVersion": "${version}",
-        "version": "${neobuild}",
-        "outputVariable": "resolvedNeoForgeVersion"
+        "command": "sh run.sh ${serverArgs}",
+        "if": "env == 'host' && os != 'windows' && file_exists('run.sh')"
+      },
+      {
+        "command": "sh run.sh ${serverArgs}",
+        "if": "env != 'host' && file_exists('run.sh')"
       }
     ],
     "stop": "stop",
     "stdin": {
       "type": "stdin"
     },
+    "pre": [
+      {
+        "type": "resolveneoforgeversion",
+        "if": "resolvedNeoForgeVersion == ''",
+        "minecraftVersion": "${version}",
+        "version": "${neobuild}",
+        "outputVariable": "resolvedNeoForgeVersion"
+      },
+      {
+        "type": "writefile",
+        "text": "-Xmx${memory}M\n${jvmArgs}\n",
+        "target": "user_jvm_args.txt"
+      }
+    ],
     "autostart": false,
     "autorecover": false,
     "autorestart": false
