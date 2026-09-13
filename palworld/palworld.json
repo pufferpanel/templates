@@ -1,88 +1,78 @@
 {
+    "name": 
     "type": "palworld",
     "display": "Palworld - Dedicated Server",
     "data": {},
     "install": [
         {
+            "if": "env == 'host'",
+            "type": "steamgamedl",
+            "appId": "2394010"
+        },
+        {
+            "if": "env == 'docker'",
             "type": "command",
             "commands": [
-                "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 1007 +quit"
+                "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 2394010 +quit"
             ]
         },
         {
             "type": "mkdir",
-            "target": "/.steam/sdk64/"
+            "target": "Pal/Saved/Config/LinuxServer"
         },
         {
             "type": "command",
             "commands": [
-                "cp /pufferpanel/linux64/steamclient.so /pufferpanel/.steam/sdk64/"
+                "rm -rf .steam/sdk64"                
+            ]
+        },
+        {
+            "if": "env == 'host'",
+            "type": "command",
+            "commands": [
+                "cp -r .steam/linux64 .steam/sdk64"
+            ]
+        },
+        {
+            "if": "env == 'docker'",
+            "type": "command",
+            "commands": [
+                "mkdir -p .steam/sdk64",
+                "cp -r linux64/steamclient.so .steam/sdk64/"
             ]
         },
         {
             "type": "command",
             "commands": [
-                "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 2394010 validate +quit"
-            ]
-        },
-        {
-            "type": "command",
-            "commands": [
-                "mkdir -p /pufferpanel/Pal/Saved/Config/LinuxServer/"
-            ]
-        },
-        {
-            "type": "command",
-            "commands": [
-                "cp /pufferpanel/DefaultPalWorldSettings.ini /pufferpanel/Pal/Saved/Config/LinuxServer/PalWorldSettings.ini"
+                "cp DefaultPalWorldSettings.ini Pal/Saved/Config/LinuxServer/PalWorldSettings.ini"
             ]
         }
     ],
     "run": {
         "command": [
             {
-                "command": "/pufferpanel/Pal/Binaries/Linux/PalServer-Linux-Shipping Pal",
-                "if": ""
+                "command": "./Pal/Binaries/Linux/PalServer-Linux-Shipping Pal"
             }
         ],
         "stopCode": 2,
         "stdin": {
             "type": "stdin"
-        },
-        "autostart": false,
-        "autorecover": false,
-        "autorestart": false
+        }
     },
     "environment": {
-        "type": "docker",
-        "image": "steamcmd/steamcmd",
-        "networkMode": "host",
-        "networkName": "",
-        "portBindings": [],
-        "bindings": {}
+        "type": "host"
     },
     "supportedEnvironments": [
         {
+            "type": "host"
+        },
+        {
             "type": "docker",
-            "bindings": {},
             "image": "steamcmd/steamcmd",
             "networkMode": "host",
             "networkName": "",
-            "portBindings": []
+            "portBindings": [],
+            "bindings": {}
         }
-    ],
-    "requirements": {
-        "os": "linux"
-    },
-    "stats": {
-        "type": ""
-    },
-    "query": {
-        "type": ""
-    },
-    "keepAlive": {
-        "frequency": "",
-        "command": ""
-    },
-    "name": "palworld"
+    ]
 }

@@ -9,6 +9,9 @@
     "id": {
       "type": "string"
     },
+    "name": {
+      "type": "string"
+    },
     "icon": {
       "type": "string"
     },
