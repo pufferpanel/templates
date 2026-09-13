@@ -1,0 +1,88 @@
+{
+    "type": "palworld",
+    "display": "Palworld - Dedicated Server",
+    "data": {},
+    "install": [
+        {
+            "type": "command",
+            "commands": [
+                "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 1007 +quit"
+            ]
+        },
+        {
+            "type": "mkdir",
+            "target": "/.steam/sdk64/"
+        },
+        {
+            "type": "command",
+            "commands": [
+                "cp /pufferpanel/linux64/steamclient.so /pufferpanel/.steam/sdk64/"
+            ]
+        },
+        {
+            "type": "command",
+            "commands": [
+                "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 2394010 validate +quit"
+            ]
+        },
+        {
+            "type": "command",
+            "commands": [
+                "mkdir -p /pufferpanel/Pal/Saved/Config/LinuxServer/"
+            ]
+        },
+        {
+            "type": "command",
+            "commands": [
+                "cp /pufferpanel/DefaultPalWorldSettings.ini /pufferpanel/Pal/Saved/Config/LinuxServer/PalWorldSettings.ini"
+            ]
+        }
+    ],
+    "run": {
+        "command": [
+            {
+                "command": "/pufferpanel/Pal/Binaries/Linux/PalServer-Linux-Shipping Pal",
+                "if": ""
+            }
+        ],
+        "stopCode": 2,
+        "stdin": {
+            "type": "stdin"
+        },
+        "autostart": false,
+        "autorecover": false,
+        "autorestart": false
+    },
+    "environment": {
+        "type": "docker",
+        "image": "steamcmd/steamcmd",
+        "networkMode": "host",
+        "networkName": "",
+        "portBindings": [],
+        "bindings": {}
+    },
+    "supportedEnvironments": [
+        {
+            "type": "docker",
+            "bindings": {},
+            "image": "steamcmd/steamcmd",
+            "networkMode": "host",
+            "networkName": "",
+            "portBindings": []
+        }
+    ],
+    "requirements": {
+        "os": "linux"
+    },
+    "stats": {
+        "type": ""
+    },
+    "query": {
+        "type": ""
+    },
+    "keepAlive": {
+        "frequency": "",
+        "command": ""
+    },
+    "name": "palworld"
+}
