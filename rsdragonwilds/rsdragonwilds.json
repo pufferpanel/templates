@@ -1,0 +1,173 @@
+{
+    "type": "srcds",
+    "display": "RuneScape: Dragonwilds",
+    "data": {
+        "AdminPassword": {
+            "type": "string",
+            "value": "",
+            "display": "Admin Password",
+            "desc": "The password required to be considered an admin on the server.",
+            "required": true,
+            "userEdit": true
+        },
+        "DefaultWorldName": {
+            "type": "string",
+            "value": "",
+            "display": "World Name",
+            "desc": "The name of your world.",
+            "required": true,
+            "userEdit": true
+        },
+        "MaxPlayers": {
+            "type": "integer",
+            "value": 6,
+            "display": "Max Players",
+            "desc": "The number of players allowed on the world. Note: While you may set this higher, the official supported cap is 6 players.",
+            "required": false,
+            "userEdit": false
+        },
+        "OwnerId": {
+            "type": "string",
+            "value": "",
+            "display": "Owner ID",
+            "desc": "The server owner's RuneScape: Dragonwilds Player ID. You can find this in game at the bottom of the setting's menu. Will not be playable without.",
+            "required": true,
+            "userEdit": true
+        },
+        "Port": {
+            "type": "integer",
+            "value": 7777,
+            "display": "Port",
+            "desc": "The port for the server to use.",
+            "required": true,
+            "userEdit": false
+        },
+        "ServerName": {
+            "type": "string",
+            "value": "Bob",
+            "display": "Server Name",
+            "desc": "The name of the server. Listed as \"Created By\" in the world browser.",
+            "required": true,
+            "userEdit": true
+        },
+        "WorldPassword": {
+            "type": "string",
+            "value": "",
+            "display": "World Password",
+            "desc": "The password required to join the world. Leave blank for public access.",
+            "required": false,
+            "userEdit": true
+        }
+    },
+    "install": [
+        {
+            "type": "steamgamedl",
+            "branch": "",
+            "branchPassword": "",
+            "appId": "4019830"
+        },
+        {
+            "if": "file_exists(\"/RSDragonwilds/Saved/Config/LinuxServer/DedicatedServer.ini\")",
+            "type": "alterfile",
+            "regex": true,
+            "search": "AdminPassword=.*$",
+            "replace": "AdminPassword=${AdminPassword}",
+            "file": "/RSDragonwilds/Saved/Config/LinuxServer/DedicatedServer.ini"
+        },
+        {
+            "if": "file_exists(\"/RSDragonwilds/Saved/Config/LinuxServer/DedicatedServer.ini\")",
+            "type": "alterfile",
+            "regex": true,
+            "search": "OwnerId=.*$",
+            "replace": "OwnerId=${OwnerId}",
+            "file": "/RSDragonwilds/Saved/Config/LinuxServer/DedicatedServer.ini"
+        },
+        {
+            "if": "file_exists(\"/RSDragonwilds/Saved/Config/LinuxServer/DedicatedServer.ini\")",
+            "type": "alterfile",
+            "file": "/RSDragonwilds/Saved/Config/LinuxServer/DedicatedServer.ini",
+            "regex": true,
+            "search": "ServerName=.*$",
+            "replace": "ServerName=${ServerName}"
+        },
+        {
+            "if": "file_exists(\"/RSDragonwilds/Saved/Config/LinuxServer/DedicatedServer.ini\")",
+            "type": "alterfile",
+            "regex": true,
+            "search": "WorldPassword=.*$",
+            "replace": "WorldPassword=${WorldPassword}",
+            "file": "/RSDragonwilds/Saved/Config/LinuxServer/DedicatedServer.ini"
+        },
+        {
+            "if": "file_exists(\"/RSDragonwilds/Saved/Config/LinuxServer/DedicatedServer.ini\")",
+            "type": "alterfile",
+            "search": "DefaultWorldName=.*$",
+            "replace": "DefaultWorldName=${DefaultWorldName}",
+            "file": "/RSDragonwilds/Saved/Config/LinuxServer/DedicatedServer.ini",
+            "regex": true
+        },
+        {
+            "if": "file_exists(\"/RSDragonwilds/Saved/Config/LinuxServer/Game.ini\")",
+            "type": "alterfile",
+            "search": "MaxPlayers=.*$",
+            "replace": "MaxPlayers=${MaxPlayers}",
+            "file": "/RSDragonwilds/Saved/Config/LinuxServer/Game.ini",
+            "regex": true
+        },
+        {
+            "if": "!file_exists(\"/RSDragonwilds/Saved/Config/LinuxServer\")",
+            "type": "mkdir",
+            "target": "/RSDragonwilds/Saved/Config/LinuxServer"
+        },
+        {
+            "if": "!file_exists(\"/RSDragonwilds/Saved/Config/LinuxServer/DedicatedServer.ini\")",
+            "type": "writefile",
+            "text": "[/Script/Dominion.DedicatedServerSettings]\nAdminPassword=${AdminPassword}\nOwnerId=${OwnerId}\nServerName=${ServerName}\nWorldPassword=${WorldPassword}\nDefaultWorldName=${DefaultWorldName}",
+            "target": "/RSDragonwilds/Saved/Config/LinuxServer/DedicatedServer.ini"
+        },
+        {
+            "if": "!file_exists(\"/RSDragonwilds/Saved/Config/LinuxServer/Game.ini\")",
+            "type": "writefile",
+            "text": "[/Script/Engine.GameSession]\r\nMaxPlayers=${MaxPlayers}",
+            "target": "/RSDragonwilds/Saved/Config/LinuxServer/Game.ini"
+        }
+    ],
+    "uninstall": null,
+    "run": {
+        "command": [
+            {
+                "command": "./RSDragonwildsServer.sh -port=${Port}",
+                "if": ""
+            }
+        ],
+        "stopCode": 9,
+        "stdin": {
+            "type": "stdin"
+        },
+        "autostart": false,
+        "autorecover": false,
+        "autorestart": false
+    },
+    "environment": {
+        "type": "host"
+    },
+    "supportedEnvironments": [
+        {
+            "type": "host",
+            "disableUnshare": false,
+            "mounts": []
+        }
+    ],
+    "requirements": {},
+    "stats": {
+        "type": ""
+    },
+    "query": {
+        "type": ""
+    },
+    "keepAlive": {
+        "frequency": "",
+        "command": ""
+    },
+    "name": "Dragonwilds"
+}
