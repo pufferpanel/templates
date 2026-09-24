@@ -1,0 +1,56 @@
+{
+  "name": "ArmA Reforger Docker",
+  "display": "Arma Reforger Docker",
+  "type": "srcds",
+  "install": [
+    {
+      "commands": [
+        "steamcmd +force_install_dir /pufferpanel +login ${steam_user} +app_update 1874900 +quit",
+        "touch ./config.json"
+      ],
+      "type": "command"
+    }
+  ],
+  "run": {
+    "stopCode": 2,
+    "command": "./ArmaReforgerServer -config ./config.json",
+    "workingDirectory": "",
+    "pre": [],
+    "post": [],
+    "environmentVars": {}
+  },
+  "data": {
+    "ip": {
+      "type": "integer",
+      "desc": "What IP to bind the server to",
+      "display": "IP",
+      "required": true,
+      "value": "0.0.0.0"
+    },
+    "port": {
+      "type": "integer",
+      "desc": "What port to bind the server to",
+      "display": "Port",
+      "required": true,
+      "value": "2001"
+    },
+    "steam_user": {
+      "type": "string",
+      "desc": "Username for Steam login",
+      "display": "Steam User",
+      "required": true,
+      "value": "anonymous"
+    }
+  },
+  "supportedEnvironments": [
+    {
+      "bindings": {},
+      "image": "steamcmd/steamcmd",
+      "networkMode": "host",
+      "networkName": "",
+      "portBindings": [],
+      "type": "docker"
+    }
+  ],
+  "requirements": {}
+}
