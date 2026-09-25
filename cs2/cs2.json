@@ -1,0 +1,178 @@
+{
+    "type": "srcds",
+    "display": "Counter Strike 2",
+    "icon": "cs2",
+    "data": {
+        "clientport": {
+            "type": "integer",
+            "value": 27016,
+            "display": "Client Port",
+            "desc": "What port to bind the clientport to",
+            "required": true,
+            "userEdit": false
+        },
+        "gamemode": {
+            "type": "integer",
+            "value": 0,
+            "display": "Gamemode",
+            "desc": "(Advanced) Gamemode ID (e.g., 0 for Casual)",
+            "required": true,
+            "userEdit": true
+        },
+        "gametype": {
+            "type": "integer",
+            "value": 0,
+            "display": "Gametype",
+            "desc": "(Advanced) Gametype ID (e.g., 0 for Matchmaking)",
+            "required": true,
+            "userEdit": true
+        },
+        "gslt": {
+            "type": "string",
+            "value": "",
+            "display": "GSLT Token",
+            "desc": "Game Server Login Token required for public servers. Get one at https://steamcommunity.com/dev/managegameservers",
+            "required": true,
+            "userEdit": true
+        },
+        "ip": {
+            "type": "string",
+            "value": "0.0.0.0",
+            "display": "IP",
+            "desc": "What IP to bind the server to",
+            "required": true,
+            "userEdit": false
+        },
+        "mapName": {
+            "type": "string",
+            "value": "de_dust2",
+            "display": "Map",
+            "desc": "Map to load by default",
+            "required": true,
+            "userEdit": true
+        },
+        "mapgroup": {
+            "type": "integer",
+            "value": 1,
+            "display": "Map Group",
+            "desc": "(Advanced) Map group ID (e.g., 1 for mg_active)",
+            "required": true,
+            "userEdit": true
+        },
+        "maxplayers": {
+            "type": "integer",
+            "value": 20,
+            "display": "Max Players",
+            "desc": "Max players allowed on server",
+            "required": true,
+            "userEdit": true
+        },
+        "port": {
+            "type": "integer",
+            "value": 27015,
+            "display": "Port",
+            "desc": "What port to bind the server to",
+            "required": true,
+            "userEdit": false
+        },
+        "tickrate": {
+            "type": "integer",
+            "value": 64,
+            "display": "Tickrate",
+            "desc": "Server tick speed (Default is often 128 for CS2)",
+            "required": true,
+            "userEdit": true
+        },
+        "tvport": {
+            "type": "integer",
+            "value": 27017,
+            "display": "SourceTV Port",
+            "desc": "What port to bind the SourceTV to",
+            "required": true,
+            "userEdit": false
+        }
+    },
+    "install": [
+        {
+            "if": "env == 'host'",
+            "type": "steamgamedl",
+            "appId": "730"
+        },
+        {
+            "if": "env == 'docker'",
+            "type": "command",
+            "commands": [
+                "steamcmd +force_install_dir /pufferpanel +login anonymous +app_update 730 +quit"
+            ]
+        },
+        {
+            "if": "env == 'docker'",
+            "type": "mkdir",
+            "target": "./.steam/sdk64/"
+        },
+        {
+            "if": "env == 'docker'",
+            "type": "command",
+            "commands": [
+                "ln -s /pufferpanel/.steam/steamcmd/linux64/steamclient.so /pufferpanel/.steam/sdk64/"
+            ]
+        }
+    ],
+    "uninstall": null,
+    "run": {
+        "command": [
+            {
+                "command": "./game/cs2.sh -dedicated -usercon -strictportbind -ip ${ip} -port ${port} +clientport ${clientport} +tv_port ${tvport} +map ${mapName} -maxplayers_override ${maxplayers} +sv_setsteamaccount ${gslt} -tickrate ${tickrate} +mapgroup ${mapgroup} +game_mode ${gamemode} +game_type ${gametype} -net_port_try 1 -norestart",
+                "if": ""
+            }
+        ],
+        "stop": "quit",
+        "stdin": {
+            "type": "stdin"
+        },
+        "autostart": false,
+        "autorecover": false,
+        "autorestart": false
+    },
+    "environment": {
+        "type": "docker",
+        "portBindings": [
+            "0.0.0.0:${port}:${port}/tcp",
+            "0.0.0.0:${clientport}:${clientport}/tcp",
+            "0.0.0.0:${tvport}:${tvport}/tcp"
+        ],
+        "bindings": {},
+        "containerRoot": "",
+        "image": "steamcmd/steamcmd:ubuntu-20",
+        "networkName": "host"
+    },
+    "supportedEnvironments": [
+        {
+            "type": "host"
+        },
+        {
+            "type": "docker",
+            "image": "steamcmd/steamcmd:ubuntu-20",
+            "portBindings": [
+                "0.0.0.0:${port}:${port}/tcp",
+                "0.0.0.0:${clientport}:${clientport}/tcp",
+                "0.0.0.0:${tvport}:${tvport}/tcp"
+            ]
+        }
+    ],
+    "requirements": {
+        "os": "linux",
+        "arch": "amd64"
+    },
+    "stats": {
+        "type": ""
+    },
+    "query": {
+        "type": ""
+    },
+    "keepAlive": {
+        "frequency": "",
+        "command": ""
+    },
+    "name": "cs2"
+}
