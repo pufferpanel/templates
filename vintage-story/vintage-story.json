@@ -1,122 +1,158 @@
 {
-  "type": "custom",
-  "display": "Vintage Story Server",
-  "data": {
-    "maxPlayers": {
-      "type": "integer",
-      "value": 16,
-      "display": "Max Players",
-      "desc": "Maximum number of players that can join the server",
-      "required": true,
-      "userEdit": true
+    "type": "custom",
+    "display": "Vintage Story Server",
+    "data": {
+        "dotNetMajor": {
+            "type": "options",
+            "value": "net10.0",
+            "display": "Major .NET Version",
+            "desc": "Major .NET Version. Should match close to the .NET Runtime Version.",
+            "required": true,
+            "userEdit": false,
+            "options": [
+                {
+                    "value": "net10.0",
+                    "display": ".NET 10"
+                },
+                {
+                    "value": "net8.0",
+                    "display": ".NET 8"
+                }
+            ]
+        },
+        "dotNetVersion": {
+            "type": "string",
+            "value": "10.0.14",
+            "display": ".NET Runtime Version",
+            "desc": ".NET Runtime Version. Find available versions at https://dotnet.microsoft.com/en-us/download/dotnet",
+            "required": true,
+            "userEdit": false
+        },
+        "maxPlayers": {
+            "type": "integer",
+            "value": 16,
+            "display": "Max Players",
+            "desc": "Maximum number of players that can join the server",
+            "required": true,
+            "userEdit": true
+        },
+        "port": {
+            "type": "integer",
+            "value": 42420,
+            "display": "Port",
+            "desc": "Port used to connect to the server",
+            "required": true,
+            "userEdit": false
+        },
+        "version": {
+            "type": "string",
+            "value": "1.22.7",
+            "display": "Game Version",
+            "desc": "Version of Vintage Story to install (e.g., 1.22.7), you can find the latest version here: https://account.vintagestory.at/downloads",
+            "required": true,
+            "userEdit": true
+        }
     },
-    "port": {
-      "type": "integer",
-      "value": 42420,
-      "display": "Port",
-      "desc": "Port used to connect to the server",
-      "required": true,
-      "userEdit": false
-    },
-    "version": {
-      "type": "string",
-      "value": "1.20.10",
-      "display": "version",
-      "desc": "Version of Vintage Story to install (e.g., 1.20.10), you can find the latest version here: https://account.vintagestory.at/downloads",
-      "required": true,
-      "userEdit": true
-    },
-    "dotnetversion": {
-      "type": "string",
-      "value": "8.0.15",
-      "display": ".NET Runtime Version",
-      "desc": ".NET Runtime Version",
-      "required": true,
-      "userEdit": false
-    }
-  },
-  "install": [
-    {
-      "if": "env == 'host'",
-      "type": "download",
-      "files": [
-        "https://dotnetcli.azureedge.net/dotnet/Runtime/${dotnetversion}/dotnet-runtime-${dotnetversion}-linux-x64.tar.gz"
-      ]
-    },
-    {
-      "if": "env == 'host'",
-      "type": "command",
-      "commands": [
-        "rm -rf dotnet",
-        "mkdir -p dotnet"
-      ]
-    },
-    {
-      "if": "env == 'host'",
-      "type": "extract",
-      "source": "dotnet-runtime-${dotnetversion}-linux-x64.tar.gz",
-      "destination": "dotnet"
-    },
-    {
-      "if": "env == 'host'",
-      "type": "command",
-      "commands": [
-        "rm -rf dotnet-runtime-${dotnetversion}-linux-x64.tar.gz"
-      ]
-    },
-    {
-      "type": "download",
-      "files": [
-        "https://cdn.vintagestory.at/gamefiles/stable/vs_server_linux-x64_${version}.tar.gz"
-      ]
-    },
-    {
-      "type": "mkdir",
-      "target": "data"
-    },
-    {
-      "type": "command",
-      "commands": [
-        "tar -xzf vs_server_linux-x64_${version}.tar.gz"
-      ]
-    },
-    {
-      "type": "writefile",
-      "target": "VintagestoryServer.runtimeconfig.json",
-      "text": "{\n  \"runtimeOptions\": {\n    \"tfm\": \"net8.0\",\n    \"framework\": {\n      \"name\": \"Microsoft.NETCore.App\",\n      \"version\": \"8.0.15\"\n    },\n    \"configProperties\": {\n      \"System.Reflection.Metadata.MetadataUpdater.IsSupported\": false,\n      \"System.Runtime.TieredPGO\": true\n    }\n  }\n}"
-    }
-  ],
-  "run": {
-    "command": [
-      {
-        "command": "./dotnet/dotnet VintagestoryServer.dll --dataPath ./data --port ${port} --maxclients ${maxPlayers}",
-        "if": "env == 'host'"
-      },
-      {
-        "command": "dotnet VintagestoryServer.dll --dataPath ./data --port ${port} --maxclients ${maxPlayers}"
-      }
+    "install": [
+        {
+            "if": "env == 'host'",
+            "type": "download",
+            "files": [
+                "https://dotnetcli.azureedge.net/dotnet/Runtime/${dotNetVersion}/dotnet-runtime-${dotNetVersion}-linux-x64.tar.gz"
+            ]
+        },
+        {
+            "if": "env == 'host'",
+            "type": "command",
+            "commands": [
+                "rm -rf dotnet",
+                "mkdir -p dotnet"
+            ]
+        },
+        {
+            "if": "env == 'host'",
+            "type": "extract",
+            "source": "dotnet-runtime-${dotNetVersion}-linux-x64.tar.gz",
+            "destination": "dotnet"
+        },
+        {
+            "if": "env == 'host'",
+            "type": "command",
+            "commands": [
+                "rm -rf dotnet-runtime-${dotNetVersion}-linux-x64.tar.gz"
+            ]
+        },
+        {
+            "type": "download",
+            "files": [
+                "https://cdn.vintagestory.at/gamefiles/stable/vs_server_linux-x64_${version}.tar.gz"
+            ]
+        },
+        {
+            "type": "mkdir",
+            "target": "data"
+        },
+        {
+            "type": "command",
+            "commands": [
+                "tar -xzf vs_server_linux-x64_${version}.tar.gz"
+            ]
+        },
+        {
+            "type": "writefile",
+            "target": "VintagestoryServer.runtimeconfig.json",
+            "text": "{\n  \"runtimeOptions\": {\n    \"tfm\": \"${dotNetMajor}\",\n    \"framework\": {\n      \"name\": \"Microsoft.NETCore.App\",\n      \"version\": \"${dotNetVersion}\"\n    },\n    \"configProperties\": {\n      \"System.Reflection.Metadata.MetadataUpdater.IsSupported\": false,\n      \"System.Runtime.TieredPGO\": true\n    }\n  }\n}"
+        }
     ],
-    "stop": "/stop",
-    "environmentVars": {
-      "DOTNET_ROOT": "./dotnet"
-    }
-  },
-  "environment": {
-    "type": "host"
-  },
-  "supportedEnvironments": [
-    {
-      "type": "host"
+    "uninstall": null,
+    "run": {
+        "command": [
+            {
+                "command": "./dotnet/dotnet VintagestoryServer.dll --dataPath ./data --port ${port} --maxclients ${maxPlayers}",
+                "if": "env == 'host'"
+            },
+            {
+                "command": "dotnet VintagestoryServer.dll --dataPath ./data --port ${port} --maxclients ${maxPlayers}"
+            }
+        ],
+        "stop": "/stop",
+        "environmentVars": {
+            "DOTNET_ROOT": "./dotnet"
+        },
+        "stdin": {
+            "type": "stdin"
+        },
+        "autostart": false,
+        "autorecover": false,
+        "autorestart": false
     },
-    {
-      "type": "docker",
-      "image": "mcr.microsoft.com/dotnet/runtime:${dotnetversion}",
-      "portBindings": [
-        "0.0.0.0:${port}:${port}/tcp"
-      ]
-    }
-  ],
-  "requirements": {
-    "arch": "amd64"
-  }
+    "environment": {
+        "type": "host"
+    },
+    "supportedEnvironments": [
+        {
+            "type": "host"
+        },
+        {
+            "type": "docker",
+            "image": "mcr.microsoft.com/dotnet/runtime:${dotNetVersion}",
+            "portBindings": [
+                "0.0.0.0:${port}:${port}/tcp"
+            ]
+        }
+    ],
+    "requirements": {
+        "arch": "amd64"
+    },
+    "stats": {
+        "type": ""
+    },
+    "query": {
+        "type": ""
+    },
+    "keepAlive": {
+        "frequency": "",
+        "command": ""
+    },
+    "name": "vintage-story"
 }
